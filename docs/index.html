@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Adobe Analytics Services</title>
+	<link rel="icon" type="image/png" href="favicon.ico" sizes="32x32" />
+	<link rel="icon" type="image/png" href="favicon.ico" sizes="16x16" />
+	<link href='css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
+	<link href='css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
+	<link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
+	<link href='css/reset.css' media='print' rel='stylesheet' type='text/css'/>
+	<link href='css/print.css' media='print' rel='stylesheet' type='text/css'/>
+	<script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
+	<script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
+	<script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
+	<script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+	<script src='lib/js.cookie.min.js' type='text/javascript'></script>
+	<script src='lib/handlebars-2.0.0.js' type='text/javascript'></script>
+	<script src='lib/underscore-min.js' type='text/javascript'></script>
+	<script src='lib/backbone-min.js' type='text/javascript'></script>
+	<script src='swagger-ui.js' type='text/javascript'></script>
+	<script src='lib/highlight.7.3.pack.js' type='text/javascript'></script>
+	<script src='lib/marked.js' type='text/javascript'></script>
+	<script src='lib/swagger-oauth.js' type='text/javascript'></script>
+
+	<style>
+
+.swagger-section #header {
+	background-color: #000000;
+	padding: 14px;
+}
+
+.swagger-section #header #logo {
+	font-weight: 300;
+	font-family: adobe-clean,Helvetica,Arial,sans-serif;
+	font-style: normal;
+
+	text-decoration: none;
+	background: transparent url(adobe_icon.png) no-repeat left center;
+	background-size: 39px 64px;
+	padding: 20px 0 20px 50px;
+	color: white;
+}
+
+.swagger-section #controls-wrap {
+	left: 0px;
+	right: 0px;
+	height: auto;
+	min-height: 115px;
+ 	background-color: #1C0A2B;
+}
+
+.swagger-section #controls {
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: none;
+	font-family: adobe-clean,Helvetica,Arial,sans-serif;
+	color: white;
+}
+
+.swagger-section #api_selector {
+	display: block;
+	clear: none;
+	margin-top: 5px;
+	float: left;
+}
+
+.swagger-section #api_selector select {
+	margin-top: 6px;
+}
+
+.swagger-section #api_selector input {
+	font-size: 0.9em;
+	padding: 3px;
+	margin-top: 5px;
+	width: 650px;
+}
+
+.swagger-section #api_selector label {
+	display: inline-block;
+	width: 160px;
+	text-align: right;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.swagger-section .swagger-ui-wrap .info_title {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.swagger-section #input_accessToken {
+	width: 700px;
+}
+.swagger-section #input_globalCompanyId {
+	width: 660px;
+}
+.swagger-section #input_apiKey {
+	width: 725px;
+}
+
+
+.swagger-section #message-bar {
+	min-height: 0px;
+	text-align: center;
+}
+
+.swagger-section #explore {
+	margin-top: 5px;
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 6px 8px;
+	font-size: 0.9em;
+	color: white;
+	background-color: #000000;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.swagger-section #reports_runRankedReport_content textarea {
+	width: 430px;
+	height: 360px;
+}
+
+.swagger-section #segments_createSegment_content textarea {
+	width: 430px;
+	height: 360px;
+}
+
+.swagger-section .curl {
+	display: none
+}
+
+.swagger-section .request_url {
+	display: none
+}
+</style>
+	
+<script type="text/javascript">
+	$(function() {
+
+		var url = window.location.search.match(/url=([^&]+)/);
+		if (url && url.length > 1) {
+			url = decodeURIComponent(url[1]);
+		} else {
+			url = "swagger.json";
+		}
+
+		// Pre load translate...
+		if (window.SwaggerTranslator) {
+			window.SwaggerTranslator.translate();
+		}
+		window.swaggerUi = new SwaggerUi(
+				{
+					url : url,
+					dom_id : "swagger-ui-container",
+					supportedSubmitMethods : [ 'get', 'post', 'put',
+							'delete', 'patch' ],
+					onComplete : function(swaggerApi, swaggerUi) {
+						if (typeof initOAuth == "function") {
+							initOAuth({
+								clientId : "your-client-id",
+								clientSecret : "your-client-secret-if-required",
+								realm : "your-realms",
+								appName : "your-app-name",
+								scopeSeparator : ","
+							});
+						}
+
+						if (window.SwaggerTranslator) {
+							window.SwaggerTranslator.translate();
+						}
+
+						$('pre code').each(function(i, e) {
+							hljs.highlightBlock(e)
+						});
+
+						var isStage = getParameterByName('stage');
+						log('isStage=' + isStage);
+						if( isStage != null ) {
+							window.swaggerUi.api.setHost('analytics-stage.adobe.io');
+						}
+						addAccessToken();
+						addGlobalCompanyId();
+						addApiKey();
+
+						setTimeout(function(){
+							loadQSParams();
+							goToHash();
+						}, 1000);
+					},
+					onFailure : function(data) {
+						log("Unable to Load SwaggerUI");
+					},
+					docExpansion : "none",
+					apisSorter : "alpha",
+					deepLinking: true,
+					showRequestHeaders : false,
+					validatorUrl:null
+				});
+
+		function getParameterByName(name, url) {
+			if (!url)
+				url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'), results = regex
+					.exec(url);
+			if (!results)
+				return null;
+			if (!results[2])
+				return '';
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
+
+		function addAccessToken() {
+			var key = $('#input_accessToken')[0].value;
+			if (key && key.trim() != "") {
+				var accessTokenAuth = new SwaggerClient.ApiKeyAuthorization(
+						"Authorization", "Bearer " + key, "header");
+				window.swaggerUi.api.clientAuthorizations.add("api_key",
+						accessTokenAuth);
+				log("added key " + key);
+			}
+		}
+
+		function addGlobalCompanyId() {
+			var globalCompanyId = $('#input_globalCompanyId')[0].value;
+			if (globalCompanyId && globalCompanyId.trim() != "") {
+				var globalCompanyIdHeader = new SwaggerClient.ApiKeyAuthorization(
+						"x-proxy-global-company-id", globalCompanyId, "header");
+				window.swaggerUi.api.clientAuthorizations.add(
+						"xproxyGlobalCompanyId", globalCompanyIdHeader);
+				window.swaggerUi.api.setBasePath('/api/' + globalCompanyId);
+				log("added x-proxy-global-company-id " + globalCompanyId);
+			}
+
+			Cookies.set("input_globalCompanyId", globalCompanyId, {
+				expires : 30
+			});
+		}
+
+		function addApiKey() {
+			var apiKey = $('#input_apiKey')[0].value;
+			if (apiKey && apiKey.trim() != "") {
+				var apiKeyHeader = new SwaggerClient.ApiKeyAuthorization(
+						"x-api-key", apiKey, "header");
+				window.swaggerUi.api.clientAuthorizations.add("xapiKey",
+						apiKeyHeader);
+				log("added x-api-key " + apiKey);
+			}
+
+			Cookies.set("input_apiKey", apiKey, {
+				expires : 30
+			});
+		}
+
+		function loadQSParams() {
+			if (!window.location.hash) {
+				return;
+			}
+			var element = getSwaggerElementByHash();
+			if (element) {
+				element.find('input, select, textarea').each(
+						function(index) {
+							var input = $(this);
+							var name = input.attr('name');
+
+							if (name) {
+								var qs_param = $.getUrlVar(name);
+								if (qs_param) {
+									input.val(JSON.stringify(JSON
+											.parse(qs_param), null, 2));
+								}
+							}
+						});
+			}
+		}
+
+		function goToHash() {
+			if (!window.location.hash) {
+				return;
+			}
+			var element = getSwaggerElementByHash();
+			if (element) {
+				$('html, body').animate({
+					scrollTop : element.offset().top
+				}, 200);
+			}
+		}
+
+		$('#input_accessToken').focus();
+
+		if (Cookies.get('input_globalCompanyId')) {
+			$('#input_globalCompanyId').val(
+					Cookies.get('input_globalCompanyId'));
+		} else if ($.getUrlVar('input_globalCompanyId')) {
+			$('#input_globalCompanyId').val(
+					$.getUrlVar('input_globalCompanyId'));
+		}
+
+		if (Cookies.get('input_apiKey')) {
+			$('#input_apiKey').val(Cookies.get('input_apiKey'));
+		} else if ($.getUrlVar('input_apiKey')) {
+			$('#input_apiKey').val($.getUrlVar('input_apiKey'));
+		}
+
+		$('#input_accessToken').change(addAccessToken);
+		$('#input_globalCompanyId').change(addGlobalCompanyId);
+		$('#input_apiKey').change(addApiKey);
+
+		window.swaggerUi.load();
+
+		function log() {
+			if ('console' in window) {
+				console.log.apply(console, arguments);
+			}
+		}
+	});
+
+	function getSwaggerElementByHash() {
+		var element;
+		if (window.location.hash.match(/^\#\!\/([^\/]+)$/)) {
+			element = $(window.location.hash.replace(/^\#\!\/([^\/]+)$/,
+					"#resource_$1"));
+		} else if (window.location.hash.match(/^\#\!\/([^\/]+)\/(.*)$/)) {
+			element = $(window.location.hash.replace(/^\#\!\/([^\/]+)\/(.*)$/,
+					"#$1_$2"));
+		} else {
+			element = false;
+		}
+
+		return element;
+	}
+
+	$.extend({
+		getUrlVars : function() {
+			var vars = [], hash;
+			var href = window.location.href.replace(/(.*)\#[^\#]+$/, "$1");
+			var hashes = href.slice(href.indexOf('?') + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				vars.push(hash[0]);
+				vars[hash[0]] = decodeURIComponent(hash[1]);
+			}
+			return vars;
+		},
+		getUrlVar : function(name) {
+			return $.getUrlVars()[name];
+		}
+	});
+</script>
+</head>
+
+<body class="swagger-section">
+<div id='header'>
+  <div class="swagger-ui-wrap">
+    <a id="logo" >Adobe Analytics</a>
+  </div>
+</div>
+<div id="controls-wrap">
+	<div id="controls-ui-container">
+		<div id="controls">
+			<form id='api_selector'>
+				<div class='input'>
+					<div class="block">
+						<label>Access Token:</label> <input placeholder="ims access token" id="input_accessToken" name="accessToken" type="text" value=""/><br/>
+					</div>
+					<div class="block">
+						<label>Global Company Id:</label> <input placeholder="global company id" id="input_globalCompanyId" name="globalCompanyId" type="text" value=""/><br/>
+					</div>
+					<div class="block">
+						<label>Client ID (Api Key):</label> <input placeholder="api key" id="input_apiKey" name="apiKey" type="text" value=""/><br/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
+<div id="swagger-ui-container" class="swagger-ui-wrap">&nbsp;</div>
+</body>
+</html>
