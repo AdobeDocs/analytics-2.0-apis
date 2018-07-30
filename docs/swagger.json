@@ -1845,7 +1845,7 @@
       "post" : {
         "tags" : [ "reports" ],
         "summary" : "Runs a report for the request in the post body",
-        "description" : "See the [Reporting Interface wiki page](https://wiki.corp.adobe.com/display/scservices/Reporting+Interface) for details.",
+        "description" : "See the [Ranked Endpoint User Guide](https://adobe-experience-cloud.github.io/analytics-2.0-apis/analytics-api-reference-guide.html#_ranked_endpoint_user_guide) for details.",
         "operationId" : "runReport",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
@@ -1914,7 +1914,7 @@
       "post" : {
         "tags" : [ "reports" ],
         "summary" : "Runs a ranked report for the report in the post body",
-        "description" : "See the [Reporting Interface wiki page](https://wiki.corp.adobe.com/display/scservices/Reporting+Interface) for details.",
+        "description" : "See the [Ranked Endpoint User Guide](https://adobe-experience-cloud.github.io/analytics-2.0-apis/analytics-api-reference-guide.html#_ranked_endpoint_user_guide) for details.",
         "operationId" : "runRankedReport",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
