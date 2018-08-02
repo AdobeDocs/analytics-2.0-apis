@@ -1,16 +1,13 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "The endpoints described here are routed through Adobe.io. In order to use these endpoints you must create an oAuth client that is subscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-07-20T16:45:37Z",
+    "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
+    "version" : "v1 - Build: 2018-08-02T21:52:19Z",
     "title" : "Analytics Services APIs"
   },
   "host" : "analytics.adobe.io",
   "basePath" : "/",
   "tags" : [ {
-    "name" : "approvals",
-    "description" : "Operations on approvals"
-  }, {
     "name" : "calculatedmetrics"
   }, {
     "name" : "classifications"
@@ -18,14 +15,11 @@
     "name" : "collections",
     "description" : "Analytics Collections"
   }, {
-    "name" : "companies",
-    "description" : "Analytics Company Service"
+    "name" : "dateranges",
+    "description" : "Retrieves a dateranges for the Given Report Suite"
   }, {
     "name" : "dimensions",
     "description" : "Dimensions service"
-  }, {
-    "name" : "favorites",
-    "description" : "Operations on managing favorites on components"
   }, {
     "name" : "metrics",
     "description" : "Retrieves a List of Metrics for the Given Report Suite"
@@ -39,218 +33,14 @@
     "name" : "segments",
     "description" : "These operations manage Adobe Analytics Segments. Segments are used to isolate interesting groups of visitors, visits, or hits."
   }, {
-    "name" : "tags",
-    "description" : "Operations on tags"
-  }, {
-    "name" : "timezones",
-    "description" : " Timezone Operations"
+    "name" : "users",
+    "description" : "Retrieves Lists of Users"
   }, {
     "name" : "virtualreportsuites",
     "description" : "Operations on virtual report suites"
   } ],
   "schemes" : [ "https" ],
   "paths" : {
-    "/approvals" : {
-      "get" : {
-        "tags" : [ "approvals" ],
-        "summary" : "Returns a list of approval objects for the current user. Response is paged based on the provided paging criteria.",
-        "description" : "",
-        "operationId" : "findAllForCurrentUser",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "userid",
-          "in" : "query",
-          "description" : "The user ID to return details for. Only admins may use this query parameter.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "Number of results per page",
-          "required" : false,
-          "type" : "integer",
-          "default" : 10
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Page number (base 0 - first page is \"0\")",
-          "required" : false,
-          "type" : "integer",
-          "default" : 0
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Approval"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid JSON input"
-          },
-          "403" : {
-            "description" : "Insufficient access to perform operation"
-          },
-          "500" : {
-            "description" : "Internal Server Error; unable to retrieve approvals"
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "approvals" ],
-        "summary" : "Marks an item as approved",
-        "description" : "Takes an array of components and marks them all as \"Approved\"",
-        "operationId" : "save",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Array containing a list of Component objects to be marked as \"Approved\"",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/Approval"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Approval"
-            }
-          },
-          "400" : {
-            "description" : "Invalid JSON input"
-          },
-          "403" : {
-            "description" : "Insufficient access to perform operation; only admins can approve components"
-          },
-          "500" : {
-            "description" : "Internal Server Error; unable to create approvals for the specified components"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "approvals" ],
-        "summary" : "Un-approve the specified components (delete approvals)",
-        "description" : "Only Admins can create and delete approvals.",
-        "operationId" : "deleteByItemIds",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "componentType",
-          "in" : "query",
-          "description" : "Type of component ",
-          "required" : true,
-          "type" : "string",
-          "enum" : [ "segment", "dashboard", "bookmark", "calculatedMetric", "project", "dateRange", "metric", "dimension", "virtualReportSuite", "scheduledJob", "alert", "classificationSet" ]
-        }, {
-          "name" : "componentIds",
-          "in" : "query",
-          "description" : "Comma-delimited list of componentIds for which to remove approvals",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "object",
-                "additionalProperties" : {
-                  "type" : "object"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid JSON input"
-          },
-          "403" : {
-            "description" : "Insufficient access to perform operation; only admins can un-approve a segment"
-          },
-          "500" : {
-            "description" : "Internal Server Error; unable to delete approvals for the specified components"
-          }
-        }
-      }
-    },
-    "/approvals/{id}" : {
-      "get" : {
-        "tags" : [ "approvals" ],
-        "summary" : "Retrieves an approval object by its id",
-        "description" : "",
-        "operationId" : "findOne",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The approval ID to be returned",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int64"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Approval"
-            }
-          },
-          "403" : {
-            "description" : "Insufficient access to perform operation"
-          },
-          "404" : {
-            "description" : "The specified approvalId could not be found"
-          },
-          "500" : {
-            "description" : "Internal Server Error; unable to retrieve the specified approval"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "approvals" ],
-        "summary" : "Deletes the approval with the given id",
-        "description" : "Only admins can create and delete approvals",
-        "operationId" : "deleteByApprovalID",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The approval ID to be deleted",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int64"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "additionalProperties" : {
-                "type" : "object"
-              }
-            }
-          },
-          "403" : {
-            "description" : "Insufficient access to perform operation; user does not have access to delete the approval."
-          },
-          "404" : {
-            "description" : "The specified approval does not exist"
-          },
-          "500" : {
-            "description" : "Internal Server Error; unable to delete the specified approval"
-          }
-        }
-      }
-    },
     "/calculatedmetrics" : {
       "get" : {
         "tags" : [ "calculatedmetrics" ],
@@ -278,12 +68,6 @@
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "filterByIds",
-          "in" : "query",
-          "description" : "Filter list to only include calculated metrics in the specified list (comma-delimited list of IDs) (this is the same as calculatedMetricFilter, and is overwritten by calculatedMetricFilter",
-          "required" : false,
-          "type" : "string"
-        }, {
           "name" : "locale",
           "in" : "query",
           "description" : "Locale",
@@ -300,32 +84,6 @@
           "name" : "tagNames",
           "in" : "query",
           "description" : "Filter list to only include calculated metrics that contains one of the tags",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "favorite",
-          "in" : "query",
-          "description" : "Filter list to only include calculated metrics that are favorites",
-          "required" : false,
-          "type" : "boolean"
-        }, {
-          "name" : "approved",
-          "in" : "query",
-          "description" : "Filter list to only include calculated metrics that are approved",
-          "required" : false,
-          "type" : "boolean"
-        }, {
-          "name" : "pagination",
-          "in" : "query",
-          "description" : "return paginated results",
-          "required" : false,
-          "type" : "string",
-          "default" : "false",
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "filterByModifiedAfter",
-          "in" : "query",
-          "description" : "Filter list to only include calculated metrics modified since this date (ISO8601 format)",
           "required" : false,
           "type" : "string"
         }, {
@@ -350,10 +108,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
         } ],
         "responses" : {
           "200" : {
@@ -390,139 +148,6 @@
             }
           }
         }
-      },
-      "post" : {
-        "tags" : [ "calculatedmetrics" ],
-        "summary" : "Create a new Calculated Metric",
-        "description" : "Creates a new calculated metric. The following attributes are available when creating a calculated metric:\n\nIMPORTANT: Required Fields: name, definition, rsid\n\nOptional fields: description\n\nExample definition for use in testing API below (\"Page exists\"):\n\n```json\n\n{\"definition\":{},\"version\":[1,0,0]}\n```\n\nA calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field as defined/documented in the GET endpoints (see GET \"/calculatedmetrics\" or GET \"/calculatedmetrics/{id}\" for more documentation).",
-        "operationId" : "calculatedmetrics_createCalculatedMetric",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing key/value pairs for calculated metric creation.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/AnalyticsCalculatedMetric"
-          }
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional calculated metric metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/AnalyticsCalculatedMetric"
-            }
-          },
-          "400" : {
-            "description" : "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          },
-          "500" : {
-            "description" : "External API error; Calculated metric create or retrieval failed",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          }
-        }
-      }
-    },
-    "/calculatedmetrics/functions" : {
-      "get" : {
-        "tags" : [ "calculatedmetrics" ],
-        "summary" : "Retrieve calculated metric functions",
-        "description" : "",
-        "operationId" : "getCalculatedMetricFunctions",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/CalcMetricFunction"
-              }
-            }
-          },
-          "500" : {
-            "description" : "External API error; Calculated metric functions retrieval failed",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          }
-        }
-      }
-    },
-    "/calculatedmetrics/functions/{id}" : {
-      "get" : {
-        "tags" : [ "calculatedmetrics" ],
-        "summary" : "Retrieve a calculated metric function by id",
-        "description" : "",
-        "operationId" : "getCalculatedMetricFunction",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The function ID to retrieve",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/CalcMetricFunction"
-            }
-          },
-          "404" : {
-            "description" : "Calculated metric function not found",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          },
-          "500" : {
-            "description" : "External API error; Calculated metric function retrieval failed",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          }
-        }
       }
     },
     "/calculatedmetrics/{id}" : {
@@ -553,10 +178,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
         } ],
         "responses" : {
           "200" : {
@@ -573,115 +198,6 @@
           },
           "500" : {
             "description" : "External API error; calculated metric retrieval failed",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          }
-        }
-      },
-      "put" : {
-        "tags" : [ "calculatedmetrics" ],
-        "summary" : "Update an existing calculated metric",
-        "description" : "The following fields can be modified through this endpoint: <br><b>name, description, definition, owner, rsid</b>Example \"defintion\" for use in testing API below (\"Page exists\"):<br>\"definition\":{},\"version\":[1,0,0]}<br><br>Response will be the newly modified calculated metric object after the update request completes.<br><br><b><span style=\"text-decoration: underline;\">CalculatedMetricResponse</span></b><br>A calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field as defined/documented in the GET endpoints (see GET \"/calculatedmetrics\" or GET \"/calculatedmetrics/{id}\" for more documentation).",
-        "operationId" : "updateCalculatedMetric",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "Calculated Metric ID to be updated",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing key/value pairs to be updated.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/AnalyticsCalculatedMetric"
-          }
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional calculated metric metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "isDeleted", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "usageSummaryWithRelevancyScore", "definition", "authorization", "compatibility", "warning" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/AnalyticsCalculatedMetric"
-            }
-          },
-          "400" : {
-            "description" : "Definition must be formatted as a JSON Object",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          },
-          "401" : {
-            "description" : "Company mismatch; calculated metric ownership can only be transferred within the same organization",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          },
-          "403" : {
-            "description" : "User does not have permission to update this calculated metric",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          },
-          "500" : {
-            "description" : "External API error; Calculated metric update or retrieval failed",
-            "schema" : {
-              "$ref" : "#/definitions/CalculatedMetricErrorStatus"
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "calculatedmetrics" ],
-        "summary" : "Deletion of Calculated Metrics by Id",
-        "description" : "",
-        "operationId" : "deleteCalculatedMetric",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The calculated metric ID to be deleted",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/DeleteResponse"
-            }
-          },
-          "500" : {
-            "description" : "External API error; Calculated metric delete failed",
             "schema" : {
               "$ref" : "#/definitions/CalculatedMetricErrorStatus"
             }
@@ -1039,76 +555,6 @@
         }
       }
     },
-    "/classifications/unclassified/{classificationSetId}" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Runs an oberon report to get unclassifed values for the given classification set.",
-        "description" : "",
-        "operationId" : "runUnclassifiedValuesReport",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "classificationSetId",
-          "in" : "path",
-          "description" : "The id for which to retrieve information",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "RSID to run the report against",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "dimension",
-          "in" : "query",
-          "description" : "Dimension to run the report against",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "dateRange",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD/YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "startDate",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "endDate",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "allowRemoteLoad",
-          "in" : "query",
-          "description" : "Controls if Oberon should remote load data.  Default behavior is true with fallback to false if remote data does not exist",
-          "required" : false,
-          "type" : "string",
-          "default" : "default",
-          "enum" : [ "true", "false", "default" ]
-        }, {
-          "name" : "includeOberonXml",
-          "in" : "query",
-          "description" : "Controls if Oberon XML should be returned in the response - DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/RankedReportData"
-            }
-          }
-        }
-      }
-    },
     "/collections/suites" : {
       "get" : {
         "tags" : [ "collections" ],
@@ -1117,13 +563,6 @@
         "operationId" : "findAll",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "userGroupId",
-          "in" : "query",
-          "description" : "Filter list to only include suites that are in the given userGroupId",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "rsids",
           "in" : "query",
           "description" : "Filter list to only include suites in this RSID list (comma-delimited)",
@@ -1157,10 +596,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "name", "parentRsid", "numGroups", "currency", "calendarType", "currentTimezoneOffset", "timezoneZoneinfo" ]
+            "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "name", "parentRsid", "numGroups", "currency", "calendarType", "currentTimezoneOffset", "timezoneZoneinfo" ]
+          "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
         } ],
         "responses" : {
           "200" : {
@@ -1196,10 +635,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "name", "parentRsid", "numGroups", "currency", "calendarType", "currentTimezoneOffset", "timezoneZoneinfo" ]
+            "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "name", "parentRsid", "numGroups", "currency", "calendarType", "currentTimezoneOffset", "timezoneZoneinfo" ]
+          "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
         } ],
         "responses" : {
           "200" : {
@@ -1214,62 +653,231 @@
         }
       }
     },
-    "/companies/me" : {
+    "/dateranges" : {
       "get" : {
-        "tags" : [ "companies" ],
-        "summary" : "Retrieves information about the login company for the current user.",
-        "description" : "",
-        "operationId" : "getUserCompany",
+        "tags" : [ "dateranges" ],
+        "summary" : "Returns a list of dateranges for the user",
+        "description" : "This API allows users to store commonly used date ranges so that they can be reused throughout the product.",
+        "operationId" : "getDateRanges",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "filterByIds",
+          "in" : "query",
+          "description" : "Filter list to only include date ranges in the specified list (comma-delimited list of IDs)",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of results per page",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (base 0 - first page is \"0\")",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        }, {
           "name" : "expansion",
           "in" : "query",
-          "description" : "Comma-delimited list of company expansions.",
+          "description" : "Comma-delimited list of additional date range metadata fields to include on response.",
           "required" : false,
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "validEmails", "allowAdobeEmails", "companySecurity", "billingTabAccess" ]
+            "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "validEmails", "allowAdobeEmails", "companySecurity", "billingTabAccess" ]
+          "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/Company"
+              "$ref" : "#/definitions/AnalyticsDateRange"
             }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "dateranges" ],
+        "summary" : "Creates a single date range.",
+        "description" : "",
+        "operationId" : "createDateRange",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "JSON-formatted Object containing date range keys/value pairs to be updated.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/AnalyticsDateRange"
+          }
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "expansion",
+          "in" : "query",
+          "description" : "Comma-delimited list of additional date range metadata fields to include on response.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
           },
-          "500" : {
-            "description" : "Unexpected error; company retrieval failed"
+          "collectionFormat" : "multi",
+          "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AnalyticsDateRange"
+            }
           }
         }
       }
     },
-    "/companies/me/trackingserver" : {
+    "/dateranges/{dateRangeId}" : {
       "get" : {
-        "tags" : [ "companies" ],
-        "summary" : "Retrieves the tracking server for the login company of the current user.",
+        "tags" : [ "dateranges" ],
+        "summary" : "Retrieves configuration for a DateRange.",
         "description" : "",
-        "operationId" : "getTrackingServer",
+        "operationId" : "getDateRange",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "The rsid to use if this company does not require namespace use.",
+          "name" : "dateRangeId",
+          "in" : "path",
+          "description" : "The DateRange id for which to retrieve information",
           "required" : true,
           "type" : "string"
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "expansion",
+          "in" : "query",
+          "description" : "Comma-delimited list of additional date range metadata fields to include on response.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+          },
+          "collectionFormat" : "multi",
+          "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/AnalyticsTrackingServer"
+              "$ref" : "#/definitions/AnalyticsDateRange"
             }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "dateranges" ],
+        "summary" : "Updates configuration for a date range.",
+        "description" : "",
+        "operationId" : "updateDateRange",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "dateRangeId",
+          "in" : "path",
+          "description" : "The DateRange id for which to retrieve information",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "JSON-formatted Object containing date range keys/value pairs to be updated.",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/AnalyticsDateRange"
+          }
+        }, {
+          "name" : "newDefinition",
+          "in" : "query",
+          "description" : "Use the new JSON def",
+          "required" : false,
+          "type" : "boolean",
+          "default" : false,
+          "enum" : [ "true", "false" ]
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "expansion",
+          "in" : "query",
+          "description" : "Comma-delimited list of additional date range metadata fields to include on response.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
           },
-          "500" : {
-            "description" : "Unexpected error; tracking server retrieval failed"
+          "collectionFormat" : "multi",
+          "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AnalyticsDateRange"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "dateranges" ],
+        "summary" : "deletes a date range.",
+        "description" : "",
+        "operationId" : "deleteDateRange",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "dateRangeId",
+          "in" : "path",
+          "description" : "The DateRange id for which to retrieve information",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DeleteResponse"
+            }
           }
         }
       }
@@ -1295,27 +903,9 @@
           "type" : "string",
           "default" : "en_US"
         }, {
-          "name" : "support",
-          "in" : "query",
-          "description" : "Comma-delimited list of products to filter the dimension list by. Possible values are 'oberon' and 'dataWarehouse'.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "oberon", "dataWarehouse" ]
-          },
-          "collectionFormat" : "multi"
-        }, {
           "name" : "segmentable",
           "in" : "query",
           "description" : "Only include dimensions that are valid within a segment.",
-          "required" : false,
-          "type" : "boolean",
-          "enum" : [ "true" ]
-        }, {
-          "name" : "supportsDataGovernance",
-          "in" : "query",
-          "description" : "Only include dimensions that contain dataGovernance attribute.",
           "required" : false,
           "type" : "boolean",
           "enum" : [ "true" ]
@@ -1332,41 +922,8 @@
           "description" : "Only include classifiable dimensions.",
           "required" : false,
           "type" : "boolean",
+          "default" : false,
           "enum" : [ "true" ]
-        }, {
-          "name" : "reportTimeAttribution",
-          "in" : "query",
-          "description" : "Only include dimensions that support reportTimeAttribution.",
-          "required" : false,
-          "type" : "boolean",
-          "enum" : [ "true" ]
-        }, {
-          "name" : "useCache",
-          "in" : "query",
-          "description" : "Enable caching for faster requests.",
-          "required" : false,
-          "type" : "boolean",
-          "default" : true
-        }, {
-          "name" : "dataGovernanceLabels",
-          "in" : "query",
-          "description" : "Filter the response based on data governance labels. Search for multiple lables using a comma-delimited string format. Any metric/dimension containing one or more of the provided labels will be returned.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          },
-          "collectionFormat" : "multi"
-        }, {
-          "name" : "dataGovernanceNamespaces",
-          "in" : "query",
-          "description" : "Filter the response based on data governance namespaces. Search for multiple namespaces using a comma-delimited string format. Any dimension containing one or more of the provided namespaces will be returned.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          },
-          "collectionFormat" : "multi"
         }, {
           "name" : "expansion",
           "in" : "query",
@@ -1375,10 +932,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+            "enum" : [ "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+          "enum" : [ "tags" ]
         } ],
         "responses" : {
           "200" : {
@@ -1395,94 +952,6 @@
           },
           "401" : {
             "description" : "User does not have access to this report suite"
-          },
-          "500" : {
-            "description" : "Unexpected internal server error"
-          }
-        }
-      }
-    },
-    "/dimensions/datagovernance/namespaces" : {
-      "get" : {
-        "tags" : [ "dimensions" ],
-        "summary" : "Get all gdpr namespaces for a user's ims org",
-        "description" : "",
-        "operationId" : "listDataGovernanceNamespaces",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "useCache",
-          "in" : "query",
-          "description" : "Enable caching",
-          "required" : false,
-          "type" : "boolean",
-          "default" : true
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Success status",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/dimensions/values" : {
-      "post" : {
-        "tags" : [ "dimensions" ],
-        "summary" : "Returns the names of the dimension items listed in the post body.",
-        "description" : "Given a dimension name and an itemId, this endpoint returns the text value for that itemId",
-        "operationId" : "dimensions_getDimensionValues",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "The report suite ID",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale to use when returning dimension information.",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "dateRange",
-          "in" : "query",
-          "description" : "Optionally supply the date range for filtering dimension values (default is last 90 days). Example format: 2014-06-01/2014-06-30 (gives June 2014)",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Array of dimensionItem objects where each element contains key-value pairs for \"dimension\" and \"itemId\"",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/DimensionItem"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/DimensionItem"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid JSON input"
-          },
-          "403" : {
-            "description" : "Insufficient access to perform operation"
           },
           "500" : {
             "description" : "Unexpected internal server error"
@@ -1524,10 +993,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+            "enum" : [ "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+          "enum" : [ "tags" ]
         } ],
         "responses" : {
           "200" : {
@@ -1538,181 +1007,6 @@
           },
           "401" : {
             "description" : "User Doesn't have sufficient privileges"
-          }
-        }
-      }
-    },
-    "/favorites" : {
-      "get" : {
-        "tags" : [ "favorites" ],
-        "summary" : "Returns a list of favorite objects for the current user meeting the paging restriction",
-        "description" : "Returns an array of all of the favorites objects tied to the company. Setting a very large page size will return the list in a single request, but it may be more data than you expect and you may experience performance issues.",
-        "operationId" : "favorites_findAllForCurrentUser",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "componentType",
-          "in" : "query",
-          "description" : "The component type to filter on. Required if also using componentIds filter.",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "segment", "dashboard", "bookmark", "calculatedMetric", "project", "dateRange", "metric", "dimension", "virtualReportSuite", "scheduledJob", "alert", "classificationSet" ]
-        }, {
-          "name" : "componentIds",
-          "in" : "query",
-          "description" : "Comma-delimited list of componentIds to filter on. Must also pass componentType.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "userid",
-          "in" : "query",
-          "description" : "The user ID to return details for. Only admins may use this option.",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "Number of results per page",
-          "required" : false,
-          "type" : "integer",
-          "default" : 10
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Page number (base 0 - first page is \"0\")",
-          "required" : false,
-          "type" : "integer",
-          "default" : 0
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Favorite"
-              }
-            }
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "favorites" ],
-        "summary" : "Creates 'favorite' records for a given component",
-        "description" : "Accepts an array of Favorite objects to allow creation of one or many 'favorite' records in a single call.",
-        "operationId" : "favorites_save",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted ARRAY containing a list of favorite objects",
-          "required" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/Favorite"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Favorite"
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "favorites" ],
-        "summary" : "Deletes favorites by componentId. Accepts a list of componentIds and deletes any \"Favorites\" associated with them",
-        "description" : "Deletes favorites based on componentIds.",
-        "operationId" : "favorites_deleteByItemIds",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "componentType",
-          "in" : "query",
-          "description" : "The component type to operate on.",
-          "required" : true,
-          "type" : "string",
-          "enum" : [ "segment", "dashboard", "bookmark", "calculatedMetric", "project", "dateRange", "metric", "dimension", "virtualReportSuite", "scheduledJob", "alert", "classificationSet" ]
-        }, {
-          "name" : "componentIds",
-          "in" : "query",
-          "description" : "A comma separated list of component Ids",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "object",
-                "additionalProperties" : {
-                  "type" : "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/favorites/{id}" : {
-      "get" : {
-        "tags" : [ "favorites" ],
-        "summary" : "Retrieve a 'favorite' record by id",
-        "description" : "",
-        "operationId" : "favorites_findOne",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The id of the \"Favorite\" record to return",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int64"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Favorite"
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "favorites" ],
-        "summary" : "Deletes the \"Favorite\" with the given id",
-        "description" : "Deletes by favoriteId.",
-        "operationId" : "favorites_deleteByFavoriteID",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The id of the favorite",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int64"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "additionalProperties" : {
-                "type" : "object"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Attempting to remove a favorite by id that does not exist"
-          },
-          "403" : {
-            "description" : "Attempting to remove a favorite for a user other than the authenticated user"
           }
         }
       }
@@ -1752,10 +1046,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+            "enum" : [ "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+          "enum" : [ "tags" ]
         } ],
         "responses" : {
           "200" : {
@@ -1803,13 +1097,6 @@
           "type" : "string",
           "default" : "en_US"
         }, {
-          "name" : "includeHidden",
-          "in" : "query",
-          "description" : "Whether to include variables that are hidden in the UI or that the user doesn't have permission to.",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false
-        }, {
           "name" : "expansion",
           "in" : "query",
           "description" : "Add extra metadata to items (comma-delimited list)",
@@ -1817,10 +1104,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+            "enum" : [ "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "tags", "approved", "favorite", "usageSummary", "attributes" ]
+          "enum" : [ "tags" ]
         } ],
         "responses" : {
           "200" : {
@@ -1845,48 +1132,11 @@
       "post" : {
         "tags" : [ "reports" ],
         "summary" : "Runs a report for the request in the post body",
-        "description" : "See the [Ranked Endpoint User Guide](https://adobe-experience-cloud.github.io/analytics-2.0-apis/analytics-api-reference-guide.html#_ranked_endpoint_user_guide) for details.",
+        "description" : "See the [Reporting Interface wiki page](https://wiki.corp.adobe.com/display/scservices/Reporting+Interface) for details.",
         "operationId" : "runReport",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "allowRemoteLoad",
-          "in" : "query",
-          "description" : "Controls if Oberon should remote load data.  Default behavior is true with fallback to false if remote data does not exist",
-          "required" : false,
-          "type" : "string",
-          "default" : "default",
-          "enum" : [ "true", "false", "default" ]
-        }, {
-          "name" : "useCache",
-          "in" : "query",
-          "description" : "Use caching for faster requests (Use cached dimensions to speed up permission checks - This does not do any report caching)",
-          "required" : false,
-          "type" : "boolean",
-          "default" : true
-        }, {
-          "name" : "includeOberonXml",
-          "in" : "query",
-          "description" : "Controls if Oberon XML should be returned in the response - DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "includePlatformPredictiveObjects",
-          "in" : "query",
-          "description" : "Controls if platform Predictive Objects should be returned in the response. Only available when using Anomaly Detection or Forecasting- DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "usesCatalogIdentities",
-          "in" : "query",
-          "description" : "Whether this ranked request uses Catalog identities (true) or usual Analytics identities (false). Uses server default (host specific) when not passed.",
-          "required" : false,
-          "type" : "boolean"
-        }, {
           "in" : "body",
           "name" : "body",
           "required" : false,
@@ -1906,287 +1156,6 @@
             "schema" : {
               "$ref" : "#/definitions/ReportErrorStatus"
             }
-          }
-        }
-      }
-    },
-    "/reports/ranked" : {
-      "post" : {
-        "tags" : [ "reports" ],
-        "summary" : "Runs a ranked report for the report in the post body",
-        "description" : "See the [Ranked Endpoint User Guide](https://adobe-experience-cloud.github.io/analytics-2.0-apis/analytics-api-reference-guide.html#_ranked_endpoint_user_guide) for details.",
-        "operationId" : "runRankedReport",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "allowRemoteLoad",
-          "in" : "query",
-          "description" : "Controls if Oberon should remote load data.  Default behavior is true with fallback to false if remote data does not exist",
-          "required" : false,
-          "type" : "string",
-          "default" : "default",
-          "enum" : [ "true", "false", "default" ]
-        }, {
-          "name" : "useCache",
-          "in" : "query",
-          "description" : "Use caching for faster requests (Use cached dimensions to speed up permission checks - This does not do any report caching)",
-          "required" : false,
-          "type" : "boolean",
-          "default" : true
-        }, {
-          "name" : "includeOberonXml",
-          "in" : "query",
-          "description" : "Controls if Oberon XML should be returned in the response - DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "includePlatformPredictiveObjects",
-          "in" : "query",
-          "description" : "Controls if platform Predictive Objects should be returned in the response. Only available when using Anomaly Detection or Forecasting- DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "usesCatalogIdentities",
-          "in" : "query",
-          "description" : "Whether this ranked request uses Catalog identities (true) or usual Analytics identities (false). Uses server default (host specific) when not passed.",
-          "required" : false,
-          "type" : "boolean"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/RankedRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/RankedReportData"
-            }
-          },
-          "400" : {
-            "description" : "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
-            "schema" : {
-              "$ref" : "#/definitions/ReportErrorStatus"
-            }
-          }
-        }
-      }
-    },
-    "/reports/segmentSummary" : {
-      "post" : {
-        "tags" : [ "reports" ],
-        "summary" : "Returns a segment summary report for the segment definition in the post body",
-        "description" : "Requires rsid and definition. Used to validate a segment definition and return basic reporting metrics for that definition. \n\n\nThe response contains products that the definition is compatible with, as well as a series of totals that represent how many Page Views, Visits, and Visitors the segment includes.\n\nFormat for the order of Totals in response:\n\n\n1) Number of Page Views that the segment includes for the given time period\n\n2) Number of Visits that the segment includes for the given time period\n\n3) Number of Unique Visitors that the segment includes for the given time period\n\n4) Total number of Page Views for the time period (non-segmented)\n\n5) Total number of Visits for the time period (non-segmented)\n\n6) Total number of Unique Visitors for the time period (non-segmented)\n\n\nThe overall totals (3-6) can be used with the segment totals (1-3) to determine the percentage of the segment's audience for each metric.\n\nExample definition for use in testing API below (\"Page exists\"):\n\n\n```\n\n{\n\t\"func\": \"segment\",\n\t\"container\": {\n\t\t\"func\": \"container\",\n\t\t\"context\": \"hits\",\n\t\t\"pred\": {\n\t\t\t\"func\": \"exists\",\n\t\t\t\"description\": \"Page\",\n\t\t\t\"val\": {\n\t\t\t\t\"func\": \"attr\",\n\t\t\t\t\"name\": \"variables/page\"\n\t\t\t}\n\t\t}\n\t},\n\t\"version\": [1, 0, 0]\n}\n\n\n```",
-        "operationId" : "runSegmentSummaryReport",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "RSID to run the report against",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "dateRange",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD/YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "startDate",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "endDate",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "allowRemoteLoad",
-          "in" : "query",
-          "description" : "Controls if Oberon should remote load data.  Default behavior is true with fallback to false if remote data does not exist",
-          "required" : false,
-          "type" : "string",
-          "default" : "default",
-          "enum" : [ "true", "false", "default" ]
-        }, {
-          "name" : "includeOberonXml",
-          "in" : "query",
-          "description" : "Controls if Oberon XML should be returned in the response - DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "includeVisitorsMcvisid",
-          "in" : "query",
-          "description" : "Controls if Visitors with Experience Cloud ID should be returned in the response",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Segment definition",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/SegmentSummaryResponse"
-            }
-          },
-          "400" : {
-            "description" : "Bad JSON input; request not formatted correctly"
-          },
-          "403" : {
-            "description" : "User does not have access to run this report"
-          },
-          "500" : {
-            "description" : "Unexpected error; failed to run report"
-          }
-        }
-      }
-    },
-    "/reports/topItems" : {
-      "get" : {
-        "tags" : [ "reports" ],
-        "summary" : "Returns a top items report for the given dimension",
-        "description" : "Get the top X items (based on paging restriction) for the specified dimension and rsid. Defaults to last 90 days.\n\nSearch Clause examples:\ncontains test: 'test'\n\n contains test or test1: 'test' OR 'test1'\n\ncontains test and test1: 'test' AND 'test1'\n\ncontains test and not (test1 or test2): 'test' AND NOT ('test1' OR 'test2')\n\ndoes not contain test: NOT 'test'\n\n",
-        "operationId" : "runTopItemsReport",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "RSID to run the report against",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "dimension",
-          "in" : "query",
-          "description" : "Dimension to run the report against. Example: \"variables/page\"",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "dateRange",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD/YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "search-clause",
-          "in" : "query",
-          "description" : "General search string; wrap with single quotes. Example: 'PageABC'",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "startDate",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "endDate",
-          "in" : "query",
-          "description" : "Format: YYYY-MM-DD",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "searchAnd",
-          "in" : "query",
-          "description" : "Search terms that will be AND-ed together. Space delimited.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "searchOr",
-          "in" : "query",
-          "description" : "Search terms that will be OR-ed together. Space delimited.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "searchNot",
-          "in" : "query",
-          "description" : "Search terms that will be treated as NOT including. Space delimited.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "searchPhrase",
-          "in" : "query",
-          "description" : "A full search phrase that will be searched for.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "allowRemoteLoad",
-          "in" : "query",
-          "description" : "Controls if Oberon should remote load data.  Default behavior is true with fallback to false if remote data does not exist",
-          "required" : false,
-          "type" : "string",
-          "default" : "default",
-          "enum" : [ "true", "false", "default" ]
-        }, {
-          "name" : "includeOberonXml",
-          "in" : "query",
-          "description" : "Controls if Oberon XML should be returned in the response - DEBUG ONLY",
-          "required" : false,
-          "type" : "boolean",
-          "default" : false,
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "Number of results per page",
-          "required" : false,
-          "type" : "integer",
-          "default" : 10
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Page number (base 0 - first page is \"0\")",
-          "required" : false,
-          "type" : "integer",
-          "default" : 0
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/UnhashReportData"
-            }
-          },
-          "403" : {
-            "description" : "User does not have access to run this report"
-          },
-          "500" : {
-            "description" : "Unexpected error; failed to run report"
           }
         }
       }
@@ -2208,12 +1177,6 @@
           "name" : "rsidContains",
           "in" : "query",
           "description" : "Filter list to only include suites whose rsid contains rsidContains.",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "rsidOrNameContains",
-          "in" : "query",
-          "description" : "Filter list to only include suites whose rsid or report suite name contains rsidOrNameContains.",
           "required" : false,
           "type" : "string"
         }, {
@@ -2256,29 +1219,41 @@
         }
       }
     },
-    "/reportsuites/{rsid}/calendartype" : {
+    "/reportsuites/{rsid}" : {
       "get" : {
         "tags" : [ "reportsuites" ],
-        "summary" : "Retrieves calendar type for a single report suite.",
+        "summary" : "Retrieves report suite information for a single report suite.",
         "description" : "",
-        "operationId" : "findCalendarType",
+        "operationId" : "findOne",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "rsid",
           "in" : "path",
-          "description" : "rsid",
+          "description" : "The rsid of the suite to return",
           "required" : true,
           "type" : "string"
+        }, {
+          "name" : "expansion",
+          "in" : "query",
+          "description" : "Comma-delimited list of additional attributes to include on response.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "calendarType", "reportSuiteName", "baseUrl", "defaultPage", "currency", "calendarAnchorDate", "timezone", "timezoneZoneinfo" ]
+          },
+          "collectionFormat" : "multi",
+          "enum" : [ "calendarType", "reportSuiteName", "baseUrl", "defaultPage", "currency", "calendarAnchorDate", "timezone", "timezoneZoneinfo" ]
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/CalendarType"
+              "$ref" : "#/definitions/AnalyticsReportSuite"
             }
           },
           "500" : {
-            "description" : "Unexpected error; retrieval of report suite calendar type failed due to an internal error"
+            "description" : "Unexpected error; report suite retrieval failed"
           }
         }
       }
@@ -2291,60 +1266,17 @@
         "operationId" : "segments_getSegments",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "includeType",
-          "in" : "query",
-          "description" : "Include additional segments not owned by user. The \"all\" option takes precedence over \"shared\"",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "shared", "all", "templates", "deleted", "internal", "curatedItem" ]
-          },
-          "collectionFormat" : "multi"
-        }, {
           "name" : "rsids",
           "in" : "query",
           "description" : "Filter list to only include segments tied to specified RSID list (comma-delimited)",
           "required" : false,
           "type" : "string"
         }, {
-          "name" : "dataType",
-          "in" : "query",
-          "description" : "Filter list to only include segments compatible with the specified product",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "dw", "oberon" ]
-        }, {
-          "name" : "ownerId",
-          "in" : "query",
-          "description" : "Filter list to only include segments owned by the specified loginId",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
           "name" : "segmentFilter",
           "in" : "query",
           "description" : "Filter list to only include segments in the specified list (comma-delimited list of IDs)",
           "required" : false,
           "type" : "string"
-        }, {
-          "name" : "filterByIds",
-          "in" : "query",
-          "description" : "Filter list to only include segments in the specified list (comma-delimited list of IDs) (this is the same as segmentFilter, and is overwritten by segmentFilter",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "toBeUsedInRsid",
-          "in" : "query",
-          "description" : "Required when reportTimeAttribution != null or expansion=reportTimeAttribution",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "reportTimeAttribution",
-          "in" : "query",
-          "description" : "Filter list to only include segments by reportTimeAttribution",
-          "required" : false,
-          "type" : "boolean"
         }, {
           "name" : "locale",
           "in" : "query",
@@ -2362,40 +1294,6 @@
           "name" : "tagNames",
           "in" : "query",
           "description" : "Filter list to only include segments that contains one of the tags",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "filterByModifiedAfter",
-          "in" : "query",
-          "description" : "Filter list to only include segments modified since this date (ISO8601 format)",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "pagination",
-          "in" : "query",
-          "description" : "Return paginated results",
-          "required" : false,
-          "type" : "string",
-          "default" : "false",
-          "enum" : [ "true", "false" ]
-        }, {
-          "name" : "dataGroup",
-          "in" : "query",
-          "description" : "Filter list to only include segments with the given data group",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "version",
-          "in" : "query",
-          "description" : "Decides the version of segment service",
-          "required" : false,
-          "type" : "string",
-          "default" : "old",
-          "enum" : [ "old", "new" ]
-        }, {
-          "name" : "curatedRsid",
-          "in" : "query",
-          "description" : "Include the curatedItem status for given report suite ID",
           "required" : false,
           "type" : "string"
         }, {
@@ -2420,10 +1318,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
         } ],
         "responses" : {
           "200" : {
@@ -2445,102 +1343,6 @@
             "description" : "External API error; Segment retrieval failed"
           }
         }
-      },
-      "post" : {
-        "tags" : [ "segments" ],
-        "summary" : "Creates Segment",
-        "description" : "",
-        "operationId" : "segments_createSegment",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing key/value pairs for segment creation.",
-          "required" : false,
-          "schema" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "object"
-            }
-          }
-        }, {
-          "name" : "version",
-          "in" : "query",
-          "description" : "Decides the version of segment service",
-          "required" : false,
-          "type" : "string",
-          "default" : "old",
-          "enum" : [ "old", "new" ]
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional segment metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/AnalyticsSegmentResponseItem"
-            }
-          },
-          "400" : {
-            "description" : "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object."
-          },
-          "500" : {
-            "description" : "External API error; Segment create or retrieval failed"
-          }
-        }
-      }
-    },
-    "/segments/aamstatus" : {
-      "get" : {
-        "tags" : [ "segments" ],
-        "summary" : "AAM Status",
-        "description" : "Checks the provided report suite to see if it is configured to allow segment sharing with Adobe Audience Manager.",
-        "operationId" : "segments_aamStatus",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "Report suite ID to check status for",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "version",
-          "in" : "query",
-          "description" : "Decides the version of segment service",
-          "required" : false,
-          "type" : "string",
-          "default" : "old",
-          "enum" : [ "old", "new" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "object"
-            }
-          },
-          "500" : {
-            "description" : "External API error; failed to check status for given RSID"
-          }
-        }
       }
     },
     "/segments/{id}" : {
@@ -2557,20 +1359,6 @@
           "required" : true,
           "type" : "string"
         }, {
-          "name" : "version",
-          "in" : "query",
-          "description" : "Decides the version of segment service",
-          "required" : false,
-          "type" : "string",
-          "default" : "old",
-          "enum" : [ "old", "new" ]
-        }, {
-          "name" : "toBeUsedInRsid",
-          "in" : "query",
-          "description" : "Evaluate the reportTimeAttribution/customerJourney compatibility for the provided report suite ID",
-          "required" : false,
-          "type" : "string"
-        }, {
           "name" : "locale",
           "in" : "query",
           "description" : "Locale",
@@ -2585,10 +1373,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
         } ],
         "responses" : {
           "200" : {
@@ -2604,127 +1392,14 @@
             "description" : "External API error; segment retrieval failed"
           }
         }
-      },
-      "put" : {
-        "tags" : [ "segments" ],
-        "summary" : "Update a Segment",
-        "description" : "",
-        "operationId" : "segments_updateSegment",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "Segment ID to be updated",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "version",
-          "in" : "query",
-          "description" : "Decides the version of segment service",
-          "required" : false,
-          "type" : "string",
-          "default" : "old",
-          "enum" : [ "old", "new" ]
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing key/value pairs to be updated.",
-          "required" : false,
-          "schema" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "object"
-            }
-          }
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional segment metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "reportSuiteName", "siteTitle", "ownerFullName", "modified", "approved", "favorite", "shares", "tags", "sharesFullName", "usageSummary", "compatibility", "definition" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/AnalyticsSegmentResponseItem"
-            }
-          },
-          "400" : {
-            "description" : "Definition must be formatted as a JSON Object"
-          },
-          "401" : {
-            "description" : "Company mismatch; segment ownership can only be transferred within the same organization"
-          },
-          "403" : {
-            "description" : "User does not have permission to update this segment"
-          },
-          "500" : {
-            "description" : "External API error; Segment update or retrieval failed"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "segments" ],
-        "summary" : "Delete Segment",
-        "description" : "",
-        "operationId" : "segments_deleteSegment",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The segment ID to be deleted",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "version",
-          "in" : "query",
-          "description" : "Decides the version of segment service",
-          "required" : false,
-          "type" : "string",
-          "default" : "old",
-          "enum" : [ "old", "new" ]
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "string"
-            }
-          },
-          "500" : {
-            "description" : "External API error; Segment delete failed"
-          }
-        }
       }
     },
-    "/tags" : {
+    "/users" : {
       "get" : {
-        "tags" : [ "tags" ],
-        "summary" : "Returns a list of tags for the current user's company",
-        "description" : "",
-        "operationId" : "findAllForCompany",
+        "tags" : [ "users" ],
+        "summary" : "Returns a list of users for the current user's login company",
+        "description" : "Retrieves a list of all users for the company designated by the auth token.",
+        "operationId" : "findAll",
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "name" : "limit",
@@ -2740,154 +1415,18 @@
           "required" : false,
           "type" : "integer",
           "default" : 0
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Tag"
-              }
-            }
-          },
-          "500" : {
-            "description" : "Unable to retrieve list of tags for user."
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "tags" ],
-        "summary" : "Saves the given tag(s) for the current user's company",
-        "description" : "Allows creation of a new tag and applies that new tag to the passed component",
-        "operationId" : "saveTagList",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted array of Tag objects containing key-value pairs",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/Tag"
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Tag"
-              }
-            }
-          },
-          "500" : {
-            "description" : "Unable to save list of tags."
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "tags" ],
-        "summary" : "Disassociates all tags from the given components",
-        "description" : "Removes all tags from the passed componentIds. Note that currently this is done in a single DB query, so there is a single combined response for the entire operation.",
-        "operationId" : "deleteTagItems",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "componentIds",
-          "in" : "query",
-          "description" : "Comma-separated list of componentIds to operate on.",
-          "required" : true,
-          "type" : "string"
         }, {
-          "name" : "componentType",
+          "name" : "expansion",
           "in" : "query",
-          "description" : "The component type to operate on.",
-          "required" : true,
-          "type" : "string",
-          "enum" : [ "segment", "dashboard", "bookmark", "calculatedMetric", "project", "dateRange", "metric", "dimension", "virtualReportSuite", "scheduledJob", "alert", "classificationSet" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "additionalProperties" : {
-                "type" : "object"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid component type."
-          },
-          "500" : {
-            "description" : "Unable to remove tags for given components."
-          }
-        }
-      }
-    },
-    "/tags/search" : {
-      "get" : {
-        "tags" : [ "tags" ],
-        "summary" : "Retrieves a tags for a given component by componentId and componentType",
-        "description" : "Given a componentId, return all tags associated with that component",
-        "operationId" : "getTagListByComponentIdAndComponentType",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "componentId",
-          "in" : "query",
-          "description" : "The componentId to operate on. Currently this is just the segmentId.",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "componentType",
-          "in" : "query",
-          "description" : "The component type to operate on.",
-          "required" : true,
-          "type" : "string",
-          "enum" : [ "segment", "dashboard", "bookmark", "calculatedMetric", "project", "dateRange", "metric", "dimension", "virtualReportSuite", "scheduledJob", "alert", "classificationSet" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Tag"
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid component type."
-          },
-          "500" : {
-            "description" : "Unable to retrieve tags for given component."
-          }
-        }
-      }
-    },
-    "/tags/tagitems" : {
-      "put" : {
-        "tags" : [ "tags" ],
-        "summary" : "Tag a component with one or many tags at once. WARNING: Authoritative; deletes/overwrites all pre-existing associations",
-        "description" : "This endpoint allows many tags at once to be created/deleted. Any tags passed to this endpoint will become the *only* tags for that componentId (all other tags will be removed).",
-        "operationId" : "saveTagComponentList",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted object containing key-value pairs that conform to the schema",
+          "description" : "Comma-delimited list of additional analytics user metadata fields to include on response.",
           "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/definitions/TaggedComponent"
-            }
-          }
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "admin" ]
+          },
+          "collectionFormat" : "multi",
+          "enum" : [ "admin" ]
         } ],
         "responses" : {
           "200" : {
@@ -2895,106 +1434,42 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/TaggedComponent"
+                "$ref" : "#/definitions/AnalyticsUser"
               }
             }
           },
           "500" : {
-            "description" : "Unable to save tag list."
+            "description" : "Database error or other unexpected error"
           }
         }
       }
     },
-    "/tags/{id}" : {
+    "/users/me" : {
       "get" : {
-        "tags" : [ "tags" ],
-        "summary" : "Retrieves an tag by its id",
+        "tags" : [ "users" ],
+        "summary" : "Get the current user",
         "description" : "",
-        "operationId" : "getTagById",
+        "operationId" : "getCurrentUser",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "Tag ID to be retrieved",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Tag"
-            }
-          },
-          "404" : {
-            "description" : "Unable to find a tag with the given ID"
-          },
-          "500" : {
-            "description" : "Unexpected server error while trying to retrieve tag"
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "tags" ],
-        "summary" : "Removes the tagId and all associations from that tag to any components",
-        "description" : "Delete by tagId. Will un-tag any/all components that were associated with the passed tagId.",
-        "operationId" : "deleteTag",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The tagId to be deleted",
-          "required" : true,
-          "type" : "integer",
-          "format" : "int32"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "additionalProperties" : {
-                "type" : "object"
-              }
-            }
-          },
-          "404" : {
-            "description" : "The given tagId does not exist"
-          },
-          "500" : {
-            "description" : "Unable to delete the given tagId."
-          }
-        }
-      }
-    },
-    "/timezones" : {
-      "get" : {
-        "tags" : [ "timezones" ],
-        "summary" : "Retrieves timezones available to be used in Adobe Analytics.",
-        "description" : "",
-        "operationId" : "getTimezones",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "locale",
+          "name" : "expansion",
           "in" : "query",
-          "description" : "Locale",
+          "description" : "Comma-delimited list of additional analytics user metadata fields to include on response.",
           "required" : false,
-          "type" : "string",
-          "default" : "en_US"
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "admin" ]
+          },
+          "collectionFormat" : "multi",
+          "enum" : [ "admin" ]
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Timezone"
-              }
+              "$ref" : "#/definitions/AnalyticsUser"
             }
-          },
-          "500" : {
-            "description" : "Unexpected error; timezone retrieval failed"
           }
         }
       }
@@ -3007,12 +1482,6 @@
         "operationId" : "getVirtualReportSuites",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "filterByModifiedAfter",
-          "in" : "query",
-          "description" : "Filter list to only include virtual report suites modified since this date (ISO8601 format)",
-          "required" : false,
-          "type" : "string"
-        }, {
           "name" : "rsids",
           "in" : "query",
           "description" : "Filter list to only include suites in this RSID list (comma-delimited)",
@@ -3053,10 +1522,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
+            "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
+          "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
         } ],
         "responses" : {
           "200" : {
@@ -3067,56 +1536,6 @@
           },
           "500" : {
             "description" : "Unexpected error; virtual report suite retrieval failed"
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "virtualreportsuites" ],
-        "summary" : "Creates a new virtual report suite",
-        "description" : "Creates a virtual report suite. The following attributes are available when creating a virtual report suite:\nRequired: name, parentRsid",
-        "operationId" : "virtualreportsuites_createVirtualReportSuite",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing key/value pairs for virtual report suite creation.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/AnalyticsVirtualReportSuite"
-          }
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional virtual report suite metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/AnalyticsVirtualReportSuite"
-            }
-          },
-          "400" : {
-            "description" : "Invalid input; name and parentRsid are required."
-          },
-          "500" : {
-            "description" : "External API error; Virtual report suite create or retrieval failed"
           }
         }
       }
@@ -3149,10 +1568,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
+            "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
           },
           "collectionFormat" : "multi",
-          "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
+          "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
         } ],
         "responses" : {
           "200" : {
@@ -3163,87 +1582,6 @@
           },
           "500" : {
             "description" : "Unexpected error; virtual report suite retrieval failed"
-          }
-        }
-      },
-      "put" : {
-        "tags" : [ "virtualreportsuites" ],
-        "summary" : "Updates configuration for a virtual report suite.",
-        "description" : "",
-        "operationId" : "updateVirtualReportSuite",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The vrsid to update",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing virtual report suite keys/value pairs to be updated.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/AnalyticsVirtualReportSuite"
-          }
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional virtual report suite metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "globalCompanyKey", "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "currentTimezoneOffset", "segmentList", "description", "modified", "isDeleted", "approved", "favorite", "tags", "ownerFullName", "compatibility" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/AnalyticsVirtualReportSuite"
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "virtualreportsuites" ],
-        "summary" : "Delete a virtual report suite by ID",
-        "description" : "",
-        "operationId" : "deleteVirtualReportSuite",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The virtual report suite ID to be deleted",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "locale",
-          "in" : "query",
-          "description" : "Locale",
-          "required" : false,
-          "type" : "string",
-          "default" : "en_US"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/DeleteResponse"
-            }
-          },
-          "500" : {
-            "description" : "External API error; Virtual report suite delete failed"
           }
         }
       }
@@ -3337,15 +1675,6 @@
         "warning" : {
           "$ref" : "#/definitions/MetricsWarning"
         },
-        "tags" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
-        },
         "shares" : {
           "type" : "array",
           "items" : {
@@ -3357,6 +1686,15 @@
         },
         "favorite" : {
           "type" : "boolean"
+        },
+        "usageSummary" : {
+          "$ref" : "#/definitions/SummarizedUsageItem"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
         },
         "siteTitle" : {
           "type" : "string"
@@ -3406,10 +1744,10 @@
             "type" : "string"
           }
         },
-        "numericId" : {
+        "identityName" : {
           "type" : "string"
         },
-        "identityName" : {
+        "numericId" : {
           "type" : "string"
         }
       }
@@ -3475,6 +1813,118 @@
         },
         "sensitivity" : {
           "$ref" : "#/definitions/AnalyticsDataGovernanceLabels"
+        }
+      }
+    },
+    "AnalyticsDateRange" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "System generated id",
+          "readOnly" : true
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "rsid" : {
+          "type" : "string",
+          "description" : "The report suite id for which the component was created/updated"
+        },
+        "reportSuiteName" : {
+          "type" : "string",
+          "description" : "The report suite name for which the component was created/updated",
+          "readOnly" : true
+        },
+        "owner" : {
+          "$ref" : "#/definitions/Owner"
+        },
+        "isDeleted" : {
+          "type" : "boolean"
+        },
+        "definition" : {
+          "type" : "object"
+        },
+        "template" : {
+          "type" : "boolean"
+        },
+        "curatedItem" : {
+          "type" : "boolean"
+        },
+        "alternateVariableNames" : {
+          "$ref" : "#/definitions/AlternateVariableNames"
+        },
+        "shares" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Share"
+          }
+        },
+        "approved" : {
+          "type" : "boolean"
+        },
+        "favorite" : {
+          "type" : "boolean"
+        },
+        "usageSummary" : {
+          "$ref" : "#/definitions/SummarizedUsageItem"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
+        },
+        "siteTitle" : {
+          "type" : "string"
+        },
+        "modified" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "AnalyticsDateRangeDefinition" : {
+      "type" : "object",
+      "properties" : {
+        "start" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RollingDateFunction"
+          }
+        },
+        "end" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RollingDateFunction"
+          }
+        },
+        "calendarType" : {
+          "$ref" : "#/definitions/CalendarType"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AnalyticsDateRangeInterval" : {
+      "type" : "object",
+      "properties" : {
+        "start" : {
+          "type" : "string"
+        },
+        "end" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
         }
       }
     },
@@ -3578,14 +2028,8 @@
             "type" : "string"
           }
         },
-        "tags" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
+        "instanceMetricId" : {
+          "type" : "string"
         },
         "shares" : {
           "type" : "array",
@@ -3598,6 +2042,15 @@
         },
         "favorite" : {
           "type" : "boolean"
+        },
+        "usageSummary" : {
+          "$ref" : "#/definitions/SummarizedUsageItem"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
         }
       }
     },
@@ -3774,15 +2227,6 @@
             "type" : "string"
           }
         },
-        "tags" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
-        },
         "shares" : {
           "type" : "array",
           "items" : {
@@ -3794,6 +2238,15 @@
         },
         "favorite" : {
           "type" : "boolean"
+        },
+        "usageSummary" : {
+          "$ref" : "#/definitions/SummarizedUsageItem"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
         }
       }
     },
@@ -4026,17 +2479,6 @@
         "version" : {
           "type" : "string"
         },
-        "tags" : {
-          "type" : "array",
-          "description" : "All existing tags associated with the segment.",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
-        },
-        "usageSummary" : {
-          "description" : "How frequently the user uses this segment.",
-          "$ref" : "#/definitions/SummarizedUsageItem"
-        },
         "shares" : {
           "type" : "array",
           "description" : "Existing shares for the segment.",
@@ -4052,9 +2494,20 @@
           "type" : "boolean",
           "description" : "Whether or not the segment has been marked as a favorite."
         },
+        "usageSummary" : {
+          "description" : "How frequently the user uses this segment.",
+          "$ref" : "#/definitions/SummarizedUsageItem"
+        },
         "siteTitle" : {
           "type" : "string",
           "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
+        },
+        "tags" : {
+          "type" : "array",
+          "description" : "All existing tags associated with the segment.",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
         },
         "modified" : {
           "type" : "string",
@@ -4066,12 +2519,113 @@
         }
       }
     },
-    "AnalyticsTrackingServer" : {
+    "AnalyticsUser" : {
       "type" : "object",
       "properties" : {
-        "trackingServer" : {
+        "companyid" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "loginId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "login" : {
+          "type" : "string"
+        },
+        "admin" : {
+          "type" : "boolean"
+        },
+        "marketingCloudOnly" : {
+          "type" : "boolean"
+        },
+        "apiKey" : {
+          "type" : "string"
+        },
+        "changePassword" : {
+          "type" : "boolean"
+        },
+        "createDate" : {
           "type" : "string",
-          "description" : "The server to which a company's tracking data is sent"
+          "format" : "date-time"
+        },
+        "disabled" : {
+          "type" : "boolean"
+        },
+        "adobeStatus" : {
+          "type" : "string",
+          "enum" : [ "NON_ADOBE", "ADOBE_ACTIVE", "ADOBE_INACTIVE" ]
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "imsUserId" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "lastLogin" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "legacyApiKey" : {
+          "type" : "string"
+        },
+        "needsToAcceptEula" : {
+          "type" : "boolean"
+        },
+        "needsToAcceptBetaEula" : {
+          "type" : "boolean"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "passwordHash" : {
+          "type" : "string"
+        },
+        "phoneNumber" : {
+          "type" : "string"
+        },
+        "tempLoginEnd" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "numberLocalization" : {
+          "$ref" : "#/definitions/NumberLocalization"
+        },
+        "preferredNumberLocale" : {
+          "type" : "string"
+        },
+        "imsOrgId" : {
+          "type" : "string"
+        },
+        "migrationStatus" : {
+          "type" : "string"
+        },
+        "migrationReason" : {
+          "type" : "string"
+        },
+        "tenantId" : {
+          "type" : "string"
+        },
+        "csvDelimiter" : {
+          "type" : "string"
+        },
+        "imsProductAdmin" : {
+          "type" : "boolean"
+        },
+        "imsOrgAdmin" : {
+          "type" : "boolean"
         }
       }
     },
@@ -4213,22 +2767,6 @@
         "curationEnabled" : {
           "type" : "boolean"
         },
-        "tags" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
-        },
-        "isBlocked" : {
-          "type" : "boolean"
-        },
-        "numericRsid" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
-        },
         "shares" : {
           "type" : "array",
           "items" : {
@@ -4240,6 +2778,22 @@
         },
         "favorite" : {
           "type" : "boolean"
+        },
+        "usageSummary" : {
+          "$ref" : "#/definitions/SummarizedUsageItem"
+        },
+        "numericRsid" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "isBlocked" : {
+          "type" : "boolean"
+        },
+        "tags" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
         },
         "alternateVariableNames" : {
           "$ref" : "#/definitions/AlternateVariableNames"
@@ -4254,48 +2808,6 @@
         "created" : {
           "type" : "string",
           "format" : "date-time"
-        }
-      }
-    },
-    "Approval" : {
-      "type" : "object",
-      "required" : [ "companyId", "componentId", "componentType", "userId" ],
-      "properties" : {
-        "approvalId" : {
-          "type" : "integer",
-          "format" : "int64",
-          "description" : "A system generated approval id",
-          "readOnly" : true
-        },
-        "companyId" : {
-          "type" : "integer",
-          "format" : "int32",
-          "description" : "The Analytics company id for which this approval was created"
-        },
-        "userId" : {
-          "type" : "integer",
-          "format" : "int32",
-          "description" : "The Analytics user id of the user that created this approval"
-        },
-        "componentTypeId" : {
-          "type" : "integer",
-          "format" : "int32",
-          "description" : "The component type id which is determined by the componentType"
-        },
-        "componentType" : {
-          "type" : "string",
-          "description" : "The component type",
-          "enum" : [ "segment", "dashboard", "bookmark", "calculatedMetric", "project", "dateRange", "metric", "dimension", "virtualReportSuite", "scheduledJob", "alert", "classificationSet" ]
-        },
-        "componentId" : {
-          "type" : "string",
-          "description" : "The id of the component for which to create an approval"
-        },
-        "approvalTimestamp" : {
-          "type" : "string",
-          "format" : "date-time",
-          "description" : "The timestamp for when this approval was last updated",
-          "readOnly" : true
         }
       }
     },
@@ -4336,6 +2848,119 @@
         }
       }
     },
+    "BatchAnalyticsUser" : {
+      "type" : "object",
+      "properties" : {
+        "companyid" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "loginId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "login" : {
+          "type" : "string"
+        },
+        "admin" : {
+          "type" : "boolean"
+        },
+        "marketingCloudOnly" : {
+          "type" : "boolean"
+        },
+        "apiKey" : {
+          "type" : "string"
+        },
+        "changePassword" : {
+          "type" : "boolean"
+        },
+        "createDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "disabled" : {
+          "type" : "boolean"
+        },
+        "adobeStatus" : {
+          "type" : "string",
+          "enum" : [ "NON_ADOBE", "ADOBE_ACTIVE", "ADOBE_INACTIVE" ]
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "fullName" : {
+          "type" : "string"
+        },
+        "imsUserId" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "lastLogin" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "legacyApiKey" : {
+          "type" : "string"
+        },
+        "needsToAcceptEula" : {
+          "type" : "boolean"
+        },
+        "needsToAcceptBetaEula" : {
+          "type" : "boolean"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "passwordHash" : {
+          "type" : "string"
+        },
+        "phoneNumber" : {
+          "type" : "string"
+        },
+        "tempLoginEnd" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "numberLocalization" : {
+          "$ref" : "#/definitions/NumberLocalization"
+        },
+        "preferredNumberLocale" : {
+          "type" : "string"
+        },
+        "imsOrgId" : {
+          "type" : "string"
+        },
+        "migrationStatus" : {
+          "type" : "string"
+        },
+        "migrationReason" : {
+          "type" : "string"
+        },
+        "tenantId" : {
+          "type" : "string"
+        },
+        "csvDelimiter" : {
+          "type" : "string"
+        },
+        "imsProductAdmin" : {
+          "type" : "boolean"
+        },
+        "imsOrgAdmin" : {
+          "type" : "boolean"
+        },
+        "status" : {
+          "$ref" : "#/definitions/BatchOperationStatus"
+        }
+      }
+    },
     "BatchDataGovernanceSettings" : {
       "type" : "object",
       "properties" : {
@@ -4362,6 +2987,17 @@
         },
         "variableId" : {
           "type" : "string"
+        }
+      }
+    },
+    "BatchOperationStatus" : {
+      "type" : "object",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "error" : {
+          "$ref" : "#/definitions/ErrorStatus"
         }
       }
     },
@@ -4795,102 +3431,31 @@
         }
       }
     },
-    "Company" : {
+    "CreateIncidentRequest" : {
       "type" : "object",
-      "required" : [ "billingCustomerId", "description", "globalCompanyKey", "imsOrgid", "name", "namespace" ],
       "properties" : {
-        "adminLogin" : {
-          "type" : "string",
-          "description" : "Login of the main user responsible for the login company"
-        },
-        "billingCustomerId" : {
-          "type" : "integer",
-          "format" : "int64",
-          "description" : "Id for the company that is used by the billing system"
-        },
-        "billingTabAccess" : {
-          "type" : "boolean"
-        },
-        "name" : {
+        "subject" : {
           "type" : "string"
         },
-        "companyPrefix" : {
+        "rsid" : {
           "type" : "string"
         },
         "description" : {
           "type" : "string"
         },
-        "imsOrgid" : {
-          "type" : "string",
-          "description" : "Id of the IMS Organization that owns the company"
-        },
-        "namespace" : {
-          "type" : "string",
-          "description" : "System generated namespace"
-        },
-        "globalCompanyKey" : {
-          "type" : "string",
-          "description" : "System generated cross data-center unique company id"
-        },
-        "disabled" : {
-          "type" : "boolean"
-        },
-        "accessType" : {
-          "type" : "string",
-          "enum" : [ "pointProducts", "standard", "premium", "mobile", "premiumPredictive", "premiumAttribution", "premiumCustomer", "core", "essentialsDps", "foundation", "select", "prime", "ultimate" ]
-        },
-        "validEmails" : {
-          "type" : "array",
-          "description" : "List of allowed email address domains for users in the company",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "allowAdobeEmails" : {
-          "type" : "boolean"
-        },
-        "companySecurity" : {
-          "$ref" : "#/definitions/CompanySecurity"
-        },
-        "featureAccessOverrides" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "string"
-            }
-          }
-        },
-        "apiRateLimitPolicy" : {
+        "duplication" : {
           "type" : "string"
         },
-        "permissionAuthority" : {
-          "type" : "string",
-          "enum" : [ "ims", "both" ]
-        },
-        "companyid" : {
-          "type" : "integer",
-          "format" : "int32"
+        "pageUrl" : {
+          "type" : "string"
         }
       }
     },
-    "CompanySecurity" : {
+    "CreateIncidentResponse" : {
       "type" : "object",
       "properties" : {
-        "strongPasswords" : {
-          "type" : "boolean"
-        },
-        "emailRestrictions" : {
-          "type" : "boolean"
-        },
-        "ipRestrictions" : {
-          "type" : "boolean"
-        },
-        "passwordExpiration" : {
-          "type" : "boolean"
-        },
-        "passwordRecovery" : {
-          "type" : "boolean"
+        "crmTicketNumber" : {
+          "type" : "string"
         }
       }
     },
@@ -4991,37 +3556,6 @@
         },
         "context" : {
           "type" : "string"
-        }
-      }
-    },
-    "Favorite" : {
-      "type" : "object",
-      "properties" : {
-        "favoriteId" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "companyId" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "userId" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "componentTypeId" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "componentType" : {
-          "type" : "string"
-        },
-        "componentId" : {
-          "type" : "string"
-        },
-        "favoriteTimestamp" : {
-          "type" : "string",
-          "format" : "date-time"
         }
       }
     },
@@ -5231,25 +3765,7 @@
           "type" : "string",
           "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
         },
-        "valueNode" : {
-          "type" : "boolean"
-        },
-        "containerNode" : {
-          "type" : "boolean"
-        },
-        "missingNode" : {
-          "type" : "boolean"
-        },
-        "object" : {
-          "type" : "boolean"
-        },
-        "bigDecimal" : {
-          "type" : "boolean"
-        },
-        "int" : {
-          "type" : "boolean"
-        },
-        "boolean" : {
+        "floatingPointNumber" : {
           "type" : "boolean"
         },
         "long" : {
@@ -5258,25 +3774,43 @@
         "double" : {
           "type" : "boolean"
         },
-        "integralNumber" : {
+        "short" : {
           "type" : "boolean"
         },
-        "bigInteger" : {
-          "type" : "boolean"
-        },
-        "pojo" : {
+        "int" : {
           "type" : "boolean"
         },
         "textual" : {
           "type" : "boolean"
         },
+        "integralNumber" : {
+          "type" : "boolean"
+        },
+        "boolean" : {
+          "type" : "boolean"
+        },
+        "bigDecimal" : {
+          "type" : "boolean"
+        },
+        "bigInteger" : {
+          "type" : "boolean"
+        },
+        "object" : {
+          "type" : "boolean"
+        },
+        "valueNode" : {
+          "type" : "boolean"
+        },
+        "missingNode" : {
+          "type" : "boolean"
+        },
+        "containerNode" : {
+          "type" : "boolean"
+        },
+        "pojo" : {
+          "type" : "boolean"
+        },
         "binary" : {
-          "type" : "boolean"
-        },
-        "short" : {
-          "type" : "boolean"
-        },
-        "floatingPointNumber" : {
           "type" : "boolean"
         }
       }
@@ -5400,6 +3934,17 @@
         }
       }
     },
+    "NumberLocalization" : {
+      "type" : "object",
+      "properties" : {
+        "thousandsSeparator" : {
+          "type" : "string"
+        },
+        "decimalSeparator" : {
+          "type" : "string"
+        }
+      }
+    },
     "Owner" : {
       "type" : "object",
       "required" : [ "id" ],
@@ -5431,11 +3976,11 @@
         "sort" : {
           "$ref" : "#/definitions/Sort"
         },
-        "pageSize" : {
+        "pageNumber" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "pageNumber" : {
+        "pageSize" : {
           "type" : "integer",
           "format" : "int32"
         }
@@ -5905,6 +4450,29 @@
         }
       }
     },
+    "RollingDateFunction" : {
+      "type" : "object",
+      "properties" : {
+        "function" : {
+          "type" : "string"
+        },
+        "granularity" : {
+          "type" : "string",
+          "enum" : [ "year", "quarter", "month", "week", "day", "hour", "minute" ]
+        },
+        "offset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "dow" : {
+          "type" : "string",
+          "enum" : [ "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday" ]
+        },
+        "date" : {
+          "type" : "string"
+        }
+      }
+    },
     "Row" : {
       "type" : "object",
       "properties" : {
@@ -6148,31 +4716,16 @@
         "currency" : {
           "type" : "string"
         },
-        "currentTimezoneOffset" : {
-          "type" : "number",
-          "format" : "float"
+        "numericRsid" : {
+          "type" : "integer",
+          "format" : "int32"
         },
-        "discoverUiEnabled" : {
+        "isDeleted" : {
           "type" : "boolean"
         },
-        "timezoneZoneinfo" : {
+        "parentRsid" : {
           "type" : "string",
-          "description" : "Suite friendly timezone name"
-        },
-        "collectionItemType" : {
-          "type" : "string",
-          "description" : "Suite type",
-          "enum" : [ "reportsuite", "virtualreportsuite" ]
-        },
-        "enabledSolutions" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "dataCurrentAsOf" : {
-          "type" : "string",
-          "format" : "date-time"
+          "description" : "Parent report suite id for virtual report suite"
         },
         "axleConfig" : {
           "$ref" : "#/definitions/ReportSuiteAxleConfig"
@@ -6184,25 +4737,40 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "remoteLoading" : {
-          "type" : "boolean"
-        },
         "dataSchema" : {
           "type" : "string"
-        },
-        "isDeleted" : {
-          "type" : "boolean"
         },
         "isBlocked" : {
           "type" : "boolean"
         },
-        "numericRsid" : {
-          "type" : "integer",
-          "format" : "int32"
+        "remoteLoading" : {
+          "type" : "boolean"
         },
-        "parentRsid" : {
+        "collectionItemType" : {
           "type" : "string",
-          "description" : "Parent report suite id for virtual report suite"
+          "description" : "Suite type",
+          "enum" : [ "reportsuite", "virtualreportsuite" ]
+        },
+        "currentTimezoneOffset" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "dataCurrentAsOf" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "discoverUiEnabled" : {
+          "type" : "boolean"
+        },
+        "enabledSolutions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "timezoneZoneinfo" : {
+          "type" : "string",
+          "description" : "Suite friendly timezone name"
         },
         "rsid" : {
           "type" : "string",
@@ -6227,6 +4795,14 @@
         "relevancyScore" : {
           "type" : "number",
           "format" : "float"
+        }
+      }
+    },
+    "SupportContactId" : {
+      "type" : "object",
+      "properties" : {
+        "supportedUserContactId" : {
+          "type" : "string"
         }
       }
     },
@@ -6271,18 +4847,6 @@
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
-        }
-      }
-    },
-    "Timezone" : {
-      "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "name" : {
-          "type" : "string"
         }
       }
     },
