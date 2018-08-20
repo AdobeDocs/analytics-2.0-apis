@@ -118,7 +118,7 @@ curl -X GET --header "Accept: application/json" --header "x-api-key: INSERT_CLIE
 * Copy the `globalCompanyId` for the Company you would like to use and replace `INSERT_GLOBAL_COMPANY_ID_HERE` in the following curl request (NOTE: `INSERT_GLOBAL_COMPANY_ID_HERE` is included in two places in the request. #1 - In the `x-proxy-company-global-company-id` header and #2 - In the path):
 
 ```bash
-curl -X GET  --header "Authorization: Bearer INSERT_ACCESS_TOKEN_HERE" --header "x-proxy-company-global-company-id: INSERT_GLOBAL_COMPANY_ID_HERE" --header "x-api-key: INSERT_CLIENT_ID_HERE" "https://analytics.adobe.io/api/INSERT_GLOBAL_COMPANY_ID_HERE/users/me"
+curl -X GET  --header "Authorization: Bearer INSERT_ACCESS_TOKEN_HERE" --header "x-proxy-global-company-id: INSERT_GLOBAL_COMPANY_ID_HERE" --header "x-api-key: INSERT_CLIENT_ID_HERE" "https://analytics.adobe.io/api/INSERT_GLOBAL_COMPANY_ID_HERE/users/me"
 ```
 
 * Replace `INSERT_ACCESS_TOKEN_HERE` with the access token you used in the previous request
