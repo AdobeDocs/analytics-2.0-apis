@@ -11,7 +11,7 @@ We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-ap
 
 * [Getting Started](getting-started.md)
 * [Reporting API Guide](reporting-guide.md)
-* [Migration Guide](migration-guide.md)
+* [Migration Guide](migration-guide.md) - Help for users migrating from the 1.3/1.4 APIs
 * [Calculated Metrics](calculatedmetrics.md)
 * [Classifications](classifications-guide.md)
 * [Virtual Report Suites](virtualreportsuites.md)

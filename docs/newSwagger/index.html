@@ -1,0 +1,172 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Swagger UI</title>
+	<link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+	<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+	<style>
+	html {
+		box-sizing: border-box;
+		overflow: -moz-scrollbars-vertical;
+		overflow-y: scroll;
+	}
+	*, *:before, *:after {
+		box-sizing: inherit;
+	}
+	body {
+		margin: 0;
+		background: #fafafa;
+	}
+	</style>
+</head>
+
+<style>
+.swagger-section #header {
+	background-color: #000000;
+	padding: 14px;
+}
+
+.swagger-section #header #logo {
+	font-weight: 300;
+	font-family: adobe-clean, Helvetica, Arial, sans-serif;
+	font-style: normal;
+	text-decoration: none;
+	background: transparent url(adobe_icon.png) no-repeat left center;
+	background-size: 39px 64px;
+	padding: 20px 0 20px 50px;
+	color: white;
+}
+
+.swagger-section #controls-wrap {
+	left: 0px;
+	right: 0px;
+	height: auto;
+	min-height: 125px;
+	background-color: #1C0A2B;
+}
+
+.swagger-section #controls {
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	text-decoration: none;
+	font-family: adobe-clean, Helvetica, Arial, sans-serif;
+	color: white;
+}
+
+.swagger-section #api_selector {
+	display: block;
+	clear: none;
+	margin-top: 5px;
+	float: left;
+}
+
+.swagger-section #api_selector select {
+	margin-top: 6px;
+}
+
+.swagger-section #api_selector input {
+	font-size: 0.9em;
+	padding: 3px;
+	margin-top: 5px;
+	width: 650px;
+}
+
+.swagger-section #api_selector label {
+	display: inline-block;
+	width: 160px;
+	text-align: right;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.swagger-section #input_accessToken {
+	width: 700px;
+}
+
+.swagger-section #input_globalCompanyId {
+	width: 660px;
+}
+
+.swagger-section #input_apiKey {
+	width: 725px;
+}
+
+.swagger-section #message-bar {
+	min-height: 0px;
+	text-align: center;
+}
+</style>
+
+<body class="swagger-section">
+	<div id='header'>
+		<div class="swagger-ui-wrap">
+			<a id="logo">Adobe Analytics</a>
+		</div>
+	</div>
+	<div id="controls-wrap">
+		<div id="controls-ui-container">
+			<div id="controls">
+				<form id='api_selector'>
+					<div class='input'>
+						<div class="block">
+							<label>Client ID (Api Key):</label> <input placeholder="api key"
+								id="input_apiKey" name="apiKey" type="text" value="" /><br />
+						</div>
+						<div class="block">
+							<label>Global Company Id:</label> <input
+								placeholder="global company id" id="input_globalCompanyId"
+								name="globalCompanyId" type="text" value="" /><br />
+						</div>
+						<div class="block">
+							<label>Access Token:</label> <input
+								placeholder="ims access token" id="input_accessToken"
+								name="accessToken" type="text" value="" /><br />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="swagger-ui"></div>
+	<script src="./swagger-ui-bundle.js"></script>
+	<script src="./swagger-ui-standalone-preset.js"></script>
+	<script>
+	window.onload = function() {
+		const ui = SwaggerUIBundle({
+			url: "https://adobedocs.github.io/analytics-2.0-apis/swagger.json",
+			dom_id: '#swagger-ui',
+			deepLinking: true,
+			docExpansion: 'none',
+			presets: [
+				SwaggerUIBundle.presets.apis
+			],
+			requestInterceptor: function (req) {
+				var globalCompanyId = document.getElementById('input_globalCompanyId').value;
+				req.headers = {
+					'x-api-key': document.getElementById('input_apiKey').value,
+					'x-proxy-global-company-id': globalCompanyId,
+					'Authorization': 'Bearer ' + document.getElementById('input_accessToken').value,
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				};
+				
+				var analyticsBaseUrl = 'https://analytics.adobe.io';
+				var curUrl = req.url;
+				if( curUrl.startsWith(analyticsBaseUrl) ) {
+					var endPath = curUrl.split(analyticsBaseUrl)[1];
+					req.url = analyticsBaseUrl + '/api/' + globalCompanyId + endPath;
+				}
+				
+				return req;
+			}
+		})
+	
+		window.ui = ui
+	}
+	</script>
+</body>
+</html>
