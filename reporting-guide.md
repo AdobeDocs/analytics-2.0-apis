@@ -1,7 +1,7 @@
 
-## Ranked Endpoint User Guide
+## Reports Endpoint User Guide
 
-The `/ranked` endpoint is the primary endpoint for reporting requests. In order to provide maximum flexibility, many configuration options are available for requests.
+The `/reports` endpoint is the primary endpoint for reporting requests. In order to provide maximum flexibility, many configuration options are available for requests.
 
 ### Overview
 Using the Adobe Analytics UI can help an analyst or digital marketer answer some key questions. Sometimes though, it makes more sense to _automate_ reporting for executive dashboards, custom reporting platforms, or tight Experience Cloud integrations. The Analytics API strives to make these things possible.

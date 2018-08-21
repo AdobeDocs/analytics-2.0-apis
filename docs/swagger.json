@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-08-03T15:58:56Z",
+    "version" : "v1 - Build: 2018-08-22T16:58:20Z",
     "title" : "Analytics Services APIs"
   },
   "host" : "analytics.adobe.io",
@@ -12,11 +12,9 @@
   }, {
     "name" : "classifications"
   }, {
-    "name" : "collections",
-    "description" : "Analytics Collections"
+    "name" : "collections"
   }, {
-    "name" : "dateranges",
-    "description" : "Retrieves a dateranges for the Given Report Suite"
+    "name" : "dateranges"
   }, {
     "name" : "dimensions",
     "description" : "Dimensions service"
@@ -24,20 +22,16 @@
     "name" : "metrics",
     "description" : "Retrieves a List of Metrics for the Given Report Suite"
   }, {
-    "name" : "reports",
-    "description" : "Ranked reports service"
+    "name" : "reports"
   }, {
-    "name" : "reportsuites",
-    "description" : "Analytics Report Suite Service"
+    "name" : "reportsuites"
   }, {
     "name" : "segments",
     "description" : "These operations manage Adobe Analytics Segments. Segments are used to isolate interesting groups of visitors, visits, or hits."
   }, {
-    "name" : "users",
-    "description" : "Retrieves Lists of Users"
+    "name" : "users"
   }, {
-    "name" : "virtualreportsuites",
-    "description" : "Operations on virtual report suites"
+    "name" : "virtualreportsuites"
   } ],
   "schemes" : [ "https" ],
   "paths" : {
@@ -45,7 +39,7 @@
       "get" : {
         "tags" : [ "calculatedmetrics" ],
         "summary" : "Retrieve many calculated metrics",
-        "description" : "A calculated metric response will always include these default items: *id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *favorite*: True if calculated metric has been marked as a 'Favorite'\n* *tags*: Gives all existing tags associated with the calculated metric\n* *approved*: True if calculated metric has been marked as 'Approved'\n* *shares*: Gives all existing shares for the calculated metric\n* *sharesFullName*: Give 'shares', but also include the shared-to user's friendly login name as 'shareToDisplayName' in each share object\n* *ownerFullName*: Add friendly full login name (string) to the 'owner' object\n\n",
+        "description" : "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information about calculated metrics go [here](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/calculatedmetrics.md)\n\n",
         "operationId" : "findCalculatedMetrics",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -110,7 +104,7 @@
             "type" : "string",
             "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
         } ],
         "responses" : {
@@ -154,7 +148,7 @@
       "get" : {
         "tags" : [ "calculatedmetrics" ],
         "summary" : "Retrieve a single calculated metric by id",
-        "description" : "A calculated metric response will always include these default items: *id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *favorite*: True if calculated metric has been marked as a 'Favorite'\n* *tags*: Gives all existing tags associated with the calculated metric\n* *approved*: True if calculated metric has been marked as 'Approved'\n* *shares*: Gives all existing shares for the calculated metric\n* *sharesFullName*: Give 'shares', but also include the shared-to user's friendly login name as 'shareToDisplayName' in each share object\n* *ownerFullName*: Add friendly full login name (string) to the 'owner' object\n\n",
+        "description" : "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information about calculated metrics go [here](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/calculatedmetrics.md)\n\n",
         "operationId" : "findOneCalculatedMetric",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -180,7 +174,7 @@
             "type" : "string",
             "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility" ]
         } ],
         "responses" : {
@@ -559,7 +553,7 @@
       "get" : {
         "tags" : [ "collections" ],
         "summary" : "Retrieves report suites that match the given filters.",
-        "description" : "",
+        "description" : "Returns all report suite types in a single collection.",
         "operationId" : "findAll",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -596,10 +590,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
+            "enum" : [ "name", "parentRsid", "currency", "calendarType", "timezoneZoneinfo" ]
           },
-          "collectionFormat" : "multi",
-          "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
+          "collectionFormat" : "csv",
+          "enum" : [ "name", "parentRsid", "currency", "calendarType", "timezoneZoneinfo" ]
         } ],
         "responses" : {
           "200" : {
@@ -618,7 +612,7 @@
       "get" : {
         "tags" : [ "collections" ],
         "summary" : "Retrieves report suite by id",
-        "description" : "",
+        "description" : "Returns all report suite types in a single collection.",
         "operationId" : "findOne",
         "produces" : [ "application/json" ],
         "parameters" : [ {
@@ -635,10 +629,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
+            "enum" : [ "name", "parentRsid", "currency", "calendarType", "timezoneZoneinfo" ]
           },
-          "collectionFormat" : "multi",
-          "enum" : [ "name", "parentRsid", "currency", "calendarType", "currentTimezoneOffset" ]
+          "collectionFormat" : "csv",
+          "enum" : [ "name", "parentRsid", "currency", "calendarType", "timezoneZoneinfo" ]
         } ],
         "responses" : {
           "200" : {
@@ -697,7 +691,7 @@
             "type" : "string",
             "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
         } ],
         "responses" : {
@@ -740,7 +734,7 @@
             "type" : "string",
             "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
         } ],
         "responses" : {
@@ -805,7 +799,7 @@
             "type" : "string",
             "enum" : [ "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "tags" ]
         } ],
         "responses" : {
@@ -866,7 +860,7 @@
             "type" : "string",
             "enum" : [ "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "tags" ]
         } ],
         "responses" : {
@@ -919,7 +913,7 @@
             "type" : "string",
             "enum" : [ "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "tags" ]
         } ],
         "responses" : {
@@ -977,7 +971,7 @@
             "type" : "string",
             "enum" : [ "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "tags" ]
         } ],
         "responses" : {
@@ -1074,7 +1068,7 @@
             "type" : "string",
             "enum" : [ "calendarType", "reportSuiteName", "baseUrl", "defaultPage", "currency", "calendarAnchorDate", "timezone", "timezoneZoneinfo" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "calendarType", "reportSuiteName", "baseUrl", "defaultPage", "currency", "calendarAnchorDate", "timezone", "timezoneZoneinfo" ]
         } ],
         "responses" : {
@@ -1113,7 +1107,7 @@
             "type" : "string",
             "enum" : [ "calendarType", "reportSuiteName", "baseUrl", "defaultPage", "currency", "calendarAnchorDate", "timezone", "timezoneZoneinfo" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "calendarType", "reportSuiteName", "baseUrl", "defaultPage", "currency", "calendarAnchorDate", "timezone", "timezoneZoneinfo" ]
         } ],
         "responses" : {
@@ -1191,7 +1185,7 @@
             "type" : "string",
             "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
         } ],
         "responses" : {
@@ -1246,7 +1240,7 @@
             "type" : "string",
             "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition" ]
         } ],
         "responses" : {
@@ -1286,18 +1280,6 @@
           "required" : false,
           "type" : "integer",
           "default" : 0
-        }, {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional analytics user metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "admin" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "admin" ]
         } ],
         "responses" : {
           "200" : {
@@ -1322,19 +1304,6 @@
         "description" : "",
         "operationId" : "getCurrentUser",
         "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "expansion",
-          "in" : "query",
-          "description" : "Comma-delimited list of additional analytics user metadata fields to include on response.",
-          "required" : false,
-          "type" : "array",
-          "items" : {
-            "type" : "string",
-            "enum" : [ "admin" ]
-          },
-          "collectionFormat" : "multi",
-          "enum" : [ "admin" ]
-        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -1395,7 +1364,7 @@
             "type" : "string",
             "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
         } ],
         "responses" : {
@@ -1441,7 +1410,7 @@
             "type" : "string",
             "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
           },
-          "collectionFormat" : "multi",
+          "collectionFormat" : "csv",
           "enum" : [ "parentRsid", "parentRsidName", "timezone", "timezoneZoneinfo", "segmentList", "description", "modified", "tags" ]
         } ],
         "responses" : {
@@ -1516,9 +1485,6 @@
         "owner" : {
           "$ref" : "#/definitions/Owner"
         },
-        "isDeleted" : {
-          "type" : "boolean"
-        },
         "polarity" : {
           "type" : "string",
           "description" : "Set metric polarity, which indicates whether it's good or bad if a given metric goes up. Default=positive",
@@ -1537,35 +1503,11 @@
           "description" : "Calculated metric definition object",
           "$ref" : "#/definitions/CalculatedMetricDef"
         },
-        "template" : {
-          "type" : "boolean"
-        },
-        "authorization" : {
-          "$ref" : "#/definitions/CalculatedMetricAuthorization"
-        },
-        "warning" : {
-          "$ref" : "#/definitions/MetricsWarning"
-        },
         "tags" : {
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
-        },
-        "shares" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Share"
-          }
-        },
-        "favorite" : {
-          "type" : "boolean"
-        },
-        "approved" : {
-          "type" : "boolean"
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
         },
         "siteTitle" : {
           "type" : "string"
@@ -1615,10 +1557,10 @@
             "type" : "string"
           }
         },
-        "identityName" : {
+        "numericId" : {
           "type" : "string"
         },
-        "numericId" : {
+        "identityName" : {
           "type" : "string"
         }
       }
@@ -1713,41 +1655,14 @@
         "owner" : {
           "$ref" : "#/definitions/Owner"
         },
-        "isDeleted" : {
-          "type" : "boolean"
-        },
         "definition" : {
           "type" : "object"
-        },
-        "template" : {
-          "type" : "boolean"
-        },
-        "curatedItem" : {
-          "type" : "boolean"
-        },
-        "alternateVariableNames" : {
-          "$ref" : "#/definitions/AlternateVariableNames"
         },
         "tags" : {
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
-        },
-        "shares" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Share"
-          }
-        },
-        "favorite" : {
-          "type" : "boolean"
-        },
-        "approved" : {
-          "type" : "boolean"
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
         },
         "siteTitle" : {
           "type" : "string"
@@ -1863,9 +1778,6 @@
         "isEntryOrExit" : {
           "type" : "boolean"
         },
-        "alternateVariableNames" : {
-          "$ref" : "#/definitions/AlternateVariableNames"
-        },
         "curatedItem" : {
           "type" : "boolean"
         },
@@ -1907,21 +1819,6 @@
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
-        },
-        "shares" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Share"
-          }
-        },
-        "favorite" : {
-          "type" : "boolean"
-        },
-        "approved" : {
-          "type" : "boolean"
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
         }
       }
     },
@@ -2071,9 +1968,6 @@
         "warning" : {
           "$ref" : "#/definitions/MetricsWarning"
         },
-        "alternateVariableNames" : {
-          "$ref" : "#/definitions/AlternateVariableNames"
-        },
         "curatedItem" : {
           "type" : "boolean"
         },
@@ -2103,21 +1997,6 @@
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
-        },
-        "shares" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Share"
-          }
-        },
-        "favorite" : {
-          "type" : "boolean"
-        },
-        "approved" : {
-          "type" : "boolean"
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
         }
       }
     },
@@ -2146,9 +2025,6 @@
           "type" : "string",
           "description" : "Friendly report suite name"
         },
-        "active" : {
-          "type" : "boolean"
-        },
         "baseUrl" : {
           "type" : "string"
         },
@@ -2162,21 +2038,13 @@
           "type" : "string",
           "format" : "date-time"
         },
-        "companyId" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
         "timezone" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "timezoneZoneinfo" : {
+        "timezoneZoneInfo" : {
           "type" : "string",
           "description" : "Suite friendly timezone name"
-        },
-        "signedUpDate" : {
-          "type" : "string",
-          "format" : "date-time"
         },
         "lastModified" : {
           "type" : "string",
@@ -2184,37 +2052,6 @@
         },
         "calendarType" : {
           "$ref" : "#/definitions/CalendarType"
-        },
-        "ipObfuscationEnabled" : {
-          "type" : "boolean"
-        },
-        "currentTimezoneOffset" : {
-          "type" : "number",
-          "format" : "float"
-        },
-        "numGroups" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "isBlocked" : {
-          "type" : "boolean"
-        },
-        "relatedCompanies" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "$ref" : "#/definitions/RelatedCompany"
-          }
-        },
-        "dataCurrentAsOf" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "localizationEnabled" : {
-          "type" : "boolean"
-        },
-        "isDeleted" : {
-          "type" : "boolean"
         },
         "parentRsid" : {
           "type" : "string",
@@ -2280,10 +2117,6 @@
           "description" : "The owner of the segment as an Owner object.",
           "$ref" : "#/definitions/Owner"
         },
-        "isDeleted" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment is 'Deleted' (deleted segments are only returned if requested by id)"
-        },
         "dwInUse" : {
           "type" : "boolean",
           "description" : "Whether or not the segment currently in use in a Data Warehouse request. A Data Warehouse request is another type of report that clients can run based on their raw data"
@@ -2344,18 +2177,8 @@
         "curatedItem" : {
           "type" : "boolean"
         },
-        "alternateVariableNames" : {
-          "$ref" : "#/definitions/AlternateVariableNames"
-        },
         "version" : {
           "type" : "string"
-        },
-        "tags" : {
-          "type" : "array",
-          "description" : "All existing tags associated with the segment.",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
         },
         "shares" : {
           "type" : "array",
@@ -2364,21 +2187,28 @@
             "$ref" : "#/definitions/Share"
           }
         },
-        "favorite" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment has been marked as a favorite."
+        "usageSummary" : {
+          "description" : "How frequently the user uses this segment.",
+          "$ref" : "#/definitions/SummarizedUsageItem"
         },
         "approved" : {
           "type" : "boolean",
           "description" : "Whether or not the segment has been marked approved."
         },
-        "usageSummary" : {
-          "description" : "How frequently the user uses this segment.",
-          "$ref" : "#/definitions/SummarizedUsageItem"
+        "favorite" : {
+          "type" : "boolean",
+          "description" : "Whether or not the segment has been marked as a favorite."
         },
         "siteTitle" : {
           "type" : "string",
           "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
+        },
+        "tags" : {
+          "type" : "array",
+          "description" : "All existing tags associated with the segment.",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
         },
         "modified" : {
           "type" : "string",
@@ -2404,15 +2234,6 @@
         "login" : {
           "type" : "string"
         },
-        "admin" : {
-          "type" : "boolean"
-        },
-        "marketingCloudOnly" : {
-          "type" : "boolean"
-        },
-        "apiKey" : {
-          "type" : "string"
-        },
         "changePassword" : {
           "type" : "boolean"
         },
@@ -2422,10 +2243,6 @@
         },
         "disabled" : {
           "type" : "boolean"
-        },
-        "adobeStatus" : {
-          "type" : "string",
-          "enum" : [ "NON_ADOBE", "ADOBE_ACTIVE", "ADOBE_INACTIVE" ]
         },
         "email" : {
           "type" : "string"
@@ -2446,21 +2263,6 @@
           "type" : "string",
           "format" : "date-time"
         },
-        "legacyApiKey" : {
-          "type" : "string"
-        },
-        "needsToAcceptEula" : {
-          "type" : "boolean"
-        },
-        "needsToAcceptBetaEula" : {
-          "type" : "boolean"
-        },
-        "password" : {
-          "type" : "string"
-        },
-        "passwordHash" : {
-          "type" : "string"
-        },
         "phoneNumber" : {
           "type" : "string"
         },
@@ -2470,33 +2272,6 @@
         },
         "title" : {
           "type" : "string"
-        },
-        "numberLocalization" : {
-          "$ref" : "#/definitions/NumberLocalization"
-        },
-        "preferredNumberLocale" : {
-          "type" : "string"
-        },
-        "imsOrgId" : {
-          "type" : "string"
-        },
-        "migrationStatus" : {
-          "type" : "string"
-        },
-        "migrationReason" : {
-          "type" : "string"
-        },
-        "tenantId" : {
-          "type" : "string"
-        },
-        "csvDelimiter" : {
-          "type" : "string"
-        },
-        "imsProductAdmin" : {
-          "type" : "boolean"
-        },
-        "imsOrgAdmin" : {
-          "type" : "boolean"
         }
       }
     },
@@ -2545,9 +2320,6 @@
         "owner" : {
           "$ref" : "#/definitions/Owner"
         },
-        "isDeleted" : {
-          "type" : "boolean"
-        },
         "parentRsid" : {
           "type" : "string",
           "description" : "Parent report suite id for virtual report suite"
@@ -2567,107 +2339,21 @@
             "type" : "string"
           }
         },
-        "globalCompanyKey" : {
-          "type" : "string"
-        },
-        "numGroups" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "groups" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/UserGroup"
-          }
-        },
         "currency" : {
           "type" : "string"
         },
         "calendarType" : {
           "$ref" : "#/definitions/CalendarType"
         },
-        "axleConfig" : {
-          "$ref" : "#/definitions/ReportSuiteAxleConfig"
-        },
-        "currentTimezoneOffset" : {
-          "type" : "number",
-          "format" : "float"
-        },
-        "timezoneZoneinfo" : {
+        "timezoneZoneInfo" : {
           "type" : "string",
           "description" : "Suite friendly timezone name"
-        },
-        "dataCurrentAsOf" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "discoverUiEnabled" : {
-          "type" : "boolean"
-        },
-        "taxonomist" : {
-          "type" : "boolean"
-        },
-        "remoteLoading" : {
-          "type" : "boolean"
-        },
-        "enabledSolutions" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "compatibility" : {
-          "$ref" : "#/definitions/AnalyticsVRSCompatibility"
-        },
-        "dataSchema" : {
-          "type" : "string"
-        },
-        "darkSessionsEnabled" : {
-          "type" : "boolean"
-        },
-        "sessionDefinition" : {
-          "$ref" : "#/definitions/JsonNode"
-        },
-        "curatedComponents" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "$ref" : "#/definitions/AnalyticsCuratedComponent"
-          }
-        },
-        "curationEnabled" : {
-          "type" : "boolean"
         },
         "tags" : {
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
-        },
-        "isBlocked" : {
-          "type" : "boolean"
-        },
-        "numericRsid" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "shares" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Share"
-          }
-        },
-        "favorite" : {
-          "type" : "boolean"
-        },
-        "approved" : {
-          "type" : "boolean"
-        },
-        "usageSummary" : {
-          "$ref" : "#/definitions/SummarizedUsageItem"
-        },
-        "alternateVariableNames" : {
-          "$ref" : "#/definitions/AlternateVariableNames"
         },
         "siteTitle" : {
           "type" : "string"
@@ -2733,15 +2419,6 @@
         "login" : {
           "type" : "string"
         },
-        "admin" : {
-          "type" : "boolean"
-        },
-        "marketingCloudOnly" : {
-          "type" : "boolean"
-        },
-        "apiKey" : {
-          "type" : "string"
-        },
         "changePassword" : {
           "type" : "boolean"
         },
@@ -2751,10 +2428,6 @@
         },
         "disabled" : {
           "type" : "boolean"
-        },
-        "adobeStatus" : {
-          "type" : "string",
-          "enum" : [ "NON_ADOBE", "ADOBE_ACTIVE", "ADOBE_INACTIVE" ]
         },
         "email" : {
           "type" : "string"
@@ -2775,21 +2448,6 @@
           "type" : "string",
           "format" : "date-time"
         },
-        "legacyApiKey" : {
-          "type" : "string"
-        },
-        "needsToAcceptEula" : {
-          "type" : "boolean"
-        },
-        "needsToAcceptBetaEula" : {
-          "type" : "boolean"
-        },
-        "password" : {
-          "type" : "string"
-        },
-        "passwordHash" : {
-          "type" : "string"
-        },
         "phoneNumber" : {
           "type" : "string"
         },
@@ -2799,33 +2457,6 @@
         },
         "title" : {
           "type" : "string"
-        },
-        "numberLocalization" : {
-          "$ref" : "#/definitions/NumberLocalization"
-        },
-        "preferredNumberLocale" : {
-          "type" : "string"
-        },
-        "imsOrgId" : {
-          "type" : "string"
-        },
-        "migrationStatus" : {
-          "type" : "string"
-        },
-        "migrationReason" : {
-          "type" : "string"
-        },
-        "tenantId" : {
-          "type" : "string"
-        },
-        "csvDelimiter" : {
-          "type" : "string"
-        },
-        "imsProductAdmin" : {
-          "type" : "boolean"
-        },
-        "imsOrgAdmin" : {
-          "type" : "boolean"
         },
         "status" : {
           "$ref" : "#/definitions/BatchOperationStatus"
@@ -3629,44 +3260,50 @@
         "float" : {
           "type" : "boolean"
         },
-        "number" : {
-          "type" : "boolean"
-        },
         "nodeType" : {
           "type" : "string",
           "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
         },
-        "pojo" : {
-          "type" : "boolean"
-        },
-        "containerNode" : {
-          "type" : "boolean"
-        },
-        "binary" : {
-          "type" : "boolean"
-        },
         "missingNode" : {
-          "type" : "boolean"
-        },
-        "object" : {
           "type" : "boolean"
         },
         "valueNode" : {
           "type" : "boolean"
         },
-        "textual" : {
+        "object" : {
           "type" : "boolean"
         },
-        "boolean" : {
+        "containerNode" : {
           "type" : "boolean"
         },
-        "short" : {
+        "number" : {
+          "type" : "boolean"
+        },
+        "floatingPointNumber" : {
+          "type" : "boolean"
+        },
+        "integralNumber" : {
           "type" : "boolean"
         },
         "bigDecimal" : {
           "type" : "boolean"
         },
-        "integralNumber" : {
+        "textual" : {
+          "type" : "boolean"
+        },
+        "double" : {
+          "type" : "boolean"
+        },
+        "pojo" : {
+          "type" : "boolean"
+        },
+        "short" : {
+          "type" : "boolean"
+        },
+        "bigInteger" : {
+          "type" : "boolean"
+        },
+        "binary" : {
           "type" : "boolean"
         },
         "int" : {
@@ -3675,13 +3312,7 @@
         "long" : {
           "type" : "boolean"
         },
-        "double" : {
-          "type" : "boolean"
-        },
-        "bigInteger" : {
-          "type" : "boolean"
-        },
-        "floatingPointNumber" : {
+        "boolean" : {
           "type" : "boolean"
         }
       }
@@ -3847,11 +3478,11 @@
         "sort" : {
           "$ref" : "#/definitions/Sort"
         },
-        "pageSize" : {
+        "pageNumber" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "pageNumber" : {
+        "pageSize" : {
           "type" : "integer",
           "format" : "int32"
         }
@@ -3955,30 +3586,6 @@
         },
         "summaryData" : {
           "$ref" : "#/definitions/RankedSummaryData"
-        },
-        "oberonRequestXML" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "oberonResponseXML" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "predictiveRequestObjects" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "predictiveResponseObjects" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
         }
       }
     },
@@ -4015,9 +3622,6 @@
         "rowContainer" : {
           "$ref" : "#/definitions/ReportRows"
         },
-        "globalPredictiveSettings" : {
-          "$ref" : "#/definitions/PredictiveSettings"
-        },
         "anchorDate" : {
           "type" : "string"
         }
@@ -4043,31 +3647,14 @@
         "reflectRequest" : {
           "type" : "boolean"
         },
-        "suiteReportingContext" : {
-          "type" : "string",
-          "enum" : [ "DEVICE", "TROMMEL_COMBINED" ]
-        },
         "includeAnomalyDetection" : {
           "type" : "boolean"
         },
         "includePercentChange" : {
           "type" : "boolean"
         },
-        "sessionExpiration" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "$ref" : "#/definitions/SessionExpirationSettings"
-          }
-        },
-        "darkSessionsEnabled" : {
-          "type" : "boolean"
-        },
         "includeLatLong" : {
           "type" : "boolean"
-        },
-        "dataSchema" : {
-          "type" : "string"
         }
       }
     },
@@ -4170,7 +3757,7 @@
         "excludeItemIds" : {
           "type" : "array",
           "items" : {
-            "type" : "integer"
+            "type" : "string"
           }
         },
         "allocationModel" : {
@@ -4207,9 +3794,6 @@
           "additionalProperties" : {
             "type" : "object"
           }
-        },
-        "metricView" : {
-          "type" : "string"
         },
         "predictive" : {
           "$ref" : "#/definitions/ReportMetricPredictiveSettings"
@@ -4282,13 +3866,13 @@
         "excludeItemIds" : {
           "type" : "array",
           "items" : {
-            "type" : "integer"
+            "type" : "string"
           }
         },
         "itemIds" : {
           "type" : "array",
           "items" : {
-            "type" : "integer"
+            "type" : "string"
           }
         },
         "includeSearchTotal" : {
@@ -4581,67 +4165,24 @@
         "name" : {
           "type" : "string"
         },
-        "calendarType" : {
-          "$ref" : "#/definitions/CalendarType"
-        },
         "currency" : {
           "type" : "string"
         },
-        "timezoneZoneinfo" : {
-          "type" : "string",
-          "description" : "Suite friendly timezone name"
-        },
-        "enabledSolutions" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "dataCurrentAsOf" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
-        "collectionItemType" : {
-          "type" : "string",
-          "description" : "Suite type",
-          "enum" : [ "reportsuite", "virtualreportsuite" ]
-        },
-        "discoverUiEnabled" : {
-          "type" : "boolean"
-        },
-        "currentTimezoneOffset" : {
-          "type" : "number",
-          "format" : "float"
-        },
-        "isDeleted" : {
-          "type" : "boolean"
-        },
-        "axleConfig" : {
-          "$ref" : "#/definitions/ReportSuiteAxleConfig"
+        "calendarType" : {
+          "$ref" : "#/definitions/CalendarType"
         },
         "parentRsid" : {
           "type" : "string",
           "description" : "Parent report suite id for virtual report suite"
         },
-        "taxonomist" : {
-          "type" : "boolean"
+        "timezoneZoneInfo" : {
+          "type" : "string",
+          "description" : "Suite friendly timezone name"
         },
-        "isBlocked" : {
-          "type" : "boolean"
-        },
-        "numGroups" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "numericRsid" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "dataSchema" : {
-          "type" : "string"
-        },
-        "remoteLoading" : {
-          "type" : "boolean"
+        "collectionItemType" : {
+          "type" : "string",
+          "description" : "Suite type",
+          "enum" : [ "reportsuite", "virtualreportsuite" ]
         },
         "rsid" : {
           "type" : "string",
@@ -4915,6 +4456,9 @@
           "type" : "boolean"
         },
         "imsPlcIdOrphaned" : {
+          "type" : "boolean"
+        },
+        "imsUserMigrationMigrated" : {
           "type" : "boolean"
         }
       }
