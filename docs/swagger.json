@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-08-22T18:00:00Z",
+    "version" : "v1 - Build: 2018-08-22T18:14:41Z",
     "title" : "Analytics Services APIs"
   },
   "host" : "analytics.adobe.io",
@@ -18,8 +18,7 @@
   }, {
     "name" : "dimensions"
   }, {
-    "name" : "metrics",
-    "description" : "Retrieves a List of Metrics for the Given Report Suite"
+    "name" : "metrics"
   }, {
     "name" : "reports"
   }, {
@@ -1877,9 +1876,6 @@
         "segmentable" : {
           "type" : "boolean"
         },
-        "supportsDataGovernance" : {
-          "type" : "boolean"
-        },
         "description" : {
           "type" : "string"
         },
@@ -1887,54 +1883,8 @@
           "type" : "string",
           "enum" : [ "positive", "negative" ]
         },
-        "visibility" : {
-          "type" : "string",
-          "enum" : [ "visibleEverywhere", "builderOnly", "hiddenEverywhere" ]
-        },
-        "dataGroup" : {
-          "type" : "string"
-        },
-        "hidden" : {
-          "type" : "boolean"
-        },
-        "noAccess" : {
-          "type" : "boolean"
-        },
-        "metricViews" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/AnalyticsMetricView"
-          }
-        },
         "helpLink" : {
           "type" : "string"
-        },
-        "warning" : {
-          "$ref" : "#/definitions/MetricsWarning"
-        },
-        "curatedItem" : {
-          "type" : "boolean"
-        },
-        "reportTimeAttribution" : {
-          "type" : "boolean"
-        },
-        "customerJourney" : {
-          "type" : "boolean"
-        },
-        "dataGovernance" : {
-          "$ref" : "#/definitions/AnalyticsDataGovernanceSettings"
-        },
-        "aliasId" : {
-          "type" : "string"
-        },
-        "dataCollectionType" : {
-          "type" : "string"
-        },
-        "attributes" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
         },
         "tags" : {
           "type" : "array",
@@ -3147,8 +3097,15 @@
         "float" : {
           "type" : "boolean"
         },
+        "floatingPointNumber" : {
+          "type" : "boolean"
+        },
         "number" : {
           "type" : "boolean"
+        },
+        "nodeType" : {
+          "type" : "string",
+          "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
         },
         "object" : {
           "type" : "boolean"
@@ -3156,25 +3113,22 @@
         "valueNode" : {
           "type" : "boolean"
         },
-        "missingNode" : {
-          "type" : "boolean"
-        },
         "containerNode" : {
           "type" : "boolean"
         },
-        "short" : {
-          "type" : "boolean"
-        },
-        "double" : {
-          "type" : "boolean"
-        },
-        "bigInteger" : {
+        "missingNode" : {
           "type" : "boolean"
         },
         "integralNumber" : {
           "type" : "boolean"
         },
+        "short" : {
+          "type" : "boolean"
+        },
         "textual" : {
+          "type" : "boolean"
+        },
+        "binary" : {
           "type" : "boolean"
         },
         "pojo" : {
@@ -3183,23 +3137,19 @@
         "boolean" : {
           "type" : "boolean"
         },
-        "binary" : {
-          "type" : "boolean"
-        },
         "int" : {
           "type" : "boolean"
         },
-        "long" : {
+        "double" : {
+          "type" : "boolean"
+        },
+        "bigInteger" : {
           "type" : "boolean"
         },
         "bigDecimal" : {
           "type" : "boolean"
         },
-        "nodeType" : {
-          "type" : "string",
-          "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
-        },
-        "floatingPointNumber" : {
+        "long" : {
           "type" : "boolean"
         }
       }
@@ -3365,11 +3315,11 @@
         "sort" : {
           "$ref" : "#/definitions/Sort"
         },
-        "pageNumber" : {
+        "pageSize" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "pageSize" : {
+        "pageNumber" : {
           "type" : "integer",
           "format" : "int32"
         }
