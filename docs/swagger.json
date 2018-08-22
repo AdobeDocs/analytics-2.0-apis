@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-08-22T17:34:15Z",
+    "version" : "v1 - Build: 2018-08-22T18:00:00Z",
     "title" : "Analytics Services APIs"
   },
   "host" : "analytics.adobe.io",
@@ -16,8 +16,7 @@
   }, {
     "name" : "dateranges"
   }, {
-    "name" : "dimensions",
-    "description" : "Dimensions service"
+    "name" : "dimensions"
   }, {
     "name" : "metrics",
     "description" : "Retrieves a List of Metrics for the Given Report Suite"
@@ -1556,10 +1555,10 @@
             "type" : "string"
           }
         },
-        "numericId" : {
+        "identityName" : {
           "type" : "string"
         },
-        "identityName" : {
+        "numericId" : {
           "type" : "string"
         }
       }
@@ -1756,61 +1755,7 @@
             "type" : "string"
           }
         },
-        "supportsDataGovernance" : {
-          "type" : "boolean"
-        },
         "description" : {
-          "type" : "string"
-        },
-        "fragRelId" : {
-          "type" : "string"
-        },
-        "dataGroup" : {
-          "type" : "string"
-        },
-        "hidden" : {
-          "type" : "boolean"
-        },
-        "noAccess" : {
-          "type" : "boolean"
-        },
-        "isEntryOrExit" : {
-          "type" : "boolean"
-        },
-        "curatedItem" : {
-          "type" : "boolean"
-        },
-        "dataGovernance" : {
-          "$ref" : "#/definitions/AnalyticsDataGovernanceSettings"
-        },
-        "reportTimeAttribution" : {
-          "type" : "boolean"
-        },
-        "customerJourney" : {
-          "type" : "boolean"
-        },
-        "aliasId" : {
-          "type" : "string"
-        },
-        "attributionModel" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "object"
-          }
-        },
-        "breakdownAttributionModel" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "object"
-          }
-        },
-        "attributes" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "instanceMetricId" : {
           "type" : "string"
         },
         "tags" : {
@@ -2133,16 +2078,16 @@
         "version" : {
           "type" : "string"
         },
-        "siteTitle" : {
-          "type" : "string",
-          "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
-        },
         "tags" : {
           "type" : "array",
           "description" : "All existing tags associated with the segment.",
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
+        },
+        "siteTitle" : {
+          "type" : "string",
+          "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
         },
         "modified" : {
           "type" : "string",
@@ -3202,44 +3147,10 @@
         "float" : {
           "type" : "boolean"
         },
-        "nodeType" : {
-          "type" : "string",
-          "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
-        },
         "number" : {
           "type" : "boolean"
         },
-        "pojo" : {
-          "type" : "boolean"
-        },
-        "integralNumber" : {
-          "type" : "boolean"
-        },
-        "short" : {
-          "type" : "boolean"
-        },
-        "int" : {
-          "type" : "boolean"
-        },
-        "long" : {
-          "type" : "boolean"
-        },
-        "binary" : {
-          "type" : "boolean"
-        },
-        "textual" : {
-          "type" : "boolean"
-        },
-        "bigInteger" : {
-          "type" : "boolean"
-        },
-        "bigDecimal" : {
-          "type" : "boolean"
-        },
-        "boolean" : {
-          "type" : "boolean"
-        },
-        "double" : {
+        "object" : {
           "type" : "boolean"
         },
         "valueNode" : {
@@ -3251,8 +3162,42 @@
         "containerNode" : {
           "type" : "boolean"
         },
-        "object" : {
+        "short" : {
           "type" : "boolean"
+        },
+        "double" : {
+          "type" : "boolean"
+        },
+        "bigInteger" : {
+          "type" : "boolean"
+        },
+        "integralNumber" : {
+          "type" : "boolean"
+        },
+        "textual" : {
+          "type" : "boolean"
+        },
+        "pojo" : {
+          "type" : "boolean"
+        },
+        "boolean" : {
+          "type" : "boolean"
+        },
+        "binary" : {
+          "type" : "boolean"
+        },
+        "int" : {
+          "type" : "boolean"
+        },
+        "long" : {
+          "type" : "boolean"
+        },
+        "bigDecimal" : {
+          "type" : "boolean"
+        },
+        "nodeType" : {
+          "type" : "string",
+          "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
         },
         "floatingPointNumber" : {
           "type" : "boolean"
@@ -3417,6 +3362,9 @@
           "type" : "integer",
           "format" : "int32"
         },
+        "sort" : {
+          "$ref" : "#/definitions/Sort"
+        },
         "pageNumber" : {
           "type" : "integer",
           "format" : "int32"
@@ -3424,9 +3372,6 @@
         "pageSize" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "sort" : {
-          "$ref" : "#/definitions/Sort"
         }
       }
     },
@@ -3701,9 +3646,6 @@
           "items" : {
             "type" : "string"
           }
-        },
-        "allocationModel" : {
-          "$ref" : "#/definitions/AttributionModel"
         }
       }
     },
@@ -3715,12 +3657,6 @@
         },
         "columnId" : {
           "type" : "string"
-        },
-        "allocationType" : {
-          "type" : "string"
-        },
-        "allocationModel" : {
-          "$ref" : "#/definitions/AttributionModel"
         },
         "filters" : {
           "type" : "array",
@@ -4113,14 +4049,14 @@
         "currency" : {
           "type" : "string"
         },
+        "timezoneZoneInfo" : {
+          "type" : "string",
+          "description" : "Suite friendly timezone name"
+        },
         "collectionItemType" : {
           "type" : "string",
           "description" : "Suite type",
           "enum" : [ "reportsuite", "virtualreportsuite" ]
-        },
-        "timezoneZoneInfo" : {
-          "type" : "string",
-          "description" : "Suite friendly timezone name"
         },
         "parentRsid" : {
           "type" : "string",
