@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-08-22T16:58:20Z",
+    "version" : "v1 - Build: 2018-08-22T17:34:15Z",
     "title" : "Analytics Services APIs"
   },
   "host" : "analytics.adobe.io",
@@ -26,8 +26,7 @@
   }, {
     "name" : "reportsuites"
   }, {
-    "name" : "segments",
-    "description" : "These operations manage Adobe Analytics Segments. Segments are used to isolate interesting groups of visitors, visits, or hits."
+    "name" : "segments"
   }, {
     "name" : "users"
   }, {
@@ -2117,21 +2116,6 @@
           "description" : "The owner of the segment as an Owner object.",
           "$ref" : "#/definitions/Owner"
         },
-        "dwInUse" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment currently in use in a Data Warehouse request. A Data Warehouse request is another type of report that clients can run based on their raw data"
-        },
-        "asiInUse" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment currently in use in an ASI (old version of VSR) slot."
-        },
-        "aamStatus" : {
-          "type" : "object",
-          "description" : "AAM/Raven publishing status (cross-product segment sharing). A segment can be published to AAM, and this flag indicates whether the segment has been published to AAM.",
-          "additionalProperties" : {
-            "type" : "object"
-          }
-        },
         "definition" : {
           "type" : "object",
           "description" : "The segment definition as a JSON object",
@@ -2146,58 +2130,8 @@
             "type" : "object"
           }
         },
-        "legacyId" : {
-          "type" : "string",
-          "description" : "Legacy segment id from old segment database (only exists if the segment was migrated from the old segment DB)"
-        },
-        "template" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment is a template.  A template is a predefined segment that can be used by all customers and can not be edited"
-        },
-        "dataGroup" : {
-          "type" : "string",
-          "description" : "The data group of the segment"
-        },
-        "reportTimeAttribution" : {
-          "type" : "boolean"
-        },
-        "customerJourney" : {
-          "type" : "boolean"
-        },
-        "organization" : {
-          "type" : "string"
-        },
-        "virtualReportSuites" : {
-          "type" : "array",
-          "description" : "A list of all Virtual Report Suites that are using this segment.",
-          "items" : {
-            "$ref" : "#/definitions/AnalyticsVirtualReportSuite"
-          }
-        },
-        "curatedItem" : {
-          "type" : "boolean"
-        },
         "version" : {
           "type" : "string"
-        },
-        "shares" : {
-          "type" : "array",
-          "description" : "Existing shares for the segment.",
-          "items" : {
-            "$ref" : "#/definitions/Share"
-          }
-        },
-        "usageSummary" : {
-          "description" : "How frequently the user uses this segment.",
-          "$ref" : "#/definitions/SummarizedUsageItem"
-        },
-        "approved" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment has been marked approved."
-        },
-        "favorite" : {
-          "type" : "boolean",
-          "description" : "Whether or not the segment has been marked as a favorite."
         },
         "siteTitle" : {
           "type" : "string",
@@ -2260,6 +2194,10 @@
           "type" : "string"
         },
         "lastLogin" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "lastAccess" : {
           "type" : "string",
           "format" : "date-time"
         },
@@ -2445,6 +2383,10 @@
           "type" : "string"
         },
         "lastLogin" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "lastAccess" : {
           "type" : "string",
           "format" : "date-time"
         },
@@ -3264,46 +3206,16 @@
           "type" : "string",
           "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
         },
-        "missingNode" : {
-          "type" : "boolean"
-        },
-        "valueNode" : {
-          "type" : "boolean"
-        },
-        "object" : {
-          "type" : "boolean"
-        },
-        "containerNode" : {
-          "type" : "boolean"
-        },
         "number" : {
-          "type" : "boolean"
-        },
-        "floatingPointNumber" : {
-          "type" : "boolean"
-        },
-        "integralNumber" : {
-          "type" : "boolean"
-        },
-        "bigDecimal" : {
-          "type" : "boolean"
-        },
-        "textual" : {
-          "type" : "boolean"
-        },
-        "double" : {
           "type" : "boolean"
         },
         "pojo" : {
           "type" : "boolean"
         },
+        "integralNumber" : {
+          "type" : "boolean"
+        },
         "short" : {
-          "type" : "boolean"
-        },
-        "bigInteger" : {
-          "type" : "boolean"
-        },
-        "binary" : {
           "type" : "boolean"
         },
         "int" : {
@@ -3312,7 +3224,37 @@
         "long" : {
           "type" : "boolean"
         },
+        "binary" : {
+          "type" : "boolean"
+        },
+        "textual" : {
+          "type" : "boolean"
+        },
+        "bigInteger" : {
+          "type" : "boolean"
+        },
+        "bigDecimal" : {
+          "type" : "boolean"
+        },
         "boolean" : {
+          "type" : "boolean"
+        },
+        "double" : {
+          "type" : "boolean"
+        },
+        "valueNode" : {
+          "type" : "boolean"
+        },
+        "missingNode" : {
+          "type" : "boolean"
+        },
+        "containerNode" : {
+          "type" : "boolean"
+        },
+        "object" : {
+          "type" : "boolean"
+        },
+        "floatingPointNumber" : {
           "type" : "boolean"
         }
       }
@@ -3475,9 +3417,6 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "sort" : {
-          "$ref" : "#/definitions/Sort"
-        },
         "pageNumber" : {
           "type" : "integer",
           "format" : "int32"
@@ -3485,6 +3424,9 @@
         "pageSize" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "sort" : {
+          "$ref" : "#/definitions/Sort"
         }
       }
     },
@@ -4165,24 +4107,24 @@
         "name" : {
           "type" : "string"
         },
-        "currency" : {
-          "type" : "string"
-        },
         "calendarType" : {
           "$ref" : "#/definitions/CalendarType"
         },
-        "parentRsid" : {
-          "type" : "string",
-          "description" : "Parent report suite id for virtual report suite"
-        },
-        "timezoneZoneInfo" : {
-          "type" : "string",
-          "description" : "Suite friendly timezone name"
+        "currency" : {
+          "type" : "string"
         },
         "collectionItemType" : {
           "type" : "string",
           "description" : "Suite type",
           "enum" : [ "reportsuite", "virtualreportsuite" ]
+        },
+        "timezoneZoneInfo" : {
+          "type" : "string",
+          "description" : "Suite friendly timezone name"
+        },
+        "parentRsid" : {
+          "type" : "string",
+          "description" : "Parent report suite id for virtual report suite"
         },
         "rsid" : {
           "type" : "string",
