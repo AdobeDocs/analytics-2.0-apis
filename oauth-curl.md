@@ -1,26 +1,6 @@
-## Getting Started
+## OAuth Authentication using cURL
 
-### Create your OAuth client
-
-* Navigate to the following URL: https://console.adobe.io/integrations
-* Click the `New Integration` button
-* Select the `Access an API` option and then click `Continue`
-* Under the Experience Cloud section select `Adobe Analytics` and then select `OAuth integration` and then click `Continue`
-* Select `New integration` and then click `Continue`
-* Fill out the name, description and other fields and then click `Create Integration`
-* Your client is now created. Notice your client has an `Client ID (API Key)` and a `Client Secret`. These will be needed to get your auth code and to generate access tokens.
-
-
-### Allow runtime.adobe.io Redirect URI
-
-If you would like to use the functionality on our Swagger UI to login and automatically populate the `access token` and `global company id` fields you will first need to add `https://runtime\\.adobe\\.io` as an allowed redirect pattern for your OAuth client.
-
-You can now use your `Client ID` and `Client Secret` to Login using the [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) and start calling the APIs. 
-
-For more information on how to programmatically generate an access token continue reading this guide.
-
-
-### Get an auth code using your new client
+### Get an auth code
 
 * Copy the `Client ID` from your OAuth client and replace `INSERT_CLIENT_ID_HERE` in the following URI with it:
 

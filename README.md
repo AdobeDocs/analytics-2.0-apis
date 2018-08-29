@@ -7,9 +7,11 @@ It is assumed that you have an understanding of the Adobe Analytics product, its
 
 Adobe Analytics Services is a collection of APIs that power Adobe Analytics products like Adobe Analytics Workspace. The APIs allow for the creation of data rich user interfaces that customers can use to slice and dice their data. Customers can create reports that explore their data and can get insights into their data or answer important questions about their data.  
 
-We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to learn how to use the APIs. Make sure to follow the `Getting Started` guide below to setup your OAuth client and generate an Access Token. You will need your `access token`, `global company id` and `client id` to call the APIs.
+We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to learn how to use the APIs.
 
-* [Getting Started](getting-started.md)
+* Getting Started
+  * [Creating an OAuth Client](create-oauth-client.md)
+  * [OAuth using cURL](oauth-curl.md) - Example OAuth authentication flow using cURL commands 
 * [Reporting API Guide](reporting-guide.md)
 * [Migration Guide](migration-guide.md) - Help for users migrating from the 1.3/1.4 APIs
 * [Calculated Metrics](calculatedmetrics.md)

@@ -23,97 +23,51 @@
 	</style>
 	<script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
 	<script src='lib/js.cookie.min.js' type='text/javascript'></script>
+	<script src='lib/aes.js' type='text/javascript'></script>
 	<script type="text/javascript">
 		$(function() {
-			function handleClientIdChanged() {
-				var clientId = $('#input_clientId')[0].value;
-				Cookies.set("input_clientId", clientId, {
-					expires : 30
-				});
-				
-				handleGetAccessTokenState();
-			}
-			
-			function handleClientSecretChanged() {
-				handleGetAccessTokenState();
-			}
-			
-			function handleGlobalCompanyIdChanged() {
-				var globalCompanyId = $('#input_globalCompanyId')[0].value;
-				Cookies.set("input_globalCompanyId", globalCompanyId, {
-					expires : 30
-				});
-			}
-			
-			function isEmpty(str){
-				return !str.replace(/^\s+/g, '').length;
-			}
-			
-			function handleGetAccessTokenState(){
-				var clientId = $('#input_clientId')[0].value;
-				var clientSecret = $('#input_clientSecret')[0].value;
-				if(isEmpty(clientId) || isEmpty(clientSecret)) {
-					$('#button_getAccessToken').prop('disabled', true);
-				} else {
-					$('#button_getAccessToken').prop('disabled', false);
-				}
-			}
-			
-			function generateAccessToken() {
+			function login() {
 				var oauthUrl = 'https://runtime.adobe.io/api/v1/web/io-solutions/default/oauth';
-				var clientId = $('#input_clientId')[0].value;
-				var clientSecret = $('#input_clientSecret')[0].value;
 				var scopes = 'openid,AdobeID,read_organizations,additional_info.projectedProductContext,additional_info.job_function';
-				var redirectUrl = encodeURI('https://adobedocs.github.io/analytics-2.0-apis/');
-				//var redirectUrl = 'http://localhost:8000';
-				oauthUrl += '?client_id=' + clientId + '&client_secret=' + clientSecret + '&scopes=' + scopes + '&redirect_url=' + redirectUrl;
-				
+				var redirectUrl = 'https://adobedocs.github.io/analytics-2.0-apis/';
+				oauthUrl += '?service=analytics&scopes=' + scopes + '&redirect_url=' + redirectUrl;
 				window.location.replace(oauthUrl);
 			}
 			
-			function handleCompanySelectionChanged(){
-				$('#input_globalCompanyId').val($('#companySelector').val());
-			}
-			
-			function registerChangeHandlers() {
-				$('#input_clientId').change(handleClientIdChanged);
-				$('#input_clientSecret').change(handleClientSecretChanged);
-				$('#input_globalCompanyId').change(handleGlobalCompanyIdChanged);
-				$('#button_getAccessToken').click(generateAccessToken);
-				$('#companySelector').change(handleCompanySelectionChanged);
-			}
-			
-			if ($.getUrlVar('client_id')) {
-				$('#input_clientId').val($.getUrlVar('client_id'));
-			} else if(Cookies.get('input_clientId')) {
-				$('#input_clientId').val(Cookies.get('input_clientId'));
+			function logout() {
+				window.location.replace('https://adobedocs.github.io/analytics-2.0-apis/');
 			}
 			
 			if($.getUrlVar('gc_ids')) {
 				var gcids = $.getUrlVar('gc_ids').split('|');
 				var companyNames = $.getUrlVar('company_names').split('|');
-				var companySelector = document.getElementById("companySelector");
+				var companySelector = document.getElementById('companySelector');
 				
 				for(index in companyNames) {
-					companySelector.options[companySelector.options.length] = new Option(companyNames[index] + ' (' + gcids[index] + ')', gcids[index]);
+					companySelector.options[companySelector.options.length] = new Option(companyNames[index], gcids[index]);
 				}
 				
-				companySelector.disabled=false;
+				document.getElementById('select-company-container').style.display = 'block';
+				document.getElementById('login-container').style.display = 'none';
 			}
 			
-			if($.getUrlVar('globalCompanyId')) {
-				$('#input_globalCompanyId').val($.getUrlVar('globalCompanyId'));
-			} else if(Cookies.get('input_globalCompanyId')) {
-				$('#input_globalCompanyId').val(Cookies.get('input_globalCompanyId'));
-			}
-	
 			if($.getUrlVar('access_token')) {
-				$('#input_accessToken').val($.getUrlVar('access_token'));
+				// logout if access token is expired
+				var accessToken = $.getUrlVar('access_token');
+				var parsedWordArray = CryptoJS.enc.Base64.parse(accessToken.split('.')[1]);
+				var decodedTokenPayload = parsedWordArray.toString(CryptoJS.enc.Utf8);
+				var accessTokenObject = JSON.parse(decodedTokenPayload);
+				var expiresAt = parseFloat(accessTokenObject['created_at']) + parseFloat(accessTokenObject['expires_in']);
+				if(Date.now() >= expiresAt) {
+					console.log('Access Token has expired. Logging out.')
+					logout();
+				}
+				
+				$('#input_accessToken').val(accessToken);
 			}
 			
-			registerChangeHandlers();
-			
-			handleGetAccessTokenState();
+			$('#button_login').click(login);
+			$('#button_logout').click(logout);
 		});
 		
 		$.extend({
@@ -156,12 +110,12 @@
 	left: 0px;
 	right: 0px;
 	height: auto;
-	min-height: 165px;
+	min-height: 60px;
 	background-color: #000000;
 }
 
 .swagger-section #controls {
-	max-width: 960px;
+	max-width: 650px;
 	margin-left: auto;
 	margin-right: auto;
 	text-decoration: none;
@@ -169,109 +123,16 @@
 	color: white;
 }
 
-.swagger-section #api_selector {
-	display: block;
-	clear: none;
-	margin-top: 5px;
-	float: left;
-}
-
-.swagger-section #api_selector select {
-	margin-top: 6px;
-}
-
-.swagger-section #api_selector label {
-	display: inline-block;
-	width: 160px;
-	text-align: right;
-	padding-right: 10px;
-	padding-bottom: 10px;
-}
-
-.swagger-section #input_clientId {
-	font-size: 0.9em;
-	padding: 3px;
-	margin-top: 5px;
-	width: 650px;
-}
-
-.swagger-section #input_clientSecret {
-	font-size: 0.9em;
-	padding: 3px;
-	margin-top: 5px;
-	width: 650px;
-}
-
-.swagger-section #input_globalCompanyId {
-	font-size: 0.9em;
-	padding: 3px;
-	margin-top: 5px;
-	width: 100px;
-}
-
 .swagger-section #companySelector {
 	font-size: 0.9em;
 	padding: 3px;
 	margin-top: 5px;
-	width: 545px;
-}
-
-.swagger-section #input_accessToken {
-	font-size: 0.9em;
-	padding: 3px;
-	margin-top: 5px;
-	width: 650px;
+	width: 400px;
 }
 
 .swagger-section #message-bar {
 	min-height: 0px;
 	text-align: center;
-}
-
-/* Tooltip container */
-.tooltip {
-	position: relative;
-	display: inline-block;
-	border-bottom: 1px dotted black;
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-	visibility: hidden;
-	width: 700px;
-	background-color: #4a7fa5;
-	color: #fff;
-	text-align: center;
-	line-height: 22px;
-	padding: 10px 0;
-	border-radius: 6px;
-	/* Position the tooltip text */
-	position: absolute;
-	z-index: 1;
-	bottom: 125%;
-	left: 50%;
-	margin-left: -665px;
-	/* Fade in tooltip */
-	opacity: 0;
-	transition: opacity 0.3s;
-}
-
-/* Tooltip arrow */
-.tooltip .tooltiptext::after {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 95%;
-	margin-left: -5px;
-	border-width: 5px;
-	border-style: solid;
-	border-color: #4a7fa5 transparent transparent transparent;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-	visibility: visible;
-	opacity: 1;
 }
 
 .centered {
@@ -455,40 +316,16 @@
 		<div id="controls-ui-container">
 			<div id="controls">
 				<form id='api_selector'>
-					<div class='input'>
-						<div class="block">
-							<label>Client ID (Api Key):</label> <input placeholder="client id (api key)"
-								id="input_clientId" name="clientId" type="text" value="" /><br />
-						</div>
-						<div class="block">
-							<label>Client Secret:</label>
-							<input placeholder="client secret" id="input_clientSecret" name="clientSecret" type="text" value=""/>
-							<button class="small blue button" type="button" id="button_getAccessToken">Login</button>
-							<div class="tooltip" id="getAccessTokenHelpIcon">
-								<a href="https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/getting-started.md" target="_blank">
-									<img src="help_icon.png"/>
-								</a>
-								<span class="tooltiptext" id="getAccessTokenTooltipText">
-									<b>Client ID</b> and <b>Client Secret</b> are required to login and generate an Access Token<br>
-									Your OAuth client must also include <b>https://runtime.adobe.io</b> as an allowed redirect URI pattern<br>
-									For more information click the icon
-								</span>
-							</div>
-						</div>
-						<div class="block">
-							<label>Global Company Id:</label> 
-							<input placeholder="gcid" id="input_globalCompanyId" name="globalCompanyId" type="text" value=""/>
-							<select id="companySelector" disabled>
-								<option selected disabled hidden=true>Select a Company</option>
-							</select>
-							<br/>
-						</div>
-						<div class="block">
-							<label>Access Token:</label> 
-							<input placeholder="access token" id="input_accessToken" name="accessToken" type="text" value=""/>
-							<br/>
-						</div>
+					<div id='login-container' style='display:block'>
+						<label>To start using the Analytics APIs you first need to login:</label>
+						<button class="blue button" type="button" id="button_login" style="margin-left:5px">Login</button>
 					</div>
+					<div id='select-company-container' style='display:none'>
+						<label>Select Company:</label>
+						<select id="companySelector"/></select>
+						<button class="blue button" type="button" id="button_logout" style="margin-left:5px">Logout</button>
+					</div>
+					<input id="input_accessToken" name="accessToken" type="hidden" value=""/>
 				</form>
 			</div>
 		</div>
@@ -508,9 +345,9 @@
 				],
 				requestInterceptor: function (req) {
 					console.log(req);
-					var globalCompanyId = document.getElementById('input_globalCompanyId').value;
+					var globalCompanyId = document.getElementById('companySelector').value;
 					req.headers = {
-						'x-api-key': document.getElementById('input_clientId').value,
+						'x-api-key': '5a8dcc2cfa71472cbfa4fb53671c45ed',
 						'x-proxy-global-company-id': globalCompanyId,
 						'Authorization': 'Bearer ' + document.getElementById('input_accessToken').value,
 						'Accept': 'application/json',
