@@ -11,7 +11,8 @@ We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-ap
 
 * Getting Started
   * [Creating an OAuth Client](create-oauth-client.md)
-  * [OAuth using cURL](oauth-curl.md) - Example OAuth authentication flow using cURL commands 
+  * [OAuth using cURL](oauth-curl.md) - Example OAuth authentication flow using cURL commands
+  * [OAuth using POSTMAN](oauth-postman.md)
 * [Reporting API Guide](reporting-guide.md)
 * [Migration Guide](migration-guide.md) - Help for users migrating from the 1.3/1.4 APIs
 * [Calculated Metrics](calculatedmetrics.md)
