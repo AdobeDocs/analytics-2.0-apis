@@ -1,4 +1,4 @@
-# Analytics 2.0 Documentation
+# Analytics 2.0 APIs
 Documentation for the analytics 2.0 APIs
 
 _This is pre-release documentation for the Adobe Analytics APIs that will be publicly available in Oct 2018. If you are looking for the current production API documentation please go [Here](https://github.com/AdobeDocs/analytics-1.4-apis)._
