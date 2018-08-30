@@ -4,7 +4,7 @@
 "description": "Analytics",
 "author": "Emily Walpole",
 "view_type": "mdbook",
-"meta_keywords": "adobe i/o,events",
+"meta_keywords": "adobe, analytics",
 "meta_description": "default description",
 "publish_date": "30/08/2018",
 "show_edit_github_banner": false,
@@ -34,7 +34,7 @@
         {
             "importedFileName": "oauth-using-postman",
             "pages": [],
-            "path": "AdobeDocs/analytics-2.0-apis/master/oauth-using-postman.md",
+            "path": "AdobeDocs/analytics-2.0-apis/master/oauth-postman.md",
             "title": "OAuth using POSTMAN"
         }
       ],
