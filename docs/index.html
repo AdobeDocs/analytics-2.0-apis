@@ -46,9 +46,6 @@
 				for(index in companyNames) {
 					companySelector.options[companySelector.options.length] = new Option(companyNames[index], gcids[index]);
 				}
-				
-				document.getElementById('select-company-container').style.display = 'block';
-				document.getElementById('login-container').style.display = 'none';
 			}
 			
 			if($.getUrlVar('access_token')) {
@@ -64,6 +61,15 @@
 				}
 				
 				$('#input_accessToken').val(accessToken);
+				
+				document.getElementById('select-company-container').style.display = 'block';
+				document.getElementById('login-container').style.display = 'none';
+				
+				// we have an access token but no analytics companies
+				if(document.getElementById('companySelector').options.length < 1) {
+					document.getElementById('no-companies-available-container').style.display = 'inline';
+					document.getElementById('select-company-dropdown-container').style.display = 'none';
+				}
 			}
 			
 			$('#button_login').click(login);
@@ -321,8 +327,13 @@
 						<button class="blue button" type="button" id="button_login" style="margin-left:5px">Login</button>
 					</div>
 					<div id='select-company-container' style='display:none'>
-						<label>Select Company:</label>
-						<select id="companySelector"/></select>
+						<div id='select-company-dropdown-container' style='display:inline'>
+							<label>Select Company:</label>
+							<select id="companySelector"/></select>
+						</div>
+						<div id='no-companies-available-container' style='display:none'>
+							<label>User does not have access to any Analytics Companies</label>
+						</div>
 						<button class="blue button" type="button" id="button_logout" style="margin-left:5px">Logout</button>
 					</div>
 					<input id="input_accessToken" name="accessToken" type="hidden" value=""/>
