@@ -2,15 +2,13 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-08-28T16:55:29Z",
+    "version" : "v1 - Build: 2018-09-04T21:22:45Z",
     "title" : "Adobe Analytics APIs"
   },
   "host" : "analytics.adobe.io",
   "basePath" : "/",
   "tags" : [ {
     "name" : "calculatedmetrics"
-  }, {
-    "name" : "classifications"
   }, {
     "name" : "collections"
   }, {
@@ -188,356 +186,6 @@
             "schema" : {
               "$ref" : "#/definitions/CalculatedMetricErrorStatus"
             }
-          }
-        }
-      }
-    },
-    "/classifications/dataset" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves all classification sets.",
-        "description" : "",
-        "operationId" : "getClassificationSets",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Page",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "Documents per page",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "sortField",
-          "in" : "query",
-          "description" : "Sort field",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "name", "modified", "created" ]
-        }, {
-          "name" : "sortOrder",
-          "in" : "query",
-          "description" : "Sort order",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "asc", "desc" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/ClassificationSet"
-              }
-            }
-          }
-        }
-      },
-      "post" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Creates a classification set.",
-        "description" : "",
-        "operationId" : "createClassificationSet",
-        "produces" : [ "application/json" ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/ClassificationSet"
-            }
-          }
-        }
-      }
-    },
-    "/classifications/dataset/search" : {
-      "post" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves classification sets based on search criteria.",
-        "description" : "",
-        "operationId" : "searchClassificationSets",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Page",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "Documents per page",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "sortField",
-          "in" : "query",
-          "description" : "Sort field",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "name", "modified", "created" ]
-        }, {
-          "name" : "sortOrder",
-          "in" : "query",
-          "description" : "Sort order",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "asc", "desc" ]
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "JSON-formatted Object containing key/value pairs for search.",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/ClassificationSetFilterArgs"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/ClassificationSet"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/classifications/dataset/{id}" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves a single classification set.",
-        "description" : "",
-        "operationId" : "getClassificationSet",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The id for which to retrieve information",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/ClassificationSet"
-            }
-          }
-        }
-      },
-      "put" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Updates a classification set.",
-        "description" : "",
-        "operationId" : "updateClassificationSet",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The id for the classification set to update",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/ClassificationSet"
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Deletes a classification set.",
-        "description" : "",
-        "operationId" : "deleteClassificationSet",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The id for the classification set to delete",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/ClassificationSet"
-            }
-          }
-        }
-      }
-    },
-    "/classifications/dataset/{id}/export" : {
-      "post" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Creates an export job for a classification set.",
-        "description" : "",
-        "operationId" : "exportJob",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The id for the classification set for which to import data",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Job export options",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/JobExportOptions"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/ClassificationJob"
-            }
-          }
-        }
-      }
-    },
-    "/classifications/jobs" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves classification jobs.",
-        "description" : "",
-        "operationId" : "getJobs",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "datasetId",
-          "in" : "query",
-          "description" : "ClassificationSetId filter",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Page",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "limit",
-          "in" : "query",
-          "description" : "Documents per page (minimum limit is 10)",
-          "required" : false,
-          "type" : "integer",
-          "format" : "int32"
-        }, {
-          "name" : "sortField",
-          "in" : "query",
-          "description" : "Sort field",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "type", "name" ]
-        }, {
-          "name" : "sortOrder",
-          "in" : "query",
-          "description" : "Sort order",
-          "required" : false,
-          "type" : "string",
-          "enum" : [ "asc", "desc" ]
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/ClassificationJob"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/classifications/jobs/{id}" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves a single classification job.",
-        "description" : "",
-        "operationId" : "getJob",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The job id for which to retrieve information",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/ClassificationJob"
-            }
-          }
-        }
-      }
-    },
-    "/classifications/jobs/{id}/artifact" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves info about the first artifact for a given job id.",
-        "description" : "",
-        "operationId" : "getFirstArtifact",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The job id for which to retrieve information",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/JobArtifactResponse"
-            }
-          }
-        }
-      }
-    },
-    "/classifications/jobs/{id}/artifact/{artifactId}" : {
-      "get" : {
-        "tags" : [ "classifications" ],
-        "summary" : "Retrieves the artifact for a given job and artifact id.",
-        "description" : "",
-        "operationId" : "getArtifact",
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "description" : "The job id for which to retrieve information",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "name" : "artifactId",
-          "in" : "path",
-          "description" : "The artifact id for which to retrieve information",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "successful operation"
           }
         }
       }
@@ -1277,47 +925,6 @@
         }
       }
     },
-    "AnalyticsClassificationColumn" : {
-      "type" : "object",
-      "required" : [ "displayName", "name" ],
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "description" : "A UUID that will be generated when a column is created.",
-          "readOnly" : true
-        },
-        "name" : {
-          "type" : "string",
-          "description" : "The name for this given data column. Immutable after column creation. Can be any valid UTF-8 string."
-        },
-        "displayName" : {
-          "type" : "string",
-          "description" : "The display name for this given data column. Mutable. Can be any valid UTF-8 string."
-        },
-        "type" : {
-          "type" : "string",
-          "description" : "Defaults to 'text'. Immutable after column creation.",
-          "enum" : [ "text", "integer", "float", "list[string]" ]
-        },
-        "classifiedBy" : {
-          "type" : "string",
-          "description" : "An optional classification dataset id, whose dataset classifies this column's data."
-        },
-        "tags" : {
-          "type" : "array",
-          "description" : "Internal column tags. Used to store info (like div nums) to support taxonomist migration.",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "identityName" : {
-          "type" : "string"
-        },
-        "numericId" : {
-          "type" : "string"
-        }
-      }
-    },
     "AnalyticsDateRange" : {
       "type" : "object",
       "properties" : {
@@ -1546,16 +1153,16 @@
         "version" : {
           "type" : "string"
         },
-        "siteTitle" : {
-          "type" : "string",
-          "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
-        },
         "tags" : {
           "type" : "array",
           "description" : "All existing tags associated with the segment.",
           "items" : {
             "$ref" : "#/definitions/Tag"
           }
+        },
+        "siteTitle" : {
+          "type" : "string",
+          "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
         },
         "modified" : {
           "type" : "string",
@@ -1792,214 +1399,6 @@
         }
       }
     },
-    "ClassificationJob" : {
-      "type" : "object",
-      "properties" : {
-        "datasetId" : {
-          "type" : "string"
-        },
-        "history" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/JobHistory"
-          }
-        },
-        "imsOrgId" : {
-          "type" : "string"
-        },
-        "jobOptions" : {
-          "type" : "object",
-          "description" : "see POST /classifications/dataset/{id}/jobs/import and POST /classifications/dataset/{id}/jobs/export for details on this data model"
-        },
-        "jobId" : {
-          "type" : "string"
-        },
-        "jobSize" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "name" : {
-          "type" : "string"
-        },
-        "setName" : {
-          "type" : "string"
-        },
-        "state" : {
-          "type" : "string"
-        },
-        "totalLines" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "type" : {
-          "type" : "string"
-        }
-      }
-    },
-    "ClassificationOwner" : {
-      "type" : "object",
-      "properties" : {
-        "name" : {
-          "type" : "string"
-        },
-        "email" : {
-          "type" : "string"
-        }
-      }
-    },
-    "ClassificationSet" : {
-      "type" : "object",
-      "required" : [ "name" ],
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "description" : "This value will be auto generated by the system on creation. This value will be a id in the form of an ObjectId.",
-          "readOnly" : true
-        },
-        "imsOrgId" : {
-          "type" : "string",
-          "description" : "This value will be looked up based on the analytics company of the user.",
-          "readOnly" : true
-        },
-        "name" : {
-          "type" : "string",
-          "description" : "A human readable display name for users to be able to easily identify this classification definition."
-        },
-        "description" : {
-          "type" : "string",
-          "description" : "A long description for the purpose of this classification set."
-        },
-        "defaultListDelimiter" : {
-          "type" : "string",
-          "description" : "Default delimiter for list column types. Defaults to \",\" (comma). If you have no list columns this field does not apply."
-        },
-        "defaultEncoding" : {
-          "type" : "string",
-          "description" : "Default encoding for jobs. Defaults to UTF-8.",
-          "enum" : [ "utf8", "latin1" ]
-        },
-        "columns" : {
-          "type" : "array",
-          "description" : "A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists.",
-          "items" : {
-            "$ref" : "#/definitions/AnalyticsClassificationColumn"
-          }
-        },
-        "subscriptions" : {
-          "type" : "array",
-          "description" : "A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists.",
-          "items" : {
-            "$ref" : "#/definitions/ClassificationSubscription"
-          }
-        },
-        "owner" : {
-          "description" : "Contact information for a person responsible for the classification definition and/or data.",
-          "$ref" : "#/definitions/ClassificationOwner"
-        },
-        "tags" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Tag"
-          }
-        },
-        "type" : {
-          "type" : "string",
-          "enum" : [ "standard", "lookup" ]
-        },
-        "lastModifiedBy" : {
-          "type" : "string",
-          "description" : "Email address of the last person that modified the classification set."
-        },
-        "lastModifiedDate" : {
-          "type" : "string",
-          "description" : "Last modified date/time of the classification set."
-        },
-        "notifications" : {
-          "type" : "array",
-          "description" : "List of notifications to be sent for all imports and exports that occur.",
-          "items" : {
-            "$ref" : "#/definitions/Notification"
-          }
-        },
-        "ftpSettings" : {
-          "description" : "Ftp settings for the classification set.",
-          "$ref" : "#/definitions/FtpSettings"
-        },
-        "editable" : {
-          "type" : "boolean",
-          "description" : "Flag to indicate if the classification set is editable by the current user based on report suite permissions.",
-          "readOnly" : true
-        },
-        "ruleMode" : {
-          "type" : "string"
-        },
-        "ruleInitialLookback" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "ruleTestKeys" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "ruleState" : {
-          "type" : "string"
-        }
-      }
-    },
-    "ClassificationSetFilterArgs" : {
-      "type" : "object",
-      "properties" : {
-        "rsids" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "dimensions" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "ids" : {
-          "type" : "array",
-          "uniqueItems" : true,
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "tagNames" : {
-          "type" : "string"
-        },
-        "type" : {
-          "type" : "string",
-          "enum" : [ "standard", "lookup" ]
-        }
-      }
-    },
-    "ClassificationSubscription" : {
-      "type" : "object",
-      "required" : [ "dimension", "rsid" ],
-      "properties" : {
-        "rsid" : {
-          "type" : "string",
-          "description" : "The report suite id for which you would like to subscribe to a classification set."
-        },
-        "dimension" : {
-          "type" : "string",
-          "description" : "The dimension identity you would like to be classified. Should be prefixed with variables/ i.e. variables/page"
-        },
-        "editable" : {
-          "type" : "boolean",
-          "description" : "Flag to indicate if the subscription is editable by the current user based on report suite permissions.",
-          "readOnly" : true
-        }
-      }
-    },
     "Column" : {
       "type" : "object",
       "properties" : {
@@ -2021,20 +1420,6 @@
         }
       }
     },
-    "FtpSettings" : {
-      "type" : "object",
-      "properties" : {
-        "hostName" : {
-          "type" : "string"
-        },
-        "userName" : {
-          "type" : "string"
-        },
-        "password" : {
-          "type" : "string"
-        }
-      }
-    },
     "IdentityMetric" : {
       "type" : "object",
       "properties" : {
@@ -2051,167 +1436,19 @@
         }
       }
     },
-    "JobArtifactResponse" : {
-      "type" : "object",
-      "properties" : {
-        "artifactId" : {
-          "type" : "string"
-        },
-        "lastModifiedTime" : {
-          "type" : "string"
-        },
-        "fileType" : {
-          "type" : "string"
-        }
-      }
-    },
-    "JobExportOptions" : {
-      "type" : "object",
-      "properties" : {
-        "dataFormat" : {
-          "type" : "string"
-        },
-        "encoding" : {
-          "type" : "string"
-        },
-        "jobName" : {
-          "type" : "string"
-        },
-        "listDelimiter" : {
-          "type" : "string"
-        },
-        "rowLimit" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "offset" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "columns" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "keys" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
-        },
-        "keyRegex" : {
-          "type" : "string"
-        },
-        "exactMatch" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "object"
-          }
-        },
-        "regexMatch" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "object"
-          }
-        },
-        "dateFilterStart" : {
-          "type" : "string"
-        },
-        "dateFilterEnd" : {
-          "type" : "string"
-        },
-        "dataUri" : {
-          "type" : "string"
-        },
-        "source" : {
-          "type" : "string"
-        },
-        "notifications" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Notification"
-          }
-        }
-      }
-    },
-    "JobHistory" : {
-      "type" : "object",
-      "properties" : {
-        "timestamp" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "jobState" : {
-          "type" : "string",
-          "enum" : [ "created", "queued", "validated", "failed_validation", "processing", "done_processing", "failed_processing", "completed" ]
-        },
-        "message" : {
-          "type" : "string"
-        },
-        "host" : {
-          "type" : "string"
-        },
-        "pid" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "tag" : {
-          "type" : "string"
-        }
-      }
-    },
-    "JobImportOptions" : {
-      "type" : "object",
-      "properties" : {
-        "dataFormat" : {
-          "type" : "string"
-        },
-        "encoding" : {
-          "type" : "string"
-        },
-        "jobName" : {
-          "type" : "string"
-        },
-        "dataUri" : {
-          "type" : "string"
-        },
-        "listDelimiter" : {
-          "type" : "string"
-        },
-        "source" : {
-          "type" : "string"
-        },
-        "notifications" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/Notification"
-          }
-        }
-      }
-    },
     "Locale" : {
       "type" : "object",
       "properties" : {
         "language" : {
           "type" : "string"
         },
+        "script" : {
+          "type" : "string"
+        },
         "country" : {
           "type" : "string"
         },
-        "displayCountry" : {
-          "type" : "string"
-        },
-        "displayLanguage" : {
-          "type" : "string"
-        },
-        "displayName" : {
-          "type" : "string"
-        },
-        "displayScript" : {
-          "type" : "string"
-        },
-        "displayVariant" : {
+        "variant" : {
           "type" : "string"
         },
         "extensionKeys" : {
@@ -2220,15 +1457,6 @@
           "items" : {
             "type" : "string"
           }
-        },
-        "iso3Country" : {
-          "type" : "string"
-        },
-        "iso3Language" : {
-          "type" : "string"
-        },
-        "script" : {
-          "type" : "string"
         },
         "unicodeLocaleAttributes" : {
           "type" : "array",
@@ -2244,27 +1472,26 @@
             "type" : "string"
           }
         },
-        "variant" : {
+        "iso3Language" : {
           "type" : "string"
-        }
-      }
-    },
-    "Notification" : {
-      "type" : "object",
-      "properties" : {
-        "method" : {
-          "type" : "string",
-          "enum" : [ "email", "rabbit" ]
         },
-        "state" : {
-          "type" : "string",
-          "enum" : [ "created", "queued", "validated", "failed_validation", "processing", "done_processing", "failed_processing", "completed" ]
+        "iso3Country" : {
+          "type" : "string"
         },
-        "recipients" : {
-          "type" : "array",
-          "items" : {
-            "type" : "string"
-          }
+        "displayLanguage" : {
+          "type" : "string"
+        },
+        "displayScript" : {
+          "type" : "string"
+        },
+        "displayCountry" : {
+          "type" : "string"
+        },
+        "displayVariant" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
         }
       }
     },
@@ -2831,14 +2058,14 @@
           "type" : "string",
           "description" : "Parent report suite id for virtual report suite"
         },
-        "timezoneZoneInfo" : {
-          "type" : "string",
-          "description" : "Suite friendly timezone name"
-        },
         "collectionItemType" : {
           "type" : "string",
           "description" : "Suite type",
           "enum" : [ "reportsuite", "virtualreportsuite" ]
+        },
+        "timezoneZoneInfo" : {
+          "type" : "string",
+          "description" : "Suite friendly timezone name"
         },
         "rsid" : {
           "type" : "string",
