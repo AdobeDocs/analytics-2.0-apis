@@ -19,7 +19,7 @@ Two steps are required when creating a classification. A `classification set` mu
 
 The `POST /classifications/dataset/` endpoint can be used to create a new classification set and will return a new `classificationSetId`. This call will also create a `subscription` and `column` record.
 
-``` bash
+```bash
 $ curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" -d '{"name":"Product Categories","description":"Groups product SKUs together into categories.","columns":[{"name":"col1","displayName":"Category"}],"subscriptions":[{"rsid":"[RSID]","dimension":"variables/product"}]}' "[analytics_services_base_url]/classifications/dataset/"
 ```
 
@@ -56,7 +56,7 @@ When constructing our request, there are a few things to keep in mind: \* A trai
 > 
 > We’re using the `col1` `name` in our request instead of the friendlier `Category` `displayName`. For imports and export filters, the `name` value should always be used. The `displayName` is only used in the UI to make it easier to identify classifications.
 
-``` bash
+```bash
 $ curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" -d '{"dataFormat":"csv","encoding":"utf8","jobName":"Import Category Information","notifications":[{"method":"email","recipients":["noreply@adobe.com"]}],"dataUri":"data:text/csv;base64,a2V5LGNvbDENCnNrdTEsQ2F0ZWdvcnkgMQ0Kc2t1MixDYXRlZ29yeSAxDQpza3UzLENhdGVnb3J5IDINCnNrdTQsQ2F0ZWdvcnkgMw0Kc2t1NSxDYXRlZ29yeSAzDQpza3U2LENhdGVnb3J5IDINCnNrdTcsQ2F0ZWdvcnkgMQ=="}' "[analytics_services_base_url]/classifications/dataset/[DATASETID]/import"
 ```
 
@@ -64,7 +64,7 @@ $ curl -X POST --header "Content-Type: application/json" --header "Accept: appli
 
 Instead of waiting for notifications, the status of a job can be queried:
 
-``` bash
+```bash
 $ curl --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" "[analytics_services_base_url]/classifications/jobs/[JOBID]"
 ```
 
@@ -87,12 +87,12 @@ The API also allows a client to retrieve all information about the current class
 
 You can use the API to get the current `classification set`, `column` and `subscription` information.
 
-``` bash
+```bash
 $ curl --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" "[analytics_services_base_url]/classifications/dataset"
 ```
 
 Or, to get a specific `classification set`:
-``` bash
+```bash
 $ curl --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" "[analytics_services_base_url]/classifications/dataset/[DATASETID]"
 ```
 
@@ -106,7 +106,7 @@ The export workflow has a few steps:
 
 #### Create an Export Job
 
-``` bash
+```bash
 $ curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" -d '{"dataFormat":"csv","encoding":"latin1","jobName":"Export Category Data"}' "[analytics_services_base_url]/classifications/dataset/[DATASETID]/export"
 ```
 
@@ -114,7 +114,7 @@ This will create an export job. This can take quite a while to complete if the r
 
 #### Fetch the Status
 
-``` bash
+```bash
 $ curl --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" "[analytics_services_base_url]/classifications/jobs/[JOBID]"
 ```
 
@@ -122,7 +122,7 @@ This will provide information about the status of the export job. When the retur
 
 #### Fetch the Artifact ID
 
-``` bash
+```bash
 $ curl --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" "[analytics_services_base_url]/classifications/jobs/[JOBID]/artifact"
 ```
 
@@ -130,7 +130,7 @@ This will return an artifact object containing the artifact ID. The artifact ID 
 
 #### Request the Data
 
-``` bash
+```bash
 $ curl --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" "[analytics_services_base_url]/classifications/jobs/[JOBID]/artifact/[ARTIFACTID]"
 ```
 

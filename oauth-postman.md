@@ -3,13 +3,13 @@
 Create a New Tab and Under the `Authorization` section change the Type to `OAuth 2.0`
 
 
-![](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/images/postman-oauth2-step1.png)
+![Postman Oauth Step 1](/images/postman-oauth2-step1.png)
 
 
 Click on `Get New Access Token`
 
 
-![](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/images/postman-oauth2-step2.png)
+![Postman Oauth Step 2](/images/postman-oauth2-step2.png)
 
 
 Enter the following on the GET NEW ACCESS TOKEN screen:
@@ -29,6 +29,6 @@ Enter the following on the GET NEW ACCESS TOKEN screen:
 
 
 
-![](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/images/postman-oauth2-step3.png)
+![Postman Oauth Step 3](/images/postman-oauth2-step3.png)
 
 Click `Request Token`. You will be prompted to login and then you will get your access token on the next screen
