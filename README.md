@@ -5,7 +5,7 @@ _This is pre-release documentation for the Adobe Analytics APIs that will be pub
 
 It is assumed that you have an understanding of the Adobe Analytics product, its features and capabilities and know how to use the product. Thus an introduction to Adobe Analytics, is outside of the scope of this guide. For more information about Adobe Analytics, the product, please refer to the [Adobe Analytics documentation](https://marketing.adobe.com/resources/help/en_US/analytics/getting-started/)
 
-Adobe Analytics Services is a collection of APIs that power Adobe Analytics products like Adobe Analytics Workspace. The APIs allow for the creation of data rich user interfaces that customers can use to slice and dice their data. Customers can create reports that explore their data and can get insights into their data or answer important questions about their data.  
+Adobe Analytics Services is a collection of APIs that power Adobe Analytics products like Analysis Workspace. The APIs allow for the creation of data rich user interfaces that customers can use to slice and dice their data. Customers can create reports that explore their data and can get insights into their data or answer important questions about their data.  
 
 We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to learn how to use the APIs.
 
