@@ -24,7 +24,6 @@
   }, {
     "name" : "users"
   } ],
-  "schemes" : [ "https" ],
   "paths" : {
     "/calculatedmetrics" : {
       "get" : {
