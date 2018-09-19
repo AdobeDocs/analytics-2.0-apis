@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2018-09-04T21:22:45Z",
+    "version" : "v1 - Build: 2018-08-23T21:32:13Z",
     "title" : "Adobe Analytics APIs"
   },
   "host" : "analytics.adobe.io",
