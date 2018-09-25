@@ -3,7 +3,7 @@ Documentation for the analytics 2.0 APIs
 
 _This is pre-release documentation for the Adobe Analytics APIs that will be publicly available in Oct 2018. If you are looking for the current production API documentation please go [Here](https://github.com/AdobeDocs/analytics-1.4-apis)._
 
-_CONTRIBUTING: We encourage you to participate in our open documentation initiative, if you have any documentation suggestions, corrections, additions or deletions for this documentation, you are welcome to check out the source from [this github repo](https://github.com/AdobeDocs/analytics-2.0-apis), and submit a pull request with your contribution._
+_CONTRIBUTING: We encourage you to participate in our open documentation initiative, if you have any documentation suggestions, corrections, additions or deletions for this documentation, you are welcome to check out the source from [this github repo](https://github.com/AdobeDocs/analytics-2.0-apis), and submit a pull request with your contribution. More details can be found in the [Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/CONTRIBUTING.md) page_
 
 It is assumed that you have an understanding of the Adobe Analytics product, its features and capabilities and know how to use the product. Thus an introduction to Adobe Analytics, is outside of the scope of this guide. For more information about Adobe Analytics, the product, please refer to the [Adobe Analytics documentation](https://marketing.adobe.com/resources/help/en_US/analytics/getting-started/)
 
