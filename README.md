@@ -9,7 +9,7 @@ It is assumed that you have an understanding of the Adobe Analytics product, its
 
 The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics products like Analysis Workspace. The APIs allow for the creation of data rich user interfaces that customers can use to slice and dice their data. Customers can create reports that explore their data and can get insights into their data or answer important questions about their data.  
 
-We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to learn how to use the APIs.
+We have a BETA version of our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) available to help you learn how to use the APIs. The Swagger UI currently only supports Adobe ID authentication.
 
 * Getting Started
   * [Creating an OAuth Client](create-oauth-client.md)
