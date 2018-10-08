@@ -32,3 +32,19 @@ Enter the following on the GET NEW ACCESS TOKEN screen:
 ![Postman Oauth Step 3](/images/postman-oauth2-step3.png)
 
 Click `Request Token`. You will be prompted to login and then you will get your access token on the next screen
+
+
+![Postman Oauth Step 4](/images/postman-oauth2-step4.png)
+
+Click on the `Available Tokens` dropdown and select your newly generated access token
+
+![Postman Oauth Step 5](/images/postman-oauth2-step5.png)
+
+* Click the `Headers` tab
+* You should see a grayed out header with a key of `Authorization` and a value that starts with `Bearer eyJ4...`
+* Add the path to the API you wish to call. In the above example we are calling the /users API. `https://analytics.adobe.io/api/YOUR_GLOBAL_COMPANY_ID_HERE/users?limit=10&page=0` NOTE: You will need to put the global company id of your company in the API path.
+* Add another header key called `x-proxy-global-company-id` and enter you global company id as the value
+* Add one more header called `x-api-key` and enter your client id as the value
+* Click the `Send` button and you should get back an API response with the first 10 users for your Analytics Company
+
+
