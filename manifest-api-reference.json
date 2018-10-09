@@ -12,7 +12,7 @@
 "pages": [
         {
             "pages": [],
-            "path": "analytics-2.0-apis/master/docs/swagger.json",
+            "path": "AdobeDocs/analytics-2.0-apis/master/docs/swagger.json",
             "title": "Analytics 2.0 OpenAPI"
         }
     ]
