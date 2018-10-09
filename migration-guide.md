@@ -46,6 +46,10 @@ This report will query ten campaign items. For each of those, it will query one 
 
 When making requests to the `/reports` endpoint, smaller requests are better. The above example could be reduced into the following requests that can be made in parallel:
 
+****
+SHOW CODE EXAMPLE IN NEW API HERE
+****
+
 1. Request the top ten `trackingCode` values for the given time period.
 2. For each of the values returned, request a breakdown of the top 100 `geocity` values
 3. For each of those values, request a breakdown of the top 100 `page` values
