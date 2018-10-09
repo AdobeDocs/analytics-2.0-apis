@@ -1,0 +1,19 @@
+{
+"name": "Analytics",
+"version": "2.0.0",
+"description": "Analytics",
+"author": "Emily Walpole",
+"view_type": "swaggerbook",
+"meta_keywords": "adobe, analytics",
+"meta_description": "default description",
+"publish_date": "30/08/2018",
+"show_edit_github_banner": false,
+"base_path": "https://raw.githubusercontent.com",
+"pages": [
+        {
+            "pages": [],
+            "path": "analytics-2.0-apis/master/docs/swagger.json",
+            "title": "Analytics 2.0 OpenAPI"
+        }
+    ]
+}
