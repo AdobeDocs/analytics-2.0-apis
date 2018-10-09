@@ -8,6 +8,7 @@ The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics pro
 
 _CONTRIBUTING: We encourage you to participate in our open documentation initiative, if you have suggestions, corrections, additions or deletions for this documentation, check out the source from [this github repo](https://github.com/AdobeDocs/analytics-2.0-apis), and submit a pull request with your contribution. For more information, refer to the [Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/CONTRIBUTING.md) page._
 
+<<<<<<< HEAD
 It is assumed that you have an understanding of the Adobe Analytics product, its features and capabilities and that you know how to use the product. Thus an introduction to Adobe Analytics is outside of the scope of this documentation. For more information about the Adobe Analytics product, refer to the [Adobe Analytics documentation](https://marketing.adobe.com/resources/help/en_US/analytics/getting-started/).
 
 This documentation includes the following sections:
@@ -58,3 +59,16 @@ The following example shows an example request body to create a virtual report s
 
 ## <a name="getstart">Migrating from 1.4 APIs to 2.0 APIs</a>
 For help migrating from the 1.3/1.4 versions of the Analytics API to the newer and more capable ```/reports``` API, refer to the [migration guide](migration-guide.md).
+=======
+We recommend using our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to learn how to use the APIs.
+
+* Getting Started
+  * [Creating an OAuth Client](create-oauth-client.md)
+  * [OAuth using cURL](oauth-curl.md) - Example OAuth authentication flow using cURL commands
+  * [OAuth using POSTMAN](oauth-postman.md)
+  * JWT Authentication is coming soon
+* [Reporting API Guide](reporting-guide.md)
+* [Migration Guide](migration-guide.md) - Help for users migrating from the 1.3/1.4 APIs
+* [Calculated Metrics](calculatedmetrics.md)
+* [Virtual Report Suites](virtualreportsuites.md)
+>>>>>>> upstream/master
