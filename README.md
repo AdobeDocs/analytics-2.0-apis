@@ -30,13 +30,11 @@ This documentation includes the following sections:
 ## <a name="getstart">Getting Started</a>
 To get started with Analytics 2.0 APIs:
 
-1. Create an [OAuth client on the Adobe I/O Console](create-oauth-client.md).
+* Create an [OAuth client on the Adobe I/O Console](create-oauth-client.md).
 
-2. Use [cURL for OAuth authentication](oauth-curl.md).
+* Use [cURL for OAuth authentication](oauth-curl.md).
 
-OR
-
-2. Use [Postman for OAuth authentication](oauth-postman.md).
+* Use [Postman for OAuth authentication](oauth-postman.md).
 
 _Note: JWT Authentication is coming soon._
 
