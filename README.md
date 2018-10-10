@@ -10,22 +10,6 @@ _CONTRIBUTING: We encourage you to participate in our open documentation initiat
 
 It is assumed that you have an understanding of the Adobe Analytics product, its features and capabilities and that you know how to use the product. Thus an introduction to Adobe Analytics is outside of the scope of this documentation. For more information about the Adobe Analytics product, refer to the [Adobe Analytics documentation](https://marketing.adobe.com/resources/help/en_US/analytics/getting-started/).
 
-This documentation includes the following sections:
-
-* [Getting Started](#getstart)
-
-* [Swagger Endpoint Descriptions](#endpoints)
-
-* [Reporting API Guide](#reporting)
-
-* [Segments API Guide](#segments)
-
-* [Using Calculated Metrics](#calcmet)
-
-* [Creating Virtual Report Suites](#virtual)
-
-* [Migrating from 1.3/1.4 APIs to 2.0 APIs](#migration)
-
 
 ## <a name="getstart">Getting Started</a>
 To get started with Analytics 2.0 APIs:
