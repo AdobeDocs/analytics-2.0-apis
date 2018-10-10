@@ -685,5 +685,3 @@ Example Response:
    }
 ```
 
-
-### Requesting Latitude/Longitude Information
