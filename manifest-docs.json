@@ -60,12 +60,6 @@
           "title": "Calculated Metrics"
     },
     {
-          "importedFileName": "classifications",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/classifications-guide.md",
-          "title": "Classifications"
-    },
-    {
           "importedFileName": "virtual-report",
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/virtualreportsuites.md",
