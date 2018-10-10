@@ -12,19 +12,19 @@ It is assumed that you have an understanding of the Adobe Analytics product, its
 
 This documentation includes the following sections:
 
-1. [Getting Started](#getstart)
+* [Getting Started](#getstart)
 
-1. [Swagger Endpoint Descriptions](#endpoints)
+* [Swagger Endpoint Descriptions](#endpoints)
 
-1. [Reporting API Guide](#reporting)
+* [Reporting API Guide](#reporting)
 
-1. [Segments API Guide](#segments)
+* [Segments API Guide](#segments)
 
-1. [Using Calculated Metrics](#calcmet)
+* [Using Calculated Metrics](#calcmet)
 
-1. [Creating Virtual Report Suites](#virtual)
+* [Creating Virtual Report Suites](#virtual)
 
-1. [Migrating from 1.3/1.4 APIs to 2.0 APIs](#migration)
+* [Migrating from 1.3/1.4 APIs to 2.0 APIs](#migration)
 
 
 ## <a name="getstart">Getting Started</a>
@@ -47,7 +47,7 @@ The Analytics 2.0 API endpoints and methods are described on our [Swagger UI](ht
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
 
 ## <a name="segments">Segments API Guide</a>
-The [Segments API Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
+The [Segments API Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/segments.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
 
 ## <a name="virtual">Create a Virtual Report Suite</a>
 View examples of requests to [create report suites](virtualreportsuites.md).
