@@ -11,7 +11,7 @@ _CONTRIBUTING: We encourage you to participate in our open documentation initiat
 It is assumed that you have an understanding of the Adobe Analytics product, its features and capabilities and that you know how to use the product. Thus an introduction to Adobe Analytics is outside of the scope of this documentation. For more information about the Adobe Analytics product, refer to the [Adobe Analytics documentation](https://marketing.adobe.com/resources/help/en_US/analytics/getting-started/).
 
 
-## <a name="getstart">Getting Started</a>
+## Getting Started
 To get started with Analytics 2.0 APIs:
 
 * Create an [OAuth client on the Adobe I/O Console](create-oauth-client.md).
@@ -22,17 +22,17 @@ To get started with Analytics 2.0 APIs:
 
 _Note: JWT Authentication is coming soon._
 
-## <a name="endpoints">Swagger Endpoint Descriptions</a>
+## Swagger Endpoint Descriptions
 The Analytics 2.0 API endpoints and methods are described on our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/). It currently only supports Adobe ID authentication.
 
-## <a name="reporting">Reporting API Guide</a>
+## Reporting API Guide
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
 
-## <a name="segments">Segments API Guide</a>
+## Segments API Guide
 The [Segments API Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/segments.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
 
-## <a name="virtual">Create a Virtual Report Suite</a>
+## Create a Virtual Report Suite
 View examples of requests to [create report suites](virtualreportsuites.md).
 
-## <a name="getstart">Migrating from 1.4 APIs to 2.0 APIs</a>
+## Migrating from 1.4 APIs to 2.0 APIs
 For help migrating from the 1.3/1.4 versions of the Analytics API to the newer and more capable ```/reports``` API, refer to the [migration guide](migration-guide.md).
