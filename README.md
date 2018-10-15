@@ -29,7 +29,7 @@ The Analytics 2.0 API endpoints and methods are described on our [Swagger UI](ht
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
 
 ## Segments API Guide
-The [Segments API Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/segments.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
+The [Segments API Guide](segments.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
 
 ## Create a Virtual Report Suite
 View examples of requests to [create report suites](virtualreportsuites.md).

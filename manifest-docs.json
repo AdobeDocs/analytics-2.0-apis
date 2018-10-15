@@ -60,6 +60,12 @@
           "title": "Calculated Metrics"
     },
     {
+          "importedFileName": "segments",
+          "pages": [],
+          "path": "AdobeDocs/analytics-2.0-apis/master/segments.md",
+          "title": "Segments"
+    },
+    {
           "importedFileName": "virtual-report",
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/virtualreportsuites.md",
