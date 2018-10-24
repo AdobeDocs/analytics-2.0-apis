@@ -1,18 +1,37 @@
 
-## Reports Endpoint User Guide
+---
+
+title: Reports User Guide
+seo-title: Analytics API Reports User Guide
+description: This user guide provides instructions and examples for using the reports endpoint for Adobe Analytics APIs.
+seo-description: 'Analytics APIs' 'Analytics reports' 'reports endpoint' 'adobe analytics' 'analytics reports api'
+
+---
+# Analytics API Reports User Guide
 
 The `/reports` endpoint is the primary endpoint for reporting requests. In order to provide maximum flexibility, many configuration options are available for requests.
 
-### Overview
-Using the Adobe Analytics UI can help an analyst or digital marketer answer some key questions. Sometimes though, it makes more sense to _automate_ reporting for executive dashboards, custom reporting platforms, or tight Experience Cloud integrations. The Analytics API strives to make these things possible.
+## Reports Overview
 
-It uses the same reporting API as the Analysis Workspace UI within Adobe Analytics.
+While the Adobe Analytics UI can help an analyst or digital marketer answer key questions, the Analytics API can automate those answers by reporting to executive dashboards, custom reporting platforms, or tight Experience Cloud integrations. Because the `/reports` endpoint uses the same API as the Analytics UI, you can configure it for many options.
 
-### Best Practices
-* Multiple smaller requests are preferred and often perform better than a single large request
-* Request data once and cache it
-* Don't poll for new data faster than a 30 minute interval
-* Pull historical data and increment it regularly instead of requesting the entire data set
+## Authentication and Authorization
+
+Before you can use Analytics APIs, you need to obtain authentication and receive authorization. For more information, see the [Getting Started guide](README.md).
+
+
+## `/reports` Endpoint Description
+
+The `/reports` endpoint description is shown in our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/). Use the Swagger UI to see endpoint summaries, available methods, parameters, example values, models, and status codes, and to try out the API.
+
+## Best Practices
+
+Please follow these guidelines when using Analytics APIs:
+
+* Make multiple, smaller requests instead of a large, single request.
+* Request data once and cache it.
+* Do not poll for new data faster than a 30 minute interval.
+* Pull historical data and increment it regularly instead of requesting the entire data set.
 
 Discouraged Practices:
 
@@ -21,11 +40,17 @@ Discouraged Practices:
 * Driving a web page with a site performance widget by making an API request every time the web page is loaded
 * Requesting a full year of day-level data every day to get a rolling 12-month window
 
-### Time Series Data
-Time Series reports are the simplest report that the API can produce. They simply include information about the performance of a metric (or metrics) over a period of time.
+## Example Time Series Report
 
-Here is a simple 'Page Views' request:
-```json
+The Reports API includes **Time Series** reports. These simple reports include information about the performance of a metric (or metrics) over a period of time.
+
+### Example Request
+
+The following request example includes both a JSON message request body and a `curl` request for the **Page Views** metric.
+
+#### JSON Request Message
+
+```json={line-numbers="yes"}
 {
    "rsid":"adbedocrsid",
    "globalFilters":[
@@ -58,21 +83,25 @@ Here is a simple 'Page Views' request:
    }
 }
 ```
+The JSON message requests the following:
 
-This report can be run with a `curl` command on the commandline:
+* **Page Views** metric for the report suite `adbedocrsid` (lines 12 and 2)
+
+* Time period From Dec. 31, 2017 00:00:00.000 - Jan. 06, 2018 23:59:59.999, using the report suite timezone (line 22)
+
+* `variables/daterangeday` granularity (line 26). With seven days specified in this time period, you can expect seven numbers in the response.
+
+* Sort response by ascending date, i.e. oldest to newest (line 28)
+
+#### `curl` Request
+
 ```bash
-curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer [ACCESSTOKEN]" -d '[REQUESTJSON]' "https://analytics.adobe.io/reports?locale=en_US"
+curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer {ACCESSTOKEN}" -d '{REQUESTJSON}' "https://analytics.adobe.io/reports?locale=en_US"
 ```
 
-This request is doing a few things:
+### Example Response
 
-* Requesting the Page Views metric for the report suite `adbedocrsid`
-* From Dec. 31, 2017 00:00:00.000 - Jan. 06, 2018 23:59:59.999 (using the report suite timezone)
-* Using `variables/daterangeday` granularity (there are seven days in this time period, so I'll expect seven numbers)
-* Sort by ascending date (i.e., oldest to newest)
-
-Example response:
-```json
+```json={line-numbers="yes"}
 {
    "totalPages":1,
    "firstPage":true,
@@ -148,21 +177,24 @@ Example response:
 }
 ```
 
-The JSON response is made up of a few sections:
+The JSON response includes the following information:
 
-* The `rows` section contains each report record. In the above example, we see seven rows, each with a `value` and `data` array.
-* The `value` property contains the dimension value. Since we're requesting a page views total by day, the value of each row will contain a date identifier for the day. For time series data, this identifier will change based on the granularity. For example, if we requested `variables/daterangemonth` instead, each value would contain a month/year identifier.
-* The `data` property contains a list of metric counts for each metric requested. Since only one metric was requested, we only have a single total in each row.
-* The `summaryData` section contains a total of the metrics in the current report.
+* The `rows` section contains each report record. In the above example, you can see seven rows, each with a `value` and `data` array (lines 19-66).
 
-A few handy changes:
-* Set `dimension` to `variables/daterageday` for day granularity
-* Change the `id` property in the `metrics` section to `metrics/visits` to request visits instead
+* The `value` property contains the dimension value. Because the request includes a total of page views by day, the value of each row will contain a date identifier for the day (e.g. line 25). For time series data, this identifier changes based on the granularity. For example, if you request `variables/daterangemonth` instead, each value will contain a month/year identifier.
 
-#### Pagination
-If we wanted to paginate the results, we would need to add a `limit` and `page` parameter to the `settings` object:
+* The `data` property contains a list of metric counts for each metric requested. Since only one metric is requested, only a single total appears in each row (e.g. lines 26-28).
 
-```json
+* The `summaryData` section contains a total of the metrics in the current report (lines 72-74).
+
+>[!NOTE]
+>You can also easily modify this example to get metrics for visits. Simply change the `id` property in the `metrics` section to `metrics/visits` (line 15).
+
+## Paginating Reports
+
+To paginate results, add a `limit` and `page` parameter to the `settings` object (lines 29-30 below):
+
+```json={line-numbers="yes"}
 {
    "rsid":"adbedocrsid",
    "globalFilters":[
@@ -198,12 +230,15 @@ If we wanted to paginate the results, we would need to add a `limit` and `page` 
 }
 ```
 
-#### Anomaly Detection
+## Example Anomaly Detection Report
 
-The API can also produce information about anomalies that occur in a metric for a given time period. This is the same information provided in the UI and is provided by building a model based on historical performance and calculating confidence bands for expected performance. In other words, if the metric value is within the upper and lower bound of the confidence bands, that value is within observed historical norms.
+ The Reports API can also identify anomalies in a metric over a given time period. This can be helpful in setting up automated alert tools or dashboards to report the same information as the UI. When using this feature, anomalies are reported for values outside the upper or lower bound of the confidence bands. The building model and confidence bands are pre-defined in Analytics by calculated historical norms. Although this ability is also available with the Anayltics 1.4 APIs, the Analytics 2.0 APIs now include hour-based granularity.
 
-While this information is available from the 1.4 API, a notable difference is the new inclusion of hour-based granularity. This can be very useful for building alerting tools or dashboards.
-```json
+### Example Request
+
+The following request includes an additional parameter to the `settings` object to turn on anomaly detection (line 29).
+
+```json={line-numbers="yes"}
 {
    "rsid":"adbedocrsid",
    "globalFilters":[
@@ -238,9 +273,17 @@ While this information is available from the 1.4 API, a notable difference is th
 }
 ```
 
-Example Response:
+### Example Response
 
-```json
+This example response shows an anomaly condition and identifies the following five properties with their corresponding values:
+
+* `data` - The actual detected value for the metric (lines 21 and 40)
+* `dataExpected` - The calculated expected value for the metric (lines 23 and 42)
+* `dataUpperBound` - The upper limit of the confidence band (lines 26 and 45)
+* `dataLowerBound` - The lower limit of the confidence band (lines 29 and 48)
+* `dataAnomalyDetected` - An indicator of whether the metric value is outside of the confidence bands, i.e. `True` if detected (lines 33-34 and 52-53).
+
+```json={line-numbers="yes"}
 {
    "totalPages":1,
    "firstPage":true,
@@ -277,25 +320,7 @@ Example Response:
             true
          ]
       },
-      {
-         "itemId":"1180001",
-         "value":"Jan 1, 2018",
-         "data":[
-            16558.0
-         ],
-         "dataExpected":[
-            17374.697042688
-         ],
-         "dataUpperBound":[
-            17444.125385086
-         ],
-         "dataLowerBound":[
-            17305.26870029
-         ],
-         "dataAnomalyDetected":[
-            true
-         ]
-      },
+
       ...SNIP...
    ],
    "summaryData":{
@@ -306,42 +331,14 @@ Example Response:
 }
 ```
 
+## Ranked Report Example
 
-Let's look at one of these records:
-```json
-      {
-         "itemId":"1180004",
-         "value":"Jan 4, 2018",
-         "data":[
-            17442.0
-         ],
-         "dataExpected":[
-            17367.596716078
-         ],
-         "dataUpperBound":[
-            17438.041586498
-         ],
-         "dataLowerBound":[
-            17297.151845658
-         ],
-         "dataAnomalyDetected":[
-            true
-         ]
-      },
-```
+In Analytics, simple time series reports have metrics. If you add a dimension, you can request **Ranked** reports. For example, some of the previous examples above include a date for the dimension so they can be considered **Ranked** reports. If you also include a time range with a metric and a dimension, you can request **Trended** reports.  For more information on report types in Analytics, see [Adobe Report Types help](https://marketing.adobe.com/resources/help/en_US/sc/user/reports.html). In the following examples, a Custom Insight Conversion Variable (evar1) is used as the dimension for the report.
 
-There are four properties:
+### Example Request
 
-* `dataExpected` - The calculated expected value for the metric
-* `dataUpperBound` - The upper limit of the confidence band
-* `dataLowerBound` - The lower limit of the confidence band
-* `dataAnomalyDetected` - An indicator of whether the metric value is outside of the confidence bands.
+In the following request, `evar1` is simply storing a numeric ID for a campaign (see line 26).
 
-### Calculated Metrics
-
-
-### Trended and Ranked Requests
-The above overtime examples could be seen as a 'Ranked' report, in that the `dimension` that was used was the date. With that in mind, let's try replacing the `dimension` with something else.
 ```json
 {
    "rsid":"adbedocrsid",
@@ -376,8 +373,14 @@ The above overtime examples could be seen as a 'Ranked' report, in that the `dim
    }
 }
 ```
+### Example Response
 
-Here, I'm requesting `evar1`. In this example, the evar is simply storing a numeric ID for a campaign. Here is the example output:
+In the following response, each record returns:
+
+* `itemId` - This is the unique ID associated with this particular value - in this case, campaign "10".
+* `value` - This contains the value of the evar.
+* `data` - This is an array of counts - one for each metric requested.
+
 ```json
 {
    "totalPages":8,
@@ -440,26 +443,35 @@ Here, I'm requesting `evar1`. In this example, the evar is simply storing a nume
 }
 ```
 
-Let's look in detail at one of the records returned:
-```json
-{
-   "itemId":"743855946",
-   "value":"10",
-   "data":[
-      2032.0
-   ]
-},
-```
+## Filtering Reports
 
-* `itemId` - This is the unique ID associated with this particular value - in this case, campaign "10".
-* `value` - This contains the value of the evar.
-* `data` - This is an array of counts - one for each metric requested.
+Use filters to limit the data returned so that reports show only the values you need.  For example, if you have thousands of records but only a few have needed reports, you can use filtering to return and find them quickly. Some filters also allow you to include, group, or present data in convenient formats, such as breakdown reports.
 
-#### Filters
-In the above example, only the top 5 records were requested and there were 8 pages worth of data available -- only 40 records. What if there were thousands of records, and only a handful were being reported on? Filters can be used to only include those few valuable values in the report.
+This section includes information on the following filtering features:
 
-For the next example, let's only request data for campaigns "10" and "11" by using their itemIds.
-```json
+* [Search parameter](#search)
+
+* [Clause parameter](#clause)
+
+* [Applying Segments](#segments)
+
+* [Breakdown Reports](#breakdown)
+
+### <a name="search">Using `search` Parameters</a>
+
+By using the `search` parameter, you can add even more granular parameters to filter your results more narrowly. The `search` parameter includes the following options:
+
+* `itemId` - A single ID to include in the report
+* `itemIds` - A list of itemIds to include in the report (shown in the example)
+* `excludeItemIds` - A list of itemIds to exclude in the report
+* `clause` - A search clause to use when filtering dimensions
+* `includeSearchTotal` - Includes a special element called 'searchTotals' in the response that contains the total of the filtered items. The default is `false`.
+
+#### Example `search` Request</a>
+
+The following example requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9).
+
+```json={line-numbers="yes"}
 {
    "rsid":"adbedocrsid",
    "globalFilters":[
@@ -497,8 +509,11 @@ For the next example, let's only request data for campaigns "10" and "11" by usi
 }
 ```
 
-Example response:
-```json
+#### Example Response
+
+The following response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
+
+```json={line-numbers="yes"}
 {
    "totalPages":1,
    "firstPage":true,
@@ -539,34 +554,34 @@ Example response:
 }
 ```
 
-The search parameter allows many parameters:
+### <a name="clause">Using `clause` Parameters</a>
 
-* `itemId` - A single ID to include in the report
-* `itemIds` - A list of itemIds to include in the report (shown in the example)
-* `excludeItemIds` - A list of itemIds to exclude in the report
-* `clause` - A search clause to use when filtering dimensions
-* `includeSearchTotal` - Includes a special element called 'searchTotals' in the response that contains the total of the filtered items. The default is false.
+As noted above, the `search` parameter also includes the `clause` option. The `clause` parameter provides a powerful tool for filtering data. To use it, follow these rules:
 
-##### Clause
-The search `clause` parameter provides a very powerful tool for filtering data.
-
-* Uses boolean operators `AND`, `OR`, and `NOT`
-* Uses operators `MATCH`, `CONTAINS`, `BEGINS-WITH`, `ENDS-WITH`
-* Group conditions using parenthesis
+* It uses boolean operators `AND`, `OR`, and `NOT`.
+* It uses operators `MATCH`, `CONTAINS`, `BEGINS-WITH`, and `ENDS-WITH`.
+* It uses group conditions with parenthesis.
 * Strings are contained in single quotes.
-* Searches are case-insensitive
-* If no operator is specified, a 'contains' match is performed
-* Valid operators are 'match' and 'contains'
-* Glob expressions are evaluated. If a literal `*` is needed, use `\*`
+* Searches are case-insensitive.
+* If no operator is specified, a 'contains' match is performed.
+* Valid operators are 'match' and 'contains'.
+* Glob expressions are evaluated. If a literal `*` is needed, use `\*`.
 
-Example Clause Statements:
+#### Example Clause Statements
+
 * Only include results that match the string 'home page': `MATCH 'home page'`
-* Include pages that don't contain 'home page': `NOT CONTAINS 'home page'`
-* Include pages that don't contain 'home page' or 'about us', but do contain 'contact us': `(NOT CONTAINS 'home page' OR NOT CONTAINS 'about us') AND (CONTAINS 'contact us')`
+* Include pages that do not contain 'home page': `NOT CONTAINS 'home page'`
+* Include pages that do not contain 'home page' or 'about us', but do contain 'contact us': `(NOT CONTAINS 'home page' OR NOT CONTAINS 'about us') AND (CONTAINS 'contact us')`
 * Include pages that contain 'home page' or start with 'landing': `CONTAINS 'home page' OR BEGINS-WITH 'landing'`
 
-#### Applying a Segment
+### <a name="segments">Applying Segments</a>
+
 You can include a segment in your report by adding it to the `globalFilters` property.
+
+#### Example Request
+
+The following example shows a segment requested as part of the `globalFilters` property:
+
 ```json
    ...
    "globalFilters":[
@@ -582,11 +597,15 @@ You can include a segment in your report by adding it to the `globalFilters` pro
    ...
 ```
 
-#### Breakdown Requests
-Breakdowns in the API can be useful when you want to see the cross-product of values from two different dimensions. For example -- see a report containing a list of the top "Internal Search Terms" used by visitors who saw campaign "10".
+### <a name="breakdown">Breakdown Reports</a>
 
-To request a breakdown report, you'll use the `metricsFilters` and `dimension` parameters to request the additional dimension. In the below example, `evar1` is the marketing campaign and `evar2` is the "Internal Search Terms".
-```json
+Breakdowns in the API are useful when you want to see the cross-product of values from two different dimensions. When requesting a breakdown report, use the `metricsFilters` and `dimension` parameters to request the additional dimension.
+
+#### Example Request
+
+The following example requests a breakdown report containing a list of the top five "Internal Search Terms" used by visitors who saw campaign 10. Within the `metricsFilters` parameter, the type is set to `breakdown` (line 21), and `evar1` is the marketing campaign (line 22). Within the `dimensions` parameter, `evar2` is the "Internal Search Terms" (line 27).
+
+```json={line-numbers="yes"}
 {
    "rsid":"adbedocrsid",
    "globalFilters":[
@@ -622,7 +641,10 @@ To request a breakdown report, you'll use the `metricsFilters` and `dimension` p
 }
 ```
 
-Example Response:
+#### Example Response
+
+The following example shows that the top search terms for Campaign 10 are "red t-shirt", "digital watches", "sport socks", "gps watch", and "running shoes."
+
 ```json
 {
       "totalPages":2,
@@ -684,4 +706,3 @@ Example Response:
       }
    }
 ```
-
