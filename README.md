@@ -20,6 +20,8 @@ To get started with Analytics 2.0 APIs:
 
 * Use [Postman for OAuth authentication](oauth-postman.md).
 
+* Use [OAuth 2.0 Playground for OAuth authentication](oauth-playground.md).
+
 _Note: JWT Authentication is coming soon._
 
 ## Swagger Endpoint Descriptions
