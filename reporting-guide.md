@@ -467,7 +467,7 @@ By using the `search` parameter, you can add even more granular parameters to fi
 * `clause` - A search clause to use when filtering dimensions
 * `includeSearchTotal` - Includes a special element called 'searchTotals' in the response that contains the total of the filtered items. The default is `false`.
 
-#### Example `search` Request</a>
+#### Example `search` Request
 
 The following example requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9).
 
