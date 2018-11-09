@@ -449,15 +449,15 @@ Use filters to limit the data returned so that reports show only the values you 
 
 This section includes information on the following filtering features:
 
-* [Search parameter](#search)
+* Search parameter
 
-* [Clause parameter](#clause)
+* Clause parameter
 
-* [Applying Segments](#segments)
+* Applying Segments
 
-* [Breakdown Reports](#breakdown)
+* Breakdown Reports
 
-### <a name="search">Using `search` Parameters</a>
+### Using `search` Parameters
 
 By using the `search` parameter, you can add even more granular parameters to filter your results more narrowly. The `search` parameter includes the following options:
 
@@ -554,7 +554,7 @@ The following response returns the data requested for the `itemId` associated wi
 }
 ```
 
-### <a name="clause">Using `clause` Parameters</a>
+### Using `clause` Parameters
 
 As noted above, the `search` parameter also includes the `clause` option. The `clause` parameter provides a powerful tool for filtering data. To use it, follow these rules:
 
@@ -574,7 +574,7 @@ As noted above, the `search` parameter also includes the `clause` option. The `c
 * Include pages that do not contain 'home page' or 'about us', but do contain 'contact us': `(NOT CONTAINS 'home page' OR NOT CONTAINS 'about us') AND (CONTAINS 'contact us')`
 * Include pages that contain 'home page' or start with 'landing': `CONTAINS 'home page' OR BEGINS-WITH 'landing'`
 
-### <a name="segments">Applying Segments</a>
+### Applying Segments
 
 You can include a segment in your report by adding it to the `globalFilters` property.
 
@@ -597,7 +597,7 @@ The following example shows a segment requested as part of the `globalFilters` p
    ...
 ```
 
-### <a name="breakdown">Breakdown Reports</a>
+### Breakdown Reports
 
 Breakdowns in the API are useful when you want to see the cross-product of values from two different dimensions. When requesting a breakdown report, use the `metricsFilters` and `dimension` parameters to request the additional dimension.
 
