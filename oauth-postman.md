@@ -19,8 +19,6 @@ To configure the OAuth authentication request:
 
   ![configure Postman request 1](/images/configure Postman request 1.png)
 
-
-
 4.  On the **GET NEW ACCESS TOKEN** form, provide the following values:
 
 | Parameter                 | Value                                                                                                          |
@@ -34,14 +32,13 @@ To configure the OAuth authentication request:
 | Client Secret         | Enter your Client Secret from Adobe I/O                                                                                        |
 | Scope                 | Enter `openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function` |
 | Client Authentication | Select **Send client credentials in body** from the dropdown                                                                     |
-
   ![Postman Oauth Step 3](/images/postman-oauth2-step3.png)
 
 5.  Click **Request Token**. You will be prompted to login. Click the **Use Token** button at the bottom of the resulting pop up screen. The token automatically populates the **Available Token** field.
 
   ![Postman Oauth Step 4](/images/postman-oauth2-step4.png)
 
-  [!NOTE] If you have already requested other tokens in Postman, you can select them from the **Available Tokens** dropdown.
+[!NOTE] If you have already requested other tokens in Postman, you can select them from the **Available Tokens** dropdown.
 
 6. Enter the request URI path you want to call, including your Global Company ID as shown below, and then click the **Preview Request** button. This updates the request header with the token value.
 
@@ -49,7 +46,7 @@ To configure the OAuth authentication request:
 
 8. On the next row, add the header KEY `x-proxy-global-company-id` and enter you Global Company ID as the VALUE.
 
-9. On the next row, add the header KEY `x-api-key` and enter your Client ID as the value.
+9. On the next row, add the header KEY `x-api-key` and enter your Client ID as the VALUE.
 
   ![Postman Oauth Step 5](/images/postman-oauth2-step5.png)
 
