@@ -32,7 +32,8 @@ To configure the OAuth authentication request:
 | Client Secret         | Enter your Client Secret from Adobe I/O                                                                                        |
 | Scope                 | Enter `openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function` |
 | Client Authentication | Select **Send client credentials in body** from the dropdown                                                                     |
-  ![Postman Oauth Step 3](/images/postman-oauth2-step3.png)
+
+![Postman Oauth Step 3](/images/postman-oauth2-step3.png)
 
 5.  Click **Request Token**. You will be prompted to login. Click the **Use Token** button at the bottom of the resulting pop up screen. The token automatically populates the **Available Token** field.
 
