@@ -1,4 +1,4 @@
-# OAuth Authentication in POSTMAN
+# OAuth in POSTMAN
 
 ## What's Needed
 
