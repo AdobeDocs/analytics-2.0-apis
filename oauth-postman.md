@@ -37,11 +37,11 @@ To configure the OAuth authentication request:
 
 5.  Click **Request Token**. You will be prompted to login. Click the **Use Token** button at the bottom of the resulting pop up screen. The token automatically populates the **Available Token** field.
 
-  ![Postman Oauth Step 4](/images/postman-oauth2-step4.png)
+6. Enter the request URI path you want to call, including your Global Company ID as shown below, and then click the **Preview Request** button. This updates the request header with the token value.
+
+ ![Postman Oauth Step 4](/images/postman-oauth2-step4.png)
 
 [!NOTE] If you have already requested other tokens in Postman, you can select them from the **Available Tokens** dropdown.
-
-6. Enter the request URI path you want to call, including your Global Company ID as shown below, and then click the **Preview Request** button. This updates the request header with the token value.
 
 7. Specify the method from the Postman request dropdown. Click the **Headers** tab. In the Postman Headers table, the **Authorization** KEY contains a corresponding **Bearer** token VALUE.
 
