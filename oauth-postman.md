@@ -5,7 +5,7 @@
 For OAuth authentication in Postman, you will need the following:
 
 * The **Client ID**, **Client Secret**, and **Default Redirect URI** from your [integration on the Adobe I/O console](create-oauth-client.md).
-* Your **Global Company ID**. If you do not know your Global Company ID, you can find it in the request URL for the `users/me` endpoint on the Swagger UI. After logging into the [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis), expand the `users` endpoint and then click the **GET users/me** button. Click the **Try it out** and **Execute** buttons. Note your global company id shown in the Request URL immediately preceding the `users/me` endpoint.
+* Your **Global Company ID**. If you do not know your Global Company ID, you can find it in the request URL for the `users/me` endpoint on the Swagger UI. After logging into the [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis), expand the `users` endpoint and then click the **GET users/me** button. Click the **Try it out** and **Execute** buttons. Note your Global Company ID shown in the Request URL immediately preceding the `users/me` endpoint.
 
   ![note company id](/images/note company id.png)
 
@@ -53,4 +53,4 @@ To configure the OAuth authentication request:
 
   ![Postman Oauth Step 5](/images/postman-oauth2-step5.png)
 
-10. Click the `Send` button. The response includes the first 10 users for your Analytics Company
+10. Click the **Send** button. The response includes the first 10 users for your Analytics Company
