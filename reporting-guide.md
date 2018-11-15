@@ -96,8 +96,15 @@ The JSON message requests the following:
 #### `curl` Request
 
 ```bash
-curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer {ACCESSTOKEN}" -d '{REQUESTJSON}' "https://analytics.adobe.io/reports?locale=en_US"
-```
+curl -X POST \
+  https://analytics.adobe.io/api/{COMPANYID}/reports \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {ACCESSTOKEN}' \
+  -H 'Content-Type: application/json' \
+  -H 'x-api-key: {APIKEY}' \
+  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -d '{REQUESTJSON}'
+  ```
 
 ### Example Response
 
