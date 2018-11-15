@@ -22,8 +22,9 @@ To get started with Analytics 2.0 APIs:
 
 _Note: JWT Authentication is coming soon._
 
-## Swagger Endpoint Descriptions
-The Analytics 2.0 API endpoints and methods are described on our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/). It currently only supports Adobe ID authentication.
+## Try Now
+Try the Anaytics 2.0 API in seconds. Use our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to explore APIs, make calls and get a response. 
+_Note:It currently only supports Adobe ID authentication._
 
 ## Reporting API Guide
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
