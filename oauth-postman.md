@@ -23,7 +23,7 @@ Enter the following on the GET NEW ACCESS TOKEN screen:
 |Access Token URL|https://ims-na1.adobelogin.com/ims/token/v1|
 |Client ID|Enter your client id here|
 |Client Secret|Enter your client secret here|
-|Scope|openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function|
+|Scope|openid,AdobeID,read_organizations,additional_info.projectedProductContext,additional_info.job_function|
 |State|Can be left empty|
 |Client Authentication|Send client credentials in body|
 
