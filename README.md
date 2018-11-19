@@ -28,6 +28,7 @@ _Note:It currently only supports Adobe ID authentication._
 
 ## Reporting API Guide
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
+Please also refer to the [Reporting Tricks Guide](reporting-tricks.md) to learn how to use analysis workspace to build and validate your API requests.
 
 ## Segments API Guide
 The [Segments API Guide](segments.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
