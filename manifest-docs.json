@@ -43,7 +43,14 @@
     },    
     {
           "importedFileName": "reporting-guide",
-          "pages": [],
+          "pages": [
+						{
+								"importedFileName": "reporting-tricks",
+								"pages": [],
+								"path": "AdobeDocs/analytics-2.0-apis/master/reporting-tricks.md",
+								"title": "Reporting Tips and Tricks"
+						}
+					],
           "path": "AdobeDocs/analytics-2.0-apis/master/reporting-guide.md",
           "title": "Reporting API Guide"
     },
