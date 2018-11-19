@@ -1,75 +1,82 @@
 {
-"name": "Analytics",
-"version": "2.0.0",
-"description": "Analytics",
-"author": "Emily Walpole",
-"view_type": "mdbook",
-"meta_keywords": "adobe, analytics",
-"meta_description": "default description",
-"publish_date": "30/08/2018",
-"show_edit_github_banner": false,
-"base_path": "https://raw.githubusercontent.com",
-"pages": [
-    {
-      "importedFileName": "readme",
-      "pages": [],
-      "path": "AdobeDocs/analytics-2.0-apis/master/README.md",
-      "title": "Overview"
-    },
-    {
-      "importedFileName": "getting-started",
-      "pages": [
-        {
-            "importedFileName": "create-oauth-client",
-            "pages": [],
-            "path": "AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md",
-            "title": "Creating an OAuth Client"
-        },
-        {
-            "importedFileName": "oauth-using-curl",
-            "pages": [],
-            "path": "AdobeDocs/analytics-2.0-apis/master/oauth-curl.md",
-            "title": "OAuth using cURL"
-        },
-        {
-            "importedFileName": "oauth-using-postman",
-            "pages": [],
-            "path": "AdobeDocs/analytics-2.0-apis/master/oauth-postman.md",
-            "title": "OAuth using POSTMAN"
-        }
-      ],
-      "path": "AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md",
-      "title": "Getting Started"
-    },    
-    {
-          "importedFileName": "reporting-guide",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/reporting-guide.md",
-          "title": "Reporting API Guide"
-    },
-    {
-          "importedFileName": "migration-guide",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/migration-guide.md",
-          "title": "Migrating Guide"
-    },
-    {
-          "importedFileName": "calculated-metrics",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/calculatedmetrics.md",
-          "title": "Calculated Metrics"
-    },
-    {
-          "importedFileName": "segments",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/segments.md",
-          "title": "Segments"
-    },
-    {
-          "importedFileName": "virtual-report",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/virtualreportsuites.md",
-          "title": "Virtual Report Suites"
-    }
-]
+	"name": "Analytics",
+	"version": "2.0.0",
+	"description": "Analytics",
+	"author": "Emily Walpole",
+	"view_type": "mdbook",
+	"meta_keywords": "adobe, analytics",
+	"meta_description": "default description",
+	"publish_date": "30/08/2018",
+	"show_edit_github_banner": false,
+	"base_path": "https://raw.githubusercontent.com",
+	"pages": [
+		{
+			"importedFileName": "readme",
+			"pages": [],
+			"path": "AdobeDocs/analytics-2.0-apis/master/README.md",
+			"title": "Overview"
+		},
+		{
+			"importedFileName": "getting-started",
+			"pages": [
+				{
+					"importedFileName": "create-oauth-client",
+					"pages": [],
+					"path": "AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md",
+					"title": "Creating an OAuth Client"
+				},
+				{
+					"importedFileName": "oauth-using-curl",
+					"pages": [],
+					"path": "AdobeDocs/analytics-2.0-apis/master/oauth-curl.md",
+					"title": "OAuth using cURL"
+				},
+				{
+					"importedFileName": "oauth-using-postman",
+					"pages": [],
+					"path": "AdobeDocs/analytics-2.0-apis/master/oauth-postman.md",
+					"title": "OAuth using POSTMAN"
+				}
+			],
+			"path": "AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md",
+			"title": "Getting Started"
+		},    
+		{
+			"importedFileName": "reporting-guide",
+			"pages": [
+				{
+					"importedFileName": "reporting-tricks",
+					"pages": [],
+					"path": "AdobeDocs/analytics-2.0-apis/master/reporting-tricks.md",
+					"title": "Reporting Tips & Tricks"
+				}
+			]
+			"path": "AdobeDocs/analytics-2.0-apis/master/reporting-guide.md",
+			"title": "Reporting API Guide"
+		},
+		{
+			"importedFileName": "migration-guide",
+			"pages": [],
+			"path": "AdobeDocs/analytics-2.0-apis/master/migration-guide.md",
+			"title": "Migrating Guide"
+		},
+		{
+			"importedFileName": "calculated-metrics",
+			"pages": [],
+			"path": "AdobeDocs/analytics-2.0-apis/master/calculatedmetrics.md",
+			"title": "Calculated Metrics"
+		},
+		{
+			"importedFileName": "segments",
+			"pages": [],
+			"path": "AdobeDocs/analytics-2.0-apis/master/segments.md",
+			"title": "Segments"
+		},
+		{
+			"importedFileName": "virtual-report",
+			"pages": [],
+			"path": "AdobeDocs/analytics-2.0-apis/master/virtualreportsuites.md",
+			"title": "Virtual Report Suites"
+		}
+	]
 }
