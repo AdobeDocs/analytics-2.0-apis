@@ -71,12 +71,6 @@
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/segments.md",
           "title": "Segments"
-    },
-    {
-          "importedFileName": "virtual-report",
-          "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/virtualreportsuites.md",
-          "title": "Virtual Report Suites"
     }
 ]
 }
