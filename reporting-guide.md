@@ -1,12 +1,4 @@
 
----
-
-title: Reports User Guide
-seo-title: Analytics API Reports User Guide
-description: This user guide provides instructions and examples for using the reports endpoint for Adobe Analytics APIs.
-seo-description: 'Analytics APIs' 'Analytics reports' 'reports endpoint' 'adobe analytics' 'analytics reports api'
-
----
 # Analytics API Reports User Guide
 
 The `/reports` endpoint is the primary endpoint for reporting requests. In order to provide maximum flexibility, many configuration options are available for requests.
@@ -194,8 +186,7 @@ The JSON response includes the following information:
 
 * The `summaryData` section contains a total of the metrics in the current report (lines 72-74).
 
->[!NOTE]
->You can also easily modify this example to get metrics for visits. Simply change the `id` property in the `metrics` section to `metrics/visits` (line 15).
+*You can also easily modify this example to get metrics for visits. Simply change the `id` property in the `metrics` section to `metrics/visits` (line 15).*
 
 ## Paginating Reports
 
