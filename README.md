@@ -23,14 +23,14 @@ To get started with Analytics 2.0 APIs:
 _Note: JWT Authentication is coming soon._
 
 ## Try Now
-Try the Anaytics 2.0 API in seconds. Use our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to explore APIs, make calls and get a response. 
+Try the Analytics 2.0 API in seconds. Use our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to explore APIs, make calls and get a response. Our Swagger UI also includes the full endpoint descriptions. 
 
 ## Reporting API Guide
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
 Please also refer to the [Reporting Tricks Guide](reporting-tricks.md) to learn how to use analysis workspace to build and validate your API requests.
 
 ## Segments API Guide
-The [Segments API Guide](segments.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
+The [Segments API Guide](segments-guide.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
 
 ## Migrating from 1.4 APIs to 2.0 APIs
 For help migrating from the 1.3/1.4 versions of the Analytics API to the newer and more capable ```/reports``` API, refer to the [migration guide](migration-guide.md).
