@@ -46,7 +46,7 @@ To configure the OAuth authentication request:
 
   ![Postman Oauth Step 4](/images/postman-oauth2-step4.png)
 
-  [!NOTE] If you have already requested other tokens in Postman, you can select them from the **Available Tokens** dropdown.
+ *If you have already requested other tokens in Postman, you can select them from the **Available Tokens** dropdown.*
 
 
 7. Specify the method from the Postman request dropdown. Click the **Headers** tab. In the Postman Headers table, the **Authorization** KEY contains a corresponding **Bearer** token VALUE.
