@@ -16,7 +16,7 @@ Please follow these guidelines when using the Segments APIs:
 *  Request data once and cache it.
 *  Use caution when updating a segment so that you do not alter the original segment used by others.
 *  Avoid creating duplicate segments with the same definition. Creating many segments will affect performance for your company in some situations.
-*  Use the Analytics UI for creating segments from scratch, if possible. Because of the flexibility in using segments, the UI offers significant advantages for managing and optimizing the complexity of this task. Consider creating a segment in the UI that matches, as closely as possible, the segment you want, then modifying the JSON so that it does what you want programmatically. Then you can `POST` the JSON body of that modified segment to the API.
+*  If possible use the Analytics UI for creating segments from scratch. The UI offers significant advantages for managing and optimizing the complexity of this task. If you need to create segments programmatically, it is usually easier to create a template segment in the UI and then have your application change only small portions of the segment definition.
 
 ## /segments Endpoint Description
 
