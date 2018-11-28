@@ -87,6 +87,8 @@ Any response that can return multiple segments can be paginated with the `page` 
 
 When requesting a list of segments, you can use multiple URL query parameter filters. You can filter by `name`, `tagNames`, segment id (`segmentFilter`), and `rsids`. For example, to retrieve all segments tagged as part of the *SpringPromotion* campaign, you can add the URL parameter `tagNames=SpringPromotion`. The `tagNames`, `segmentFIlter`, and `rsids` filters accept comma-delimited lists. These lists should be short, with no more than 100 items.
 
+*Note: While segments are global to a company, the rsid filter specifically designates the rsid that the segment was created/validated against. The rsid filter designation does not mean that it is the only report suite the segment can be used on.*
+
 ### Example cURL Request
 
 The following example requests all segments tagged as part of the *SpringPromotion* campaign with `locale` value `en_US`, on page 0 with page size 10:
