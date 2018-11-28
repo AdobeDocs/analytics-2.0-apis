@@ -24,18 +24,17 @@ To configure the OAuth authentication request:
 
 4.  On the **GET NEW ACCESS TOKEN** form, provide the following values:
 
-| Parameter                 | Value                                                                                                          |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Token Name            | Specify a name                                                                                                 |
-| Grant Type            | Select **Authorization Code** from the dropdown                                                                               |
-| Callback URL          | Enter your OAuth client default redirect URI                                                                   |
-| Auth URL              | <https://ims-na1.adobelogin.com/ims/authorize/v1>                                                              |
-| Access Token URL      | <https://ims-na1.adobelogin.com/ims/token/v1>                                                                  |
-| Client ID             | Enter your Client ID from Adobe I/O                                                                                          |
-| Client Secret         | Enter your Client Secret from Adobe I/O                                                                                        |
-| Scope                 | Enter `openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function` |
-| Client Authentication | Select **Send client credentials in body** from the dropdown                                                                     |
-
+| Parameter             | Value       |
+|:-------------------------:|:-----------:|
+| Token Name            | Specify a name  |
+| Grant Type            | Select **Authorization Code** from the dropdown |
+| Callback URL          | Enter your OAuth client default redirect URI |
+| Auth URL              | <https://ims-na1.adobelogin.com/ims/authorize/v1> |
+| Access Token URL      | <https://ims-na1.adobelogin.com/ims/token/v1> |
+| Client ID             | Enter your Client ID from Adobe I/O |
+| Client Secret         | Enter your Client Secret from Adobe I/O |
+| Scope                 | Enter `openid,AdobeID,read_organizations,additional_info.projectedProductContext,additional_info.job_function` |
+| Client Authentication | Select **Send client credentials in body** from the dropdown |
 
 ![Postman Oauth Step 3](/images/postman-oauth2-step3.png)
 
