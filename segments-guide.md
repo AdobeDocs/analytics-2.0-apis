@@ -176,7 +176,7 @@ The following response shows six segments tagged as part of the *SpringPromotion
 
 ## Retrieving a Single Segment
 
-You can retrieve segments individually if the segment `id` is known. You can get the segment `id` from  report descriptions or other Analytics screens.
+You can retrieve segments individually if you know the segment `id`. To find the segment `id`, you can refer to the report descriptions or find it by using the multiple segments endpoint.
 
 ### Example Request
 
