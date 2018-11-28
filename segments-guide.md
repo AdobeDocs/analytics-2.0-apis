@@ -91,7 +91,7 @@ When requesting a list of segments, you can use multiple URL query parameter fil
 
 ### Example cURL Request
 
-The following example requests all segments tagged as part of the *SpringPromotion* campaign with `locale` value `en_US`, on page 0 with page size 10:
+The following example requests all segments tagged as part of the *SpringPromotion* campaign on page 0 with page size 10:
 
 ```
 
