@@ -63,13 +63,13 @@ For more information on segments templates, see [Adobe Help](https://marketing.a
 Segments endpoints support the URL query parameter `expansion`. This parameter allows specifying additional data fields to be populated in response objects. Available expansions are shown in the [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) description. The following table describes expansion fields:
 
 |           Field       | 	Description         |
-|:---------------------:|:-------------------------:|
-| reportSuiteName | The name of the report suite
+|---------------------|-------------------------|
+| reportSuiteName | The name of the report suite |
 | ownerFullName | The name of the owner of the segment |
 | modified | The date the segment was last modified |
 | tags |  Tags applied to the segment |
 | compatibility| The Analytics products compatible with this segment |
-| definition | The [segment definition](segments.md)
+| definition | The [segment definition](segments.md) |
 
 ### Locale
 
