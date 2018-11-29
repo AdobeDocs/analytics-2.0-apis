@@ -24,7 +24,7 @@ The `/segments` endpoint description is shown in our [Swagger UI](https://adobed
 
 ## Templates
 
-Adobe provides many predefined segments, or templates, for clients in specific situations. Although original templates cannot be modified, copies of them can be made and then the copies can be modified. If you want to work with segments templates programmatically, you can identify them by the additional attribute `template: true` as shown at the bottom of the following example:
+Adobe provides many predefined segments, or templates, for clients in specific situations. Although original templates cannot be modified, copies of them can be made and then the copies can be modified. You can identify templates by the additional attribute `template: true` as shown at the bottom of the following example:
 
 ```
 
