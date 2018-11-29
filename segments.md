@@ -1,13 +1,10 @@
-## Segments Endpoint User Guide
-The `/segments` endpoint can be used to programmatically manage segments in Adobe Analytics. Segments allow the user to isolate an interesting set of visitors, visits, or hits. Once isolated, a more thorough analysis can be performed, or actions can be taken by sharing it with other Adobe Experience Cloud products.
+# Segment Definition Data Structure
+The segment definition data structure is used to communicate segment rules to the API. This data structure defines the raw logic that is used to isolate the segment data. The segment definition is a hierarchical data structure of containers, functions, and boolean logic that is used to define the segment. The segment tool in the Adobe Analytics UI follows these rules and can be a useful tool for understanding how the data structure looks.
 
-For information about segments and how they work, please see this documentation:
-https://experiencecloud.adobe.com/resources/help/en_US/analytics/segment/seg_workflow.html
+## Terms
 
-### Segment Definition Data Structure
-The segment definition data structure is used to communicate segment rules to the API. This data structure defines the raw logic that will be used to isolate the segment data. The segment definition data structure is a hierarchical data structure of containers, functions, and boolean logic that is used to define the segment. The segment tool in the Adobe Analytics UI follows these rules and can be a useful tool for understanding how the data structure looks. Below is an example segment definition for your reference.
+The following terms are used in segment definitions:
 
-### Terms
 * Schema - Refers to a report suite's configuration. Identifies which dimensions and metrics are available for use within the segment.
 * Attribute - An entity in the schema. For example, `page` or `evar1`.
 * Context - Defines the level that the segment logic should operate on. Valid values are `visitors`, `visits`, and `hits`.
@@ -16,7 +13,8 @@ The segment definition data structure is used to communicate segment rules to th
 * Container Set - Identifies the relationship between containers using boolean expressions.
 * Data Set - A group of collections that comprises all of the data being operated on.
 
-Let's use the following segment example to go in-depth on what each of these terms mean and how they're used.
+Let's use the following segment example to provide more detail on what each of these terms mean and how they are used.
+
 ```json
 {
     "definition":{
@@ -38,30 +36,30 @@ Let's use the following segment example to go in-depth on what each of these ter
 }
 ```
 
-#### Schema
+### Schema
 This is a reflection of the Adobe Analytics implementation. In other words, it defines the configuration for the enabled evars, props, events, etc.
 
-#### Attributes
+### Attributes
 An attribute is an entity from the schema. In the above example, `variables/page` is an attribute.
 
-#### Context
-The rules in a segment have a context that tells them at what level to operate at. The context can be `visitors`, `visits` or `hits`.
+### Context
+The rules in a segment have a context that specify the level of operation. The context can be `visitors`, `visits` or `hits`.
 As an example, let's build a segment rule where revenue is greater than 0 (meaning a purchase took place) and change the context to see how things change.
 
-If the context is set to `visitors`, the segment will include all hits from visitors that have a purchase of some kind during a visit. This could be useful in analyzing customer behavior in visits leading up to a purchase and possibly behavior after a purchase is made.
+If the context is set to `visitors`, the segment includes all hits from visitors that have a purchase of some kind during a visit. This is useful in analyzing customer behavior in visits leading up to a purchase and possibly behavior after a purchase.
 
-If the context is set to `visits`, the segment will include all hits from visits where a purchase occurred. This could be useful for seeing the behavior of a visitor in immediate page views leading up to the purchase.
+If the context is set to `visits`, the segment includes all hits from visits where a purchase occurred. This is useful for seeing the behavior of a visitor in immediate page views leading up to the purchase.
 
-If the context is set to `hit`, the segment will only include hits where a purchase occurred, and no other hits. This could be useful in seeing which products were most popular.
+If the context is set to `hit`, the segment only includes hits where a purchase occurred, and no other hits. This is useful in seeing which products were most popular.
 
-In the above example, the context for the container listed is `hits`. This means that the container will only evaluate data at the hit level, (in contrast to visit or visitor level). The rows it will contain will also be at the hit level.
+In the above example, the context for the container listed is `hits`. This means that the container only evaluates data at the hit level, (in contrast to visit or visitor level). The rows in the container are also at the hit level.
 
-#### Row
-A row is a single record inside of a container. The information stored in a row depends on the context setting for the container. For example, if the context is set to `visitor`, the row in the container will contain all information about the visitor spanning all hits from all visits. To contrast, if the context is set to 'hits', the row will only contain information related to the individual qualifying hits in the segment logic.
+### Row
+A row is a single record inside of a container. The information stored in a row depends on the context setting for the container. For example, if the context is set to `visitor`, the row in the container contains all information about the visitor spanning all hits from all visits. To contrast, if the context is set to 'hits', the row only contains information related to the individual qualifying hits in the segment logic.
 
-In the above example, the container is set to a `hit` context. The container's logic states that it will only include hits that have a `page` variable set. Therefore, the container will only store rows of hit records where a page was set.
+In the above example, the container is set to a `hit` context. The container's logic states that it will only include hits that have a `page` variable set. Therefore, the container only stores rows of hit records where a page was set.
 
-#### Container
+### Container
 A container groups the segment logic and context together for use in calculating the rows that will be assigned to the container.
 
 A container has three properties:
@@ -72,15 +70,15 @@ A container has three properties:
 
 In the above example, the container's context is set to `hits` and a rule that only includes hits where the `page` attribute is set.
 
-#### Container Set
+### Container Set
 A `container set` groups containers and creates cartesian relationships between them using boolean expressions. For example, you may have a container that groups visitors that have a purchase, and a second container that groups visitors who came to the website via a specific banner ad. The container set could link these two containers with an AND condition. The result would be a segment containing visitors who belong in both containers, i.e., visitors who made a purchase who also came to the website via a specific banner ad. It would not include visitors who came to the website via the banner ad who never purchased anything.
 
 In the above example, there is only one container, so no container set is needed.
 
-#### Data Set
+### Data Set
 A data set is the collection of all records used across containers and container sets to calculate the population of the segment.
 
-### Schema Functions
+## Schema Functions
 **Table 1 - Attribute Function**
 
 |Function|Description|Parameters|
@@ -112,7 +110,7 @@ A data set is the collection of all records used across containers and container
 |sequence-and | A group of unordered conditions that _must all_ occur.|`checkpoints` A list of container objects that define the conditions.
 |sequence-or | A group of unordered conditions. Any individual condition (or more) must occur.|`checkpoints` A list of containers that define conditions for the segment.|
 
-### Available Data Comparison Functions
+## Available Data Comparison Functions
 **Table 4 - String Functions**
 
 |Function|Description|Parameters|
@@ -170,9 +168,9 @@ A data set is the collection of all records used across containers and container
 For more details, see the documentation published here:
 https://experiencecloud.adobe.com/resources/help/en_US/analytics/segment/seg_sequential_build.html
 
-### Segment Definition Examples
+## Segment Definition Examples
 
-#### Example 1
+### Example 1
 Test if an attribute has been set to any value across all of a visitor's activity.
 ```json
 {
@@ -191,7 +189,7 @@ Test if an attribute has been set to any value across all of a visitor's activit
 }
 ```
 
-#### Example 2
+### Example 2
 Test if an attribute has been set to a specific value across all of a visitor's activity.
 ```json
 {
@@ -211,7 +209,7 @@ Test if an attribute has been set to a specific value across all of a visitor's 
 }
 ```
 
-#### Example 3
+### Example 3
 Test if an attribute has been set to a specific value, and then set to a different value.
 ```json
 {
@@ -251,7 +249,7 @@ Test if an attribute has been set to a specific value, and then set to a differe
 }
 ```
 
-#### Example 4
+### Example 4
 Test that both an attribute has been set to any value, and a different attribute has been set to a specific value.
 ```json
 {
@@ -290,7 +288,7 @@ Test that both an attribute has been set to any value, and a different attribute
 }
 ```
 
-#### Example 5
+### Example 5
 Test that both an attribute has been set to any value, and a different attribute has been set to a specific value within the same month.
 ```json
 {
