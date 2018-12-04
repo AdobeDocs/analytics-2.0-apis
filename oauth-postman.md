@@ -56,4 +56,4 @@ To configure the OAuth authentication request:
 
   ![Postman Oauth Step 5](/images/postman-oauth2-step5.png)
 
-10. Click the **Send** button. The response includes the first 10 users for your Analytics Company
+10. Click the **Send** button. The `GET`/users response includes the first 10 users for your Analytics company. You are now also authorized to work with other Analytics endpoints.
