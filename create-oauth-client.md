@@ -1,4 +1,4 @@
-## Creating an OAuth client
+## Creating an OAuth Client
 
 To work with Analytics 2.0 APIs on the Adobe I/O Console, you need to have System Admin rights for your organization. When you receive notification of these rights, click the **Get Started** button in the message to access services.
 
@@ -14,7 +14,12 @@ To create an OAuth client:
 
 5. Select `New integration` and then click `Continue`.
 
-6. Fill out the name, description and other fields and then click `Create Integration`.
+6. Fill out the name, description, redirect URIs and then click `Create Integration`.
+
+
+*The **Default redirect URI** is the location that Adobe I/O redirects after successful login and authorization. Use only HTTPS-based locations*
+
+*The **Redirect URI pattern** is a list of URIs that specify the location that Adobe I/O redirects after successful login and authorization. This field should contain, at the least, the URI specified in the previous **Default redirect URI**. Use only HTTPS-based location.*
 
 Your client is now created. Notice your client has an `Client ID (API Key)` and a `Client Secret`. These will be needed to get your auth code and to generate access tokens.
 
