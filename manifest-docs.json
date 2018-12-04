@@ -67,10 +67,17 @@
           "title": "Calculated Metrics"
     },
     {
-          "importedFileName": "segments",
-          "pages": [],
+          "importedFileName": "segments-guide",
+          "pages": [
+						{
+								"importedFileName": "segments",
+								"pages": [],
+								"path": "AdobeDocs/analytics-2.0-apis/master/segments.md",
+								"title": "Segment Definition Data Structure"
+						}
+					],
           "path": "AdobeDocs/analytics-2.0-apis/master/segments-guide.md",
-          "title": "Segments"
+          "title": "Segments APIs"
     }
 ]
 }
