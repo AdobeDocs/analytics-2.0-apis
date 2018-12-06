@@ -1,30 +1,41 @@
-## OAuth Authentication using cURL
+# OAuth Authentication using cURL
 
-### Get an auth code
+To obtain Oauth authentication using cURL:
+
+1. Get an auth code.
+1. Generate an access token.
+1. Test your access token.
+
+## Get an auth code
+
+Use the following model as a cURL request for an auth code: 
 
 ```
-https://ims-na1.adobelogin.com/ims/authorize?client_id=INSERT_CLIENT_ID_HERE&redirect_uri=INSERT_REDIRECT_URI_HERE&scope=openid,AdobeID,read_organizations,additional_info.job_function,additional_info.projectedProductContext&response_type=code
+https://ims-na1.adobelogin.com/ims/authorize?client_id={CLIENT ID}&redirect_uri={REDIRECT URI}&scope=openid,AdobeID,read_organizations,additional_info.job_function,additional_info.projectedProductContext&response_type=code
 ```
 
-* Copy the `Client ID` from your OAuth client and replace `INSERT_CLIENT_ID_HERE` in the above URI with it
-* Replace `INSERT_REDIRECT_URI_HERE` with your redirect URI you setup when creating the client
-* Paste this URL into your favorite browser
-* After authenticating via IMS there will be a code query parameter in the URI. (code=eyJ4...)
-* Copy this code to your clip-board
+To get an auth code:
+
+1. Copy the Client ID from your OAuth client and paste it into the `{CLIENT ID}` placeholder in the URI above.
+1. Replace `{REDIRECT URI}` with the redirect URI you specified when creating the client.
+1. Paste the complete URI into your favorite browser.
+1. After authenticating via IMS, copy the auth code query parameter in the URI (the parameter begins with `code=eyJ4...`).
 
 
-### Generate an access token
+## Generate an access token
 
+Use the following model to generate an access token: 
 
 ```bash
-curl  --data "grant_type=authorization_code&client_id=INSERT_CLIENT_ID_HERE&client_secret=INSERT_CLIENT_SECRET_HERE&code=INSERT_CODE_HERE" https://ims-na1.adobelogin.com/ims/token/v1
+curl  --data "grant_type=authorization_code&client_id={CLIENT ID}E&client_secret={CLIENT SECRET}&code={AUTH CODE QUERY PARAMETER}" https://ims-na1.adobelogin.com/ims/token/v1
 ```
 
-* Replace `INSERT_CODE_HERE` with the code you copied from the previous step in the above curl request
-* Copy client id from newly created OAuth client and replace `INSERT_CLIENT_ID_HERE` in the curl request
-* Copy client secret from newly created OAuth client and replace `INSERT_CLIENT_SECRET_HERE` in the curl request
-* Run the curl command
-* You will get a response with an `access_token` attribute in the response. Example response below:
+To generate an access token:
+
+1. Replace `{AUTH CODE QUERY PARAMETER}` with the auth code you copied from the previous step in the above cURL request.
+1. Replace {CLIENT ID} in the above request with the Client ID from your Oauth client.
+1. Replace {ClIENT SECRET} in the above request with the Client Secret from your Oauth client.
+1. Run the cURL command. The response includes an `access_token` attribute, as shown below:
 
 ```json
 {
@@ -44,10 +55,10 @@ curl  --data "grant_type=authorization_code&client_id=INSERT_CLIENT_ID_HERE&clie
     },
     ...
   ],
-  "displayName": "Bob Ross",
+  "displayName": "James Ross",
   "last_name": "Ross",
   "token_type": "bearer",
-  "userId": "BOBROSS@AdobeID",
+  "userId": "JAMESROSS@AdobeID",
   "access_token": "eyJ4...TOKEN_OMITTED",
   "refresh_token": "eyJ4...TOKEN_OMITTED",
   "emailVerified": "true",
@@ -57,29 +68,28 @@ curl  --data "grant_type=authorization_code&client_id=INSERT_CLIENT_ID_HERE&clie
   "mrktPerm": "EMAIL:false",
   "mrktPermEmail": "false",
   "expires_in": 86399988,
-  "first_name": "Bob",
+  "first_name": "James",
   "email": "test@adobe.com",
   ...
 }
 ```
 
-**NOTE:** If you have access to a lot of Product Profiles the response when getting an access token can be very large. If the response is too large so that the `access_token` gets truncated in the response you can write the response to a file in order to get your access token. To write the response to a file you just need to add ` >> output.json` to the end of your cURL request and the response will be written to a file named `output.json`.
+*Note: If you have access to numerous product profiles, the response can be very large. If it is so large that the `access_token` is truncated from the response, you can write it to a file in order to find your access token. To write the response to a file, add ` >> output.json` to the end of your cURL request. The response is then written to a file named `output.json`.*
+
+5. Copy the access token to test it in the following section.
 
 
-* Copy the access token to your clip-board
+## Test your access token by calling the Analytics APIs
 
-
-### Test your access token by calling the Analytics APIs
-
+To test your access token:
 
 ```bash
-curl -X GET --header "Accept: application/json" --header "x-api-key: INSERT_CLIENT_ID_HERE" --header "Authorization: Bearer INSERT_ACCESS_TOKEN_HERE" "https://analytics.adobe.io/discovery/me"
+curl -X GET --header "Accept: application/json" --header "x-api-key: {CLIENT ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
 ```
 
-* Replace `INSERT_ACCESS_TOKEN_HERE` with the access token you copied from the previous step into the above curl request
-* Replace `INSERT_CLIENT_ID_HERE` with your client ID
-* Run the curl command
-* You should get back a response similar to the following:
+1. Replace `{ACCESS_TOKEN}` with the access token you copied from the previous step into the above cURL request.
+1. Replace `{CLIENT ID}` in the above request with the client ID from your Oauth client.
+1. Run the cURL command. The following JSON shows an example response:
 
 ```json
 {
@@ -105,20 +115,16 @@ curl -X GET --header "Accept: application/json" --header "x-api-key: INSERT_CLIE
 }
 ```
 
-* Locate the Company you would like to use to call the Analytics APIs
+4. Use the `globalCompanyId` value in your response (in the above example, it is shown as `testco0`) to test the `GET /users/me` endpoint. To do this, replace the `{GLOBAL COMPANY ID}` parameters in the following request with their corresponding values. Note that `{GLOBAL COMPANY ID}` occurs twice in the following request, once in the `x-proxy-company-global-company-id` header and another in the path:
 
 
 ```bash
-curl -X GET  --header "Authorization: Bearer INSERT_ACCESS_TOKEN_HERE" --header "x-proxy-global-company-id: INSERT_GLOBAL_COMPANY_ID_HERE" --header "x-api-key: INSERT_CLIENT_ID_HERE" "https://analytics.adobe.io/api/INSERT_GLOBAL_COMPANY_ID_HERE/users/me"
+curl -X GET  --header "Authorization: Bearer {ACCESS TOKEN} --header "x-proxy-global-company-id: {GLOBAL COMPANY ID}" --header "x-api-key: {CLIENT ID}" "https://analytics.adobe.io/api/{GLOBAL COMPANY ID}/users/me"
 ```
 
-* Copy the `globalCompanyId` for the Company you would like to use and replace `INSERT_GLOBAL_COMPANY_ID_HERE` in the above curl request (NOTE: `INSERT_GLOBAL_COMPANY_ID_HERE` is included in two places in the request. #1 - In the `x-proxy-company-global-company-id` header and #2 - In the path)
-* Replace `INSERT_ACCESS_TOKEN_HERE` with the access token you used in the previous request
-* Replace `INSERT_CLIENT_ID_HERE` with your client ID
-* Run the curl command
-* You should get a response with information about your analytics user
+5. Replace `{ACCESS TOKEN}` and `{CLIENT ID}` in the above request with their respective values.
+6. Run the cURL command. The response includes information about the analytics user.
 
-
-Now you can use your `access token`, `global company id` and `client ID` to make calls to the APIs. The following Swagger UI provides an easy way to explore calling the various Analytics APIs: https://adobedocs.github.io/analytics-2.0-apis/
+Use your `access token`, `global company id` and `client ID` to make calls to the APIs. You can use the  [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis) as an easy way to explore calling the Analytics APIs.
 
 
