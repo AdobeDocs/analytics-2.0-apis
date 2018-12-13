@@ -704,3 +704,7 @@ The following example shows that the top search terms for Campaign 10 are "red t
       }
    }
 ```
+
+#### Multi-level Breakdown Example
+
+For a more in-depth example of breakdowns see the following guide: [Reporting with Multiple Breakdowns](reporting-multiple-breakdowns.md)
