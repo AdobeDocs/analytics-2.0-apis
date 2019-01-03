@@ -1,6 +1,8 @@
 # Analytics API Reporting Tips
 
-This document provides tips for using Analytics 2.0 APIs to view reports from Analysis Workspace and for using the **Try it out** feature in the Swagger interface. The Analytics 2.0 APIs power the Analysis Workspace project. Analysis Workspace includes a debugger that allows you to view the different API requests it makes. This debugger is helpful in learning how to craft report requests and in exploring Analytics 2.0 APIs.
+This article provides an example of how to create API requests compatible with Analysis Workspace. Following this example, you can use Analysis Workspace to make additional requests after seeing how it works.
+
+This example includes the **Try it out** feature in the Swagger interface. It also includes using the Analysis Workspace debugger tool, which allows you to view the different API requests it makes. This debugger is helpful in understanding report requests and in exploring Analytics 2.0 APIs.
 
 ## Running a report from Analysis Workspace
 
