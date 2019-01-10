@@ -33,8 +33,8 @@ curl  --data "grant_type=authorization_code&client_id={CLIENT ID}E&client_secret
 To generate an access token:
 
 1. Replace `{AUTH CODE QUERY PARAMETER}` with the auth code you copied from the previous step in the above cURL request.
-1. Replace {CLIENT ID} in the above request with the Client ID from your Oauth client.
-1. Replace {ClIENT SECRET} in the above request with the Client Secret from your Oauth client.
+1. Replace `{CLIENT ID}` in the above request with the Client ID from your Oauth client.
+1. Replace `{CLIENT SECRET}` in the above request with the Client Secret from your Oauth client.
 1. Run the cURL command. The response includes an `access_token` attribute, as shown below:
 
 ```json
