@@ -1,16 +1,28 @@
-# Reporting with Multiple Breakdowns
+# Reporting Multiple Breakdowns
 
-The following guide will give an example of how to run multiple levels of breakdowns using the `/reports` endpoint. This guide should help provide a deeper understanding of how to use metric filters to get the data you want from the reporting API.
+The following guide shows instructions for running multiple level breakdowns using the `/reports` endpoint. Running multiple level breakdowns with the Reports API is helpful for visualizing the cross-product of values from two different dimensions.
 
-Analysis Workspace will be used to give a visual representation of each step. For more information about how to use Analysis Workspace to build and validate report requests refer to the [Reporting Tricks Guide](reporting-tricks.md)
+For example, if you create an interactive map to explore product sales by campaigns and regions, the Reports API can dynamically update the map as new data becomes available. This allows team members to select different map locations from which they can view the current campaigns and product sales for the region.
+
+In the following example, we show a simpler multiple breakdown report with the following levels:
+
+1. Top level: Visualize the `Day` dimension filtered by the `Page Views` and `Visits` metrics.
+1. Second level: Visualize the previous level of data after a specifying a `Date` and applying the `Page` dimension.
+1. Third level: Visualize the previous two levels of data after applying the `Cities` dimension to a specified page.
+
+For each level of the breakdown report below, we show a sample JSON request and response. We also show how each step is presented in Analysis Workspace to provide a visual representation. For more information about how to use Analysis Workspace to build and validate report requests, see the [Reporting Tricks Guide](reporting-tricks.md). For information on using the  `/reports` endpoint, see the [Reports User Guide](reporting-guide.md).
 
 ## Running the top level report
 
-For this example we will start with a simple report that is using `Day` for the dimension and includes the `Page Views` and `Visits` metrics. The date range is set to the week of November 18, 2018.
+The top level report in the following example shows the dimension `Day` and includes the metrics `Page Views` and `Visits`. The date range is set to the week of November 18, 2018.
+
+### Analysis Workspace example
 
 ![multiple_breakdowns_example_1](/images/multiple_breakdowns_example_1.png?raw=true)
 
-The JSON message request body for this report request looks like this:
+### Top level request
+
+The JSON message request body for this report request follows:
 
 ```json={line-numbers="yes"}
 {
@@ -43,7 +55,9 @@ The JSON message request body for this report request looks like this:
 }
 ```
 
-Running the report request results in a response like the following:
+### Top level response
+
+Running the report request results in the following response:
 
 ```json={line-numbers="yes"}
 {
@@ -132,9 +146,24 @@ Running the report request results in a response like the following:
 
 ## Running the second level breakdown report
 
-For the second level breakdown of our example we will break down the day of `Nov 19, 2018` by the `Page` dimension. In order to do this we need the `itemId` of the row from the report response of the top level report. In this case the itemId for `Nov 19, 2018` is `1181019` so we will use that in our report request below.
+For the second level, you can break down a specific date by the `Page` dimension. In order to do this, note the previous JSON response for the `Nov 19, 2018` date:
+
+```
+            "itemId": "1181019",
+            "value": "Nov 19, 2018",
+            "data": [
+                73,
+                37
+            ]
+```
+
+The response shows itemId `1181019`, so we will use that in our report request below.
+
+### Analysis Workspace example
 
 ![multiple_breakdowns_example_2](/images/multiple_breakdowns_example_2.png?raw=true)
+
+### Second level request
 
 The JSON message request body for this report request looks like this:
 
@@ -188,8 +217,9 @@ The JSON message request body for this report request looks like this:
 }
 ```
 
-*Notice* there is a `metricFilters` attribute in the request containing a metric filter that corresponds to a metric in the `metrics` attribute of the request. Each metric has a `filters` array which will apply metric filters to the metric column. In this example we are applying metric filter 0 to the `Page Views` metric column and metric filter 1 to the `Visits` metric column.
+**Note** The `metricFilters` attribute in the request contains a metric filter that corresponds to a metric in the `metrics` attribute of the request. Each metric has a `filters` array that applies metric filters to the metric column. In this example, we are applying metric filter `0` to the `Page Views` metric column and metric filter `1` to the `Visits` metric column.
 
+### Second level response
 
 Running the report request results in a response like the following:
 
@@ -264,9 +294,13 @@ Running the report request results in a response like the following:
 
 ## Running the third level breakdown report
 
-For the third level breakdown of our example we will break down the page `videoPage3` by the `Cities` dimension. In order to do this we need the `itemId` of the row from the report response of the second level report. In this case the itemId for `videoPage3` is `364325780` so we will use that in our report request below.
+The third level of our example shows how to further break down the report by applying the `Cities` dimension to the page `videoPage3`. To do this, we use the `itemId` of the row containing `VideoPage3` in the second level response, which is `364325780`. Note the value in the request below:
+
+### Analysis Workspace example
 
 ![multiple_breakdowns_example_3](/images/multiple_breakdowns_example_3.png?raw=true)
+
+### Third level request
 
 The JSON message request body for this report request looks like this:
 
@@ -334,7 +368,9 @@ The JSON message request body for this report request looks like this:
 }
 ```
 
-*Notice* we now have 4 metric filters in the `metricFilters` array of our request. Filters 0 and 2 are applied to the `Page Views` metric column and filters 1 and 3 are applied to the `Visits` metric column.
+**Note:** We now have 4 metric filters in the `metricFilters` array of our request. Filters `0` and `2` are applied to the `Page Views` metric column and filters `1` and `3` are applied to the `Visits` metric column.
+
+### Third level response
 
 Running the report request results in a response like the following:
 
@@ -374,4 +410,3 @@ Running the report request results in a response like the following:
     }
 }
 ```
-
