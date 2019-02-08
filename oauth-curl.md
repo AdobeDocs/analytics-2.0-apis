@@ -27,7 +27,7 @@ To get an auth code:
 Use the following model to generate an access token: 
 
 ```bash
-curl  --data "grant_type=authorization_code&client_id={CLIENT ID}E&client_secret={CLIENT SECRET}&code={AUTH CODE QUERY PARAMETER}" https://ims-na1.adobelogin.com/ims/token/v1
+curl  --data "grant_type=authorization_code&client_id={CLIENT ID}&client_secret={CLIENT SECRET}&code={AUTH CODE QUERY PARAMETER}" https://ims-na1.adobelogin.com/ims/token/v1
 ```
 
 To generate an access token:
