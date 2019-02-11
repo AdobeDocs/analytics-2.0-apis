@@ -45,6 +45,12 @@
           "importedFileName": "reporting-guide",
           "pages": [
 						{
+								"importedFileName": "reporting-multiple-breakdowns",
+								"pages": [],
+								"path": "AdobeDocs/analytics-2.0-apis/master/reporting-multiple-breakdowns.md",
+								"title": "Reporting with Multiple Breakdowns"
+						},
+						{
 								"importedFileName": "reporting-tricks",
 								"pages": [],
 								"path": "AdobeDocs/analytics-2.0-apis/master/reporting-tricks.md",
