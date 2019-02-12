@@ -2,7 +2,7 @@
 
 One advantage of JSON Web Token (JWT) authentication is that you can use it for situations requiring server-to-server, service-token, or other long-running authentications.
 
-In order to create a JWT integration on the Adobe I/O Console, you need to have System Admin or Developer rights for your organization.
+In order to create a JWT integration on the Adobe I/O Console, you need to have System Admin or Developer rights for your organization. More information about the developer role and managing developers can be found in [Managing Developers Documentation](https://helpx.adobe.com/enterprise/using/manage-developers.html).
 
 Instructions for creating the JWT client and generating the JWT token can be found in [JWT Authentication Quick Start Guide](https://www.adobe.io/authentication/auth-methods.html#!adobeio/adobeio-documentation/master/auth/JWTAuthenticationQuickStart.md).
 
