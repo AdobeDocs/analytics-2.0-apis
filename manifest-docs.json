@@ -36,6 +36,12 @@
             "pages": [],
             "path": "AdobeDocs/analytics-2.0-apis/master/oauth-postman.md",
             "title": "OAuth using POSTMAN"
+        },
+        {
+            "importedFileName": "jwt",
+            "pages": [],
+            "path": "AdobeDocs/analytics-2.0-apis/master/jwt.md",
+            "title": "JWT Authentication"
         }
       ],
       "path": "AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md",
