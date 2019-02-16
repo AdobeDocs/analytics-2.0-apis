@@ -14,7 +14,10 @@ It is assumed that you have an understanding of the Adobe Analytics product, its
 ## Getting Started
 To get started with Analytics 2.0 APIs you must first decide whether your application will need an OAuth client or a JWT client.
 
-### OAuth
+### Authentication 
+There multiple types of authentication for authenticating with the analytics APIs. General information about authenticating with Adobe's APIs is located [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/AuthenticationGuide.md). Specific information related to authenticating with the analyics APIs is availble in the sections below.
+
+#### OAuth
 
 Use an OAuth client if you are creating an application that requires an end user to authenticate before calling the Adobe Analytics APIs. The OAuth tokens expire after 24 hours and the end user must then re-authenticate before they will be able to call the APIs. To authenticate with an OAuth client, you first create an [OAuth client on the Adobe I/O Console](create-oauth-client.md). You can then use either method below with your client:
 
@@ -22,7 +25,7 @@ Use an OAuth client if you are creating an application that requires an end user
 
 * Use [Postman for OAuth authentication](oauth-postman.md).
 
-### JWT
+#### JWT
 
 A JWT client is best if you are creating an application that needs to be able to programmatically authenticate to call the Adobe Analytics APIs. A new JWT token can be generated whenever the old one is about to expire so your application can continue to make API calls. 
 
