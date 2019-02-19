@@ -39,7 +39,14 @@
         },
         {
             "importedFileName": "jwt",
-            "pages": [],
+            "pages": [
+              {
+                "importedFileName": "jwt-java-example",
+                "pages": [],
+                "path": "AdobeDocs/analytics-2.0-apis/master/examples/jwt/java",
+                "title": "JWT Authentication - Java Code Example"
+              }
+            ],
             "path": "AdobeDocs/analytics-2.0-apis/master/jwt.md",
             "title": "JWT Authentication"
         }
