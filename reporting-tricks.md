@@ -26,26 +26,24 @@ To run a report from Analysis Workspace:
 
     ![tips](/images/tips_open_dev_tools_pc.png?raw=true)
 
-4. In the developer tools, click the **Console** tab and enter `adobe.tools.debug.includeOberonXml = true` into the console. Press Enter and then refresh the page.
+4. In the developer tools, click the **Console** tab and enter `adobetools.debug.includeOberonXml = true` into the console. Press Enter and then refresh the page.
 
   ![tips_debug_text](/images/tips_debug_text.png?raw=true)
 
-6. On the **Product Performance Grid** panel in Analysis Workspace, click the debug icon and then click **Freeform Table**. A list of numbered requests appears below the **Freeform Table** option. Click one of the requests.
+5. On the **Product Performance Grid** panel in Analysis Workspace, click the debug icon and then click **Freeform Table**. A list of numbered requests appears below the **Freeform Table** option. Click one of the requests.
 
   ![tips_debug_link](/images/tips_debug_link.png?raw=true)
 
-8. In the Analysis Workspace debugger, scroll down to the **JSON REQUEST** box and copy the text, either manually, or by clicking the **Copy to Clipboard** button.
+6. In the Analysis Workspace debugger, scroll down to the **JSON REQUEST** box and copy the text, either manually, or by clicking the **Copy to Clipboard** button.
 
   ![tips_copy_json](/images/tips_copy_json.png?raw=true)
 
-9. Log into the Analytics 2.0 Swagger interface, expand the **`/reports/ranked`** endpoint, and then click the **Try it out** button.
+7. Log into the Analytics 2.0 Swagger interface, expand the **`/reports/ranked`** endpoint, and then click the **Try it out** button.
 
-  ![tips_try_it_out_button](/images/tips_try_it_out.png?raw=true)
+8. Paste the json into the request **body** box and click **Execute**.
 
-10. Paste the json into the request **body** box and click **Execute**.
-
-11. Scroll down to the **Response body** and verify that the response results match those in the Analysis Workspace debugger. If so, you have successfully used the Analytics 2.0 `/reports` API and the Swagger interface.
+9. Scroll down to the **Response body** and verify that the response results match those in the Analysis Workspace debugger. If so, you have successfully used the Analytics 2.0 `/reports` API and the Swagger interface.
 
   ![tips_response_body](/images/tips_response_body.png?raw=true)
 
-*Note: Before closing Analysis Workspace, you can turn off the debugger by opening your browser developer tools and pasting the following text into the console field: `adobe.tools.debug.includeOberonXml = false`. Press Enter and then refresh the page. The debug icons disappear once the debugger is off.*
+*Note: Before closing Analysis Workspace, you can turn off the debugger by opening your browser developer tools and pasting the following text into the console field: `adobetools.debug.includeOberonXml = false`. Press Enter and then refresh the page. The debug icons disappear once the debugger is off.*
