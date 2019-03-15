@@ -46,7 +46,7 @@
       ],
       "path": "AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md",
       "title": "Getting Started"
-    },    
+    },
     {
           "importedFileName": "reporting-guide",
           "pages": [
@@ -90,6 +90,18 @@
 					],
           "path": "AdobeDocs/analytics-2.0-apis/master/segments-guide.md",
           "title": "Segments APIs"
+    },
+    {
+          "importedFileName": "faq",
+          "pages": [],
+          "path": "AdobeDocs/analytics-2.0-apis/master/faq.md",
+          "title": "FAQ"
+    },
+    {
+          "importedFileName": "support",
+          "pages": [],
+          "path": "AdobeDocs/analytics-2.0-apis/master/support.md",
+          "title": "Support"
     }
 ]
 }
