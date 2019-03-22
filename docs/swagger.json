@@ -673,6 +673,17 @@
         "operationId" : "segments_getSegments",
         "produces" : [ "application/json" ],
         "parameters" : [ {
+          "name" : "includeType",
+          "in" : "query",
+          "description" : "Include additional segments not owned by user. The \"all\" option takes precedence over \"shared\"",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "shared", "all", "templates", "deleted", "internal", "curatedItem" ]
+          },
+          "collectionFormat" : "multi"
+        }, {
           "name" : "rsids",
           "in" : "query",
           "description" : "Filter list to only include segments tied to specified RSID list (comma-delimited)",
