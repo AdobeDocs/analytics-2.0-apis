@@ -49,7 +49,7 @@ The primary calculated metrics endpoints support the URL query parameter `expans
 
 ## IncludeTypes
 
-The GET multiple `/calculatedmetrics` endpoint supports the query parameter `includeType`. This parameter alters the set of calculated metrics that are included in API responses. By default, the response with this parameter includes only the calculated metrics owned by the user making the request. By using this parameter, the following values are also possible:
+The GET multiple `/calculatedmetrics` endpoint supports the query parameter `includeType`. This parameter alters the set of calculated metrics that are included in API responses. By default, responses without this parameter include only calculated metrics owned by the user making the request. When using this parameter, the following values are possible:
 
 * `all`: Returns all calculated metrics linked to this company - this includeType is only available to admin users
 * `shared`: Returns calculated metrics shared with the user
@@ -170,7 +170,7 @@ To retrieve a single calculated metric, include its `id` in the request.
 ### Example request
 
 ```
-curl -X GET “https://analytics.adobe.io/api/[company name]/calculatedmetrics/[calculated metrics id]?locale=en_US” -H “x-api-key: [oauth token]” -H “x-proxy-global-company-id: [company name]” -H “Authorization: Bearer [ims user token]” -H “Accept: application/json” -H “Content-Type: application/json”
+curl -X GET “https://analytics.adobe.io/api/[company name]/calculatedmetrics/[calculated metric id]?locale=en_US” -H “x-api-key: [oauth token]” -H “x-proxy-global-company-id: [company id]” -H “Authorization: Bearer [ims user token]” -H “Accept: application/json” -H “Content-Type: application/json”
 
 ```
 
@@ -285,3 +285,43 @@ To create a calculated metric with the Analytics APIs:
 1. `POST` the definition against the validate endpoint as in the above example with the id of the report suite the calculated metric is most likely to be used with.
 1. Specify a name. The name should be descriptive of what the calculated metric does. The description field can provide additional context about the calculated metric.
 1. `POST` to the `/calculatedmetrics` endpoint.
+
+## Calculated Metric Functions
+
+Calculated Metrics are comprised of several different mathematical functions that work on available metrics for a given report suite. These mathematical functions can be retrieved and inspected by making a call to the `GET /calculatedmetrics/functions` endpoint. This returns the full list of all methods. Optionally, the same call can be made to GET `/calculatedmetrics/functions/[function id]` to determine if a function is available, or to retrieve data about that function.
+
+### Example response
+
+The following response shows data about the calculated metric function `add`:
+
+```
+{
+    "id": "add",
+    "category": "internal",
+    "persistable": true,
+    "definition": {
+      "func": "calc-metric",
+      "parameters": [
+        {
+          "func": "parameter-def",
+          "name": "col1",
+          "type": "column",
+          "friendlyNameKey": "metric_X",
+          "descKey": "FirstMetricToAdd"
+        },
+        {
+          "func": "parameter-def",
+          "name": "col2",
+          "type": "column",
+          "friendlyNameKey": "metric_Y",
+          "descKey": "SecondMetricToAdd"
+        }
+      ],
+      "version": [
+        1,
+        0,
+        0
+      ]
+    }
+}
+```
