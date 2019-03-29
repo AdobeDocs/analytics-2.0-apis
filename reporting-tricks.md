@@ -26,7 +26,7 @@ To run a report from Analysis Workspace:
 
     ![tips](/images/tips_open_dev_tools_pc.png?raw=true)
 
-4. In the developer tools, click the **Console** tab and enter `adobetools.debug.includeOberonXml = true` into the console. Press Enter and then refresh the page.
+4. In the developer tools, click the **Console** tab and enter `adobe.tools.debug.includeOberonXml = true` into the console. Press Enter and then refresh the page.
 
   ![tips_debug_text](/images/tips_debug_text.png?raw=true)
 
