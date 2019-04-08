@@ -47,4 +47,4 @@ The [Segments API Guide](segments-guide.md) provides configuration guidance and 
 For help migrating from the 1.3/1.4 versions of the Analytics API to the newer and more capable ```/reports``` API, refer to the [migration guide](migration-guide.md).
 
 ## API Request Timeouts
-The timeout for API requests through adobe.io is currently **60 seconds**. We have plans to increase this timeout to **300 seconds (5 minutes)** for the /reports API.
+The timeout for API requests through adobe.io is currently **60 seconds**. We have plans to increase this timeout to **300 seconds (5 minutes)** for the ```/reports``` API.
