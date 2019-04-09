@@ -1,6 +1,6 @@
 ## Creating an OAuth Client
 
-To work with Analytics 2.0 APIs on the Adobe I/O Console, you need to have System Admin rights for your organization. When you receive notification of these rights, click the **Get Started** button in the message to access services.
+To work with Analytics 2.0 APIs on the Adobe I/O Console, you need to have System Admin rights or [developer permissions](https://helpx.adobe.com/enterprise/using/manage-developers.html) for your organization. You will receive notification of these rights when granted.
 
 To create an OAuth client:
 
