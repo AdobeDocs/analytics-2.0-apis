@@ -29,7 +29,7 @@ Use an OAuth client if you are creating an application that requires an end user
 
 #### JWT
 
-A JWT client is best if you are creating an application that needs to be able to programmatically authenticate to call the Adobe Analytics APIs. A new JWT token can be generated whenever the old one is about to expire so your application can continue to make API calls. 
+A JWT client is best if you are creating an application that needs to programmatically authenticate calls to the Adobe Analytics APIs. A new JWT token can be generated whenever the old one is about to expire so your application can continue to make API calls. 
 
 For more information see [JWT authentication](jwt.md).
 
