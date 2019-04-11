@@ -26,7 +26,7 @@ To run a report from Analysis Workspace:
 
     ![tips](/images/tips_open_dev_tools_pc.png?raw=true)
 
-4. In the developer tools, click the **Console** tab and enter `adobetools.debug.includeOberonXml = true` into the console. Press Enter and then refresh the page.
+4. In the developer tools, click the **Console** tab and enter `adobe.tools.debug.includeOberonXml = true` into the console. Press Enter and then refresh the page.
 
   ![tips_debug_text](/images/tips_debug_text.png?raw=true)
 
@@ -46,4 +46,4 @@ To run a report from Analysis Workspace:
 
   ![tips_response_body](/images/tips_response_body.png?raw=true)
 
-*Note: Before closing Analysis Workspace, you can turn off the debugger by opening your browser developer tools and pasting the following text into the console field: `adobetools.debug.includeOberonXml = false`. Press Enter and then refresh the page. The debug icons disappear once the debugger is off.*
+*Note: Before closing Analysis Workspace, you can turn off the debugger by opening your browser developer tools and pasting the following text into the console field: `adobe.tools.debug.includeOberonXml = false`. Press Enter and then refresh the page. The debug icons disappear once the debugger is off.*
