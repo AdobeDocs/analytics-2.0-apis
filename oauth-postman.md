@@ -11,7 +11,12 @@ For OAuth authentication in Postman, you will need the following:
 
 ## Configure the Request
 
-To configure the OAuth authentication request:
+### Video tutorials:
+You can also refer the video tutorials - https://www.youtube.com/watch?v=lrg1MuVi0Fo 
+And - https://www.youtube.com/watch?v=j1kI3peSXhY
+
+
+### To configure the OAuth authentication request:
 
 1.  Click the **Authorization** tab on the Request screen.
 2.  In the **TYPE** dropdown, select **OAuth 2.0**.
