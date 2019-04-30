@@ -36,6 +36,9 @@ For more information see [JWT authentication](jwt.md).
 ## Try Now
 Try the Analytics 2.0 API in seconds. Use our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to explore APIs, make calls and get a response. Our Swagger UI also includes the full endpoint descriptions. 
 
+## Discovery API
+The [Discovery API](discovery.md) returns information necessary to make other Adobe Analytics API calls.
+
 ## Reporting API Guide
 The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
 Please also refer to the [Reporting Tricks Guide](reporting-tricks.md) to learn how to use analysis workspace to build and validate your API requests.
