@@ -320,10 +320,7 @@ The following response shows validation for the segment with `rsid`: `obunpurser
   "supported_features": \[
     "function_attr",
     "function_container",
-
-```
-
-
     "function_streq"
   ]
 }
+```
