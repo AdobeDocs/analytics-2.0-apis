@@ -62,7 +62,7 @@ To see how migration affects your reports, consider the following examples for 1
 
 This 1.4 report will query ten campaign items. For each of those, it will query one hundred geocity items. Finally, for each city, it will query the top 100 products. This report has the potential to return 10,000,000 records. In addition, it will try to get five metrics for each of those items. Finally, it will try to do that for each day going back a few years.
 
-### Example 2.0 request 
+### Changes for 2.0 request 
 
 Requests to the 2.0 `/reports` endpoint should be smaller and be made in parallel:
 
@@ -71,91 +71,6 @@ Requests to the 2.0 `/reports` endpoint should be smaller and be made in paralle
 3. For each of those values, request a breakdown of the top 100 `page` values.
 4. Request a separate report for each metric. This means you go through steps 1-4 for `pageviews`, then again for `visits`, and so on.
 
-#### First request
-
-```json
-{
-    "reportDescription": {
-        "reportSuiteID":"mainglobalprod",
-        "dateFrom":"2015-01-01",
-        "dateTo":"2017-12-31",
-        "granularity":"day",
-        "metrics": [
-            {"id":"pageviews"},
-        ],
-        "elements": [
-            {"id":"trackingCode", "top":10},
-            {"id":"geocity", "top":100},
-            {"id":"page","top":100}
-        ]
-    }
-}
-```
-
-#### Second request
-
-```json
-{
-    "reportDescription": {
-        "reportSuiteID":"mainglobalprod",
-        "dateFrom":"2015-01-01",
-        "dateTo":"2015-06-30",
-        "granularity":"day",
-        "metrics": [
-            {"id":"visits"},
-        ],
-        "elements": [
-            {"id":"trackingCode", "top":10},
-            {"id":"geocity", "top":100},
-            {"id":"page","top":100}
-        ]
-    }
-}
-```
-
-### Third request
-
-```json
-{
-    "reportDescription": {
-        "reportSuiteID":"mainglobalprod",
-        "dateFrom":"2015-01-01",
-        "dateTo":"2015-06-30",
-        "granularity":"day",
-        "metrics": [
-            {"id":"revenues"},
-        ],
-        "elements": [
-            {"id":"trackingCode", "top":10},
-            {"id":"geocity", "top":100},
-            {"id":"page","top":100}
-        ]
-    }
-}
-```
-
-### Fourth request
-
-```json
-{
-    "reportDescription": {
-        "reportSuiteID":"mainglobalprod",
-        "dateFrom":"2015-01-01",
-        "dateTo":"2015-06-30",
-        "granularity":"day",
-        "metrics": [
-            {"id":"orders"},
-        ],
-        "elements": [
-            {"id":"trackingCode", "top":10},
-            {"id":"geocity", "top":100},
-            {"id":"page","top":100}
-        ]
-    }
-}
-```
-
-Additional requests for each metric.
 
 You can also cache historical data as part of the client application. This means that every day, only the newest day's worth of data would need to be requested.
 
