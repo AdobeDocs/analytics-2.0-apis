@@ -12,7 +12,7 @@ For OAuth authentication in Postman, you will need the following:
 ## Configure the Request
 
 ### Video tutorials:
-You can also refer the video tutorials - https://www.youtube.com/watch?v=lrg1MuVi0Fo 
+You can also refer to the video tutorials - https://www.youtube.com/watch?v=lrg1MuVi0Fo 
 And - https://www.youtube.com/watch?v=j1kI3peSXhY
 
 
