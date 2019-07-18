@@ -71,6 +71,7 @@ Requests to the 2.0 `/reports` endpoint should be smaller and be made in paralle
 3. For each of those values, request a breakdown of the top 100 `page` values.
 4. Request a separate report for each metric. This means you go through steps 1-4 for `pageviews`, then again for `visits`, and so on.
 
+See [Reporting Multiple Breakdowns](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-multiple-breakdowns.md) for examples of this with the 2.0 reporting API format.
 
 You can also cache historical data as part of the client application. This means that every day, only the newest day's worth of data would need to be requested.
 
