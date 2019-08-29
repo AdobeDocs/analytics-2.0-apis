@@ -29,23 +29,12 @@ Adobe provides predefined calculated metrics templates for clients. Although ori
 The primary calculated metrics endpoints support the URL query parameter `expansion`. This parameter allows requests for some response fields to be populated that would otherwise not be included. The available options for expansion can be viewed in our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/). They include the following:
 
 * `reportSuiteName`
-* `siteTitle`
 * `ownerFullName`
 * `modified`
-* `isDeleted`
-* `approved`
-* `favorite`
-* `shares`
 * `tags`
-* `sharesFullName`
-* `usageSummary`
-* `usageSummaryWithRelevancyScore`
 * `definition`
-* `authorization`
 * `compatibility`
 * `categories`
-* `reportTimeAttribution`
-* `warning`
 
 ## IncludeTypes
 
@@ -70,12 +59,15 @@ The GET multiple calculated metrics endpoint supports several URL query paramete
 |           Parameter       | 	Description         |
 |---------------------|-------------------------|
 | `rsids` | Comma separated list of report suite ids. Returns only calculated metrics linked to these report suites |
+| `ownerId` | Filter list to only include calculated metrics owned by the specified loginId |
 | `filterByIds` | Comma separated list of calculated metric ids. Returns only calculated metrics with these ids |
 | `toBeUsedInRsid` | A single report suite id. Returns only calculated metrics that are compatible with this report suite |
 | `name` | A list of key words. Returns only calculated metrics with these key words in their names |
 | `tagNames` | A list of tags. Returns only calculated metrics with these tags |
 | `favorite` | `true` or `false`. Returns only calculated metrics that are flagged as favorites |
 | `approved` | `true` or `false`. Returns only calculated metrics that are flagged as approved |
+| `sortDirection` | Sort direction (ASC or DESC) |
+| `sortProperty` | Property to sort by (name, modified_date, id is currently allowed) |
 
 
  For example, to retrieve all calculated metrics tagged as part of the *SpringPromotion* campaign, you can add the URL parameter `tagNames=SpringPromotion`.
