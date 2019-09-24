@@ -25,7 +25,7 @@ Use an OAuth client if you are creating an application that requires an end user
 
 * Use [Postman for OAuth authentication](oauth-postman.md).
 
-**Note:** Refresh tokens are not supported with OAuth for the Adobe Analytics APIs
+**Note:** The `refresh token` grant type is automatically added to OAuth clients created after September 18, 2019
 
 #### JWT
 
