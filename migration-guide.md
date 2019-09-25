@@ -3,9 +3,13 @@
 
 This guide is intended to help users of the 1.3/1.4 versions of the Analytics API migrate to the newer and more capable 2.0 APIs. By migrating to the 2.0 APIs, you can take advantage of the following features:
 
-* Faster response times with simpler and more efficient query methods
+* Faster response times with simpler and more efficient query methods, eliminating the need for polling
 * Programmatic capability for queries and dynamic report updates
+* More graceful error handling
+* Flexible functioning to do to anything you can do in Analysis Workspace
 * Consistency and matching of API calls to UI actions
+* Access to all Attribution IQ models used in Analysis Workspace
+* Access to all Anomaly Detection algorithms used in Analysis Workspace
 * Ability to integrate with other Experience Cloud products
 * Increased capacity for multiple breakdown reports
 * Newest Analytics features availability
