@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "The endpoints described here are routed through Adobe.io. \n\t\t\t\t\t\t\t\tIn order to use these endpoints you must create an oAuth client that is \n\t\t\t\t\t\t\t\tsubscribed to access the Adobe Analytics Reporting API.",
-    "version" : "v1 - Build: 2019-08-29T22:03:39Z",
+    "version" : "v1 - Build: 2019-10-03_20:32:29.323",
     "title" : "Adobe Analytics APIs"
   },
   "host" : "analytics.adobe.io",
@@ -1951,6 +1951,103 @@
         }
       }
     },
+    "CalcMetricFunction" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function ID"
+        },
+        "category" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function category"
+        },
+        "persistable" : {
+          "type" : "boolean",
+          "description" : "If a Calculated Metric Function is persistable"
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function name"
+        },
+        "namespace" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function namespace"
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function description"
+        },
+        "exampleKey" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function example key"
+        },
+        "example" : {
+          "type" : "string",
+          "description" : "Calculated Metric Function example"
+        },
+        "definition" : {
+          "description" : "Calculated Metric Function definition",
+          "$ref" : "#/definitions/CalcMetricFunctionDef"
+        }
+      }
+    },
+    "CalcMetricFunctionDef" : {
+      "type" : "object",
+      "properties" : {
+        "func" : {
+          "type" : "string"
+        },
+        "parameters" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CalcMetricFunctionParameter"
+          }
+        },
+        "formula" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "object"
+          }
+        },
+        "version" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      }
+    },
+    "CalcMetricFunctionParameter" : {
+      "type" : "object",
+      "properties" : {
+        "func" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "friendlyNameKey" : {
+          "type" : "string"
+        },
+        "descKey" : {
+          "type" : "string"
+        },
+        "friendlyName" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "default-value" : {
+          "type" : "object"
+        }
+      }
+    },
     "CalculatedMetricDef" : {
       "type" : "object"
     },
@@ -2012,6 +2109,17 @@
           "items" : {
             "type" : "string"
           }
+        }
+      }
+    },
+    "DeleteResponse" : {
+      "type" : "object",
+      "properties" : {
+        "result" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
         }
       }
     },
