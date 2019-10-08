@@ -2503,7 +2503,7 @@
         },
         "type" : {
           "type" : "string",
-          "enum" : [ "DATE_RANGE", "BREAKDOWN", "SEGMENT", "EXCLUDE_ITEM_IDS" ]
+          "enum" : [ "dateRange", "breakdown", "segment", "excludeItemIds" ]
         },
         "dimension" : {
           "type" : "string"
