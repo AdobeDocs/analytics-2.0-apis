@@ -542,7 +542,7 @@
           "description" : "Filter list to only include suites in this RSID list (comma-delimited)",
           "required" : false,
           "type" : "string"
-        }, {
+        }, {  
           "name" : "rsidContains",
           "in" : "query",
           "description" : "Filter list to only include suites whose rsid contains rsidContains.",
@@ -673,6 +673,18 @@
           },
           "collectionFormat" : "csv",
           "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+        }, {
+          "name" : "includeType",
+          "in" : "query",
+          "description" : "Include additional date ranges not owned by user. The \"all\" option takes precedence over \"shared\"",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "all", "shared", "templates" ]
+          },
+          "collectionFormat" : "csv",
+          "enum" : [ "all", "shared", "templates" ]
         } ],
         "responses" : {
           "200" : {
