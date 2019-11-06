@@ -4,7 +4,7 @@ You can use JSON Web Token (JWT) authentication for situations requiring server-
 
 In order to create a JWT integration on the Adobe I/O Console, you need System Admin or [Developer](https://helpx.adobe.com/enterprise/using/manage-developers.html) rights for your organization.
 
-Instructions for creating the JWT client and generating the JWT token can be found in [JWT Authentication Guide](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
+Instructions for creating the JWT client and generating the JWT token can be found in [JWT Authentication Guide](https://github.com/AdobeDocs/adobeio-auth/blob/stage/JWT/JWT.md).
 
 ## Permissions
 
