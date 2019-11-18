@@ -1148,13 +1148,10 @@
           "in" : "body",
           "name" : "body",
           "description" : "JSON-formatted Object containing key/value pairs for segment creation.",
-          "required" : false,
+          "required" : true,
           "schema" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "object"
+            "$ref" : "#/definitions/AnalyticsSegment"
             }
-          }
         }, {
           "name" : "locale",
           "in" : "query",
@@ -1710,6 +1707,70 @@
         }
       }
     },
+    "AnalyticsSegment" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "A name for the segment."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "A description of the segment."
+        },
+        "rsid" : {
+          "type" : "string",
+          "description" : "The report suite id."
+        },
+        "reportSuiteName" : {
+          "type" : "string",
+          "description" : "The friendly name for the report suite id."
+        },
+        "owner" : {
+          "description" : "The owner of the segment as an Owner object.",
+          "$ref" : "#/definitions/Owner"
+        },
+        "definition" : {
+          "type" : "object",
+          "description" : "The segment definition as a JSON object",
+          "$ref" : "#/definitions/AnalyticsSegmentDefinition"
+        },
+        "compatibility" : {
+          "type" : "object",
+          "description" : "Analytics products that the segment is compatible with",
+          "$ref" : "#/definitions/SegmentCompatibility"
+        },
+        "definitionLastModified" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "siteTitle" : {
+          "type" : "string",
+          "description" : "A name for the report suite.  This is deprecated and should use the report suite name instead."
+        },
+        "tags" : {
+          "type" : "array",
+          "description" : "All existing tags associated with the segment.",
+          "items" : {
+            "$ref" : "#/definitions/Tag"
+          }
+        },
+        "modified" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "created" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
     "AnalyticsSegmentResponseItem" : {
       "type" : "object",
       "properties" : {
@@ -1740,16 +1801,12 @@
         "definition" : {
           "type" : "object",
           "description" : "The segment definition as a JSON object",
-          "additionalProperties" : {
-            "type" : "object"
-          }
+          "$ref" : "#/definitions/AnalyticsSegmentDefinition"
         },
         "compatibility" : {
           "type" : "object",
           "description" : "Analytics products that the segment is compatible with",
-          "additionalProperties" : {
-            "type" : "object"
-          }
+          "$ref" : "#/definitions/SegmentCompatibility"
         },
         "definitionLastModified" : {
           "type" : "string",
@@ -1779,6 +1836,57 @@
         "created" : {
           "type" : "string",
           "format" : "date-time"
+        }
+      }
+    },
+    "AnalyticsSegmentDefinition": {
+      "type" : "object",
+      "properties" : {
+        "container": {
+          "type" : "object",
+          "properties" : {
+            "context" : {
+              "type" : "string"
+            },
+            "func" : {
+              "type" : "string"
+            },
+            "pred" : {
+              "type" : "object",
+              "properties" : {
+                "val" : {
+                  "type" : "object",
+                  "properties" : {
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "name" : {
+                      "type" : "string"
+                    },
+                    "func" : {
+                      "type" : "string"
+                    },
+                  }
+                },
+                "str" : {
+                  "type" : "string"
+                },
+                "func" : {
+                  "type" : "string"
+                },
+              }
+            }
+          }
+        },
+        "func": {
+          "type" : "string",
+        },
+        "version": {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
         }
       }
     },
