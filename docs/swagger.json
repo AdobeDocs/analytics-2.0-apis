@@ -878,7 +878,7 @@
         "parameters" : [ {
           "name" : "rsid",
           "in" : "query",
-          "description" : "ID of desired report suite ie. sistr2",
+          "description" : "ID of desired report suite ie. myrsid",
           "required" : true,
           "type" : "string"
         }, {
@@ -943,7 +943,7 @@
         }, {
           "name" : "rsid",
           "in" : "query",
-          "description" : "ID of desired report suite ie. sistr2",
+          "description" : "ID of desired report suite ie. myrsid",
           "required" : true,
           "type" : "string"
         }, {
