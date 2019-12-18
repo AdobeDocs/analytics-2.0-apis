@@ -331,7 +331,7 @@ This example response shows an anomaly condition and identifies the following fi
 
 ## Ranked Report Example
 
-In Analytics, simple time series reports have metrics. If you add a dimension, you can request **Ranked** reports. For example, some of the previous examples above include a date for the dimension so they can be considered **Ranked** reports. If you also include a time range with a metric and a dimension, you can request **Trended** reports.  For more information on report types in Analytics, see [Adobe Report Types help](https://marketing.adobe.com/resources/help/en_US/sc/user/reports.html). In the following examples, a Custom Insight Conversion Variable (evar1) is used as the dimension for the report.
+In Analytics, simple time series reports have metrics. If you add a dimension, you can request **Ranked** reports. For example, some of the previous examples above include a date for the dimension so they can be considered **Ranked** reports. If you also include a time range with a metric and a dimension, you can request **Trended** reports.  For more information on report types in Analytics, see [Adobe Report Types help](https://docs.adobe.com/content/help/en/analytics/analyze/reports-analytics/reports.html). In the following examples, a Custom Insight Conversion Variable (evar1) is used as the dimension for the report.
 
 ### Example Request
 

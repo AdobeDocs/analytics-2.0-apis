@@ -1,7 +1,7 @@
 
 # Calculated Metrics APIs
 
-The Analytics 2.0 Calculated Metrics APIs allow you to retrieve, update, or create calculated metrics programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with calculated metrics in the UI. For more information on Adobe Analytics Calculated Metrics, see [Adobe Help](https://marketing.adobe.com/resources/help/en_US/analytics/calcmetrics).
+The Analytics 2.0 Calculated Metrics APIs allow you to retrieve, update, or create calculated metrics programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with calculated metrics in the UI. For more information on Adobe Analytics Calculated Metrics, see [Adobe Help](https://docs.adobe.com/content/help/en/analytics/components/calculated-metrics/cm-overview.html).
 
 ## Authorization and authentication
 

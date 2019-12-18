@@ -2,7 +2,7 @@
 
 ## Segments Overview
 
-The Analytics 2.0 Segments APIs allow you to retrieve, update, or create segments programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with segments in the UI. For more information on Adobe Analytics segments, see [Adobe Help](https://marketing.adobe.com/resources/help/en_US/analytics/segment/seg_overview.html). For more information on understanding segment definition data architecture, see the [Segment Definition](segments.md) article that accompanies this user guide.
+The Analytics 2.0 Segments APIs allow you to retrieve, update, or create segments programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with segments in the UI. For more information on Adobe Analytics segments, see [Adobe Help](https://docs.adobe.com/content/help/en/analytics/components/segmentation/seg-home.html). For more information on understanding segment definition data architecture, see the [Segment Definition](segments.md) article that accompanies this user guide.
 
 ## Authorization and Authentication
 
@@ -56,7 +56,7 @@ Adobe provides many predefined segments, or templates, for clients in specific s
 },
 
 ```
-For more information on segments templates, see [Adobe Help](https://marketing.adobe.com/resources/help/en_US/analytics/segment/seg_build.html).
+For more information on segments templates, see [Adobe Help](https://docs.adobe.com/content/help/en/analytics/components/segmentation/segmentation-workflow/seg-build.html).
 
 ### Expansions
 
