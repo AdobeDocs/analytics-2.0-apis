@@ -92,6 +92,12 @@
           "title": "Segments APIs"
     },
     {
+          "importedFileName": "discovery",
+          "pages": [],
+          "path": "AdobeDocs/analytics-2.0-apis/master/discovery.md",
+          "title": "Discovery"
+    },
+    {
           "importedFileName": "faq",
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/faq.md",
