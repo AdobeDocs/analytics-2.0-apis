@@ -24,8 +24,8 @@ To create an example API request compatible with Analysis Workspace:
 
 *Note: When the **Debugger** is enabled, a bug icon appears in the visualization header. To disable the **Debugger**, click **Disable Debugger** from the **Help** menu.*
 
-5. Click one of the numbered requests from the list that appears below the **Freeform Table** option. 
-.
+5. Click one of the numbered requests from the list that appears below the **Freeform Table** option.
+
 ![tips_listcalls](https://user-images.githubusercontent.com/29133525/74784090-66048180-5264-11ea-8cf0-889c13dad8d5.png)
 
 6. In the Analysis Workspace debugger, scroll down to the **JSON REQUEST** box and copy the text, either manually, or by clicking the **Copy to Clipboard** button.
@@ -40,4 +40,4 @@ To create an example API request compatible with Analysis Workspace:
 
   ![tips_response_body](/images/tips_response_body.png?raw=true)
 
-*Note: Before closing Analysis Workspace, you can turn off the debugger by opening your browser developer tools and pasting the following text into the console field: `adobe.tools.debug.includeOberonXml = false`. Press Enter and then refresh the page. The debug icons disappear once the debugger is off.*
+*Note: Before closing Analysis Workspace, you can turn off the debugger by clicking Disable Debugger from the Help menu.*
