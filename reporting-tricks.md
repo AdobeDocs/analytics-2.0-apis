@@ -40,4 +40,4 @@ To create an example API request compatible with Analysis Workspace:
 
   ![tips_response_body](/images/tips_response_body.png?raw=true)
 
-*Note: Before closing Analysis Workspace, you can turn off the debugger by clicking Disable Debugger from the Help menu.*
+*Note: Before closing Analysis Workspace, you can turn off the debugger by clicking **Disable Debugger** from the **Help** menu.*
