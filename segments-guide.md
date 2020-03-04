@@ -129,7 +129,7 @@ The following response shows six segments tagged as part of the *SpringPromotion
          "id":"s300000022_5b9fe2a19678905e58c6f2b6",
          "name":"test aam",
          "description":"test aam",
-         "rsid":"sistr2.beta",
+         "rsid":"myrsid",
          "owner":{
             "id":596983
          }
@@ -138,7 +138,7 @@ The following response shows six segments tagged as part of the *SpringPromotion
          "id":"s300000022_5b9fee889678905e58c6f2c3",
          "name":"test aam 2",
          "description":"test aam2",
-         "rsid":"sistr2.beta",
+         "rsid":"myrsid",
          "owner":{
             "id":596983
          }
@@ -147,7 +147,7 @@ The following response shows six segments tagged as part of the *SpringPromotion
          "id":"s300000022_5b9fef419678905e58c6f2c5",
          "name":"test aam 3",
          "description":"test aam 3",
-         "rsid":"sistr2.beta",
+         "rsid":"myrsid",
          "owner":{
             "id":596983
          }
@@ -156,7 +156,7 @@ The following response shows six segments tagged as part of the *SpringPromotion
          "id":"s300000022_5bb7c94e80f0073611afb35c",
          "name":"test create",
          "description":"",
-         "rsid":"sistr2.beta",
+         "rsid":"myrsid",
          "owner":{
             "id":596983
          }
@@ -198,7 +198,7 @@ The following example shows the response data for the request on segment `s30000
   "id": "s300000022_5bb7c94e80f0073611afb35c",
   "name": "test create",
   "description": "",
-  "rsid": "sistr2.beta",
+  "rsid": "myrsid",
   "owner": {
     "id": 596983
   }
@@ -257,7 +257,7 @@ The following example shows the response with updated name data:
   "id": "s300000022_5bb7c94e80f0073611afb35c",
   "{NAME}": "{NAME UPDATE}",
   "description": "",
-  "rsid": "sistr2.beta",
+  "rsid": "myrsid",
   "owner": {
     "id": 596983
   }
