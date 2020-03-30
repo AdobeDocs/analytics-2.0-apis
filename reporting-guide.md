@@ -25,7 +25,7 @@ Please follow these guidelines when using Analytics APIs:
 * Do not poll for new data faster than a 30 minute interval.
 * Pull historical data and increment it regularly instead of requesting the entire data set.
 
-Discouraged Practices:
+Discouraged Practices :warning: :
 
 * Requesting as much data as possible in a single request
 * Requesting one year of data at day granularity everyday - just request the new day and merge it
