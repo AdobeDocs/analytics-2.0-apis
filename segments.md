@@ -121,8 +121,8 @@ A data set is the collection of all records used across containers and container
 |strgt|Greater Than|`val` contains a reference to the schema. `str` contains a literal value. |
 |strle|Less Than or Equals|`val` contains a reference to the schema. `str` contains a literal value.|
 |strge|Greater Than or Equals|`val` contains a reference to the schema. `str` contains a literal value.|
-|streq-any-of|Match a string to any of the values in the parameter|`val` contains a reference to the schema. `list` contains an array of literal values.|
-|not-streq-any-of|Ensure a string doesn't match any of the values in the parameter|`val` contains a reference to the schema. `list` contains an array of literal values.|
+|streq-in|Match a string to any of the values in the parameter|`val` contains a reference to the schema. `list` contains an array of literal values.|
+|not-streq-in|Ensure a string doesn't match any of the values in the parameter|`val` contains a reference to the schema. `list` contains an array of literal values.|
 |contains|Ensure a string matches or contains the value in the parameter|`val` contains a reference to the schema. `str` contains a literal value.|
 |not-contains|Ensure a string doesn't match or contains the value in the parameter|`val` contains a reference to the schema. `str` contains a literal value.|
 |contains-any-of|Ensure a string contains any of the values in the parameter. Case-insensitive.|`val` contains a reference to the schema. `list` contains an array of literal values.|
