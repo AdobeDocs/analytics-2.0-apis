@@ -83,16 +83,12 @@ billing of Data Repair API usage.
 The Data Repair API permanently deletes or edits existing data.  We recommend a careful approach to executing the
 repair to minimize accidental data deletion.  The following workflow provides multiple checkpoints and is highly
 recommended.  Review the data after each step to confirm the data repair job completes as expected.  All usage of the
-Data Repair API, including testing, will be represented in the monthly invoice.
+Data Repair API, including testing, will be represented in your invoice.
 
-1.	Test the data repair job logic in a __development__ Report Suite for __one day__ of data.  Review the data after the
-test data repair job is complete.
-2.	Test the data repair job logic in a __development__ Report Suite for __one month__ of data.  Review the data after the
-test data repair job is complete.
-3.	Test the data repair job logic in a __production__ Report Suite for __one day__ of data.  Review the data after the
-date repair job is complete.
-4.	Test the data repair job logic in a __production__ Report Suite for __one month__ of data. Review the data after the
-data repair job is complete.
+1.	Test the data repair job logic in a __development__ Report Suite for __one day__ of data.
+2.	Test the data repair job logic in a __development__ Report Suite for __one month__ of data.
+3.	Test the data repair job logic in a __production__ Report Suite for __one day__ of data.
+4.	Test the data repair job logic in a __production__ Report Suite for __one month__ of data.
 5.	Once all testing and validation is complete, then proceed with the __full date range__ of the data repair for
 __production__ data.
 
@@ -155,8 +151,7 @@ In general, it is of the form:
     },
     "{VARIABLE_2}": {
       "action": "{ACTION_2}"
-    },
-    ...
+    }
   }
 }
 ```
@@ -196,7 +191,7 @@ curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALY
 The `/job/{JOB_ID}` endpoint is called to check on the progress of a data repair job.  Following submission of a job,
 `status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status` will
 report as `complete` and `serverCalls` will be set to the actual number of records scanned during the data repair job.
-This `serverCalls` value will be included in the monthly invoice.
+This `serverCalls` value will be included in your invoice.
 
 #### Example Request
 ```bash
