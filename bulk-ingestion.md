@@ -1,4 +1,4 @@
-# Analytics Bulk Ingestion API User's Guide 2.0
+# Analytics Bulk Ingestion API User's Guide
 
 **VERSION 1.0.0**
 
@@ -47,12 +47,10 @@ The last record in the file may or may not have a line break (CRLF or LF).
 
 #### Required Columns
 Each header row must contain the following required columns:
-
 - At least one of:
   -  "marketingCloudVisitorID"
   - "IPAddress"
   - customerID.[customerIDType].id with customerID.[customerIDType].isMCSeed set to TRUE (see below for more information)
-
 - At least one of:
   - "pageURL"
   - "pageName"
@@ -96,8 +94,6 @@ Both Query String and Column-based Rows will result in identical server calls be
 
 Some customers prefer the Query String method because they are adapting an existing data collection system to Analytics and already have processes that generate query strings. Changing this process is easier for them as opposed to creating a new extraction system that will generate CSV files in a new format. Other customers have tools that can more easily generate CSV files.
 
-> NOTE: Adobe is still fully quantifying any performance overhead the Column-Based rows may have over the Query String.
-
 ### Query String Format
 
 The *"queryString"* column must have the values in its key/value pairs be fully URL encoded. This includes any multibyte characters included in the field. Its contents will be used in a URI GET or POST call to Analytics. When Bulk Ingestion submits a queryString row to Adobe Analytics, it will add the following param values if they are not present:
@@ -119,8 +115,7 @@ Another way to think of visitor groups is to view them as separate processing pi
 ### Additional Visitor Group Example
 Suppose a set of server calls has integer visitor IDs, 1-100, and we want to create three disjoint visitor group sets. We can use the mathematical MOD operation to organize these visitors into 3 groups. Server calls where “visitor ID MOD 3 = 0” go into visitor group “0”. Server calls where “visitor ID MOD 3 = 1” go into visitor group “1”, and so forth. Server calls are batched into files and ordered by timestamp, per their visitor group, and are then uploaded with that visitor group specified in the header of the API request. Since the visitors in these files are all disjoint, the Bulk Ingestion system can process them in parallel without risking any calls for a visit being processed out of order.
 
-
-[Adobe Analytics > Analytics Bulk Ingestion API User's Guide 2.0 > VisitorGroupDiagram.jpg]
+![note visitor group diagram](/images/bia-visitor_groups.jpg)
 
 ### Changing Visitor Groups
 Customers may wish to change how they divide their visitor IDs into groups over time. This is possible as long as all files using previously named visitor groups completely finish ingestion. This ensures that there will be no visitor ID overlap between the new groups and old groups. Once there are no server calls being ingested, a new grouping scheme can be employed for the creation and upload of new batch files.
@@ -175,10 +170,7 @@ These limits help ensure a timely processing and availability of Adobe Analytics
 ## Processing Times
 When using client-side server call collection methods there is a period of time, between 20-50 minutes, before segmentable Analytics reports are fully available. Some real-time statistics, such as page views, can be available within sub-minute timeframes. The time before reports are available is called “latency.”
 
->Bulk Ingestion does necessarily add some latency to the processing of server calls, although Adobe has not yet fully quantified the latency and can make no guarantees about the overhead at this time.
-
 ## Failure Scenarios 
-
 There are two reasons that a file may fail to successfully ingest all of its rows: something is wrong with the file and its format or there is an irrecoverable error inside of Bulk Ingestion due to an unexpected system failure. 
 
 ### Internal System Failure 
@@ -218,55 +210,53 @@ Customers use Bulk Ingestion by interacting with a set of REST APIs over SSL/TLS
 
 ### URI Host
 When you are onboarded to our API service, you will be assigned a hostname (based on your region) to issue API calls against.  The following are currently used, but they are prone to change after the beta period, so we recommend storing this value in a config file or constant, instead of embedding throughout your code.  This value will be referred to as <ASSIGNED HOST> in this document.
-
-| North America | https://analytics-bia-us1.cloud.adobe.io |
-| Europe/Asia | https://analytics-bia-eu1.cloud.adobe.io |
+|Location| Hostname|
+|--|--|
+| North/South America | https://analytics-bia-us1.cloud.adobe.io |
+| EMEA/Asia/Pacific | https://analytics-bia-eu1.cloud.adobe.io |
 
 ### Authentication
 BIA uses Adobe's Identity Management Service (IMS) to facilitate authentication.  This process consists of registering with our Adobe/IO API console to gain credentials, packaging those credentials as a JSON Web Token (JWT), exchanging the JWT for an expirable access token, then passing that access token in with your BIA API requests.  Each step of the setup is summarized below.  A more detailed walk-through can be found [here](https://adobeio-prod.adobemsbasic.com/apis/cloudplatform/console/authentication/gettingstarted.html):
 1. Digital Signing Certificate and Key Creation
-  a. A certificate is required to authenticate through IMS. You can purchase or create your own certificate.  Instructions on this process are found HERE.
+    - A certificate is required to authenticate through IMS. You can purchase or create your own certificate.  Instructions on this process are found HERE.
 1. The Adobe.IO console (https://console.adobe.io) provides an interface for you to register your application to use product APIs. Once registered, you receive whitelisted access to that API through use of a client key. 
 1. To obtain access to the BIA APIs, follow these steps in the Adobe I/O console.
-a. Sign into https://console.adobe.io with your Enterprise ID.
-b. Click the "New Integration" button.
-c. Select "Access an API" and click "continue".
-d. Select "Experience Cloud > Adobe Analytics > Service Account integration" then click "continue".
-e. Select "New Integration" then click "continue".
-f. Enter a “Name” and “Description” for your application.
-g. Upload the public key certificate you obtained in step 1a.
-h. Click "Create Integration"
-i. Once the integration has been created, click "Continue to Integration details"
-j. You will see the details and credentials of your application integration.  Take note of two tabs: "Overview" and "JWT".
+  a. Sign into https://console.adobe.io with your Enterprise ID.
+  b. Click the "New Integration" button.
+  c. Select "Access an API" and click "continue".
+  d. Select "Experience Cloud > Adobe Analytics > Service Account integration" then click "continue".
+  e. Select "New Integration" then click "continue".
+  f. Enter a “Name” and “Description” for your application.
+  g. Upload the public key certificate you obtained in step 1a.
+  h. Click "Create Integration"
+  i. Once the integration has been created, click "Continue to Integration details". 
+  j. You will see the details and credentials of your application integration.  Take note of two tabs: "Overview" and "JWT".
 1. Now that you have obtained credentials for authentication, you will need to automate the authentication workflow in your app.  In Adobe I/O terms, BIA uses “Service Account Integration”.  The authentication sequence is described below.  Links are provided to the Adobe.IO documentation which include more details and code samples.  The BIA team also has a complete Java implementation of this solution.  Please ask your consultant if you'd like to receive that code.
-a. Create a JSON Web Token with your credential values, signed by your private key.
-i. Java JWT example
-ii. Node.js JWT example
-b. Exchange your JWT for an access token.
-i. See step 6 on this page for details.
-c. You can now call any BIA end-point by providing the access token you received in step 5b, along with your API Key from the console "Overview" page.
-d. The access token will expire in 24 hours.  Your application will need to check for an expired token error message, and if encountered, repeat steps a & b to retrieve a new token.
+    - Create a JSON Web Token with your credential values, signed by your private key.
+    - Exchange your JWT for an access token.
+    - You can now call any BIA end-point by providing the access token you received in step 5b, along with your API Key from the console "Overview" page.
+    - The access token will expire in 24 hours.  Your application will need to check for an expired token error message, and if encountered, repeat steps a & b to retrieve a new token.
 
 If you would like to test the JWT authentication process manually, the Adobe.IO console provides an easy way to do this.
 1. Visit your application's integration page in the Adobe.IO console (https://console.adobe.io)
 1. Click on the "JWT" tab
-a. The JWT payload will be visible in the top box
+    - The JWT payload will be visible in the top box
 1. Paste the private key you created in step 1a above in to the 2nd box.  This file is called "private.key" if you followed the instructions in the documentation.
-a. Please make sure to include the header and footer text from the key (i.e. "-----BEGIN RSA PRIVATE KEY-----", "-----END RSA PRIVATE KEY-----").
+    - Please make sure to include the header and footer text from the key (i.e. "-----BEGIN RSA PRIVATE KEY-----", "-----END RSA PRIVATE KEY-----").
 1. Click "Generate JWT".
 1. Two boxes will appear below the button.
-a. The "Generated JWT" displays an encoded JWT string created from your credentials and signed by your private key.  Note that JWT string expire in 24 hours.
-b. The "Sample CURL command" supplies a pre-defined CURL command that you can run on your local machine.  This POST request will exchange the JWT for an access token.
+    - The "Generated JWT" displays an encoded JWT string created from your credentials and signed by your private key.  Note that JWT string expire in 24 hours.
+    - The "Sample CURL command" supplies a pre-defined CURL command that you can run on your local machine.  This POST request will exchange the JWT for an access token.
 1. Run the CURL command from a command line.  You will receive a JSON response with 3 fields:
-a. token_type: bearer
-b. access_token: <YOUR ACCESS TOKEN>
-c. expires_in: <EXPIRATION TIMESTAMP>
+    - token_type: bearer
+    - access_token: <YOUR ACCESS TOKEN>
+    - expires_in: <EXPIRATION TIMESTAMP>
 1. The access_token field value can now be passed to BIA API requests for authentication, until the token expires (usually 24 hours).
 
 ### Response Codes
 The following response codes are returned by the REST API and should be handled by clients interfacing with the API:
 
-| HTTP Response Code | Reason |
+| HTTP_Response_Code | Reason |
 |--|--|
 | 100 - Continue | This is used when uploading a file. This is sent to a client after authentication is checked and the HTTP request headers are validated. This signals to the client that they can begin to upload the large file. For example, if a client waits for this response code before sending a file, it can avoid uploading an entire file before learning that a visitor group ID was not specified.
 | 400 - Bad Request | Required headers are missing, the uploaded file is missing critical information or is malformed, or the number of error rows exceeded the specified error threshold.
@@ -293,18 +283,8 @@ With most of the API GET requests, a file object will be returned in the respons
 | processing_end_date | long | Timestamp (unix epoch time) when file processing completed |
 | rows | integer | Number of rows contained in file |
 | invalid_rows | integer | Number of invalid rows identified in the file |
-| status | string | Friendly format of the current stage of file in the processing pipeline. Options include:- File received, awaiting processing"
-    "File being read"
-    "Ingesting file rows"
-    "Ingest completed"
-    "File format error"
-    "File rejected" |
-| status_code | string | Directly related to status messages above.  This is the internal code our system uses to determine state.  More detailed information can be found in the "File States" section. Options include:
-    REJECTED
-    UPLOADED
-    PROCESSING
-    COMPLETE
-    ERROR |
+| status | string | Friendly format of the current stage of file in the processing pipeline. Options include: `File received, awaiting processing`, `File being read`, `Ingesting file rows`, `Ingest completed`, `File format error`,`File rejected` |
+| status_code | string | Directly related to status messages above.  This is the internal code our system uses to determine state.  More detailed information can be found in the "File States" section. Options include: `REJECTED`, `UPLOADED`, `PROCESSING`, `COMPLETE`, `ERROR` |
 | error_threshold_rows | integer | If the number of invalid rows in the file is above this number, the file will be rejected |
 | error_threshold_percentage | double | If the percentage of invalid rows in the file is above this number, the file will be rejected |
 
@@ -491,21 +471,21 @@ channel | ch | The page title or bread crumb.
 colorDepth | c | Monitor color depth in bits (For example, 24).
 connectionType | ct | Visitor's connection type ("lan" or "modem").
 contextData.key | c.[key] | Key-values pairs are specified in by naming the header "contextData.product" or "contextData.color".
-cookiesEnabled | k | Whether the visitor supports first party session cookies (Y or N).
+cookiesEnabled | k | Whether the visitor supports first party session cookies (`Y` or `N`).
 currencyCode | cc | Revenue currency code For example, USD.
 customerID.[customerIDType].id | cid.[customerIDType].id | The customer ID to use. The customerIDType can be any alphanumeric string, but should be considered case-sensitive.
-customerID.[customerIDType].authState | cid.[customerIDType].as | The authenticated state of the visitor. Supported values are: '0', '1', '2', 'UNKNOWN', 'AUTHENTICATED', 'LOGGED_OUT', or '' (case insensitive). Two consecutive single quotes ('') causes the value to be omitted from the query string which translates to 0 when the hit is made. Please note the supported authState numeric values denote the following: 0 = UNKNOWN, 1 = AUTHENTICATED, 2 = LOGGED_OUT. The customerIDType can be any alphanumeric string, but should be considered case-sensitive.
-customerID.[customerIDType].isMCSeed | cid.[customerIDType].ismcseed | Whether or not this is the seed for the Marketing Cloud Visitor ID. Supported values are: '0', '1', 'TRUE', 'FALSE', '' (case insensitive). Using '0', 'FALSE', or two consecutive single quotes ('') causes the value to be omitted from the query string. The customerIDType can be any alphanumeric string, but should be considered case-sensitive.
+customerID.[customerIDType].authState | cid.[customerIDType].as | The authenticated state of the visitor. Supported values are: `0`, `1`, `2`, `UNKNOWN`, `AUTHENTICATED`, `LOGGED_OUT`, or '' (case insensitive). Two consecutive single quotes ('') causes the value to be omitted from the query string which translates to 0 when the hit is made. Please note the supported authState numeric values denote the following: `0 = UNKNOWN`, `1 = AUTHENTICATED`, `2 = LOGGED_OUT`. The customerIDType can be any alphanumeric string, but should be considered case-sensitive.
+customerID.[customerIDType].isMCSeed | cid.[customerIDType].ismcseed | Whether or not this is the seed for the Marketing Cloud Visitor ID. Supported values are: `0`, `1`, `TRUE`, `FALSE`, '' (case insensitive). Using `0`, `FALSE`, or two consecutive single quotes ('') causes the value to be omitted from the query string. The customerIDType can be any alphanumeric string, but should be considered case-sensitive.
 eVar# For example, eVar2. | v# For example, v2. | Analytics eVar.
 events | events | A list of Analytics events. Multiple events are separated by a comma in each data row field.
 hiern For example, hier2. | h# For example, h2 | A hierarchy string.
-homePage | hp | Whether the current page is the visitor's homepage (Y or N).
+homePage | hp | Whether the current page is the visitor's homepage (`Y` or `N`).
 ipaddress | N/A (Can only be supplied via column header) | The visitor's IP address.
-javaEnabled | v | Whether the visitor has Java enabled (Y or N).
+javaEnabled | v | Whether the visitor has Java enabled (`Y` or `N`).
 javaScriptVersion | j | JavaScript version. For example, 1.3.
 language | N/A (Can only be supplied via column header)	 | The browser's supported language. For example, "en-us".
 linkName | pev2 | Name of link.
-linkType | pe | Type of link ("d", "e", or "o").
+linkType | pe | Type of link (`d`, `e`, or `o`).
 linkURL | pev1 | The link's HREF. For custom links, page values are ignored.
 listn For example, list2. | l# | A delimited list of values that are passed into a variable, then reported as individual line items for reporting.
 pageName | pageName | The Web page name.
@@ -521,11 +501,11 @@ resolution | s | Monitor resolution For example, 1280x1024.
 server | server | The Web server serving the page.
 state | state | The visitor's U.S. state.
 timestamp | ts | The time and date on which the data was collected.
-~~timezone~~ Not supported at this time. | ~~Part of the t parameter~~ |
+~~timezone~~ | Not supported at this time. | |
 tnta | tnta | Target data payload, for use with A4T integrations
-trackingServer | N/A (Can only be supplied via column header) | The trackingServer variable is used to specify the domain used to track users. It is equivalent to the "trackingServer" variable set in the client-side JavaScript.
+~~trackingServer~~ | N/A | *Can only be supplied via column header*
 transactionID | xact | Common value used to tie multi-channel user activities together for reporting purposes. For more information, see the Data Sources User Guide.
-userAgent | N/A (Can only be supplied via column header) | The visitor's browser type and OS.
+~~userAgent~~ | N/A | *Can only be supplied via column header*
 visitorID | vid | Visitor's Analytics ID. See Visitor Identification.
 marketingCloudVisitorID | mid | Marketing Cloud ID. See Visitor Identification and the Marketing Cloud Visitor ID Service.
 zip | zip | The visitor's zip code.
@@ -533,7 +513,7 @@ zip | zip | The visitor's zip code.
 ### Adobe Audience Manager Regions (for use with aamlh parameter)
 
 AAMLH | Location |AAM Endpoint
---|--|--
+:--:|--|--
 7 | Texas | use.demdex.net
 6 | London | irl1.demdex.ne
 3 | Singapore | apse.demdex.net
@@ -548,6 +528,7 @@ AAMLH | Location |AAM Endpoint
 
 ### Batch File Examples
 ##### Batch File with Query String:
+```
 timestamp,visitorid,reportsuiteid,querystring,useragent
 1492191617,44444445,rsidfake,AQB=1&pageName=PIGINI&v2=Var21&v3=Var31&c1=val11
 &c2=val21&c3=val31&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TonyChannel
@@ -559,14 +540,15 @@ AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36"
 &pev1=https%3A%2F%2Fwww.adobe.com%2Fwho%3Fq%3Dwhoisit&state=UT&zip=84005&cc=USD
 &events=prodView%2Cevent2&AQE=1,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) 
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36"
-
+```
 ##### Batch File (Column-based) with Quotes in User Agent:
+```
 pageName,timestamp,reportSuiteID,visitorID,userAgent,campaign,contextData.color,contextData.frame,pageURL,prop1,channel
 中文网站,1495483797,bogus.smaple.rsid,238915514,"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1 ""Special
  Build""",Summer,Red,Titanium,http://somedomain.org/path?param=val&param2=val2,p2,Mobile
 中文网站,1495483797,bogus.smaple.rsid,142805255,"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1 ""Special
  Build""",Summer,Gray,Carbon,http://somedomain.org/path?param=val&param2=val2,p2,Mobile
-
+```
 
 ## Document Versioning
 As changes are made to the bulk ingest API and its documentation, we will summarize the changes below.
