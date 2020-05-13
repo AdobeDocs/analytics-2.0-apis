@@ -283,7 +283,7 @@ With most of the API GET requests, a file object will be returned in the respons
 | processing_end_date | long | Timestamp (unix epoch time) when file processing completed |
 | rows | integer | Number of rows contained in file |
 | invalid_rows | integer | Number of invalid rows identified in the file |
-| status | string | Friendly format of the current stage of file in the processing pipeline. Options include: `File received, awaiting processing`, `File being read`, `Ingesting file rows`, `Ingest completed`, `File format error`,`File rejected` |
+| status | string | Friendly format of the current stage of file in the processing pipeline. Options include: `File received`, `awaiting processing`, `File being read`, `Ingesting file rows`, `Ingest completed`, `File format error`,`File rejected` |
 | status_code | string | Directly related to status messages above.  This is the internal code our system uses to determine state.  More detailed information can be found in the "File States" section. Options include: `REJECTED`, `UPLOADED`, `PROCESSING`, `COMPLETE`, `ERROR` |
 | error_threshold_rows | integer | If the number of invalid rows in the file is above this number, the file will be rejected |
 | error_threshold_percentage | double | If the percentage of invalid rows in the file is above this number, the file will be rejected |
