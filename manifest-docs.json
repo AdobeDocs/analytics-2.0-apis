@@ -98,10 +98,10 @@
           "title": "Discovery"
     },
     {
-          "importedFileName": "bulk-ingestion",
+          "importedFileName": "streaming-dc",
           "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/bulk-ingestion.md",
-          "title": "Bulk Ingest API"
+          "path": "AdobeDocs/analytics-2.0-apis/master/streaming-dc.md",
+          "title": "Streaming Data Collection"
     },
     {
           "importedFileName": "faq",
