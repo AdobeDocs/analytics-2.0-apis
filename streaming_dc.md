@@ -433,17 +433,18 @@ zip | zip | The visitor's zip code.
 ### Adobe Audience Manager Regions (for use with aamlh parameter)
 AAMLH | Location |AAM Endpoint
 :--:|--|--
-7 | Texas | use.demdex.net
-6 | London | irl1.demdex.ne
-3 | Singapore | apse.demdex.net
-9 | Oregon | usw2.demdex.net
-6 | Amsterdam | irl1.demdex.ne
-3 | Hong Kong | apse.demdex.net
-9 | California | usw2.demdex.net
+6 | Amsterdam | irl1.demdex.net
 8 | Australia | apse2.demdex.net
+7 | AWS US East | use.demdex.net
+9 | California | usw2.demdex.net
+3 | Hong Kong | apse.demdex.net
+6 | London | irl1.demdex.net
+9 | Oregon | usw2.demdex.net
+3 | Singapore | apse.demdex.net
+7 | Texas | use.demdex.net
 11 | Tokyo | tyo3.demdex.net
 7 | Virginia | use.demdex.net
-7 | AWS US East | use.demdex.net
+
 
 ### Batch File Examples
 ##### Batch File with Query String:
