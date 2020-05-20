@@ -279,7 +279,7 @@ With a file ingest POST request, a file object will be returned in the response.
 | Description | This endpoint primarily exists for new clients that would like to test out their file format before submitting files for processing. Files uploaded to this endpoint will not be stored on the server nor processed. This API is synchronous and will return an immediate reply if the file passes validation. If not, information about why validation fails is returned. *Note that the same validate functionality is automatically run anytime a file is submitted to the `/events` endpoint.*
 | Method | POST
 | URL | `/aa/collect/v1/events/validate`
-| Headers | ||**x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console. |
+| Headers | **x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console. |
 | Multipart/Form Data Fields | **file**: *REQUIRED* - Send a gzip compressed file.
 
 #### Success Response
