@@ -1,32 +1,32 @@
-# Analytics Streaming Data Collection API User's Guide
+# Analytics Bulk Data Insertion API User's Guide
 
 **VERSION 1.0.0**
 
 ## Overview
 
-The Streaming Data Collection API (SDC API) is an Adobe Analytics capability allowing customers to upload server call data in batches of files as opposed to using client-side JavaScript (e.g., tags on web pages or other APIs embedded in application code). The server calls in these batch files can be either current (live) data or historical data. The concept is similar to the long-available Analytics Data Insertion API. In fact, batch ingestion can be thought of as a different interface to this very scalable service.
+The Bulk Data Insertion API (BDIA) is an Adobe Analytics capability allowing customers to upload server call data in batches of files as opposed to using client-side JavaScript (e.g., tags on web pages or other APIs embedded in application code). The server calls in these batch files can be either current (live) data or historical data. The concept is similar to the long-available Analytics Data Insertion API. In fact, bulk insertion can be thought of as a different interface to this very scalable service.
 
-Streaming collection solves several problems for a variety of use cases. Some examples include:
+Bulk Insertion solves several problems for a variety of use cases. Some examples include:
 
 - A new customer wishes to ingest historical data from a previous analytics system.
 
-- A customer may have an internal analytics collection system that makes it unfeasible to use Adobe’s “client-side” collection code. The customer can use ETL processes to extract and transform data into batch files and, finally, use SDC to upload them to Adobe Analytics.
+- A customer may have an internal analytics collection system that makes it unfeasible to use Adobe’s “client-side” collection code. The customer can use ETL processes to extract and transform data into batch files and, finally, use BDIA to upload them to Adobe Analytics.
 
-- A customer may collect data from devices that have only intermittent connectivity to the Internet. These devices store up the interactions until they receive a connection and then they can upload the historical data all at once via SDC.
+- A customer may collect data from devices that have only intermittent connectivity to the Internet. These devices store up the interactions until they receive a connection and then they can upload the historical data all at once via BDIA.
 
 Using the Data Insertion API can solve all of the above use cases; however, the customer must then build software that processes the server calls, inserts them in the correct order, responds to errors, and uses sufficient concurrency to achieve the desired ingestion volume. 
 
-The SDC API removes this burden from customers by providing a productized system that scales, handles errors, and addresses the finer details of inserting data into Adobe Analytics.
+The Bulk Data Insertion API removes this burden from customers by providing a productized system that scales, handles errors, and addresses the finer details of inserting data into Adobe Analytics.
 
 ## Limitations
 
-- SDC can only send data to report suites that are configured as "Timestamp enabled" or "Timestamp optional."
+- BDIA can only send data to report suites that are configured as "Timestamp enabled" or "Timestamp optional."
 - Historical data for a visitor grouping must be ingested before any current data can be processed, unless Timestamp Optional report suites are being used and visitor continuity is not possible or not desirable.
 - The amount of server calls that can be processed in a given time are dependent on throttle limits and allocated resources for that customer. Spikes in server calls must be reported to Client Care in the same ways that normal data collection dictates.
 
 ## Batch Files
 
-When using SDC, server calls are sent in batch files. These files are in a specific CSV format where each row of the file defines the details of a server call. Each row, or server call, must specify an identifier for a visitor as well as a timestamp for when the interaction occurred. The server calls must be ordered chronologically by their timestamps, from earliest to latest, in the batch files (this is a requirement of the underlying Analytics system). Each batch file must also be compressed.
+When using BDIA, server calls are sent in batch files. These files are in a specific CSV format where each row of the file defines the details of a server call. Each row, or server call, must specify an identifier for a visitor as well as a timestamp for when the interaction occurred. The server calls must be ordered chronologically by their timestamps, from earliest to latest, in the batch files (this is a requirement of the underlying Analytics system). Each batch file must also be compressed.
 
 ### Batch File Requirements
 
@@ -69,11 +69,11 @@ Each header row must contain the following required columns:
 When specifying other columns in the CSV file, please take note of the following rules:
 - If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicates are ignored.
 - Column header names are case-insensitive.
-- A column header unrecognized by SDC will be ignored.
+- A column header unrecognized by BDIA will be ignored.
 - Columns can appear in any order in the CSV file
 
 #### Row Order
-All rows in a batch file for any given visitor must be sorted in chronological order by timestamp, from earliest to latest; this ensures that visitor events represented in the server calls occur in order. Sorting is crucial for proper purchase attribution, analyzing visitor behavior, etc. Adobe does not guarantee the integrity of data processed by SDC if this order requirement is not strictly observed.
+All rows in a batch file for any given visitor must be sorted in chronological order by timestamp, from earliest to latest; this ensures that visitor events represented in the server calls occur in order. Sorting is crucial for proper purchase attribution, analyzing visitor behavior, etc. Adobe does not guarantee the integrity of data processed by BDIA if this order requirement is not strictly observed.
 
 #### Compression
 All batch files must be compressed using gzip compression.
@@ -82,7 +82,7 @@ All batch files must be compressed using gzip compression.
 Compressed files can be up to 100 MB.  Uncompressed file size is limited to 1 GB.
 
 #### Naming
-The SDC API does not place any restrictions on file names. When submitted via an API call, a file identifier is returned that can be used to track the file. The name of the uploaded file is preserved, however, in the system so that customers have a "friendly" reference point when viewing information about files.
+The Bulk Data Insertion API does not place any restrictions on file names. When submitted via an API call, a file identifier is returned that can be used to track the file. The name of the uploaded file is preserved, however, in the system so that customers have a "friendly" reference point when viewing information about files.
 
 ## Query String vs. Column-Based Row
 
@@ -90,7 +90,7 @@ Each row in a file can specify the server call data in one of two ways: using th
 
 For example, if a "queryString" specifies pageName as X, but there is a "pageName" column specified that sets it to Y, then the server row will be passed in as Y into Analytics.
 
-**The other "Required Columns" reportSuiteID, timestamp, and userAgent should NOT be present in the queryString. SDC will add the necessary attributes to the queryString request based on the Required Columns. Other required columns (like pageName, pageURL, or pe) must either be present as a column or as a parameter in the queryString.**
+**The other "Required Columns" reportSuiteID, timestamp, and userAgent should NOT be present in the queryString. BDIA will add the necessary attributes to the queryString request based on the Required Columns. Other required columns (like pageName, pageURL, or pe) must either be present as a column or as a parameter in the queryString.**
 
 Both Query String and Column-based Rows will result in identical server calls being ingested as long as the same data is represented correctly in both cases.
 
@@ -98,7 +98,7 @@ Some customers prefer the Query String method because they are adapting an exist
 
 ### Query String Format
 
-The *"queryString"* column must have the values in its key/value pairs be fully URL encoded. This includes any multibyte characters included in the field. Its contents will be used in a URI GET or POST call to Analytics. When SDC submits a queryString row to Adobe Analytics, it will add the following param values if they are not present:
+The *"queryString"* column must have the values in its key/value pairs be fully URL encoded. This includes any multibyte characters included in the field. Its contents will be used in a URI GET or POST call to Analytics. When BDIA submits a queryString row to Adobe Analytics, it will add the following param values if they are not present:
 - AQB=1 (Start of server call params)
 - AQE=1 (End of server call params)
 - ce=UTF-8 (Character Encoding of UTF-8)
@@ -115,7 +115,7 @@ Customers can split up their visitor IDs and therefore files into any number of 
 > Another way to think of visitor groups is to view them as separate processing pipelines. Each visitor group creates a separate processing pipeline for files associated with that visitor group. Each pipeline processes files concurrently with other processing pipelines.
 
 ### Additional Visitor Group Example
-Suppose a set of server calls has integer visitor IDs, 1-100, and we want to create three disjoint visitor group sets. We can use the mathematical MOD operation to organize these visitors into 3 groups. Server calls where “visitor ID MOD 3 = 0” go into visitor group “0”. Server calls where “visitor ID MOD 3 = 1” go into visitor group “1”, and so forth. Server calls are batched into files and ordered by timestamp, per their visitor group, and are then uploaded with that visitor group specified in the header of the API request. Since the visitors in these files are all disjoint, the SDC system can process them in parallel without risking any calls for a visit being processed out of order.
+Suppose a set of server calls has integer visitor IDs, 1-100, and we want to create three disjoint visitor group sets. We can use the mathematical MOD operation to organize these visitors into 3 groups. Server calls where “visitor ID MOD 3 = 0” go into visitor group “0”. Server calls where “visitor ID MOD 3 = 1” go into visitor group “1”, and so forth. Server calls are batched into files and ordered by timestamp, per their visitor group, and are then uploaded with that visitor group specified in the header of the API request. Since the visitors in these files are all disjoint, the BDIA system can process them in parallel without risking any calls for a visit being processed out of order.
 
 ![note visitor group diagram](/images/bia-visitor_groups.jpg)
 
@@ -128,7 +128,7 @@ Internally, files have a requirement for timestamp order. Multiple files have th
 When uploading a file via the REST API, it is important to understand that the files will be processed in the order they are received (per visitor group). If you try to upload two files at once for the same visitor group, whichever REST call receives a “200 OK” first will be processed by the system first. Because of possible race conditions, it is important to upload files within a visitor group one at a time, waiting for a “200 OK” from the server that a file has been successfully uploaded before uploading another.
 
 ### Number of Visitor Groups, File Size and Send Frequency Recommendations
-Streaming Data Collection was designed to run optimally with larger file sizes. We recommend a pattern of larger files uploaded less frequently rather than small files uploaded more frequently.
+Bulk Insertion was designed to run optimally with larger file sizes. We recommend a pattern of larger files uploaded less frequently rather than small files uploaded more frequently.
 
 For an implementation guideline, we offer the following recommendations:
 - Ingestion of 2000 rows per second per visitor group
@@ -141,7 +141,7 @@ If you used 10 visitor groups, that would result in about 100 million rows per d
 File size will vary according to the average size of each row.  While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB.  However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side.  Existing clients tend to send files with rows between 3,000 and 50,000 rows, and sizes of 500k up to 20 MB.
 
 ## Customer ID and Experience Cloud Visitor ID Seeds
-SDC provides a way for a customer ID to be specified which Adobe will use as a seed to automatically generate an Experience Cloud Visitor ID (ecid, formerly called Marketing Cloud Visitor ID or mid). This functionality simplifies the process of generating your own ecid, which would require a separate server call for every visitor. Providing your own customer ID as a seed for an ecid is done by adding a column to specify a "customerID.[customerIDType].id" and another boolean column, "customerID.[customerIDType].ismcseed" to denote which customer ID should be used as the seed. Other columns can be used to further define the customer ID as well. See the table below for more information about the available columns.
+BDIA provides a way for a customer ID to be specified which Adobe will use as a seed to automatically generate an Experience Cloud Visitor ID (ecid, formerly called Marketing Cloud Visitor ID or mid). This functionality simplifies the process of generating your own ecid, which would require a separate server call for every visitor. Providing your own customer ID as a seed for an ecid is done by adding a column to specify a "customerID.[customerIDType].id" and another boolean column, "customerID.[customerIDType].ismcseed" to denote which customer ID should be used as the seed. Other columns can be used to further define the customer ID as well. See the table below for more information about the available columns.
 
 ### Customer ID Columns and Query String Parameters
 When specifying a customerID column, you must choose a customerIDType to correlate the columns to each other. The customerIDType can be any alphanumeric string, but it should be considered case-sensitive. For example, if there was a user ID and also an e-mail that an Analytics customer wanted to send into Analytics, they could choose "userIdent" and "userEmail," respectively, for the two customerIDTypes. If the end-user logs in using their user ID then a customer could specify "customerID.userIdent.authState" set to "AUTHENTICATED" in the data field for a user that is logged in, and "customerID.userIdent.id" would be set to their user ID.
@@ -162,10 +162,10 @@ The following validation rules are applicable to the Customer ID columns:
   - MarketingCloudVisitorID
   - ipAddress
 - If isMCSeed is set to true, the customerID may not be empty
-- There can only be ONE field specified as the isMCSeed per IMS Organization.  This field name must be communicated before use to the SDC team for provisioning on the back-end.
+- There can only be ONE field specified as the isMCSeed per IMS Organization.  This field name must be communicated before use to the BDIA team for provisioning on the back-end.
 
 ## Throttle Limits
-Before using Streaming Data Collection, a customer must provide an expected volume of ingestion. From the expected volume, a per-second throttle limit is configured within our system. This configuration throttles the number per-second ingestion server calls. If the system detects the throttle limit may be exceeded, it will process uploaded files more slowly to stay within the limit.
+Before using BDIA, a customer must provide an expected volume of ingestion. From the expected volume, a per-second throttle limit is configured within our system. This configuration throttles the number per-second ingestion server calls. If the system detects the throttle limit may be exceeded, it will process uploaded files more slowly to stay within the limit.
 
 These limits help ensure a timely processing and availability of data for Adobe Analytics reporting. They also help protect the system from becoming overwhelmed before proper capacity has been provisioned for a sharp increase in call volume.
 
@@ -175,15 +175,15 @@ When using client-side server call collection methods there is a period of time,
 ## Failure Scenarios 
 There are two reasons that a file may fail to successfully ingest all of its rows: 
 * Something is wrong with the file and its format
-* There is an irrecoverable error inside of SDC due to an unexpected system failure
+* There is an irrecoverable error inside of BDIA due to an unexpected system failure
 
 ### Internal System Failure 
-The SDC API has been built with redundancy and safeguards to ensure that issues due to unexpected system failures are rare. If it does occur, Adobe's monitoring will alert our on-call support staff to help address the system failure as quickly as possible. All files received are stored safely server-side for ingestion once the system stabilizes.
+The Bulk Data Insertion API has been built with redundancy and safeguards to ensure that issues due to unexpected system failures are rare. If it does occur, Adobe's monitoring will alert our on-call support staff to help address the system failure as quickly as possible. All files received are stored safely server-side for ingestion once the system stabilizes.
 
 ### Malformed File 
-When a file fails because something is wrong with the file, this is likely due to a change or a bug in the process that generates the files. On initial implementation, or following a reconfiguration of your generated files, we encourage users to validate their files using the validate API endpoint before submitting them to SDC to ensure that nothing is wrong with the file format. This validation is identical to the validation that occurs when a file is being processed. It is a helpful tool while testing and developing your file generation process.
+When a file fails because something is wrong with the file, this is likely due to a change or a bug in the process that generates the files. On initial implementation, or following a reconfiguration of your generated files, we encourage users to validate their files using the validate API endpoint before submitting them to BDIA to ensure that nothing is wrong with the file format. This validation is identical to the validation that occurs when a file is being processed. It is a helpful tool while testing and developing your file generation process.
 
-Once an automated process is established to generate and submit files to SDC, most customers should not experience errors due to malformed files.
+Once an automated process is established to generate and submit files to BDIA, most customers should not experience errors due to malformed files.
 
 #### File Not in GZIP Format
 If a file is not in the proper GZIP format, it will result in the state of "File Error" and no rows will be processed. It is recommended that the file creation process be checked to ensure that it is properly compressing files.
@@ -198,10 +198,10 @@ If a file with a large amount of rows is submitted, but a small percentage of th
 If a file is submitted, and a large percentage of the rows have failed, then it might make sense to repair the rows and re-submit the file, resulting in minimal duplicate hits. This should only be done, however, when the missed server calls are individually significant and the pipeline of hits can be stalled long enough to investigate and repair the error. Otherwise, we recommend fixing the file generation process and not trying to re-submit the file. 
 
 ## REST API Details
-Customers use Streaming Data Collection by interacting with a set of REST APIs over SSL/TLS. This section details each API operation and gives examples of how to interact with the REST API.
+Customers use Bulk Insertion by interacting with a set of REST APIs over SSL/TLS. This section details each API operation and gives examples of how to interact with the REST API.
 
 ### URI Host
-Regardless of which data center your report-suite resides in, SDC calls can be directed to a single global host name for most clients. However, if you are legally required to have your data processed in a specific part of the world, we also make available direct access to regional hosts to ensure your data is processed where it needs to be. This hostname value will be referred to as <SDC_HOST> in this document.
+Regardless of which data center your report-suite resides in, BDIA calls can be directed to a single global host name for most clients. However, if you are legally required to have your data processed in a specific part of the world, we also make available direct access to regional hosts to ensure your data is processed where it needs to be. This hostname value will be referred to as <BDIA_HOST> in this document.
 |Location| Hostname| Comment |
 |--|--|--|
 | Global | https://analytics-collection.adobe.io | Auto-routing |
@@ -210,7 +210,7 @@ Regardless of which data center your report-suite resides in, SDC calls can be d
 
 
 ### Authentication
-SDC uses Adobe's Identity Management Service (IMS) to facilitate authentication.  This process consists of registering with our Adobe/IO API console to gain credentials, packaging those credentials as a JSON Web Token (JWT), exchanging the JWT for an expirable access token, then passing that access token in with your SDC API requests. Detailed inforation on JWT Authentication can be found [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md)
+BDIA uses Adobe's Identity Management Service (IMS) to facilitate authentication.  This process consists of registering with our Adobe/IO API console to gain credentials, packaging those credentials as a JSON Web Token (JWT), exchanging the JWT for an expirable access token, then passing that access token in with your Bulk Data Insertion API requests. Detailed inforation on JWT Authentication can be found [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md)
 
 ### File ID Value
 Every file ingest transaction will receive a GUID to uniquely identify that ingest event.  Our system can auto-assign this GUID and return it with the initial upload response.  Alternatively, the client has the option to pass in their own identifier with each request. This is done through use of the "x-adobe-fileid" header field. See the Operations section below for examples.
@@ -253,7 +253,7 @@ With a file ingest POST request, a file object will be returned in the response.
 | URL | `/aa/collect/v1/events`
 | Headers | **x-adobe-vgid**: *REQUIRED* - Visitor Group ID. A visitor group represents the name of the processing pipeline to use when processing the file. This can be any name you choose. Files uploaded to different visitor groups should have disjoint visitor IDs.|
 ||**x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console.
-||**x-adobe-fileid**: *OPTIONAL* - File ID. This can be generated by the client and passed in with the request, or alternatively if not received, SDC will generate its own and return it with the response.
+||**x-adobe-fileid**: *OPTIONAL* - File ID. This can be generated by the client and passed in with the request, or alternatively if not received, BDIA will generate its own and return it with the response.
 | Multipart/Form Data Fields | **file**: *REQUIRED* - The file contents to be uploaded via multipart/form-data. Send a gzip compressed file.
 
 #### Success Response
@@ -270,7 +270,7 @@ With a file ingest POST request, a file object will be returned in the response.
 | 401 Unauthorized | {"error": "Token validation failed" } |
 
 #### Sample Call
-```curl -X POST -F file=@/tmp/newfile_1489183489.gz -H "x-adobe-vgid:prod-18" -H "x-adobe-fileid:a00ce559-2489-497d-9b52-acfa33fe692b" -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" "https://<SDC_HOST>/aa/collect/v1/events" ```
+```curl -X POST -F file=@/tmp/newfile_1489183489.gz -H "x-adobe-vgid:prod-18" -H "x-adobe-fileid:a00ce559-2489-497d-9b52-acfa33fe692b" -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" "https://<BDIA_HOST>/aa/collect/v1/events" ```
 
 ### Validation
 |||
@@ -294,7 +294,7 @@ With a file ingest POST request, a file object will be returned in the response.
 | 401 Unauthorized | {"error" : "Token validation failed" }
 
 #### Sample Call
-```curl -X POST -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" -F file=@/some/path/file.gz "https://<SDC_HOST>/aa/collect/v1/events/validate"```
+```curl -X POST -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" -F file=@/some/path/file.gz "https://<BDIA_HOST>/aa/collect/v1/events/validate"```
 
 ## Error Handling
 When processing files, problems may occur (see Failure Scenarios for more details). If rows are malformed, and skipped, the data for that visitor and visit may be corrupted. There is no way for Adobe to repair this corruption.  In light of this, we strongly encourage customers to validate file formats thoroughly before submitting for processing. We also recommend using a development report suite to test out changes to file generation and submission process.
@@ -375,12 +375,12 @@ Below are the list of possible errors and their results:
 ```
 
 ## Removing Data from Analytics
-If incorrect or sensitive data (PII) is ingested via Streaming Data Collection, there is no productized method to remove this data. Engineering Services can assist customers in removing data that was accidentally inserted, but that will require a separate service engagement per incident.
+If incorrect or sensitive data (PII) is ingested via BDIA, there is no productized method to remove this data. Engineering Services can assist customers in removing data that was accidentally inserted, but that will require a separate service engagement per incident.
 
 
 
 ## CSV Column and Query String Reference
-The following columns are supported in the SDC file format.
+The following columns are supported in the BDIA file format.
 
 Header/Column Name | Query String Param Equivalent | Field Description
 --|--|--
@@ -473,8 +473,8 @@ pageName,timestamp,reportSuiteID,visitorID,userAgent,campaign,contextData.color,
 ```
 
 ## Document Versioning
-As changes are made to the SDC API and its documentation, we will summarize the changes below.
+As changes are made to the Bulk Data Insertion API and its documentation, we will summarize the changes below.
 Version | Date | Change Details
 --|--|--
-1.0.0| 5/1/20| General Availability version of the SDC API released.  First public documentation published.
+1.0.0| 5/1/20| General Availability version of the Bulk Data Insertion API is released.  First public documentation published.
 

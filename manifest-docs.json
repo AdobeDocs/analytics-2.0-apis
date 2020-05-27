@@ -100,8 +100,8 @@
     {
           "importedFileName": "streaming-dc",
           "pages": [],
-          "path": "AdobeDocs/analytics-2.0-apis/master/streaming-dc.md",
-          "title": "Streaming Data Collection"
+          "path": "AdobeDocs/analytics-2.0-apis/master/bdia.md",
+          "title": "Bulk Data Insertion API"
     },
     {
           "importedFileName": "faq",
