@@ -98,7 +98,7 @@
           "title": "Discovery"
     },
     {
-          "importedFileName": "streaming-dc",
+          "importedFileName": "bdia",
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/bdia.md",
           "title": "Bulk Data Insertion API"
