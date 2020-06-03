@@ -158,8 +158,10 @@ In general, it is of the form:
 
 #### Activity Map
 
-The Activity Map variable includes `clickmappage`, `clickmaplink`, and the context data used to populate those
-variables.  To delete Activity Map data, use the following job definition:
+The Activity Map variable includes `clickmappage`, `clickmaplink`, `clickmapregion`, and `clickmaplinkbyregion` as well
+as the context data used to populate these identities.
+
+To delete Activity Map data, use the following job definition:
 
 ```json
 {
@@ -182,7 +184,59 @@ curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALY
 #### Example Response
 ```json
 {
-  "jobId": 24
+    "dateRangeEnd": "2019-03-28",
+    "dateRangeStart": "2019-03-28",
+    "jobCompleteTime": null,
+    "jobCreateTime": "2020-03-24T09:02:59+00:00",
+    "jobDefinition": {
+        "variables": {
+            "activitymap": {
+                "action": "delete"
+            }
+        }
+    },
+    "jobId": 24,
+    "progress": 0,
+    "reportSuiteId": "sample.reportsuite",
+    "serverCalls": null,
+    "status": "processing"
+}
+
+```
+
+## Job Status
+
+The `/job/{JOB_ID}` endpoint is called to check on the progress of a data repair job.  Following submission of a job,
+`status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status` will
+report as `complete` and `serverCalls` will be set to the actual number of records scanned during the data repair job.
+This `serverCalls` value will be included in your invoice.
+
+#### Example Request
+```bash
+curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}" -H "x-api-key: {API_KEY/CLIENT_ID}" \
+    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job/{JOB_ID}"
+```
+
+#### Example Response
+```json
+{
+    "dateRangeEnd": "2019-03-28",
+    "dateRangeStart": "2019-03-28",
+    "jobCompleteTime": "2020-03-24T10:13:51+00:00",
+    "jobCreateTime": "2020-03-24T09:02:59+00:00",
+    "jobDefinition": {
+        "variables": {
+            "activitymap": {
+                "action": "delete"
+            }
+        }
+    },
+    "jobId": "24",
+    "progress": 100,
+    "reportSuiteId": "sample.reportsuite",
+    "serverCalls": 2,
+    "status": "complete"
 }
 ```
 
@@ -220,4 +274,58 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
     "serverCalls": 2,
     "status": "complete"
 }
+```
+
+## Job List
+
+The `/job` endpoint lists all data repair jobs that have been created for the given report suite.
+
+#### Example Request
+```bash
+curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}" -H "x-api-key: {API_KEY/CLIENT_ID}" \
+    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job"
+```
+
+#### Example Response
+```json
+[
+    {
+        "dateRangeEnd": "2019-03-28",
+        "dateRangeStart": "2019-03-28",
+        "jobCompleteTime": "2020-03-24T10:13:51+00:00",
+        "jobCreateTime": "2020-03-24T09:02:59+00:00",
+        "jobDefinition": {
+            "variables": {
+                "activitymap": {
+                    "action": "delete"
+                }
+            }
+        },
+        "jobId": "24",
+        "progress": 100,
+        "reportSuiteId": "sample.reportsuite",
+        "serverCalls": 2,
+        "status": "complete"
+    },
+    {
+        "dateRangeEnd": "2019-04-28",
+        "dateRangeStart": "2019-04-28",
+        "jobCompleteTime": null,
+        "jobCreateTime": "2020-04-24T09:02:59+00:00",
+        "jobDefinition": {
+            "variables": {
+                "activitymap": {
+                    "action": "delete"
+                }
+            }
+        },
+        "jobId": "25",
+        "progress": 0,
+        "reportSuiteId": "sample.reportsuite",
+        "serverCalls": 2,
+        "status": "processing"
+    }
+]
+
 ```
