@@ -441,6 +441,140 @@ In the following response, each record returns:
 }
 ```
 
+## Media Concurrent Viewers Report Example
+
+Media concurrent viewers report is a time series report with two specialized metrics. 
+
+* `metrics/concurrent_viewers_visitors` It counts number of unique visitors.
+* `metrics/concurrent_viewers_occurrences` It counts number of active sessions.
+
+These metrics can be rolled up to different granularity based on the dimension. For example unique visitors per minute or unique visitors per day etc.
+These are different dimensions available for media concurrent viewers report.
+
+* `variables/daterangeminute` 
+* `variables/daterangehour`
+* `variables/daterangeday`
+* `variables/daterangeweek`
+* `variables/daterangemonth`
+* `variables/daterangequarter`
+* `variables/daterangeyear`
+
+Media concurrent viewers report can be used in conjunction with filtering capabilities explained in [Filtering Reports](reporting-guide.md#filtering-reports) section.
+
+### Example Request
+
+The following request example includes both a JSON message request body to request number of unique visitors.
+
+```json
+{
+    "rsid": "adbedocrsid",
+    "locale": "en_US",
+    "dimension": "variables/daterangeminute",
+    "globalFilters": [
+        {
+            "dateRange": "2019-08-01T00:00/2019-08-01T00:05",
+            "type": "dateRange"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "column1",
+                "id": "metrics/concurrent_viewers_visitors"
+            }
+        ]
+    },
+    "settings": {
+        "dimensionSort": "asc",
+        "limit": "100",
+        "page": 0
+  } 
+}
+```
+
+The JSON message requests the following:
+
+* **Number of unique visitors** metric `metrics/concurrent_viewers_visitors` (line 15) for the report suite `adbedocrsid` (line 2)
+
+* Time period From Aug. 01, 2019 00:00:00.000 - Aug. 01, 2018 01:00:00.000, using the report suite timezone (line 7)
+
+* `variables/daterangeminute` granularity (line 4). With five minutes specified in this time period, you can expect five rows in the response.
+
+* Sort response by ascending date, i.e. oldest to newest (line 20)
+
+### Example Response
+
+In the following response, each record returns:
+
+* `itemId` - This is the unique ID associated with this particular value - in this case, unique visitors on Aug. 01, 2019 00:01 AM (line 27).
+* `value` - This contains the value of the dimension Aug. 01, 2019 00:01 AM.
+* `data` - This is an array of counts - one for each metric requested - in this case number of unique visitors.
+
+```json
+{
+    "totalPages": 1,
+    "firstPage": true,
+    "lastPage": true,
+    "numberOfElements": 5,
+    "number": 0,
+    "totalElements": 5,
+    "columns": {
+        "dimension": {
+            "id": "variables/daterangeminute",
+            "type": "time"
+        },
+        "columnIds": [
+            "column1"
+        ]
+    },
+    "rows": [
+        {
+            "itemId": "11907010000",
+            "value": "00:00 2019-08-01",
+            "data": [
+                326.0
+            ]
+        },
+        {
+            "itemId": "11907010001",
+            "value": "00:01 2019-08-01",
+            "data": [
+                258.0
+            ]
+        },
+        {
+            "itemId": "11907010002",
+            "value": "00:02 2019-08-01",
+            "data": [
+                202.0
+            ]
+        },
+        {
+            "itemId": "11907010003",
+            "value": "00:03 2019-08-01",
+            "data": [
+                148.0
+            ]
+        },
+        {
+            "itemId": "11907010004",
+            "value": "00:04 2019-08-01",
+            "data": [
+                79.0
+            ]
+        }
+    ],
+    "summaryData": {
+        "filteredTotals": [
+            1285.0
+        ],
+        "totals": [
+            22346.0
+        ]
+    }
+}
+```
+
 ## Filtering Reports
 
 Use filters to limit the data returned so that reports show only the values you need.  For example, if you have thousands of records but only a few have needed reports, you can use filtering to return and find them quickly. Some filters also allow you to include, group, or present data in convenient formats, such as breakdown reports.
