@@ -28,6 +28,7 @@ Using BDIA successfully depends upon the following:
 * [Specifying an expected volume of ingestion](#throttle-limits)
 * [Understanding latency](#processing-times)
 * [Diagnosing failures](#failure-scenarios)
+* [REST API Details](#rest-api-details)
 * [Making a valid request](#operations)
 * [Understanding responses](#file-info-response-details)
 
@@ -60,18 +61,18 @@ The last record in the file may or may not have a line break (CRLF or LF).
 
 #### Required Columns
 Each header row must contain the following required columns:
-- At least one of:
-  -  `marketingCloudVisitorID`
-  - `IPAddress`
-  - customerID.[customerIDType].id with customerID.[customerIDType].isMCSeed set to TRUE (see below for more information)
-- At least one of:
-  - `pageURL`
-  - `pageName`
-  - `pe`
-  - `queryString` (NOTE: If only `queryString` is used, at least one of pageURL, pageName, or pe must be specified in the `queryString` as a query parameter.)
-- `reportSuiteID`
-- `timestamp`
-- `userAgent`
+* At least one of:
+  *  `marketingCloudVisitorID`
+  * `IPAddress`
+  * customerID.[customerIDType].id with customerID.[customerIDType].isMCSeed set to TRUE (see below for more information)
+* At least one of:
+  * `pageURL`
+  * `pageName`
+  * `pe`
+  * `queryString` (NOTE: If only `queryString` is used, at least one of pageURL, pageName, or pe must be specified in the `queryString` as a query parameter.)
+* `reportSuiteID`
+* `timestamp`
+* `userAgent`
 
 > The `reportSuiteID` column is a list of one or more report suite IDs, delimited by commas.
 > The `timestamp` column supports the following formats:
@@ -223,10 +224,10 @@ Regardless of which data center your report-suite resides in, BDIA calls can be 
 
 
 ### Authentication
-BDIA uses Adobe's Identity Management Service (IMS) to facilitate authentication.  This process consists of registering with our Adobe/IO API console to gain credentials, packaging those credentials as a JSON Web Token (JWT), exchanging the JWT for an expirable access token, then passing that access token in with your Bulk Data Insertion API requests. Detailed information on JWT Authentication can be found [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
+BDIA uses Adobe's Identity Management Service (IMS) to facilitate authentication.  This process consists of registering with our Adobe/IO API console to gain credentials, packaging those credentials as a JSON Web Token (JWT), exchanging the JWT for an expirable access token, then passing that access token in with your Bulk Data Insertion API requests. The token is passed in the header with the "Authorization" key and value in the format of "Bearer <IMS_ACCESS_TOKEN>". Detailed information on JWT Authentication can be found [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
 
 ### File ID Value
-Every file ingest transaction will receive a GUID to uniquely identify that ingest event.  Our system can auto-assign this GUID and return it with the initial upload response.  Alternatively, the client has the option to pass in their own identifier with each request. This is done through use of the "x-adobe-fileid" header field. See the [Operations](#operations) section below for examples.
+Every file ingest transaction will receive a GUID to uniquely identify that ingest event.  Our system can auto-assign this GUID and return it with the initial upload response.  Alternatively, the client has the option to pass in their own identifier with each request. This is done through use of the "x-adobe-idempotency-key" header field. See the [Operations](#operations) section below for examples.
 
 ### Response Codes
 The following response codes are returned by the REST API and should be handled by clients interfacing with the API:
@@ -264,7 +265,8 @@ With a file ingest POST request, a file object will be returned in the response.
 | Title | Upload File for Processing
 | Method | POST
 | URL | `/aa/collect/v1/events`
-| Headers | **x-adobe-vgid**: *REQUIRED* - Visitor Group ID. A visitor group represents the name of the processing pipeline to use when processing the file. This can be any name you choose. Files uploaded to different visitor groups should have disjoint visitor IDs.|
+| Headers |**Authorization**: *REQUIRED* - IMS Token. See the ["Authentication"](#authentication) section for details.  Format is "Bearer <IMS_ACCESS_TOKEN>".| 
+||**x-adobe-vgid**: *REQUIRED* - Visitor Group ID. A visitor group represents the name of the processing pipeline to use when processing the file. This can be any name you choose. Files uploaded to different visitor groups should have disjoint visitor IDs.|
 ||**x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console.
 ||**x-adobe-idempotency-key**: *OPTIONAL* - Client Submitted File ID. This GUID can be generated by the client and passed in with the request, or alternatively if not received, BDIA will generate its own and return it with the response.
 | Multipart/Form Data Fields | **file**: *REQUIRED* - The file contents to be uploaded via multipart/form-data. Send a gzip compressed file.
@@ -292,7 +294,8 @@ With a file ingest POST request, a file object will be returned in the response.
 | Description | This endpoint primarily exists for new clients that would like to test out their file format before submitting files for processing. Files uploaded to this endpoint will not be stored on the server nor processed. This API is synchronous and will return an immediate reply if the file passes validation. If not, information about why validation fails is returned. *Note that the same validate functionality is automatically run anytime a file is submitted to the `/events` endpoint.*
 | Method | POST
 | URL | `/aa/collect/v1/events/validate`
-| Headers | **x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console. |
+| Headers |**Authorization**: *REQUIRED* - IMS Token. See the ["Authentication"](#authentication) section for details.  Format is "Bearer <IMS_ACCESS_TOKEN>".| 
+|| **x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console. |
 | Multipart/Form Data Fields | **file**: *REQUIRED* - Send a gzip compressed file.
 
 #### Success Response
