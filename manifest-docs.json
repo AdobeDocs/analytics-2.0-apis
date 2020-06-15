@@ -79,6 +79,12 @@
           "title": "Calculated Metrics"
     },
     {
+      "importedFileName": "tags",
+      "pages": [],
+      "path": "AdobeDocs/analytics-2.0-apis/master/tags.md",
+      "title": "Tags"
+    },
+    {
           "importedFileName": "segments-guide",
           "pages": [
 						{
