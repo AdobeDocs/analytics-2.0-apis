@@ -10,7 +10,7 @@ To obtain authorization and authentication, see the [Getting Started Guide for 2
 
 The `/componentmetadata/tags` endpoint description is shown in our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/). Use the Swagger UI to see endpoint summaries, available methods, parameters, example values, models, and status codes, and to try out the API.
 
-## Example Creating tags
+## Example creating tags
 
 The following request example includes both a JSON message request body and a `curl` request to create tags and associate them with existing components.
 
