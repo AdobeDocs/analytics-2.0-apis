@@ -1,6 +1,6 @@
 # Tags APIs
 
-The Analytics 2.0 Tags APIs allow you to retrieve, update, or create tags programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with tags in the UI.
+The Analytics 2.0 Tags APIs allow you to retrieve, update, or create tags and their association with components programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with tags in the UI.
 
 ## Authorization and authentication
 
@@ -49,8 +49,8 @@ The following request example includes both a JSON message request body and a `c
 ```
 The JSON message requests the following:
 * create two tags with description `Sales Department` and `Marketing Department`
-* associate `Sales Department` tag with components with ids `component-id-1` and `component-id-2`
-* associate `Marketing Department` tag with components with ids `component-id-101` and `component-id-102`
+* associate `Sales Department` tag with components having ids `component-id-1` and `component-id-2`
+* associate `Marketing Department` tag with components having ids `component-id-101` and `component-id-102`
 
 #### `curl` Request
 
@@ -108,10 +108,9 @@ curl -X POST \
 ]
 ```
 
-=========================================================
 ## Example deleting a tag
 
-The following request example includes a `curl` request to delete a tag and its association with other components.
+The following request example includes a `curl` request to delete a tag. It will also un-tag any/all components associated with the tag.
 
 ### `curl` Request
 
@@ -138,15 +137,16 @@ The above curl command requests the following:
   }
 }
 ```
-## Example deleting all tags from components
 
-The following request example includes a `curl` request to delete all tags from list of components.
+## Example removing all tags from components
+
+The following request example includes a `curl` request to removes all tags from list of components.
 
 ### `curl` Request
 
 ```bash
 curl -X DELETE \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags?componentIds={COMMA_SEPARATED_COMPONENT_IDS}&componentType=segment \
+  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags?componentIds={COMMA_SEPARATED_COMPONENT_IDS}&componentType={COMPONENT_TYPE} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
@@ -155,7 +155,7 @@ curl -X DELETE \
   -d '{REQUESTJSON}'
 ```
 The above curl command requests the following:
-* Deletes all tags from list of component ids
+* Removes all tags from list of component ids
 
 ### Example Response
 
@@ -167,9 +167,8 @@ The above curl command requests the following:
   }
 }
 ```
-=========================================================
 
-## Example retrieving list of tags for company
+## Example retrieving list of tags for a company
 
 The following request example includes a `curl` request to retrieve tags for current company.
 
@@ -186,7 +185,8 @@ curl -X GET \
   -d '{REQUESTJSON}'
 ```
 The above curl command requests the following:
-* Retrieves first page of 3 tags for the current company
+* Retrieve specific page with query param `page`
+* Retrieve specific number of tags in a page with query param `limit`
 
 ### Example Response
 
@@ -216,9 +216,10 @@ The above curl command requests the following:
   "number": 0
 }
 ```
-## Example search tags for multiple components
 
-The following request example includes both a JSON message request body and a `curl` request to search tags for multiple components.
+## Example retrieve tags for multiple components
+
+The following request example includes both a JSON message request body and a `curl` request to retrieve tags for multiple components.
 
 ### JSON Request Message
 ```json={line-numbers="yes"}
@@ -229,14 +230,12 @@ The following request example includes both a JSON message request body and a `c
   ]
 }
 ```
-The JSON message requests the following:
-* search all tags for component id `component-id-556` of type project
 
 ### `curl` Request
 
 ```bash
 curl -X POST \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags?page=0&limit=3 \
+  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/component/search?page=0&limit=3 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
@@ -244,8 +243,11 @@ curl -X POST \
   -H 'x-proxy-global-company-id: {COMPANYID}' \
   -d '{REQUESTJSON}'
 ```
-The above curl command requests the following:
-* Retrieves first page of 3 components with all tags for the current company
+
+The JSON message requests the following:
+* Retrieves all tags for component id `component-id-556` of type project
+* Retrieve specific page with query param `page`
+* Retrieve specific number of tags in a page with query param `limit`
 
 ### Example Response
 
@@ -258,12 +260,12 @@ The above curl command requests the following:
     "tags": [
       {
         "id": 35625,
-        "name": "finanace",
+        "name": "finance",
         "components": []
       },
       {
         "id": 35624,
-        "name": "maketing",
+        "name": "marketing",
         "components": []
       },      
       {
@@ -284,6 +286,7 @@ The above curl command requests the following:
 "size": 10
 }
 ```
+
 ## Example retrieving components using tags
 
 The following request example includes a `curl` request to retrieve a components of specific type associated with tag names.
@@ -291,7 +294,7 @@ The following request example includes a `curl` request to retrieve a components
 #### `curl` Request
 
 ```bash
-curl -X POST \
+curl -X GET \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/tagnames?tagNames={COMMA_SEPARATED_TAG_NAMES}&componentType={COMPONENT_TYPE} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
@@ -391,14 +394,6 @@ curl -X GET \
 ]
 ```
 
-
-
-
-
-
-
-=========================================================
-
 ## Update tags for components
 
 The following request example includes both a JSON message request body and a `curl` request to create and delete multiple tags associated with components.
@@ -425,7 +420,7 @@ The following request example includes both a JSON message request body and a `c
 The JSON message requests the following:
 * create two tags with description `marketing-1` and `marketing-2`
 * associate `marketing-1` and `marketing-2` tag with components with ids `component-id-1` 
-* if there are any preexisting tags associated with `component-id-1` then remove those associations.
+* if there are any preexisting tags associated with `component-id-1` then remove these associations.
 
 #### `curl` Request
 
