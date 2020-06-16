@@ -12,6 +12,8 @@
   }, {
     "name" : "collections"
   }, {
+    "name" : "component-metadata - tags"
+  }, {
     "name" : "dateranges"
   }, {
     "name" : "dimensions"
@@ -627,6 +629,447 @@
         }
       }
     },
+    "/componentmetadata/tags/component/search": {
+      "post": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "search for tags for several components at once",
+        "description": "",
+        "operationId": "searchComponentTags_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "items to search for",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ComponentSearch"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TaggedComponent"
+            }
+          }
+        }
+      }
+    },
+    "/componentmetadata/tags": {
+      "get": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Returns a list of tags for the current user's company",
+        "description": "",
+        "operationId": "findAllForCompany",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tag"
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to retrieve list of tags for user."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Saves the given tag(s) for the current user's company",
+        "description": "Allows creation of a new tag and applies that new tag to the passed component",
+        "operationId": "saveTagList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted array of Tag objects containing key-value pairs",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tag"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tag"
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to save list of tags."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Disassociates all tags from the given components",
+        "description": "Removes all tags from the passed componentIds. Note that currently this is done in a single DB query, so there is a single combined response for the entire operation.",
+        "operationId": "deleteTagItems",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "componentIds",
+            "in": "query",
+            "description": "Comma-separated list of componentIds to operate on.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "componentType",
+            "in": "query",
+            "description": "The component type to operate on.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "segment",
+              "dashboard",
+              "bookmark",
+              "calculatedMetric",
+              "project",
+              "dateRange",
+              "metric",
+              "dimension",
+              "virtualReportSuite",
+              "scheduledJob",
+              "alert",
+              "classificationSet"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to remove tags for given components."
+          },
+          "400": {
+            "description": "Invalid component type."
+          }
+        }
+      }
+    },
+    "/componentmetadata/tags/search": {
+      "get": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Retrieves a tags for a given component by componentId and componentType",
+        "description": "Given a componentId, return all tags associated with that component",
+        "operationId": "getTagListByComponentIdAndComponentType",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "componentId",
+            "in": "query",
+            "description": "The componentId to operate on. Currently this is just the segmentId.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "componentType",
+            "in": "query",
+            "description": "The component type to operate on.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "segment",
+              "dashboard",
+              "bookmark",
+              "calculatedMetric",
+              "project",
+              "dateRange",
+              "metric",
+              "dimension",
+              "virtualReportSuite",
+              "scheduledJob",
+              "alert",
+              "classificationSet"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Tag"
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to retrieve tags for given component."
+          },
+          "400": {
+            "description": "Invalid component type."
+          }
+        }
+      }
+    },
+    "/componentmetadata/tags/tagitems": {
+      "put": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Tag a component with one or many tags at once. WARNING: Authoritative; deletes/overwrites all pre-existing associations",
+        "description": "This endpoint allows many tags at once to be created/deleted. Any tags passed to this endpoint will become the *only* tags for that componentId (all other tags will be removed).",
+        "operationId": "saveTagComponentList",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted object containing key-value pairs that conform to the schema",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TaggedComponent"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TaggedComponent"
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to save tag list."
+          }
+        }
+      }
+    },
+    "/componentmetadata/tags/{id}": {
+      "get": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Retrieves an tag by its id",
+        "description": "",
+        "operationId": "getTagById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Tag ID to be retrieved",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Tag"
+            }
+          },
+          "500": {
+            "description": "Unexpected server error while trying to retrieve tag"
+          },
+          "404": {
+            "description": "Unable to find a tag with the given ID"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Removes the tagId and all associations from that tag to any components",
+        "description": "Delete by tagId. Will un-tag any/all components that were associated with the passed tagId.",
+        "operationId": "deleteTag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The tagId to be deleted",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to delete the given tagId."
+          },
+          "404": {
+            "description": "The given tagId does not exist"
+          }
+        }
+      }
+    },
+    "/componentmetadata/tags/tagnames": {
+      "get": {
+        "tags": [
+          "component-metadata - tags"
+        ],
+        "summary": "Retrieves component ids associated with the given tag names",
+        "description": "Given a comma separated list of tag names, return component ids associated with them.",
+        "operationId": "getComponentsByTagName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tagNames",
+            "in": "query",
+            "description": "Comma separated list of tag names.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "componentType",
+            "in": "query",
+            "description": "The component type to operate on.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "segment",
+              "dashboard",
+              "bookmark",
+              "calculatedMetric",
+              "project",
+              "dateRange",
+              "metric",
+              "dimension",
+              "virtualReportSuite",
+              "scheduledJob",
+              "alert",
+              "classificationSet"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to retrieve tags for given component."
+          },
+          "400": {
+            "description": "Invalid component type."
+          }
+        }
+      }
+    },    
     "/dateranges" : {
       "get" : {
         "tags" : [ "dateranges" ],
@@ -2972,6 +3415,21 @@
           "type" : "array",
           "items" : {
             "$ref" : "#/definitions/Tag"
+          }
+        }
+      }
+    },
+    "ComponentSearch": {
+      "type": "object",
+      "properties": {
+        "componentType": {
+          "type": "string"
+        },
+        "componentIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
           }
         }
       }
