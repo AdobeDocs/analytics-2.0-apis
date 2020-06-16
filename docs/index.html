@@ -29,13 +29,13 @@
 			function login() {
 				var oauthUrl = 'https://runtime.adobe.io/api/v1/web/io-solutions/default/oauth';
 				var scopes = 'openid,AdobeID,read_organizations,additional_info.projectedProductContext,additional_info.job_function';
-				var redirectUrl = 'https://adobedocs.github.io/analytics-2.0-apis/';
+				var redirectUrl = window.location.href.split("?")[0]
 				oauthUrl += '?service=analytics&scopes=' + scopes + '&redirect_url=' + redirectUrl;
 				window.location.replace(oauthUrl);
 			}
 			
-			function logout() {
-				window.location.replace('https://adobedocs.github.io/analytics-2.0-apis/');
+			function logout() { 
+				window.location.replace(window.location.href.split("?")[0]);
 			}
 			
 			if($.getUrlVar('gc_ids')) {
@@ -347,27 +347,36 @@
 	<script>
 		window.onload = function() {
 			const ui = SwaggerUIBundle({
-				url: "./swagger.json",
+				urls: [
+					{url: "./swagger.json", name: "Reporting APIs"},
+					{url: "./datarepair.json", name: "Data Repair APIs"}
+				],
+				"urls.primaryName": "Reporting",
 				dom_id: '#swagger-ui',
 				deepLinking: true,
 				docExpansion: 'none',
 				presets: [
-					SwaggerUIBundle.presets.apis
+					SwaggerUIBundle.presets.apis,
+					SwaggerUIStandalonePreset
 				],
+				plugins: [
+					SwaggerUIBundle.plugins.DownloadUrl
+				],
+				layout: "StandaloneLayout",
 				requestInterceptor: function (req) {
 					console.log(req);
-					var globalCompanyId = document.getElementById('companySelector').value;
-					req.headers = {
-						'x-api-key': '5a8dcc2cfa71472cbfa4fb53671c45ed',
-						'x-proxy-global-company-id': globalCompanyId,
-						'Authorization': 'Bearer ' + document.getElementById('input_accessToken').value,
-						'Accept': 'application/json',
-						'Content-Type': 'application/json'
-					};
+					if(req.loadSpec == true) {
+						return; // don't modify loadSpec requests
+					}
+					
+					var curUrl = req.url;
+					req.headers['x-api-key'] = '5a8dcc2cfa71472cbfa4fb53671c45ed';
+					req.headers['Authorization'] = 'Bearer ' + document.getElementById('input_accessToken').value;
 					
 					var analyticsBaseUrl = 'https://analytics.adobe.io';
-					var curUrl = req.url;
-					if( curUrl.startsWith(analyticsBaseUrl) ) {
+					if(curUrl.startsWith(analyticsBaseUrl)) {
+						var globalCompanyId = document.getElementById('companySelector').value;
+						req.headers['x-proxy-global-company-id'] = globalCompanyId;
 						var endPath = curUrl.split(analyticsBaseUrl)[1];
 						req.url = analyticsBaseUrl + '/api/' + globalCompanyId + endPath;
 					}
