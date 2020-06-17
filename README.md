@@ -53,4 +53,4 @@ For help migrating from the 1.3/1.4 versions of the Analytics API to the newer a
 The timeout for API requests through adobe.io is currently **60 seconds**.
 
 ## Rate Limiting
-The default rate limit for an Adobe Analytics Company is **120 requests per minute**. (The limit is enforced as **12 requests every 6 seconds**). When rate limiting is being enforced you will get `429` HTTP response codes with the following response body: ```{"error_code":"429050","message":"Too many requests"}```
+The default rate limit for an Adobe Analytics User is **120 requests per minute**. (The limit is enforced as **12 requests every 6 seconds**). When rate limiting is being enforced you will get `429` HTTP response codes with the following response body: ```{"error_code":"429050","message":"Too many requests"}```
