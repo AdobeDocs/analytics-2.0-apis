@@ -2971,7 +2971,7 @@
         "tags" : {
           "type" : "array",
           "items" : {
-            "$ref" : "#/definitions/Tag"
+            "type" : "Tag"
           }
         }
       }
