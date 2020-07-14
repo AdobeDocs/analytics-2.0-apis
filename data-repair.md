@@ -2,42 +2,54 @@
 
 > NOTE: This page contains beta documentation that is subject to change before the final product release. 
 
-The Data Repair API provides a mechanism to submit data repair jobs for deleting or editing existing Adobe
-Analytics data.
+The Data Repair API provides you with a mechanism to delete or edit existing Adobe Analytics data.
+Repair requests are made by submitting a job definition which includes the report suite, date range, variables
+and actions to be applied to the data. 
 
-The API supports the following actions:
+The Data Repair API Beta supports these actions:
 
-* Deleting Activity Map data (beta)
-  
-> WARNING: Use of the Data Repair API will permanently delete or edit existing Adobe Analytics data.
-> Proceed with caution.
+* Deleting Activity Map data
 
-## Accessing the Data Repair API
+The Data Repair API returns:
+* The server call volume estimate for the data repair job
+* The job id
+* The status of a submitted job id
+* A list of all data repair jobs for a report suite
 
-To begin using the Data Repair API follow these steps:
+> WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data.
+> We recommend a careful approach to executing the repair to minimize accidental deletion.
+> Read through this document before using the Data Repair API.
 
-#### 1. Purchase the Data Repair API
+## Data Repair API Beta Requirements
 
-Access to the Data Repair API requires a sales order.  Using the Data Repair API will incur fees based on the total
-number of Server Calls scanned during the job.  To predict the costs associated with using this service, a required step
-for every repair process is to scope the size of the repair job prior to starting the repair.
+To begin using the Data Repair API, there are four requirements:
 
-Work with the Adobe account team to complete a sales order for access to the Data Repair API.  Only one sales order is
-needed to cover all future data repair jobs.  Check with the Adobe account team for current status. 
+#### 1. Request access to the API
 
-#### 2.	Create a Service Account Integration within Adobe I/O
+You can request free access to the Data Repair API Beta through a customer support ticket.  
+Please reference your global company id or login company in the ticket.
+Only one access request is needed for your log-in company.  Check with customer support on your company’s status.
 
-Follow the Adobe I/O instructions to
-[create a Service Account Integration](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md).
-Take note of the `API Key / Client ID` associated with the Integration.  This
-will be used when accessing the Data Repair API.
+During the public beta, we will be sending surveys on the performance of the api
+and request your feedback on the product.  
 
-#### 3.	Grant the Data Repair API permission to the new Service Account Integration in the Experience Cloud
+After the public beta period ends, Data Repair API access will require a sku and include usage fees. 
 
-Adobe Experience Cloud Admin Console product profiles control access to a product integration. Product profiles have
-Analytics-specific permissions for managing integration access to reporting features and data.
+#### 2.	Create a Service Account Connection within Adobe I/O
 
-The Data Repair API permission can be found under the Adobe Analytics Report Suite Tools permission group.
+A Service Account Connection allows the Data Repair API to call Adobe services.  For information on how to set up the
+connection, follow the instructions described in the
+[Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md)
+documentation.   You'll configure the Connection with access to the Adobe Analytics APIs.  During the process, you
+will generate a key pair and download the private key.  Store the API Key / Client ID associated with the Service
+Account Connection securely.  This is used when accessing the Data Repair API.
+
+#### 3. Grant the Data Repair API permission to the new Service Account Connection in the Experience Cloud
+
+Adobe Experience Cloud Admin Console includes product profile controls. Product profiles have Adobe Analytics-specific
+User permissions for managing integration access to reporting features and data.
+
+The Data Repair API permission is located under the Adobe Analytics Report Suite Tools permission group.
 
 ![data repair permission](images/data-repair-permission.png)
  
@@ -45,64 +57,54 @@ For more information on creating profiles and managing permissions, see
 [Manage Products and Profiles](https://helpx.adobe.com/enterprise/using/manage-products-and-profiles.html) and
 [Manage Permissions and Roles](https://helpx.adobe.com/enterprise/using/manage-permissions-and-roles.html).
  
-#### 4.	Create a JWT Authentication access token
+#### 4.	Create a JSON Web Token
 
-In order to establish a secure service-to-service Adobe I/O API session, create a JSON Web Token (JWT) that encapsulates
-the identity of the product integration, and then exchange it for an access token.  Every request to an Adobe service
-must include the access token in the `Authorization` header, along with the `API Key / Client ID` associated with the 
-Service Account Integration.
-
+In order to establish a secure service-to-service Adobe I/O API session, create a JSON Web Token (JWT) that
+encapsulates the identity of the product integration, and then exchange it for an access token. Every request to an
+Adobe service must include the access token in the `Authorization header`, along with the `API Key / Client ID`
+associated with the Service Account Connection.  For more information about creating a JWT access token, see
 [JWT Authentication](https://github.com/AdobeDocs/adobeio-auth/blob/stage/JWT/JWT.md)
 
-> NOTE: A new access token will need to be created prior to each use of the Data Repair API.
+For instructions on testing your JWT, see Step 3 in the 
+[Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md#step-3-try-it)
+documentation.
 
-## Submitting a data repair job
+> NOTE: A new access token must be created before each use of the Data Repair API.
 
-To submit a data repair job follow these steps:
+## Submit a data repair job
 
-#### 1. Estimate Job Size
+To submit a data repair job, there are three steps:
 
-The Data Repair API incurs charges based on usage.  To aide in estimating the cost of a data repair job, the Data Repair
-API includes the `/serverCallEstimate` endpoint, which returns a count of the Server Call volume estimate for the data
-repair job.  It also returns `validationToken`, which is required for the job creation call.
+#### 1. Estimate repair size
 
-#### 2. Create Job
+After the close of the public beta, the Data Repair API will incur charges based on usage. The Data Repair API scans
+every row of data looking for repairs.   Sizing is based on rows scanned.  The `/serverCallEstimate` endpoint is a
+required step to help you estimate the cost of a repair .  The `/serverCallEstimate` endpoint returns a count of the
+Server Call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required
+for the job creation call.
 
-To create a data repair job, use the `/job` endpoint.  This endpoint requires a Report Suite, date range,
-`validationToken` (from `/serverCallEstimate`), and a job definition, which will specify the variables to be repaired.
+#### 2. Create repair
 
-#### 3. Monitor Job
+To create a data repair job, use the `/job` endpoint. This endpoint requires a Report Suite, date range,
+`validationToken` (from `/serverCallEstimate`), and a job definition, which specifies the variables to be repaired.  
 
-When a repair job is created, a Job ID will be returned.  The `/job/{JOB_ID}` endpoint can be used to monitor the status
-of a job at any point after job submission.  The `serverCalls` value in the job status response will be used for final
-billing of Data Repair API usage.  
+#### 3. Monitor progress
 
+When a repair job is created, a Job ID will be returned. The `/job/{JOB_ID}` endpoint can be used to monitor the status
+of a job at any point after job submission.
 
-## Recommended Workflow
-
-The Data Repair API permanently deletes or edits existing data.  We recommend a careful approach to executing the
-repair to minimize accidental data deletion.  The following workflow provides multiple checkpoints and is highly
-recommended.  Review the data after each step to confirm the data repair job completes as expected.  All usage of the
-Data Repair API, including testing, will be represented in your invoice.
-
-1.	Test the data repair job logic in a __development__ Report Suite for __one day__ of data.
-2.	Test the data repair job logic in a __development__ Report Suite for __one month__ of data.
-3.	Test the data repair job logic in a __production__ Report Suite for __one day__ of data.
-4.	Test the data repair job logic in a __production__ Report Suite for __one month__ of data.
-5.	Once all testing and validation is complete, then proceed with the __full date range__ of the data repair for
-__production__ data.
+Completion of a repair job may take hours to days.
 
 ## Server Call Estimate
 
-The `/serverCallEstimate` endpoint calculates the number of Server Calls for the given Report Suite and date
-range provided.  It also returns `validationToken`, which is will be passed to `/job` in the
-`x-validation-token` header.
+The /serverCallEstimate endpoint calculates the number of Server Calls for the given Report Suite and date range
+provided.  It also returns `validationToken`, which is will be passed to `/job` in the `validationToken` query string 
+parameter. The Server Call volume can be multiplied by the CPMM rate found in the Data Repair API Sales Order. This
+calculation provides an estimate of the cost of the data repair job. The date range is specified in days and is based
+on the time zone of the Report Suite. The date range is inclusive of the start and end dates for estimates and repairs.
 
-The Server Call volume can be multiplied by the CPMM rate found in the Data Repair API Sales Order.  This will
-provide an estimate of the cost of the data repair job. 
-
-The date range is specified in days and is based on the time zone of the Report Suite.  The date range is inclusive of
-the start and end dates for estimates and repairs.
+The `ANALYTICS_GLOBAL_COMPANY_ID` can be found in Adobe Analytics > Admin > Company Settings > API Access. 
+Look for the bold text value in the second sentence.
 
 #### Example Request
 ```bash
@@ -124,24 +126,24 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
 
 ## Job Creation
 
-The `/job` endpoint creates the data repair job.  A JSON-formatted Job Definition is passed in as the POST body and a
-job id is returned.
+The `/job` endpoint creates the data repair job. A JSON-formatted Job Definition is passed in as the POST body and a
+Job ID is returned. 
 
-`/serverCallEstimate` returns `validationToken`, which must be passed to `/job` in the 
-`x-validation-token` header. `/job` will use `validationToken` to confirm that its parameters are the same as those
-passed to `/serverCallEstimate`.  If the parameters do not match or the Server Call volumne has changed significantly
-between the call to `/serverCallEstimate` and the call to `/job`, the Data Repair API will return an error.
+The `/job` endpoint uses the `validationToken` from the `/serverCallEstimate` endpoint to confirm that its parameters
+are the same as those passed to `/serverCallEstimate`. If the parameters do not match or the Server Call volume has
+changed significantly between the call to `/serverCallEstimate` and the call to `/job`, the Data Repair API will
+return an error.
 
 If the scope of the data repair job changes, re-run the `/serverCallEstimate` endpoint to generate a new
 `validationToken`.
 
-> WARNING: Use of the Data Repair API will permanently delete or edit existing Analtyics data. Follow the recommended
+> WARNING: Use of the Data Repair API permanently deletes existing Adobe Analtyics data. Follow the recommended
 > workflow for testing and validation prior to applying any data repair jobs to production data.
 
 #### Job Definition
 
-The job definition is used to specify the variables to be repaired and what actions to take on those variables. 
-In general, it is of the form:
+The job definition is used to specify the variables you want to repair and what actions to take on those variables.
+The definition format follows this pattern:
 
 ```json
 {
@@ -176,9 +178,8 @@ To delete Activity Map data, use the following job definition:
 #### Example Request
 ```bash
 curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
-    -H "Authorization: Bearer {ACCESS_TOKEN}" -H "x-api-key: {API_KEY/CLIENT_ID}" \
-    -H "x-validation-token: {VALIDATION_TOKEN}" -d '{REPAIR_JOB_DEFINITION}' \
-    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job?dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}"
+    -H "Authorization: Bearer {ACCESS_TOKEN}" -H "x-api-key: {API_KEY/CLIENT_ID}" -d '{REPAIR_JOB_DEFINITION}' \
+    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job?validationToken={VALIDATION_TOKEN}&dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}"
 ```
 
 #### Example Response
@@ -207,45 +208,11 @@ curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALY
 ## Job Status
 
 The `/job/{JOB_ID}` endpoint is called to check on the progress of a data repair job.  Following submission of a job,
-`status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status` will
-report as `complete` and `serverCalls` will be set to the actual number of records scanned during the data repair job.
-This `serverCalls` value will be included in your invoice.
+`status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status`
+will report as `complete` and `serverCalls` will be set to the actual number of Server Calls scanned during the data
+repair job. This `serverCalls` value will be used to calculate usage.
 
-#### Example Request
-```bash
-curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
-    -H "Authorization: Bearer {ACCESS_TOKEN}" -H "x-api-key: {API_KEY/CLIENT_ID}" \
-    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job/{JOB_ID}"
-```
-
-#### Example Response
-```json
-{
-    "dateRangeEnd": "2019-03-28",
-    "dateRangeStart": "2019-03-28",
-    "jobCompleteTime": "2020-03-24T10:13:51+00:00",
-    "jobCreateTime": "2020-03-24T09:02:59+00:00",
-    "jobDefinition": {
-        "variables": {
-            "activitymap": {
-                "action": "delete"
-            }
-        }
-    },
-    "jobId": "24",
-    "progress": 100,
-    "reportSuiteId": "sample.reportsuite",
-    "serverCalls": 2,
-    "status": "complete"
-}
-```
-
-## Job Status
-
-The `/job/{JOB_ID}` endpoint is called to check on the progress of a data repair job.  Following submission of a job,
-`status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status` will
-report as `complete` and `serverCalls` will be set to the actual number of records scanned during the data repair job.
-This `serverCalls` value will be included in your invoice.
+Completion of a repair job may take hours to days.
 
 #### Example Request
 ```bash
@@ -329,3 +296,17 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
 ]
 
 ```
+
+## Recommended Workflow
+
+The Data Repair API permanently deletes or edits existing data.  The following workflow provides multiple checkpoints
+to minimize the risk of accidental data deletion.  Review the data after each step to confirm the data repair job
+completes as expected.
+ 
+Create a repair job in the following:
+1. A __development__ Report Suite for __one day__ of data.
+2. A __development__ Report Suite for __one month__ of data.
+3. A __production__ Report Suite for __one day__ of data.
+4. A __production__ Report Suite for __one month__ of data.
+5. Once all testing and validation is complete, then proceed with the __full date range__ of the data repair
+   for __production__ data.
