@@ -703,16 +703,7 @@
 				"summary": "Get Timezones",
 				"description": "Retrieves all supported timezones.",
 				"operationId": "getTimezones_1",
-				"parameters": [
-					{
-						"name": "x-proxy-global-company-id",
-						"in": "header",
-						"description": "Proxy global company id",
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
+				"parameters": [],
 				"responses": {
 					"200": {
 						"content": {
