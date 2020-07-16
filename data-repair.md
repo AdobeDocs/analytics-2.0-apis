@@ -1,17 +1,17 @@
-# Data Repair API
+# Data Repair API Beta
 
 > NOTE: This page contains beta documentation that is subject to change before the final product release. 
 
-The Data Repair API provides you with a mechanism to delete or edit existing Adobe Analytics data.
-Repair requests are made by submitting a job definition which includes the report suite, date range, variables
-and actions to be applied to the data. 
+The Data Repair API provides you with a mechanism to delete or edit certain existing Adobe Analytics data.
+repair requests are made by submitting a job definition to the Data Repair API, which includes
+the report suite, date range, variables and actions to be applied to the data. 
 
-The Data Repair API Beta supports these actions:
+The Data Repair API Beta currently supports the following actions:
 
 * Deleting Activity Map data
 
 The Data Repair API returns:
-* The server call volume estimate for the data repair job
+* The Server Call volume estimate for the data repair job
 * The job id
 * The status of a submitted job id
 * A list of all data repair jobs for a report suite
@@ -22,29 +22,40 @@ The Data Repair API returns:
 
 ## Data Repair API Beta Requirements
 
-To begin using the Data Repair API, there are four requirements:
+To begin using the Data Repair API, there are five requirements:
 
-#### 1. Request access to the API
+#### 1. Sign the Beta Agreement
+Through the Experience Cloud Beta Panel system, we have provided a simple form and agreement:
+
+https://experiencecloudpanel.adobe.com/c/r/datarepair
+
+When completing the form, please be sure to check the box “Testing new features (beta testing)” in the participation question. This indicates your willingness to participate in the beta.
+
+![data repair beta_agreement](images/data-repair-beta-agreement.png)
+
+#### 2. Request access to the API
 
 You can request free access to the Data Repair API Beta through a customer support ticket.  
 Please reference your global company id or login company in the ticket.
-Only one access request is needed for your log-in company.  Check with customer support on your company’s status.
+Only one access request is needed for your log-in company.  Please be sure to use the same name, e-mail address,
+and company you used in your completed Beta Panel form. Check with customer support on your company’s status.
 
-During the public beta, we will be sending surveys on the performance of the api
+During the public beta, we will be sending surveys on the performance of the Data Repair API
 and request your feedback on the product.  
 
-After the public beta period ends, Data Repair API access will require a sku and include usage fees. 
+After the public beta period ends, any continued use or access to the Data Repair API will require a SKU entitlement
+(via an executed Sales Order) and include usage fees.
 
-#### 2.	Create a Service Account Connection within Adobe I/O
+#### 3.	Create a Service Account Connection within Adobe I/O
 
 A Service Account Connection allows the Data Repair API to call Adobe services.  For information on how to set up the
 connection, follow the instructions described in the
 [Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md)
-documentation.   You'll configure the Connection with access to the Adobe Analytics APIs.  During the process, you
+documentation.   You can configure the Connection with access to the Adobe Analytics APIs.  During the process, you
 will generate a key pair and download the private key.  Store the API Key / Client ID associated with the Service
 Account Connection securely.  This is used when accessing the Data Repair API.
 
-#### 3. Grant the Data Repair API permission to the new Service Account Connection in the Experience Cloud
+#### 4. Grant the Data Repair API permission to the new Service Account Connection in the Experience Cloud
 
 Adobe Experience Cloud Admin Console includes product profile controls. Product profiles have Adobe Analytics-specific
 User permissions for managing integration access to reporting features and data.
@@ -57,15 +68,13 @@ For more information on creating profiles and managing permissions, see
 [Manage Products and Profiles](https://helpx.adobe.com/enterprise/using/manage-products-and-profiles.html) and
 [Manage Permissions and Roles](https://helpx.adobe.com/enterprise/using/manage-permissions-and-roles.html).
  
-#### 4.	Create a JSON Web Token
+#### 5.	Create a JSON Web Token
 
 In order to establish a secure service-to-service Adobe I/O API session, create a JSON Web Token (JWT) that
 encapsulates the identity of the product integration, and then exchange it for an access token. Every request to an
 Adobe service must include the access token in the `Authorization header`, along with the `API Key / Client ID`
 associated with the Service Account Connection.  For more information about creating a JWT access token, see
-[JWT Authentication](https://github.com/AdobeDocs/adobeio-auth/blob/stage/JWT/JWT.md)
-
-For instructions on testing your JWT, see Step 3 in the 
+[JWT Authentication](https://github.com/AdobeDocs/adobeio-auth/blob/stage/JWT/JWT.md).  For instructions on testing your JWT, see Step 3 in the 
 [Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md#step-3-try-it)
 documentation.
 
