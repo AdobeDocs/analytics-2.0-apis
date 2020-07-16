@@ -15,7 +15,7 @@ This section contains the schema for Virtual Report Suites and details about wha
 | parentRsid | string | The id of the report suite from which this virtual report suite inherits data and settings (The Analytics UI calls this `Source`) | |
 | parentRsidName | string | Friendly name of the parent report suite | |
 | description | string | Description of the purpose of the virtual report suite | User defined |
-| timezone | integer | Timezone id. See the [/reportsuites/timezones API](https://adobedocs.github.io/analytics-2.0-apis/urls.primaryName=Report%20Suite%20APIs#/Timezone/getTimezones_1) to get all supported timezones | 0-74 |
+| timezone | integer | Timezone id. See the [/reportsuites/timezones API](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Report%20Suite%20APIs#/Timezone/getTimezones_1) to get all supported timezones | 0-74 |
 | currentTimezoneOffset | integer | Timezone offset from GMT | |
 | timezoneZoneinfo | string | Friendly timezone name | *Example*: US/Mountain |
 | segmentList | Array of string | List of segment ids to be used to filter the data for this virtual report suite. Segment ids can be retrieved using the [Segments APIs](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Analytics%20Reporting%20APIs#/segments/segments_getSegments) | |
@@ -118,7 +118,7 @@ In the following example the parent report suite has a timezone of US/Mountain b
   "timezone" : 47
 }
 ```
-See the [/reportsuites/timezones API](https://adobedocs.github.io/analytics-2.0-apis/urls.primaryName=Report%20Suite%20APIs#/Timezone/getTimezones_1) to get all supported timezones
+See the [/reportsuites/timezones API](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Report%20Suite%20APIs#/Timezone/getTimezones_1) to get all supported timezones
 
 ### Curated Components Example
 The following example creates a virtual report suite that curates the browser dimension and visits metric:
