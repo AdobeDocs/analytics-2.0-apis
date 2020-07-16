@@ -46,6 +46,15 @@ Please also refer to the [Reporting Tricks Guide](reporting-tricks.md) to learn 
 ## Segments API Guide
 The [Segments API Guide](segments-guide.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
 
+## Report Suite API Guide
+The [Report Suite API Guide](report-suites.md) provides more details on configuring report suites and virtual report suites.
+
+## Bulk Data Insertion API Guide
+See the [Analytics Bulk Data Insertion API User's Guide](bdia.md)
+
+## Data Repair API
+See the [Data Repair API Guide](data-repair.md)
+
 ## Migrating from 1.4 APIs to 2.0 APIs
 For help migrating from the 1.3/1.4 versions of the Analytics API to the newer and more capable ```/reports``` API, refer to the [migration guide](migration-guide.md).
 
