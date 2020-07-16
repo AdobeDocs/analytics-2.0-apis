@@ -111,10 +111,29 @@
           "title": "Discovery"
     },
     {
+          "importedFileName": "report-suites",
+          "pages": [
+						{
+								"importedFileName": "vrs",
+								"pages": [],
+								"path": "AdobeDocs/analytics-2.0-apis/master/vrs.md",
+								"title": "Virtual Report Suites API"
+						}
+					],
+          "path": "AdobeDocs/analytics-2.0-apis/master/report-suites.md",
+          "title": "Report Suite API"
+    },
+    {
           "importedFileName": "bdia",
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/bdia.md",
           "title": "Bulk Data Insertion API"
+    },
+    {
+          "importedFileName": "data-repair",
+          "pages": [],
+          "path": "AdobeDocs/analytics-2.0-apis/master/data-repair.md",
+          "title": "Data Repair API"
     },
     {
           "importedFileName": "faq",
