@@ -31,7 +31,11 @@ Through the Experience Cloud Beta Panel system, we have provided a simple form a
 
 https://experiencecloudpanel.adobe.com/c/r/datarepair
 
-When completing the form, please be sure to check the box “Testing new features (beta testing)” in the participation question. This indicates your willingness to participate in the beta.
+When completing the form, please be sure to check the box “Testing new features (beta testing)” in the participation
+question. This indicates your willingness to participate in the beta.
+
+After submitting the form you will receive an e-mail from the Adobe Beta program.  Click the link in the e-mail to
+verify your registration for the beta.
 
 ![data repair beta_agreement](images/data-repair-beta-agreement.png)
 
