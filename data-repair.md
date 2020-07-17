@@ -4,7 +4,9 @@
 
 The Data Repair API provides you with a mechanism to delete or edit certain existing Adobe Analytics data.
 repair requests are made by submitting a job definition to the Data Repair API, which includes
-the report suite, date range, variables and actions to be applied to the data. 
+the report suite, date range, variables and actions to be applied to the data.  The Data Repair API Beta is
+free for customers to use, with a usage cap of 100 million rows of data scanned per report suite for the
+duration of the Public Beta.  The Data Repair API Beta will be available from July 16, 2020 through October 7, 2020.
 
 The Data Repair API Beta currently supports the following actions:
 
