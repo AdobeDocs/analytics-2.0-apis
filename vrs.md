@@ -31,6 +31,7 @@ This section contains the schema for Virtual Report Suites and details about wha
 | sessionDefinition | Array of [SessionDefinitionOptions](#sessiondefinitionoptions) | Used to enable report time processing and change session timeout rules (The Analytics UI calls this `Visit Definition`) | |
 | owner | [Owner](#owner) | Information about the Analytics user that owns the virtual report suite | |
 | compatibility | [VrsCompatibility](#vrscompatibility) | Contains information about if the virtual report suite definition is valid and the products with which it is compatible. | |
+| backgroundSessionsEnabled | boolean | Indicates if background hits will start a new visit. See [Context-aware sessions - Background Hit Processing](https://docs.adobe.com/content/help/en/analytics/components/virtual-report-suites/vrs-mobile-visit-processing.html#background-hit-processing) for more information | true, false |
 
 ### CuratedComponent
 | Attribute | Type | Description | Possible Values |
