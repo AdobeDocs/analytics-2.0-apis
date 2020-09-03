@@ -1446,7 +1446,13 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "successful operation",
+            "description" : "Successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/RankedReportData"
+            }
+          },
+          "206" : {
+            "description" : "Partially successful operation.  Some response columns contain errors.  See the [Partial Responses](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md#partial-responses-206-status-code) for details.",
             "schema" : {
               "$ref" : "#/definitions/RankedReportData"
             }
