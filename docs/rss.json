@@ -221,7 +221,8 @@
 									"dataSchema",
 									"sessionDefinition",
 									"curatedComponents",
-									"type"
+									"type",
+									"backgroundSessionsEnabled"
 								]
 							}
 						}
@@ -308,7 +309,8 @@
 									"dataSchema",
 									"sessionDefinition",
 									"curatedComponents",
-									"type"
+									"type",
+									"backgroundSessionsEnabled"
 								]
 							}
 						}
@@ -382,7 +384,8 @@
 									"dataSchema",
 									"sessionDefinition",
 									"curatedComponents",
-									"type"
+									"type",
+									"backgroundSessionsEnabled"
 								]
 							}
 						}
@@ -462,7 +465,8 @@
 									"dataSchema",
 									"sessionDefinition",
 									"curatedComponents",
-									"type"
+									"type",
+									"backgroundSessionsEnabled"
 								]
 							}
 						}
@@ -643,7 +647,8 @@
 									"dataSchema",
 									"sessionDefinition",
 									"curatedComponents",
-									"type"
+									"type",
+									"backgroundSessionsEnabled"
 								]
 							}
 						}
@@ -817,6 +822,9 @@
 						"items": {
 							"$ref": "#/components/schemas/CuratedComponent"
 						}
+					},
+					"backgroundSessionsEnabled" : {
+						"type" : "boolean"
 					},
 					"timezone": {
 						"type": "integer",
