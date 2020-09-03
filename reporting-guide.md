@@ -16,6 +16,19 @@ Before you can use Analytics APIs, you need to obtain authentication and receive
 
 The `/reports` endpoint description is shown in our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/). Use the Swagger UI to see endpoint summaries, available methods, parameters, example values, models, and status codes, and to try out the API.
 
+## Partial Responses (206 Status Code)
+
+A 206 status code indicates a partial response.  This means there were some columns in the reporting response that has errors.  These errors may be any of the following:
+
+* Unauthorized Metric: User does not have access to the requested metric
+* Metric Not Enabled: The requested metric is not enabled in this report suite
+* Unauthorized Dimension: User does not have access to the requested dimension
+* Dimension Not Enabled: The requested dimension is not enabled in this report suite
+* Unauthorized Global Dimension: User does not have access to the global dimension for this request
+* Global Dimension Not Enabled: The global dimension for this request is not enabled in this report suite
+* Unexpected Number of Items: Anomaly Detection algorithm returned an unexpected number of anomalies
+* General Service Error: General Anomaly Detection service error
+
 ## Best Practices
 
 Please follow these guidelines when using Analytics APIs:
