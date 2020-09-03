@@ -18,7 +18,7 @@ The `/reports` endpoint description is shown in our [Swagger UI](https://adobedo
 
 ## Partial Responses (206 Status Code)
 
-A 206 status code indicates a partial response.  This means there were some columns in the reporting response that has errors.  These errors may be any of the following:
+A 206 status code indicates a partial response.  This means there were some columns in the reporting response that have errors.  These errors may be any of the following:
 
 * Unauthorized Metric: User does not have access to the requested metric
 * Metric Not Enabled: The requested metric is not enabled in this report suite
