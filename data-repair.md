@@ -11,16 +11,19 @@ duration of the Public Beta.  The Data Repair API Beta will be available from Ju
 The Data Repair API Beta currently supports the following actions:
 
 * Deleting Activity Map data
+* Deleting Custom Traffic (prop) data
+* Deleting Custom Conversion (eVar) data
 
 The Data Repair API returns:
+
 * The Server Call volume estimate for the data repair job
 * The job id
 * The status of a submitted job id
 * A list of all data repair jobs for a report suite
 
-> WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data.
-> We recommend a careful approach to executing the repair to minimize accidental deletion.
-> Read through this document before using the Data Repair API.
+>WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data. We recommend a careful
+approach to executing the repair to minimize accidental deletion. Read through this document before using the
+Data Repair API.
 
 ## Data Repair API Beta Requirements
 
@@ -173,17 +176,44 @@ The definition format follows this pattern:
 }
 ```
 
-#### Activity Map
+##### Variables
+The following variables are available for deletion via the Data Repair API:
+* Activity Map
+    * The Activity Map variable includes `clickmappage`, `clickmaplink`, `clickmapregion`, and as well as the context data
+    used to populate these identities
+* Props (Custom Traffic Variables)
+    * Custom Traffic Property variables (commonly referred to as 'props') are referenced by number -- for example `prop3` or
+    `prop27`; props are numbered from 1 to 75
+* eVars (Custom Conversion Variables)
+    * Custom Conversion variables (commonly referred to as 'eVars') are referenced by number -- for example `evar7` or
+    `evar173`; eVars are numbered from 1 to 250
+    * An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.
+    Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset"
+    option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be
+    cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the
+    [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html).
 
-The Activity Map variable includes `clickmappage`, `clickmaplink`, `clickmapregion`, and `clickmaplinkbyregion` as well
-as the context data used to populate these identities.
+##### Actions
+The following actions are available for the variables mentioned above: 
+* Delete
+    * All values for the specified variable are deleted for the indicated timeframe
 
-To delete Activity Map data, use the following job definition:
+#### Example Repair Job Definition
+The following *Repair Job Definition* is an example of how a Data Repair Request would be formatted to delete data from Activity Map, prop12, evar74, and evar107:
 
 ```json
 {
   "variables": {
     "activitymap": {
+      "action": "delete"
+    },
+    "prop12": {
+      "action": "delete"
+    },
+    "evar74": {
+      "action": "delete"
+    },
+    "evar107": {
       "action": "delete"
     }
   }
@@ -207,6 +237,15 @@ curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALY
     "jobDefinition": {
         "variables": {
             "activitymap": {
+                "action": "delete"
+            },
+            "prop12": {
+                "action": "delete"
+            },
+            "evar74": {
+                "action": "delete"
+            },
+            "evar107": {
                 "action": "delete"
             }
         }
@@ -247,6 +286,15 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
         "variables": {
             "activitymap": {
                 "action": "delete"
+            },
+            "prop12": {
+                "action": "delete"
+            },
+            "evar74": {
+                "action": "delete"
+            },
+            "evar107": {
+                "action": "delete"
             }
         }
     },
@@ -281,6 +329,15 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
             "variables": {
                 "activitymap": {
                     "action": "delete"
+                },
+                "prop12": {
+                    "action": "delete"
+                },
+                "evar74": {
+                    "action": "delete"
+                },
+                "evar107": {
+                    "action": "delete"
                 }
             }
         },
@@ -297,7 +354,7 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
         "jobCreateTime": "2020-04-24T09:02:59+00:00",
         "jobDefinition": {
             "variables": {
-                "activitymap": {
+                "prop82": {
                     "action": "delete"
                 }
             }
@@ -325,3 +382,23 @@ Create a repair job in the following:
 4. A __production__ Report Suite for __one month__ of data.
 5. Once all testing and validation is complete, then proceed with the __full date range__ of the data repair
    for __production__ data.
+
+## Usage Notes
+
+1. WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data. We recommend a careful
+approach to executing the repair to minimize accidental deletion. Read through this document before using the
+Data Repair API.
+
+1. While the Data Repair process is running, it is possible for an Adobe Analytics report -- referencing the same
+variable indicated in the Data Repair job and across the same timeframe -- to temporarily return "Unspecified" for
+the variable in question. Once the Data Repair job is complete, the values returned by Adobe Analytics (and not
+removed by the Data Repair process) will display normally.
+
+1. Because segmentations and classifications rely on variable values, it is important to review dependencies on
+variable values before repairing data to prevent unexpected changes.
+
+1. An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.
+Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset"
+option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be
+cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the
+[Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html). 
