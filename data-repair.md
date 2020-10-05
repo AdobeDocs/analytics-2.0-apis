@@ -1,14 +1,10 @@
-# Data Repair API Beta
-
-> NOTE: This page contains beta documentation that is subject to change before the final product release. 
+# Data Repair API
 
 The Data Repair API provides you with a mechanism to delete or edit certain existing Adobe Analytics data.
-repair requests are made by submitting a job definition to the Data Repair API, which includes
-the report suite, date range, variables and actions to be applied to the data.  The Data Repair API Beta is
-free for customers to use, with a usage cap of 100 million rows of data scanned per report suite for the
-duration of the Public Beta.  The Data Repair API Beta will be available from July 16, 2020 through October 7, 2020.
+Repair requests are made by submitting a job definition to the Data Repair API, which includes
+the report suite, date range, variables and actions to be applied to the data.
 
-The Data Repair API Beta currently supports the following actions:
+The Data Repair API currently supports the following actions:
 
 * Deleting Activity Map data
 * Deleting Custom Traffic (prop) data
@@ -25,37 +21,16 @@ The Data Repair API returns:
 approach to executing the repair to minimize accidental deletion. Read through this document before using the
 Data Repair API.
 
-## Data Repair API Beta Requirements
+## Getting Started
 
-To begin using the Data Repair API, there are five requirements:
+To begin using the Data Repair API, there are four requirements:
 
-#### 1. Sign the Beta Agreement
-Through the Experience Cloud Beta Panel system, we have provided a simple form and agreement:
+#### 1. Confirm Contract
 
-https://experiencecloudpanel.adobe.com/c/r/datarepair
+The Data Repair API is a paid service.  Reach out to your Adobe Account Team for details and confirmation of your
+status.
 
-When completing the form, please be sure to check the box “Testing new features (beta testing)” in the participation
-question. This indicates your willingness to participate in the beta.
-
-After submitting the form you will receive an e-mail from the Adobe Beta program.  Click the link in the e-mail to
-verify your registration for the beta.
-
-![data repair beta_agreement](images/data-repair-beta-agreement.png)
-
-#### 2. Request access to the API
-
-You can request free access to the Data Repair API Beta through a customer support ticket.  
-Please reference your global company id or login company in the ticket.
-Only one access request is needed for your log-in company.  Please be sure to use the same name, e-mail address,
-and company you used in your completed Beta Panel form. Check with customer support on your company’s status.
-
-During the public beta, we will be sending surveys on the performance of the Data Repair API
-and request your feedback on the product.  
-
-After the public beta period ends, any continued use or access to the Data Repair API will require a SKU entitlement
-(via an executed Sales Order) and include usage fees.
-
-#### 3.	Create a Service Account Connection within Adobe I/O
+#### 2.	Create a Service Account Connection within Adobe I/O
 
 A Service Account Connection allows the Data Repair API to call Adobe services.  For information on how to set up the
 connection, follow the instructions described in the
@@ -64,7 +39,7 @@ documentation.   You can configure the Connection with access to the Adobe Analy
 will generate a key pair and download the private key.  Store the API Key / Client ID associated with the Service
 Account Connection securely.  This is used when accessing the Data Repair API.
 
-#### 4. Grant the Data Repair API permission to the new Service Account Connection in the Experience Cloud
+#### 3. Grant the Data Repair API permission to the new Service Account Connection in the Experience Cloud
 
 Adobe Experience Cloud Admin Console includes product profile controls. Product profiles have Adobe Analytics-specific
 User permissions for managing integration access to reporting features and data.
@@ -77,7 +52,7 @@ For more information on creating profiles and managing permissions, see
 [Manage Products and Profiles](https://helpx.adobe.com/enterprise/using/manage-products-and-profiles.html) and
 [Manage Permissions and Roles](https://helpx.adobe.com/enterprise/using/manage-permissions-and-roles.html).
  
-#### 5.	Create a JSON Web Token
+#### 4.	Create a JSON Web Token
 
 In order to establish a secure service-to-service Adobe I/O API session, create a JSON Web Token (JWT) that
 encapsulates the identity of the product integration, and then exchange it for an access token. Every request to an
@@ -95,11 +70,10 @@ To submit a data repair job, there are three steps:
 
 #### 1. Estimate repair size
 
-After the close of the public beta, the Data Repair API will incur charges based on usage. The Data Repair API scans
-every row of data looking for repairs.   Sizing is based on rows scanned.  The `/serverCallEstimate` endpoint is a
-required step to help you estimate the cost of a repair .  The `/serverCallEstimate` endpoint returns a count of the
-Server Call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required
-for the job creation call.
+The Data Repair API incurs charges based on usage.  It scans every row of data looking for repairs.   Sizing is
+based on rows scanned.  The `/serverCallEstimate` endpoint is a required step to help you estimate the cost of a repair.
+The `/serverCallEstimate` endpoint returns a count of the Server Call volume for the report suite date range. The
+endpoint also returns a `validationToken`, which is required for the job creation call.
 
 #### 2. Create repair
 
@@ -388,6 +362,13 @@ Create a repair job in the following:
 1. WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data. We recommend a careful
 approach to executing the repair to minimize accidental deletion. Read through this document before using the
 Data Repair API.
+
+1. The Data Repair API will only accept repair requests that start within the last 36 months and end prior to the 
+current month.
+
+1. The Data Repair API does not currently support jobs for report suites enabled with Cross-Device Analytics.
+
+1. Only one job at a time can be running per report suite.
 
 1. While the Data Repair process is running, it is possible for an Adobe Analytics report -- referencing the same
 variable indicated in the Data Repair job and across the same timeframe -- to temporarily return "Unspecified" for
