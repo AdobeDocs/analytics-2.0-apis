@@ -312,14 +312,19 @@ Create a repair job in the following:
 
 1. WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data. We recommend a careful approach to executing the repair to minimize accidental deletion. Read through this document before using the Data Repair API.
 
-1. The Data Repair API will only accept repair requests that start within the last 36 months and end prior to the current month.
-
-1. The Data Repair API does not currently support jobs for report suites enabled with Cross-Device Analytics.
-
-1. Only one job at a time can be running per report suite.
-
 1. While the Data Repair process is running, it is possible for an Adobe Analytics report -- referencing the same variable indicated in the Data Repair job and across the same timeframe -- to temporarily return "Unspecified" for the variable in question. Once the Data Repair job is complete, the values returned by Adobe Analytics (and not removed by the Data Repair process) will display normally.
 
 1. Because segmentations and classifications rely on variable values, it is important to review dependencies on variable values before repairing data to prevent unexpected changes.
 
 1. An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html). 
+
+## Limitations
+
+1. The Data Repair API will only accept repair requests that start within the last 36 months and end prior to the current month.
+
+1. The Data Repair API does not currently support jobs for report suites enabled with Cross-Device Analytics.
+
+1. The Data Repair API does not currently support jobs involving variables with merchandising enabled.
+
+1. Only one job at a time can be running per report suite.
+
