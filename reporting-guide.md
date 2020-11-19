@@ -862,7 +862,7 @@ TopItems in the API are useful when you want to see the top X items for the spec
 
 ### Example Response
 
-The following example shows that the top items report for dimension "variables/page"
+The following example shows the top items report response for the dimension "variables/page"
 
 ```json
 {
