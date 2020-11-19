@@ -1547,6 +1547,13 @@
           "required" : false,
           "type" : "string"
         }, {
+          "name" : "lookupNoneValues",
+          "in" : "query",
+          "description" : "Controls None values to be included",
+          "required" : false,
+          "type" : "boolean",
+          "default" : true
+        }, {
           "name" : "limit",
           "in" : "query",
           "description" : "Number of results per page",
