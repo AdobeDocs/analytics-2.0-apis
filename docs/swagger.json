@@ -1466,6 +1466,130 @@
         }
       }
     },
+    "/reports/topItems" : {
+      "get" : {
+        "tags" : [ "reports" ],
+        "summary" : "Runs a top items report for the request in the post body",
+        "description" : "Get the top X items (based on paging restriction) for the specified dimension and rsid. Defaults to last 90 days.",
+        "operationId" : "runTopItemReport",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "rsid",
+          "in" : "query",
+          "description" : "ID of desired report suite ie. myrsid",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "dimension",
+          "in" : "query",
+          "description" : "Dimension to run the report against. Example: 'variables/page'",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale that system named metrics should be returned in",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "dateRange",
+          "in" : "query",
+          "description" : "Format: YYYY-MM-DD/YYYY-MM-DD",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "search-clause",
+          "in" : "query",
+          "description" : "General search string; wrap with single quotes. Example: 'PageABC'",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "startDate",
+          "in" : "query",
+          "description" : "Format: YYYY-MM-DD",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "endDate",
+          "in" : "query",
+          "description" : "Format: YYYY-MM-DD",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "searchAnd",
+          "in" : "query",
+          "description" : "Search terms that will be AND-ed together. Space delimited.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "searchOr",
+          "in" : "query",
+          "description" : "Search terms that will be OR-ed together. Space delimited.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "searchNot",
+          "in" : "query",
+          "description" : "Search terms that will be treated as NOT including. Space delimited.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "searchPhrase",
+          "in" : "query",
+          "description" : "A full search phrase that will be searched for.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "searchPhrase",
+          "in" : "query",
+          "description" : "A full search phrase that will be searched for.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "lookupNoneValues",
+          "in" : "query",
+          "description" : "Controls None values to be included",
+          "required" : false,
+          "type" : "boolean",
+          "default" : true
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Number of results per page",
+          "required" : false,
+          "type" : "integer",
+          "default" : 10
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Page number (base 0 - first page is \"0\")",
+          "required" : false,
+          "type" : "integer",
+          "default" : 0
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/UnhashReportData"
+            }
+          },
+          "206" : {
+            "description" : "Partially successful operation.  Some response columns contain errors.  See the [Partial Responses](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md#partial-responses-206-status-code) for details.",
+            "schema" : {
+              "$ref" : "#/definitions/UnhashReportData"
+            }
+          },
+          "400" : {
+            "description" : "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
+            "schema" : {
+              "$ref" : "#/definitions/ReportErrorStatus"
+            }
+          }
+        }
+      }
+    },
     "/segments" : {
       "get" : {
         "tags" : [ "segments" ],
@@ -3421,6 +3545,63 @@
           "type" : "array",
           "items" : {
             "type" : "Tag"
+          }
+        }
+      }
+    },
+    "UnhashReportData" : {
+      "type" : "object",
+      "properties" : {
+        "totalPages" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "firstPage" : {
+          "type" : "boolean"
+        },
+        "lastPage" : {
+          "type" : "boolean"
+        },
+        "numberOfElements" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "number" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalElements" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "reportId" : {
+          "type" : "string"
+        },
+        "searchAnd" : {
+          "type" : "string"
+        },
+        "searchOr" : {
+          "type" : "string"
+        },
+        "searchNot" : {
+          "type" : "string"
+        },
+        "searchPhrase" : {
+          "type" : "string"
+        },
+        "oberonRequestXML" : {
+          "type" : "string"
+        },
+        "oberonResponseXML" : {
+          "type" : "string"
+        },
+        "rows" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RowItem"
           }
         }
       }
