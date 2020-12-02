@@ -1,6 +1,9 @@
-# Analytics Bulk Data Insertion API User's Guide
+# Adobe Analytics Bulk Data Insertion API - User Guide
 
 This guide presents comprehensive information for understanding and using the Bulk Data Insertion API. For specific endpoint reference information of this API, see the [2.0 Analytics API Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/).
+
+**Note:** [Data Insertion API](https://github.com/AdobeDocs/analytics-1.4-apis/blob/master/docs/data-insertion-api/index.md) and Bulk Data Insertion API are both methods to submit server-side collection data to Adobe Analytics. Data Insertion API calls are made one event at a time. Bulk Data Insertion API accepts CSV formatted files containing event data, one event per row. If you are working on a new implementation of server-side collection, we recommend using Bulk Data Insertion API.
+ 
 
 ## Overview
 
@@ -45,6 +48,7 @@ When using BDIA, server calls are sent in batch files. These files are in a spec
 ### Batch File Requirements
 
 #### Format
+
 Batch files are CSV files that conform to the [RFC-4180 standard](https://tools.ietf.org/html/rfc4180) with one change: empty lines are ignored.
 
 Each file consists of a header row (the first row in the file) and subsequent data rows. Rows appear on lines, terminated by a line break (CRLF or LF).
@@ -60,6 +64,7 @@ The last field in a row must not be followed by a comma.
 The last record in the file may or may not have a line break (CRLF or LF).
 
 #### Required Columns
+
 Each header row must contain the following required columns:
 * At least one of:
   *  `marketingCloudVisitorID`
@@ -79,7 +84,8 @@ Each header row must contain the following required columns:
 >* POSIX/Epoch Time (e.g., 1486769029)
 >* ISO-8601 (e.g., 2017-02-10T16:23:49-07:00)
 
-#### Other Columns
+#### Other Columns 
+
 When specifying other columns in the CSV file, please take note of the following rules:
 - If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicates are ignored.
 - Column header names are case insensitive.
@@ -87,15 +93,19 @@ When specifying other columns in the CSV file, please take note of the following
 - Columns can appear in any order in the CSV file
 
 #### Row Order
+
 All rows in a batch file for any given visitor must be sorted in chronological order by timestamp, from earliest to latest; this ensures that visitor events represented in the server calls occur in order. Sorting is crucial for proper purchase attribution, analyzing visitor behavior, etc. Adobe does not guarantee the integrity of data processed by BDIA if this order requirement is not strictly observed.
 
 #### Compression
+
 All batch files must be compressed using gzip compression.
 
 #### Size Restrictions
+
 Compressed files can be up to 100 MB.  Uncompressed file size is limited to 1 GB.
 
 #### Naming
+
 The Bulk Data Insertion API does not place any restrictions on file names. When submitted via an API call, a file identifier is returned that can be used to track the file. The name of the uploaded file is preserved, however, in the system so that customers have a "friendly" reference point when viewing information about files.
 
 ## Query String or Column-Based Row
@@ -118,6 +128,7 @@ The *"queryString"* column must have the values in its key/value pairs be fully 
 - ce=UTF-8 (Character Encoding of UTF-8)
 
 ## Visitor Groups
+
 Visitor groups allow customers to upload files that can be processed in parallel, thus increasing the overall ingestion throughput. Each file uploaded must be tagged with a visitor group via an HTTP header. There are important rules that must be followed when categorizing batch files into visitor groups.
 
 A visitor group is a set of visitor IDs that are disjoint from any other visitor group set. This affects which server calls can be batched into which files. Because each file belongs to a single visitor group, two files that belong to different visitor groups must always have separate visitor IDs in them--there can be no overlap between visitor IDs across groups.
@@ -129,19 +140,23 @@ Customers can split up their visitor IDs and therefore files into any number of 
 Another way to think of visitor groups is to view them as separate processing pipelines. Each visitor group creates a separate processing pipeline for files associated with that visitor group. Each pipeline processes files concurrently with other processing pipelines.
 
 ### Additional Visitor Group Example
+
 Suppose a set of server calls has integer visitor IDs, 1-100, and we want to create three disjoint visitor group sets. We can use the mathematical MOD operation to organize these visitors into 3 groups. Server calls where `visitor ID MOD 3 = 0` go into visitor group `0`. Server calls where `visitor ID MOD 3 = 1` go into visitor group `1`, and so forth. Server calls are batched into files and ordered by timestamp, per their visitor group, and are then uploaded with that visitor group specified in the header of the API request. Since the visitors in these files are all disjoint, the BDIA system can process them in parallel without risking any calls for a visit being processed out of order.
 
 ![note visitor group diagram](/images/bia-visitor_groups.jpg)
 
 ### Changing Visitor Groups
+
 Customers may wish to change how they divide their visitor IDs into groups over time. This is possible as long as all files using previously named visitor groups completely finish ingestion before files with new visitor group assignments are uploaded. This ensures that there will be no visitor ID overlap between the new groups and old groups.
 
 ### Uploading Files in Order
+
 Internally, files have a requirement for timestamp order. Multiple files have the same restriction. For example, if server calls for Visitor A exist over a long period of time, they may be present in multiple batch files. This is supported but the files must be uploaded in chronological order such that server calls for Visitor A are uploaded, even across files, in order. In other words, the server calls for a visitor in a file must not only be sorted chronologically, but the files must also be uploaded chronologically per their server call contents.
 
 When uploading a file via the REST API, it is important to understand that the files will be processed in the order they are received (per visitor group). If you try to upload two files at once for the same visitor group, whichever REST call receives a “200 OK” first will be processed by the system first. Because of possible race conditions, it is important to upload files within a visitor group one at a time, waiting for a “200 OK” from the server that a file has been successfully uploaded before uploading another.
 
 ### Number of Visitor Groups, File Size and Send Frequency Recommendations
+
 Bulk Insertion was designed to run optimally with larger file sizes. We recommend a pattern of larger files uploaded less frequently rather than small files uploaded more frequently.
 
 For an implementation guideline, we offer the following recommendations:
@@ -155,9 +170,11 @@ If you used 10 visitor groups, that would result in about 100 million rows per d
 File size will vary according to the average size of each row.  While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB.  However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side.  Existing clients tend to send files with rows between 3,000 and 50,000 rows, and sizes of 500k up to 20 MB.
 
 ## Customer ID and Experience Cloud Visitor ID Seeds
+
 BDIA provides a way for a customer ID to be specified which Adobe will use as a seed to automatically generate an Experience Cloud Visitor ID (ecid, formerly called Marketing Cloud Visitor ID or mid). This functionality simplifies the process of generating your own ecid, which would require a separate server call for every visitor. Providing your own customer ID as a seed for an ecid is done by adding a column to specify a "customerID.[customerIDType].id" and another boolean column, "customerID.[customerIDType].ismcseed" to denote which customer ID should be used as the seed. Other columns can be used to further define the customer ID as well. See the table below for more information about the available columns.
 
 ### Customer ID Columns and Query String Parameters
+
 When specifying a customerID column, you must choose a customerIDType to correlate the columns to each other. The customerIDType can be any alphanumeric string, but it should be considered case sensitive. For example, if there was a user ID and also an e-mail that an Analytics customer wanted to send into Analytics, they could choose "userIdent" and "userEmail," respectively, for the two customerIDTypes. If the end-user logs in using their user ID then a customer could specify "customerID.userIdent.authState" set to "AUTHENTICATED" in the data field for a user that is logged in, and "customerID.userIdent.id" would be set to their user ID.
 
 |Header/Column Name|Query String Parameter Equivalent|Field Description|
@@ -167,6 +184,7 @@ When specifying a customerID column, you must choose a customerIDType to correla
 | customerID.[customerIDType].isMCSeed | cid.[customerIDType].ismcseed | Whether or not this is the seed for the Marketing Cloud Visitor ID. Supported values are: '0' (for false) and '1' (for true).  Using '0' or two consecutive single quotes ('') causes the value to be omitted from the query string. |
 
 ### Customer ID Validation Rules
+
 The following validation rules are applicable to the Customer ID columns:
 - The customerIDType may not be empty
 - The authState and isMCSeed must be one of the valid values stated in the table above.
@@ -179,42 +197,53 @@ The following validation rules are applicable to the Customer ID columns:
 - There can only be ONE field specified as the isMCSeed per IMS Organization.  This field name must be communicated before use to the BDIA team for provisioning on the back-end.
 
 ## Throttle Limits
+
 Before using BDIA, a customer must provide an expected volume of ingestion. From the expected volume, a per-second throttle limit is configured within our system. This configuration throttles the number per-second ingestion server calls. If the system detects the throttle limit may be exceeded, it will process uploaded files more slowly to stay within the limit.
 
 These limits help ensure a timely processing and availability of data for Adobe Analytics reporting. They also help protect the system from becoming overwhelmed before proper capacity has been provisioned for a sharp increase in call volume.
 
 ## Processing Times
+
 When using client-side server call collection methods, segmentable Analytics reports become fully available after 20-50 minutes. Some real-time statistics, such as page views, can be available within sub-minute timeframes. The time before reports are available is called “latency.”
 
 ## Failure Scenarios 
+
 A file may fail to ingest all rows in two ways: 
 * Something is wrong with the file and its format
 * There is an irrecoverable error inside of BDIA due to an unexpected system failure
 
 ### Internal System Failure 
+
 BDIA has been built with redundancy and safeguards to ensure that issues due to unexpected system failures are rare. If it occurs, Adobe's monitoring will alert our on-call support staff to help address the system failure as quickly as possible. All files received are stored safely server-side for ingestion once the system stabilizes.
 
 ### Malformed File 
+
 When a file fails because something is wrong with the file. This is likely due to a change or a bug in the process that generates the files. On initial implementation, or following a reconfiguration of your generated files, we encourage users to validate their files using the validate API endpoint before submitting them to BDIA. This ensures that nothing is wrong with the file format. This validation is identical to the validation that occurs when a file is being processed. It is a helpful tool while testing and developing your file generation process.
 
 Once an automated process is established to generate and submit files to BDIA, most customers should not experience errors due to malformed files.
 
 #### File Not in GZIP Format
+
 If a file is not in the proper GZIP format, it will result in the state of "File Error" and no rows will be processed. It is recommended that the file creation process be checked to ensure that it is properly compressing files.
 
 #### Entire File Fails: No Valid Rows
+
 If the entire file fails, regardless of the size of the file, it is recommended to figure out why the file has problems, make adjustments to the file creation process, and re-create and re-upload the file. This will not result in any duplicate data, because none of the data rows were ingested into Analytics. A customer can look at the "invalid_rows" and "rows" field in the API response message to determine if all of the rows failed. If "invalid_rows" is equal to "rows," then no rows were successfully ingested.
 
 #### Mostly Valid Rows
+
 If a file with a large amount of rows is submitted, but a small percentage of those rows fail, it is probably best to not re-submit the file. If you re-submit a file, but most of the rows were successfully ingested during its initial processing, the majority of the rows will result in duplicated data in Analytics. Accepting that a small amount of rows were lost is typically better than duplicating a larger amount of data.
 
 #### Mostly Invalid Rows
+
 If a file is submitted, and a large percentage of the rows have failed, then it might make sense to repair the rows and re-submit the file, resulting in minimal duplicate hits. This should only be done, however, when the missed server calls are individually significant and the pipeline of hits can be stalled long enough to investigate and repair the error. Otherwise, we recommend fixing the file generation process and not trying to re-submit the file. 
 
 ## REST API Details
+
 Customers use Bulk Insertion by interacting with a set of REST APIs over SSL/TLS. This section details each API operation and gives examples of how to interact with the REST API. More endpoint details can also be found on the [2.0 Analytics API Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/).
 
 ### URI Host
+
 Regardless of which data center your report-suite resides in, BDIA calls can be directed to a single global host name for most clients. However, if you are legally required to have your data processed in a specific part of the world, we also make available direct access to regional hosts to ensure your data is processed where it needs to be. This hostname value will be referred to as <BDIA_HOST> in this document.
 |Location| Hostname| Comment |
 |--|--|--|
@@ -224,24 +253,27 @@ Regardless of which data center your report-suite resides in, BDIA calls can be 
 
 
 ### Authentication
+
 BDIA uses Adobe's Identity Management Service (IMS) to facilitate authentication.  This process consists of registering with our Adobe/IO API console to gain credentials, packaging those credentials as a JSON Web Token (JWT), exchanging the JWT for an expirable access token, then passing that access token in with your Bulk Data Insertion API requests. The token is passed in the header with the "Authorization" key and value in the format of "Bearer <IMS_ACCESS_TOKEN>". Detailed information on JWT Authentication can be found [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
 
 ### File ID Value
+
 Every file ingest transaction will receive a GUID to uniquely identify that ingest event.  Our system can auto-assign this GUID and return it with the initial upload response.  Alternatively, the client has the option to pass in their own identifier with each request. This is done through use of the "x-adobe-idempotency-key" header field. See the [Operations](#operations) section below for examples.
 
 ### Response Codes
+
 The following response codes are returned by the REST API and should be handled by clients interfacing with the API:
 
 | HTTP_Response | Description |
 |--|--|
-| 100 - Continue | This is used when uploading a file. This is sent to a client after authentication is checked and the HTTP request headers are validated. This signals to the client that they can begin to upload the large file. For example, if a client waits for this response code before sending a file, it can avoid uploading an entire file before learning that a visitor group ID was not specified.
-| 400 - Bad Request | Required headers are missing or the uploaded file is missing critical information or is malformed
-| 401 - Unauthorized | The API key or user token used to interact with the API is not valid.
-| 403 - Forbidden | Occurs when attempting to perform an action that is not currently allowed.
-| 404 - Not Found | Occurs when attempting to call an undefined endpoint
-| 413 - Payload Too Large | Returned when the file being uploaded is larger than the permitted size.
-| 429 - Too Many Requests | Occurs when the number of API calls exceeds the system limits.
-| 500 - Internal Error | Occurs when the API encounters an unexpected internal error that it is unable to recover from.
+| 100 - Continue | This is used when uploading a file. This is sent to a client after authentication is checked and the HTTP request headers are validated. This signals to the client that they can begin to upload the large file. For example, if a client waits for this response code before sending a file, it can avoid uploading an entire file before learning that a visitor group ID was not specified. |
+| 400 - Bad Request | Required headers are missing or the uploaded file is missing critical information or is malformed. |
+| 401 - Unauthorized | The API key or user token used to interact with the API is not valid. |
+| 403 - Forbidden | Occurs when attempting to perform an action that is not currently allowed. |
+| 404 - Not Found | Occurs when attempting to call an undefined endpoint. |
+| 413 - Payload Too Large | Returned when the file being uploaded is larger than the permitted size. |
+| 429 - Too Many Requests | Occurs when the number of API calls exceeds the system limits. |
+| 500 - Internal Error | Occurs when the API encounters an unexpected internal error that it is unable to recover from. |
 
 ### File Info Response Details
 With a file ingest POST request, a file object will be returned in the response.  That file object may contain any or all of the following fields listed below.
@@ -259,7 +291,9 @@ With a file ingest POST request, a file object will be returned in the response.
 | invalid_rows | integer | Number of invalid rows identified in the file |
 
 ## Operations
+
 ### File
+
 | | |
 |:--|:--|
 | Title | Upload File for Processing
@@ -267,11 +301,12 @@ With a file ingest POST request, a file object will be returned in the response.
 | URL | `/aa/collect/v1/events`
 | Headers |**Authorization**: *REQUIRED* - IMS Token. See the ["Authentication"](#authentication) section for details.  Format is "Bearer <IMS_ACCESS_TOKEN>".| 
 ||**x-adobe-vgid**: *REQUIRED* - Visitor Group ID. A visitor group represents the name of the processing pipeline to use when processing the file. This can be any name you choose. Files uploaded to different visitor groups should have disjoint visitor IDs.|
-||**x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console.
-||**x-adobe-idempotency-key**: *OPTIONAL* - Client Submitted File ID. This GUID can be generated by the client and passed in with the request, or alternatively if not received, BDIA will generate its own and return it with the response.
-| Multipart/Form Data Fields | **file**: *REQUIRED* - The file contents to be uploaded via multipart/form-data. Send a gzip compressed file.
+||**x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console. |
+||**x-adobe-idempotency-key**: *OPTIONAL* - Client Submitted File ID. This GUID can be generated by the client and passed in with the request, or alternatively if not received, BDIA will generate its own and return it with the response. |
+| Multipart/Form Data Fields | **file**: *REQUIRED* - The file contents to be uploaded via multipart/form-data. Send a gzip compressed file. |
 
-#### Success Response
+#### Success Response 
+
 | HTTP Code| JSON Response|
 |--|:--|
 | 200 Success |  See [File Info Response Details](#file-info-repsonse-details) above |
@@ -290,24 +325,24 @@ With a file ingest POST request, a file object will be returned in the response.
 ### Validation
 |||
 |--|:--|
-| Title| Validate File
-| Description | This endpoint primarily exists for new clients that would like to test out their file format before submitting files for processing. Files uploaded to this endpoint will not be stored on the server nor processed. This API is synchronous and will return an immediate reply if the file passes validation. If not, information about why validation fails is returned. *Note that the same validate functionality is automatically run anytime a file is submitted to the `/events` endpoint.*
-| Method | POST
-| URL | `/aa/collect/v1/events/validate`
+| Title| Validate File |
+| Description | This endpoint primarily exists for new clients that would like to test out their file format before submitting files for processing. Files uploaded to this endpoint will not be stored on the server nor processed. This API is synchronous and will return an immediate reply if the file passes validation. If not, information about why validation fails is returned. *Note that the same validate functionality is automatically run anytime a file is submitted to the `/events` endpoint.* |
+| Method | POST |
+| URL | `/aa/collect/v1/events/validate` |
 | Headers |**Authorization**: *REQUIRED* - IMS Token. See the ["Authentication"](#authentication) section for details.  Format is "Bearer <IMS_ACCESS_TOKEN>".| 
 || **x-api-key**: *REQUIRED* - "Client ID" string issued upon integration with the API through the Adobe.IO console. Found under the "Service Account (JWT)" credentials in the console. |
-| Multipart/Form Data Fields | **file**: *REQUIRED* - Send a gzip compressed file.
+| Multipart/Form Data Fields | **file**: *REQUIRED* - Send a gzip compressed file. |
 
 #### Success Response
 | HTTP Code| JSON Response|
 |--|:--|
-| 200 Success |{"success": "file is valid"}
+| 200 Success |{"success": "file is valid"} |
 
 #### Error Responses
 | HTTP Code| JSON Response|
 |--|:--|
 | 400 Range Error | {"error":"File has 2 rows that do not conform to the required CSV format! (Ex: row #59)"} |
-| 401 Unauthorized | {"error" : "Token validation failed" }
+| 401 Unauthorized | {"error" : "Token validation failed" } |
 
 #### Sample Call
 ```curl -X POST -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" -F file=@/some/path/file.gz "https://<BDIA_HOST>/aa/collect/v1/events/validate"```
@@ -356,7 +391,7 @@ Below are the list of possible errors and their results:
 ```
 | Error Description | Result |
 |:--|:--|
-| A row does not specify the minimum number of required fields | The row is skipped, and the error count for the file is incremented.
+| A row does not specify the minimum number of required fields | The row is skipped, and the error count for the file is incremented. |
 
 **Sample JSON Response**
 
