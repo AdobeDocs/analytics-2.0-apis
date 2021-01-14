@@ -742,11 +742,11 @@ The following example shows a segment requested as part of the `globalFilters` p
    ...
 ```
 
-### Breakdown Reports
+## Breakdown Reports
 
 Breakdowns in the API are useful when you want to see the cross-product of values from two different dimensions. When requesting a breakdown report, use the `metricsFilters` and `dimension` parameters to request the additional dimension.
 
-#### Example Request
+### Example Request
 
 The following example requests a breakdown report containing a list of the top five "Internal Search Terms" used by visitors who saw campaign 10. Within the `metricsFilters` parameter, the type is set to `breakdown` (line 21), and `evar1` is the marketing campaign (line 22). Within the `dimensions` parameter, `evar2` is the "Internal Search Terms" (line 27).
 
@@ -786,7 +786,7 @@ The following example requests a breakdown report containing a list of the top f
 }
 ```
 
-#### Example Response
+### Example Response
 
 The following example shows that the top search terms for Campaign 10 are "red t-shirt", "digital watches", "sport socks", "gps watch", and "running shoes."
 
@@ -852,6 +852,68 @@ The following example shows that the top search terms for Campaign 10 are "red t
    }
 ```
 
-#### Multi-level Breakdown Example
+### Multi-level Breakdown Example
 
 For a more in-depth example of breakdowns see the following guide: [Reporting with Multiple Breakdowns](reporting-multiple-breakdowns.md)
+
+## TopItem Reports
+
+TopItems in the API are useful when you want to see the top X items for the specified dimension and RSID.
+
+### Example Response
+
+The following example shows the top items report response for the dimension "variables/page"
+
+```json
+{
+  "totalPages": 13,
+  "firstPage": true,
+  "lastPage": false,
+  "numberOfElements": 10,
+  "number": 0,
+  "totalElements": 124,
+  "reportId": "topItems",
+  "rows": [
+    {
+      "itemId": "4171620885",
+      "value": "Other"
+    },
+    {
+      "itemId": "631347493",
+      "value": "Shopping Cart|Cart Details"
+    },
+    {
+      "itemId": "2804340665",
+      "value": "Home"
+    },
+    {
+      "itemId": "2981341139",
+      "value": "Search Results"
+    },
+    {
+      "itemId": "2700590175",
+      "value": "Store Locator|Search"
+    },
+    {
+      "itemId": "3783105718",
+      "value": "Shopping Cart|Shipping Information"
+    },
+    {
+      "itemId": "3916049137",
+      "value": "Equipment"
+    },
+    {
+      "itemId": "3189330925",
+      "value": "Shopping Cart|Billing Information"
+    },
+    {
+      "itemId": "3694966131",
+      "value": "Store Locator|Results"
+    },
+    {
+      "itemId": "925217727",
+      "value": "Product List"
+    }
+  ]
+}
+```
