@@ -67,14 +67,14 @@ The last record in the file may or may not have a line break (CRLF or LF).
 
 Each header row must contain the following required columns:
 * At least one of:
-  *  `marketingCloudVisitorID`
-  * `IPAddress`
-  * customerID.[customerIDType].id with customerID.[customerIDType].isMCSeed set to TRUE (see below for more information)
+    *  `marketingCloudVisitorID`
+    * `IPAddress`
+    * customerID.[customerIDType].id with customerID.[customerIDType].isMCSeed set to TRUE (see below for more information)
 * At least one of:
-  * `pageURL`
-  * `pageName`
-  * `pe`
-  * `queryString` (NOTE: If only `queryString` is used, at least one of pageURL, pageName, or pe must be specified in the `queryString` as a query parameter.)
+    * `pageURL`
+    * `pageName`
+    * `pe`
+    * `queryString` (NOTE: If only `queryString` is used, at least one of pageURL, pageName, or pe must be specified in the `queryString` as a query parameter.)
 * `reportSuiteID`
 * `timestamp`
 * `userAgent`
@@ -191,10 +191,10 @@ The following validation rules are applicable to the Customer ID columns:
 - The customerIDType may not be empty
 - The authState and isMCSeed must be one of the valid values stated in the table above.
 - At least one of the following Visitor IDs must be provided in each row:
-  - customerID.[customerIDType].id with a true customerID.[customerIDType].isMCSeed
-  - VisitorID
-  - MarketingCloudVisitorID
-  - ipAddress
+    - customerID.[customerIDType].id with a true customerID.[customerIDType].isMCSeed
+    - VisitorID
+    - MarketingCloudVisitorID
+    - ipAddress
 - If isMCSeed is set to true, the customerID may not be empty
 - There can only be ONE field specified as the isMCSeed per IMS Organization.  This field name must be communicated before use to the BDIA team for provisioning on the back-end.
 
