@@ -161,17 +161,19 @@ Bulk Insertion was designed to run optimally with larger file sizes. We recommen
 
 For an implementation guideline, we offer the following recommendations:
 - Ingestion of 2000 rows per second per visitor group
-- No more than 1 API call per second per visitor group
+- No more than 1 API call per 5 seconds per visitor group
 
 Using these guidelines, you can anticipate how many visitor groups to utilize.  For example, suppose your company anticipates submitting 1 billion hits per day.  At a rate of 2000 rows per second, a single visitor group could support about 173 million rows per 24 hours.  Dividing 1 billion (anticipated rows) by 173 million yields 5.7.  So an implementation of at least 6 visitor groups would be appropriate.  To account for visitor groups of unequal size, it may be safer to bump the estimate up. There would be no harm in using 8-10 visitor groups in this example.
 
-If you used 10 visitor groups, that would result in about 100 million rows per day/per group, or 1160 rows per second.  As far as send frequency, you could choose to send 1 file per visitor group every second (with about 1160 rows), you could send a file of about 5800 rows every 5 seconds, or a file of 11,600 rows every 10 seconds, and so forth.
+If you used 10 visitor groups, that would result in about 100 million rows per day/per group, or 1160 rows per second.  As far as send frequency, you could choose to send a file of about 5800 rows every 5 seconds, or a file of 11,600 rows every 10 seconds, and so forth.
 
 File size will vary according to the average size of each row.  While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB.  However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side.  Existing clients tend to send files with rows between 3,000 and 50,000 rows, and sizes of 500k up to 20 MB.
 
 ## Customer ID and Experience Cloud Visitor ID Seeds
 
 BDIA provides a way for a customer ID to be specified which Adobe will use as a seed to automatically generate an Experience Cloud Visitor ID (ecid, formerly called Marketing Cloud Visitor ID or mid). This functionality simplifies the process of generating your own ecid, which would require a separate server call for every visitor. Providing your own customer ID as a seed for an ecid is done by adding a column to specify a "customerID.[customerIDType].id" and another boolean column, "customerID.[customerIDType].ismcseed" to denote which customer ID should be used as the seed. Other columns can be used to further define the customer ID as well. See the table below for more information about the available columns.
+
+*Note: In order to utilize this feature, we must coordinate with the Audience Manager team to have the report-suite configured for ECID auto-generation, and make some configuration changes to BDIA to support this feature. Please have your customer support contact or consultant reach out to our team to instigate this onboarding process.
 
 ### Customer ID Columns and Query String Parameters
 
