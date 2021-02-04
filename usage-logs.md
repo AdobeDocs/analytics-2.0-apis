@@ -99,7 +99,7 @@ curl -X GET “https://analytics.adobe.io/api/[yourGlobalCompanyId]/auditlogs/us
       "eventType": "3",
       "eventDescription": "Viewed Logs:Index in the Administration Console.",
       "ipAddress": "10.179.134.242",
-      "login": "mahale@adobe.com",
+      "login": "user@adobe.com",
       "rsid": "N/A",
       "dateCreated": "2021-01-13T18:45:42.000+00:00"
     },
