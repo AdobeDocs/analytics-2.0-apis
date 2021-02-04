@@ -168,7 +168,7 @@ curl -X GET “https://analytics.adobe.io/api/[yourGlobalCompanyId]/auditlogs/us
 The following request contains query string parameters to filter the logs by eventType, IP and event.
 
 ```
-curl -X GET “https://analytics.adobe.io/api/[yourGlobalCompanyId]/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10” -H “x-api-key: [yourOAuthClientAPIKey]” -H “x-proxy-global-company-id: [yourGlobalCompanyId]” -H “Authorization: Bearer [ims user token]” -H “Accept: application/json”```
+curl -X GET “https://analytics.adobe.io/api/[yourGlobalCompanyId]/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10” -H “x-api-key: [yourOAuthClientAPIKey]” -H “x-proxy-global-company-id: [yourGlobalCompanyId]” -H “Authorization: Bearer [ims user token]” -H “Accept: application/json”
 ```
 
 ### Example Response
