@@ -5,10 +5,7 @@ The following guide provides information about the Usage Log API. We recommend u
 
 For information on authenticating, see the [Getting Started Guide for 2.0 APIs](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md).
 
-## Usage Log Schema
-This section contains the schema for Virtual Report Suites and details about what each attribute means.
-
-### Usagelogs
+### Usage Log Schema
 | Attribute | Type | Description | Possible Value|
 | --- | --- | ---------- | ----- |
 | startDate | string | Start date for the maximum of a 3 month period.| 2020-12-01T00:00:00-07 |
