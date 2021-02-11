@@ -1,9 +1,14 @@
 # Usage Logs API Guide
-The following guide provides information about the Usage Log API. We recommend using the [Reporting APIs in the Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Reporting%20APIs) to learn how to make this API call.
+
+The Usage Log API is an Analytics Reporting API that allows users to retrieve the usage and access log data provided within the Logs tool. 
+
+We recommend using the [Reporting APIs in the Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Reporting%20APIs) to learn how to make this API call.
 
 ## Authorization and authentication
 
-For information on authenticating, see the [Getting Started Guide for 2.0 APIs](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md).
+In order to use this API, you must have the appropriate permissions. Admin users will have permissions to the tool by default. Non-admin users must be given the following '*Analytics Tools*' permission in the [Admin Console](https://experienceleague.adobe.com/docs/analytics/admin/admin-console/permissions/analytics-tools.html?lang=en#admin-console): "*Logs - Web Services*".
+
+This API authenticates the same way as the other Analytics Reporting APIs. For complete details on that authentication process, please see the [Getting Started Guide for 2.0 APIs](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/create-oauth-client.md).
 
 ### Usage Log Schema
 | Attribute | Type | Description | Possible Value|
