@@ -2006,7 +2006,7 @@
     "/auditlogs/usage": {
 			"get": {
 				"tags": ["usagelogs"],
-				"summary": "Retrieves admin usage and access logs for the search criteria provided.",
+				"summary": "Retrieves usage and access logs for the search criteria provided.",
 				"description": "This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.",
 				"operationId": "getUsageAccessLogs",
 				"parameters": [{
@@ -2014,72 +2014,54 @@
 					"in": "query",
 					"description": "Start date for the maximum of a 3 month period.",
 					"required": true,
-					"schema": {
-						"type": "string",
-						"default": "2021-01-01T00:00:00-07"
-					}
+					"type": "string",
+					"default": "2021-01-01T00:00:00-07"
 				}, {
 					"name": "endDate",
 					"in": "query",
 					"description": "End date for the maximum of a 3 month period.",
 					"required": true,
-					"schema": {
-						"type": "string",
-						"default": "2021-01-02T14:32:33-07"
-					}
+					"type": "string",
+					"default": "2021-01-02T14:32:33-07"
 				}, {
 					"name": "login",
 					"in": "query",
 					"description": "The login value of the user you want to filter logs by.",
-					"schema": {
-						"type": "string"
-					}
+					"type": "string"
 				}, {
 					"name": "ip",
 					"in": "query",
 					"description": "The IP address you want to filter logs by.",
-					"schema": {
-						"type": "string"
-					}
+					"type": "string"
 				}, {
 					"name": "rsid",
 					"in": "query",
 					"description": "The report suite ID you want to filter logs by.",
-					"schema": {
-						"type": "string"
-					}
+					"type": "string"
 				}, {
 					"name": "eventType",
 					"in": "query",
-					"description": "The numeric id for the event type you want to filter logs by. Please reference the lookup table in the documentation.",
-					"schema": {
-						"type": "string"
-					}
+					"description": "The numeric id for the event type you want to filter logs by.",
+					"type": "string"
 				}, {
 					"name": "event",
 					"in": "query",
 					"description": "The event description you want to filter logs by. No wildcards permitted.",
-					"schema": {
-						"type": "string"
-					}
+					"type": "string"
 				}, {
 					"name": "limit",
 					"in": "query",
-					"description": "Number of results per page",
-					"schema": {
-						"type": "integer",
-						"format": "int32",
-						"default": 10
-					}
+					"description": "Number of results per page.",
+					"type": "integer",
+					"format": "int32",
+					"default": 10
 				}, {
 					"name": "page",
 					"in": "query",
-					"description": "Page number (base 0 - first page is \"0\")",
-					"schema": {
-						"type": "integer",
-						"format": "int32",
-						"default": 0
-					}
+					"description": "Page number (base 0 - first page is \"0\").",
+					"type": "integer",
+					"format": "int32",
+					"default": 0
 				}],
 				"responses": {
 					"500": {
