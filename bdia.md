@@ -40,6 +40,8 @@ Using BDIA successfully depends upon the following:
 - BDIA can only send data to report suites that are configured as "Timestamp enabled" or "Timestamp optional."
 - Historical data for a visitor grouping must be ingested before any current data can be processed, unless Timestamp Optional report suites are being used and visitor continuity is not possible or not desirable.
 - The amount of server calls that can be processed in a given time are dependent on throttle limits and allocated resources for that customer. Spikes in server calls must be reported to Client Care in the same ways that normal data collection dictates.
+- Do not send more than 1 file per 20 seconds per visitor group. Files can be as large as 100 MB compressed (gzip)
+- Utilize enough visitor groups so that you do not send more than 2000 rows/second per visitor group.
 
 ## Batch Files
 
@@ -161,11 +163,11 @@ Bulk Insertion was designed to run optimally with larger file sizes. We recommen
 
 For an implementation guideline, we offer the following recommendations:
 - Ingestion of 2000 rows per second per visitor group
-- No more than 1 API call per 5 seconds per visitor group
+- No more than 1 API call per 20 seconds per visitor group
 
 Using these guidelines, you can anticipate how many visitor groups to utilize.  For example, suppose your company anticipates submitting 1 billion hits per day.  At a rate of 2000 rows per second, a single visitor group could support about 173 million rows per 24 hours.  Dividing 1 billion (anticipated rows) by 173 million yields 5.7.  So an implementation of at least 6 visitor groups would be appropriate.  To account for visitor groups of unequal size, it may be safer to bump the estimate up. There would be no harm in using 8-10 visitor groups in this example.
 
-If you used 10 visitor groups, that would result in about 100 million rows per day/per group, or 1160 rows per second.  As far as send frequency, you could choose to send a file of about 5800 rows every 5 seconds, or a file of 11,600 rows every 10 seconds, and so forth.
+If you used 10 visitor groups, that would result in about 100 million rows per day/per group, or 1160 rows per second.  As far as send frequency, you could choose to send a file of about 23,000 rows every 20 seconds, 35,000 rows every 30 seconds, and so forth.
 
 File size will vary according to the average size of each row.  While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB.  However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side.  Existing clients tend to send files with rows between 3,000 and 50,000 rows, and sizes of 500k up to 20 MB.
 
@@ -220,7 +222,7 @@ BDIA has been built with redundancy and safeguards to ensure that issues due to 
 
 ### Malformed File 
 
-When a file fails because something is wrong with the file. This is likely due to a change or a bug in the process that generates the files. On initial implementation, or following a reconfiguration of your generated files, we encourage users to validate their files using the validate API endpoint before submitting them to BDIA. This ensures that nothing is wrong with the file format. This validation is identical to the validation that occurs when a file is being processed. It is a helpful tool while testing and developing your file generation process.
+Occasionally a file upload fails because something is wrong with the file. This is usually due to a change or a bug in the process that generates the files. On initial implementation, or following a reconfiguration of your generated files, we encourage users to validate their files using the validate API endpoint before submitting them to BDIA. This ensures that nothing is wrong with the file format. This validation is identical to the validation that occurs when a file is being processed. It is a helpful tool while testing and developing your file generation process.
 
 Once an automated process is established to generate and submit files to BDIA, most customers should not experience errors due to malformed files.
 
