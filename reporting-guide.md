@@ -750,6 +750,10 @@ Breakdowns in the API are useful when you want to see the cross-product of value
 
 The following example requests a breakdown report containing a list of the top five "Internal Search Terms" used by visitors who saw campaign 10. Within the `metricsFilters` parameter, the type is set to `breakdown` (line 21), and `evar1` is the marketing campaign (line 22). Within the `dimensions` parameter, `evar2` is the "Internal Search Terms" (line 27).
 
+**Note:** If the text value of item is already known, it can be passed inside the `metricFilter` object as `itemValue` field (Make sure to pass the exact text value).
+For example, instead of passing the item id `"itemId":"743855946"` of the item "Campaign 10", we can pass the text value of the item like this `"itemValue" : "10"`
+Passing an item value instead of item id will result in slightly slower performance, but it will be useful in preventing multiple reporting calls to retrieve item ids.
+
 ```json={line-numbers="yes"}
 {
    "rsid":"adbedocrsid",
@@ -773,7 +777,7 @@ The following example requests a breakdown report containing a list of the top f
          {
             "id":"0",
             "type":"breakdown",
-            "dateRange":"evar1",
+            "dimension":"evar1",
             "itemId":"743855946"
          }
       ]
