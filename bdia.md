@@ -324,7 +324,7 @@ With a file ingest POST request, a file object will be returned in the response.
 | 401 Unauthorized | {"error": "Token validation failed" } |
 
 #### Sample Call
-```curl -X POST -F file=@/tmp/newfile_1489183489.gz -H "x-adobe-vgid:prod-18" -H "x-adobe-fileid:a00ce559-2489-497d-9b52-acfa33fe692b" -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" "https://<BDIA_HOST>/aa/collect/v1/events" ```
+```curl -X POST -H "x-adobe-vgid:prod-18" -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" -H "x-api-key:<CLIENT_ID>" -F file=@/tmp/ingest_file.gz "https://<BDIA_HOST>/aa/collect/v1/events" ```
 
 ### Validation
 |||
@@ -349,7 +349,7 @@ With a file ingest POST request, a file object will be returned in the response.
 | 401 Unauthorized | {"error" : "Token validation failed" } |
 
 #### Sample Call
-```curl -X POST -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" -F file=@/some/path/file.gz "https://<BDIA_HOST>/aa/collect/v1/events/validate"```
+```curl -X POST -H "Authorization: Bearer <IMS_ACCESS_TOKEN>" -H "x-api-key:<CLIENT_ID>" -F file=@/tmp/ingest_file.gz "https://<BDIA_HOST>/aa/collect/v1/events/validate"```
 
 ## Error Handling
 When processing files, problems may occur (see [Failure Scenarios](#failure-scenarios) for more details). If rows are malformed, and skipped, the data for that visitor and visit may be corrupted. There is no way for Adobe to repair this corruption.  In light of this, we strongly encourage customers to validate file formats thoroughly before submitting for processing. We also recommend using a development report suite to test out changes to file generation and submission process.
