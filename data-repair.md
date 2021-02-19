@@ -1,12 +1,12 @@
 # Data Repair API
 
-The Data Repair API provides you with a mechanism to delete or edit certain existing Adobe Analytics data.  Repair requests are made by submitting a job definition to the Data Repair API, which includes the report suite, date range, variables and actions to be applied to the data.
+The Data Repair API provides you with a way to delete or edit Adobe Analytics data.  Repair requests are made by submitting a job definition to the Data Repair API, which includes the report suite, date range, variables and actions to be applied to the data.
 
-The Data Repair API currently supports the following actions:
+The Data Repair API supports the following:
 
-* Deleting Activity Map data
-* Deleting Custom Traffic (prop) data
-* Deleting Custom Conversion (eVar) data
+* Variables: eVars, props, activity map, campaign, site section, page, entry page, geography, and page events.  [See full list of variables to act on.](#variables)
+* Actions: delete, set.  [All actions to take on a given variable.](#actions)
+* Filters: in list, is empty, and contains at sign.  [More details on optional filters.](#filters)
 
 The Data Repair API returns:
 
@@ -99,13 +99,15 @@ If the scope of the data repair job changes, re-run the `/serverCallEstimate` en
 
 #### Job Definition
 
-The job definition is used to specify the variables you want to repair and what actions to take on those variables.  The definition format follows this pattern:
+The job definition is used to specify the [variables](#variables) you want to repair and what [actions](#actions) to take on those variables.  You may also define an optional [filter](#filters) to limit what data is updated.
 
+The definition format follows this pattern:
 ```json
 {
   "variables": {
     "{VARIABLE_1}": {
-      "action": "{ACTION_1}"
+      "action": "{ACTION_1}",
+      "filter": {"condition":  "{CONDITION_1}"}
     },
     "{VARIABLE_2}": {
       "action": "{ACTION_2}"
@@ -114,23 +116,9 @@ The job definition is used to specify the variables you want to repair and what 
 }
 ```
 
-##### Variables
-The following variables are available for deletion via the Data Repair API:
-* Activity Map
-    * The Activity Map variable includes `clickmappage`, `clickmaplink`, `clickmapregion`, and as well as the context data used to populate these identities
-* Props (Custom Traffic Variables)
-    * Custom Traffic Property variables (commonly referred to as 'props') are referenced by number -- for example `prop3` or `prop27`; props are numbered from 1 to 75
-* eVars (Custom Conversion Variables)
-    * Custom Conversion variables (commonly referred to as 'eVars') are referenced by number -- for example `evar7` or `evar173`; eVars are numbered from 1 to 250
-    * An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html).
-
-##### Actions
-The following actions are available for the variables mentioned above: 
-* Delete
-    * All values for the specified variable are deleted for the indicated timeframe
 
 #### Example Repair Job Definition
-The following *Repair Job Definition* is an example of how a Data Repair Request would be formatted to delete data from Activity Map, prop12, evar74, and evar107:
+The following *Repair Job Definition* is an example of how a Data Repair Request:
 
 ```json
 {
@@ -142,10 +130,15 @@ The following *Repair Job Definition* is an example of how a Data Repair Request
       "action": "delete"
     },
     "evar74": {
-      "action": "delete"
+      "action": "set",
+      "setValue": "new value"
     },
     "evar107": {
-      "action": "delete"
+      "action": "delete",
+      "filter": {
+        "condition": "inList",
+        "matchValues": ["evar value 1", "evar value 2"]
+      }
     }
   }
 }
@@ -328,3 +321,257 @@ Create a repair job in the following:
 
 1. Only one job at a time can be running per report suite.
 
+## Reference
+
+### Variables
+
+#### Standard Dimensions
+
+##### `campaign`, `entrypage`, `entrypageoriginal`, `sitesections`
+* Supported Actions: `delete`, `set`
+* `campaign`: See `evar1-evar250` for details on variable expiration, as they also apply to `campaign`.
+
+Example
+```
+{
+    "variables": {
+        "campaign": {
+            "action": "delete"
+        }
+    }
+}
+```
+
+##### `geodma`, `geocity`, `geocountry`, `geolatitude`, `geolongitude`, `georegion`, `geozip`, `ipaddress`, `latitude`, `longitude`, `zip`
+* Supported Actions: `delete`
+
+Example
+```
+{
+    "variables": {
+        "zip": {
+            "action": "delete"
+        }
+    }
+}
+```
+
+##### `page`, `page_event_var1`, `page_event_var2`
+* Supported Actions: `set`
+* `page_event_var1/2`: These fields represent the "url" and "name" for custom page events
+
+Example
+```
+{
+    "variables": {
+        "page": {
+            "action": "set",
+            "setValue": "page value"
+        }
+    }
+}
+```
+
+#### Conversion Dimensions
+
+##### `evar1-evar250`
+* Custom Conversion variables (commonly referred to as 'eVars')
+* Supported Actions: `delete`, `set`
+* An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html).
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "set",
+            "setValue": "new value"
+        }
+    }
+}
+```
+
+#### Custom Traffic Dimensions
+
+##### `prop1-prop75`
+* Custom Traffic Property variables (commonly referred to as 'props')
+* Supported Actions: `delete`, `set`
+
+Example
+```
+{
+    "variables": {
+        "prop1": {
+            "action": "delete"
+        }
+    }
+}
+```
+
+#### Solution Dimensions
+
+##### ActivityMap: `activitymap`
+* This special variable includes `clickmappage`, `clickmaplink`, `clickmapregion`, and as well as the context data used to populate these identities
+* Supported Actions: `delete`
+* As this variable corresponds to multiple entities, no filters are supported.
+
+Example
+```
+{
+    "variables": {
+        "activitymap": {
+            "action": "delete"
+        }
+    }
+}
+```
+
+
+##### Mobile: `mobileappid`, `mobilecampaigncontent`, `mobilecampaignmedium`, `mobilecampaignname`, `mobilecampaignsource`, `mobilecampaignterm`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`, `mobilerelaunchcampaigntrackingcode.name`
+* Supported Actions: `delete`, `set`
+
+Example
+```
+{
+    "variables": {
+        "mobilecampaignmedium": {
+            "action": "set",
+            "setValue": "new value"
+        }
+    }
+}
+```
+
+##### Mobile: `latlon1`, `latlon23`, `latlon45`, `mobileaction`, `mobilemessagepushoptin`, `pointofinterest`, `pointofinterestdistance`
+* Supported Actions: `delete`
+
+Example
+```
+{
+    "variables": {
+        "latlon45": {
+            "action": "delete"
+        }
+    }
+}
+```
+
+##### Video: `videoadname`, `videoadplayername`, `videoadvertiser`, `videoaudioalbum`, `videoaudioartist`, `videoaudioauthor`, `videoaudiolabel`, `videoaudiopublisher`, `videoaudiostation`, `videocampaign`, `videochannel`, `videocontenttype`, `videoepisode`, `videofeedtype`, `videogenre`, `videomvpd`, `videoname`, `videonetwork`, `videopath`, `videoplayername`, `videoplayersdkerrors`, `videoqoeexternalerrors`, `videoseason`, `videoshow`, `videoshowtype`, `videostreamtype`
+* Supported Actions: `delete`, `set`
+
+Example
+```
+{
+    "variables": {
+        "videoadname": {
+            "action": "set",
+            "setValue": "new value"
+        }
+    }
+}
+```
+
+##### Video: `video`, `videoad`
+* Supported Actions: `set`
+
+Example
+```
+{
+    "variables": {
+        "video": {
+            "action": "set",
+            "setValue": "new value"
+        }
+    }
+}
+```
+
+### Actions
+
+#### `delete`
+* All values for the specified variable are deleted for the indicated timeframe
+* Supported Filters: `inList`, `containsAtSign`
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete"
+        }
+    }
+}
+```
+
+#### `set`
+
+  * Set the variable to a fixed value for the indicated timeframe
+  * Supported Filters: `inList`, `isEmpty`, `containsAtSign`
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "set",
+            "setValue": "new value"
+        }
+    }
+}
+```
+  
+### Filters
+
+#### `inList`
+  * Limit the action to variables whose current value is in a given list
+  * There can be at most 1000 lookup values to match against.
+  
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filter": {
+                "condition": "inList",
+                "matchValues": ["match1", "match2]
+            }
+        }
+    }
+}
+```
+
+#### `isEmpty`
+* Limit the action to variables whose current value is empty
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "set", 
+            "setValue": "new value", 
+            "filters": {
+                "condition": "isEmpty"
+            }
+        }
+    }
+}
+```
+  
+#### `containsAtSign`
+* Limit the action to variables whose current value contains the character `@`
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "containsAtSign"
+            }
+        }
+    }
+}
+```

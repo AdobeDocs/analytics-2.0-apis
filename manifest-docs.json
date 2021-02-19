@@ -104,6 +104,19 @@
           "path": "AdobeDocs/analytics-2.0-apis/master/segments-guide.md",
           "title": "Segments APIs"
     },
+	{
+          "importedFileName": "usage-logs",
+          "pages": [
+						{
+								"importedFileName": "usagelogs",
+								"pages": [],
+								"path": "AdobeDocs/analytics-2.0-apis/master/usage-logs.md",
+								"title": "Usage & Access Logs"
+						}
+					],
+          "path": "AdobeDocs/analytics-2.0-apis/master/usage-logs.md",
+          "title": "Usage Logs API"
+	},
     {
           "importedFileName": "discovery",
           "pages": [],
