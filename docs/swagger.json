@@ -25,7 +25,9 @@
     "name" : "segments"
   }, {
     "name" : "users"
-  } ],
+  }, {
+    "name" : "usagelogs"
+  }],
   "schemes" : [ "https" ],
   "paths" : {
     "/calculatedmetrics" : {
@@ -2000,8 +2002,87 @@
           }
         }
       }
-    }
-  },
+    },
+    "/auditlogs/usage": {
+			"get": {
+				"tags": ["usagelogs"],
+				"summary": "Retrieves usage and access logs for the search criteria provided.",
+				"description": "This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.",
+				"operationId": "getUsageAccessLogs",
+				"parameters": [{
+					"name": "startDate",
+					"in": "query",
+					"description": "Start date for the maximum of a 3 month period.",
+					"required": true,
+					"type": "string",
+					"default": "2021-01-01T00:00:00-07"
+				}, {
+					"name": "endDate",
+					"in": "query",
+					"description": "End date for the maximum of a 3 month period.",
+					"required": true,
+					"type": "string",
+					"default": "2021-01-02T14:32:33-07"
+				}, {
+					"name": "login",
+					"in": "query",
+					"description": "The login value of the user you want to filter logs by.",
+					"type": "string"
+				}, {
+					"name": "ip",
+					"in": "query",
+					"description": "The IP address you want to filter logs by.",
+					"type": "string"
+				}, {
+					"name": "rsid",
+					"in": "query",
+					"description": "The report suite ID you want to filter logs by.",
+					"type": "string"
+				}, {
+					"name": "eventType",
+					"in": "query",
+					"description": "The numeric id for the event type you want to filter logs by.",
+					"type": "string"
+				}, {
+					"name": "event",
+					"in": "query",
+					"description": "The event description you want to filter logs by. No wildcards permitted.",
+					"type": "string"
+				}, {
+					"name": "limit",
+					"in": "query",
+					"description": "Number of results per page.",
+					"type": "integer",
+					"format": "int32",
+					"default": 10
+				}, {
+					"name": "page",
+					"in": "query",
+					"description": "Page number (base 0 - first page is \"0\").",
+					"type": "integer",
+					"format": "int32",
+					"default": 0
+				}],
+				"responses": {
+					"500": {
+						"description": "External API Error; Data could not be retrieved."
+					},
+					"400": {
+						"description": "Invalid Request. Please check parameters."
+					},
+					"403": {
+						"description": "User does not have permission to view this data."
+					},
+					"200": {
+						"description": "Successful",
+						"schema": {
+							"$ref": "#/definitions/ResponsePageUsageLogDto"
+						}
+					}
+				}
+			}
+		}
+	},
   "definitions" : {
     "AnalyticsCalculatedMetric" : {
       "type" : "object",
@@ -3620,7 +3701,70 @@
           }
         }
       }
-    }
-  }
+    },
+    "ResponsePageUsageLogDto": {
+			"type": "object",
+			"properties": {
+				"content": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/UsageLogDto"
+					}
+				},
+				"totalElements": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"lastPage": {
+					"type": "boolean"
+				},
+				"numberOfElements": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"totalPages": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"firstPage": {
+					"type": "boolean"
+				},
+				"sort": {
+					"type": "string"
+				},
+				"size": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"number": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"UsageLogDto": {
+			"properties": {
+				"dateCreated": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eventDescription": {
+					"type": "string"
+				},
+				"ipAddress": {
+					"type": "string"
+				},
+				"rsid": {
+					"type": "string"
+				},
+				"eventType": {
+					"type": "string"
+				},
+				"login": {
+					"type": "string"
+				}
+			}
+		}
+	 }
 }
  
