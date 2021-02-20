@@ -33,7 +33,9 @@ Using BDIA successfully depends upon the following:
 * [Diagnosing failures](#failure-scenarios)
 * [REST API Details](#rest-api-details)
 * [Making a valid request](#operations)
-* [Understanding responses](#file-info-response-details)
+* [Response Handling](#error-handling)
+* [Column and Query String References](#CSV-Column-and-Query-String-Reference)
+
 
 ## Limitations
 
