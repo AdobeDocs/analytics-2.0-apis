@@ -372,8 +372,8 @@ Below are the list of possible errors and their results:
   "processing_log":"An error occurred: Not in GZIP format\n",
   "error":"No hits were found in the file."
 }
-
 ```
+
 | Error Description | Result |
 |:--|:--|
 | File does not contain the required header column list | File is marked as failed |
@@ -388,8 +388,8 @@ Below are the list of possible errors and their results:
   "processing_log":"No visitor ID found in the file header.  There must be one of VisitorID, MarketingCloudVisitorID, IPAddress, or CustomerID defined..."
   "error":"No valid rows were found in the file."
 }
-
 ```
+
 | Error Description | Result |
 |:--|:--|
 | File header is missing a required column | File is marked as failed |
@@ -404,8 +404,8 @@ Below are the list of possible errors and their results:
   "processing_log":"No timestamp field found in the file header.\nProcessing complete: 0 rows will be submitted.  5000 rows were invalid.\n","
   "error":"No valid rows were found in the file."
 }
-
 ```
+
 | Error Description | Result |
 |:--|:--|
 | A row does not specify a value for a required field | The row is skipped, and the error count for the file is incremented. Up to 10 rows of the same error type will be listed. |
@@ -419,8 +419,8 @@ Below are the list of possible errors and their results:
   "status_code":"UPLOADED",
   "processing_log":"On row: 1, missing 'UserAgent'. This row will not be submitted.\nOn row: 57, missing 'ReportSuiteId'. This row will not be submitted.\nProcessing complete: 4998 rows will be submitted.  2 rows were invalid.\n"
 }
-
 ```
+
 | Error Description | Result |
 |:--|:--|
 |A row is malformed CSV and cannot be parsed. | The row is skipped, and the error count for the file is incremented.|
@@ -434,10 +434,10 @@ Below are the list of possible errors and their results:
   "status_code":"UPLOADED",
   "processing_log":"On row: 1, inconsistent column count. Expected 5 columns, but found 6.\nOn row: 3, inconsistent column count.  Expected 5 columns, but found 4.\nProcessing complete: 4998 rows will be submitted.  2 rows were invalid.\n"
 }
+```
 
 ## Removing Data from Analytics
 If incorrect or sensitive data (PII) is ingested via BDIA, there is no productized method to remove this data. Engineering Services can assist customers in removing data that was accidentally inserted, but that will require a separate service engagement per incident.
-
 
 
 ## CSV Column and Query String Reference
