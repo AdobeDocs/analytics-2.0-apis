@@ -427,7 +427,7 @@ Example
 ```
 
 
-##### Mobile: `mobileappid`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`, `mobilerelaunchcampaigntrackingcode.name`
+##### Mobile: `mobileappid`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`
 * Supported Actions: `delete`, `set`
 
 Example
