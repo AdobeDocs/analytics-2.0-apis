@@ -427,7 +427,7 @@ Example
 ```
 
 
-##### Mobile: `mobileappid`, `mobilecampaigncontent`, `mobilecampaignmedium`, `mobilecampaignname`, `mobilecampaignsource`, `mobilecampaignterm`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`, `mobilerelaunchcampaigntrackingcode.name`
+##### Mobile: `mobileappid`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`, `mobilerelaunchcampaigntrackingcode.name`
 * Supported Actions: `delete`, `set`
 
 Example
@@ -442,7 +442,7 @@ Example
 }
 ```
 
-##### Mobile: `latlon1`, `latlon23`, `latlon45`, `mobileaction`, `mobilemessagepushoptin`, `pointofinterest`, `pointofinterestdistance`
+##### Mobile: `latlon1`, `latlon23`, `latlon45`, `mobileaction`, `pointofinterest`, `pointofinterestdistance`
 * Supported Actions: `delete`
 
 Example
@@ -456,7 +456,7 @@ Example
 }
 ```
 
-##### Video: `videoadname`, `videoadplayername`, `videoadvertiser`, `videoaudioalbum`, `videoaudioartist`, `videoaudioauthor`, `videoaudiolabel`, `videoaudiopublisher`, `videoaudiostation`, `videocampaign`, `videochannel`, `videocontenttype`, `videoepisode`, `videofeedtype`, `videogenre`, `videomvpd`, `videoname`, `videonetwork`, `videopath`, `videoplayername`, `videoplayersdkerrors`, `videoqoeexternalerrors`, `videoseason`, `videoshow`, `videoshowtype`, `videostreamtype`
+##### Video: `videoadname`, `videoadplayername`, `videoadadvertiser`, `videoaudioalbum`, `videoaudioartist`, `videoaudioauthor`, `videoaudiolabel`, `videoaudiopublisher`, `videoaudiostation`, `videoadcampaign`, `videochannel`, `videocontenttype`, `videoepisode`, `videofeedtype`, `videomvpd`, `videoname`, `videonetwork`, `videopath`, `videoplayername`, `videoseason`, `videoshow`, `videoshowtype`, `videostreamtype`
 * Supported Actions: `delete`, `set`
 
 Example
