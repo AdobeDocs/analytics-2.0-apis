@@ -356,9 +356,9 @@ Example
 }
 ```
 
-##### `page`, `page_event_var1`, `page_event_var2`
+##### `page`, `pageeventvar1`, `pageeventvar2`
 * Supported Actions: `set`
-* `page_event_var1/2`: These fields represent the "url" and "name" for custom page events
+* `pageeventvar1/2`: These fields represent the "url" and "name" for custom page events
 
 Example
 ```
