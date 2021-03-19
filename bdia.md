@@ -487,9 +487,9 @@ state | state | The visitor's U.S. state.
 timestamp | ts | The time and date on which the data was collected.
 ~~timezone~~ | Not supported at this time. | |
 tnta | tnta | Target data payload, for use with A4T integrations
-~~trackingServer~~ | N/A | *Can only be supplied via column header*
+trackingServer | N/A | *Can only be supplied via column header*
 transactionID | xact | Common value used to tie multi-channel user activities together for reporting purposes. For more information, see the [Data Sources User Guide](https://docs.adobe.com/content/help/en/analytics/import/data-sources/datasrc-home.html).
-~~userAgent~~ | N/A | *Can only be supplied via column header*
+userAgent | N/A | *Can only be supplied via column header*
 visitorID | vid | Visitor's Analytics ID. See [Visitor Identification](https://docs.adobe.com/content/help/en/id-service/using/home.html).
 marketingCloudVisitorID | mid | Marketing Cloud ID. See [Visitor Identification and the Marketing Cloud Visitor ID Service](https://docs.adobe.com/content/help/en/id-service/using/home.html).
 zip | zip | The visitor's zip code.
