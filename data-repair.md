@@ -5,8 +5,7 @@ The Data Repair API provides you with a way to delete or edit Adobe Analytics da
 The Data Repair API supports the following:
 
 * Variables: eVars, props, activity map, campaign, site section, page, entry page, geography, and page events.  [See full list of variables to act on.](#variables)
-* Actions: delete, set.  [All actions to take on a given variable.](#actions)
-* Filters: in list, is empty, and contains at sign.  [More details on optional filters.](#filters)
+* Filters: inList, isEmpty, isURL, isNotURL, contains, startsWith, endsWith.  [More details on optional filters.](#filters)
 
 The Data Repair API returns:
 
@@ -309,7 +308,7 @@ Create a repair job in the following:
 
 1. Because segmentations and classifications rely on variable values, it is important to review dependencies on variable values before repairing data to prevent unexpected changes.
 
-1. An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html). 
+1. An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html).
 
 ## Limitations
 
@@ -490,7 +489,7 @@ Example
 
 #### `delete`
 * All values for the specified variable are deleted for the indicated timeframe
-* Supported Filters: `inList`, `containsAtSign`
+* Supported Filters: `inList`, `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`
 
 Example
 ```
@@ -506,7 +505,7 @@ Example
 #### `set`
 
   * Set the variable to a fixed value for the indicated timeframe
-  * Supported Filters: `inList`, `isEmpty`, `containsAtSign`
+  * Supported Filters: `inList`, `isEmpty`,  `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`
 
 Example
 ```
@@ -519,7 +518,40 @@ Example
     }
 }
 ```
-  
+
+#### `deleteQueryString`
+
+  * Remove the query string from a variable.  If the value does not appear to be a URL, no action is taken.
+  * Supported Filters: None
+
+Example
+```
+{
+    "variables": {
+        "pageurl": {
+            "action": "deleteQueryString"
+        }
+    }
+}
+```
+
+#### `deleteQueryStringParameters`
+
+  * Remove one or more query string parameters from a variable.  If the value does not appear to be a URL, no action is taken.
+  * Supported Filters: None
+
+Example
+```
+{
+    "variables": {
+        "referrer": {
+            "action": "deleteQueryStringParameters",
+            "parameters": ["param1", "param2"]
+        }
+    }
+}
+```
+
 ### Filters
 
 #### `inList`
@@ -559,8 +591,9 @@ Example
 }
 ```
   
-#### `containsAtSign`
-* Limit the action to variables whose current value contains the character `@`
+
+#### `contains`
+* Limit the action to variables whose current value contains the given value.
 
 Example
 ```
@@ -569,7 +602,78 @@ Example
         "evar1": {
             "action": "delete",
             "filters": {
-                "condition": "containsAtSign"
+                "condition": "contains",
+                "matchValue": "@"
+            }
+        }
+    }
+}
+```
+
+#### `startsWith`
+* Limit the action to variables whose current value starts with the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "startsWith",
+                "matchValue": "XYZ"
+            }
+        }
+    }
+}
+```
+
+#### `endsWith`
+* Limit the action to variables whose current value ends with the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "endsWith",
+                "matchValue": "XYZ"
+            }
+        }
+    }
+}
+```
+
+#### `isURL`
+* Limit the action to variables whose current value is a URL.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "isURL"
+            }
+        }
+    }
+}
+```
+
+#### `isNotURL`
+* Limit the action to variables whose current value is not a URL.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "isNotURL"
             }
         }
     }
