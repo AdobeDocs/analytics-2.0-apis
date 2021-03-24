@@ -5,7 +5,8 @@ The Data Repair API provides you with a way to delete or edit Adobe Analytics da
 The Data Repair API supports the following:
 
 * Variables: eVars, props, activity map, campaign, site section, page, entry page, geography, and page events.  [See full list of variables to act on.](#variables)
-* Filters: inList, isEmpty, isURL, isNotURL, contains, startsWith, endsWith.  [More details on optional filters.](#filters)
+* Actions: delete, set, deleteQueryString, and deleteQueryStringParameters.  [All actions to take on a given variable.](#actions)
+* Filters: inList, isEmpty, isURL, isNotURL, contains, startsWith, and endsWith.  [More details on optional filters.](#filters)
 
 The Data Repair API returns:
 
@@ -366,6 +367,20 @@ Example
         "page": {
             "action": "set",
             "setValue": "page value"
+        }
+    }
+}
+```
+
+##### `pageurl`, `pageurlfirsthit`, `pageurlvisitstart`, `referrer`, `referrerfirsthit`, `referrervisit`
+* Supported Actions: `deleteQueryString`, `deleteQueryStringParameters`
+
+Example
+```
+{
+    "variables": {
+        "pageurlvisitstart": {
+            "action": "deleteQueryString"
         }
     }
 }
