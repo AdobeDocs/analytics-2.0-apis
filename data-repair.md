@@ -598,7 +598,7 @@ Example
         "evar1": {
             "action": "set", 
             "setValue": "new value", 
-            "filters": {
+            "filter": {
                 "condition": "isEmpty"
             }
         }
@@ -616,7 +616,7 @@ Example
     "variables": {
         "evar1": {
             "action": "delete",
-            "filters": {
+            "filter": {
                 "condition": "contains",
                 "matchValue": "@"
             }
@@ -634,7 +634,7 @@ Example
     "variables": {
         "evar1": {
             "action": "delete",
-            "filters": {
+            "filter": {
                 "condition": "startsWith",
                 "matchValue": "XYZ"
             }
@@ -652,7 +652,7 @@ Example
     "variables": {
         "evar1": {
             "action": "delete",
-            "filters": {
+            "filter": {
                 "condition": "endsWith",
                 "matchValue": "XYZ"
             }
@@ -670,7 +670,7 @@ Example
     "variables": {
         "evar1": {
             "action": "delete",
-            "filters": {
+            "filter": {
                 "condition": "isURL"
             }
         }
@@ -687,7 +687,7 @@ Example
     "variables": {
         "evar1": {
             "action": "delete",
-            "filters": {
+            "filter": {
                 "condition": "isNotURL"
             }
         }
