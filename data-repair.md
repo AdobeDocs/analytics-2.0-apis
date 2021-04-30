@@ -10,7 +10,7 @@ The Data Repair API supports the following:
 
 The Data Repair API returns:
 
-* The Server Call volume estimate for the data repair job
+* The Data Rows Scanned volume estimate for the data repair job
 * The job id
 * The status of a submitted job id
 * A list of all data repair jobs for a report suite
@@ -51,7 +51,7 @@ To submit a data repair job, there are three steps:
 
 #### 1. Estimate repair size
 
-The Data Repair API incurs charges based on usage.  It scans every row of data looking for repairs.   Sizing is based on rows scanned.  The `/serverCallEstimate` endpoint is a required step to help you estimate the cost of a repair. The `/serverCallEstimate` endpoint returns a count of the Server Call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required for the job creation call.
+The Data Repair API incurs charges based on usage.  It scans every row of data looking for repairs.   Sizing is based on rows scanned.  The `/serverCallEstimate` endpoint is a required step to help you estimate the cost of a repair. The `/serverCallEstimate` endpoint returns a count of the Data Rows Scanned volume for the report suite date range. The endpoint also returns a `validationToken`, which is required for the job creation call.
 
 #### 2. Create repair
 
@@ -63,9 +63,9 @@ When a repair job is created, a Job ID will be returned. The `/job/{JOB_ID}` end
 
 Completion of a repair job may take hours to days.
 
-## Server Call Estimate
+## Data Rows Scanned Estimate
 
-The /serverCallEstimate endpoint calculates the number of Server Calls for the given Report Suite and date range provided.  It also returns `validationToken`, which is will be passed to `/job` in the `validationToken` query string parameter. The Server Call volume can be multiplied by the CPMM rate found in the Data Repair API Sales Order. This calculation provides an estimate of the cost of the data repair job. The date range is specified in days and is based on the time zone of the Report Suite. The date range is inclusive of the start and end dates for estimates and repairs.
+The /serverCallEstimate endpoint calculates the number of data rows scanned for the given Report Suite and date range provided.  It also returns `validationToken`, which is will be passed to `/job` in the `validationToken` query string parameter. The data rows scanned volume can be compared against the annual data rows scanned entitlement that you are entitled to, from your Data Repair API Sales order with Adobe.  If this repair job will cause you to exceed your annual entitlement, you can multiply the excess volume by your CPMM rate found in the Data Repair API Sales order. This calculation provides an estimate of the cost of the data repair job. The date range is specified in days and is based on the time zone of the Report Suite. The date range is inclusive of the start and end dates for estimates and repairs.
 
 The `ANALYTICS_GLOBAL_COMPANY_ID` can be found in Adobe Analytics > Admin > Company Settings > API Access.  Look for the bold text value in the second sentence.
 
@@ -91,7 +91,7 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
 
 The `/job` endpoint creates the data repair job. A JSON-formatted Job Definition is passed in as the POST body and a Job ID is returned. 
 
-The `/job` endpoint uses the `validationToken` from the `/serverCallEstimate` endpoint to confirm that its parameters are the same as those passed to `/serverCallEstimate`. If the parameters do not match or the Server Call volume has changed significantly between the call to `/serverCallEstimate` and the call to `/job`, the Data Repair API will return an error.
+The `/job` endpoint uses the `validationToken` from the `/serverCallEstimate` endpoint to confirm that its parameters are the same as those passed to `/serverCallEstimate`. If the parameters do not match or the Data Rows scanned volume has changed significantly between the call to `/serverCallEstimate` and the call to `/job`, the Data Repair API will return an error.
 
 If the scope of the data repair job changes, re-run the `/serverCallEstimate` endpoint to generate a new `validationToken`.
 
@@ -185,7 +185,7 @@ curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALY
 
 ## Job Status
 
-The `/job/{JOB_ID}` endpoint is called to check on the progress of a data repair job.  Following submission of a job, `status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status` will report as `complete` and `serverCalls` will be set to the actual number of Server Calls scanned during the data repair job. This `serverCalls` value will be used to calculate usage.
+The `/job/{JOB_ID}` endpoint is called to check on the progress of a data repair job.  Following submission of a job, `status` will report as `processing` and `progress` will be a number between `0` and `100`.  Once complete, `status` will report as `complete` and `serverCalls` will be set to the actual number of Data Rows scanned during the data repair job. This `serverCalls` value will be used to calculate usage.
 
 Completion of a repair job may take hours to days.
 
