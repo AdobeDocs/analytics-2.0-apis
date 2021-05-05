@@ -34,7 +34,7 @@ Using BDIA successfully depends upon the following:
 * [REST API Details](#rest-api-details)
 * [Making a valid request](#operations)
 * [Response Handling](#error-handling)
-* [Column and Query String References](#CSV-Column-and-Query-String-Reference)
+* [Column and Query String References](#csv-column-and-query-string-reference)
 
 
 ## Limitations
