@@ -33,7 +33,9 @@ Using BDIA successfully depends upon the following:
 * [Diagnosing failures](#failure-scenarios)
 * [REST API Details](#rest-api-details)
 * [Making a valid request](#operations)
-* [Understanding responses](#file-info-response-details)
+* [Response Handling](#error-handling)
+* [Column and Query String References](#CSV-Column-and-Query-String-Reference)
+
 
 ## Limitations
 
@@ -288,11 +290,13 @@ With a file ingest POST request, a file object will be returned in the response.
 | visitor_group | string | Name of the visitor group submitted in the 'x-adobe-vgid' header field |
 | size | long | Size, in bytes, of the uploaded file |
 | received_date | long | Timestamp (unix epoch time) when file upload was received |
-| processing_start_date | long | Timestamp (unix epoch time) when file processing began |
-| file_reader_complete_date | long | Timestamp (unix epoch time) when file read step completed. |
-| processing_end_date | long | Timestamp (unix epoch time) when file processing completed |
 | rows | integer | Number of rows contained in file |
 | invalid_rows | integer | Number of invalid rows identified in the file |
+| upload_name | string | Name of the file submitted with the request |
+| status | string | Long form of status_code |
+| status_code | string | UPLOADED or REJECTED | 
+| processing_log | string | Notes about any issues found during processing. Up to 10 rows of each error type will be explicitly mentioned, summarized results for more than 10. |
+| idempotency_key | string | If submitted as a header value, then this is the submitted value, else it is the internally generated file_id |
 
 ## Operations
 
@@ -364,11 +368,14 @@ Below are the list of possible errors and their results:
 
 ```
 {
-  "file_id": "7d7290b7-ee69-4332-8561-0c03251bed05",
-  "upload_name": "1_bad_compression.gz",
-  "status": "File format error"
+  "file_id":"3ae262c5-cdea-4bdb-a41c-fbd2c2004c4d",
+  ...
+  "status_code":"REJECTED",
+  "processing_log":"An error occurred: Not in GZIP format\n",
+  "error":"No hits were found in the file."
 }
 ```
+
 | Error Description | Result |
 |:--|:--|
 | File does not contain the required header column list | File is marked as failed |
@@ -377,72 +384,62 @@ Below are the list of possible errors and their results:
 
 ```
 {
-  "file_id": "ffd82ef7-3b6c-4e31-b3f5-4ff9b91e5b7d",
-  "received_date": 1589931310,
-  "processing_start_date": 1589931313,
-  "processing_end_date": 1589931319,
-  "visitor_group_id": "vg_10",
-  "rows": 2,
-  "size": "1847", 
-  "invalid_rows": 2,
-  "processing_log": "22:07:49.305 [main] ERROR - No ReportSuiteID found in the file header or in the file upload. This must be present in order to submit a hit.
-22:07:49.307 [main] ERROR - No timestamp field found in the file header.
-22:07:49.307 [main] ERROR - No user-agent found in the file header.
-22:07:49.308 [main] WARN - Processing complete: 0 rows will be submitted. 2 rows were invalid.",
-  "upload_name": "sample_file_1.gz",
-  "status": "Ingest completed"
+  "file_id":"3ae262c5-cdea-4bdb-a41c-fbd2c2004c4d",
+  ...
+  "status_code":"REJECTED",
+  "processing_log":"No visitor ID found in the file header.  There must be one of VisitorID, MarketingCloudVisitorID, IPAddress, or CustomerID defined..."
+  "error":"No valid rows were found in the file."
 }
 ```
+
 | Error Description | Result |
 |:--|:--|
-| A row does not specify the minimum number of required fields | The row is skipped, and the error count for the file is incremented. |
+| File header is missing a required column | File is marked as failed |
 
 **Sample JSON Response**
 
 ```
 {
-  "file_id": "e9ecfcea-815c-4691-83c2-575b2338dce4",
-  "received_date": 1589931310,
-  "processing_start_date": 1589931313,
-  "processing_end_date": 1589931319,
-  "visitor_group_id": "vg_10",
-  "rows": 1258,
-  "size": "157850", 
-  "invalid_rows": 1,
-  "processing_log": "22:13:23.428 [main] WARN - On row: 17, missing 'ReportSuiteId'. This row will not be submitted.
-22:13:23.428 [main] WARN - Processing complete: 1257 rows will be submitted. 1 rows were invalid.",
-  "upload_name": "sample_file_2.gz",
-  "status": "Ingest completed"
+  "file_id":"3ae262c5-cdea-4bdb-a41c-fbd2c2004c4d",
+  ...
+  "status_code":"REJECTED",
+  "processing_log":"No timestamp field found in the file header.\nProcessing complete: 0 rows will be submitted.  5000 rows were invalid.\n","
+  "error":"No valid rows were found in the file."
 }
-
 ```
+
 | Error Description | Result |
 |:--|:--|
-|A row is malformed CSV and cannot be parsed | The row is skipped, and the error count for the file is incremented.|
+| A row does not specify a value for a required field | The row is skipped, and the error count for the file is incremented. Up to 10 rows of the same error type will be listed. |
 
+**Sample JSON Response**
 
 ```
 {
-  "file_id": "7d7fe5ac-dd43-4a67-aabf-f94f4d8fb239",
-  "received_date": 1589931310,
-  "processing_start_date": 1589931313,
-  "processing_end_date": 1589931319,
-  "visitor_group_id": "vg_10",
-  "rows": 100,
-  "size": "12873", 
-  "invalid_rows": 2,
-  "processing_log": "22:17:01.649 [main] WARN - On row: 72, inconsistent column count. Expected 5 columns, but found 6.
-22:17:01.649 [main] WARN - On row: 75, inconsistent column count. Expected 5 columns, but found 4.
-22:17:01.649 [main] WARN - Processing complete: 98 rows will be submitted. 2 rows were invalid.",
-  "upload_name": "sample_file_3.gz",
-  "status": "Ingest completed"
+  "file_id":"3ae262c5-cdea-4bdb-a41c-fbd2c2004c4d",
+  ...
+  "status_code":"UPLOADED",
+  "processing_log":"On row: 1, missing 'UserAgent'. This row will not be submitted.\nOn row: 57, missing 'ReportSuiteId'. This row will not be submitted.\nProcessing complete: 4998 rows will be submitted.  2 rows were invalid.\n"
 }
 ```
+
+| Error Description | Result |
+|:--|:--|
+|A row is malformed CSV and cannot be parsed. | The row is skipped, and the error count for the file is incremented.|
+
 **Sample JSON Response**
+
+```
+{
+  "file_id":"3ae262c5-cdea-4bdb-a41c-fbd2c2004c4d",
+  ...
+  "status_code":"UPLOADED",
+  "processing_log":"On row: 1, inconsistent column count. Expected 5 columns, but found 6.\nOn row: 3, inconsistent column count.  Expected 5 columns, but found 4.\nProcessing complete: 4998 rows will be submitted.  2 rows were invalid.\n"
+}
+```
 
 ## Removing Data from Analytics
 If incorrect or sensitive data (PII) is ingested via BDIA, there is no productized method to remove this data. Engineering Services can assist customers in removing data that was accidentally inserted, but that will require a separate service engagement per incident.
-
 
 
 ## CSV Column and Query String Reference
@@ -490,9 +487,9 @@ state | state | The visitor's U.S. state.
 timestamp | ts | The time and date on which the data was collected.
 ~~timezone~~ | Not supported at this time. | |
 tnta | tnta | Target data payload, for use with A4T integrations
-~~trackingServer~~ | N/A | *Can only be supplied via column header*
+trackingServer | N/A | *Can only be supplied via column header*
 transactionID | xact | Common value used to tie multi-channel user activities together for reporting purposes. For more information, see the [Data Sources User Guide](https://docs.adobe.com/content/help/en/analytics/import/data-sources/datasrc-home.html).
-~~userAgent~~ | N/A | *Can only be supplied via column header*
+userAgent | N/A | *Can only be supplied via column header*
 visitorID | vid | Visitor's Analytics ID. See [Visitor Identification](https://docs.adobe.com/content/help/en/id-service/using/home.html).
 marketingCloudVisitorID | mid | Marketing Cloud ID. See [Visitor Identification and the Marketing Cloud Visitor ID Service](https://docs.adobe.com/content/help/en/id-service/using/home.html).
 zip | zip | The visitor's zip code.

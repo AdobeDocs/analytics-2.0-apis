@@ -4,7 +4,7 @@ The Usage Log API is an Analytics Reporting API that allows users to retrieve th
 
 We recommend using the [Reporting APIs in the Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Reporting%20APIs) to learn how to make this API call.
 
-## Authorization and authentication
+## Authorization and Authentication
 
 In order to use this API, you must have the appropriate permissions. Admin users will have permissions to the tool by default. Non-admin users must be given the following '*Analytics Tools*' permission in the [Admin Console](https://experienceleague.adobe.com/docs/analytics/admin/admin-console/permissions/analytics-tools.html?lang=en#admin-console): "*Logs - Web Services*".
 
@@ -15,18 +15,18 @@ This API authenticates the same way as the other Analytics Reporting APIs. For c
 | --- | --- | ---------- | ----- |
 | startDate | string | Start date for the maximum of a 3 month period.| 2020-12-01T00:00:00-07 |
 | endDate | string | End date for the maximum of a 3 month period. | 2020-12-15T14:32:33-07 |
-| login | string | The login value of the user you want to filter logs by. This filter functions as an exact match. | User defined |
+| login | string | The login value of the user you want to filter logs by. Filtered as an exact match. | User defined |
 | ip | string | The IP address you want to filter logs by. This filter supports a partial match.| 10.0|
-| rsid | string | The report suite ID you want to filter logs by. | User defined|
+| rsid | string | The report suite ID you want to filter logs by. Filtered as an exact match. | User defined|
 | eventType | string | The numeric id for the event type you want to filter logs by. Please reference the lookup table below. | 3 |
 | event | string |  The event description you want to filter logs by. No wildcards are permitted, but this filter is case insensitive and supports partial matches.| User defined |
-| limit | integer | Number of results per page. | 10 |
+| limit | integer | Number of results per page, with a maximum value of 1000. | 10 |
 | page | integer | Page number (base 0 - first page is "0")| 0 |
 
 
 ### Event Type Lookup Table
 
-By default, all event types will be included when you make a request to get usage logs. To apply a filter for a specific event type, the ID can be used in the API request. These event types are the same fields available in the Analytics UI.
+By default, all event types will be included when you make a request to get usage logs. To apply a filter for a specific event type, the ID can be used in the API request. These event types are the same fields available in the [Analytics UI](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/logs.html?lang=en#section_8ADE8A7204A8401C968ABC20AECA381D).
 
 | ID | Event Type
 | --- | --- 
