@@ -625,6 +625,24 @@ Example
 }
 ```
 
+#### `doesNotContain`
+* Limit the action to variables whose current value does not contain the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "doesNotContain",
+                "matchValue": "@"
+            }
+        }
+    }
+}
+```
+
 #### `startsWith`
 * Limit the action to variables whose current value starts with the given value.
 
@@ -636,6 +654,24 @@ Example
             "action": "delete",
             "filter": {
                 "condition": "startsWith",
+                "matchValue": "XYZ"
+            }
+        }
+    }
+}
+```
+
+#### `doesNotStartWith`
+* Limit the action to variables whose current value does not start with the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "doesNotStartWith",
                 "matchValue": "XYZ"
             }
         }
@@ -660,6 +696,25 @@ Example
     }
 }
 ```
+
+#### `doesNotEndWith`
+* Limit the action to variables whose current value does not end with the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "doesNotEndWith",
+                "matchValue": "XYZ"
+            }
+        }
+    }
+}
+```
+
 
 #### `isURL`
 * Limit the action to variables whose current value is a URL.
