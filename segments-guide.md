@@ -85,7 +85,7 @@ Any response that can return multiple segments can be paginated with the `page` 
 
 ## Creating Segments
 
-As mentioned in the [Best Practices](#best-practices) section above, the Analytics UI is recommended for creating segments from scratch. If you do choose to use the API to create segments, keep in mind that certain fields cannot be supplied via the `POST /segments` endpoint. For example, `tags` are not stored within the segments themselves and therefore will be ignored if supplied on a creation request. To modify a segment's tags, use the [Tags APIs](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/tags.md).
+As mentioned in the [Best Practices](#best-practices) section above, the Analytics UI is recommended for creating segments from scratch. If you do choose to use the API to create segments, keep in mind that certain fields cannot be supplied via the `POST /segments` endpoint. For example, `tags` are not stored within the segments themselves and will therefore be ignored if supplied on a creation request. To modify a segment's tags, use the [Tags APIs](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/tags.md).
 
 ## Retrieving Segments
 
