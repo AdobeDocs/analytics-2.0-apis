@@ -29,15 +29,32 @@ module.exports = {
     pages: [
       {
         title: 'Overview',
-        path: '/'
+        path: 'index.md'
       },
       {
         title: 'Guides',
         path: 'guides'
       },
       {
-        title: 'API Reference',
-        path: 'api'
+        title: 'API References',
+        menu: [
+          {
+            title: 'Adobe Analytics 2.0 APIs',
+            path: 'apis/index.md'
+          },
+          {
+            title: 'Bulk Data Insertion API Reference',
+            path: 'apis/bulk-data-insertion.md'
+          },
+          {
+            title: 'Data Repair API Reference',
+            path: 'apis/data-repair.md'
+          },
+          {
+            title: 'Reports & Analytics API v1.4',
+            path: '/analytics-apis/docs/1.4/api/'
+          }
+        ]
       },
       {
         title: 'Support',
@@ -47,103 +64,205 @@ module.exports = {
     subPages: [
       {
         title: 'Getting Started',
-        path: 'guides/getting-started',
+        path: 'guides/index.md',
         pages: [
           {
-            title: 'Creating an OAuth Client',
-            path: 'guides/getting-started/index.md'
+            title: 'JWT',
+            path: 'guides/jwt.md'
           },
           {
-            title: 'OAuth using cURL',
-            path: 'guides/getting-started/oauth-curl.md'
+            title: 'Migrating from 1.4',
+            path: 'guides/migration.md'
           },
           {
-            title: 'OAuth using POSTMAN',
-            path: 'guides/getting-started/oauth-postman.md'
-          },
-          {
-            title: 'JWT Authentication',
-            path: 'guides/getting-started/jwt.md'
+            title: 'FAQ',
+            path: 'guides/faq.md'
           }
         ]
       },
       {
-        title: 'Reporting API Guide',
-        path: 'guides/reporting-api/index.md',
+        title: 'Endpoint guides',
+        path: 'guides/endpoints/index.md',
         pages: [
           {
-            title: 'Reporting with Multiple Breakdowns',
-            path: 'guides/reporting-api/reporting-multiple-breakdowns.md'
+            title: 'Bulk data insertion',
+            path: 'guides/endpoints/bulk-data-insertion/index.md',
+            pages: [
+              {
+                title: 'Column reference',
+                path: 'guides/endpoints/bulk-data-insertion/column-reference.md'
+              },
+              {
+                title: 'Validate',
+                path: 'guides/endpoints/bulk-data-insertion/validate.md'
+              },
+              {
+                title: 'Visitor groups',
+                path: 'guides/endpoints/bulk-data-insertion/visitor-groups.md'
+              },
+              {
+                title: 'Customer ID',
+                path: 'guides/endpoints/bulk-data-insertion/customer-id.md'
+              },
+              {
+                title: 'Examples',
+                path: 'guides/endpoints/bulk-data-insertion/example.md'
+              },
+              {
+                title: 'Troubleshooting',
+                path: 'guides/endpoints/bulk-data-insertion/troubleshooting.md'
+              },
+              {
+                title: 'FAQ',
+                path: 'guides/endpoints/bulk-data-insertion/faq.md'
+              }
+            ]
           },
           {
-            title: 'Reporting Tips and Tricks',
-            path: 'guides/reporting-api/reporting-tricks.md'
-          }
-        ]
-      },
-      {
-        title: 'Migrating Guide',
-        path: 'guides/migration-guide.md'
-      },
-      {
-        title: 'Calculated Metrics API',
-        path: 'guides/calculatedmetrics.md'
-      },
-      {
-        title: 'Component Meta Data APIs',
-        path: 'guides/component-meta-data-apis',
-        pages: [
+            title: 'Calculated metrics',
+            path: 'guides/endpoints/calculatedmetrics/index.md',
+            pages: [
+              {
+                title: 'Functions',
+                path: 'guides/endpoints/calculatedmetrics/functions.md'
+              },
+              {
+                title: 'Validate',
+                path: 'guides/endpoints/calculatedmetrics/validate.md'
+              },
+              {
+                title: 'FAQ',
+                path: 'guides/endpoints/calculatedmetrics/faq.md'
+              }
+            ]
+          },
+          {
+            title: 'Data repair',
+            path: 'guides/endpoints/data-repair/index.md',
+            pages: [
+              {
+                title: 'Variables',
+                path: 'guides/endpoints/data-repair/variables.md'
+              },
+              {
+                title: 'Server call estimate',
+                path: 'guides/endpoints/data-repair/server-call-estimate.md'
+              },
+              {
+                title: 'Job',
+                path: 'guides/endpoints/data-repair/job.md'
+              },
+              {
+                title: 'Job ID',
+                path: 'guides/endpoints/data-repair/job-id.md'
+              },
+              {
+                title: 'FAQ',
+                path: 'guides/endpoints/data-repair/faq.md'
+              }
+            ]
+          },
+          {
+            title: 'Discovery',
+            path: 'guides/endpoints/discovery.md'
+          },
+          {
+            title: 'Reports',
+            path: 'guides/endpoints/reports/index.md',
+            pages: [
+              {
+                title: 'Breakdowns',
+                path: 'guides/endpoints/reports/breakdowns.md'
+              },
+              {
+                title: 'Debugger',
+                path: 'guides/endpoints/reports/debugger.md'
+              },
+              {
+                title: 'Examples',
+                path: 'guides/endpoints/reports/examples.md'
+              },
+              {
+                title: 'Search filters',
+                path: 'guides/endpoints/reports/search-filters.md'
+              },
+              {
+                title: 'Segments',
+                path: 'guides/endpoints/reports/segments.md'
+              }
+            ]
+          },
+          {
+            title: 'Report suites',
+            path: 'guides/endpoints/report-suites.md'
+          },
+          {
+            title: 'Segments',
+            path: 'guides/endpoints/segments/index.md',
+            pages: [
+              {
+                title: 'Definitions',
+                path: 'guides/endpoints/segments/definition.md'
+              },
+              {
+                title: 'Validate',
+                path: 'guides/endpoints/segments/validate.md'
+              },
+              {
+                title: 'Examples',
+                path: 'guides/endpoints/segments/examples.md'
+              },
+              {
+                title: 'FAQ',
+                path: 'guides/endpoints/segments/faq.md'
+              }
+            ]
+          },
           {
             title: 'Tags',
-            path: 'guides/component-meta-data-apis/index.md'
+            path: 'guides/endpoints/tags.md'
+          },
+          {
+            title: 'Usage',
+            path: 'guides/endpoints/usage.md'
+          },
+          {
+            title: 'Virtual report suites',
+            path: 'guides/endpoints/vrs/index.md',
+            pages: [
+              {
+                title: 'JSON body reference',
+                path: 'guides/endpoints/vrs/reference.md'
+              },
+              {
+                title: 'Examples',
+                path: 'guides/endpoints/vrs/examples.md'
+              }
+            ]
           }
         ]
       },
       {
-        title: 'Segments APIs',
-        path: 'guides/segments-apis',
+        title: 'Use cases',
+        path: 'guides/use-cases/index.md',
         pages: [
           {
-            title: 'Segment Definition Data Structure',
-            path: 'guides/segments-apis/segments.md'
-          }
-        ]
-      },
-      {
-        title: 'Usage Logs API',
-        path: 'guides/usage-logs-api',
-        pages: [
+            title: 'cURL',
+            path: 'guides/use-cases/curl.md'
+          },
           {
-            title: 'Usage & Access Logs',
-            path: 'guides/usage-logs-api/index.md'
-          }
-        ]
-      },
-      {
-        title: 'Discovery',
-        path: 'guides/discovery.md'
-      },
-      {
-        title: 'Report Suite API',
-        path: 'guides/report-suite-api/index.md',
-        pages: [
+            title: 'Java',
+            path: 'guides/use-cases/java.md'
+          },
           {
-            title: 'Virtual Report Suites API',
-            path: 'guides/report-suite-api/vrs.md'
+            title: 'Postman',
+            path: 'guides/use-cases/postman.md'
+          },
+          {
+            title: 'Python',
+            path: 'guides/use-cases/python.md'
           }
         ]
-      },
-      {
-        title: 'Bulk Data Insertion API',
-        path: 'guides/bdia.md'
-      },
-      {
-        title: 'Data Repair API',
-        path: 'guides/data-repair.md'
-      },
-      {
-        title: 'FAQ',
-        path: 'guides/faq.md'
       }
     ]
   },

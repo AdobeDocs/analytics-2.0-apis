@@ -1,65 +1,31 @@
-# Analytics 2.0 APIs
-Documentation for the analytics 2.0 APIs
+---
+title: Adobe Analytics 2.0 APIs
+description: The Analytics 2.0 API overview page.
+---
 
-This documentation provides instructions for Adobe Analytics 2.0 APIs. For working with Analytics 1.4 APIs, see [Analytics 1.4 API Documentation](https://github.com/AdobeDocs/analytics-1.4-apis).
+<Hero slots="image, heading, text" background="rgb(64, 34, 138)"/>
 
-The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics products like Analysis Workspace. The APIs allow for the creation of data rich user interfaces that you can use to manipulate and integrate data. You can also create reports to explore, get insights, or answer important questions about your data.  
+![Hero image](./images/hero-illustration.png)
 
+# Adobe Analytics 2.0 APIs
 
-_CONTRIBUTING: We encourage you to participate in our open documentation initiative, if you have suggestions, corrections, additions or deletions for this documentation, check out the source from [this github repo](https://github.com/AdobeDocs/analytics-2.0-apis), and submit a pull request with your contribution. For more information, refer to the [Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING.md) page._
+The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics products like Analysis Workspace. The APIs allow for the creation of data rich user interfaces that you can use to manipulate and integrate data. You can also create reports to explore, get insights, or answer important questions about your data.
 
-It is assumed that you have an understanding of the Adobe Analytics product, its features and capabilities and that you know how to use the product. Thus an introduction to Adobe Analytics is outside of the scope of this documentation. For more information about the Adobe Analytics product, refer to the [Adobe Analytics documentation](https://docs.adobe.com/content/help/en/analytics/landing/home.html).
+<Resources slots="heading, links"/>
 
+#### Resources
 
-## Getting Started
-To get started with Analytics 2.0 APIs you must first decide whether your application will need an OAuth client or a JWT client.
+* [Quick start guide](getting-started/index.md)
+* [Endpoint guides](endpoints/index.md)
+* [API reference](api.md)
+* [Github repository](https://github.com/AdobeDocs/analytics-apis)
 
-### Authentication 
-There multiple types of authentication for authenticating with the analytics APIs. General information about authenticating with Adobe's APIs is located [here](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/AuthenticationGuide.md). Specific information related to authenticating with the analytics APIs is available in the sections below.
+## Overview
 
-#### OAuth
+The Adobe Analytics 2.0 APIs allow you to directly call Adobe's servers to perform almost any action that you can perform in the user interface. Examples include the retrieval of reports and the creation of filters or calculated metrics. This documentation provides instructions on how to call Adobe's endpoints to return the desired data. 
 
-Use an OAuth client if you are creating an application that requires an end user to authenticate before calling the Adobe Analytics APIs. The OAuth tokens expire after 24 hours and the end user must then re-authenticate before they will be able to call the APIs. To authenticate with an OAuth client, you first create an [OAuth client on the Adobe I/O Console](create-oauth-client.md). You can then use either method below with your client:
+This user guide assumes that you have an intermediate understanding of Adobe Analytics. See the documentation for [Adobe Analytics](https://experienceleague.adobe.com/docs/analytics/landing/home.html).
 
-* Use [cURL for OAuth authentication](oauth-curl.md).
+If you are looking for the API around Customer Journey Analytics, see the [Customer Journey Analytics API documentation](https://www.adobe.io/cja-apis/docs/).
 
-* Use [Postman for OAuth authentication](oauth-postman.md).
-
-**Note:** The `refresh token` grant type is automatically added to OAuth clients created after September 18, 2019
-
-#### JWT
-
-A JWT client is best if you are creating an application that needs to programmatically authenticate calls to the Adobe Analytics APIs. A new JWT token can be generated whenever the old one is about to expire so your application can continue to make API calls. 
-
-For more information see [JWT authentication](jwt.md).
-
-## Try Now
-Try the Analytics 2.0 API in seconds. Use our [Swagger UI](https://adobedocs.github.io/analytics-2.0-apis/) to explore APIs, make calls and get a response. Our Swagger UI also includes the full endpoint descriptions. 
-
-## Discovery API
-The [Discovery API](discovery.md) returns information on the user's company that is necessary for making other Adobe Analytics API calls.
-
-## Reporting API Guide
-The [Reporting API Guide](reporting-guide.md) provides configuration guidance and best practices for the ```/reports``` endpoint.
-Please also refer to the [Reporting Tricks Guide](reporting-tricks.md) to learn how to use analysis workspace to build and validate your API requests.
-
-## Segments API Guide
-The [Segments API Guide](segments-guide.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
-
-## Report Suite API Guide
-The [Report Suite API Guide](report-suites.md) provides more details on configuring report suites and virtual report suites.
-
-## Bulk Data Insertion API Guide
-See the [Analytics Bulk Data Insertion API User's Guide](bdia.md)
-
-## Data Repair API
-See the [Data Repair API Guide](data-repair.md)
-
-## Migrating from 1.4 APIs to 2.0 APIs
-For help migrating from the 1.3/1.4 versions of the Analytics API to the newer and more capable ```/reports``` API, refer to the [migration guide](migration-guide.md).
-
-## API Request Timeouts
-The timeout for API requests through adobe.io is currently **60 seconds**.
-
-## Rate Limiting
-The default rate limit for an Adobe Analytics Company is **120 requests per minute** per user. (The limit is enforced as **12 requests every 6 seconds**). When rate limiting is being enforced you will get `429` HTTP response codes with the following response body: ```{"error_code":"429050","message":"Too many requests"}```
+This user guide adheres to Adobe's Code of Conduct. Contributions are encouraged and appreciated. See Adobe's [Code of Conduct](https://github.com/AdobeDocs/analytics-apis/blob/main/CODE_OF_CONDUCT.md) and [Contribution guidelines](https://github.com/AdobeDocs/analytics-apis/blob/main/.github/CONTRIBUTING.md) on GitHub for more information.
