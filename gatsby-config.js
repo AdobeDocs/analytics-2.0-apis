@@ -49,10 +49,6 @@ module.exports = {
           {
             title: 'Data Repair API Reference',
             path: 'apis/data-repair.md'
-          },
-          {
-            title: 'Reports & Analytics API v1.4',
-            path: '/analytics-apis/docs/1.4/api/'
           }
         ]
       },
