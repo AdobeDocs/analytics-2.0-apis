@@ -151,7 +151,7 @@ Suppose a set of server calls has integer visitor IDs, 1-100, and we want to cre
 
 ### Naming Visitor Groups
 
-For optimal ingestion efficiency, we request that your visitor group ID names incorporate a string related to your company or report_suite. In the past many companies have used simple sequential integers for their visitor group names (i.e. 0,1,2,3, etc), resulting in many visitor groups of the same name across clients. Instead, please append a string to your group name, such as mycompany_1, or myreportsuite_1. We do not enforce unique visitor id group names across clients, but doing so will improve the processing latency of your files.
+For optimal ingestion efficiency, we request that your visitor group ID names incorporate a string related to your company or report suite. In the past many companies have used simple sequential integers for their visitor group names (i.e. 0,1,2,3, etc), resulting in many visitor groups of the same name across clients. Instead, please append a string to your group name, such as mycompany_1, or myreportsuite_1. We do not enforce unique visitor id group names across clients, but doing so will improve the processing latency of your files.
 
 ### Changing Visitor Groups
 
