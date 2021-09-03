@@ -328,7 +328,7 @@ Create a repair job in the following:
 #### Standard Dimensions
 
 ##### `campaign`, `entrypage`, `entrypageoriginal`, `sitesections`
-* Supported Actions: `delete`, `set`
+* Supported Actions: `delete`, `set`, `deleteQueryString`, `deleteQueryStringParameters`
 * `campaign`: See `evar1-evar250` for details on variable expiration, as they also apply to `campaign`.
 
 Example
@@ -357,7 +357,7 @@ Example
 ```
 
 ##### `page`, `pageeventvar1`, `pageeventvar2`
-* Supported Actions: `set`
+* Supported Actions: `set`, `deleteQueryString`, `deleteQueryStringParameters`
 * `pageeventvar1/2`: These fields represent the "url" and "name" for custom page events
 
 Example
@@ -390,7 +390,7 @@ Example
 
 ##### `evar1-evar250`
 * Custom Conversion variables (commonly referred to as 'eVars')
-* Supported Actions: `delete`, `set`
+* Supported Actions: `delete`, `set`, `deleteQueryString`, `deleteQueryStringParameters`
 * An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html).
 
 Example
@@ -409,7 +409,7 @@ Example
 
 ##### `prop1-prop75`
 * Custom Traffic Property variables (commonly referred to as 'props')
-* Supported Actions: `delete`, `set`
+* Supported Actions: `delete`, `set`, `deleteQueryString`, `deleteQueryStringParameters`
 
 Example
 ```
@@ -442,7 +442,7 @@ Example
 
 
 ##### Mobile: `mobileappid`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`
-* Supported Actions: `delete`, `set`
+* Supported Actions: `delete`, `set`, `deleteQueryString`, `deleteQueryStringParameters`
 
 Example
 ```
@@ -471,7 +471,7 @@ Example
 ```
 
 ##### Video: `videoadname`, `videoadplayername`, `videoadadvertiser`, `videoaudioalbum`, `videoaudioartist`, `videoaudioauthor`, `videoaudiolabel`, `videoaudiopublisher`, `videoaudiostation`, `videoadcampaign`, `videochannel`, `videocontenttype`, `videoepisode`, `videofeedtype`, `videomvpd`, `videoname`, `videonetwork`, `videopath`, `videoplayername`, `videoseason`, `videoshow`, `videoshowtype`, `videostreamtype`
-* Supported Actions: `delete`, `set`
+* Supported Actions: `delete`, `set`, `deleteQueryString`, `deleteQueryStringParameters`
 
 Example
 ```
@@ -486,7 +486,7 @@ Example
 ```
 
 ##### Video: `video`, `videoad`
-* Supported Actions: `set`
+* Supported Actions: `set`, `deleteQueryString`, `deleteQueryStringParameters`
 
 Example
 ```
@@ -625,6 +625,24 @@ Example
 }
 ```
 
+#### `doesNotContain`
+* Limit the action to variables whose current value does not contain the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "doesNotContain",
+                "matchValue": "@"
+            }
+        }
+    }
+}
+```
+
 #### `startsWith`
 * Limit the action to variables whose current value starts with the given value.
 
@@ -636,6 +654,24 @@ Example
             "action": "delete",
             "filter": {
                 "condition": "startsWith",
+                "matchValue": "XYZ"
+            }
+        }
+    }
+}
+```
+
+#### `doesNotStartWith`
+* Limit the action to variables whose current value does not start with the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "doesNotStartWith",
                 "matchValue": "XYZ"
             }
         }
@@ -660,6 +696,25 @@ Example
     }
 }
 ```
+
+#### `doesNotEndWith`
+* Limit the action to variables whose current value does not end with the given value.
+
+Example
+```
+{
+    "variables": {
+        "evar1": {
+            "action": "delete",
+            "filters": {
+                "condition": "doesNotEndWith",
+                "matchValue": "XYZ"
+            }
+        }
+    }
+}
+```
+
 
 #### `isURL`
 * Limit the action to variables whose current value is a URL.

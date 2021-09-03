@@ -34,7 +34,7 @@ Using BDIA successfully depends upon the following:
 * [REST API Details](#rest-api-details)
 * [Making a valid request](#operations)
 * [Response Handling](#error-handling)
-* [Column and Query String References](#CSV-Column-and-Query-String-Reference)
+* [Column and Query String References](#csv-column-and-query-string-reference)
 
 
 ## Limitations
@@ -139,7 +139,7 @@ A visitor group is a set of visitor IDs that are disjoint from any other visitor
 
 For example, if a customer has decided to divide their integer visitor IDs into two visitor groups, group A might contain all odd visitor IDs and group B might contain all even visitor IDs. The method of categorizing them isn’t important as long as a visitor ID in group A will not appear in any of the files uploaded with a group B visitor group tag.
 
-Customers can split up their visitor IDs and therefore files into any number of visitor groups to increase parallelism and throughput (up to their set throttle limit). The same batch file requirements regarding size, ordering of the timestamps in the files, and the order in which files are uploaded, still apply for each visitor group.
+Customers can split up their visitor IDs, and therefore files, into any number of visitor groups to increase parallelism and throughput (up to their set throttle limit). The same batch file requirements regarding size, ordering of the timestamps in the files, and the order in which files are uploaded, still apply for each visitor group.
 
 Another way to think of visitor groups is to view them as separate processing pipelines. Each visitor group creates a separate processing pipeline for files associated with that visitor group. Each pipeline processes files concurrently with other processing pipelines.
 
@@ -148,6 +148,10 @@ Another way to think of visitor groups is to view them as separate processing pi
 Suppose a set of server calls has integer visitor IDs, 1-100, and we want to create three disjoint visitor group sets. We can use the mathematical MOD operation to organize these visitors into 3 groups. Server calls where `visitor ID MOD 3 = 0` go into visitor group `0`. Server calls where `visitor ID MOD 3 = 1` go into visitor group `1`, and so forth. Server calls are batched into files and ordered by timestamp, per their visitor group, and are then uploaded with that visitor group specified in the header of the API request. Since the visitors in these files are all disjoint, the BDIA system can process them in parallel without risking any calls for a visit being processed out of order.
 
 ![note visitor group diagram](/images/bia-visitor_groups.jpg)
+
+### Naming Visitor Groups
+
+For optimal ingestion efficiency, we request that your visitor group ID names incorporate a string related to your company or report_suite. In the past many companies have used simple sequential integers for their visitor group names (i.e. 0,1,2,3, etc), resulting in many visitor groups of the same name across clients. Instead, please append a string to your group name, such as mycompany_1, or myreportsuite_1. We do not enforce unique visitor id group names across clients, but doing so will improve the processing latency of your files.
 
 ### Changing Visitor Groups
 
@@ -167,17 +171,17 @@ For an implementation guideline, we offer the following recommendations:
 - Ingestion of 2000 rows per second per visitor group
 - No more than 1 API call per 20 seconds per visitor group
 
-Using these guidelines, you can anticipate how many visitor groups to utilize.  For example, suppose your company anticipates submitting 1 billion hits per day.  At a rate of 2000 rows per second, a single visitor group could support about 173 million rows per 24 hours.  Dividing 1 billion (anticipated rows) by 173 million yields 5.7.  So an implementation of at least 6 visitor groups would be appropriate.  To account for visitor groups of unequal size, it may be safer to bump the estimate up. There would be no harm in using 8-10 visitor groups in this example.
+Using these guidelines, you can approximate how many visitor groups to utilize.  For example, suppose your company anticipates submitting 1 billion hits per day.  At a rate of 2000 rows per second, a single visitor group could support about 173 million rows per 24 hours.  Dividing 1 billion (anticipated rows) by 173 million yields 5.7.  So an implementation of at least 6 visitor groups would be appropriate.  To account for visitor groups of unequal size, it may be safer to bump the estimate up. There would be no harm in using 8-10 visitor groups (or more) in this example.
 
 If you used 10 visitor groups, that would result in about 100 million rows per day/per group, or 1160 rows per second.  As far as send frequency, you could choose to send a file of about 23,000 rows every 20 seconds, 35,000 rows every 30 seconds, and so forth.
 
-File size will vary according to the average size of each row.  While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB.  However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side.  Existing clients tend to send files with rows between 3,000 and 50,000 rows, and sizes of 500k up to 20 MB.
+File size will vary according to the average size of each row.  While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB.  However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side.  Existing clients tend to send files with rows between 5,000 and 50,000 rows, and sizes of 500k up to 20 MB.
 
 ## Customer ID and Experience Cloud Visitor ID Seeds
 
 BDIA provides a way for a customer ID to be specified which Adobe will use as a seed to automatically generate an Experience Cloud Visitor ID (ecid, formerly called Marketing Cloud Visitor ID or mid). This functionality simplifies the process of generating your own ecid, which would require a separate server call for every visitor. Providing your own customer ID as a seed for an ecid is done by adding a column to specify a "customerID.[customerIDType].id" and another boolean column, "customerID.[customerIDType].ismcseed" to denote which customer ID should be used as the seed. Other columns can be used to further define the customer ID as well. See the table below for more information about the available columns.
 
-*Note: In order to utilize this feature, we must coordinate with the Audience Manager team to have the report-suite configured for ECID auto-generation, and make some configuration changes to BDIA to support this feature. Please have your customer support contact or consultant reach out to our team to instigate this onboarding process.
+*Note: In order to utilize this feature, we must coordinate with the Audience Manager team to have the report-suite configured for ECID auto-generation, and make some configuration changes to BDIA to support this feature. Please have your customer support contact or consultant reach out to our team to instigate this onboarding process. **One element of the Audience Manager configuration is an "Integration Code". This will be the same string as your "customerIDType".**
 
 ### Customer ID Columns and Query String Parameters
 

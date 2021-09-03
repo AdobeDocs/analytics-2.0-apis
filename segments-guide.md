@@ -83,6 +83,10 @@ Some segments can only be used with certain reporting engines. For example, some
 
 Any response that can return multiple segments can be paginated with the `page` and `limit` URL query parameters. The `limit` parameter indicates the size of the desired page, and the `page` parameter indicates which page you want. A maximum page size of 1000 is enforced.
 
+## Creating Segments
+
+As mentioned in the [Best Practices](#best-practices) section above, the Analytics UI is recommended for creating segments from scratch. If you do choose to use the API to create segments, keep in mind that certain fields cannot be supplied via the `POST /segments` endpoint. For example, `tags` are not stored within the segments themselves and will therefore be ignored if supplied on a creation request. To modify a segment's tags, use the [Tags APIs](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/tags.md).
+
 ## Retrieving Segments
 
 When requesting a list of segments, you can use multiple URL query parameter filters. You can filter by `name`, `tagNames`, segment id (`segmentFilter`), and `rsids`. For example, to retrieve all segments tagged as part of the *SpringPromotion* campaign, you can add the URL parameter `tagNames=SpringPromotion`. The `tagNames`, `segmentFIlter`, and `rsids` filters accept comma-delimited lists. These lists should be short, with no more than 100 items.
