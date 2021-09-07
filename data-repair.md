@@ -309,7 +309,7 @@ Create a repair job in the following:
 
 1. Because segmentations and classifications rely on variable values, it is important to review dependencies on variable values before repairing data to prevent unexpected changes.
 
-1. An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  Consequently, when repairing an eVar, it is important to check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. To force client-side eVar values to be cleared, utilize the Reset setting for the eVar. You can read more about eVar expiration and Reset settings in the [Conversion Variables documentation](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html).
+1. An eVar value may exist across multiple hits or sessions depending on the "Expire After" setting for the eVar.  To force client-side eVar values to be cleared, utilize the Reset setting for the eVar.  Data Repair jobs are only supported for eVars with an expiration of daily or shorter.
 
 ## Limitations
 
