@@ -473,7 +473,7 @@ javaEnabled | v | Whether the visitor has Java enabled (`Y` or `N`).
 javaScriptVersion | j | JavaScript version. For example, 1.3.
 language | N/A (Can only be supplied via column header)	 | The browser's supported language. For example, "en-us".
 linkName | pev2 | Name of link.
-linkType | pe | Type of link (`d`, `e`, or `o`).
+linkType | N/A | Type of link (`d`, `e`, or `o`).
 linkURL | pev1 | The link's HREF. For custom links, page values are ignored.
 listn For example, list2. | l# | A delimited list of values that are passed into a variable, then reported as individual line items for reporting.
 pageName | pageName | The Web page name.
