@@ -85,7 +85,7 @@ Each header row must contain the following required columns:
 
 > The `reportSuiteID` column is a list of one or more report suite IDs, delimited by commas.
 > The `timestamp` column supports the following formats:
->* POSIX/Epoch Time (e.g., 1486769029)
+>* POSIX/Epoch Time (e.g., 1486769029. 10 digits only (second precision). Will not accept millisecond precision timestamps.)
 >* ISO-8601 (e.g., 2017-02-10T16:23:49-07:00)
 
 #### Other Columns 
