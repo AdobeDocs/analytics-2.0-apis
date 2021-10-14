@@ -73,6 +73,7 @@ Each header row must contain the following required columns:
 * At least one of:
     *  `marketingCloudVisitorID`
     * `IPAddress`
+    * `visitorID`
     * customerID.[customerIDType].id with customerID.[customerIDType].isMCSeed set to TRUE (see below for more information)
 * At least one of:
     * `pageURL`
