@@ -14,6 +14,8 @@
   }, {
     "name" : "component-metadata - tags"
   }, {
+    "name" : "component-metadata - shares"
+  },{
     "name" : "dateranges"
   }, {
     "name" : "dimensions"
@@ -129,10 +131,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
         }, {
           "name" : "includeType",
           "in" : "query",
@@ -212,10 +214,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -397,10 +399,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -459,10 +461,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "definition", "compatibility", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "definition", "compatibility", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1071,7 +1073,293 @@
           }
         }
       }
-    },    
+    },
+    "/componentmetadata/shares/component/search": {
+      "post": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "search for shares for several components at once",
+        "description": "",
+        "operationId": "searchComponentShares",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "items to search for",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ComponentSearch"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SharedComponent"
+            }
+          }
+        }
+      }
+    },
+    "/componentmetadata/shares/sharedto/me": {
+      "get": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "get components shared with the current user by type",
+        "description": "",
+        "operationId": "sharedToMe",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "componentType",
+            "in": "query",
+            "description": "Component type to get shared ids for",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/componentmetadata/shares": {
+      "get": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "Returns a list of shares for the current user's company",
+        "description": "",
+        "operationId": "findAllSharesForCompany",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Share"
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to retrieve list of shares for user."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "Saves the given share for the current user's company",
+        "description": "Allows creation of a new share with a group/user/all",
+        "operationId": "saveShare",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted array of Share objects containing key-value pairs",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/Share"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Share"
+            }
+          },
+          "500": {
+            "description": "Unable to save list of tags."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "Share components with users. WARNING: Authoritative; deletes/overwrites all pre-existing shares for the given components",
+        "description": "",
+        "operationId": "updateShares",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted array of Share objects containing key-value pairs",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/SharedComponent"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SharedComponent"
+            }
+          },
+          "500": {
+            "description": "Unexpected server error while trying to update shares"
+          }
+        }
+      }
+    },
+    "/componentmetadata/shares/{id}": {
+      "get": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "Retrieves an share by its id",
+        "description": "",
+        "operationId": "getShareById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Share ID to be retrieved",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Share"
+            }
+          },
+          "500": {
+            "description": "Unexpected server error while trying to retrieve share"
+          },
+          "404": {
+            "description": "Unable to find a share with the given ID"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "component-metadata - shares"
+        ],
+        "summary": "Removes the shareId and all associations from that share",
+        "description": "Delete by shareId. Will un-share the associated component with the entity shared with.",
+        "operationId": "deleteShare",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The shareId to be deleted",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "shareId": {
+                  "type": "integer"
+                },
+                "success": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unable to delete the given shareId."
+          },
+          "404": {
+            "description": "The given shareId does not exist"
+          }
+        }
+      }
+    },
     "/dateranges" : {
       "get" : {
         "tags" : [ "dateranges" ],
@@ -1139,6 +1427,50 @@
             }
           }
         }
+      },
+      "post" : {
+        "tags" : [ "dateranges" ],
+        "summary" : "Creates configuration for a DateRange.",
+        "description" : "",
+        "operationId" : "createDateRange",
+        "produces" : [ "application/json" ],
+        "parameters" : [ 
+        {
+          "in": "body",
+          "name": "body",
+          "description": "JSON-formatted array of Date Range objects containing key-value pairs",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/AnalyticsDateRange"
+          }
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "expansion",
+          "in" : "query",
+          "description" : "Comma-delimited list of additional date range metadata fields to include on response.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+          },
+          "collectionFormat" : "csv",
+          "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AnalyticsDateRange"
+            }
+          }
+        }
       }
     },
     "/dateranges/{dateRangeId}" : {
@@ -1179,6 +1511,84 @@
             "description" : "successful operation",
             "schema" : {
               "$ref" : "#/definitions/AnalyticsDateRange"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "dateranges" ],
+        "summary" : "Updates configuration for a DateRange.",
+        "description" : "",
+        "operationId" : "updateDateRange",
+        "produces" : [ "application/json" ],
+        "parameters" : [ 
+        {
+          "in": "body",
+          "name": "body",
+          "description": "JSON-formatted array of Date Range objects containing key-value pairs",
+          "required": false,
+          "schema": {
+            "$ref": "#/definitions/AnalyticsDateRange"
+          }
+        },
+        {
+          "name" : "dateRangeId",
+          "in" : "path",
+          "description" : "The DateRange id for which to retrieve information",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "locale",
+          "in" : "query",
+          "description" : "Locale",
+          "required" : false,
+          "type" : "string",
+          "default" : "en_US"
+        }, {
+          "name" : "expansion",
+          "in" : "query",
+          "description" : "Comma-delimited list of additional date range metadata fields to include on response.",
+          "required" : false,
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+          },
+          "collectionFormat" : "csv",
+          "enum" : [ "definition", "ownerFullName", "modified", "tags" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AnalyticsDateRange"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "dateranges" ],
+        "summary" : "Deletes a DateRange.",
+        "description" : "",
+        "operationId" : "deleteDateRange",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "dateRangeId",
+          "in" : "path",
+          "description" : "The id of the date range to delete",
+          "required" : true,
+          "type" : "string"
+        }],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "result": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -1234,10 +1644,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "allowedForReporting", "categories" ]
+            "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "tags", "allowedForReporting", "categories" ]
+          "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1295,10 +1705,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "allowedForReporting", "categories" ]
+            "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "tags", "allowedForReporting", "categories" ]
+          "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1348,10 +1758,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "allowedForReporting", "categories" ]
+            "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "tags", "allowedForReporting", "categories" ]
+          "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1406,10 +1816,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "tags", "allowedForReporting", "categories" ]
+            "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "tags", "allowedForReporting", "categories" ]
+          "enum" : [ "tags", "shares", "allowedForReporting", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1426,6 +1836,392 @@
           },
           "500" : {
             "description" : "Unexpected internal server error"
+          }
+        }
+      }
+    },
+    "/projects/{projectId}": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Retrieves configuration for a Project.",
+        "description": "",
+        "operationId": "projects_getProject",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The Project id for which to retrieve information",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional project metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "reportSuiteName",
+                "shares",
+                "tags",
+                "accessLevel",
+                "modified",
+                "externalReferences",
+                "definition"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsProject"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Updates configuration for a project.",
+        "description": "",
+        "operationId": "projects_updateProject",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The Project id for which to retrieve information",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional project metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "reportSuiteName",
+                "shares",
+                "tags",
+                "accessLevel",
+                "modified",
+                "externalReferences",
+                "definition"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing project keys/value pairs to be updated.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AnalyticsProject"
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsProject"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "deletes a project.",
+        "description": "",
+        "operationId": "projects_deleteProject",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The Project id for which to retrieve information",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/projects/validate": {
+      "post": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Validates a Project definition",
+        "description": "",
+        "operationId": "projects_validateProject",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing key/value pairs for Project validation.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "project": {
+                  "type": "object",
+                  "schema": {
+                    "$ref": "#/definitions/AnalyticsProject"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ProjectCompatibility"
+            }
+          },
+          "500": {
+            "description": "External API error; Project validation failed"
+          },
+          "400": {
+            "description": "Invalid input; definition is required. Definition must be formatted as a JSON Object."
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Returns a list of projects for the user",
+        "description": "This Returns the projects list primarily for the Analytics product. ",
+        "operationId": "projects_getProjects",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "includeType",
+            "in": "query",
+            "description": "Include additional projects not owned by user. The \"all\" option takes precedence over \"shared\". If neither guided, or project is included, both types are returned",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "all",
+                "shared"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional project metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "reportSuiteName",
+                "shares",
+                "tags",
+                "accessLevel",
+                "modified",
+                "externalReferences",
+                "definition"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "filterByIds",
+            "in": "query",
+            "description": "Filter list to only include projects in the specified list (comma-delimited list of IDs)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "pagination",
+            "in": "query",
+            "description": "return paginated results",
+            "required": false,
+            "type": "string",
+            "default": "false",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          {
+            "name": "ownerId",
+            "in": "query",
+            "description": "Filter list to only include projects owned by the specified loginId",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnalyticsProject"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "projects"
+        ],
+        "summary": "Creates a single project.",
+        "description": "",
+        "operationId": "projects_createProject",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing project keys/value pairs to be updated.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AnalyticsProject"
+            }
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional project metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "reportSuiteName",
+                "shares",
+                "tags",
+                "accessLevel",
+                "modified",
+                "externalReferences",
+                "definition"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsProject"
+            }
           }
         }
       }
@@ -1674,10 +2470,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
         }, {
           "name" : "includeType",
           "in" : "query",
@@ -1742,10 +2538,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1830,10 +2626,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -1889,10 +2685,10 @@
           "type" : "array",
           "items" : {
             "type" : "string",
-            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+            "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
           },
           "collectionFormat" : "csv",
-          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
+          "enum" : [ "reportSuiteName", "ownerFullName", "modified", "tags", "shares", "compatibility", "definition", "publishingStatus", "definitionLastModified", "categories" ]
         } ],
         "responses" : {
           "200" : {
@@ -2361,6 +3157,100 @@
         }
       }
     },
+    "AnalyticsProject": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "System generated id",
+					"readOnly": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"rsid": {
+					"type": "string",
+					"description": "The report suite id for which the component was created/updated"
+				},
+				"reportSuiteName": {
+					"type": "string",
+					"description": "The report suite name for which the component was created/updated",
+					"readOnly": true
+				},
+				"owner": {
+					"$ref": "#/definitions/Owner"
+				},
+				"type": {
+					"type": "string",
+					"enum": ["project", "mobileScorecard"]
+				},
+				"definition": {
+					"$ref": "#/definitions/JsonNode"
+				},
+				"externalReferences": {
+					"type": "object",
+					"additionalProperties": {
+						"type": "array",
+						"uniqueItems": true,
+						"items": {
+							"type": "string"
+						}
+					}
+				},
+				"accessLevel": {
+					"type": "string"
+				},
+				"versionNotes": {
+					"type": "string"
+				},
+				"tags": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				},
+				"shares": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "object"
+						}
+					}
+				},
+				"modified": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time"
+				}
+			}
+		},
+    "JsonNode": {
+			"type": "object"
+		},
+    "ProjectCompatibility": {
+			"type": "object",
+			"properties": {
+				"valid": {
+					"type": "boolean"
+				},
+				"validatorVersion": {
+					"type": "string"
+				},
+				"message": {
+					"type": "string"
+				}
+			}
+		},
     "AnalyticsSegment" : {
       "type" : "object",
       "properties" : {
@@ -2519,7 +3409,7 @@
                     },
                     "func" : {
                       "type" : "string"
-                    },
+                    }
                   }
                 },
                 "str" : {
@@ -2527,13 +3417,13 @@
                 },
                 "func" : {
                   "type" : "string"
-                },
+                }
               }
             }
           }
         },
         "func": {
-          "type" : "string",
+          "type" : "string"
         },
         "version": {
           "type" : "array",
@@ -3586,6 +4476,59 @@
         }
       }
     },
+    "Share" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "the share id"
+        },
+        "shareToId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "the id of the user/group the component is shared with"
+        },
+        "shareToType" : {
+          "type" : "string",
+          "description" : "the type of entity shared with (user/group/all)"
+        },
+        "shareToDisplayName" : {
+          "type" : "string",
+          "description" : "full name of the entity shared with"
+        },
+        "componentType" : {
+          "type" : "string",
+          "description" : "the type of component being shared"
+        },
+        "componentId" : {
+          "type" : "string",
+          "description" : "the id of the component being shared"
+        },
+        "accessLevel" : {
+          "type" : "string",
+          "description" : "Level of rights shared with entity. (for projects only)"
+        }
+      },
+      "description" : "Share Model"
+    },
+    "SharedComponent" : {
+      "type" : "object",
+      "properties" : {
+        "componentType" : {
+          "type" : "string"
+        },
+        "componentId" : {
+          "type" : "string"
+        },
+        "shares" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Share"
+          }
+        }
+      }
+    },
     "Tag" : {
       "type" : "object",
       "properties" : {
@@ -3625,7 +4568,7 @@
         "tags" : {
           "type" : "array",
           "items" : {
-            "type" : "Tag"
+            "$ref" : "#/definitions/Tag"
           }
         }
       }

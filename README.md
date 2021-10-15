@@ -46,6 +46,9 @@ Please also refer to the [Reporting Tricks Guide](reporting-tricks.md) to learn 
 ## Segments API Guide
 The [Segments API Guide](segments-guide.md) provides configuration guidance and best practices for the ```/segments``` endpoint.
 
+## Projects API Guide
+The [Projects API Guide](projects-guide.md) provides configuration guidance and best practices for the ```/projects``` endpoint.
+
 ## Report Suite API Guide
 The [Report Suite API Guide](report-suites.md) provides more details on configuring report suites and virtual report suites.
 
