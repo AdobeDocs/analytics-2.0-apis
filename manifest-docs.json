@@ -79,6 +79,12 @@
           "title": "Calculated Metrics"
     },
     {
+          "importedFileName": "date-ranges",
+          "pages": [],
+          "path": "AdobeDocs/analytics-2.0-apis/master/dateranges.md",
+          "title": "Date Ranges"
+    },
+    {
       "importedFileName": "component-meta-data",
       "pages": [
         {
@@ -86,7 +92,13 @@
           "pages": [],
           "path": "AdobeDocs/analytics-2.0-apis/master/tags.md",
           "title": "Tags"
-        }
+        },
+        {
+            "importedFileName": "shares",
+            "pages": [],
+            "path": "AdobeDocs/analytics-2.0-apis/master/shares.md",
+            "title": "Shares"
+          }
       ],
       "path": "AdobeDocs/analytics-2.0-apis/master/tags.md",
       "title": "Component Meta Data APIs"
@@ -104,6 +116,19 @@
           "path": "AdobeDocs/analytics-2.0-apis/master/segments-guide.md",
           "title": "Segments APIs"
     },
+    {
+      "importedFileName": "projects-guide",
+      "pages": [
+                                {
+                                            "importedFileName": "projects",
+                                            "pages": [],
+                                            "path": "AdobeDocs/analytics-2.0-apis/master/projects.md",
+                                            "title": "Project Definition Data Structure"
+                                }
+                          ],
+      "path": "AdobeDocs/analytics-2.0-apis/master/projects-guide.md",
+      "title": "Projects APIs"
+},
 	{
           "importedFileName": "usage-logs",
           "pages": [
