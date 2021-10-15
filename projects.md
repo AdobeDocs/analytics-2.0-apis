@@ -1,5 +1,5 @@
 # Project Definition Data Structure
-The project definition data structure is used to communicate project rules to the API. This data structure defines the raw logic that is used to layout a workspace project. The project definition is a hierarchical data structure of workspaces, panels, and other properties that ares used to define the project. Workspace in the Adobe Analytics UI defines these rules and can be a useful tool for creating and understanding how projects are structured.
+The project definition data structure is used to communicate project rules to the API. This data structure defines the raw logic that is used to layout a workspace project. The project definition is a hierarchical data structure of workspaces, panels, and other properties that are used to define the project. Workspace in the Adobe Analytics UI defines these rules and can be a useful tool for creating and understanding how projects are structured.
 
 ## Example
 
