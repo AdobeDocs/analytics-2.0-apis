@@ -45,8 +45,8 @@ Any response that can return multiple calculated metrics can be paginated with t
 
 The GET multiple calculated metrics endpoint supports several URL query parameters that can be used to filter out which calculated metrics are included in the response. When requesting multiple calculated metrics, you can use the URL query parameters in the following table to filter and limit your response:
 
-|           Parameter       | 	Description         |
-|---------------------|-------------------------|
+| Parameter | Description |
+| --- | --- |
 | `rsids` | Comma separated list of report suite ids. Returns only calculated metrics linked to these report suites |
 | `ownerId` | Filter list to only include calculated metrics owned by the specified loginId |
 | `filterByIds` | Comma separated list of calculated metric ids. Returns only calculated metrics with these ids |
@@ -67,8 +67,6 @@ The following example shows a calculated metrics request for a response localize
 ```sh
 curl -X GET "https://analytics.adobe.io/api/[company name]/calculatedmetrics?locale=en_US&limit=10&page=0" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company name]" -H "Authorization: Bearer [ims user token]" -H "Accept: application/json" -H "Content-Type: application/json"
 ```
-
-### Example response
 
 The following example shows the response for the previous request, including the predefined calculated metrics for Bounce Rate and Revenue per Visitor (`cm_bouncerate_defaultmetric` and `cm_revenue_visitor_defaultmetric`):
 
@@ -147,14 +145,14 @@ The following example shows the response for the previous request, including the
 
 To retrieve a single calculated metric, include its `id` in the request.
 
-### Example request
+Example request:
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/[company name]/calculatedmetrics/[calculated metric id]?locale=en_US" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company id]" -H "Authorization: Bearer [ims user token]" -H "Accept: application/json" -H "Content-Type: application/json"
 
 ```
 
-### Example response
+Example response:
 
 ```json
 {
@@ -175,8 +173,6 @@ curl -X GET "https://analytics.adobe.io/api/[company name]/calculatedmetrics/[ca
 
 The `DELETE` single calculated metric can be used to remove a calculated metric that is no longer needed.
 
-### Example `DELETE` request
-
 The request is the same as retrieving a single calculated metric except to change the HTTP method to `DELETE`.
 
 ```sh
@@ -188,8 +184,6 @@ curl -X DELETE "https://analytics.adobe.io/api/[company name]/calculatedmetrics/
 Existing calculated metrics can be edited via the `PUT /calculatedmetrics/[calculated metric id]` endpoint. Most calculated metrics fields can be updated, not including those that are derived or provided by the API.
 
 The `PUT` endpoint also supports partial updates. This means that instead of sending the entire JSON object to the API, the request may include only the fields that need to be updated.
-
-### Example `PUT` request
 
 The following example shows JSON fields to be updated with a `PUT` request:
 

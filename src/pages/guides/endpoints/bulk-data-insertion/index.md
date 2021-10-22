@@ -12,7 +12,7 @@ Bulk Insertion solves several problems for a variety of use cases. Some use case
 * You want to ingest historical data from a previous analytics system.
 * You have an internal analytics collection system that makes it unfeasible to use client-side AppMeasurement. You can use Extract-Transform-Load (ETL) processes to put the data into batch files, then use BDIA to upload them to Adobe Analytics.
 * You collect data from devices that have only intermittent connectivity to the internet. These devices store up the interactions until they receive a connection. You can upload the historical data all at once via BDIA.
- 
+
 When using BDIA, server calls are sent in batch files. These files are in a specific CSV format where each row of the file defines the details of a server call. Each row, or server call, must specify an identifier for a visitor as well as a timestamp for when the interaction occurred. The server calls must be ordered chronologically by their timestamps, from earliest to latest, in the batch files (this is a requirement of the underlying Analytics system). Each batch file must also be compressed.
 
 ## Requirements
@@ -71,7 +71,7 @@ With a file ingest POST request, a file object is returned in the response. That
 
 |Field|Datatype|Description|
 |--|--|--|
-| `file_id` | `string `| Unique identifier for the file upload transaction |
+| `file_id` | `string` | Unique identifier for the file upload transaction |
 | `visitor_group` | `string` | Name of the visitor group submitted in the `x-adobe-vgid` header field |
 | `size` | `long` | Size, in bytes, of the uploaded file |
 | `received_date` | `long` | Timestamp when file upload was received in Unix time. |
@@ -79,7 +79,7 @@ With a file ingest POST request, a file object is returned in the response. That
 | `invalid_rows` | `int` | The number of invalid rows identified in the file |
 | `upload_name` | `string` | Name of the file submitted with the request |
 | `status` | `string` | Long form of `status_code` |
-| `status_code` | `string` | `UPLOADED` or `REJECTED` | 
+| `status_code` | `string` | `UPLOADED` or `REJECTED` |
 | `processing_log` | `string` | Notes about any issues found during processing. Up to 10 rows of each error type will be explicitly mentioned, summarized results for more than 10. |
 | `idempotency_key` | `string` | If submitted as a header value, then this is the submitted value, else it is the internally generated `file_id` |
 

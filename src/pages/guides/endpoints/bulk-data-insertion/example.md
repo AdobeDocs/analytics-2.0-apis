@@ -7,7 +7,6 @@ description: View a typical example of what a small batch file looks like.
 
 The following examples show what an uncompressed file looks like.
 
-
 ## Batch file with query string
 
 ```text

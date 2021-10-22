@@ -9,7 +9,7 @@ The following columns are supported in the BDIA file format.
 
 Header/Column Name | Query String Parameter Equivalent | Description
 --|--|--
-`aamlh` | `aamlh` | Adobe Audience Manager location hint.<br />`3`: Hong Kong/Singapore (`apse.demdex.net`)<br />`6`: Europe (`irl1.demdex.net`)<br />`7`: US East (`use.demdex.net`)<br />`8`: Australia (`apse2.demdex.net`)<br />`9`: US West (`usw2.demdex.net`)<br />`11`: Tokyo (`tyo3.demdex.net`)
+`aamlh` | `aamlh` | Adobe Audience Manager location hint.<br>`3`: Hong Kong/Singapore (`apse.demdex.net`)<br>`6`: Europe (`irl1.demdex.net`)<br>`7`: US East (`use.demdex.net`)<br>`8`: Australia (`apse2.demdex.net`)<br>`9`: US West (`usw2.demdex.net`)<br>`11`: Tokyo (`tyo3.demdex.net`)
 `browserHeight` | `bh` | Browser height in pixels (For example, 768).
 `browserWidth` | `bw` | Browser width in pixels (For example, 1024).
 `campaign` | `v0` | The campaign tracking code associated with the page.
@@ -35,12 +35,12 @@ Header/Column Name | Query String Parameter Equivalent | Description
 `list1` - `list3` | `l1` - `l3` | A delimited list of values that are passed into a variable, then reported as individual line items for reporting.
 `pageName` | `pageName` | The Web page name.
 `pageType` | `pageType` | The Web page type. This is only used on 404 error pages. Set pageType to "Error Page" for when a 404 error is detected.
-`pageURL` | `g` | The Web page URL For example, http://www.example.com/index.html.
+`pageURL` | `g` | The Web page URL. For example, `http://www.example.com/index.html`.
 `plugins` | `p` | Semicolon separated list of Netscape plug-in names.
 `products` | `products` | List of all products on the page. Separate products with a comma. For example: Sports;Ball;1;5.95,Toys; Top;1:1.99.
 `prop1` - `prop75` | `c1` - `c75` | Analytics property name.
 `purchaseID` | `purchaseID` | Purchase ID number.
-`queryString` | N/A | The column that you put all query string data in. Data must be in key/value pairs and be fully URL encoded, including any multibyte characters. Its contents is used in a `GET` or `POST` call to Analytics. When BDIA submits a `queryString` row to Adobe Analytics, it adds the following param values if they are not present:<br />`AQB=1` (Start of server call parameters)<br />`AQE=1` (End of server call parameters)<br />`ce=UTF-8` (Character Encoding of UTF-8)
+`queryString` | N/A | The column that you put all query string data in. Data must be in key/value pairs and be fully URL encoded, including any multibyte characters. Its contents is used in a `GET` or `POST` call to Analytics. When BDIA submits a `queryString` row to Adobe Analytics, it adds the following param values if they are not present:<br>`AQB=1` (Start of server call parameters)<br>`AQE=1` (End of server call parameters)<br>`ce=UTF-8` (Character Encoding of UTF-8)
 `referrer` | `r` | The URL of the page referrer.
 `reportSuiteID` | Contained in the URL. See HTTP GET Sample. | Specifies the report suites where you want to submit data. Separate multiple report suite IDs with a comma.
 `resolution` | `s` | Monitor resolution For example, 1280x1024.
@@ -55,5 +55,3 @@ Header/Column Name | Query String Parameter Equivalent | Description
 `visitorID` | `vid` | Visitor's Analytics ID. See [Visitor Identification](https://docs.adobe.com/content/help/en/id-service/using/home.html).
 `marketingCloudVisitorID` | `mid` | Marketing Cloud ID. See [Visitor Identification and the Marketing Cloud Visitor ID Service](https://docs.adobe.com/content/help/en/id-service/using/home.html).
 `zip` | `zip` | The visitor's zip code.
-
-

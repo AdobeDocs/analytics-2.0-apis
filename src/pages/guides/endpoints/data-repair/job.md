@@ -19,7 +19,7 @@ If the scope of the data repair job changes, re-run the `/serverCallEstimate` en
 
 A JSON object containing the variables and actions to take is required in the request body. See [Job definition and variables](variables.md) for information around how to create this JSON object.
 
-### Example request
+Example request:
 
 ```sh
 curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
@@ -27,7 +27,7 @@ curl -X POST -H "accept: application/json" -H "x-proxy-global-company-id: {ANALY
     "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job?validationToken={VALIDATION_TOKEN}&dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}"
 ```
 
-### Example Response
+Example Response:
 
 ```json
 {
@@ -65,7 +65,7 @@ You can also use this endpoint to retrieve a list of data repair jobs that were 
 
 `GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job`
 
-### Example request
+Example request:
 
 ```sh
 curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
@@ -73,7 +73,7 @@ curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYT
     "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job"
 ```
 
-### Example Response
+Example Response:
 
 ```json
 [

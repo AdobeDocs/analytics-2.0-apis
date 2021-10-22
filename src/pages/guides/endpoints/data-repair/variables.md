@@ -57,7 +57,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `pageurl`, `pageurlfirsthit`, `pageurlvisitstart`, `referrer`, `referrerfirsthit`, `referrervisit`
 
-  * Supported Actions: `deleteQueryString`, `deleteQueryStringParameters`
+* Supported Actions: `deleteQueryString`, `deleteQueryStringParameters`
 
 ```json
 {
@@ -114,7 +114,6 @@ Each API call that creates a job or requests server call estimates requires a JS
     }
 }
 ```
-
 
 ### Mobile: `mobileappid`, `mobilemessagebuttonname`, `mobilemessageid`, `mobilerelaunchcampaigncontent`, `mobilerelaunchcampaignmedium`, `mobilerelaunchcampaignsource`, `mobilerelaunchcampaignterm`, `mobilerelaunchcampaigntrackingcode`
 
@@ -194,8 +193,8 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `set`
 
-  * Set the variable to a fixed value for the indicated timeframe
-  * Supported Filters: `inList`, `isEmpty`,  `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`
+* Set the variable to a fixed value for the indicated timeframe
+* Supported Filters: `inList`, `isEmpty`,  `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`
 
 ```json
 {
@@ -210,8 +209,8 @@ Each API call that creates a job or requests server call estimates requires a JS
   
 ### `deleteQueryString`
 
-  * Remove the query string from a variable.  If the value does not appear to be a URL, no action is taken.
-  * Supported Filters: None
+* Remove the query string from a variable.  If the value does not appear to be a URL, no action is taken.
+* Supported Filters: None
 
 ```json
 {
@@ -225,8 +224,8 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `deleteQueryStringParameters`
 
-  * Remove one or more query string parameters from a variable.  If the value does not appear to be a URL, no action is taken.
-  * Supported Filters: None
+* Remove one or more query string parameters from a variable.  If the value does not appear to be a URL, no action is taken.
+* Supported Filters: None
 
 ```json
 {
@@ -243,8 +242,8 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `inList`
 
-  * Limit the action to variables whose current value is in a given list
-  * There can be at most 1000 lookup values to match against.
+* Limit the action to variables whose current value is in a given list
+* There can be at most 1000 lookup values to match against.
   
 ```json
 {
@@ -262,7 +261,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `isEmpty`
 
-  * Limit the action to variables whose current value is empty
+* Limit the action to variables whose current value is empty
 
 ```json
 {
@@ -280,7 +279,7 @@ Each API call that creates a job or requests server call estimates requires a JS
   
 ### `contains`
 
-  * Limit the action to variables whose current value contains the given value.
+* Limit the action to variables whose current value contains the given value.
 
 ```json
 {
@@ -298,7 +297,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `startsWith`
 
-  * Limit the action to variables whose current value starts with the given value.
+* Limit the action to variables whose current value starts with the given value.
 
 ```json
 {
@@ -316,7 +315,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `endsWith`
 
-  * Limit the action to variables whose current value ends with the given value.
+* Limit the action to variables whose current value ends with the given value.
 
 ```json
 {
@@ -334,7 +333,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `isURL`
 
-  * Limit the action to variables whose current value is a URL.
+* Limit the action to variables whose current value is a URL.
 
 ```json
 {
@@ -351,7 +350,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 ### `isNotURL`
 
-  * Limit the action to variables whose current value is not a URL.
+* Limit the action to variables whose current value is not a URL.
 
 ```json
 {

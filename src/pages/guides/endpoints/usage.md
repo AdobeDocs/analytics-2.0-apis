@@ -27,8 +27,8 @@ The Usage endpoint allows you to retrieve the usage and access log data provided
 
 By default, all event types are included when you make a request to get usage logs. You can apply a filter for a specific event type using the `eventType` query string parameter. These event types are the same fields available in the [Usage and Access Log](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/logs.html?lang=en#section_8ADE8A7204A8401C968ABC20AECA381D) in the Analytics UI.
 
-| ID | Event Type
-| --- | --- 
+| ID | Event Type |
+| --- | --- |
 | `0` | No Category |
 | `1` | Login failed |
 | `2` | Login successful |
@@ -39,7 +39,7 @@ By default, all event types are included when you make a request to get usage lo
 | `7` | Alert sent |
 | `8` | User Action |
 | `9` | Tool viewed |
-| `10` | Omniture Action |
+| `10` | Adobe Action |
 | `11` | Password Recovery |
 | `12` | Bookmarks |
 | `13` | Dashboards |
@@ -71,7 +71,7 @@ By default, all event types are included when you make a request to get usage lo
 curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-15T14%3A32%3A33-07&limit=10" -H "x-api-key: {CLIENT_ID}" -H "x-proxy-global-company-id: {COMPANY_ID}" -H "Authorization: Bearer {ACCESS_TOKEN}" -H "Accept: application/json"
 ```
 
-## Response
+Example response:
 
 ```json
 {
@@ -176,7 +176,7 @@ The following request contains query string parameters to filter the logs by eve
 curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10" -H "x-api-key: {CLIENT_ID}" -H "x-proxy-global-company-id: {COMPANY_ID}" -H "Authorization: Bearer {ACCESS_TOKEN}" -H "Accept: application/json"
 ```
 
-## Response
+Example response:
 
 ```json
 {

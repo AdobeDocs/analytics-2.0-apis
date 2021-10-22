@@ -7,7 +7,7 @@ description: Send API calls to Adobe using Java.
 
 1. Create the certificate and private key using openssl
 
-   ```
+   ```sh
    $ openssl req -nodes -text -x509 -newkey rsa:2048 -keyout secret.pem -out certificate.pem -days 356
    ```
 
@@ -15,7 +15,7 @@ description: Send API calls to Adobe using Java.
 
 1. convert private key to DER format
 
-   ```
+   ```sh
    $ openssl pkcs8 -topk8 -inform PEM -outform DER -in secret.pem  -nocrypt > secret.key
    ```
 
@@ -23,13 +23,13 @@ description: Send API calls to Adobe using Java.
 
 1. Build
 
-   ```
+   ```sh
    $ mvn clean package
    ```
 
 1. Run
 
-   ```
+   ```sh
    $ java -jar target/IMS-Client-1.0-SNAPSHOT-jar-with-dependencies.jar
    ```
 

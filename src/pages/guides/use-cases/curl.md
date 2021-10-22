@@ -13,7 +13,7 @@ To obtain Oauth authentication using cURL:
 
 ## Get an auth code
 
-Use the following model as a cURL request for an auth code: 
+Use the following model as a cURL request for an auth code:
 
 `https://ims-na1.adobelogin.com/ims/authorize?client_id={CLIENT ID}&redirect_uri={REDIRECT URI}&scope=openid,AdobeID,read_organizations,additional_info.job_function,additional_info.projectedProductContext&response_type=code`
 
@@ -24,10 +24,9 @@ To get an auth code:
 1. Paste the complete URI into your favorite browser.
 1. After authenticating via IMS, copy the auth code query parameter in the URI (the parameter begins with `code=eyJ4...`).
 
-
 ## Generate an access token
 
-Use the following model to generate an access token: 
+Use the following model to generate an access token:
 
 ```sh
 curl --data "grant_type=authorization_code&client_id={CLIENT ID}&client_secret={CLIENT SECRET}&code={AUTH CODE QUERY PARAMETER}" https://ims-na1.adobelogin.com/ims/token/v1
@@ -36,9 +35,9 @@ curl --data "grant_type=authorization_code&client_id={CLIENT ID}&client_secret={
 To generate an access token:
 
 1. Replace `{AUTH CODE QUERY PARAMETER}` with the auth code you copied from the previous step in the above cURL request.
-1. Replace `{CLIENT ID}` in the above request with the Client ID from your Oauth client.
-1. Replace `{CLIENT SECRET}` in the above request with the Client Secret from your Oauth client.
-1. Run the cURL command. The response includes an `access_token` attribute, as shown below:
+2. Replace `{CLIENT ID}` in the above request with the Client ID from your Oauth client.
+3. Replace `{CLIENT SECRET}` in the above request with the Client Secret from your Oauth client.
+4. Run the cURL command. The response includes an `access_token` attribute, as shown below:
 
    ```json
    {
@@ -77,10 +76,9 @@ To generate an access token:
    }
    ```
 
-   *Note: If you have access to numerous product profiles, the response can be very large. If it is so large that the `access_token` is truncated from the response, you can write it to a file in order to find your access token. To write the response to a file, add ` >> output.json` to the end of your cURL request. The response is then written to a file named `output.json`.*
+   *Note: If you have access to numerous product profiles, the response can be very large. If it is so large that the `access_token` is truncated from the response, you can write it to a file in order to find your access token. To write the response to a file, add `>> output.json` to the end of your cURL request. The response is then written to a file named `output.json`.*
 
-1. Copy the access token to test it in the following section.
-
+5. Copy the access token to test it in the following section.
 
 ## Test your access token by calling the Analytics APIs
 

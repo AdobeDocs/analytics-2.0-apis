@@ -7,7 +7,6 @@ description: Use search filters to return a subset of dimension items.
 
 Use search filters to limit the data returned so that reports show only the values you need.  For example, if you have thousands of records but only a few have needed reports, you can use filtering to return and find them quickly. Some filters also allow you to include, group, or present data in convenient formats, such as breakdown reports.
 
-
 You can use the `search` parameter to filter your results more narrowly. The `search` parameter includes the following options:
 
 * `itemId` - A single ID to include in the report

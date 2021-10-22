@@ -9,11 +9,11 @@ Frequently asked questions around using the Segments endpoint.
 
 ## What are some best practices around submitting segment API calls?
 
-*  Make multiple, smaller requests instead of a large, single request.
-*  Request data once and cache it.
-*  Use caution when updating a segment so that you do not alter the original segment used by others.
-*  Avoid creating duplicate segments with the same definition. Creating many segments affects performance for your company in some situations.
-*  If possible use the Analytics UI for creating segments from scratch. The UI offers significant advantages for managing and optimizing the complexity of this task. If you need to create segments programmatically, it is usually easier to create a template segment in the UI and then have your application change only small portions of the segment definition.
+* Make multiple, smaller requests instead of a large, single request.
+* Request data once and cache it.
+* Use caution when updating a segment so that you do not alter the original segment used by others.
+* Avoid creating duplicate segments with the same definition. Creating many segments affects performance for your company in some situations.
+* If possible use the Analytics UI for creating segments from scratch. The UI offers significant advantages for managing and optimizing the complexity of this task. If you need to create segments programmatically, it is usually easier to create a template segment in the UI and then have your application change only small portions of the segment definition.
 
 ## What are segment templates?
 

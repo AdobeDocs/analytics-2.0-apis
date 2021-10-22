@@ -61,6 +61,6 @@ If you delete a segment, it is hidden from all users in all menus. It is also no
 
 ```json
 {
-	"status": "ok"
+  "status": "ok"
 }
 ```

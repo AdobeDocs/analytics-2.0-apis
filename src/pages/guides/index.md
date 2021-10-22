@@ -42,7 +42,7 @@ At this point, you decide how you want to authenticate with the API.
 
 ## Authentication
 
-Adobe offers two primary methods to authenticate: 
+Adobe offers two primary methods to authenticate:
 
 * **OAuth**: Use your own account to authenticate with the API. See [OAuth connection](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/OAuthIntegration.md) in the Adobe I/O Authentication user guide.
 * **JWT**: Use a service account to authenticate with the API. See [JSON web token](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWTCertificate.md) in the Adobe I/O Authentication user guide.

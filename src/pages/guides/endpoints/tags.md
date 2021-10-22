@@ -8,7 +8,7 @@ Retrieve a list of tags for the organization.
 
 `GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags`
 
-### Example response
+Example response:
 
 ```json
 {
@@ -43,7 +43,7 @@ Retrieves information around the specified tag ID.
 
 `GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/{TAG_ID}`
 
-### Example response
+Example response:
 
 ```json
 {
@@ -65,7 +65,7 @@ Retrieve all components of specific type associated with tag names.
 
 `GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/tagnames`
 
-### Example response
+Example response:
 
 ```json
 [
@@ -80,7 +80,7 @@ Retrieve a list of tags tied to components. List of components are comma-separat
 
 `GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/search`
 
-### Example response
+Example response:
 
 ```json
 [
@@ -115,7 +115,8 @@ This API call requires a JSON request body to retrieve tags for multiple compone
 
 `POST https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/component/search`
 
-### Example JSON Request Message
+Example body:
+
 ```json
 {
   "componentType": "project",
@@ -125,7 +126,7 @@ This API call requires a JSON request body to retrieve tags for multiple compone
 }
 ```
 
-### Example response
+Example response:
 
 ```json
 {
@@ -169,7 +170,7 @@ Creates tags for use with components.
 
 `POST https://analytics.adobe.io/api/{COMPANY_ID}/componentmetadata/tags`
 
-### Example body
+Example body:
 
 ```json
 [
@@ -210,7 +211,7 @@ The JSON message requests the following:
 * Associate `Sales Department` tag with components having ids `component-id-1` and `component-id-2`
 * Associate `Marketing Department` tag with components having ids `component-id-101` and `component-id-102`
 
-### Example response
+Example response:
 
 ```json
 [
@@ -259,7 +260,7 @@ Deletes a tag. It also untags all components associated with the tag.
 
 `DELETE https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/{TAG_ID}`
 
-### Example response
+Example response:
 
 ```json
 {
@@ -276,7 +277,7 @@ Removes all tags from list of components. List of components are comma-separated
 
 `DELETE https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags`
 
-### Example response
+Example response:
 
 ```json
 {
@@ -293,7 +294,7 @@ Create and delete multiple tags associated with components.
 
 `PUT https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/tagitems`
 
-### JSON request body
+Example body:
 
 ```json
 [
@@ -320,7 +321,7 @@ This example JSON body requests the following:
 * Associate `marketing-1` and `marketing-2` tag with components with ids `component-id-1` 
 * If there are any preexisting tags associated with `component-id-1`, remove these associations.
 
-### Example response
+Example response:
 
 ```json
 [

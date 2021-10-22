@@ -19,8 +19,6 @@ The following example requests the user's information for company logins:
 curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
 ```
 
-## Example Response
-
 The following example shows the response to the previous request by returning values for two companies: one with `globalCompanyId` value of `testco0` and another with `anothe0`:
 
 ```json

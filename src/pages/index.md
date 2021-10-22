@@ -22,7 +22,7 @@ The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics pro
 
 ## Overview
 
-The Adobe Analytics 2.0 APIs allow you to directly call Adobe's servers to perform almost any action that you can perform in the user interface. Examples include the retrieval of reports and the creation of filters or calculated metrics. This documentation provides instructions on how to call Adobe's endpoints to return the desired data. 
+The Adobe Analytics 2.0 APIs allow you to directly call Adobe's servers to perform almost any action that you can perform in the user interface. Examples include the retrieval of reports and the creation of filters or calculated metrics. This documentation provides instructions on how to call Adobe's endpoints to return the desired data.
 
 This user guide assumes that you have an intermediate understanding of Adobe Analytics. See the documentation for [Adobe Analytics](https://experienceleague.adobe.com/docs/analytics/landing/home.html).
 

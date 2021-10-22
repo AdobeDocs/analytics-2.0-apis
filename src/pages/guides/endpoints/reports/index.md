@@ -61,7 +61,3 @@ To paginate results, add a `limit` and `page` parameter to the `settings` object
    }
 }
 ```
-
-
-
-

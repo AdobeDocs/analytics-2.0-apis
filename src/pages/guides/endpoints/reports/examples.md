@@ -45,7 +45,8 @@ A basic report that uses a dimension and a metric. This example retrieves the to
    }
 }
 ```
-### Response
+
+Response:
 
 ```json
 {
@@ -147,7 +148,7 @@ These reports include information about the performance of a metric (or metrics)
 }
 ```
 
-### Response
+Response:
 
 ```json
 {
@@ -264,8 +265,6 @@ You can use the API to identify anomalies in a metric over a given time period. 
 }
 ```
 
-### Response
-
 This example response shows an anomaly condition and identifies the following five properties with their corresponding values:
 
 * `data` - The actual detected value for the metric (lines 21 and 40)
@@ -324,7 +323,7 @@ This example response shows an anomaly condition and identifies the following fi
 
 ## Media Concurrent Viewers report example
 
-Media concurrent viewers report is a time series report with two specialized metrics. 
+Media concurrent viewers report is a time series report with two specialized metrics.
 
 * `metrics/concurrent_viewers_visitors` counts the number of unique visitors.
 * `metrics/concurrent_viewers_occurrences` counts the number of active sessions.
@@ -332,7 +331,7 @@ Media concurrent viewers report is a time series report with two specialized met
 These metrics can be rolled up to different granularity based on the dimension. For example unique visitors per minute or unique visitors per day etc.
 These are different dimensions available for media concurrent viewers report.
 
-* `variables/daterangeminute` 
+* `variables/daterangeminute`
 * `variables/daterangehour`
 * `variables/daterangeday`
 * `variables/daterangeweek`

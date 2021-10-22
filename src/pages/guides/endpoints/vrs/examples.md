@@ -5,6 +5,7 @@ description: Example calls that you can make to the Virtual report suite API end
 
 # Virtual report suite API examples
 
+Example calls that you can make to the Virtual report suite API endpoint.
 
 ## Basic filtering using a segment
 
@@ -42,21 +43,20 @@ Creates a virtual report suite that curates the browser dimension and visits met
 
 ```json
 {
-	"name": "Curated Components Example",
-	"parentRsid": "exampleRsid",
-	"segmentList": [],
-	"description": "Curated Components Example description",
-	"curatedComponents": [{
-			"componentId": "variables/browser",
-			"componentType": "dimension",
-			"curatedName": "Curated dimension example"
-		},
-		{
-			"componentId": "metrics/visits",
-			"componentType": "metric",
-			"curatedName": "Curated metric example"
-		}
-	]
+  "name": "Curated Components Example",
+  "parentRsid": "exampleRsid",
+  "segmentList": [],
+  "description": "Curated Components Example description",
+  "curatedComponents": [{
+    "componentId": "variables/browser",
+    "componentType": "dimension",
+    "curatedName": "Curated dimension example"
+    },
+    {
+    "componentId": "metrics/visits",
+    "componentType": "metric",
+    "curatedName": "Curated metric example"
+  }]
 }
 ```
 
@@ -80,17 +80,17 @@ Creates a virtual report suite which overrides the session timeout rules so a ne
 
 ```json
 {
-	"name": "Custom Session Timeout Example",
-	"parentRsid": "examplersid",
-	"segmentList": [],
-	"dataSchema": "CacheAndMid",
-	"sessionDefinition": [{
-		"numPeriods": 30,
-		"func": "inactivity",
-		"granularity": "minute"
-	}, {
-		"func": "beforeEvents",
-		"events": ["metrics/orders"]
-	}]
+  "name": "Custom Session Timeout Example",
+  "parentRsid": "examplersid",
+  "segmentList": [],
+  "dataSchema": "CacheAndMid",
+  "sessionDefinition": [{
+    "numPeriods": 30,
+    "func": "inactivity",
+    "granularity": "minute"
+    }, {
+    "func": "beforeEvents",
+    "events": ["metrics/orders"]
+  }]
 }
 ```

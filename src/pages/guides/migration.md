@@ -41,7 +41,7 @@ The `/reports` end point is intended to run very small requests quickly. Whereas
 
 To see how migration affects your reports, consider the following examples for 1.4 APIs and 2.0 APIs.
 
-### Example 1.4 request
+Example 1.4 request:
 
 ```json
 {

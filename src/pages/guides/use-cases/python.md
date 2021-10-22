@@ -6,7 +6,7 @@ description: Send API calls to Adobe using Python.
 # Use the Analytics 2.0 APIs with Python
 
 1. Create a local virtual environment
-    
+
     ```sh
     $ rm -rf venv;
     $ virtualenv -p $(which python3 2>/dev/null || which python) venv
@@ -23,7 +23,7 @@ description: Send API calls to Adobe using Python.
     ```sh
     $ pip install -r requirements.txt
     ```
-   
+
 4. Create (or re-use) a [JWT Integration](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/jwt.md)
 
 5. Populate `config.ini` with parameters specific to your integration
