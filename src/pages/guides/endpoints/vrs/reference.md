@@ -24,8 +24,8 @@ Use the following object parameters when creating or editing virtual report suit
 | `globalCompanyKey` | `string` | The global company id of the Analytics Company that owns the virtual report suite |
 | `modified` | `string` (date-time) | The date and time the virtual report suite was last modified. System generated. |
 | `dataCurrentAsOf` | `string` (date-time) | Timestamp of the most recent data that is processed and ready for reporting for this report suite. System generated. |
-| `type` | `string` | The virtual report suite type. System generated.<br>**advancedVrs**: A VRS is advanced if `dataSchema` is `CacheAndMid` or `Stitched`.<br>**vrs**: A VRS is basic if `dataSchema` is set to `Cache` |
-| `dataSchema` | `string` | Defines the data schema type for the virtual report suite.<br>**Cache**: Basic `dataSchema` type. Does not allow setting `sessionDefinition` or CDA.<br>**CacheAndMid**: Must use this `dataSchema` if `sessionDefinition` is provided.<br>**Stitched**: Enables [Cross-Device Analytics](https://docs.adobe.com/content/help/en/analytics/components/cda/cda-home.html). |
+| `type` | `string` | The virtual report suite type. System generated.<br/>**advancedVrs**: A VRS is advanced if `dataSchema` is `CacheAndMid` or `Stitched`.<br/>**vrs**: A VRS is basic if `dataSchema` is set to `Cache` |
+| `dataSchema` | `string` | Defines the data schema type for the virtual report suite.<br/>**Cache**: Basic `dataSchema` type. Does not allow setting `sessionDefinition` or CDA.<br/>**CacheAndMid**: Must use this `dataSchema` if `sessionDefinition` is provided.<br/>**Stitched**: Enables [Cross-Device Analytics](https://docs.adobe.com/content/help/en/analytics/components/cda/cda-home.html). |
 | `internal` | `boolean` | Adobe-use only |
 | `isDeleted` | `boolean` | Indicates if the virtual report suite has been deleted. Virtual report suites are not actually removed from the database. This flag is set to true instead. |
 | `curationEnabled` | `boolean` | Indicates if curation is enabled for the virtual report suite. |
@@ -47,7 +47,7 @@ Use the following object parameters when creating or editing virtual report suit
 
 | Attribute | Type | Description |
 | --- | --- | ---------- |
-| `func` | `string` | Session definition option type.<br>**inactivity**: Defines the amount of inactivity a unique visitor must have before a new visit is automatically started.<br>**beforeEvents**: A new session starts when any of these events are fired regardless of whether a session has timed out. The new session that is created includes the event that started it. |
+| `func` | `string` | Session definition option type.<br/>**inactivity**: Defines the amount of inactivity a unique visitor must have before a new visit is automatically started.<br/>**beforeEvents**: A new session starts when any of these events are fired regardless of whether a session has timed out. The new session that is created includes the event that started it. |
 | `numPeriods` | `integer` | Number of periods of the selected granularity before a new visit is started when using `inactivity` type. |
 | `granularity` | `string` | Granularity selection when using `inactivity` type. Valid values include `minute`, `hour`, `day`, or `week`. |
 | `events` | Array of `string` | List of metrics ids (events) that start a new session when using `beforeEvents` type. For example, `metrics/orders` |

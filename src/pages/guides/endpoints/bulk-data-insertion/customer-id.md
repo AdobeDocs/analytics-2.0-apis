@@ -16,8 +16,8 @@ When specifying a customerID column, you must choose a customerIDType to correla
 |Header/Column Name|Query String Parameter Equivalent|Field Description|
 |--|--|--|
 | `customerID.[customerIDType].id` | `cid.[customerIDType].id` | The customer ID to use. |
-| `customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The authenticated state of the visitor. The numeric and string values are interchangeable. String values are not case sensitive. Supported values are:<br>`0` or `UNKNOWN` or an empty string<br>`1` or `AUTHENTICATED`<br>`2` or `LOGGED_OUT` |
-| `customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed`| Whether or not this is the seed for the Experience Cloud Visitor ID. Supported values are:<br>`0` or `false` or an empty string<br>`1` or `true` |
+| `customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The authenticated state of the visitor. The numeric and string values are interchangeable. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string<br/>`1` or `AUTHENTICATED`<br/>`2` or `LOGGED_OUT` |
+| `customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed`| Whether or not this is the seed for the Experience Cloud Visitor ID. Supported values are:<br/>`0` or `false` or an empty string<br/>`1` or `true` |
 
 ## Customer ID Validation Rules
 
