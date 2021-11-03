@@ -35,7 +35,7 @@ The GET multiple `/calculatedmetrics` endpoint supports the query parameter `inc
 
 ### Locale
 
-All calculated metrics endpoints support the URL query parameter `locale`. Supported values are `en_US`, `fr_FR`, `jp_JP`, `ja_JP`, `de_DE`, `es_ES`, `ko_KR`, `pt_BR`, `zh_CN`, and `zh_TW`. This query parameter specifies which language is to be used for localized sections of responses. This parameter primarily affects the names of calculated metric templates, as most other parts of a calculated metric object include standard values (e.g. metric ids) or are set by the client (e.g. description), which are not localized.
+All calculated metrics endpoints support the URL query parameter `locale`. Supported values are `en_US`, `fr_FR`, `ja_JP`, `de_DE`, `es_ES`, `ko_KR`, `pt_BR`, `zh_CN`, and `zh_TW`. This query parameter specifies which language is to be used for localized sections of responses. This parameter primarily affects the names of calculated metric templates, as most other parts of a calculated metric object include standard values (e.g. metric ids) or are set by the client (e.g. description), which are not localized.
 
 ### Pagination
 
