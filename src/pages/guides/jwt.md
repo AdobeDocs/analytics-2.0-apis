@@ -28,5 +28,5 @@ Once your integration is added to a product profile, an Analytics user is create
 
 ## Example Code
 
-* [Java example](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/src/resources/java/)
-* [Python example](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/src/resources/python/)
+* [Java example](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/resources/java/) on GitHub
+* [Python example](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/resources/python/) on GitHub

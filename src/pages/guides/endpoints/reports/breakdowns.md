@@ -477,7 +477,7 @@ The JSON message request body for this report request looks like this:
 }
 ```
 
-**Note:** We now have 4 metric filters in the `metricFilters` array of our request. Filters `0` and `2` are applied to the `Page Views` metric column and filters `1` and `3` are applied to the `Visits` metric column.
+**Note:** There are now 4 metric filters in the `metricFilters` array of the request. Filters `0` and `2` are applied to the `Page Views` metric column, and filters `1` and `3` are applied to the `Visits` metric column.
 
 ### Third level response
 

@@ -32,7 +32,7 @@ You can also refer to the video tutorials:
 1. On the **GET NEW ACCESS TOKEN** form, provide the following values:
 
     | Parameter             | Value       |
-    |-------------------------|-----------|
+    |-----------------------|-------------|
     | Token Name            | Specify a name  |
     | Grant Type            | Select **Authorization Code** from the dropdown |
     | Callback URL          | Enter your OAuth client default redirect URI |

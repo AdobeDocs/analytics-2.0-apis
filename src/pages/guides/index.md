@@ -30,7 +30,7 @@ See [Managing developers](https://helpx.adobe.com/enterprise/using/manage-develo
 
 ## API Client
 
-Once you are a developer for a Analytics product profile, you can create an API client in the Adobe Developer Console.
+Once you are a developer for an Analytics product profile, you can create an API client in the Adobe Developer Console.
 
 1. Navigate to [console.adobe.io](https://console.adobe.io).
 2. Check the organization name in the top right to make sure that you are logged in to the correct company.

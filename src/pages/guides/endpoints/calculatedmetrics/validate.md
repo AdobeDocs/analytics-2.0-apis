@@ -15,26 +15,26 @@ The following example shows a request to validate a target report suite id for a
 
 ```sh
 curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company name]" -H "Authorization: Bearer [ims user token]" -d "{
-	\"rsid\": \"[report suite id]\",
-	\"definition\": {
-		\"formula\": {
-			\"func\": \"subtract\",
-			\"col2\": {
-				\"func\": \"metric\",
-				\"name\": \"metrics/reloads\"
-			},
-			\"col1\": {
-				\"func\": \"metric\",
-				\"name\": \"metrics/occurrences\"
-			}
-		},
-		\"func\": \"calc-metric\",
-		\"version\": [
-			1,
-			0,
-			0
-		]
-	}
+  \"rsid\": \"[report suite id]\",
+  \"definition\": {
+    \"formula\": {
+      \"func\": \"subtract\",
+      \"col2\": {
+        \"func\": \"metric\",
+        \"name\": \"metrics/reloads\"
+      },
+      \"col1\": {
+        \"func\": \"metric\",
+        \"name\": \"metrics/occurrences\"
+      }
+    },
+    \"func\": \"calc-metric\",
+    \"version\": [
+      1,
+      0,
+      0
+    ]
+  }
 }" "http://analytics.adobe.io/api/[company name]/calculatedmetrics/validate?locale=en_US
 ```
 
