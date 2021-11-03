@@ -78,8 +78,8 @@ Each header row must contain the following required columns:
 * At least one of:
     * `pageURL`
     * `pageName`
-    * `pe`
-    * `queryString` (NOTE: If only `queryString` is used, at least one of pageURL, pageName, or pe must be specified in the `queryString` as a query parameter.)
+    * `linkType` (NOTE: used in conjunction with linkURL and/or linkName fields)
+    * `queryString` (NOTE: If only `queryString` is used, at least one of pageURL, pageName, or linkType must be specified in the `queryString` as a query parameter.)
 * `reportSuiteID`
 * `timestamp`
 * `userAgent`
@@ -93,7 +93,7 @@ Each header row must contain the following required columns:
 
 When specifying other columns in the CSV file, please take note of the following rules:
 - If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicates are ignored.
-- Column header names are case insensitive.
+- Column header names are case insensitive (with the exception of "customerIdType" fields)
 - A column header unrecognized by BDIA will be ignored.
 - Columns can appear in any order in the CSV file
 
@@ -186,7 +186,7 @@ BDIA provides a way for a customer ID to be specified which Adobe will use as a 
 
 ### Customer ID Columns and Query String Parameters
 
-When specifying a customerID column, you must choose a customerIDType to correlate the columns to each other. The customerIDType can be any alphanumeric string, but it should be considered case sensitive. For example, if there was a user ID and also an e-mail that an Analytics customer wanted to send into Analytics, they could choose "userIdent" and "userEmail," respectively, for the two customerIDTypes. If the end-user logs in using their user ID then a customer could specify "customerID.userIdent.authState" set to "AUTHENTICATED" in the data field for a user that is logged in, and "customerID.userIdent.id" would be set to their user ID.
+When specifying a customerID column, you must choose a customerIDType to correlate the columns to each other. The customerIDType can be any alphanumeric string, but it is **case sensitive**. For example, if there was a user ID and also an e-mail that an Analytics customer wanted to send into Analytics, they could choose "userIdent" and "userEmail," respectively, for the two customerIDTypes. If the end-user logs in using their user ID then a customer could specify "customerID.userIdent.authState" set to "AUTHENTICATED" in the data field for a user that is logged in, and "customerID.userIdent.id" would be set to their user ID.
 
 |Header/Column Name|Query String Parameter Equivalent|Field Description|
 |--|--|--|
