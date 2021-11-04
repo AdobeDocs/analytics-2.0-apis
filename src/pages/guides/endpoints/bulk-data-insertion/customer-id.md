@@ -3,8 +3,6 @@ title: Customer ID and Experience Cloud Visitor ID seeds
 description: Automatically generate an Experience Cloud ID for visitors.
 ---
 
-# Customer ID and Experience Cloud Visitor ID Seeds
-
 BDIA provides a way for a customer ID to be specified which Adobe will use as a seed to automatically generate an Experience Cloud Visitor ID. This functionality simplifies the process of generating your own ecid, which would require a separate server call for every visitor. Providing your own customer ID as a seed for an ecid is done by adding a column to specify a `customerID.[customerIDType].id` and another boolean column, `customerID.[customerIDType].ismcseed` to denote which customer ID should be used as the seed. Other columns can be used to further define the customer ID as well. See the table below for more information about the available columns.
 
 *Note: In order to utilize this feature, Adobe must coordinate with the Audience Manager team to have the report suite configured for ECID auto-generation, and make some configuration changes to BDIA to support this feature. Please have your customer support contact or consultant reach out to Adobe to initiate this process.*

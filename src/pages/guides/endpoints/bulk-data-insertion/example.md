@@ -3,8 +3,6 @@ title: Batch file examples
 description: View a typical example of what a small batch file looks like.
 ---
 
-# Batch file examples
-
 The following examples show what an uncompressed file looks like.
 
 ## Batch file with query string

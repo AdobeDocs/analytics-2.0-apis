@@ -3,8 +3,6 @@ title: Bulk data insertion FAQ
 description: Frequently asked questions for the Bulk data insertion API.
 ---
 
-# Bulk data insertion FAQ
-
 Get answers to common questions asked when using the Bulk data insertion API.
 
 ## What compression can I use?

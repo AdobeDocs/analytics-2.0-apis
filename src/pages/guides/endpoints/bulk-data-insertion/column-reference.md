@@ -3,8 +3,6 @@ title: CSV Column and Query String Reference
 description: All columns and query strings supported by BDIA.
 ---
 
-# CSV Column and Query String Reference
-
 The following columns are supported in the BDIA file format.
 
 Header/Column Name | Query String Parameter Equivalent | Description
