@@ -3,7 +3,7 @@ title: Validate segments
 description: Check to see if a segment API call is valid.
 ---
 
-# Validate Endpoint
+# Validate segments
 
 Because report suites can have different configurations, variables, or metrics, one segment that is valid in one report suite may not be valid in another. To determine which segments to use in different report suites, you can use the `validate` endpoint. This endpoint allows you to `POST` a definition along with a target `rsid`. The validate endpoint responds with compatibility information on the segment.
 

@@ -1,9 +1,9 @@
 ---
-title: Segments
+title: Segments API
 description: Create, edit, or delete segments using the API.
 ---
 
-# Segments endpoint
+# Segments API
 
 *This help page describes how to use the segments endpoint. For more information around how to use segments in Reporting API calls, see [Segments](../reports/segments.md) in the Reporting API guide.*
 

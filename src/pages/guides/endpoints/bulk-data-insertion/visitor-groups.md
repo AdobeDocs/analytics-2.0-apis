@@ -1,7 +1,9 @@
 ---
-title: Visitor Groups
+title: Bulk data insertion visitor groups
 description: Process batch files in the right order when working with several files at once.
 ---
+
+# Visitor groups
 
 Visitor groups allow customers to upload files that can be processed in parallel, thus increasing the overall ingestion throughput. Each file uploaded must be tagged with a visitor group via an HTTP header. There are important rules that must be followed when categorizing batch files into visitor groups.
 

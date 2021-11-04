@@ -1,11 +1,11 @@
 ---
-title: Usage endpoint
+title: Usage API
 description: View audit logs around how your organization uses Adobe Analytics.
 ---
 
-# Usage endpoint
+# Usage API
 
-The Usage endpoint allows you to retrieve the usage and access log data provided within the Logs tool.
+The Usage API allows you to retrieve the usage and access log data provided within the Logs tool.
 
 `GET https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage`
 

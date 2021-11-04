@@ -1,11 +1,11 @@
 ---
-title: Breakdowns
+title: Breakdown dimensions
 descriptions: Use multiple dimensions in the same Reporting API call.
 ---
 
-# Breakdowns
+# Breakdown dimensions
 
-Breakdowns in the API are useful when you want to see the cross-product of values from two different dimensions. When requesting a breakdown report, use the `metricsFilters` and `dimension` parameters to request the additional dimension.
+Breakdowns in the reporting API are useful when you want to see the cross-product of values from two different dimensions. When requesting a breakdown report, use the `metricsFilters` and `dimension` parameters to request the additional dimension.
 
 The following example requests a breakdown report containing a list of the top five "Internal Search Terms" used by visitors who saw campaign 10. Within the `metricsFilters` parameter, the type is set to `breakdown` (line 21), and `evar1` is the marketing campaign (line 22). Within the `dimensions` parameter, `evar2` is the "Internal Search Terms" (line 27).
 

@@ -1,9 +1,9 @@
 ---
-title: Reports Endpoint
-description: Use the Reports API to retrieve data from a report suite.
+title: Reporting API
+description: Use the Reporting API to retrieve data from a report suite.
 ---
 
-# Analytics API Reports User Guide
+# Reporting API
 
 The `/reports` endpoint is the primary endpoint for reporting requests. While Analysis Workspace can help an analyst or digital marketer answer key questions, the Analytics API can automate those answers by reporting to executive dashboards, custom reporting platforms, or tight Experience Cloud integrations. Because the `/reports` endpoint uses the same API as the Analytics UI, you can configure it for many options.
 

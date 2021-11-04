@@ -1,9 +1,9 @@
 ---
-title: Example Reporting API calls
+title: Example reporting API calls
 description: View example Reporting API calls and their responses.
 ---
 
-# Example Reporting API calls
+# Example reporting API calls
 
 Use the following examples to help supplement the creation of API calls in your own organization. You can also use the [Debugger](debugger.md) within Analysis Workspace to view API calls tailored to your organization.
 

@@ -3,6 +3,10 @@ title: Date ranges endpoint FAQ
 description: Frequently asked questions around the date ranges endpoint.
 ---
 
+# Date ranges API FAQ
+
+Frequently asked questions around the date ranges endpoint.
+
 ## What are some best practices that I can follow around the date ranges endpoint?
 
 * Make multiple requests, each one limited to 1000 date ranges or fewer when retrieving them. Avoid making a large, single request for all possible date ranges.

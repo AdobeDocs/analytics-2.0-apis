@@ -1,9 +1,9 @@
 ---
-title: JSON body reference
+title: VRS JSON body reference
 description: List of all JSON objects you can use with the Virtual report suite API.
 ---
 
-# JSON body reference
+# VRS JSON body reference
 
 Use the following object parameters when creating or editing virtual report suites. See also [Examples](examples.md) for context around how to use them.
 

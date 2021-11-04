@@ -3,7 +3,7 @@ title: Segment definition data structure
 description: All parameters you can include in a segment definition JSON object.
 ---
 
-# Segment Definition Data Structure
+# Segment definition data structure
 
 The segment definition data structure is used to communicate segment rules to the API. This data structure defines the raw logic that is used to isolate the segment data. The segment definition is a hierarchical data structure of containers, functions, and boolean logic that is used to define the segment. The segment tool in the Adobe Analytics UI follows these rules and can be a useful tool for understanding how the data structure looks.
 

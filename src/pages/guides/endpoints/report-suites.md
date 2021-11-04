@@ -1,5 +1,5 @@
 ---
-title: Report suites endpoint
+title: Report suites API
 description: Retrieve information around report suites that you can access.
 ---
 

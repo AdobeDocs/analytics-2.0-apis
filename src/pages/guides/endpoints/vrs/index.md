@@ -1,9 +1,9 @@
 ---
-title: Virtual report suites endpoint
+title: Virtual report suites API
 description: Create, edit, or delete virtual report suites using the API.
 ---
 
-# Virtual report suites endpoint
+# Virtual report suites API
 
 The Virtual report suites endpoint allows you to programmatically create, edit or delete [Virtual report suites](https://experienceleague.adobe.com/docs/analytics/components/virtual-report-suites/vrs-about.html).
 

@@ -3,6 +3,8 @@ title: Bulk data insertion validation
 description: Validate BDIA calls before ingesting them into Adobe Analytics.
 ---
 
+# Validation
+
 Adobe offers a way to validate API calls without ingesting them into Adobe Analytics. This endpoint is valuable when establishing a BDIA process so you can validate and troubleshoot files without permanently ingesting files that have partially valid data. Files uploaded to this endpoint are not stored on the server or processed.
 
 `POST https://analytics-collection.adobe.io/aa/collect/v1/events/validate/`

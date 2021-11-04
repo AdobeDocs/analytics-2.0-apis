@@ -1,9 +1,9 @@
 ---
-title: Segments
+title: Use segments in the reporting API
 description: Use segments in Reporting API calls.
 ---
 
-# Segments
+# Use segments in the reporting API
 
 *This help page describes how to use segments in the Reporting API. For more information around how to use the segments endpoint, see [Segments](../segments/index.md) in the Segments API guide.*
 

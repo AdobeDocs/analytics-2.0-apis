@@ -1,9 +1,9 @@
 ---
-title: Virtual report suite API examples
+title: Virtual report suite examples
 description: Example calls that you can make to the Virtual report suite API endpoint.
 ---
 
-# Virtual report suite API examples
+# Virtual report suite examples
 
 Example calls that you can make to the Virtual report suite API endpoint.
 

@@ -1,7 +1,9 @@
 ---
-title: CSV Column and Query String Reference
+title: CSV column and query string reference
 description: All columns and query strings supported by BDIA.
 ---
+
+# CSV column and query string reference
 
 The following columns are supported in the BDIA file format.
 

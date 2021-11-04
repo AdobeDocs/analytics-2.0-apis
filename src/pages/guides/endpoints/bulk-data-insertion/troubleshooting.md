@@ -3,6 +3,8 @@ title: Troubleshoot bulk data insertion uploads
 description: Learn potential errors you can get and how to resolve them.
 ---
 
+# Troubleshoot uploads
+
 Use the following possible solutions to help determine why an upload failed.
 
 **IMPORTANT:** Adobe highly encourages you to use the [Validate](validate.md) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. If you repair the file and upload it again, the originally valid hits are counted twice.

@@ -3,6 +3,8 @@ title: Date range examples
 description: Several example API calls and responses.
 ---
 
+# Date range examples
+
 A date range request for a response localized in English, limited to the first page, with ten responses per page.
 
 ```sh

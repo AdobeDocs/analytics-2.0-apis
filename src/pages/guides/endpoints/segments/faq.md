@@ -1,9 +1,9 @@
 ---
-title: Segments endpoint FAQ
+title: Segments API FAQ
 description: Frequently asked questions around using the Segments endpoint.
 ---
 
-# Segments endpoint FAQ
+# Segments API FAQ
 
 Frequently asked questions around using the Segments endpoint.
 

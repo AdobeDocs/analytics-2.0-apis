@@ -1,4 +1,9 @@
-# Tags APIs
+---
+title: Tags API
+description: Create, edit, or delete tags using the API.
+---
+
+# Tags API
 
 The Analytics 2.0 Tags APIs allow you to retrieve, update, or create tags and their association with components programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with tags in the UI.
 

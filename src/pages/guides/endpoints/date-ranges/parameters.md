@@ -1,7 +1,9 @@
 ---
-title: Date range API parameters
+title: Date range parameters
 description: Parameters that you can include in GET date range API calls.
 ---
+
+# Date range parameters
 
 Parameters that you can include in `GET` date range API calls to refine results. You can include multiple query strings using an ampersand (`&`).
 
