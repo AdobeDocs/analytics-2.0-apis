@@ -215,10 +215,6 @@ module.exports = {
             ]
           },
           {
-            title: 'Tags',
-            path: 'guides/endpoints/tags.md'
-          },
-          {
             title: 'Usage',
             path: 'guides/endpoints/usage.md'
           },

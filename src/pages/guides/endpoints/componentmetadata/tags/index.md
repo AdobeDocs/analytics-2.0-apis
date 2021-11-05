@@ -13,56 +13,11 @@ Retrieve a list of tags for the organization.
 
 `GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags`
 
-Example response:
-
-```json
-{
-  "content": [
-    {
-      "id": 596,
-      "name": "sales"
-    },
-    {
-      "id": 597,
-      "name": "marketing"
-    },
-    {
-      "id": 662,
-      "name": "finance"
-    }
-  ],
-  "numberOfElements": 3,
-  "totalElements": 385,
-  "totalPages": 129,
-  "firstPage": true,
-  "lastPage": false,
-  "sort": null,
-  "size": 3,
-  "number": 0
-}
-```
-
 ## Retrieve a single tag
 
 Retrieves information around the specified tag ID.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/{TAG_ID}`
-
-Example response:
-
-```json
-{
-  "id": 35632,
-  "name": "sales",
-  "description": "sales department",
-  "components": [
-    {
-      "componentType": "project",
-      "componentId": "component-id-1"
-    }
-  ]
-}
-```
+`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/{ID}`
 
 ## Retrieve a list of components by tag
 
@@ -70,51 +25,32 @@ Retrieve all components of specific type associated with tag names.
 
 `GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/tagnames`
 
-Example response:
+This API call requires the `tagNames` query string. Query string values include a comma-separated list of tag names to search.
 
-```json
-[
-  "component-id-1",
-  "component-id-2"
-]
-```
+## Retrieve all tags for one or more components
 
-## Retrieving tags for a component of type
+Retrieve a list of tags tied to one or more components.
 
-Retrieve a list of tags tied to components. List of components are comma-separated IDs in the `componentIds` query string parameter. Include component type using the `componentType` query string parameter.
+`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/search?componentId={ID}&componentType={TYPE}`
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/search`
+This API call requires two query string parameters:
 
-Example response:
+* **`componentId`**: The ID of the component(s). Separate multiple ID's with a comma.
+* **`componentType`**: The type of the component. Valid component types include:
+  * `segment`
+  * `dashboard`
+  * `bookmark`
+  * `calculatedMetric`
+  * `project`
+  * `dateRange`
+  * `metric`
+  * `dimension`
+  * `virtualReportSuite`
+  * `scheduledJob`
+  * `alert`
+  * `classificationSet`
 
-```json
-[
-  {
-    "id": 35653,
-    "name": "sales",
-    "description": "sales department",
-    "components": [
-      {
-        "componentType": "{COMPONENT_TYPE}",
-        "componentId": "{COMPONENT_ID}"
-      }
-    ]
-  },
-  {
-    "id": 35654,
-    "name": "finance",
-    "description": "finance department",
-    "components": [
-      {
-        "componentType": "{COMPONENT_TYPE}",
-        "componentId": "{COMPONENT_ID}"
-      }
-    ]
-  }
-]
-```
-
-## Retrieve tags for multiple components
+## Update tags for multiple components
 
 This API call requires a JSON request body to retrieve tags for multiple components.
 
