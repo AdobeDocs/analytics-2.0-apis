@@ -5,6 +5,10 @@ description: Several example API calls and responses.
 
 # Date range examples
 
+Example API calls made using the date range API.
+
+## Request multiple date ranges
+
 A date range request for a response localized in English, limited to the first page, with ten responses per page.
 
 ```sh
@@ -128,7 +132,9 @@ Response:
 }
 ```
 
-Retrieve a single date range based on its ID.
+## Retrieve a single date range
+
+Send a call that retrieves a single date range based on its ID.
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges/5a5e294452faff002119a986?locale=en_US&expansion=definition" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company id]" -H "Authorization: Bearer [ims user token]" -H "Accept: application/json" -H "Content-Type: application/json"
