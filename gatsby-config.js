@@ -133,6 +133,21 @@ module.exports = {
             ]
           },
           {
+            title: 'Component Meta Data',
+            pages: [
+              {
+                title: 'Tags',
+                path: 'guides/endpoints/componentmetadata/tags/index.md',
+                pages: [
+                  {
+                    title: 'Examples',
+                    path: 'guides/endpoints/componentmetadata/tags/examples.md'
+                  }
+                ]
+              }
+            ]
+          },
+          {
             title: 'Data repair',
             path: 'guides/endpoints/data-repair/index.md',
             pages: [
