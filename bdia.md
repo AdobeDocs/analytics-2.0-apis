@@ -215,7 +215,7 @@ These limits help ensure a timely processing and availability of data for Adobe 
 
 ## Processing Times
 
-When using client-side server call collection methods, segmentable Analytics reports become fully available after 20-50 minutes. Some real-time statistics, such as page views, can be available within sub-minute timeframes. The time before reports are available is called “latency.”
+When using client-side server call collection methods, segmentable Analytics reports become fully available after 20-50 minutes for relatively real-time data. When timestamped hits are sent in for non-real-time data (older than approximately 24 hours), reporting availability increases as noted [here](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html?lang=en) under section "Features that depend on latency". Some real-time statistics, such as page views, can be available within sub-minute timeframes. The time before reports are available is called “latency.”
 
 ## Failure Scenarios 
 
