@@ -11,7 +11,7 @@ Example requests and responses that you can make using the tags API.
 
 Use the `page` and `limit` query strings to only retrieve the first 3 tags in a company.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -23,7 +23,6 @@ curl -X GET \
   -H 'Content-Type: application/json' \
   -H 'x-api-key: {APIKEY}' \
   -H 'x-proxy-global-company-id: {COMPANYID}' \
-  -d '{REQUESTJSON}'
 ```
 
 #### Response
@@ -59,7 +58,7 @@ curl -X GET \
 
 Get details around a single tag if you already know the tag ID.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -93,7 +92,7 @@ curl -X GET \
 
 Retrieve the tags associated with two bookmarks.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -140,7 +139,7 @@ curl -X GET \
 
 The API call sends a JSON request body with search criteria. Adobe returns the first three projects that contain that component.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -197,7 +196,7 @@ curl -X POST \
 
 Retrieve calculated metrics associated with any one of multiple tags.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -228,7 +227,7 @@ This API call performs several actions:
 * Tie "Sales Department" with two components: one with ID `component-id-1` and `component-id-2`
 * Tie "Marketing Department" with two components: one with ID `component-id-3` and `component-id-4`
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -290,7 +289,7 @@ curl -X POST \
 
 Updates a tag and overwrites only the included fields from the JSON body. Omitted fields are not overwritten.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -343,7 +342,7 @@ curl -X PUT \
 
 Deletes a tag and untags all components associated with it.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -372,7 +371,7 @@ curl -X DELETE \
 
 Remove all tags associated with two segments.
 
-<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 

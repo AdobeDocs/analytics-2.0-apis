@@ -134,6 +134,7 @@ module.exports = {
           },
           {
             title: 'Component Meta Data',
+            path:'guides/endpoints/componentmetadata/index.md',
             pages: [
               {
                 title: 'Tags',
