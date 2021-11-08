@@ -11,6 +11,10 @@ Example requests and responses that you can make using the tags API.
 
 Use the `page` and `limit` query strings to only retrieve the first 3 tags in a company.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X GET \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags?page=0&limit=3 \
@@ -22,7 +26,7 @@ curl -X GET \
   -d '{REQUESTJSON}'
 ```
 
-Response:
+#### Response
 
 ```json
 {
@@ -55,6 +59,10 @@ Response:
 
 Get details around a single tag if you already know the tag ID.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X GET \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/35632 \
@@ -65,7 +73,7 @@ curl -X GET \
   -H 'x-proxy-global-company-id: {COMPANYID}' \
 ```
 
-Response:
+#### Response
 
 ```json
 {
@@ -85,6 +93,10 @@ Response:
 
 Retrieve the tags associated with two bookmarks.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X GET \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/search?componentId=bookmark1,bookmark2&componentType=bookmark \
@@ -95,7 +107,7 @@ curl -X GET \
   -H 'x-proxy-global-company-id: {COMPANYID}' \
 ```
 
-Response:
+#### Response
 
 ```json
 [
@@ -128,6 +140,10 @@ Response:
 
 The API call sends a JSON request body with search criteria. Adobe returns the first three projects that contain that component.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X POST \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/component/search?page=0&limit=3 \
@@ -139,7 +155,7 @@ curl -X POST \
   -d '{"componentType": "project", "componentIds": ["component-id-556"]}'
 ```
 
-Response:
+#### Response
 
 ```json
 {
@@ -181,6 +197,10 @@ Response:
 
 Retrieve calculated metrics associated with any one of multiple tags.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X GET \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/tagnames?tagNames=Sales,Marketing&componentType=calculatedMetric \
@@ -191,7 +211,7 @@ curl -X GET \
   -H 'x-proxy-global-company-id: {COMPANYID}' \
 ```
 
-Response:
+#### Response
 
 ```json
 [
@@ -208,6 +228,10 @@ This API call performs several actions:
 * Tie "Sales Department" with two components: one with ID `component-id-1` and `component-id-2`
 * Tie "Marketing Department" with two components: one with ID `component-id-3` and `component-id-4`
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X POST \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags \
@@ -219,7 +243,7 @@ curl -X POST \
   -d '{REQUESTJSON}'
 ```
 
-Response:
+#### Response
 
 ```json
 [
@@ -266,6 +290,10 @@ Response:
 
 Updates a tag and overwrites only the included fields from the JSON body. Omitted fields are not overwritten.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X PUT \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/tagitems \
@@ -285,7 +313,7 @@ curl -X PUT \
       ]'
 ```
 
-Response:
+#### Response
 
 ```json
 [
@@ -315,6 +343,10 @@ Response:
 
 Deletes a tag and untags all components associated with it.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X DELETE \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags/{ID} \
@@ -325,7 +357,7 @@ curl -X DELETE \
   -H 'x-proxy-global-company-id: {COMPANYID}' \
 ```
 
-Response:
+#### Response
 
 ```json
 {
@@ -340,6 +372,10 @@ Response:
 
 Remove all tags associated with two segments.
 
+<CodeBlock slots="heading, code" repeat="2" languages="Shell,JSON"/>
+
+#### Request
+
 ```sh
 curl -X DELETE \
   https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/tags?componentIds=segment1,segment2&componentType=segment \
@@ -351,7 +387,7 @@ curl -X DELETE \
   -d '{REQUESTJSON}'
 ```
 
-Response:
+#### Response
 
 ```json
 {

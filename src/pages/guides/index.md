@@ -23,7 +23,7 @@ Give a developer correct API permissions as a product profile admin:
 4. Select the desired product profile, or create a new product profile.
 5. Under the Permissions tab, assign the desired permissions to the product profile.
 6. Once the desired permissions are set, click the Developers tab.
-7. Click **Add Developer**, and enter the desired user's name or email address.
+7. Click **Add Developer**, and enter the user name or email address that you want to assign the permissions to.
 8. Click **Save**.
 
 See [Managing developers](https://helpx.adobe.com/enterprise/using/manage-developers.html) in the Enterprise Admin user guide for more information.
