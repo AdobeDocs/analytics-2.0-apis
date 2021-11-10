@@ -65,13 +65,19 @@ By default, all event types are included when you make a request to get usage lo
 | `33` | Mobile Login Success |
 | `34` | Api Method |
 
-## cURL Request Example
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-15T14%3A32%3A33-07&limit=10" -H "x-api-key: {CLIENT_ID}" -H "x-proxy-global-company-id: {COMPANY_ID}" -H "Authorization: Bearer {ACCESS_TOKEN}" -H "Accept: application/json"
+curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=YYYY-01-01T00%3A00%3A00-07&endDate=YYYY-01-15T14%3A32%3A33-07&limit=10" \
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "x-proxy-global-company-id: {COMPANY_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}" \
+    -H "Accept: application/json"
 ```
 
-Example response:
+#### Response
 
 ```json
 {
@@ -82,7 +88,7 @@ Example response:
       "ipAddress": "10.27.55.130",
       "login": "user@adobe.com",
       "rsid": null,
-      "dateCreated": "2021-01-13T23:20:41.000+00:00"
+      "dateCreated": "YYYY-01-13T23:20:41.000+00:00"
     },
     {
       "eventType": "23",
@@ -90,7 +96,7 @@ Example response:
       "ipAddress": "10.27.55.131",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T23:20:30.000+00:00"
+      "dateCreated": "YYYY-01-13T23:20:30.000+00:00"
     },
     {
       "eventType": "2",
@@ -98,7 +104,7 @@ Example response:
       "ipAddress": "10.178.33.74",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T23:20:10.000+00:00"
+      "dateCreated": "YYYY-01-13T23:20:10.000+00:00"
     },
     {
       "eventType": "3",
@@ -106,7 +112,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:45:42.000+00:00"
+      "dateCreated": "YYYY-01-13T18:45:42.000+00:00"
     },
     {
       "eventType": "3",
@@ -114,7 +120,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:38:33.000+00:00"
+      "dateCreated": "YYYY-01-13T18:38:33.000+00:00"
     },
     {
       "eventType": "3",
@@ -122,7 +128,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:09:16.000+00:00"
+      "dateCreated": "YYYY-01-13T18:09:16.000+00:00"
     },
     {
       "eventType": "3",
@@ -130,7 +136,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:09:10.000+00:00"
+      "dateCreated": "YYYY-01-13T18:09:10.000+00:00"
     },
     {
       "eventType": "3",
@@ -138,7 +144,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:08:54.000+00:00"
+      "dateCreated": "YYYY-01-13T18:08:54.000+00:00"
     },
     {
       "eventType": "3",
@@ -146,7 +152,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:08:26.000+00:00"
+      "dateCreated": "YYYY-01-13T18:08:26.000+00:00"
     },
     {
       "eventType": "3",
@@ -154,7 +160,7 @@ Example response:
       "ipAddress": "10.179.134.242",
       "login": "user@adobe.com",
       "rsid": "N/A",
-      "dateCreated": "2021-01-13T18:06:09.000+00:00"
+      "dateCreated": "YYYY-01-13T18:06:09.000+00:00"
     }
   ],
   "totalElements": 159,
@@ -168,15 +174,21 @@ Example response:
 }
 ```
 
-## cURL Example Request With Filters Applied
-
 The following request contains query string parameters to filter the logs by eventType, IP and event.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=2021-01-01T00%3A00%3A00-07&endDate=2021-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10" -H "x-api-key: {CLIENT_ID}" -H "x-proxy-global-company-id: {COMPANY_ID}" -H "Authorization: Bearer {ACCESS_TOKEN}" -H "Accept: application/json"
+curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=YYYY-01-01T00%3A00%3A00-07&endDate=YYYY-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10" \
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "x-proxy-global-company-id: {COMPANY_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}" \
+    -H "Accept: application/json"
 ```
 
-Example response:
+#### Response
 
 ```json
 {
@@ -187,7 +199,7 @@ Example response:
       "ipAddress": "10.178.63.58",
       "login": "user@adobe.com",
       "rsid": "examplersid",
-      "dateCreated": "2021-01-11T19:30:46.000+00:00"
+      "dateCreated": "YYYY-01-11T19:30:46.000+00:00"
     }
   ],
   "totalElements": 1,

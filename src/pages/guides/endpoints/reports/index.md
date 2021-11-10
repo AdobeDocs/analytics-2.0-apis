@@ -32,7 +32,7 @@ To paginate results, add a `limit` and `page` parameter to the `settings` object
    "globalFilters":[
       {
          "type":"dateRange",
-         "dateRange":"2017-12-31T00:00:00.000/2018-01-31T23:59:59.999"
+         "dateRange":"YYYY-12-31T00:00:00.000/YYYY-01-31T23:59:59.999"
       }
    ],
    "metricContainer":{
@@ -49,7 +49,7 @@ To paginate results, add a `limit` and `page` parameter to the `settings` object
          {
             "id":"0",
             "type":"dateRange",
-            "dateRange":"2017-12-31T00:00:00.000/2018-01-31T23:59:59.999"
+            "dateRange":"YYYY-12-31T00:00:00.000/YYYY-01-31T23:59:59.999"
          }
       ]
    },

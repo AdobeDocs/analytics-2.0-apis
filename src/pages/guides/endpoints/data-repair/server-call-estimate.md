@@ -15,22 +15,26 @@ The date range is specified in days and is based on the time zone of the report 
 
 `GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/serverCallEstimate`
 
-## Example request
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
 
 ```sh
-curl -X GET -H "accept: application/json" -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
-    -H "Authorization: Bearer {ACCESS_TOKEN}" -H "x-api-key: {API_KEY/CLIENT_ID}" \
-    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/serverCallEstimate?dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}"
+curl -X GET -H "accept: application/json" \
+    -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}" \
+    -H "x-api-key: {API_KEY/CLIENT_ID}" \
+    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/examplersid/serverCallEstimate?dateRangeStart={YYYY-03-28}&dateRangeEnd={YYYY-03-28}"
 ```
 
-## Response
+#### Response
 
 ```json
 {
-    "dateRangeEnd": "2019-03-28",
-    "dateRangeStart": "2019-03-28",
-    "reportSuiteId": "sample.reportsuite",
+    "dateRangeEnd": "YYYY-03-28",
+    "dateRangeStart": "YYYY-03-28",
+    "reportSuiteId": "examplersid",
     "serverCallEstimate": 150000,
-    "validationToken": "gAAAAABee777APCKafp7zDu-I3kFIEq_4AoeZSIap8wt0RhgNHmVdjnlrKCjPOo_PW74uj0qvDPG9B_SiYOe4p1Rg6Um1vCpL7dLwtkBX7i8wNheVPhb2j4nAapE-k6WPVcdP7FXNdjKvogMwHBEvGpAz6uO6TmpxwZUa3LMixaeN65BOFZW3i9ZnzZ400oCHte6XAX6Mo7QF-PyZZ6D--693K0cO_oUYg=="
+    "validationToken": "gAAAAABee777APCKafp7zDu-I3kFIEq_4AoeZSIap8wt0RhhNHmVdjnlrKCjPOo_PW74uj0qvDPG9B_SiYOe4p1Rg6Um1vCpL7dLwtkBX7i8wNheVPhb2j4nAapE-k6WPVcdP7FXNdjKvogMwHBEvGpAz6uO6TmpxwZUa3LMixaeN65BOFZW3i9ZnzZ400oCHte6XAX6Mo7QF-PyZZ6D--693K0cO_oUYg=="
 }
 ```

@@ -11,13 +11,17 @@ Use the following examples to help supplement the creation of API calls in your 
 
 A basic report that uses a dimension and a metric. This example retrieves the top 5 eVar1 dimension values, sorted by the most page views.
 
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
 ```json
 {
    "rsid":"examplersid",
    "globalFilters":[
       {
          "type":"dateRange",
-         "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+         "dateRange":"YYYY-11-30T00:00:00.000/YYYY-12-06T23:59:59.999"
       }
    ],
    "metricContainer":{
@@ -34,7 +38,7 @@ A basic report that uses a dimension and a metric. This example retrieves the to
          {
             "id":"0",
             "type":"dateRange",
-            "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+            "dateRange":"YYYY-10-31T00:00:00.000/YYYY-12-06T23:59:59.999"
          }
       ]
    },
@@ -46,7 +50,7 @@ A basic report that uses a dimension and a metric. This example retrieves the to
 }
 ```
 
-Response:
+#### Response
 
 ```json
 {
@@ -114,13 +118,17 @@ Response:
 
 These reports include information about the performance of a metric (or metrics) over a period of time. This example retrieves the number of visits for each day over a week period.
 
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
 ```json
 {
    "rsid":"examplersid",
    "globalFilters":[
       {
             "type":"dateRange",
-            "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+            "dateRange":"YYYY-10-31T00:00:00.000/YYYY-11-06T23:59:59.999"
       }
    ],
    "metricContainer":{
@@ -137,7 +145,7 @@ These reports include information about the performance of a metric (or metrics)
          {
             "id":"0",
             "type":"dateRange",
-            "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+            "dateRange":"YYYY-10-31T00:00:00.000/YYYY-11-06T23:59:59.999"
          }
       ]
    },
@@ -148,7 +156,7 @@ These reports include information about the performance of a metric (or metrics)
 }
 ```
 
-Response:
+#### Response:
 
 ```json
 {
@@ -170,49 +178,49 @@ Response:
    "rows":[
       {
          "itemId":"1171131",
-         "value":"Dec 31, 2017",
+         "value":"Oct 31, YYYY",
          "data":[
             794.0
          ]
       },
       {
          "itemId":"1180001",
-         "value":"Jan 1, 2018",
+         "value":"Nov 1, YYYY",
          "data":[
             16558.0
          ]
       },
       {
          "itemId":"1180002",
-         "value":"Jan 2, 2018",
+         "value":"Nov 2, YYYY",
          "data":[
             17381.0
          ]
       },
       {
          "itemId":"1180003",
-         "value":"Jan 3, 2018",
+         "value":"Nov 3, YYYY",
          "data":[
             17384.0
          ]
       },
       {
          "itemId":"1180004",
-         "value":"Jan 4, 2018",
+         "value":"Nov 4, YYYY",
          "data":[
             17442.0
          ]
       },
       {
          "itemId":"1180005",
-         "value":"Jan 5, 2018",
+         "value":"Nov 5, YYYY",
          "data":[
             17417.0
          ]
       },
       {
          "itemId":"1180006",
-         "value":"Jan 6, 2018",
+         "value":"Nov 6, YYYY",
          "data":[
             17334.0
          ]
@@ -230,13 +238,25 @@ Response:
 
 You can use the API to identify anomalies in a metric over a given time period. This type of report is helpful in setting up automated alert tools or dashboards to report the same information as the UI. When using this feature, anomalies are reported for values outside the upper or lower bound of the confidence bands. The building model and confidence bands are pre-defined in Analytics by calculated historical norms.
 
+The response shows an anomaly condition and identifies the following five properties with their corresponding values:
+
+* `data` - The actual detected value for the metric (lines 21 and 40)
+* `dataExpected` - The calculated expected value for the metric (lines 23 and 42)
+* `dataUpperBound` - The upper limit of the confidence band (lines 26 and 45)
+* `dataLowerBound` - The lower limit of the confidence band (lines 29 and 48)
+* `dataAnomalyDetected` - An indicator of whether the metric value is outside of the confidence bands, i.e. `True` if detected (lines 33-34 and 52-53).
+
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
 ```json
 {
    "rsid":"examplersid",
    "globalFilters":[
       {
          "type":"dateRange",
-         "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+         "dateRange":"YYYY-04-16T00:00:00.000/YYYY-04-24T23:59:59.999"
       }
    ],
    "metricContainer":{
@@ -253,7 +273,7 @@ You can use the API to identify anomalies in a metric over a given time period. 
          {
             "id":"0",
             "type":"dateRange",
-            "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+            "dateRange":"YYYY-04-16T00:00:00.000/YYYY-04-24T23:59:59.999"
          }
       ]
    },
@@ -265,22 +285,16 @@ You can use the API to identify anomalies in a metric over a given time period. 
 }
 ```
 
-This example response shows an anomaly condition and identifies the following five properties with their corresponding values:
-
-* `data` - The actual detected value for the metric (lines 21 and 40)
-* `dataExpected` - The calculated expected value for the metric (lines 23 and 42)
-* `dataUpperBound` - The upper limit of the confidence band (lines 26 and 45)
-* `dataLowerBound` - The lower limit of the confidence band (lines 29 and 48)
-* `dataAnomalyDetected` - An indicator of whether the metric value is outside of the confidence bands, i.e. `True` if detected (lines 33-34 and 52-53).
+#### Response
 
 ```json
 {
    "totalPages":1,
    "firstPage":true,
    "lastPage":false,
-   "numberOfElements":7,
+   "numberOfElements":9,
    "number":0,
-   "totalElements":7,
+   "totalElements":9,
    "columns":{
       "dimension":{
          "id":"variables/daterangeday",
@@ -293,7 +307,7 @@ This example response shows an anomaly condition and identifies the following fi
    "rows":[
       {
          "itemId":"1171131",
-         "value":"Dec 31, 2017",
+         "value":"Apr 16, YYYY",
          "data":[
             794.0
          ],
@@ -341,6 +355,10 @@ These are different dimensions available for media concurrent viewers report.
 
 The following request example includes both a JSON message request body to request number of unique visitors.
 
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
 ```json
 {
     "rsid": "examplersid",
@@ -348,7 +366,7 @@ The following request example includes both a JSON message request body to reque
     "dimension": "variables/daterangeminute",
     "globalFilters": [
         {
-            "dateRange": "2019-08-01T00:00/2019-08-01T00:05",
+            "dateRange": "YYYY-08-01T00:00/YYYY-08-01T00:05",
             "type": "dateRange"
         }
     ],
@@ -368,7 +386,7 @@ The following request example includes both a JSON message request body to reque
 }
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -390,35 +408,35 @@ The following request example includes both a JSON message request body to reque
     "rows": [
         {
             "itemId": "11907010000",
-            "value": "00:00 2019-08-01",
+            "value": "00:00 YYYY-08-01",
             "data": [
                 326.0
             ]
         },
         {
             "itemId": "11907010001",
-            "value": "00:01 2019-08-01",
+            "value": "00:01 YYYY-08-01",
             "data": [
                 258.0
             ]
         },
         {
             "itemId": "11907010002",
-            "value": "00:02 2019-08-01",
+            "value": "00:02 YYYY-08-01",
             "data": [
                 202.0
             ]
         },
         {
             "itemId": "11907010003",
-            "value": "00:03 2019-08-01",
+            "value": "00:03 YYYY-08-01",
             "data": [
                 148.0
             ]
         },
         {
             "itemId": "11907010004",
-            "value": "00:04 2019-08-01",
+            "value": "00:04 YYYY-08-01",
             "data": [
                 79.0
             ]

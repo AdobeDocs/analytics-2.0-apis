@@ -11,13 +11,17 @@ The following example requests a breakdown report containing a list of the top f
 
 **Note:** If the text value of item is already known, it can be passed inside the `metricFilter` object as `itemValue` field (Make sure to pass the exact text value). For example, instead of passing the item id `"itemId":"743855946"` of the item "Campaign 10", we can pass the text value of the item like this `"itemValue" : "10"` Passing an item value instead of item id will result in slightly slower performance, but it will be useful in preventing multiple reporting calls to retrieve item ids.
 
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
 ```json
 {
    "rsid":"examplersid",
    "globalFilters":[
       {
          "type":"dateRange",
-         "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+         "dateRange":"YYYY-12-31T00:00:00.000/YYYY-01-06T23:59:59.999"
       }
    ],
    "metricContainer":{
@@ -47,9 +51,7 @@ The following example requests a breakdown report containing a list of the top f
 }
 ```
 
-## Response
-
-The following example shows that the top search terms for Campaign 10 are "red t-shirt", "digital watches", "sport socks", "gps watch", and "running shoes."
+#### Response
 
 ```json
 {
@@ -137,13 +139,17 @@ The top level report in the following example shows the dimension `Day` and incl
 
 The JSON message request body for this report request follows:
 
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
 ```json
 {
     "rsid": "examplersid",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-11-18T00:00:00.000/2018-11-25T00:00:00.000"
+            "dateRange": "YYYY-11-18T00:00:00.000/YYYY-11-25T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -168,9 +174,7 @@ The JSON message request body for this report request follows:
 }
 ```
 
-### Top level response
-
-Running the report request results in the following response:
+#### Response
 
 ```json
 {
@@ -193,7 +197,7 @@ Running the report request results in the following response:
     "rows": [
         {
             "itemId": "1181018",
-            "value": "Nov 18, 2018",
+            "value": "Nov 18, YYYY",
             "data": [
                 63,
                 30
@@ -201,7 +205,7 @@ Running the report request results in the following response:
         },
         {
             "itemId": "1181019",
-            "value": "Nov 19, 2018",
+            "value": "Nov 19, YYYY",
             "data": [
                 73,
                 37
@@ -209,7 +213,7 @@ Running the report request results in the following response:
         },
         {
             "itemId": "1181020",
-            "value": "Nov 20, 2018",
+            "value": "Nov 20, YYYY",
             "data": [
                 96,
                 42
@@ -217,7 +221,7 @@ Running the report request results in the following response:
         },
         {
             "itemId": "1181021",
-            "value": "Nov 21, 2018",
+            "value": "Nov 21, YYYY",
             "data": [
                 135,
                 57
@@ -225,7 +229,7 @@ Running the report request results in the following response:
         },
         {
             "itemId": "1181022",
-            "value": "Nov 22, 2018",
+            "value": "Nov 22, YYYY",
             "data": [
                 87,
                 45
@@ -233,7 +237,7 @@ Running the report request results in the following response:
         },
         {
             "itemId": "1181023",
-            "value": "Nov 23, 2018",
+            "value": "Nov 23, YYYY",
             "data": [
                 77,
                 50
@@ -241,7 +245,7 @@ Running the report request results in the following response:
         },
         {
             "itemId": "1181024",
-            "value": "Nov 24, 2018",
+            "value": "Nov 24, YYYY",
             "data": [
                 112,
                 49
@@ -276,7 +280,11 @@ The response shows itemId `1181019`, so we will use that in our report request b
 
 ### Second level request
 
-The JSON message request body for this report request looks like this:
+The JSON message request body for this report request looks like the following. Note that the `metricFilters` attribute in the request contains a metric filter that corresponds to a metric in the `metrics` attribute of the request. Each metric has a `filters` array that applies metric filters to the metric column. In this example, we are applying metric filter `0` to the `Page Views` metric column and metric filter `1` to the `Visits` metric column.
+
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Second level request body
 
 ```json
 {
@@ -284,7 +292,7 @@ The JSON message request body for this report request looks like this:
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-11-18T00:00:00.000/2018-11-25T00:00:00.000"
+            "dateRange": "YYYY-11-18T00:00:00.000/YYYY-11-25T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -328,11 +336,7 @@ The JSON message request body for this report request looks like this:
 }
 ```
 
-**Note** The `metricFilters` attribute in the request contains a metric filter that corresponds to a metric in the `metrics` attribute of the request. Each metric has a `filters` array that applies metric filters to the metric column. In this example, we are applying metric filter `0` to the `Page Views` metric column and metric filter `1` to the `Visits` metric column.
-
-### Second level response
-
-Running the report request results in a response like the following:
+#### Second level response
 
 ```json
 {
@@ -409,9 +413,11 @@ The third level of the example shows how to further break down the report by app
 
 ![multiple_breakdowns_example_3](../../../images/multiple_breakdowns_example_3.png)
 
-### Third level request
+Note that there are now 4 metric filters in the `metricFilters` array of the request. Filters `0` and `2` are applied to the `Page Views` metric column, and filters `1` and `3` are applied to the `Visits` metric column.
 
-The JSON message request body for this report request looks like this:
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Third level request body
 
 ```json
 {
@@ -419,7 +425,7 @@ The JSON message request body for this report request looks like this:
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2018-11-18T00:00:00.000/2018-11-25T00:00:00.000"
+            "dateRange": "YYYY-11-18T00:00:00.000/YYYY-11-25T00:00:00.000"
         }
     ],
     "metricContainer": {
@@ -477,11 +483,7 @@ The JSON message request body for this report request looks like this:
 }
 ```
 
-**Note:** There are now 4 metric filters in the `metricFilters` array of the request. Filters `0` and `2` are applied to the `Page Views` metric column, and filters `1` and `3` are applied to the `Visits` metric column.
-
-### Third level response
-
-Running the report request results in a response like the following:
+#### Third level response
 
 ```json
 {

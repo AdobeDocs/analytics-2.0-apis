@@ -9,13 +9,13 @@ Frequently asked questions for the Data Repair API.
 
 ## If I accidentally delete incorrect data, is there a way to get it back?
 
-No. Data removed by this API is permanently and not retrievable. Make sure that your API calls are correct before running them for large date ranges.
+No. **Data removed by this API is permanent and not retrievable.** Make sure that your API calls are correct before running them for large date ranges.
 
 ## What is the best approach to minimize accidental deletion or alteration of data?
 
-The following workflow provides multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm the data repair job completes as expected.
- 
-Create a repair job in the following:
+The following workflow provides multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected.
+
+Create a repair job for the following:
 
 1. A **development** Report Suite for **one day** of data.
 1. A **development** Report Suite for **one month** of data.

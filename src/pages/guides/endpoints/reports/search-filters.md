@@ -17,7 +17,11 @@ You can use the `search` parameter to filter your results more narrowly. The `se
 
 ## Example `search` Request
 
-The following example requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9).
+The following example requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9). The response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
+
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
 
 ```json
 {
@@ -25,7 +29,7 @@ The following example requests data only for campaigns "10" and "11" with the `s
    "globalFilters":[
       {
          "type":"dateRange",
-         "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+         "dateRange":"YYYY-01-31T00:00:00.000/YYYY-02-06T23:59:59.999"
       }
    ],
    "search":{
@@ -45,7 +49,7 @@ The following example requests data only for campaigns "10" and "11" with the `s
          {
             "id":"0",
             "type":"dateRange",
-            "dateRange":"2017-12-31T00:00:00.000/2018-01-06T23:59:59.999"
+            "dateRange":"YYYY-01-31T00:00:00.000/YYYY-02-06T23:59:59.999"
          }
       ]
    },
@@ -57,9 +61,7 @@ The following example requests data only for campaigns "10" and "11" with the `s
 }
 ```
 
-## Response
-
-The following response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
+#### Response
 
 ```json
 {

@@ -16,15 +16,17 @@ The Data Repair API supports the following:
 The Data Repair API returns:
 
 * The Server Call volume estimate for the data repair job
-* The job id
-* The status of a submitted job id
+* The job ID
+* The status of a submitted job ID
 * A list of all data repair jobs for a report suite
 
-> WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data. Adobe recommends a careful approach to executing the repair to minimize accidental deletion. Read through all pages of this guide before using the Data Repair API.
+<InlineAlert variant="warning" slots="text"/>
+
+Use of the Data Repair API permanently deletes existing Adobe Analytics data. Adobe recommends a careful approach to executing the repair to minimize accidental deletion. Read through all pages of this guide before using the Data Repair API.
 
 ## Getting Started
 
-To begin using the Data Repair API, there are four requirements:
+To begin using the Data Repair API, you must meet all four prerequisites:
 
 1. **Confirm contract**
 
@@ -32,7 +34,7 @@ To begin using the Data Repair API, there are four requirements:
 
 2. **Create a Service Account Connection within Adobe I/O**
 
-   A Service Account Connection allows the Data Repair API to call Adobe services.  For information on how to set up the connection, follow the instructions described in the [Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md) documentation.   You can configure the Connection with access to the Adobe Analytics APIs.  During the process, you will generate a key pair and download the private key.  Store the API Key / Client ID associated with the Service Account Connection securely.  This is used when accessing the Data Repair API. 
+   A Service Account Connection allows the Data Repair API to call Adobe services.  For information on how to set up the connection, follow the instructions described in the [Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md) documentation. You can configure the Connection with access to the Adobe Analytics APIs.  During the process, you will generate a key pair and download the private key. Store the API Key / Client ID associated with the Service Account Connection securely.  This is used when accessing the Data Repair API.
 
    See [Getting started](../../getting-started/index.md) for information around the correct permissions, creating an API client in the Adobe I/O Console, and successfully authenticating. Make sure that you include the "Data Repair API" permission item when creating a product profile.
 
@@ -50,7 +52,9 @@ To begin using the Data Repair API, there are four requirements:
 
    In order to establish a secure service-to-service Adobe I/O API session, create a JSON Web Token (JWT) that encapsulates the identity of the product integration, and then exchange it for an access token. Every request to an Adobe service must include the access token in the `Authorization header`, along with the `API Key / Client ID` associated with the Service Account Connection.  For more information about creating a JWT access token, see [JWT Authentication](https://github.com/AdobeDocs/adobeio-auth/blob/stage/JWT/JWT.md). For instructions on testing your JWT, see Step 3 in the [Service Account Connection](https://github.com/AdobeDocs/adobeio-auth/blob/stage/AuthenticationOverview/ServiceAccountIntegration.md#step-3-try-it) documentation.
 
-   > NOTE: A new access token must be created before each use of the Data Repair API.
+   <InlineAlert variant="info" slots="text"/>
+
+   A new access token must be created before each use of the Data Repair API.
 
 ## Submit a data repair job
 
@@ -66,4 +70,4 @@ To submit a data repair job, there are three steps:
 
 3. **Monitor progress**
 
-Use the `/job/{JOB_ID}` endpoint to monitor the status of a job at any point after job submission. Completion time of a repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
+   Use the `/job/{JOB_ID}` endpoint to monitor the status of a job at any point after job submission. Completion time of a repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.

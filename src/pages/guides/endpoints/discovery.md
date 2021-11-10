@@ -15,11 +15,15 @@ For example, if you have multiple logins for various companies, you can use this
 
 The following example requests the user's information for company logins:
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
 ```sh
 curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
 ```
 
-The following example shows the response to the previous request by returning values for two companies: one with `globalCompanyId` value of `testco0` and another with `anothe0`:
+#### Response
 
 ```json
 {
