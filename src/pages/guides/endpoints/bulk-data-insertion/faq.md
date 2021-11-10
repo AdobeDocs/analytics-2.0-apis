@@ -104,3 +104,9 @@ Your best course of action depends on how many invalid rows exist:
 ## How do I remove data that was inadvertently uploaded?
 
 Data uploaded through the Bulk data insertion API is permanent. In some cases, you can use the [Data Repair API](../data-repair/index.md), but Adobe strongly recommends that you validate uploads before ingesting them into Adobe Analytics. Adobe Engineering Services can also assist customers in removing undesired data through a paid service engagement. Contact your Adobe Account Manager for more information.
+
+## How long does it take for data to appear?
+
+For data with timestamps less than 24 hours old, ingested data typically follows a standard [latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html) of 20-50 minutes. Some data, such as page views, is available within minutes.
+
+Data with timestamps older than 24 hours can take 2 hours or longer depending on the age of the data. See [Features that depend on latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html#features-that-depend-on-latency) for more information.
