@@ -138,13 +138,11 @@ module.exports = {
             pages: [
               {
                 title: 'Tags',
-                path: 'guides/endpoints/componentmetadata/tags/index.md',
-                pages: [
-                  {
-                    title: 'Examples',
-                    path: 'guides/endpoints/componentmetadata/tags/examples.md'
-                  }
-                ]
+                path: 'guides/endpoints/componentmetadata/tags.md'
+              },
+              {
+                title: 'Shares',
+                path: 'guides/endpoints/componentmetadata/shares.md'
               }
             ]
           },
