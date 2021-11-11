@@ -226,6 +226,7 @@ Each API call that creates a job or requests server call estimates requires a JS
 
 * Remove one or more query string parameters from a variable.  If the value does not appear to be a URL, no action is taken.
 * Supported Filters: None
+* There can be at most 10 parameters
 
 ```json
 {

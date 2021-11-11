@@ -13,7 +13,7 @@ The `/job` endpoint uses the `validationToken` from the `/serverCallEstimate` en
 
 If the scope of the data repair job changes, re-run the `/serverCallEstimate` endpoint to generate a new `validationToken`.
 
-> WARNING: Use of the Data Repair API permanently deletes existing Adobe Analtyics data. Follow the recommended workflow for testing and validation prior to applying any data repair jobs to production data.
+> WARNING: Use of the Data Repair API permanently deletes existing Adobe Analytics data. Follow the recommended workflow for testing and validation prior to applying any data repair jobs to production data.
 
 `POST https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{REPORT_SUITE_ID}/job`
 
