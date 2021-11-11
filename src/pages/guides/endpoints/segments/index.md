@@ -33,6 +33,14 @@ You can retrieve segments individually by segment ID.
 }
 ```
 
+## Create a segment
+
+Adobe recommends using the product UI to create segments. If you opt to use the API to create segments, note that some fields are ignored. For example, `tags` are not stored in segments themselves and are ignored if included when creating segments through the API. Use the [Tags endpoint](../componentmetadata/tags.md) to set or modify a segment's tags.
+
+This API call requires a JSON request body, representing the segment definition to create.
+
+`PUT https://analytics.adobe.io/api/{REPORT_SUITE_ID}/segments/`
+
 ## Update a segment
 
 You can edit existing segments using a `PUT` API call. Note that `tags`, `compatibility`, and `reportSuiteName` cannot be edited.
