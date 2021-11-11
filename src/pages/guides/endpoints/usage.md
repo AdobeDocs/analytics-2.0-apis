@@ -25,7 +25,7 @@ The Usage API allows you to retrieve the usage and access log data provided with
 
 ## `eventType` lookup
 
-By default, all event types are included when you make a request to get usage logs. You can apply a filter for a specific event type using the `eventType` query string parameter. These event types are the same fields available in the [Usage and Access Log](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/logs.html?lang=en#section_8ADE8A7204A8401C968ABC20AECA381D) in the Analytics UI.
+By default, all event types are included when you make a request to get usage logs. You can apply a filter for a specific event type using the `eventType` query string parameter. These event types are the same fields available in the [Usage and Access Log](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/logs.html) in the Analytics UI.
 
 | ID | Event Type |
 | --- | --- |
