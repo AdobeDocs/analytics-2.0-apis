@@ -7,11 +7,11 @@ description: Frequently asked questions for the Analytics 2.0 APIs.
 
 Frequently asked questions for the Analytics 2.0 APIs.
 
-## What is the timeout for API requests?
+### What is the timeout for API requests?
 
 Requests submitted through adobe.io currently time out at **60 seconds**.
 
-## What is the rate limit for API calls?
+### What is the rate limit for API calls?
 
 The enforced rate limit for API calls is **12 requests every 6 seconds** per user (or approximately 120 requests per minute). When you exceed this rate limit, API calls return a `429` HTTP response code with the following response body:
 
@@ -19,7 +19,7 @@ The enforced rate limit for API calls is **12 requests every 6 seconds** per use
 {"error_code":"429050","message":"Too many requests"}
 ```
 
-## What are some best practices and guidelines when using the APIs?
+### What are some best practices and guidelines when using the APIs?
 
 Adobe recommends adhering to the following guidelines:
 
@@ -31,6 +31,5 @@ Adobe recommends adhering to the following guidelines:
 Adobe recommends avoiding the following:
 
 * Requesting as much data as possible in a single request
-* Requesting one year of data at day granularity everyday - just request the new day and merge it
+* Requesting one year of data at day granularity everyday to get a rolling 12-month window. Adobe recommends that you instead request the new day's data and merge it with the existing data from previous days.
 * Driving a web page with a site performance widget by making an API request every time the web page is loaded
-* Requesting a full year of day-level data every day to get a rolling 12-month window
