@@ -27,8 +27,9 @@ The [Data Insertion API](/analytics-apis/docs/1.4/endpoints/data-insertion/) and
 
 * BDIA can only send data to report suites that are configured as "Timestamp enabled" or "Timestamp optional."
 * Historical data for a visitor grouping must be ingested before any current data can be processed, unless Timestamp Optional report suites are being used and visitor continuity is not possible or not desirable.
-* The amount of server calls that can be processed in a given time are dependent on throttle limits and allocated resources for that customer. Spikes in server calls must be reported to Adobe similarly to traditional data collection through AppMeasurement.
+* The amount of server calls that can be processed in a given time are dependent on throttle limits and allocated resources for that customer. Report traffic spikes to Customer Care in the same way that normal data collection dictates. See [Schedule a traffic spike](https://experienceleague.adobe.com/docs/analytics/admin/traffic-management/t-traffic-schedule-spike.html?lang=en) in the Adobe Analytics documentation.
 * Do not send more than 1 file per 20 seconds per visitor group.
+* The maximum file size per upload is 100 MB compressed (gzip).
 * Utilize enough visitor groups so that you do not send more than 2000 rows/second per visitor group.
 
 ### How frequently can I upload files?
