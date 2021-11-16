@@ -40,12 +40,30 @@ Variable | Supported actions | Description
 `geolatitude` | `delete` | N/A
 `geolongitude` | `delete` | N/A
 `georegion` | `delete` | The [Regions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/regions.html) dimension.
-`geozip` | `delete` | The [Zip code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/zip-code.html) dimension collected through geolocation.
+`geozip` | `delete` | The [Zip code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/zip-code.html) dimension collected through geolocation. See also `zip`.
 `ipaddress` | `delete` | The IP address of the visitor.
 `latitude` | `delete` | N/A
 `longitude` | `delete` | N/A
-`zip` | `delete` | The [Zip code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/zip-code.html) dimension collected through the `zip` variable (not geosegmentation).
+`zip` | `delete` | The [Zip code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/zip-code.html) dimension collected through the `zip` variable (not geosegmentation). See also `geozip`.
 `page` | `set`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | The [Page](https://experienceleague.adobe.com/docs/analytics/components/dimensions/page.html) dimension.
 `pageeventvar1` | `set`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | The [`linkURL`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/config-vars/linkurl.html) implementation variable.
 `pageeventvar2` | `set`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | The [Download link](https://experienceleague.adobe.com/docs/analytics/components/dimensions/download-link.html), [Exit link](https://experienceleague.adobe.com/docs/analytics/components/dimensions/exit-link.html), or [Custom link](https://experienceleague.adobe.com/docs/analytics/components/dimensions/custom-link.html), depending on the type of link.
-<!-- continue on pageurl-->
+`pageurl` | `deleteQueryString`<br/>`deleteQueryStringParameters` | The [Page URL](https://experienceleague.adobe.com/docs/analytics/components/dimensions/page-url.html) dimension.
+`evar1` - `evar250` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions.
+`prop1` - `prop75` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [Prop](https://experienceleague.adobe.com/docs/analytics/components/dimensions/prop.html) dimensions.
+`mobileappid`<br/>`mobilemessagebuttonname`<br/>`mobilemessageid`<br/>`mobilerelaunchcampaigncontent`<br/>`mobilerelaunchcampaignmedium`<br/>`mobilerelaunchcampaignsource`<br/>`mobilerelaunchcampaignterm`<br/>`mobilerelaunchcampaigntrackingcode` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [Mobile](https://experienceleague.adobe.com/docs/analytics/components/dimensions/mobile-dimensions.html) dimensions.
+`activitymap` | `delete` | Deletes all [Activity map](https://experienceleague.adobe.com/docs/analytics/analyze/activity-map/activitymap-reporting-analytics.html) data for the hit. Does not support filters, because it handles multiple dimensions.
+`latlon1`<br/>`latlon23`<br/>`latlon45`<br/>`mobileaction`<br/>`pointofinterest`<br/>`pointofinterestdistance` | `delete` | [Mobile](https://experienceleague.adobe.com/docs/analytics/components/dimensions/mobile-dimensions.html) dimensions.
+`videoadname`<br/>`videoadplayername`<br/>`videoadadvertiser`<br/>`videoaudioalbum`<br/>`videoaudioartist`<br/>`videoaudioauthor`<br/>`videoaudiolabel`<br/>`videoaudiopublisher`<br/>`videoaudiostation`<br/>`videoadcampaign`<br/>`videochannel`<br/>`videocontenttype`<br/>`videoepisode`<br/>`videofeedtype`<br/>`videomvpd`<br/>`videoname`<br/>`videonetwork`<br/>`videopath`<br/>`videoplayername`<br/>`videoseason`<br/>`videoshow`<br/>`videoshowtype`<br/>`videostreamtype` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [Media Analytics](https://experienceleague.adobe.com/docs/media-analytics/using/metrics-and-metadata/audio-video-parameters.html) dimensions.
+`video`<br/>`videoad` | `set`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [Media Analytics](https://experienceleague.adobe.com/docs/media-analytics/using/metrics-and-metadata/audio-video-parameters.html) dimensions.
+
+
+
+latitude
+longitude
+geolatitude
+geolongitude
+pageurlfirsthit
+pageurlvisitstart
+referrerfirsthit
+referrervisit
