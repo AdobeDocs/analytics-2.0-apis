@@ -141,8 +141,6 @@ Each variable requires an action. Adobe supports the following actions, with the
   }
   ```
 
-  This action does not support
-
 * **`deleteQueryStringParameters`**: Remove one or more query string parameters and their values from a variable. The query parameters removed are based on the string array `parameters`. Include the `parameters` array alongside the `action` property inside the variable. Up to 10 parameters are supported. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
 
   ```json
