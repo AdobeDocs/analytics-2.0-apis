@@ -15,13 +15,9 @@ BDIA provides a way for a customer ID to be specified which Adobe will use as a 
 
 When specifying a `customerID` column, you must choose a `customerIDType` to correlate the columns to each other. The `customerIDType` can be any alpha-numeric string, and is case sensitive. If using Audience Manager, your "Integration Code" is your `customerIDType`.
 
-For example, you have two variables that can identify a visitor: a user ID and an e-mail address. If a visitor logs in using their user ID, then you would set `customerID.userIdent.authState` to `AUTHENTICATED` and set `customerID.userIdent.id` to their user ID. If a visitor logs in using their email address, then you would set `customerID.userEmail.authState` to `AUTHENTICATED` and set `customerID.userEmail.id` to their email address.
+For example, you have two ways that your site can identify a visitor: a user ID and an e-mail address. If a visitor logs in using their user ID, then you would set `customerID.userIdent.authState` to `AUTHENTICATED` and set `customerID.userIdent.id` to their user ID. If a visitor logs in using their email address, then you would set `customerID.userEmail.authState` to `AUTHENTICATED` and set `customerID.userEmail.id` to their email address.
 
-| Header column | Query string parameter | Description |
-|--|--|--|
-| `customerID.[customerIDType].id` | `cid.[customerIDType].id` | The customer ID to use. |
-| `customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The authenticated state of the visitor. The numeric and string values are interchangeable. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string<br/>`1` or `AUTHENTICATED`<br/>`2` or `LOGGED_OUT` |
-| `customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed`| Whether or not this is the seed for the Experience Cloud Visitor ID. Supported values are:<br/>`0` or `false` or an empty string<br/>`1` or `true` |
+See [File format](file-format.md) f
 
 ## Customer ID Validation Rules
 
