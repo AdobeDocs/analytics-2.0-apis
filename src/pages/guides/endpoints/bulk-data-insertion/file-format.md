@@ -65,7 +65,7 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `cookiesEnabled` | `k` | The [Cookie support](https://experienceleague.adobe.com/docs/analytics/components/dimensions/cookie-support.html) dimension.
 `currencyCode` | `cc` | The [`currencyCode`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/config-vars/currencycode.html) implementation variable.
 `customerID.[customerIDType].id` | `cid.[customerIDType].id` | The customer ID to use. See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
-`customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The authenticated state of the visitor. See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
+`customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The authenticated state of the visitor. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string: Not logged in.<br/>`1` or `AUTHENTICATED`: Logged in.<br/>`2` or `LOGGED_OUT`: Logged out.<br/>See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
 `customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed` | Whether this is the seed for the Marketing Cloud Visitor ID. See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
 `eVar1` - `eVar250` | `v1` - `v250` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions.
 `events` | `events` | The [`events`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/events/events-overview.html) implementation variable.
@@ -83,7 +83,7 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `products` | `products` | The [`products`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/products.html) implementation variable.
 `prop1` - `prop75` | `c1` - `c75` | [Prop](https://experienceleague.adobe.com/docs/analytics/components/dimensions/prop.html) dimensions.
 `purchaseID` | `purchaseID` | The [`purchaseID`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/purchaseid.html) implementation variable.
-`queryString` | This column provides information for this field. | Key/value pairs that provide an alternative to using individual columns. This column must be fully URL encoded, including any multi-byte characters. Adobe encodes the query string in UTF-8 by default, unless you add the `ce` query string parameter.
+`queryString` | This column provides information for this field. | Key/value pairs that provide an alternative to using header columns. This column must be fully URL encoded, including any multi-byte characters. Adobe encodes the query string in UTF-8 by default, unless you add the `ce` query string parameter.
 `referrer` | `r` | The [`referrer`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/referrer.html) implementation variable.
 `reportSuiteID` | N/A (Only available with column header) | Specifies the report suites where you want to submit data. Separate multiple report suite IDs with a comma.
 `resolution` | `s` | The [Monitor resolution](https://experienceleague.adobe.com/docs/analytics/components/dimensions/monitor-resolution.html) dimension.
