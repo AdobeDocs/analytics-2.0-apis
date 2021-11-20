@@ -23,13 +23,13 @@ Batch files must conform to all of the following requirements:
 
 ## Required columns
 
-Every row must contain the following five data points:
+Every row must contain the following five data points. If a row misses any one of these requirements, that row is skipped.
 
 * At least one of:
   * `marketingCloudVisitorID`
   * `IPAddress`
   * `visitorID`
-  * `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `true`. See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md) for more information.
+  * `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `true`. See [Use customer ID to identify visitors](mcseed.md)].
 * At least one of:
   * `pageURL`
   * `pageName`
@@ -64,9 +64,9 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `contextData.key` | `c.[key]` | [`contextData`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/contextdata.html) implementation variables.
 `cookiesEnabled` | `k` | The [Cookie support](https://experienceleague.adobe.com/docs/analytics/components/dimensions/cookie-support.html) dimension.
 `currencyCode` | `cc` | The [`currencyCode`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/config-vars/currencycode.html) implementation variable.
-`customerID.[customerIDType].id` | `cid.[customerIDType].id` | The customer ID to use. See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
-`customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The authenticated state of the visitor. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string: Not logged in.<br/>`1` or `AUTHENTICATED`: Logged in.<br/>`2` or `LOGGED_OUT`: Logged out.<br/>See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
-`customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed` | Whether this is the seed for the Marketing Cloud Visitor ID. See [Customer ID and Experience Cloud Visitor ID seeds](customer-id.md).
+`customerID.[customerIDType].id` | `cid.[customerIDType].id` | The `id` used in the Experience Cloud Identity Service [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/id-service-api/methods/setcustomerids.html) method.
+`customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The `authState` used in the Experience Cloud Identity Service [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/reference/authenticated-state.html) method. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string: Not logged in.<br/>`1` or `AUTHENTICATED`: Logged in.<br/>`2` or `LOGGED_OUT`: Logged out.
+`customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed` | An integer boolean that lets you use `customerID.[customerIDType].id` as the hit's identifier. Use `1` for true and `0` for false. See [Use customer ID to identify visitors](mcseed.md).
 `eVar1` - `eVar250` | `v1` - `v250` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions.
 `events` | `events` | The [`events`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/events/events-overview.html) implementation variable.
 `hier1` - `hier5` | `h1` - `h5` | [Hierarchy variables](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/hier.html).
@@ -77,6 +77,7 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `linkType` | N/A (Only available with column header) | The type of link. Defaults to `o` if this field is empty and `linkName` contains a value. Valid values include:<br/> **`d`**: Download link<br/>**`e`**: Exit link<br/>**`o`**: Custom link
 `linkURL` | `pev1` | The link URL.
 `list1` - `list3` | `l1` - `l3` | [List variables](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/list.html).
+`marketingCloudVisitorID` | `mid` | The unique identifier used with the [Adobe Experience Cloud Identity Servce](https://experienceleague.adobe.com/docs/id-service/using/home.html).
 `pageName` | `pageName` | The [Page](https://experienceleague.adobe.com/docs/analytics/components/dimensions/page.html) dimension.
 `pageType` | `pageType` | The [`pageType`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/pagetype.html) implementation variable. Set to the string value `"errorPage"` on any error pages, such as a 404 or 503 error.
 `pageURL` | `g` | The [Page URL](https://experienceleague.adobe.com/docs/analytics/components/dimensions/page-url.html) dimension.
@@ -94,5 +95,4 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `transactionID` | `xact` | The [`transactionID`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/transactionid.html) variable.
 `userAgent` | N/A (Only available with column header) | The device's user agent string.
 `visitorID` | `vid` | The [`visitorID`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/config-vars/visitorid.html) implementation variable.
-`marketingCloudVisitorID` | `mid` | The unique identifier used with the [Adobe Experience Cloud Identity Servce](https://experienceleague.adobe.com/docs/id-service/using/home.html).
 `zip` | `zip` | The [Zip code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/zip-code.html) dimension.
