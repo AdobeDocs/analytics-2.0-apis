@@ -606,11 +606,9 @@ This section includes information on the following filtering features:
 
 By using the `search` parameter, you can add even more granular parameters to filter your results more narrowly. The `search` parameter includes the following options:
 
-* `itemId` - A single ID to include in the report
 * `itemIds` - A list of itemIds to include in the report (shown in the example)
 * `excludeItemIds` - A list of itemIds to exclude in the report
 * `clause` - A search clause to use when filtering dimensions
-* `includeSearchTotal` - Includes a special element called 'searchTotals' in the response that contains the total of the filtered items. The default is `false`.
 
 #### Example `search` Request
 
