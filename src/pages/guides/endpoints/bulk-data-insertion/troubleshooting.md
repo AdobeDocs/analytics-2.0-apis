@@ -7,7 +7,9 @@ description: Learn potential errors you can get and how to resolve them.
 
 Use the following possible solutions to help determine why an upload failed.
 
-**IMPORTANT:** Adobe highly encourages you to use the [Validate](validate.md) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. If you repair the file and upload it again, the originally valid hits are counted twice.
+<InlineAlert variant="warning" slots="text"/>
+
+Adobe highly encourages you to use the [Validate](validate.md) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. If you repair the file and upload it again, the originally valid hits are counted twice.
 
 ## File Not in GZIP Format
 
@@ -27,10 +29,10 @@ If a file is not in proper GZIP format, it results in the state of "File Error" 
 
 Each hit requires at least one identifier:
 
-* VisitorID
-* MarketingCloudVisitorID
-* IPAddress
-* CustomerID
+* `VisitorID`
+* `MarketingCloudVisitorID`
+* `IPAddress`
+* `CustomerID`
 
 ```json
 {
