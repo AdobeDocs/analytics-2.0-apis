@@ -33,7 +33,7 @@ Every row must contain the following five data points. If a row misses any one o
 * At least one of:
   * `pageURL`
   * `pageName`
-  * `linkType` (Also include `linkURL` and/or `linkName`)
+  * `linkType` with `linkName` or `linkURL`
   * `queryString` that includes `pageURL`, `pageName`, or `linkType` as query string parameters with values
 * `reportSuiteID`
 * `timestamp`
