@@ -5,7 +5,7 @@ description: Use the Adobe Experience Cloud Identity Service setCustomerIDs to i
 
 # Use customer ID to identify visitors
 
-Adobe offers a way to simplify the process of generating an identifier used by the Adobe Experience Cloud Identity Service. Adobe can use one of customer IDs in the [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/id-service-api/methods/setcustomerids.html) method as a seed for generating an Adobe Experience Cloud visitor ID for you.
+Adobe offers a way to simplify the process of generating an identifier used by the Adobe Experience Cloud Identity Service. Adobe can use one of the customer IDs in the [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/id-service-api/methods/setcustomerids.html) method as a seed for generating an Adobe Experience Cloud visitor ID for you.
 
 ## Prerequisites
 
