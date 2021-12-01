@@ -85,24 +85,20 @@ module.exports = {
             path: 'guides/endpoints/bulk-data-insertion/index.md',
             pages: [
               {
-                title: 'Column reference',
-                path: 'guides/endpoints/bulk-data-insertion/column-reference.md'
+                title: 'File format',
+                path: 'guides/endpoints/bulk-data-insertion/file-format.md'
               },
               {
-                title: 'Validate',
-                path: 'guides/endpoints/bulk-data-insertion/validate.md'
+                title: 'Endpoints',
+                path: 'guides/endpoints/bulk-data-insertion/endpoints.md'
               },
               {
                 title: 'Visitor groups',
                 path: 'guides/endpoints/bulk-data-insertion/visitor-groups.md'
               },
               {
-                title: 'Customer ID',
-                path: 'guides/endpoints/bulk-data-insertion/customer-id.md'
-              },
-              {
-                title: 'Examples',
-                path: 'guides/endpoints/bulk-data-insertion/example.md'
+                title: 'Use customer ID to identify visitors',
+                path: 'guides/endpoints/bulk-data-insertion/mcseed.md'
               },
               {
                 title: 'Troubleshooting',

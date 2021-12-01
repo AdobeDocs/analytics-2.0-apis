@@ -7,46 +7,23 @@ description: Frequently asked questions for the Bulk data insertion API.
 
 Get answers to common questions asked when using the Bulk data insertion API.
 
-### What compression can I use?
-
-All batch files must be compressed using GZIP compression.
-
-### How big can my files be?
-
-Compressed files can be up to 100 MB.  Uncompressed file size is limited to 1 GB.
-
-### What should I name my batch file?
-
-The Bulk Data Insertion API does not place any restrictions on file names. When submitted via an API call, a file identifier is returned that can be used to track the file. The name of the uploaded file is preserved, however, in the system so that customers have a "friendly" reference point when viewing information about files.
+## General questions
 
 ### What is the difference between the BDIA and the Data Insertion API available in the 1.4 API?
 
-The [Data Insertion API](/analytics-apis/docs/1.4/endpoints/data-insertion/) and Bulk Data Insertion API are both methods to submit server-side collection data to Adobe Analytics. Data Insertion API calls are made one event at a time. Bulk Data Insertion API accepts CSV formatted files containing event data, one event per row. Adobe recommends using the Bulk Data Insertion API in most cases.
+The Data Insertion API and Bulk Data Insertion API are both methods to submit server-side data to Adobe Analytics. Data Insertion API calls are made one event at a time. Bulk Data Insertion API accepts CSV formatted files containing event data, one event per row. Adobe recommends using the Bulk Data Insertion API in most cases.
 
-### What are the limitations of using the BDIA?
+### How long does it take for data to appear?
 
-* BDIA can only send data to report suites that are configured as "Timestamp enabled" or "Timestamp optional."
-* Historical data for a visitor grouping must be ingested before any current data can be processed, unless Timestamp Optional report suites are being used and visitor continuity is not possible or not desirable.
-* The amount of server calls that can be processed in a given time are dependent on throttle limits and allocated resources for that customer. Report traffic spikes to Customer Care in the same way that normal data collection dictates. See [Schedule a traffic spike](https://experienceleague.adobe.com/docs/analytics/admin/traffic-management/t-traffic-schedule-spike.html) in the Adobe Analytics documentation.
-* Do not send more than 1 file per 20 seconds per visitor group.
-* The maximum file size per upload is 100 MB compressed (gzip).
-* Utilize enough visitor groups so that you do not send more than 2000 rows/second per visitor group.
+For data with timestamps less than 24 hours old, ingested data typically follows a standard [latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html) of 20-50 minutes. Some data, such as page views, is available within minutes.
+
+Data with timestamps older than 24 hours can take 2 hours or longer depending on the age of the data. See [Features that depend on latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html#features-that-depend-on-latency) for more information.
 
 ### I accidentally put two of the same header in a file. How is that data ingested?
 
 If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicate columns are ignored, even if the first column was empty.
 
-### Are column headers case sensitive?
-
-No, column header names are not case sensitive.
-
-### How does BDIA handle unrecognized column headers?
-
-A column header unrecognized by BDIA is ignored.
-
-### What order should I put my headers in?
-
-Columns can appear in any order in the upload file. Most query strings in the `QueryString` field are also valid in any order.
+## Responses and failures
 
 ### What are the response codes that I can get, and what do they mean?
 
@@ -76,10 +53,4 @@ Your best course of action depends on how many invalid rows exist:
 
 ### How do I remove data that was inadvertently uploaded?
 
-Data uploaded through the Bulk data insertion API is permanent. In some cases, you can use the [Data Repair API](../data-repair/index.md), but Adobe strongly recommends that you validate uploads before ingesting them into Adobe Analytics. Adobe Engineering Services can also assist customers in removing undesired data through a paid service engagement. Contact your Adobe Account Manager for more information.
-
-### How long does it take for data to appear?
-
-For data with timestamps less than 24 hours old, ingested data typically follows a standard [latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html) of 20-50 minutes. Some data, such as page views, is available within minutes.
-
-Data with timestamps older than 24 hours can take 2 hours or longer depending on the age of the data. See [Features that depend on latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html#features-that-depend-on-latency) for more information.
+**Data uploaded through the Bulk data insertion API is permanent.** In some cases, you can use the [Data Repair API](../data-repair/index.md), but Adobe strongly recommends that you validate uploads before ingesting them into Adobe Analytics. Adobe Engineering Services can also assist customers in removing undesired data through a paid service engagement. Contact your Adobe Account Manager for more information.

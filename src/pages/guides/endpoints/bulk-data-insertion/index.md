@@ -21,7 +21,7 @@ Before using this API, make sure that all of the following are met:
 * The desired report suite is timestamp-enabled or timestamp optional. See [Timestamps optional](https://experienceleague.adobe.com/docs/analytics/technotes/timestamps-optional.html) in the Adobe Analytics documentation. All newly created report suites are set to timestamp optional by default.
 * Communicate to Adobe the expected volume of ingestion per day. Based on this information, Adobe provisions the appropriate hardware to handle that volume and creates a per-second throttle limit. If enough files are uploaded in a short amount of time to exceed the throttle limit, Adobe ingests uploaded files more slowly. These limits help ensure timely processing and availability of data for reporting. They also help protect the system from becoming overwhelmed before proper capacity is provisioned for a sharp increase in file uploads.
 * Follow the established [File formatting requirements](file-formatting.md) for each upload.
-* If using Customer Attributes to identify visitors, provisioning by Adobe is required. See [Customer ID and Experience Cloud Visitor ID seeds](mcseed.md).
+* If using Customer Attributes to identify visitors, provisioning by Adobe is required. See [Use customer ID to identify visitors](mcseed.md).
 * If uploading more than one file at a time, use the correct number of [Visitor Groups](visitor-groups.md). Follow the guidelines on file send frequency limits to avoid data processing out of order.
 
 Once you meet all prerequisites, see [File format](file-format.md) to prepare your data in a format usable by the API.

@@ -9,11 +9,17 @@ Use the following possible solutions to help determine why an upload failed.
 
 <InlineAlert variant="warning" slots="text"/>
 
-Adobe highly encourages you to use the [Validate](validate.md) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. If you repair the file and upload it again, the originally valid hits are counted twice.
+Adobe highly encourages you to use the [Validate](validate.md) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. This scenario causes major issues with data quality, such as visit/visitor count and attribution.
 
-## File Not in GZIP Format
+This page is divided into three sections: **issues with the file**, **issues with individual rows**, and **product availability**. Courses of action depend on the root of the issue.
 
-If a file is not in proper GZIP format, it results in the state of "File Error" and no rows are processed. Adobe recommendeds that the file creation process is checked to ensure that it properly compresses files.
+## Issues with the file
+
+If Adobe encounters an issue with the file as a whole, the upload fails entirely and no rows are processed. You can fix the file and upload it again to successfully ingest it into Adobe Analytics.
+
+### Not in GZIP Format
+
+If a file is not in proper GZIP format, it results in the state of "File Error" and no rows are processed. Adobe recommends that the file creation process is checked to ensure that it properly compresses files.
 
 ```json
 {
@@ -25,14 +31,9 @@ If a file is not in proper GZIP format, it results in the state of "File Error" 
 }
 ```
 
-## Does not contain a required header column
+### Does not contain a visitor ID header column
 
-Each hit requires at least one identifier:
-
-* `VisitorID`
-* `MarketingCloudVisitorID`
-* `IPAddress`
-* `CustomerID`
+A file must contain at least one visitor ID column. If you upload a file that does not contain any of the available visitor ID columns, the upload fails and no rows are processed. This error relates to missing column headers altogether, not individual rows missing required columns.
 
 ```json
 {
@@ -44,9 +45,9 @@ Each hit requires at least one identifier:
 }
 ```
 
-## Missing timestamp
+### Missing timestamp
 
-Each hit must have an associated timestamp.
+A file must contain the `timestamp` column. If you upload a file that does not contain the `timestamp` column, the upload fails and no rows are processed. This error relates to a missing column header, not individual rows missing a `timestamp` value.
 
 ```json
 {
@@ -58,7 +59,16 @@ Each hit must have an associated timestamp.
 }
 ```
 
-## Some rows missing values
+## Issues with individual rows
+
+If Adobe encounters an issue with an individual row in an otherwise valid file, that row is skipped. Depending on the proportion of hits skipped, you face a difficult situation:
+
+* If most rows are valid with a few skipped rows, you can leave the ingested data as-is and accept that the skipped rows are not in Adobe Analytics; or
+* If most rows are skipped, you can fix the file and accept that previously valid rows are double counted.
+
+Isolating skipped rows and uploading them in a separate API call is not advised because that means that visitor data is uploaded out of order. Data uploaded in the wrong order can cause issues with data quality. All of these scenarios are costly and can easily be avoided if you use the `validate` endpoint before ingesting data into Adobe Analytics.
+
+### Some rows missing values
 
 If some rows have missing required values, those hits are skipped.
 
@@ -71,7 +81,7 @@ If some rows have missing required values, those hits are skipped.
 }
 ```
 
-## Inconsistent column count
+### Inconsistent column count
 
 If some rows have the wrong number of columns, those hits are skipped.
 

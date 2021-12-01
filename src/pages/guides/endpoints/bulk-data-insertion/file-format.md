@@ -12,14 +12,21 @@ The Bulk Data Insertion API ingests data into Adobe Analytics using batch files.
 Batch files must conform to all of the following requirements:
 
 * The file format is in CSV, conforming to the [RFC-4180 standard](https://datatracker.ietf.org/doc/html/rfc4180) with one exception; empty lines are ignored.
-* The file consists of a header row (the first row in the file) and subsequent data rows.
-* Header columns and fields are delimited by commas. If you have commas in values, surround the value in double quotes (`"`). If you also have double quotes in values, use double quotes inside the value. For example, `field1,"Value with ""quotes"", and a comma.",field3` The value that appears in reporting would be `Value with "quotes", and a comma.`
-* Adobe supports both `CRLF` and `LF` line breaks to separate rows. A line break at the end of a data file is optional.
+* Every file consists of a header row (the first row in the file) and subsequent data rows.
+* Header columns and fields are delimited by commas. If you have commas in values, surround the value in double quotes (`"`). If you also have double quotes in values, use double quotes inside the value. For example, `field1,"Value with ""quotes"", and a comma.",field3` - The value that appears in reporting would be `Value with "quotes", and a comma.`
 * Every row must have the same number of columns as the header row. If you want to omit a column from a row, leave the field empty or pass an empty string. For example, `field1,,field3` or `field1,"",field3`.
 * Trailing commas for header rows or data rows are not permitted.
 * All rows in a batch file for any given visitor must be sorted in chronological order by `timestamp` from earliest to latest. Following this rule is crucial for attribution and analyzing visitor behavior. Adobe does not guarantee the integrity of data processed by this API if this rule is not strictly observed.
 * All batch files must be compressed using gzip compression.
 * Compressed file sizes are limited to 100 MB. Uncompressed file sizes are limited to 1 GB.
+
+Batch files are flexible in the following ways:
+
+* There are no restrictions on file names. When you submit a file to this API, Adobe returns a `file_id` that you can use to track the file. The name of the file is recorded under `upload_name` in the response object as well.
+* Adobe supports both `CRLF` and `LF` line breaks to separate rows. A line break at the end of a data file is optional.
+* Column header names are not case sensitive.
+* Columns can appear in any order.
+* Key/value pairs in the `QueryString` field are also valid in any order.
 
 ## Required columns
 
@@ -29,7 +36,7 @@ Every row must contain the following five data points. If a row misses any one o
   * `marketingCloudVisitorID`
   * `IPAddress`
   * `visitorID`
-  * `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `true`. See [Use customer ID to identify visitors](mcseed.md)].
+  * `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `1`. See [Use customer ID to identify visitors](mcseed.md)].
 * At least one of:
   * `pageURL`
   * `pageName`
@@ -38,6 +45,13 @@ Every row must contain the following five data points. If a row misses any one o
 * `reportSuiteID`
 * `timestamp`
 * `userAgent`
+
+Adobe only uses one visitor ID for a given row. If more than one visitor ID column contains data, Adobe uses the following priority to identify that visitor:
+
+1. `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `1`
+1. `visitorID`
+1. `marketingCloudVisitorID`
+1. `IPAddress`
 
 ## Query string or column-based row
 
@@ -50,10 +64,10 @@ You can combine both of these methods in any amount to fill out rows with data. 
 
 ## CSV and query string column reference
 
-Adobe supports the following columns when using this API.
+Adobe supports the following columns in batch files.
 
-Header/Column Name | Query String Param Equivalent | Field Description
---|--|--
+Column header name | `queryString` equivalent | Description
+--- | --- | ---
 `aamlh` | `aamlh` | Integer that represents the Adobe Audience Manager location hint. Valid values include:<br/>**`3`**: Hong Kong/Singapore (`apse.demdex.net`)<br/>**`6`**: Amsterdam/London (`irl1.demdex.net`)<br/>**`7`**: US Central/East (`use.demdex.net`)<br/>**`8`**: Australia (`apse2.demdex.net`)<br/>**`9`**: US West (`usw2.demdex.net`)<br/>**`11`**: Tokyo (`tyo3.demdex.net`)
 `browserHeight` | `bh` | The [Browser height](https://experienceleague.adobe.com/docs/analytics/components/dimensions/browser-height.html) dimension.
 `browserWidth` | `bw` | The [Browser width](https://experienceleague.adobe.com/docs/analytics/components/dimensions/browser-width.html) dimension.
@@ -86,7 +100,7 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `purchaseID` | `purchaseID` | The [`purchaseID`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/purchaseid.html) implementation variable.
 `queryString` | This column provides information for this field. | Key/value pairs that provide an alternative to using header columns. This column must be fully URL encoded, including any multi-byte characters. Adobe encodes the query string in UTF-8 by default.
 `referrer` | `r` | The [`referrer`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/referrer.html) implementation variable.
-`reportSuiteID` | N/A (Only available with column header) | Specifies the report suites where you want to submit data. Separate multiple report suite IDs with a comma.
+`reportSuiteID` | N/A (Only available with column header) | Specifies the report suite(s) where you want to submit data. Separate multiple report suite IDs with a comma.
 `resolution` | `s` | The [Monitor resolution](https://experienceleague.adobe.com/docs/analytics/components/dimensions/monitor-resolution.html) dimension.
 `server` | `server` | The [Server](https://experienceleague.adobe.com/docs/analytics/components/dimensions/server.html) dimension.
 `timestamp` | `ts` | The date and time that the data was collected. [Unix Time](https://en.wikipedia.org/wiki/Unix_time) and [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) are supported. Milliseconds are not allowed.
@@ -96,5 +110,38 @@ Header/Column Name | Query String Param Equivalent | Field Description
 `userAgent` | N/A (Only available with column header) | The device's user agent string.
 `visitorID` | `vid` | The [`visitorID`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/config-vars/visitorid.html) implementation variable.
 `zip` | `zip` | The [Zip code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/zip-code.html) dimension.
+
+The above table are the only column headers that Adobe supports. If you upload a file with a column header that is not included in the above table, that column is ignored.
+
+## Batch file examples
+
+The following text blocks are examples of what a CSV file looks like with a small number of rows and columns. Both examples contain a header row with two rows of data.
+
+### Batch file using the `querystring` column
+
+```text
+timestamp,visitorid,reportsuiteid,querystring,useragent
+1492191617,44444445,examplersid,pageName=PIGINI&v2=Var21&v3=Var31&c1=val11
+&c2=val21&c3=val31&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TonyChannel
+&pev1=https%3A%2F%2Fwww.adobe.com%2Fwho%3Fq%3Dwhoisit&state=UT&zip=84005&cc=USD
+&events=prodView%2Cevent2,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) 
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36"
+1492191627,44444445,examplersid,pageName=PIGINI&v2=Var22&v3=Var32&c1=val12
+&c2=val22&c3=val32&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TonyChannel
+&pev1=https%3A%2F%2Fwww.adobe.com%2Fwho%3Fq%3Dwhoisit&state=UT&zip=84005&cc=USD
+&events=prodView%2Cevent2,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) 
+AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36"
+
+```
+
+### Batch file using column headers
+
+```text
+pageName,timestamp,reportSuiteID,visitorID,userAgent,campaign,contextData.color,contextData.frame,pageURL,prop1,channel
+中文网站,1495483797,examplersid,238915514,"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1 ""Special
+ Build""",Summer,Red,Titanium,http://example.com/path?param=val&param2=val2,p2,Mobile
+中文网站,1495483797,examplersid,142805255,"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1 ""Special
+ Build""",Summer,Gray,Carbon,http://example.com/path?param=val&param2=val2,p2,Mobile
+```
 
 Once you have a correctly formatted file, you can start sending calls to the available [Endpoints](endpoints.md).
