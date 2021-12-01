@@ -27,12 +27,12 @@ The `https://analytics-collection.adobe.io` domain automatically routes your API
 * **US processing**: `https://analytics-collection-va7.adobe.io`
 * **European processing**: `https://analytics-collection-nld2.adobe.io`
 
-<CodeBlock slots="heading, code" repeat="5" languages="CURL,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET -H "accept: application/json" \
+curl -X POST -H "accept: application/json" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
     -H "x-api-key: {API_KEY/CLIENT_ID}" \
     -H "x-adobe-vgid: example_group" \
@@ -40,7 +40,7 @@ curl -X GET -H "accept: application/json" \
     "https://analytics-collection.adobe.io/aa/collect/v1/events"
 ```
 
-#### Success response
+#### Response
 
 ```json
 {
@@ -58,30 +58,6 @@ curl -X GET -H "accept: application/json" \
   "status_code": "UPLOADED",
   "processing_log": "string",
   "success": "File is valid"
-}
-```
-
-#### Failure response - missing visitor group
-
-```json
-{
-    "error": "Request is missing required header 'x-adobe-vgid'"
-}
-```
-
-#### Failure response - incorrect file format
-
-```json
-{
-    "error": "CSV file missing required header 'timestamp'."
-}
-```
-
-#### Failure response - incorrect credentials
-
-```json
-{
-    "error": "Token validation failed"
 }
 ```
 
@@ -113,10 +89,10 @@ Before uploading your first file, Adobe strongly recommends running the file thr
 #### Request
 
 ```sh
-curl -X GET -H "accept: application/json" \
-    -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+curl -X POST -H "accept: application/json" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
     -H "x-api-key: {API_KEY/CLIENT_ID}" \
+    -H "x-adobe-vgid: example_group" \
     -F file=@/tmp/ingest_file.gz \
     "https://analytics.adobe.io/aa/collect/v1/events/validate"
 ```
