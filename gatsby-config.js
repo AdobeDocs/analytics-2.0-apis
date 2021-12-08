@@ -147,12 +147,12 @@ module.exports = {
             path: 'guides/endpoints/data-repair/index.md',
             pages: [
               {
-                title: 'Variables',
-                path: 'guides/endpoints/data-repair/variables.md'
-              },
-              {
                 title: 'Server call estimate',
                 path: 'guides/endpoints/data-repair/server-call-estimate.md'
+              },
+              {
+                title: 'JSON body reference',
+                path: 'guides/endpoints/data-repair/json-body.md'
               },
               {
                 title: 'Job',
