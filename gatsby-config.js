@@ -159,10 +159,6 @@ module.exports = {
                 path: 'guides/endpoints/data-repair/job.md'
               },
               {
-                title: 'Job ID',
-                path: 'guides/endpoints/data-repair/job-id.md'
-              },
-              {
                 title: 'FAQ',
                 path: 'guides/endpoints/data-repair/faq.md'
               }
