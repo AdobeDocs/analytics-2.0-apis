@@ -75,7 +75,7 @@ Each variable requires an action. Adobe supports the following actions, with the
 * **`deleteQueryString`**: Remove the entire query string from a variable value. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
 * **`deleteQueryStringParameters`**: Remove one or more query string parameters and their values from a variable. The query parameters removed are based on the string array `parameters`. Include the `parameters` array alongside the `action` property inside the variable. Up to 10 parameters are supported. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
 
-<CodeBlock slots="heading, code" repeat="4" languages="JSON"/>
+<CodeBlock slots="heading, code" repeat="4" languages="JSON,JSON,JSON,JSON"/>
 
 #### set
 
@@ -142,7 +142,7 @@ Some actions support filters, which allow you to selectively repair certain rows
 * **`isURL`**: Only include the row if Adobe recognizes the value as a URL.
 * **`isNotURL`**: Only include the row if Adobe recognizes that the value is not a URL.
 
-<CodeBlock slots="heading, code" repeat="10" languages="JSON"/>
+<CodeBlock slots="heading, code" repeat="10" languages="JSON,JSON,JSON,JSON,JSON,JSON,JSON,JSON,JSON,JSON"/>
 
 #### inList
 
