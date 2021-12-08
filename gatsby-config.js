@@ -155,7 +155,7 @@ module.exports = {
                 path: 'guides/endpoints/data-repair/json-body.md'
               },
               {
-                title: 'Job',
+                title: 'Job endpoints',
                 path: 'guides/endpoints/data-repair/job.md'
               },
               {

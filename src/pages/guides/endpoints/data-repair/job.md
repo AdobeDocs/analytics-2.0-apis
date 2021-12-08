@@ -1,9 +1,9 @@
 ---
-title: Job endpoint
+title: Job endpoints
 description: Create a data repair job or view past jobs.
 ---
 
-# Job endpoint
+# Job endpoints
 
 The Job endpoint allows you to create a data repair job (using `POST`) or retrieve a list of currently running jobs (using `GET`).
 
@@ -65,6 +65,8 @@ curl -X POST -H "accept: application/json" \
   "status": "processing"
 }
 ```
+
+The `validationToken` is consumed when you run a data repair job. You must use the [Server call estimate](server-call-estimate.md) endpoint to generate a new `validationToken` to call this API again.
 
 ## View a job list
 
