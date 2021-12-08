@@ -24,7 +24,7 @@ Before using this API, make sure that all the following are met:
 
 There are three steps to successfully execute a data repair job:
 
-1. **Estimate repair size**: The Data Repair API incurs charges based on how many rows it repairs. The `/serverCallEstimate` endpoint is a required step to help you estimate the cost of a repair. It returns a count of the server call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required for the next step.
+1. **Estimate repair size**: The Data Repair API incurs charges based on how many rows it repairs. The `/serverCallEstimate` endpoint is a required step to help you estimate the cost of a repair. It returns a count of the server call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required for step 2.
 
 1. **Create a repair job**: To create a data repair job, use the `/job` endpoint. This endpoint requires a Report Suite, date range, `validationToken` (from `/serverCallEstimate`), and a job definition, which specifies the variables to be repaired. A Job ID is returned when a repair job is created.
 
