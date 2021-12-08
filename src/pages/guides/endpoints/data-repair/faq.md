@@ -15,7 +15,7 @@ No. **Data removed by this API is permanent and not retrievable.** Make sure tha
 
 The following workflow provides multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected.
 
-Create a repair job for the following:
+Create a repair job for each of the following:
 
 1. A **development** Report Suite for **one day** of data.
 1. A **development** Report Suite for **one month** of data.
@@ -39,5 +39,5 @@ An eVar value can exist across multiple hits or visits depending on the expirati
 
 * The Data Repair API job date ranges cannot include the current month.  They must start within the last 36 months and end prior to the current month.
 * Report suites with [Cross-Device Analytics](https://experienceleague.adobe.com/docs/analytics/components/cda/overview.html) are not supported.
-* Dimensions with [Merchandising enabled](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) are not supported.
+* Dimensions that have [Merchandising](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) currently enabled or was enabled historically are not supported. If you run a repair job on a variable that has had merchandising enabled in the past, you may see unexpected attribution results.
 * Only one job at a time can run per report suite.

@@ -10,7 +10,7 @@ The `/serverCallEstimate` endpoint calculates the number of server calls for the
 This API requires two query string parameters:
 
 * **`dateRangeStart`**: The start of the date range that you would like to repair.
-* **`dateRangeEnd`**: The last day of the date range that you would like to repair (inclusive).
+* **`dateRangeEnd`**: The last day of the date range that you would like to repair (inclusive). You cannot include the current month as part of your date range.
 
 The date range is based on the time zone of the report suite.
 

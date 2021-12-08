@@ -199,7 +199,7 @@ Some actions support filters, which allow you to selectively repair certain rows
   "variables": {
     "evar1": {
       "action": "delete",
-      "filters": {
+      "filter": {
         "condition": "doesNotContain",
         "matchValue": "@"
       }
@@ -231,7 +231,7 @@ Some actions support filters, which allow you to selectively repair certain rows
   "variables": {
     "evar1": {
       "action": "delete",
-      "filters": {
+      "filter": {
         "condition": "doesNotStartWith",
         "matchValue": "ABC"
       }
@@ -263,7 +263,7 @@ Some actions support filters, which allow you to selectively repair certain rows
   "variables": {
     "evar1": {
       "action": "delete",
-      "filters": {
+      "filter": {
         "condition": "doesNotEndWith",
         "matchValue": "XYZ"
       }
