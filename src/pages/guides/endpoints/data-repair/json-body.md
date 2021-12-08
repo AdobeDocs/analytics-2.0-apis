@@ -66,18 +66,18 @@ pageurlvisitstart
 referrerfirsthit
 referrervisit
 
-## Actions (option 1)
+## Actions
 
 Each variable requires an action. Adobe supports the following actions, with their supported filters:
 
-Action | Supported filters | Description
---- | --- | ---
-`set` | `inList`<br/>`isEmpty`<br/>`isURL`<br/>`isNotURL`<br/>`startsWith`<br/>`endsWith`<br/>`contains` | Overwrites the variable to the value in the `setValue` property. Include the `setValue` property alongside the `action` property inside the variable.
-`delete` | `inList`<br/>`isURL`<br/>`isNotURL`<br/>`startsWith`<br/>`endsWith`<br/>`contains` | Clears the variable value.
-`deleteQueryString` | None | Remove the query string from a variable value. If the value does not appear to be a URL, no action is taken.
-`deleteQueryStringParameters` | None | Remove one or more query string parameters and their values from a variable based on the string array `parameters`. Include the string array `parameters` alongside the `action` property inside the variable. Up to 10 parameters are supported. If the value does not appear to be a URL, no action is taken.
+* **`set`**: Overwrites the variable to the value in the `setValue` property. Include the `setValue` property alongside the `action` property inside the variable. It supports the following filters: `inList`, `isEmpty`, `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`.
+* **`delete`**: Clears the variable value. It supports the following filters: `inList`, `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`.
+* **`deleteQueryString`**: Remove the entire query string from a variable value. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
+* **`deleteQueryStringParameters`**: Remove one or more query string parameters and their values from a variable. The query parameters removed are based on the string array `parameters`. Include the `parameters` array alongside the `action` property inside the variable. Up to 10 parameters are supported. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
 
-The following example body shows how to use each action in four different eVars:
+<CodeBlock slots="heading, code" repeat="4" languages="JSON"/>
+
+#### set
 
 ```json
 {
@@ -85,14 +85,41 @@ The following example body shows how to use each action in four different eVars:
     "evar1": {
       "action": "set",
       "setValue": "New value"
-    },
-    "evar2": {
+    }
+  }
+}
+```
+
+#### delete
+
+```json
+{
+  "variables": {
+    "evar1": {
       "action": "delete"
-    },
-    "evar3": {
+    }
+  }
+}
+```
+
+#### deleteQueryString
+
+```json
+{
+  "variables": {
+    "evar1": {
       "action": "deleteQueryString"
-    },
-    "evar4": {
+    }
+  }
+}
+```
+
+#### deleteQueryStringParameters
+
+```json
+{
+  "variables": {
+    "evar1": {
       "action": "deleteQueryStringParameters",
       "parameters": ["param1", "param2"]
     }
@@ -100,59 +127,179 @@ The following example body shows how to use each action in four different eVars:
 }
 ```
 
-## Actions (option 2)
+## Filters
 
-Each variable requires an action. Adobe supports the following actions, with their supported filters:
+Some actions support filters, which allow you to selectively repair certain rows based on the filter criteria. Make sure that an action supports the desired filter when creating the JSON body.
 
-* **`set`**: Overwrites the variable to the value in the `setValue` property. Include the `setValue` property alongside the `action` property inside the variable. It supports the following filters: `inList`, `isEmpty`, `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`.
+* **`inList`**: Include all rows where the variable contains at least one value from the `matchValues` array. The `matchValues` array can hold up to 1000 values.
+* **`isEmpty`**: Only include rows where the variable does not contain a value.
+* **`contains`**: Include rows where the variable contains the value in `matchValue`.
+* **`doesNotContain`**: Include rows where the value in `matchValue` is not present.
+* **`startsWith`**: Limit the action to rows where the value starts with the value in `matchValue`.
+* **`doesNotStartWith`**: Limit the action to rows where the value does not start with the value in `matchValue`.
+* **`endsWith`**: Limit the action to rows where the value ends with the value in `matchValue`.
+* **`doesNotEndWith`**: Limit the action to rows where the value does not end with the value in `matchValue`.
+* **`isURL`**: Only include the row if Adobe recognizes the value as a URL.
+* **`isNotURL`**: Only include the row if Adobe recognizes that the value is not a URL.
 
-  ```json
-  {
-    "variables": {
-      "evar1": {
-        "action": "set",
-        "setValue": "New value"
+<CodeBlock slots="heading, code" repeat="10" languages="JSON"/>
+
+#### inList
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "inList",
+        "matchValues": ["match1", "match2"]
       }
     }
   }
-  ```
+}
+```
 
-* **`delete`**: Clears the variable value. It supports the following filters: `inList`, `isURL`, `isNotURL`, `startsWith`, `endsWith`, `contains`.
+#### isEmpty
 
-  ```json
-  {
-    "variables": {
-      "evar1": {
-        "action": "delete"
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "set", 
+      "setValue": "new value", 
+      "filter": {
+        "condition": "isEmpty"
       }
     }
   }
-  ```
+}
+```
 
-* **`deleteQueryString`**: Remove the entire query string from a variable value. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
+#### contains
 
-  ```json
-  {
-    "variables": {
-      "evar1": {
-        "action": "deleteQueryString"
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "contains",
+        "matchValue": "@"
       }
     }
   }
-  ```
+}
+```
 
-* **`deleteQueryStringParameters`**: Remove one or more query string parameters and their values from a variable. The query parameters removed are based on the string array `parameters`. Include the `parameters` array alongside the `action` property inside the variable. Up to 10 parameters are supported. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
+#### doesNotContain
 
-  ```json
-  {
-    "variables": {
-      "evar1": {
-        "action": "deleteQueryStringParameters",
-        "parameters": ["param1", "param2"]
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filters": {
+        "condition": "doesNotContain",
+        "matchValue": "@"
       }
     }
   }
-  ```
+}
+```
 
-  ## Filters
+#### startsWith
 
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "startsWith",
+        "matchValue": "ABC"
+      }
+    }
+  }
+}
+```
+
+#### doesNotStartWith
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filters": {
+        "condition": "doesNotStartWith",
+        "matchValue": "ABC"
+      }
+    }
+  }
+}
+```
+
+#### endsWith
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "endsWith",
+        "matchValue": "XYZ"
+      }
+    }
+  }
+}
+```
+
+#### doesNotEndWith
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filters": {
+        "condition": "doesNotEndWith",
+        "matchValue": "XYZ"
+      }
+    }
+  }
+}
+```
+
+#### isURL
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "isURL"
+      }
+    }
+  }
+}
+```
+
+#### isNotURL
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "isNotURL"
+      }
+    }
+  }
+}
+```
+
+Once you have a completed JSON body and a `validationToken` from the [Server call estimate endpoint](server-call-estimate.md), you can make a call to the [Job endpoint](job.md) to make the data repair API call.
