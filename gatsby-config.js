@@ -165,8 +165,40 @@ module.exports = {
             ]
           },
           {
+            title: 'Date ranges',
+            path: 'guides/endpoints/date-ranges/index.md',
+            pages: [
+              {
+                title: 'Parameters',
+                path: 'guides/endpoints/date-ranges/parameters.md',
+              },
+              {
+                title: 'FAQ',
+                path: 'guides/endpoints/date-ranges/faq.md'
+              }
+            ]
+          },
+          {
             title: 'Discovery',
             path: 'guides/endpoints/discovery.md'
+          },
+          {
+            title: 'Projects',
+            path: 'guides/endpoints/projects/index.md',
+            pages: [
+              {
+                title: 'Definition data structure',
+                path: 'guides/endpoints/projects/definition.md',
+              },
+              {
+                title: 'Parameters',
+                path: 'guides/endpoints/projects/parameters.md'
+              },
+              {
+                title: 'FAQ',
+                path: 'guides/endpoints/projects/faq.md'
+              }
+            ]
           },
           {
             title: 'Reports',
