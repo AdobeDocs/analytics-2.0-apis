@@ -49,6 +49,10 @@ module.exports = {
           {
             title: 'Data Repair API Reference',
             path: 'apis/data-repair.md'
+          },
+          {
+            title: 'Report Suite API Reference',
+            path: 'apis/report-suites.md'
           }
         ]
       },
