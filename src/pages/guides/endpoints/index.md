@@ -5,7 +5,7 @@ description: Learn how to use the endpoints that the Analytics API offers.
 
 # Endpoint guides
 
-Once you have followed the [Getting started](../getting-started/index.md) guide, you can send requests to any of the following endpoints:
+Once you have followed the [Getting started](../index.md) guide, you can send requests to any of the following endpoints:
 
 <DiscoverBlock slots="link, text"/>
 
@@ -67,4 +67,4 @@ Obtain data around how your organization uses Adobe Analytics.
 
 Retrieve, update, or create virtual report suites.
 
-See the [API reference](../../api.md) for a full list of calls that you can make.
+See the [API reference](../../apis/index.md) for a full list of calls that you can make.
