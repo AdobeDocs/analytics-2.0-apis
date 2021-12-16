@@ -18,7 +18,8 @@ Before using this method to identify visitors, make sure that all of the followi
 
 When uploading files to the BDIA API and the customer ID is the desired visitor identifier for the row, make sure that all the following are met:
 
-* The `customerID.[customerIDType].id` provisioned to use as the seed contains a value.
-* `customerID.[customerIDType].isMCSeed` is set to `1` (true).
+* The case-sensitive `customerID.[customerIDType].id` (i.e. Audience Manager's integration code) is specified in the file's column header row
+* `customerID.[customerIDType].id` contains a value for each row
+* `customerID.[customerIDType].isMCSeed` is set to `1` (true) for each row
 
 If either of these variables are blank, Adobe falls back to other visitor identification columns. If there are no other visitor identifiers present in the row, the row is skipped. Rows that fall back to other visitor identification columns are treated as separate visitors.
