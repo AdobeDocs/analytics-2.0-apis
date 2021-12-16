@@ -17,11 +17,11 @@ Bulk Data Insertion solves several problems for a variety of use cases. Some use
 
 Before using this API, make sure that all of the following are met:
 
-* You successfully authenticate with the API using JWT. OAuth is not supported. See [Getting started](../../index.md) to make sure that you have the correct permissions, create an API client on Adobe I/O, and that you successfully authenticate.
+* You can successfully authenticate with the API using JWT. OAuth is not supported. See [Getting started](../../index.md) to make sure that you have the correct permissions and have created an API client on Adobe I/O.
 * The desired report suite is timestamp-enabled or timestamp optional. See [Timestamps optional](https://experienceleague.adobe.com/docs/analytics/technotes/timestamps-optional.html) in the Adobe Analytics documentation. All newly created report suites are set to timestamp optional by default.
 * Communicate to Adobe the expected volume of ingestion per day. Based on this information, Adobe provisions the appropriate hardware to handle that volume and creates a per-second throttle limit. If enough files are uploaded in a short amount of time to exceed the throttle limit, Adobe ingests uploaded files more slowly. These limits help ensure timely processing and availability of data for reporting. They also help protect the system from becoming overwhelmed before proper capacity is provisioned for a sharp increase in file uploads.
-* Follow the established [File formatting requirements](file-formatting.md) for each upload.
-* If using Customer Attributes to identify visitors, provisioning by Adobe is required. See [Use customer ID to identify visitors](mcseed.md).
-* If uploading more than one file at a time, use the correct number of [Visitor Groups](visitor-groups.md). Follow the guidelines on file send frequency limits to avoid data processing out of order.
+* Follow the established [File formatting requirements](file-format.md) for each upload.
+* If using a Customer Attribute as a seed to automatically generate Experience Cloud Visitor IDs (ECID), provisioning by Adobe is required first. See [Use customer ID to identify visitors](mcseed.md).
+* You are using the correct number of [Visitor Groups](visitor-groups.md) for your anticipated load. Follow the guidelines on file send frequency limits to avoid having your requests throttled or data processing out of order.
 
 Once you meet all prerequisites, see [File format](file-format.md) to prepare your data in a format usable by the API.
