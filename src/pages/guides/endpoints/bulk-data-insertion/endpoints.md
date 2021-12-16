@@ -16,13 +16,13 @@ Once you have [validated](#validate) your file, you can use this endpoint to sen
 Include all of the required headers with each API call:
 
 * **`Authorization`**: Required for authentication with the API. Format is the string `"Bearer {ACCESS_TOKEN}`.
-* **`x-api-key`**: Required for authentication with the API. Found in the Adobe I/O console under the JWT service credentials.
+* **`x-api-key`**: Required for authentication with the API. Found in the Adobe I/O console under the JWT service credentials as "Client ID".
 * **`x-adobe-vgid`**: Required for this endpoint. The visitor group ID. See [Visitor groups](visitor-groups.md).
 * **`x-adobe-idempotency-key`**: Optional. Allows you to manually specify the `file_id` of the file contained in the API call. If you do not send this header, Adobe automatically generates a `file_id` for you and includes it in the response JSON object.
 
 You must also include the file in your API call in gzip format.
 
-The `https://analytics-collection.adobe.io` domain automatically routes your API call to the best region for processing. However, if you are legally required to have your data processed in a specific part of the world, you can use one of the following host names for API calls:
+The `https://analytics-collection.adobe.io` domain automatically routes your API call to the best region for processing. However, if you are legally required to have your data processed in a specific part of the world, you can use one of the following regional host names for API calls:
 
 * **US processing**: `https://analytics-collection-va7.adobe.io`
 * **European processing**: `https://analytics-collection-nld2.adobe.io`
