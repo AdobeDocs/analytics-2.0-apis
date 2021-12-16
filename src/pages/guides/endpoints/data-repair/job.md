@@ -30,7 +30,7 @@ curl -X POST -H "accept: application/json" \
   -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "x-api-key: {API_KEY/CLIENT_ID}" \
-  -d '{REPAIR_JOB_DEFINITION}' \
+  -d '{"variables": {"ipaddress": {"action": "delete"}}}' \
   "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/examplersid/job?validationToken={VALIDATION_TOKEN}&dateRangeStart=YYYY-03-28&dateRangeEnd=YYYY-03-29"
 ```
 
@@ -44,16 +44,7 @@ curl -X POST -H "accept: application/json" \
   "jobCreateTime": "YYYY-04-24T09:02:59+00:00",
   "jobDefinition": {
     "variables": {
-      "activitymap": {
-        "action": "delete"
-      },
-      "prop12": {
-        "action": "delete"
-      },
-      "evar74": {
-        "action": "delete"
-      },
-      "evar107": {
+      "ipaddress": {
         "action": "delete"
       }
     }
@@ -61,12 +52,12 @@ curl -X POST -H "accept: application/json" \
   "jobId": 24,
   "progress": 0,
   "reportSuiteId": "examplersid",
-  "serverCalls": null,
+  "serverCalls": 100,
   "status": "processing"
 }
 ```
 
-The `validationToken` is consumed when you run a data repair job. You must use the [Server call estimate](server-call-estimate.md) endpoint to generate a new `validationToken` to call this API again.
+The `validationToken` is consumed when you create a data repair job. You must use the [Server call estimate](server-call-estimate.md) endpoint to generate a new `validationToken` to call this API again.
 
 ## View a job list
 

@@ -1,9 +1,9 @@
 ---
-title: JSON body reference
+title: Job definition reference
 description: Supported variables, actions, and filters when using the Data Repair API.
 ---
 
-# JSON body reference
+# Job definition reference
 
 A JSON request body is required when creating a Data Repair API job. This page provides a full list of variables, actions, and filters that you can include to create a valid JSON request body.
 
@@ -292,6 +292,39 @@ Some actions support filters, which allow you to selectively repair certain rows
       "action": "delete",
       "filter": {
         "condition": "isNotURL"
+      }
+    }
+  }
+}
+```
+
+## Example repair definition file
+
+The following data repair definition simultaneously performs the following four actions:
+
+* Deletes all activity map data
+* Deletes the value in `prop12` across all rows
+* Sets `eVar74` to the value of "Turtles" across all rows
+* Deletes the value in `eVar107` if the existing eVar value contains "Fox" or "Dog"
+
+```json
+{
+  "variables": {
+    "activitymap": {
+      "action": "delete"
+    },
+    "prop12": {
+      "action": "delete"
+    },
+    "evar74": {
+      "action": "set",
+      "setValue": "Turtles"
+    },
+    "evar107": {
+      "action": "delete",
+      "filter": {
+        "condition": "inList",
+        "matchValues": ["Fox", "Dog"]
       }
     }
   }

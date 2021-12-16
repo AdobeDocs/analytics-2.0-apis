@@ -11,18 +11,6 @@ Frequently asked questions for the Data Repair API.
 
 No. **Data removed by this API is permanent and not retrievable.** Make sure that your API calls are correct before running them for large date ranges.
 
-## What is the best approach to minimize accidental deletion or alteration of data?
-
-The following workflow provides multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected.
-
-Create a repair job for each of the following:
-
-1. A **development** Report Suite for **one day** of data.
-1. A **development** Report Suite for **one month** of data.
-1. A **production** Report Suite for **one day** of data.
-1. A **production** Report Suite for **one month** of data.
-1. Once all testing and validation is complete, then proceed with the **full date range** of the data repair for **production** data.
-
 ## How long does a data repair job take?
 
 The amount of time a job takes depends on the number of days processed, and how many hits a report suite gets per day. Jobs typically complete in hours, but can take multiple days for large report suites with extended date ranges.

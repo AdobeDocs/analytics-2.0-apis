@@ -155,7 +155,7 @@ module.exports = {
                 path: 'guides/endpoints/data-repair/server-call-estimate.md'
               },
               {
-                title: 'JSON body reference',
+                title: 'Job definition reference',
                 path: 'guides/endpoints/data-repair/json-body.md'
               },
               {

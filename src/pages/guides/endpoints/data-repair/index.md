@@ -22,10 +22,20 @@ Before using this API, make sure that all the following are met:
 
 ## Workflow
 
-There are three steps to successfully execute a data repair job:
+Adobe recommends a careful and methodical approach when using the Data Repair API due to its ability to permanently edit or delete data. The following steps provide multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected. Adobe recommends that you create a repair job for each of the following in order:
 
-1. **Estimate repair size**: The Data Repair API incurs charges based on how many rows it repairs. The `/serverCallEstimate` endpoint is a required step to help you estimate the cost of a repair. It returns a count of the server call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required for step 2.
+* A **development** report suite for **one day** of data.
+* A **development** report suite for **one month** of data.
+* The **production** report suite for **one day** of data.
+* The **production** report suite for **one month** of data.
+* Once all testing and validation is complete, then proceed with the **full date range** of the data repair for **production** data.
 
-1. **Create a repair job**: To create a data repair job, use the `/job` endpoint. This endpoint requires a Report Suite, date range, `validationToken` (from `/serverCallEstimate`), and a job definition, which specifies the variables to be repaired. A Job ID is returned when a repair job is created.
+The following steps provide a typical Data Repair API request workflow:
 
-1. **Monitor progress**: Use the `/job/{JOB_ID}` endpoint to monitor the status of a job at any point after job submission. Completion time of a repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
+1. **Estimate repair size**: The Data Repair API incurs charges based on the number of data rows scanned. The [Server call estimate](server-call-estimate.md) endpoint is a required step to help you estimate the cost of a repair. It returns a count of the server call volume for the report suite date range. The endpoint also returns a `validationToken`, which is required for step 2.
+
+1. **Create a repair job**: Use the [Job](job.md) endpoint to create a data repair job. This endpoint requires a report suite, date range, `validationToken` (from [Server call estimate](server-call-estimate.md)), and a [Job definition](json-body.md). A Job ID is returned when a repair job is created.
+
+1. **Monitor progress**: Use the [Job ID](job.md#view-an-individual-job) endpoint to monitor the status of a job at any point after job submission. Completion time of a repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
+
+1. **Review completed jobs**: Use the [Job list](job.md#view-a-job-list) endpoint to keep track of all existing and completed jobs.
