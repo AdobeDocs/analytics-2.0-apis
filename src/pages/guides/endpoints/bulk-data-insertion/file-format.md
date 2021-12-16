@@ -24,7 +24,7 @@ Batch files are flexible in the following ways:
 
 * There are no restrictions on file names. When you submit a file to this API, Adobe returns a `file_id` that you can use to track the file. The name of the file is recorded under `upload_name` in the response object as well.
 * Adobe supports both `CRLF` and `LF` line breaks to separate rows. A line break at the end of a data file is optional.
-* Column header names are not case sensitive.
+* Column header names are not case sensitive (with one exception for customerIDType, see [Use customer ID to identify visitors](mcseed.md).
 * Columns can appear in any order.
 * Key/value pairs in the `QueryString` field are also valid in any order.
 
@@ -33,10 +33,10 @@ Batch files are flexible in the following ways:
 Every row must contain the following five data points. If a row misses any one of these requirements, that row is skipped.
 
 * At least one of:
+  * `visitorID`
   * `marketingCloudVisitorID`
   * `IPAddress`
-  * `visitorID`
-  * `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `1`. See [Use customer ID to identify visitors](mcseed.md)].
+  * `customerID.[customerIDType].id` with `customerID.[customerIDType].isMCSeed` set to `1`. See [Use customer ID to identify visitors](mcseed.md).
 * At least one of:
   * `pageURL`
   * `pageName`
@@ -122,12 +122,12 @@ The following text blocks are examples of what a CSV file looks like with a smal
 ```text
 timestamp,visitorid,reportsuiteid,querystring,useragent
 1492191617,44444445,examplersid,pageName=PIGINI&v2=Var21&v3=Var31&c1=val11
-&c2=val21&c3=val31&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TonyChannel
+&c2=val21&c3=val31&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TestChannel
 &pev1=https%3A%2F%2Fwww.adobe.com%2Fwho%3Fq%3Dwhoisit&state=UT&zip=84005&cc=USD
 &events=prodView%2Cevent2,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) 
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36"
 1492191627,44444445,examplersid,pageName=PIGINI&v2=Var22&v3=Var32&c1=val12
-&c2=val22&c3=val32&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TonyChannel
+&c2=val22&c3=val32&bh=1000&bw=999&c=1024&j=3.41&k=1&p=1&s=1111&v=1&channel=TestChannel
 &pev1=https%3A%2F%2Fwww.adobe.com%2Fwho%3Fq%3Dwhoisit&state=UT&zip=84005&cc=USD
 &events=prodView%2Cevent2,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) 
 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36"
