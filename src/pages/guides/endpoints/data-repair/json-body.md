@@ -61,7 +61,7 @@ Variable | Supported actions | Supported filters by action | Description
 
 ## Actions
 
-Each variable requires an action. Adobe supports the following actions, with their supported filters:
+Each variable requires an action. Adobe supports the following four actions:
 
 * **`set`**: Overwrites the variable to the value in the `setValue` property. Include the `setValue` property alongside the `action` property inside the variable. It supports all filters by default; however, some variables do not support all filters for this action. See the above table to confirm that a variable supports a filter with this action.
 * **`delete`**: Clears the variable value. It supports all filters except `isEmpty` by default. Some variables do not support all filters for this action. See the above table to confirm that a variable supports a filter with this action.
