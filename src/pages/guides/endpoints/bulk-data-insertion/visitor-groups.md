@@ -41,11 +41,16 @@ Bulk Insertion was designed to run optimally with larger file sizes. We recommen
 
 For an implementation guideline, we offer the following recommendations:
 
-* Ingestion of 2000 rows per second per visitor group
+* Ingestion rate of 2000 rows per second per visitor group
 * No more than 1 API call per 20 seconds per visitor group
+* No more than (peak events/second)\1000 total visitor groups
 
-Using these guidelines, you can approximate how many visitor groups to utilize. For example, suppose your company anticipates submitting 1 billion hits per day. At a rate of 2000 rows per second, a single visitor group could support about 173 million rows per 24 hours. Dividing 1 billion (anticipated rows) by 173 million yields 5.7. So an implementation of at least 6 visitor groups would be appropriate. To account for visitor groups of unequal size, it may be safer to bump the estimate up. There would be no harm in using 8-10 visitor groups (or more) in this example.
+# How many visitor groups to use
+Using these guidelines, you can approximate how many visitor groups to utilize. For example, suppose your company anticipates submitting 1 billion rows per day. At a rate of 2000 rows per second, a single visitor group could support ~173 million rows per 24 hours. Dividing 1 billion (anticipated rows) by 173 million (maximum rows for one visitor group) yields 5.7. So an implementation of at least 6 visitor groups would be appropriate.
 
-If you used 10 visitor groups, that would result in about 100 million rows per day/per group, or 1160 rows per second. As far as send frequency, you could choose to send a file of about 23,000 rows every 20 seconds, 35,000 rows every 30 seconds, and so forth.
+We also cap the maximum number of visitor groups you can use.  Using the example above, for 1 billion rows per day, that's an average of 11,574 rows per second. Most usage patterns do not evenflow throughout the day, so suppose your site's peak traffic gets up to 30,000 events per second.  Dividing that number by 1,000 yields a maximum of 30 visitor groups. So for this sample implentation, visitor groups between 6 and 30 would be acceptable.
 
-File size will vary according to the average size of each row. While we recommend larger files to reduce latency, we can only handle compressed files of up to 100 MB. However, files of this size should usually be reserved for historical ingest scenarios, as it will increase latency when hits are allowed to build-up this long on the client side. Existing clients tend to send files with rows between 5,000 and 50,000 rows, and sizes of 500k up to 20 MB.
+# How big to make files
+Continuing the example, if you used 15 visitor groups, that would result in ~67 million rows per day/per group, or 775 rows per second. As far as send frequency, you could choose to send a file of ~16,000 rows every 20 seconds, or ~23,000 rows every 30 seconds, and so forth.
+
+File size will vary according to the average size of each row. While BDIA is optimized for larger files sent less frequently, we can only handle compressed files of up to 100 MB. However, files of this size are usually only utilized  for historical ingest scenarios. Existing clients tend to send files with rows between 5,000 and 50,000 rows, and sizes of 500k up to 20 MB.
