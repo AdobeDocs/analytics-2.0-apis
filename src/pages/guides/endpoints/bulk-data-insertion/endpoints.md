@@ -5,11 +5,11 @@ description: All of the available endpoints related to the BDIA.
 
 # Bulk Data Insertion API endpoints
 
-Once you have met all [prerequisites](index.md) and have a [correctly formatted file](file-format.md), you can begin making API calls to Adobe's endpoints for this API.
+Once you have met all [prerequisites](index.md), have a [correctly formatted file](file-format.md) and have checked your file for syntax errors with our [validation](#validate) tool, you can begin making API calls to Adobe's ingestion endpoint for this API.
 
 ## Primary ingestion endpoint
 
-Once you have [validated](#validate) your file, you can use this endpoint to send it to Adobe for ingestion.
+The file ingestion endpoint is found here.
 
 `POST https://analytics-collection.adobe.io/aa/collect/v1/events`
 
@@ -20,7 +20,7 @@ Include all of the required headers with each API call:
 * **`x-adobe-vgid`**: Required for this endpoint. The visitor group ID. See [Visitor groups](visitor-groups.md).
 * **`x-adobe-idempotency-key`**: Optional. Allows you to manually specify the `file_id` of the file contained in the API call. If you do not send this header, Adobe automatically generates a `file_id` for you and includes it in the response JSON object.
 
-You must also include the file in your API call in gzip format.
+You must also add the file, which should be compressed in gzip format, and included as multipart/form-data.
 
 The `https://analytics-collection.adobe.io` domain automatically routes your API call to the best region for processing. However, if you are legally required to have your data processed in a specific part of the world, you can use one of the following regional host names for API calls:
 
@@ -80,7 +80,7 @@ Field | Data type | Description
 
 ## Validate
 
-Before uploading your first file, Adobe strongly recommends running the file through the validation endpoint. This endpoint exists to test files before you upload them to the `events` endpoint. Files uploaded to this endpoint are not stored on Adobe's servers or processed. This API is synchronous and returns an immediate reply that states the file's validation status. If a file fails validation, the reason is also returned. See [Troubleshoot uploads](troubleshooting.md) for more information.
+Before uploading your first file, Adobe strongly recommends running the file through the validation endpoint. Please note, you should not send EVERY file to this endpoint. This endpoint exists to validate file format before you begin uploading them to the `events` endpoint. Files uploaded to this endpoint are not stored on Adobe's servers or processed. This API is synchronous and returns an immediate reply that states the file's validation status. If a file fails validation, the reason is also returned. See [Troubleshoot uploads](troubleshooting.md) for more information.
 
 `POST https://analytics-collection.adobe.io/aa/collect/v1/events/validate`
 
