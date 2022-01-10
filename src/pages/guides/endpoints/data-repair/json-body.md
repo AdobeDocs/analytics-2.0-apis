@@ -29,6 +29,10 @@ A request body consists of one or more variables with the desired action for eac
 
 The Data Repair API supports the following variables, with their supported actions.
 
+* If a variable supports the `set` action, you can use any filter with it unless otherwise noted.
+* If a variable supports the `delete` action, you can use any filter except `isEmpty` with it unless otherwise noted.
+* If a variable supports `deleteQueryString` or `deleteQueryStringParameters`, you cannot use any filters with either action.
+
 Variable | Supported actions | Description
 --- | --- | ---
 `activitymap` | `delete` | Deletes all [Activity map](https://experienceleague.adobe.com/docs/analytics/analyze/activity-map/activitymap-reporting-analytics.html) data for the hit. This variable does not support any filters.
