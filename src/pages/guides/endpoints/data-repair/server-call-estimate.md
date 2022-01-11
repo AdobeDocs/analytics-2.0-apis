@@ -40,4 +40,4 @@ curl -X GET -H "accept: application/json" \
 }
 ```
 
-Once you receive a `validationToken`, you can start formulating the call to make to the Data Repair API. See [JSON body reference](json-body.md) to establish the desired edits to data.
+Once you receive a `validationToken`, you can start formulating the call to make to the Data Repair API. See [Job definition reference](json-body.md) to establish the desired edits to data.
