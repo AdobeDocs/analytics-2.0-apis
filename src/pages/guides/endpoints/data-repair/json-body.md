@@ -9,7 +9,7 @@ A JSON request body is required when creating a Data Repair API job. This page p
 
 ## Structure
 
-A request body consists of one or more variables with the desired action for each variable. You can also optionally include a filter for a given variable.
+A JSON request body consists of one or more variables with the desired action for each variable. You can also optionally include a filter for a given variable.
 
 ```json
 {
@@ -36,9 +36,9 @@ The Data Repair API supports the following variables, with their supported actio
 Variable | Supported actions | Description
 --- | --- | ---
 `activitymap` | `delete` | Deletes all [Activity map](https://experienceleague.adobe.com/docs/analytics/analyze/activity-map/activitymap-reporting-analytics.html) data for the hit. This variable does not support any filters.
-`campaign` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | The [Tracking code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/tracking-code.html) dimension. Only tracking codes with an [expiration](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) of page view, visit, or time period of 1 day or shorter are supported with this API. A data repair job fails if it includes this variable with an expiration of a time period greater than 1 day or on an event. As a best practice, Adobe recommends [resetting](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) the tracking code before a repair job runs so that values persisted by visitors do not reappear after a repair job is complete.
+`campaign` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | The [Tracking code](https://experienceleague.adobe.com/docs/analytics/components/dimensions/tracking-code.html) dimension. Only tracking codes with an [expiration](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) of page view, visit, or time period of 1 day or shorter are supported by the Data Repair API. A data repair job fails if it includes this variable with an expiration of a time period greater than 1 day or on an event. As a best practice, Adobe recommends [resetting](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) the tracking code before a data repair job runs so that values persisted by visitors do not reappear after a data repair job is complete.
 `entrypage`<br/>`entrypageoriginal` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | The [Entry page](https://experienceleague.adobe.com/docs/analytics/components/dimensions/entry-dimensions.html) dimension.
-`evar1` - `evar250` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions. Only eVars with an [expiration](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) of page view, visit, or time period of 1 day or shorter are supported with this API. Merchandising variables, enabled currently or historically, are not supported. As a best practice, Adobe recommends [resetting](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) the eVar in question before a repair job runs so that values persisted by visitors do not reappear after a repair job is complete.
+`evar1` - `evar250` | `set`<br/>`delete`<br/>`deleteQueryString`<br/>`deleteQueryStringParameters` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions. Only eVars with an [expiration](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) of page view, visit, or time period of 1 day or shorter are supported by the Data Repair API. Merchandising variables, enabled currently or historically, are not supported. As a best practice, Adobe recommends [resetting](https://experienceleague.adobe.com/docs/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) the eVar in question before a data repair job runs so that values persisted by visitors do not reappear after a data repair job is complete.
 `geodma` | `delete` | The [US DMA](https://experienceleague.adobe.com/docs/analytics/components/dimensions/us-dma.html) dimension. The only supported filter is `inList`.
 `geocity` | `delete` | The [Cities](https://experienceleague.adobe.com/docs/analytics/components/dimensions/cities.html) dimension. The only supported filter is `inList`.
 `geocountry` | `delete` | The [Countries](https://experienceleague.adobe.com/docs/analytics/components/dimensions/countries.html) dimension. The only supported filter is `inList`.
@@ -65,7 +65,7 @@ Variable | Supported actions | Description
 
 ## Actions
 
-Each variable requires an action. Adobe supports the following four actions:
+Each variable requires an action. The Data Repair API supports the following four actions:
 
 * **`set`**: Overwrites the variable to the value in the `setValue` property. Include the `setValue` property alongside the `action` property inside the variable. It supports all filters by default; however, some variables do not support all filters for this action. See the above table to confirm that a variable supports a filter with this action.
 * **`delete`**: Clears the variable value. It supports all filters except `isEmpty` by default. Some variables do not support all filters for this action. See the above table to confirm that a variable supports a filter with this action.
@@ -136,8 +136,8 @@ The `set` and `delete` actions support filters, which allow you to selectively r
 * **`doesNotStartWith`**: Limit the action to rows where the value does not start with the value in `matchValue`.
 * **`endsWith`**: Limit the action to rows where the value ends with the value in `matchValue`.
 * **`doesNotEndWith`**: Limit the action to rows where the value does not end with the value in `matchValue`.
-* **`isURL`**: Only include the row if Adobe recognizes the value as a URL.
-* **`isNotURL`**: Only include the row if Adobe recognizes that the value is not a URL.
+* **`isURL`**: Only include the row if the Data Repair API recognizes the value as a URL.
+* **`isNotURL`**: Only include the row if the Data Repair API recognizes that the value is not a URL.
 
 <CodeBlock slots="heading, code" repeat="6" languages="JSON,JSON,JSON,JSON,JSON,JSON"/>
 
@@ -236,9 +236,9 @@ The `set` and `delete` actions support filters, which allow you to selectively r
 }
 ```
 
-## Example repair definition file
+## Example Data Repair API definition file
 
-The following data repair definition simultaneously performs the following four actions:
+The following Data Repair API definition simultaneously performs the following four actions:
 
 * Deletes all activity map data
 * Deletes the value in `prop12` across all rows
@@ -269,4 +269,4 @@ The following data repair definition simultaneously performs the following four 
 }
 ```
 
-Once you have a completed JSON body and a `validationToken` from the [Server call estimate endpoint](server-call-estimate.md), you can make a call to the [Job endpoint](job.md) to make the data repair API call.
+Once you have a completed JSON request body and a `validationToken` from the [Server Call estimate endpoint](server-call-estimate.md), you can make a call to the [Job endpoint](job.md) to make the Data Repair API call.

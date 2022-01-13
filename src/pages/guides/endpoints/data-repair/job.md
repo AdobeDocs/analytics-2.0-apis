@@ -5,21 +5,21 @@ description: Create a data repair job or view past jobs.
 
 # Job endpoints
 
-The Job endpoint allows you to create a data repair job (using `POST`) or retrieve a list of currently running jobs (using `GET`).
+The Job endpoint allows you to create a Data Repair API job (using `POST`) or retrieve a list of your currently running jobs (using `GET`).
 
-## Create a data repair job
+## Create a Data Repair API job
 
 <InlineAlert variant="warning" slots="text"/>
 
-**Use of the Data Repair API permanently alters or deletes Adobe Analytics data.** See the [FAQ](faq.md) for the recommended workflow to mitigate accidental deletion of data.
+**Use of the Data Repair API permanently deletes or edits your Adobe Analytics data.** See the [Overview page](index.md#Workflow) for the recommended workflow to mitigate accidental deletion or alteration of your data.
 
 `POST https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/job`
 
-This API requires multiple components:
+This endpoint requires multiple components:
 
-* A [JSON body](json-body.md) that contains the variables and actions to take.
-* The query string `validationToken` obtained from the [Server call estimate](server-call-estimate.md) endpoint.
-* The query strings `dateRangeStart` and `dateRangeEnd` that match the API call made to the Server call estimate endpoint.
+* A [Job definition](json-body.md) in the form of a JSON request body that contains the variables and actions to take.
+* The query string `validationToken` obtained from the [Server Call estimate](server-call-estimate.md) endpoint.
+* The query strings `dateRangeStart` and `dateRangeEnd` that match the API call made to the Server Call estimate endpoint.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
@@ -57,11 +57,11 @@ curl -X POST -H "accept: application/json" \
 }
 ```
 
-The `validationToken` is consumed when you create a data repair job. You must use the [Server call estimate](server-call-estimate.md) endpoint to generate a new `validationToken` to call this API again.
+The `validationToken` is consumed when you create a data repair job. You must use the [Server Call estimate](server-call-estimate.md) endpoint to generate a new `validationToken` to call this endpoint again.
 
-## View a job list
+## View a Data Repair API job list
 
-Use this endpoint to retrieve a list of data repair jobs that were created for the given report suite. It includes both currently running and completed jobs.
+Use this endpoint to retrieve a list of your data repair jobs that were created for the given Report Suite. It includes both currently running and completed jobs.
 
 `GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/job`
 
@@ -129,11 +129,11 @@ curl -X GET -H "accept: application/json" \
 ]
 ```
 
-## View an individual job
+## View an individual Data Repair API job
 
-You can call the `/job/{JOB_ID}` endpoint to check on the progress of a data repair job. Following submission of a job, `status` reports as `processing` and `progress` is a number between `0` and `100`. Once complete, `status` reports as `complete` and `serverCalls` is set to the number of server calls scanned during the job. This `serverCalls` value is used to calculate usage.
+You can call the `/job/{JOB_ID}` endpoint to check on the progress of a data repair job. Following submission of a job, `status` reports as `processing` and `progress` is a number between `0` and `100`. Once complete, `status` reports as `complete` and `serverCalls` is set to the number of Data Rows Scanned during the job. This `serverCalls` value is used to calculate usage.
 
-Completion of a repair job can take hours to days, depending on the date range of the repair job and the amount of traffic the report suite gets per day.
+Completion of your data repair job can take hours to days, depending on the date range of the data repair job and the amount of traffic the Report Suite gets per day.
 
 `GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/job/{JOB_ID}`
 

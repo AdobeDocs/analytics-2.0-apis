@@ -1,18 +1,18 @@
 ---
-title: Server call estimate endpoint
+title: Server Call estimate endpoint
 description: Estimate the size of a data repair job.
 ---
 
-# Server call estimate endpoint
+# Server Call estimate endpoint
 
-The `/serverCallEstimate` endpoint calculates the number of server calls for the given report suite and date range provided.  It also returns a `validationToken`, which is required to use the `/job` endpoint.
+The Server Call estimate endpoint calculates the number of Server Calls for the given Report Suite and date range provided.  It also returns a `validationToken`, which is required to use the [Job](job.md) endpoint.
 
-This API requires two query string parameters:
+This endpoint requires two query string parameters:
 
 * **`dateRangeStart`**: The start of the date range that you would like to repair.
 * **`dateRangeEnd`**: The last day of the date range that you would like to repair (inclusive). You cannot include the current month as part of your date range.
 
-The date range is based on the time zone of the report suite.
+The date range is based on the time zone of the Report Suite.
 
 `GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/serverCallEstimate?dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}`
 
@@ -40,4 +40,4 @@ curl -X GET -H "accept: application/json" \
 }
 ```
 
-Once you receive a `validationToken`, you can start formulating the call to make to the Data Repair API. See [Job definition reference](json-body.md) to establish the desired edits to data.
+Once you receive a `validationToken`, you can start formulating the call to make to the Data Repair API. See [Job definition reference](json-body.md) to establish the desired data repair job variables, actions, and filters.
