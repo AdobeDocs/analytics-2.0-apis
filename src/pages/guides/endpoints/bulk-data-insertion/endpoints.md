@@ -78,6 +78,10 @@ Field | Data type | Description
 `status` | string | More verbose details around the `status_code`
 `processing_log` | string | Details around specific issues encountered. If an error type has 10 or less problem rows, they are explicitly mentioned. If an error type has more than 10 problem rows, summarized results are provided.
 
+### Throttling Limits
+
+A cap of 10 requests/second is enforced for all ingest API calls, though most applications will never approach anywhere near this limit. If you are having trouble keeping under this level, the solution is to add more events to each file to reduce file count.
+
 ## Validate
 
 Before uploading your first file, Adobe strongly recommends running the file through the validation endpoint. Please note, you should not send EVERY file to this endpoint. This endpoint exists to validate file format before you begin uploading them to the `events` endpoint. Files uploaded to this endpoint are not stored on Adobe's servers or processed. This API is synchronous and returns an immediate reply that states the file's validation status. If a file fails validation, the reason is also returned. See [Troubleshoot uploads](troubleshooting.md) for more information.
