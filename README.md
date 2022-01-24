@@ -1,5 +1,6 @@
 # Analytics 2.0 APIs
-Documentation for the analytics 2.0 APIs
+
+**This branch is being retired in favor of the `main` branch, which uses the latest Adobe I/O publishing workflow. Please make any changes or updates to the documentation on the `main` branch.**
 
 This documentation provides instructions for Adobe Analytics 2.0 APIs. For working with Analytics 1.4 APIs, see [Analytics 1.4 API Documentation](https://github.com/AdobeDocs/analytics-1.4-apis).
 
