@@ -1,0 +1,677 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "description": "",
+    "title": "Analytics Data Repair APIs",
+    "version": "1.0"
+  },
+  "servers": [
+    {"url": "https://analytics.adobe.io/datarepair/"}
+  ],
+  "paths": {
+    "/v1/{rsid}/auth": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "tags": [
+          "data_repair"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "rsid",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/v1/{rsid}/serverCallEstimate": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "dateRangeStart",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "dateRangeEnd",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/BAD_REQUEST"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerCallEstimateResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "tags": [
+          "data_repair"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "rsid",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/v1/{rsid}/job/{job_id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "tags": [
+          "data_repair"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "rsid",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "in": "path",
+          "name": "job_id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/v1/{rsid}/job": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JobResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "tags": [
+          "data_repair"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "dateRangeStart",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "dateRangeEnd",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "validationToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "$ref": "#/components/responses/BAD_REQUEST"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/DEFAULT_ERROR"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobDefinition"
+              }
+            }
+          }
+        },
+        "tags": [
+          "data_repair"
+        ]
+      },
+      "parameters": [
+        {
+          "in": "path",
+          "name": "rsid",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "info": {
+    "title": "Analytics Data Repair API",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "data_repair",
+      "description": "Data Repair"
+    }
+  ],
+  "openapi": "3.0.2",
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "errorId": {
+            "type": "string",
+            "description": "Error Id"
+          },
+          "errorDescription": {
+            "type": "string",
+            "description": "Error Description"
+          },
+          "errorCode": {
+            "type": "string",
+            "description": "Error Code"
+          }
+        },
+        "required": [
+          "errorCode",
+          "errorDescription",
+          "errorId"
+        ]
+      },
+      "StatusResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "ServerCallEstimateResponse": {
+        "type": "object",
+        "properties": {
+          "dateRangeStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "reportSuiteId": {
+            "type": "string",
+            "description": "The Report Suite Id"
+          },
+          "validationToken": {
+            "type": "string",
+            "description": "The Validation Token"
+          },
+          "dateRangeEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "serverCallEstimate": {
+            "type": "integer",
+            "description": "The number of records"
+          }
+        },
+        "required": [
+          "dateRangeEnd",
+          "dateRangeStart",
+          "reportSuiteId",
+          "serverCallEstimate",
+          "validationToken"
+        ]
+      },
+      "JobDefinitionDeleteAction": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "The repair action to take"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "JobDefinitionDeleteAndSetAction": {
+        "type": "object",
+        "properties": {
+          "setValue": {
+            "type": "string",
+            "description": "The value to set when using the 'set' operator"
+          },
+          "action": {
+            "type": "string",
+            "description": "The repair action to take"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "JobDefinitionVariables": {
+        "type": "object",
+        "properties": {
+          "activitymap": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAction"
+          },
+          "prop1": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAndSetAction"
+          },
+          "prop2": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAndSetAction"
+          },
+          "prop3": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAndSetAction"
+          },
+          "evar1": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAndSetAction"
+          },
+          "evar2": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAndSetAction"
+          },
+          "evar3": {
+            "$ref": "#/components/schemas/JobDefinitionDeleteAndSetAction"
+          }
+        }
+      },
+      "JobDefinition": {
+        "type": "object",
+        "properties": {
+          "variables": {
+            "description": "The variables to repair",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JobDefinitionVariables"
+              }
+            ]
+          }
+        },
+        "required": [
+          "variables"
+        ]
+      },
+      "JobResponse": {
+        "type": "object",
+        "properties": {
+          "dateRangeStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "jobCreateTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The job create time"
+          },
+          "serverCalls": {
+            "type": "integer",
+            "description": "The number of server calls"
+          },
+          "progress": {
+            "type": "integer",
+            "description": "The job progress (0-100)"
+          },
+          "reportSuiteId": {
+            "type": "string",
+            "description": "The Report Suite Id"
+          },
+          "jobCompleteTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The job completion time"
+          },
+          "jobDefinition": {
+            "description": "The job definition",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/JobDefinition"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "The job status"
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "The job id"
+          },
+          "dateRangeEnd": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "dateRangeEnd",
+          "dateRangeStart",
+          "jobCompleteTime",
+          "jobCreateTime",
+          "jobDefinition",
+          "jobId",
+          "progress",
+          "reportSuiteId",
+          "serverCalls",
+          "status"
+        ]
+      },
+      "AdminSubJob": {
+        "type": "object",
+        "properties": {
+          "gtoStartTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The gto start time"
+          },
+          "nashStatus": {
+            "type": "string",
+            "description": "The nash status"
+          },
+          "gtoJobId": {
+            "type": "string",
+            "description": "The gto job id"
+          },
+          "progress": {
+            "type": "integer",
+            "description": "The progress (0-100)"
+          },
+          "cdaCompleteTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The cda completion time"
+          },
+          "nashProgress": {
+            "type": "integer",
+            "description": "The nash progress (0-100)"
+          },
+          "gtoStatus": {
+            "type": "string",
+            "description": "The gto status"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The start date"
+          },
+          "dwDaysUpdated": {
+            "type": "array",
+            "description": "The days on which updates occurred",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dwStatus": {
+            "type": "string",
+            "description": "The data warehouse status"
+          },
+          "nashStatusTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The nash status time"
+          },
+          "cdaStatus": {
+            "type": "string",
+            "description": "The cda status"
+          },
+          "dwStatusTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The data warehouse status time"
+          },
+          "cdaStartTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The cda start time"
+          },
+          "jobId": {
+            "type": "integer",
+            "description": "The job id"
+          },
+          "gtoCompleteTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The gto completion time"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date",
+            "description": "The start date"
+          },
+          "nashJobId": {
+            "type": "string",
+            "description": "The nash job id"
+          },
+          "downstreamStatus": {
+            "type": "string",
+            "description": "The downstream notifier status"
+          },
+          "dwJobId": {
+            "type": "string",
+            "description": "The data warehouse job id"
+          },
+          "downstreamStatusTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The downstream notifier status time"
+          },
+          "cdaProgress": {
+            "type": "integer",
+            "description": "The cda progress (0-100)"
+          },
+          "downstreamProgress": {
+            "type": "integer",
+            "description": "The downstream notifier progress (0-100)"
+          },
+          "dwProgress": {
+            "type": "integer",
+            "description": "The data warehouse progress (0-100)"
+          },
+          "reportSuiteId": {
+            "type": "string",
+            "description": "The report suite id"
+          },
+          "dwStartTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The data warehouse start time"
+          },
+          "gtoStatusTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The gto status time"
+          },
+          "nashStartTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The nash start time"
+          },
+          "nashCompleteTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The nash completion time"
+          },
+          "dpc": {
+            "type": "string",
+            "description": "The dpc"
+          },
+          "dwCompleteTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The data warehouse completion time"
+          },
+          "gtoProgress": {
+            "type": "integer",
+            "description": "The gto progress (0-100)"
+          },
+          "dwBillingRows": {
+            "type": "integer",
+            "description": "The number of scanned data warehouse rows"
+          },
+          "subJobId": {
+            "type": "integer",
+            "description": "The sub job id"
+          },
+          "subJobStatus": {
+            "type": "string",
+            "description": "The sub job status"
+          },
+          "cdaStatusTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The cda status time"
+          }
+        },
+        "required": [
+          "cdaCompleteTime",
+          "cdaProgress",
+          "cdaStartTime",
+          "cdaStatus",
+          "cdaStatusTime",
+          "downstreamProgress",
+          "downstreamStatus",
+          "downstreamStatusTime",
+          "dpc",
+          "dwBillingRows",
+          "dwCompleteTime",
+          "dwDaysUpdated",
+          "dwJobId",
+          "dwProgress",
+          "dwStartTime",
+          "dwStatus",
+          "dwStatusTime",
+          "endDate",
+          "gtoCompleteTime",
+          "gtoJobId",
+          "gtoProgress",
+          "gtoStartTime",
+          "gtoStatus",
+          "gtoStatusTime",
+          "jobId",
+          "nashCompleteTime",
+          "nashJobId",
+          "nashProgress",
+          "nashStartTime",
+          "nashStatus",
+          "nashStatusTime",
+          "progress",
+          "reportSuiteId",
+          "startDate",
+          "subJobId",
+          "subJobStatus"
+        ]
+      }
+    },
+    "responses": {
+      "BAD_REQUEST": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "DEFAULT_ERROR": {
+        "description": "Default error response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
