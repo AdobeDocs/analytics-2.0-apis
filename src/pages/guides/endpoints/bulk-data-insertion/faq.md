@@ -23,6 +23,10 @@ Data with timestamps older than 24 hours can take 2 hours or longer depending on
 
 If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicate columns are ignored, even if the first column was empty.
 
+### What is the throttle limit for API calls?
+
+A cap of 10 requests per second is enforced for all ingest API calls. If your BDIA implementation regularly exceeds this limit, consolidate your data into fewer larger files.
+
 ## Responses and failures
 
 ### What are the response codes that I can get, and what do they mean?
