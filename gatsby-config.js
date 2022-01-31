@@ -20,11 +20,12 @@ module.exports = {
       {
         title: 'v2.0',
         selected: true
-      },
+      }
+      /*
       {
         title: 'v1.4',
         path: '/analytics-apis/docs/1.4/'
-      }
+      }*/
     ],
     pages: [
       {
