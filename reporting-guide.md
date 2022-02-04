@@ -240,6 +240,7 @@ To paginate results, add a `limit` and `page` parameter to the `settings` object
    }
 }
 ```
+Default limit is 50, max of 50000.
 
 ## Example Anomaly Detection Report
 
