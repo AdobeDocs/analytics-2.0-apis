@@ -5,7 +5,9 @@ description: Delete or edit Adobe Analytics data.
 
 # Data Repair API
 
-The Data Repair API provides you with a way to delete or edit your existing Adobe Analytics data.  Repair requests are made by you submitting a job definition to the Data Repair API, which includes the Report Suite, date range, variables and actions to be applied to your data.
+The Data Repair API provides you with a way to delete or edit your existing Adobe Analytics data. The API offers you the ability to delete columns of data. Filters provide options for you to target specific values within a data column to make precise adjustments to your data. If you use Adobe Experience Platform, repairs made to your Adobe Analytics data are also reflected in any data you send to the Adobe Experience Platform Data Lake through the Analytics Data Connector.
+
+While most data types and variables are available to repair or delete through this API, note that events/metrics, merchandising variables, and some other variable types are not available. Review the [Job definition reference](json-body.md) for a detailed list of the variables supported by the Data Repair API.
 
 <InlineAlert variant="warning" slots="text"/>
 
