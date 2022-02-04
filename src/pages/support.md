@@ -35,19 +35,19 @@ Ask/answer questions or participate in discussions around the Adobe I/O console.
 
 ### GitHub
 
-[Contributing](https://github.com/AdobeDocs/analytics-apis/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING.md)
 
 Learn how you can contribute to the Analytics 2.0 API documentation.
 
 <DiscoverBlock slots="link, text" width="25%"/>
 
-[Issues](https://github.com/AdobeDocs/analytics-apis/issues)
+[Issues](https://github.com/AdobeDocs/analytics-2.0-apis/issues)
 
 Submit an issue to the repo for Adobe to address.
 
 <DiscoverBlock slots="link, text" width="25%"/>
 
-[Pull requests](https://github.com/AdobeDocs/analytics-apis/pulls)
+[Pull requests](https://github.com/AdobeDocs/analytics-2.0apis/pulls)
 
 View open pull requests for the repository.
 

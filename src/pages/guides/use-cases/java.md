@@ -33,4 +33,4 @@ description: Send API calls to Adobe using Java.
    $ java -jar target/IMS-Client-1.0-SNAPSHOT-jar-with-dependencies.jar
    ```
 
-See [Java client resources](https://github.com/AdobeDocs/analytics-apis/tree/main/src/resources/java/) on GitHub for example code and additional resources.
+See [Java client resources](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/resources/java/) on GitHub for example code and additional resources.

@@ -24,10 +24,10 @@ description: Send API calls to Adobe using Python.
     $ pip install -r requirements.txt
     ```
 
-4. Create (or re-use) a [JWT Integration](https://www.adobe.io/apis/experiencecloud/analytics/docs.html#!AdobeDocs/analytics-2.0-apis/master/jwt.md)
+4. Create (or re-use) a [JWT Integration](../jwt.md)
 
 5. Populate `config.ini` with parameters specific to your integration
 
 6. Run `python ims_client.py`
 
-See [Python client resources](https://github.com/AdobeDocs/analytics-apis/tree/main/src/resources/python/) on GitHub for example code and additional resources.
+See [Python client resources](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/resources/python) on GitHub for example code and additional resources.
