@@ -33,6 +33,12 @@ Obtain information about the account making API calls for use in other endpoints
 
 <DiscoverBlock slots="link, text"/>
 
+[Projects API](projects/index.md)
+
+Programmatically manipulate Analysis Workspace projects.
+
+<DiscoverBlock slots="link, text"/>
+
 [Reporting API](reports/index.md)
 
 Retrieve data from a report suite using the same API calls that Analysis Workspace uses.
