@@ -9,7 +9,7 @@ description: The Analytics 2.0 API overview page.
 
 # Adobe Analytics 2.0 APIs
 
-The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics products like Analysis Workspace. The APIs allow for the creation of data rich user interfaces that you can use to manipulate and integrate data. 
+The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics products like Analysis Workspace. The APIs allow for the creation of data rich user interfaces that you can use to manipulate and integrate data.
 
 <Resources slots="heading, links"/>
 
