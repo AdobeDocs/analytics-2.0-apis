@@ -57,7 +57,13 @@ Retrieve, update, or create segments.
 
 <DiscoverBlock slots="link, text"/>
 
-[Tags](tags.md)
+[Shares](componentmetadata/shares.md)
+
+Retrieve or update how various components are shared within your organization.
+
+<DiscoverBlock slots="link, text"/>
+
+[Tags](componentmetadata/tags.md)
 
 Retrieve, update, or create tags for use on various components.
 

@@ -125,4 +125,4 @@ curl -X GET --header "Accept: application/json" --header "x-api-key: {CLIENT ID}
 1. Replace `{ACCESS_TOKEN}` and `{CLIENT_ID}` in the above request with their respective values.
 1. Run the cURL command. The response includes information about the analytics user.
 
-Use your `access token`, `global company id` and `client ID` to make calls to the APIs. You can use the [API reference](../api.md) as an easy way to explore calling the Analytics APIs.
+Use your `access token`, `global company id` and `client ID` to make calls to the APIs. You can use the [API reference](../../apis/index.md) as an easy way to explore calling the Analytics APIs.

@@ -9,7 +9,7 @@ Use the following possible solutions to help determine why an upload failed.
 
 <InlineAlert variant="warning" slots="text"/>
 
-Adobe highly encourages you to use the [Validate](validate.md) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. This scenario causes major issues with data quality, such as visit/visitor count and attribution.
+Adobe highly encourages you to use the [Validate](endpoints.md#validate) endpoint when establishing a BDIA workflow. If you do not first validate a file, you could end up with a combination of invalid and valid hits. The valid hits are processed, while the invalid hits are discarded. This scenario causes major issues with data quality, such as visit/visitor count and attribution.
 
 This page is divided into three sections: **issues with the file**, **issues with individual rows**, and **product availability**. Courses of action depend on the root of the issue.
 
