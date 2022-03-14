@@ -23,6 +23,10 @@ If you run a report in Adobe Analytics referencing a dimension and date range pr
 
 An eVar value can exist across multiple hits or visits depending on the expiration of the eVar.  Consequently, when repairing an eVar, it is important that you check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. See [Conversion Variables](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) in the Adobe Analytics Admin user guide for more information on eVar expiration and resetting persisted values.
 
+## Can I repair a disabled variable?  Or do I need to enable it first?
+
+Data Repair will work on enabled or disabled variables.  You do not need to enable a variable in order for Data Repair to act on it.
+
 ## What are some limitations of using this tool?
 
 * Data repair job date ranges cannot include the current month. A job must start within the last 36 months and end prior to the current month.
