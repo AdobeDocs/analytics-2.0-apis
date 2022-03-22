@@ -13,8 +13,8 @@ The Usage API allows you to retrieve the usage and access log data provided with
 
 | Attribute | Type | Description | Possible Value|
 | --- | --- | ---------- | ----- |
-| `startDate` | `string` | Start date for the maximum of a 3 month period.| `2020-12-01T00:00:00-07` |
-| `endDate` | `string` | End date for the maximum of a 3 month period. | `2020-12-15T14:32:33-07` |
+| `startDate` | `string` | Start date for the maximum of a 3 month period.| `YYYY-12-01T00:00:00-07` |
+| `endDate` | `string` | End date for the maximum of a 3 month period. | `YYYY-12-15T14:32:33-07` |
 | `login` | `string` | The login value of the user you want to filter logs by. Filtered as an exact match. | User defined |
 | `ip` | `string` | The IP address you want to filter logs by. This filter supports a partial match.| `10.0` |
 | `rsid` | `string` | The report suite ID you want to filter logs by. Filtered as an exact match. | User defined |
@@ -41,9 +41,9 @@ By default, all event types are included when you make a request to get usage lo
 | `9` | Tool viewed |
 | `10` | Adobe Action |
 | `11` | Password Recovery |
-| `12` | Bookmarks |
+| `12` | BookMarks |
 | `13` | Dashboards |
-| `14` | Alerts  |
+| `14` | Alerts |
 | `15` | Calendar Events |
 | `16` | Targets |
 | `17` | Report Settings |
@@ -58,12 +58,12 @@ By default, all event types are included when you make a request to get usage lo
 | `26` | Date Range |
 | `27` | Virtual Report Suite |
 | `28` | Contribution Analysis |
-| `29` | Excel Data Block Request |
-| `30` | Excel Login Failure |
-| `31` | Excel Login Success |
-| `32` | Mobile Login Failure |
-| `33` | Mobile Login Success |
-| `34` | Api Method |
+| `30` | Excel Data Block Request |
+| `31` | Excel Login Failure |
+| `32` | Excel Login Success |
+| `41` | Mobile Login Failure |
+| `42` | Mobile Login Success |
+| `61` | Api Method |
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
