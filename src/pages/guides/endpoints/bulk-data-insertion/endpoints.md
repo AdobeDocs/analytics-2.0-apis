@@ -48,16 +48,13 @@ curl -X POST -H "accept: application/json" \
   "visitor_group_id": "example_group",
   "size": 355600,
   "received_date": 1506553535,
-  "processing_start_date": 1506553492,
-  "processing_end_date": 1506553492,
-  "file_reader_complete_date": 1506553492,
   "rows": 10000,
   "invalid_rows": 42,
   "upload_name": "ingest_file.gz",
   "status": "string",
   "status_code": "UPLOADED",
   "processing_log": "string",
-  "success": "File is valid"
+  "idempotency_key": "5c04f400-fca5-420c-9c36-b94aaec55e69"
 }
 ```
 
@@ -74,9 +71,10 @@ Field | Data type | Description
 `rows` | integer | The number of rows contained in the file
 `invalid_rows` | integer | The number of invalid rows identified in the file
 `upload_name` | string | The name of the file included in the request
-`status_code` | string | The status of the file upload. Valid values include `UPLOADED` or `REJECTED`.
 `status` | string | More verbose details around the `status_code`
+`status_code` | string | The status of the file upload. Valid values include `UPLOADED` or `REJECTED`.
 `processing_log` | string | Details around specific issues encountered. If an error type has 10 or less problem rows, they are explicitly mentioned. If an error type has more than 10 problem rows, summarized results are provided.
+`idempotency_key` | string | Either the value of the `x-adobe-idempotency-key` if supplied, or the `file_id`
 
 ## Validate
 
@@ -101,7 +99,7 @@ curl -X POST -H "accept: application/json" \
 
 ```json
 {
-    "success": "file is valid"
+    "success": "File is valid"
 }
 ```
 
