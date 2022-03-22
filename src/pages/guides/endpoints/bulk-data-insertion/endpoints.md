@@ -18,7 +18,6 @@ Include all of the required headers with each API call:
 * **`Authorization`**: Required for authentication with the API. Format is the string `"Bearer {ACCESS_TOKEN}`.
 * **`x-api-key`**: Required for authentication with the API. Found in the Adobe I/O console under the JWT service credentials as "Client ID".
 * **`x-adobe-vgid`**: Required for this endpoint. The visitor group ID. See [Visitor groups](visitor-groups.md).
-* **`x-adobe-idempotency-key`**: Optional. Allows you to manually specify the `file_id` of the file contained in the API call. If you do not send this header, Adobe automatically generates a `file_id` for you and includes it in the response JSON object.
 
 You must also add the file, which should be compressed in gzip format, and included as multipart/form-data.
 
