@@ -20,7 +20,7 @@ For example, get a response localized in English, limited to the first page, wit
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/aawapp6/projects?locale=en_US&limit=3&page=0" \
+curl -X GET "https://analytics.adobe.io/api/examplecompany/projects?locale=en_US&limit=3&page=0" \
     -H "x-api-key: {OAUTHTOKEN}" \
     -H "x-proxy-global-company-id: {COMPANYID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
@@ -135,7 +135,7 @@ For example, delete a project with the ID of `c7706c`:
 #### Request
 
 ```sh
-curl -X DELETE "https://analytics.adobe.io/api/aawapp6/projects/c7706c" \
+curl -X DELETE "https://analytics.adobe.io/api/examplecompany/projects/c7706c" \
     -H "x-api-key: {OAUTHTOKEN}" \
     -H "x-proxy-global-company-id: {COMPANYID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
@@ -204,7 +204,7 @@ For example, validate a basic project against the report suite `apptestpnwtest`:
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/aawapp6/projects/validate?rsid=apptestpnwtest" \
+curl -X POST "https://analytics.adobe.io/api/examplecompany/projects/validate?rsid=apptestpnwtest" \
     -H "x-api-key: {OAUTHTOKEN}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \

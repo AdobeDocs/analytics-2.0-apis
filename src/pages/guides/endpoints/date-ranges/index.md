@@ -20,7 +20,7 @@ For example, get a response localized in English, limited to the first page, wit
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges?locale=en_US&limit=3&page=0" \
+curl -X GET "https://analytics.adobe.io/api/examplecompany/dateranges?locale=en_US&limit=3&page=0" \
     -H "x-api-key: [oauth token]" \
     -H "x-proxy-global-company-id: [company name]" \
     -H "Authorization: Bearer [ims user token]" \
@@ -88,7 +88,7 @@ For example, get a date range with ID `839455` and also include its definition.
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges/839455?expansion=definition" \
+curl -X GET "https://analytics.adobe.io/api/examplecompany/dateranges/839455?expansion=definition" \
     -H "x-api-key: [oauth token]" \
     -H "x-proxy-global-company-id: [company id]" \
     -H "Authorization: Bearer [ims user token]" \
