@@ -34,7 +34,7 @@ The `https://analytics-collection.adobe.io` domain automatically routes your API
 ```sh
 curl -X POST -H "accept: application/json" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
-    -H "x-api-key: {API_KEY/CLIENT_ID}" \
+    -H "x-api-key: {CLIENTID}" \
     -H "x-adobe-vgid: example_group" \
     -F file=@/tmp/ingest_file.gz \
     "https://analytics-collection.adobe.io/aa/collect/v1/events"
@@ -82,14 +82,14 @@ Before uploading your first file, Adobe strongly recommends running the file thr
 
 `POST https://analytics-collection.adobe.io/aa/collect/v1/events/validate`
 
-<CodeBlock slots="heading, code" repeat="3" languages="CURL,JSON"/>
+<CodeBlock slots="heading, code" repeat="3" languages="CURL,JSON,JSON"/>
 
 #### Request
 
 ```sh
 curl -X POST -H "accept: application/json" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
-    -H "x-api-key: {API_KEY/CLIENT_ID}" \
+    -H "x-api-key: {CLIENTID}" \
     -H "x-adobe-vgid: example_group" \
     -F file=@/tmp/ingest_file.gz \
     "https://analytics.adobe.io/aa/collect/v1/events/validate"

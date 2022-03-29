@@ -14,7 +14,7 @@ The response shows validation for the segment, including its compatibility with 
 #### Request
 
 ```sh
-curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer {ACCESSTOKEN}" -H "x-proxy-global-company-id: {COMPANYID}" -d '{
+curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer {ACCESSTOKEN}" -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" -d '{
     "container": {
       "func": "container",
       "pred": {

@@ -11,7 +11,7 @@ The Analytics 2.0 Projects APIs allow you to retrieve, update, or create project
 
 See [Project parameters](parameters.md) for a list of query strings that you can attach to this API call.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/projects`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/projects`
 
 For example, get a response localized in English, limited to the first page, with three responses per page.
 
@@ -22,7 +22,7 @@ For example, get a response localized in English, limited to the first page, wit
 ```sh
 curl -X GET "https://analytics.adobe.io/api/examplecompany/projects?locale=en_US&limit=3&page=0" \
     -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {COMPANYID}" \
+    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json"
@@ -89,7 +89,7 @@ curl -X GET "https://analytics.adobe.io/api/examplecompany/projects?locale=en_US
 
 You can retrieve details around a single project if you know the project ID. You can find the project ID by looking in the [debugger](../reports/debugger.md) or using the multiple projects endpoint.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/projects/{ID}`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/projects/{ID}`
 
 For example, find details around the project with an ID of `6091a`:
 
@@ -100,7 +100,7 @@ For example, find details around the project with an ID of `6091a`:
 ```sh
 curl -X GET "https://analytics.adobe.io/api/examplecompany/projects/6091a" \
     -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {COMPANYID}" \
+    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json"
@@ -126,7 +126,7 @@ curl -X GET "https://analytics.adobe.io/api/examplecompany/projects/6091a" \
 
 When you delete a project, it is hidden from all users in all menus. It is also hidden from API calls to the multiple projects endpoint. You can still retrieve details on a deleted project if you still have the project ID.
 
-`DELETE https://analytics.adobe.io/api/{COMPANYID}/projects/{ID}`
+`DELETE https://analytics.adobe.io/api/{GLOBALCOMPANYID}/projects/{ID}`
 
 For example, delete a project with the ID of `c7706c`:
 
@@ -137,7 +137,7 @@ For example, delete a project with the ID of `c7706c`:
 ```sh
 curl -X DELETE "https://analytics.adobe.io/api/examplecompany/projects/c7706c" \
     -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {COMPANYID}" \
+    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json"
@@ -155,7 +155,7 @@ curl -X DELETE "https://analytics.adobe.io/api/examplecompany/projects/c7706c" \
 
 You can edit projects using `PUT` API calls. It supports partial updates, meaning that instead of sending an entire project JSON object, you can only send the fields that you want to update. This API call requires a JSON body, which determines the parts of a project that you want to update.
 
-`PUT https://analytics.adobe.io/api/{COMPANYID}/projects/{ID}`
+`PUT https://analytics.adobe.io/api/{GLOBALCOMPANYID}/projects/{ID}`
 
 For example, only update the name of the project with an ID of `cdd751`:
 
@@ -166,7 +166,7 @@ For example, only update the name of the project with an ID of `cdd751`:
 ```sh
 curl -X PUT "https://analytics.adobe.io/api/examplecompany/projects/cdd751" \
     -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {COMPANYID}" \
+    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
     -H "Accept: application/json" \
     -H "Content-Type: application/json" \
@@ -195,7 +195,7 @@ Report suites can have different configurations, variables or metrics. One proje
 
 This API call requires a JSON request body, which is a [project definition](definition.md). It also requires a report suite ID so it knows which report suite to validate the project against.
 
-`POST https://analytics.adobe.io/api/{COMPANYID}/projects/validate?rsid={RSID}`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/projects/validate?rsid={RSID}`
 
 For example, validate a basic project against the report suite `apptestpnwtest`:
 
@@ -209,7 +209,7 @@ curl -X POST "https://analytics.adobe.io/api/examplecompany/projects/validate?rs
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "x-proxy-global-company-id: {COMPANYID}" \
+    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
     -d '{
         "project": {
             "id": "6091a10005c7706c0acdd751",

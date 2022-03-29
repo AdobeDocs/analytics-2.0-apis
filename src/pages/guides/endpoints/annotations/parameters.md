@@ -13,29 +13,24 @@ A query string that allows you to obtain additional information around an annota
 
 `GET https://analytics.adobe.io/api/examplecompany/annotations?expansion=name,description,dateRange,color`
 
-* **`name`**:
-* **`description`**:
-* **`dateRange`**:
-* **`color`**:
-* **`applyToAllReports`**:
-* **`scope`**:
-* **`deleted`**:
-* **`internal`**:
-* **`createdDate`**:
-* **`modifiedDate`**:
-* **`modifiedById`**:
-* **`owner`**:
-* **`companyId`**:
-* **`rsid`**:
-* **`approved`**:
-* **`favorite`**:
-* **`shares`**:
-* **`sharesFullName`**:
-* **`tags`**:
-* **`usageSummary`**:
-* **`useSummaryWithRelevancyScore`**:
-* **`ownerFullName`**:
-* **`reportSuiteName`**:
+* **`name`**: The name of the annotation.
+* **`description`**: The annotation's description.
+* **`dateRange`**: The date range of the annotation.
+* **`color`**: An enum representing the annotation's color. Supported values include `STANDARD1` through `STANDARD9`.
+* **`applyToAllReports`**: A boolean that determines if the annotation applies to all report suites.
+* **`scope`**: An object including the `metrics` and `filters` that the annotation uses.
+* **`createdDate`**: The date that the annotation was created.
+* **`modifiedDate`**: The date that the annotation was last modified.
+* **`modifiedById`**: The ID of the user who last modified the annotation.
+* **`tags`**: The tags applied to the annotation.
+* **`shares`**: The shares applied to the annotation.
+* **`approved`**: A boolean that determines if the annotation is approved by an admin.
+* **`favorite`**: A boolean that determines if the user has this annotation favorited (starred).
+* **`usageSummary`**: An object that shows where this annotation is used.
+* **`owner`**: An object showing the ID, name, and login of the user that created the annotation.
+* **`companyId`**: The login company ID of the annotation.
+* **`reportSuiteName`**: The report suite's friendly name.
+* **`rsid`**: The report suite ID.
 
 ## IncludeType
 
@@ -66,14 +61,14 @@ A query string that returns strings localized by Adobe into the desired language
 
 You can filter annotations by modification date or annotations in a specific date range.
 
-`GET https://analytics.adobe.io/api/examplecompany/annotations?filterByModifiedAfter=YYYY-09-28T11%3A09%3A43&filterByDateRange=YYYY-09-16T00%3A00%3A00%2FYYYY-09-20T00%3A00%3A00%`
+`GET https://analytics.adobe.io/api/examplecompany/annotations?filterByModifiedAfter=YYYY-MM-DDTHH:MM:SSZ&filterByDateRange=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ`
 
-* **`filterByModifiedAfter`**: Returns only annotations that were modified after the desired date. Date format is `[YYYY]-[MM]-[DD]T[HH]%3A[MM]%3A[SS]` (URL encoded ISO 8601 format).
-* **`filterByDateRange`**: Returns only annotations that fully reside within the desired date range. Date format is `[YYYY]-[MM]-[DD]T[HH]%3A[MM]%3A[SS]` (URL encoded ISO 8601 format).
+* **`filterByModifiedAfter`**: An ISO 8601 date that returns only annotations that were modified after the desired date.
+* **`filterByDateRange`**: Two ISO 8601 dates separated by a forward slash (`/`) that returns only annotations that fully reside within the desired date range.
 
 ## Pagination
 
-You can paginate annotation API calls so the result is not too large to use.
+You can paginate annotation API calls so that the result is not too large to use.
 
 `GET https://analytics.adobe.io/api/examplecompany/annotations?limit=10&page=2`
 
