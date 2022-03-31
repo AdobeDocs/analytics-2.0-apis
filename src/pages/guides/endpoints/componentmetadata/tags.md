@@ -9,7 +9,7 @@ The Analytics 2.0 Tags APIs allow you to retrieve, update, or create tags and th
 
 ## Retrieve multiple tags
 
-Retrieve a list of tags for the organization.
+Retrieve a list of tags that the user can access.
 
 `GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags`
 

@@ -9,7 +9,7 @@ The Analytics 2.0 Shares APIs allow you to retrieve, update, or create associati
 
 ## Retrieve multiple shares
 
-Retrieve a list of shares for the user.
+Retrieve a list of shares that the user can access.
 
 `GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares`
 
