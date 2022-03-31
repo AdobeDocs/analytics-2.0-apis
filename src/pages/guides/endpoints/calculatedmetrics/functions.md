@@ -13,7 +13,7 @@ Returns a full list of calculated metric functions that the user can access.
 
 `GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/calculatedmetrics/functions/`
 
-<CodeBlock slots="heading, code" repeat="3" languages="CURL,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -67,7 +67,7 @@ Returns details around a single calculated metric function if you specify the `i
 
 For example, the following request returns information around the `add` calculated metric function:
 
-<CodeBlock slots="heading, code" repeat="3" languages="CURL,JSON"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
