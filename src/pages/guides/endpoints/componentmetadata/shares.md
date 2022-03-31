@@ -9,9 +9,9 @@ The Analytics 2.0 Shares APIs allow you to retrieve, update, or create associati
 
 ## Retrieve multiple shares
 
-Retrieve a list of shares for an organization.
+Retrieve a list of shares that the user can access.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares`
 
 You can paginate results by using the `limit` and `page` query strings.
 
@@ -26,11 +26,11 @@ For example, use the `page` and `limit` query strings to only retrieve the first
 
 ```sh
 curl -X GET \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares?page=0&limit=3 \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares?page=0&limit=3 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
 ```
 
 #### Response
@@ -78,7 +78,7 @@ curl -X GET \
 
 Returns information around a single share if you know the share ID.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/{ID}`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/{ID}`
 
 For example, return information around the share with ID `11684455`:
 
@@ -88,11 +88,11 @@ For example, return information around the share with ID `11684455`:
 
 ```sh
 curl -X GET \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/11684455 \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/11684455 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
 ```
 
 #### Response
@@ -112,7 +112,7 @@ curl -X GET \
 
 Finds one or more shares with desired values.
 
-`POST https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/component/search`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/component/search`
 
 This API call requires a JSON request body to determine search criteria. For example:
 
@@ -133,12 +133,12 @@ This API call sends a JSON request body with search criteria. Adobe returns the 
 
 ```sh
 curl -X POST \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/component/search?page=0&limit=3 \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/component/search?page=0&limit=3 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
   -d '{"componentType": "segment","componentIds": ["92845"]}'
 ```
 
@@ -177,7 +177,7 @@ curl -X POST \
 
 Returns an array of all components of a type shared to the user making the API call.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/sharedto/me?componentType={COMPONENT_TYPE}`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/sharedto/me?componentType={COMPONENT_TYPE}`
 
 This API call requires the `componentType` query string. Valid values include:
 
@@ -201,11 +201,11 @@ For example, get all calculated metrics shared with me:
 
 ```sh
 curl -X GET \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/sharedto/me?componentType=calculatedMetric \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/sharedto/me?componentType=calculatedMetric \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
 ```
 
 #### Response
@@ -220,7 +220,7 @@ curl -X GET \
 
 Shares a component with a group.
 
-`POST https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares`
 
 This API call requires a JSON body that determines what component to share and who to share it with. For example:
 
@@ -241,12 +241,12 @@ For example, share a segment with ID `83045` to a group with ID `38951`:
 
 ```sh
 curl -X POST \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
   -d '{"componentId": "83045",
   "componentType": "segment",
   "shareToId": 38951,
@@ -269,7 +269,7 @@ curl -X POST \
 
 Removes a share from a component.
 
-`DELETE https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/{ID}`
+`DELETE https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/{ID}`
 
 For example, deletes a share with ID `11439`.
 
@@ -279,11 +279,11 @@ For example, deletes a share with ID `11439`.
 
 ```sh
 curl -X DELETE \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares/11439 \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/11439 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
 ```
 
 #### Response
@@ -301,7 +301,7 @@ curl -X DELETE \
 
 Set the shares for one or more components. This endpoint overwrites all existing shares for the component, meaning that existing shares are removed.
 
-`PUT https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares`
+`PUT https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares`
 
 This API call requires a JSON request body that contains the components to update and the tags to set. For example:
 
@@ -332,12 +332,12 @@ For example, creates a share to segment with ID `48372` to user with ID `622291`
 
 ```sh
 curl -X PUT \
-  https://analytics.adobe.io/api/{COMPANYID}/componentmetadata/shares \
+  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
   -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {COMPANYID}' \
+  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
   -d '[{"componentType": "segment",
     "componentId": "48372",
     "shares": [{

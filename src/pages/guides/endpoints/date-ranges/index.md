@@ -11,7 +11,7 @@ The Analytics 2.0 Date Range APIs allow you to retrieve, update, or create date 
 
 See [Date range parameters](parameters.md) for query strings that you can attach to this API call.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/dateranges`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/dateranges`
 
 For example, get a response localized in English, limited to the first page, with three responses per page.
 
@@ -20,7 +20,7 @@ For example, get a response localized in English, limited to the first page, wit
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges?locale=en_US&limit=3&page=0" \
+curl -X GET "https://analytics.adobe.io/api/exampleco/dateranges?locale=en_US&limit=3&page=0" \
     -H "x-api-key: [oauth token]" \
     -H "x-proxy-global-company-id: [company name]" \
     -H "Authorization: Bearer [ims user token]" \
@@ -79,7 +79,7 @@ curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges?locale=en_US&limi
 
 If you know the ID of the date range that you want to retrieve, include it as part of the call.
 
-`GET https://analytics.adobe.io/api/{COMPANYID}/dateranges/{ID}`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/dateranges/{ID}`
 
 For example, get a date range with ID `839455` and also include its definition.
 
@@ -88,7 +88,7 @@ For example, get a date range with ID `839455` and also include its definition.
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges/839455?expansion=definition" \
+curl -X GET "https://analytics.adobe.io/api/exampleco/dateranges/839455?expansion=definition" \
     -H "x-api-key: [oauth token]" \
     -H "x-proxy-global-company-id: [company id]" \
     -H "Authorization: Bearer [ims user token]" \
@@ -116,7 +116,7 @@ curl -X GET "https://analytics.adobe.io/api/aawapp6/dateranges/839455?expansion=
 
 Permanently deletes a date range by ID. The request is similar to retrieving a single date range, but with a `DELETE` request instead of a `GET` request.
 
-`DELETE https://analytics.adobe.io/api/{COMPANYID}/dateranges/{ID}`
+`DELETE https://analytics.adobe.io/api/{GLOBALCOMPANYID}/dateranges/{ID}`
 
 ## Update or change a date range
 
@@ -124,7 +124,7 @@ Overwrite fields in a date range with desired values. Partial updates are suppor
 
 Date range templates cannot be updated. Copy a template to a new date range, then make the changes to the copy.
 
-`PUT https://analytics.adobe.io/api/{COMPANYID}/dateranges/{ID}`
+`PUT https://analytics.adobe.io/api/{GLOBALCOMPANYID}/dateranges/{ID}`
 
 This API call requires a JSON body. Include the fields that you want to update in the body. For example:
 
@@ -140,7 +140,7 @@ This API call requires a JSON body. Include the fields that you want to update i
 
 Create a date range. The name cannot be an empty string or null, and is encoded in UTF-8. Adobe recommends clear and concise names so that they render correctly in the product UI.
 
-`POST https://analytics.adobe.io/api/{COMPANYID}/dateranges/`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/dateranges/`
 
 This API call requires a JSON body. Required fields include `name` and `definition`. For example:
 
