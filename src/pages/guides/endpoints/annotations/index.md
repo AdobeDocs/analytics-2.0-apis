@@ -20,9 +20,9 @@ For example, get a response of all annotations shared with the user.
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/examplecompany/annotations?includeType=shared" \
+curl -X GET "https://analytics.adobe.io/api/exampleco/annotations?includeType=shared" \
     -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: examplecompany" \
+    -H "x-proxy-global-company-id: exampleco" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
 ```
 
@@ -59,9 +59,9 @@ For example, find details around the annotation with an ID of `62437d`, includin
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/examplecompany/annotations/62437d?expansion=name,description,dateRange,color" \
+curl -X GET "https://analytics.adobe.io/api/exampleco/annotations/62437d?expansion=name,description,dateRange,color" \
     -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: examplecompany" \
+    -H "x-proxy-global-company-id: exampleco" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
@@ -99,9 +99,9 @@ For example, create a basic annotation with the minimum required fields. The API
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/examplecompany/annotations" \
+curl -X POST "https://analytics.adobe.io/api/exampleco/annotations" \
     -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: examplecompany" \
+    -H "x-proxy-global-company-id: exampleco" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
     -H "Content-Type: application/json" \
     -d "{'name': 'Example annotation',
@@ -131,9 +131,9 @@ For example, delete an annotation with the ID of `62437d`:
 #### Request
 
 ```sh
-curl -X DELETE "https://analytics.adobe.io/api/examplecompany/annotations/62437d" \
+curl -X DELETE "https://analytics.adobe.io/api/exampleco/annotations/62437d" \
     -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: examplecompany" \
+    -H "x-proxy-global-company-id: exampleco" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
 ```
 
@@ -160,9 +160,9 @@ For example, only update the name of the annotation with an ID of `62437d`:
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io/api/examplecompany/annotations/62437d" \
+curl -X PUT "https://analytics.adobe.io/api/exampleco/annotations/62437d" \
     -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: examplecompany" \
+    -H "x-proxy-global-company-id: exampleco" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
     -H "Content-Type: application/json" \
     -d "{'name':'Different annotation name'}"
