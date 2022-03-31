@@ -9,7 +9,7 @@ The Analytics 2.0 Annotations APIs allow you to retrieve, update, or create anno
 
 ## Retrieve multiple annotations
 
-See [Annotation parameters](parameters.md) for a list of query strings that you can attach to this API call.
+Retrieve a list of annotations that the user can access.
 
 `GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/annotations`
 
@@ -48,7 +48,7 @@ curl -X GET "https://analytics.adobe.io/api/examplecompany/annotations?includeTy
 
 ## Retrieve a single annotation
 
-You can retrieve details around a single annotation if you know the annotation ID. You can find the annotation ID by using the multiple annotations endpoint.
+You can retrieve details around a single annotation if you know the annotation ID. You can find the annotation ID by using the multiple annotations endpoint. See [Annotation parameters](parameters.md) for query strings that you can attach to this API call.
 
 `GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/annotations/{ID}`
 
@@ -79,7 +79,7 @@ curl -X GET "https://analytics.adobe.io/api/examplecompany/annotations/62437d?ex
 
 ## Create an annotation
 
-You can create annotations using `POST` API calls. The following fields are required:
+You can create annotations using `POST` API calls. The following fields are required within a JSON body attached to the API call:
 
 * **`name`**: The name of the annotation.
 * **`rsid`**: The report suite ID for the annotation.

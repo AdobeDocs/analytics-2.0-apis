@@ -86,6 +86,20 @@ module.exports = {
         path: 'guides/endpoints/index.md',
         pages: [
           {
+            title: 'Annotations',
+            path: 'guides/endpoints/annotations/index.md',
+            pages: [
+              {
+                title: 'Definition data structure',
+                path: 'guides/endpoints/annotations/definition.md'
+              },
+              {
+                title: 'Parameters',
+                path: 'guides/endpoints/annotations/parameters.md'
+              }
+            ]
+          },
+          {
             title: 'Bulk data insertion',
             path: 'guides/endpoints/bulk-data-insertion/index.md',
             pages: [

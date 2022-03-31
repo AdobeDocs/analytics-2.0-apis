@@ -9,6 +9,12 @@ Once you have followed the [Getting started](../index.md) guide, you can send re
 
 <DiscoverBlock slots="link, text"/>
 
+[Annotations](annotations/index.md)
+
+Retrieve, update, or create annotations.
+
+<DiscoverBlock slots="link, text"/>
+
 [Bulk data insertion API](bulk-data-insertion/index.md)
 
 Insert rows of data into a report suite.
