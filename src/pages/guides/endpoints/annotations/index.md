@@ -9,7 +9,7 @@ The Analytics 2.0 Annotations APIs allow you to retrieve, update, or create anno
 
 ## Retrieve multiple annotations
 
-Retrieve a list of annotations that the user can access.
+Retrieve a list of annotations that the user can access. See [Annotation parameters](parameters.md) for query strings that you can attach to this API call.
 
 `GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/annotations`
 
@@ -99,15 +99,15 @@ For example, create a basic annotation with the minimum required fields. The API
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/exampleco/annotations" \
-    -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: exampleco" \
-    -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "Content-Type: application/json" \
-    -d "{'name': 'Example annotation',
-        'rsid': 'examplersid',
-        'dateRange': YYYY-02-14T00:00:00/YYYY-02-14T23:59:59',
-        'color': 'STANDARD1'}"
+curl -X POST 'https://analytics.adobe.io/api/exampleco/annotations' \
+    -H 'x-api-key: {CLIENTID}' \
+    -H 'x-proxy-global-company-id: exampleco' \
+    -H 'Authorization: Bearer {ACCESSTOKEN}' \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Example annotation",
+        "rsid": "examplersid",
+        "dateRange": YYYY-02-14T00:00:00/YYYY-02-14T23:59:59",
+        "color": "STANDARD1"}'
 ```
 
 #### Response
@@ -160,12 +160,12 @@ For example, only update the name of the annotation with an ID of `62437d`:
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io/api/exampleco/annotations/62437d" \
-    -H "x-api-key: {CLIENTID}" \
-    -H "x-proxy-global-company-id: exampleco" \
-    -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "Content-Type: application/json" \
-    -d "{'name':'Different annotation name'}"
+curl -X PUT 'https://analytics.adobe.io/api/exampleco/annotations/62437d' \
+    -H 'x-api-key: {CLIENTID}' \
+    -H 'x-proxy-global-company-id: exampleco' \
+    -H 'Authorization: Bearer {ACCESSTOKEN}' \
+    -H 'Content-Type: application/json' \
+    -d '{"name":"Different annotation name"}'
 ```
 
 #### Response
