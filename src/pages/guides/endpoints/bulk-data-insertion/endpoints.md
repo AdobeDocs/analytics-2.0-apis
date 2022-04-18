@@ -92,7 +92,7 @@ curl -X POST -H "accept: application/json" \
     -H "x-api-key: {CLIENTID}" \
     -H "x-adobe-vgid: example_group" \
     -F file=@/tmp/ingest_file.gz \
-    "https://analytics.adobe.io/aa/collect/v1/events/validate"
+    "https://analytics-collection.adobe.io/aa/collect/v1/events/validate"
 ```
 
 #### Success response
@@ -125,7 +125,7 @@ The API offers duplication protection through the use of an idempotency_key.  Th
 curl -X GET -H "accept: application/json" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
     -H "x-api-key: {CLIENTID}" \
-    "https://analytics.adobe.io/aa/collect/v1/events/key/{IDEMPOTENCY_KEY}"
+    "https://analytics-collection.adobe.io/aa/collect/v1/events/key/{IDEMPOTENCY_KEY}"
 ```
 
 #### Success response
@@ -140,10 +140,10 @@ curl -X GET -H "accept: application/json" \
 }
 ```
 
-#### Failure response - invalid rows
+#### Failure response
 
 ```json
 {
-    "error": "File has 2 rows that do not conform to the required CSV format! (Ex: row #59)"
+    "error": "File not found"
 }
 ```
