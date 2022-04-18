@@ -19,13 +19,13 @@ For data with timestamps less than 24 hours old, ingested data typically follows
 
 Data with timestamps older than 24 hours can take 2 hours or longer depending on the age of the data. See [Features that depend on latency](https://experienceleague.adobe.com/docs/analytics/technotes/latency.html#features-that-depend-on-latency) for more information.
 
-### I accidentally put two of the same header in a file. How is that data ingested?
+### I accidentally put two of the same header columns in a file. How is that data ingested?
 
 If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicate columns are ignored, even if the first column was empty.
 
 ### What is the throttle limit for API calls?
 
-A cap of 10 requests per second is enforced for all ingest API calls. If your BDIA implementation regularly exceeds this limit, consolidate your data into fewer larger files.
+A cap of 1 request per second is enforced for all ingest API calls. If your BDIA implementation exceeds this limit, consolidate your data into fewer larger files. For exceptions, please reach out to your tech consultant to communicate your needs and we can discuss the situation with you.
 
 ## Responses and failures
 
