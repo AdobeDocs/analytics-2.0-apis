@@ -18,7 +18,7 @@ Include all of the required headers with each API call:
 * **`Authorization`**: Required for authentication with the API. Format is the string `"Bearer {ACCESS_TOKEN}`.
 * **`x-api-key`**: Required for authentication with the API. Found in the Adobe I/O console under the JWT service credentials as "Client ID".
 * **`x-adobe-vgid`**: Required for this endpoint. The visitor group ID. See [Visitor groups](visitor-groups.md).
-* **`x-adobe-idempotency-key`**: Optional. Allows you to store a reference to your unique file identifier for the upload. This value can be used for duplication protection in cases when your request does not return a response from Adobe. Query the /aa/collect/v1/events/key/{idempotency_key} endpoint with the idempotency_key for the previous request, and the API will respond to let you know if the file was received.
+* **`x-adobe-idempotency-key`**: Optional. Allows you to store a reference to your unique file identifier for the upload. This value can be used for duplication protection in cases when your request does not return a response from Adobe.
 
 You must also add the file, which should be compressed in gzip format, and included as multipart/form-data.
 
@@ -111,9 +111,11 @@ curl -X POST -H "accept: application/json" \
 }
 ```
 
-
 ## Idempotency Key Lookup
-The API offers duplication protection through the use of an idempotency_key.  This unique value is generated on the client side, then passed in through the 'x-adobe-idempotency-key' header field. If your POST request submission does not return a response, you can call this lookup endpoint to verify if the file was received by Adobe.
+
+The API offers duplication protection through the use of an `idempotency_key`.  This unique value is generated on the client side, then passed in through the `x-adobe-idempotency-key` header field. If your `POST` request submission does not return a response, you can call this lookup endpoint to verify if the file was received by Adobe.
+
+If you do not include an idempotency key when creating a file upload, it defaults to the `file_id` generated when uploading a file. Since this idempotency key is generated after a file is uploaded, automatically generated idempotency keys lose their effectiveness in preventing duplicate uploads.
 
 `GET https://analytics-collection.adobe.io/aa/collect/v1/events/key/{idempotency_key}`
 
