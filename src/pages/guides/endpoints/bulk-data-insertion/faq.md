@@ -25,7 +25,7 @@ If a column header is duplicated in a file, only the first instance of the colum
 
 ### What is the throttle limit for API calls?
 
-A cap of 1 request per second is enforced for all ingest API calls. If your BDIA implementation exceeds this limit, consolidate your data into fewer larger files. For exceptions, please reach out to your tech consultant to communicate your needs and we can discuss the situation with you.
+A cap of 1 request per second is enforced for all ingest API calls. If your BDIA implementation exceeds this limit, consolidate your data into fewer larger files. For exceptions, reach out to your Adobe consultant to communicate your needs for further discussion.
 
 ## Responses and failures
 
