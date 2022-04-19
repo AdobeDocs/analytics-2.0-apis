@@ -11,7 +11,7 @@ Adobe offers a way to simplify the process of generating an identifier used by t
 
 Before using this method to identify visitors, make sure that all of the following are met:
 
-* Communicate to Adobe the desired customer ID attribute (`customerIDType`) that you want to use. Adobe's BDIA team works with the Adobe Audience Manager team to provision the desired ID on the backend. The **Integration Code** is typically your `customerIDType` for Audience Manager customers. Communicate your use of Audience Manager to the BDIA team to help streamline the provisioning process.
+* Communicate your intent to use this feature to the BDIA team. It requires coordination between the BDIA team and the Adobe Audience Manager team to provision the desired integration on the backend.
 * Only one `customerIDType` can be used as a seed per IMS organization. If you attempt to set `isMCSeed` to `true` on a `customerIDType` other than the one provisioned by Adobe, it is ignored.
 
 ## File requirements
