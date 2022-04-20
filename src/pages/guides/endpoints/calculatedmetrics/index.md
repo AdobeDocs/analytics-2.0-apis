@@ -64,95 +64,106 @@ For example, to retrieve all calculated metrics tagged as part of the *SpringPro
 
 The following example shows a calculated metrics request for a response localized in US English, limited to the first page, and with the size of ten responses per page.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
 ```sh
-curl -X GET "https://analytics.adobe.io/api/[company name]/calculatedmetrics?locale=en_US&limit=10&page=0" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company name]" -H "Authorization: Bearer [ims user token]" -H "Accept: application/json" -H "Content-Type: application/json"
+curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=en_US&limit=10&page=0" \
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
-The following example shows the response for the previous request, including the predefined calculated metrics for Bounce Rate and Revenue per Visitor (`cm_bouncerate_defaultmetric` and `cm_revenue_visitor_defaultmetric`):
+#### Response
 
 ```json
 [    
-    {
-      "id": "cm_bouncerate_defaultmetric",
-      "name": "Bounce Rate",
-      "description": "Default Bounce Rate Metric",
-      "polarity": "positive",
-      "precision": 1,
-      "type": "percent",
-      "definition": {
-        "formula": {
-          "col": {
-            "func": "divide",
-            "col2": {
-              "func": "metric",
-              "name": "metrics/entries",
-              "description": "Entries"
-            },
-            "col1": {
-              "func": "metric",
-              "name": "metrics/bounces",
-              "description": "Bounces"
-            }
-          },
-          "func": "visualization-group"
-        },
-        "func": "calc-metric",
-        "version": [
-          1,
-          0,
-          0
-        ]
-      },
-      "template": true,
-      "categories": [
-        "Calculated Metrics"
-      ]
-    },
-    {
-      "id": "cm_revenue_visitor_defaultmetric",
-      "name": "Revenue / Visitor",
-      "description": "Default Revenue / Visitor Metric",
-      "polarity": "positive",
-      "precision": 2,
-      "type": "currency",
-      "definition": {
-        "formula": {
+  {
+    "id": "cm_bouncerate_defaultmetric",
+    "name": "Bounce Rate",
+    "description": "Default Bounce Rate Metric",
+    "polarity": "positive",
+    "precision": 1,
+    "type": "percent",
+    "definition": {
+      "formula": {
+        "col": {
           "func": "divide",
           "col2": {
             "func": "metric",
-            "name": "metrics/visitors"
+            "name": "metrics/entries",
+            "description": "Entries"
           },
           "col1": {
             "func": "metric",
-            "name": "metrics/revenue"
+            "name": "metrics/bounces",
+            "description": "Bounces"
           }
         },
-        "func": "calc-metric",
-        "version": [
-          1,
-          0,
-          0
-        ]
+        "func": "visualization-group"
       },
-      "template": true,
-      "categories": [
-        "Calculated Metrics"
+      "func": "calc-metric",
+      "version": [
+        1,
+        0,
+        0
       ]
-    }
+    },
+    "template": true,
+    "categories": [
+      "Calculated Metrics"
+    ]
+  },
+  {
+    "id": "cm_revenue_visitor_defaultmetric",
+    "name": "Revenue / Visitor",
+    "description": "Default Revenue / Visitor Metric",
+    "polarity": "positive",
+    "precision": 2,
+    "type": "currency",
+    "definition": {
+      "formula": {
+        "func": "divide",
+        "col2": {
+          "func": "metric",
+          "name": "metrics/visitors"
+        },
+        "col1": {
+          "func": "metric",
+          "name": "metrics/revenue"
+        }
+      },
+      "func": "calc-metric",
+      "version": [
+        1,
+        0,
+        0
+      ]
+    },
+    "template": true,
+    "categories": [
+      "Calculated Metrics"
+    ]
+  }
+]
 ```
 
 ## Retrieving a single calculated metric
 
 To retrieve a single calculated metric, include its `id` in the request.
 
-Example request:
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/[company name]/calculatedmetrics/[calculated metric id]?locale=en_US" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company id]" -H "Authorization: Bearer [ims user token]" -H "Accept: application/json" -H "Content-Type: application/json"
+curl -X GET "https://analytics.adobe.io/api/[company name]/calculatedmetrics/{ID}?locale=en_US" \
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 
 ```
 
-Example response:
+#### Response
 
 ```json
 {
@@ -176,12 +187,14 @@ The `DELETE` single calculated metric can be used to remove a calculated metric 
 The request is the same as retrieving a single calculated metric except to change the HTTP method to `DELETE`.
 
 ```sh
-curl -X DELETE "https://analytics.adobe.io/api/[company name]/calculatedmetrics/[calculated metrics id]?locale=en_US" -H "x-api-key: [oauth token]" -H "x-proxy-global-company-id: [company name]" -H "Authorization: Bearer [ims user token]" -H "Accept: application/json" -H "Content-Type: application/json"
+curl -X DELETE "https://analytics.adobe.io/api/exampleco/calculatedmetrics/{ID}?locale=en_US" \
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
 ## Updating or Changing a Calculated Metric
 
-Existing calculated metrics can be edited via the `PUT /calculatedmetrics/[calculated metric id]` endpoint. Most calculated metrics fields can be updated, not including those that are derived or provided by the API.
+Existing calculated metrics can be edited via the `PUT /calculatedmetrics/{ID}` endpoint. Most calculated metrics fields can be updated, not including those that are derived or provided by the API.
 
 The `PUT` endpoint also supports partial updates. This means that instead of sending the entire JSON object to the API, the request may include only the fields that need to be updated.
 
@@ -189,7 +202,6 @@ The following example shows JSON fields to be updated with a `PUT` request:
 
 ```json
 {
-
     "id": "cm1234_abcdef0123456789",
     "name": "new name",
     "description": "new description",
@@ -197,7 +209,6 @@ The following example shows JSON fields to be updated with a `PUT` request:
     "owner": {
         "id": 123456
     }
-
 }
 ```
 

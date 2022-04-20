@@ -14,7 +14,11 @@ The response shows validation for the segment, including its compatibility with 
 #### Request
 
 ```sh
-curl -X POST --header "Content-Type: application/json" --header "Accept: application/json" --header "Authorization: Bearer {ACCESSTOKEN}" -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" -d '{
+curl -X POST "https://analytics.adobe.io/api/examplersid/segments/validate" \
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
     "container": {
       "func": "container",
       "pred": {
@@ -34,7 +38,7 @@ curl -X POST --header "Content-Type: application/json" --header "Accept: applica
       0,
       0
     ]
-  }' "https://analytics.adobe.io/api/examplersid/segments/validate" -H "x-api-key: {OAUTHTOKEN}"
+  }'
 ```
 
 #### Response

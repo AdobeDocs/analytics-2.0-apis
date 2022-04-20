@@ -13,7 +13,7 @@ The Job endpoint allows you to create a Data Repair API job (using `POST`) or re
 
 **Use of the Data Repair API permanently deletes or edits your Adobe Analytics data.** See the [Overview page](index.md#Workflow) for the recommended workflow to mitigate accidental deletion or alteration of your data.
 
-`POST https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/job`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/datarepair/v1/{RSID}/job`
 
 This endpoint requires multiple components:
 
@@ -27,11 +27,10 @@ This endpoint requires multiple components:
 
 ```sh
 curl -X POST -H "accept: application/json" \
-  -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-api-key: {API_KEY/CLIENT_ID}" \
+  -H "x-api-key: {CLIENTID}" \
   -d '{"variables": {"ipaddress": {"action": "delete"}}}' \
-  "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/examplersid/job?validationToken={VALIDATION_TOKEN}&dateRangeStart=YYYY-03-28&dateRangeEnd=YYYY-03-29"
+  "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/datarepair/v1/examplersid/job?validationToken={VALIDATION_TOKEN}&dateRangeStart=YYYY-03-28&dateRangeEnd=YYYY-03-29"
 ```
 
 #### Response
@@ -63,18 +62,16 @@ The `validationToken` is consumed when you create a data repair job. You must us
 
 Use this endpoint to retrieve a list of your data repair jobs that were created for the given Report Suite. It includes both currently running and completed jobs.
 
-`GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/job`
+`GET https://analytics.adobe.io/api/{COMPANY_ID}/datarepair/v1/{RSID}/job`
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET -H "accept: application/json" \
-  -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+curl -X GET "https://analytics.adobe.io/api/exampleco/datarepair/v1/examplersid/job" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-api-key: {API_KEY/CLIENT_ID}" \
-  "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/examplersid/job"
+  -H "x-api-key: {API_KEY/CLIENT_ID}"
 ```
 
 #### Response
@@ -135,18 +132,16 @@ You can call the `/job/{JOB_ID}` endpoint to check on the progress of a data rep
 
 Completion of your data repair job can take hours to days, depending on the date range of the data repair job and the amount of traffic the Report Suite gets per day.
 
-`GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/job/{JOB_ID}`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/datarepair/v1/{RSID}/job/{JOB_ID}`
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET -H "accept: application/json" \
-  -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+curl -X GET "https://analytics.adobe.io/api/exampleco/datarepair/v1/examplersid/job/24" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-api-key: {API_KEY/CLIENT_ID}" \
-  "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/examplersid/job/24"
+  -H "x-api-key: {API_KEY/CLIENT_ID}"
 ```
 
 #### Response

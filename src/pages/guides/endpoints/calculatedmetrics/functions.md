@@ -20,8 +20,7 @@ Returns a full list of calculated metric functions that the user can access.
 ```sh
 curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics/functions" \
   -H "x-api-key: {CLIENTID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: exampleco"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -74,8 +73,7 @@ For example, the following request returns information around the `add` calculat
 ```sh
 curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics/functions/add" \
   -H "x-api-key: {CLIENTID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: exampleco"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response

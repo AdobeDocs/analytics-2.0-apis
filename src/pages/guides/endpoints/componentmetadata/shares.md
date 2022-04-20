@@ -25,12 +25,10 @@ For example, use the `page` and `limit` query strings to only retrieve the first
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares?page=0&limit=3 \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares?page=0&limit=3" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
 ```
 
 #### Response
@@ -87,12 +85,10 @@ For example, return information around the share with ID `11684455`:
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/11684455 \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/11684455" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -132,13 +128,11 @@ This API call sends a JSON request body with search criteria. Adobe returns the 
 #### Request
 
 ```sh
-curl -X POST \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/component/search?page=0&limit=3 \
+curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/component/search?page=0&limit=3" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
   -d '{"componentType": "segment","componentIds": ["92845"]}'
 ```
 
@@ -200,12 +194,10 @@ For example, get all calculated metrics shared with me:
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/sharedto/me?componentType=calculatedMetric \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/sharedto/me?componentType=calculatedMetric" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -240,13 +232,11 @@ For example, share a segment with ID `83045` to a group with ID `38951`:
 #### Request
 
 ```sh
-curl -X POST \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares \
+curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
   -d '{"componentId": "83045",
   "componentType": "segment",
   "shareToId": 38951,
@@ -278,12 +268,10 @@ For example, deletes a share with ID `11439`.
 #### Request
 
 ```sh
-curl -X DELETE \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/11439 \
+curl -X DELETE "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares/11439" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -331,13 +319,11 @@ For example, creates a share to segment with ID `48372` to user with ID `622291`
 #### Request
 
 ```sh
-curl -X PUT \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares \
+curl -X PUT "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/shares" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
   -d '[{"componentType": "segment",
     "componentId": "48372",
     "shares": [{

@@ -55,8 +55,6 @@ You can also refer to the video tutorials:
 
 1. Specify the method from the Postman request dropdown. Click the **Headers** tab. In the Postman Headers table, the **Authorization** KEY contains a corresponding **Bearer** token VALUE.
 
-1. On the next row, add the header KEY `x-proxy-global-company-id` and enter you Global Company ID as the VALUE.
-
 1. On the next row, add the header KEY `x-api-key` and enter your Client ID as the value.
 
     ![Postman Oauth Step 5](../../images/postman-oauth2-step5.png)

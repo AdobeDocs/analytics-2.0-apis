@@ -14,18 +14,16 @@ This endpoint requires two query string parameters:
 
 The date range is based on the time zone of the Report Suite.
 
-`GET https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/{RSID}/serverCallEstimate?dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}`
+`GET https://analytics.adobe.io/api/{GLOBALCOMPANYID}/datarepair/v1/{RSID}/serverCallEstimate?dateRangeStart={YYYY-MM-DD}&dateRangeEnd={YYYY-MM-DD}`
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET -H "accept: application/json" \
-    -H "x-proxy-global-company-id: {ANALYTICS_GLOBAL_COMPANY_ID}" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/datarepair/v1/examplersid/serverCallEstimate?dateRangeStart={YYYY-03-28}&dateRangeEnd={YYYY-03-29}" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
-    -H "x-api-key: {API_KEY/CLIENT_ID}" \
-    "https://analytics.adobe.io/api/{ANALYTICS_GLOBAL_COMPANY_ID}/datarepair/v1/examplersid/serverCallEstimate?dateRangeStart={YYYY-03-28}&dateRangeEnd={YYYY-03-29}"
+    -H "x-api-key: {API_KEY/CLIENT_ID}"
 ```
 
 #### Response

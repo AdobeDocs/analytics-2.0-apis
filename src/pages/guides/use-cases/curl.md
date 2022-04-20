@@ -116,13 +116,15 @@ curl -X GET --header "Accept: application/json" --header "x-api-key: {CLIENT ID}
    }
    ```
 
-1. Use the `globalCompanyId` value in your response (in the above example, it is shown as `testco0`) to test the `GET /users/me` endpoint. To do this, replace the `{GLOBAL COMPANY ID}` parameters in the following request with their corresponding values. Note that `{GLOBAL COMPANY ID}` occurs twice in the following request, once in the `x-proxy-company-global-company-id` header and another in the path:
+2. Use the `globalCompanyId` value in your response (in the above example, it is shown as `testco0`) to test the `GET /users/me` endpoint. To do this, replace the `{COMPANY_ID}` parameters in the following request with their corresponding values.
 
    ```sh
-   curl -X GET  --header "Authorization: Bearer {ACCESS_TOKEN}" --header "x-proxy-global-company-id: {COMPANY_ID}" --header "x-api-key: {CLIENT_ID}" "https://analytics.adobe.io/api/{COMPANY_ID}/users/me"
+   curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/users/me" \
+       -H "x-api-key: {CLIENTID}" \
+       -H "Authorization: Bearer {ACCESSTOKEN}"
    ```
 
-1. Replace `{ACCESS_TOKEN}` and `{CLIENT_ID}` in the above request with their respective values.
-1. Run the cURL command. The response includes information about the analytics user.
+3. Replace `{ACCESSTOKEN}` and `{CLIENTID}` in the above request with their respective values.
+4. Run the cURL command. The response includes information about the analytics user.
 
 Use your `access token`, `global company id` and `client ID` to make calls to the APIs. You can use the [API reference](../../apis/index.md) as an easy way to explore calling the Analytics APIs.

@@ -25,13 +25,10 @@ For example, use the `page` and `limit` query strings to only retrieve the first
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags?page=0&limit=3 \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags?page=0&limit=3" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -76,13 +73,10 @@ For example, get details around a tag with the ID of `35632`:
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/35632 \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/35632" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -114,13 +108,10 @@ This API call requires the `tagNames` query string. Query string values include 
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/tagnames?tagNames=Sales,Marketing&componentType=calculatedMetric \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/tagnames?tagNames=Sales,Marketing&componentType=calculatedMetric" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -162,13 +153,10 @@ For example, retrieve the tags associated with two bookmarks:
 #### Request
 
 ```sh
-curl -X GET \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/search?componentId=bookmark1,bookmark2&componentType=bookmark \
+curl -X GET "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/search?componentId=bookmark1,bookmark2&componentType=bookmark" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}'
 ```
 
 #### Response
@@ -224,13 +212,11 @@ This API call sends a JSON request body with search criteria. Adobe returns the 
 #### Request
 
 ```sh
-curl -X POST \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/component/search?page=0&limit=3 \
+curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/component/search?page=0&limit=3" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
   -d '{"componentType": "project", "componentIds": ["component-id-556"]}'
 ```
 
@@ -306,13 +292,11 @@ The following example API call performs several actions:
 #### Request
 
 ```sh
-curl -X POST \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags \
+curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
   -d '[{ 
       "name":"sales",
       "description":"Sales Department",
@@ -398,13 +382,10 @@ For example, deletes a tag with the ID `38945` and untags all components associa
 #### Request
 
 ```sh
-curl -X DELETE \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/38945 \
+curl -X DELETE "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/38945" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
 ```
 
 #### Response
@@ -448,13 +429,10 @@ For example, remove all tags associated with two segments.
 #### Request
 
 ```sh
-curl -X DELETE \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags?componentIds=segment1,segment2&componentType=segment \
+curl -X DELETE "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags?componentIds=segment1,segment2&componentType=segment" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
-  -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
 ```
 
 #### Response
@@ -506,13 +484,11 @@ For example, this API call performs several actions:
 #### Request
 
 ```sh
-curl -X PUT \
-  https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/tagitems \
+curl -X PUT "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/componentmetadata/tags/tagitems" \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {ACCESSTOKEN}' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {APIKEY}' \
-  -H 'x-proxy-global-company-id: {GLOBALCOMPANYID}' \
+  -H 'x-api-key: {CLIENTID}' \
   -d '[{"componentType":"project",
       "componentId":"component-id-1",
       "tags":[{

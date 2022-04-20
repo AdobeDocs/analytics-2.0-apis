@@ -22,10 +22,7 @@ For example, get a response localized in English, limited to the first page, wit
 ```sh
 curl -X GET "https://analytics.adobe.io/api/exampleco/projects?locale=en_US&limit=3&page=0" \
     -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "Accept: application/json" \
-    -H "Content-Type: application/json"
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
 #### Response
@@ -99,11 +96,8 @@ For example, find details around the project with an ID of `6091a`:
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/exampleco/projects/6091a" \
-    -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "Accept: application/json" \
-    -H "Content-Type: application/json"
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
 #### Response
@@ -136,11 +130,8 @@ For example, delete a project with the ID of `c7706c`:
 
 ```sh
 curl -X DELETE "https://analytics.adobe.io/api/exampleco/projects/c7706c" \
-    -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "Accept: application/json" \
-    -H "Content-Type: application/json"
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
 #### Response
@@ -165,12 +156,10 @@ For example, only update the name of the project with an ID of `cdd751`:
 
 ```sh
 curl -X PUT "https://analytics.adobe.io/api/exampleco/projects/cdd751" \
-    -H "x-api-key: {OAUTHTOKEN}" \
-    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
+    -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "Accept: application/json" \
     -H "Content-Type: application/json" \
-    -d "{'name':'Different project name'}"
+    -d '{"name":"Different project name"}'
 ```
 
 #### Response
@@ -205,11 +194,9 @@ For example, validate a basic project against the report suite `apptestpnwtest`:
 
 ```sh
 curl -X POST "https://analytics.adobe.io/api/exampleco/projects/validate?rsid=apptestpnwtest" \
-    -H "x-api-key: {OAUTHTOKEN}" \
+    -H "x-api-key: {CLIENTID}" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
-    -H "x-proxy-global-company-id: {GLOBALCOMPANYID}" \
     -d '{
         "project": {
             "id": "6091a10005c7706c0acdd751",

@@ -20,7 +20,7 @@ The following example requests the user's information for company logins:
 #### Request
 
 ```sh
-curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
+curl -X GET --header "x-api-key: {CLIENTID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
 ```
 
 #### Response

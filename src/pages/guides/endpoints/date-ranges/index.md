@@ -21,11 +21,8 @@ For example, get a response localized in English, limited to the first page, wit
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/exampleco/dateranges?locale=en_US&limit=3&page=0" \
-    -H "x-api-key: [oauth token]" \
-    -H "x-proxy-global-company-id: [company name]" \
-    -H "Authorization: Bearer [ims user token]" \
-    -H "Accept: application/json" \
-    -H "Content-Type: application/json"
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
 #### Response
@@ -89,11 +86,8 @@ For example, get a date range with ID `839455` and also include its definition.
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/exampleco/dateranges/839455?expansion=definition" \
-    -H "x-api-key: [oauth token]" \
-    -H "x-proxy-global-company-id: [company id]" \
-    -H "Authorization: Bearer [ims user token]" \
-    -H "Accept: application/json" \
-    -H "Content-Type: application/json"
+    -H "x-api-key: {CLIENTID}" \
+    -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
 #### Response
