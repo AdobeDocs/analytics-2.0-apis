@@ -18,7 +18,7 @@ Use of the Data Repair API permanently deletes or edits existing Adobe Analytics
 Before using the Data Repair API, make sure that all the following prerequisites are met:
 
 * Confirm that your Sales Order includes the use of the Data Repair API. The Data Repair API is a paid service. Reach out to your Adobe Account Manager for details and confirmation of your status.
-* You successfully authenticate with the Adobe Analytics 2.0 API using a JSON Web Token (JWT). OAuth is not supported. See [Getting started with the Analytics API](../../index.md) to make sure that you have the correct API permissions in the Adobe Admin Console, create an API client on Adobe I/O, and that you successfully authenticate. Make sure that you include the "Data Repair API" permission item when creating a product profile in the Adobe Admin Console.
+* You successfully authenticate with the Adobe Analytics 2.0 API using a JSON Web Token (JWT). OAuth is not supported. See [Getting started with the Analytics API](../../index.md) to make sure that you have the correct API permissions in the Adobe Admin Console, create an API client on Adobe Developer, and that you successfully authenticate. Make sure that you include the "Data Repair API" permission item when creating a product profile in the Adobe Admin Console.
 
    ![data repair permission](../../../images/data-repair-permission.png)
 

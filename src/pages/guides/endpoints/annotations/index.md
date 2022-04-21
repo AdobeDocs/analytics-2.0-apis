@@ -5,7 +5,7 @@ description: Create, edit, or delete annotations using the API.
 
 # Annotations API
 
-The Analytics 2.0 Annotations APIs allow you to retrieve, update, or create annotations programmatically through Adobe I/O. These APIs use the same data and methods that Adobe uses inside the product UI.
+The Analytics 2.0 Annotations APIs allow you to retrieve, update, or create annotations programmatically through Adobe Developer. These APIs use the same data and methods that Adobe uses inside the product UI.
 
 ## Retrieve multiple annotations
 

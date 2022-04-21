@@ -5,7 +5,7 @@ description: Determine what components are shared with whom in your organization
 
 # Shares API
 
-The Analytics 2.0 Shares APIs allow you to retrieve, update, or create associations with components programmatically through Adobe I/O. The APIs use the same data and methods that Adobe uses in the product UI.
+The Analytics 2.0 Shares APIs allow you to retrieve, update, or create associations with components programmatically through Adobe Developer. The APIs use the same data and methods that Adobe uses in the product UI.
 
 ## Retrieve multiple shares
 

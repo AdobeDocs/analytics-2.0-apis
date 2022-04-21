@@ -5,7 +5,7 @@ description: Add, edit, or delete calculated metrics using the API.
 
 # Calculated metrics API
 
-The Analytics 2.0 Calculated Metrics APIs allow you to retrieve, update, or create calculated metrics programmatically through Adobe I/O. The APIs use the same data and methods that are used when working with calculated metrics in the UI. See [Calculated metrics](https://experienceleague.adobe.com/docs/analytics/components/calculated-metrics/cm-overview.html) in the Analytics Components guide for more information.
+The Analytics 2.0 Calculated Metrics APIs allow you to retrieve, update, or create calculated metrics programmatically through Adobe Developer. The APIs use the same data and methods that are used when working with calculated metrics in the UI. See [Calculated metrics](https://experienceleague.adobe.com/docs/analytics/components/calculated-metrics/cm-overview.html) in the Analytics Components guide for more information.
 
 ## Predefined calculated metrics
 

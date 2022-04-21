@@ -16,7 +16,7 @@ The file ingestion endpoint is found here.
 Include all of the required headers with each API call:
 
 * **`Authorization`**: Required for authentication with the API. Format is the string `"Bearer {ACCESS_TOKEN}`.
-* **`x-api-key`**: Required for authentication with the API. Found in the Adobe I/O console under the JWT service credentials as "Client ID".
+* **`x-api-key`**: Required for authentication with the API. Found in the Adobe Developer console under the JWT service credentials as "Client ID".
 * **`x-adobe-vgid`**: Required for this endpoint. The visitor group ID. See [Visitor groups](visitor-groups.md).
 * **`x-adobe-idempotency-key`**: Optional. Allows you to store a reference to your unique file identifier for the upload. This value can be used for duplication protection in cases when your request does not return a response from Adobe.
 

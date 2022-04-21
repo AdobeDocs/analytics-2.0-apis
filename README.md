@@ -4,7 +4,7 @@ This is the source repository for the [Adobe Analytics 2.0 API documentation](ht
 
 Most help content is located under `src/pages/guides/endpoints/`.
 
-This site was built with [Adobe I/O Gatsby Theme](https://github.com/adobe/gatsby-theme-aio).
+This site was built with [Adobe Developer Gatsby Theme](https://github.com/adobe/gatsby-theme-aio).
 
 <!-- View the [demo](https://adobedocs.github.io/dev-site-documentation-template/) running on Github Pages.  
 

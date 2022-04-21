@@ -9,7 +9,7 @@ description: Send API calls to Adobe using the Postman API client.
 
 For OAuth authentication in Postman, you will need the following:
 
-* The **Client ID**, **Client Secret**, and **Default Redirect URI** from your integration on the Adobe I/O console.
+* The **Client ID**, **Client Secret**, and **Default Redirect URI** from your integration on the Adobe Developer console.
 * Your **Global Company ID**.
 
 ## Configure the Request
@@ -38,8 +38,8 @@ You can also refer to the video tutorials:
     | Callback URL          | Enter your OAuth client default redirect URI |
     | Auth URL              | <https://ims-na1.adobelogin.com/ims/authorize/v1> |
     | Access Token URL      | <https://ims-na1.adobelogin.com/ims/token/v1> |
-    | Client ID             | Enter your Client ID from Adobe I/O |
-    | Client Secret         | Enter your Client Secret from Adobe I/O |
+    | Client ID             | Enter your Client ID from Adobe Developer |
+    | Client Secret         | Enter your Client Secret from Adobe Developer |
     | Scope                 | Enter `openid,AdobeID,read_organizations,additional_info.projectedProductContext,additional_info.job_function` |
     | Client Authentication | Select **Send client credentials in body** from the dropdown |
 

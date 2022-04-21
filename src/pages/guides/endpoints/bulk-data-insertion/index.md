@@ -17,7 +17,7 @@ Bulk Data Insertion solves several problems for a variety of use cases. Some use
 
 Before using this API, make sure that all of the following are met:
 
-* You can successfully authenticate with the API using JWT. OAuth is not supported. See [Getting started](../../index.md) to make sure that you have the correct permissions and have created an API client on Adobe I/O.
+* You can successfully authenticate with the API using JWT. OAuth is not supported. See [Getting started](../../index.md) to make sure that you have the correct permissions and have created an API client on Adobe Developer.
 * The desired report suite is timestamp-enabled or timestamp optional. See [Timestamps optional](https://experienceleague.adobe.com/docs/analytics/technotes/timestamps-optional.html) in the Adobe Analytics documentation. All newly created report suites are set to timestamp optional by default.
 * Communicate to Adobe the expected volume of ingestion per day. Based on this information, Adobe provisions the appropriate hardware to handle that volume and creates a per-second throttle limit. If enough files are uploaded in a short amount of time to exceed the throttle limit, Adobe ingests uploaded files more slowly. These limits help ensure timely processing and availability of data for reporting. They also help protect the system from becoming overwhelmed before proper capacity is provisioned for a sharp increase in file uploads.
 * Follow the established [File formatting requirements](file-format.md) for each upload.

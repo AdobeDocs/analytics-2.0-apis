@@ -5,7 +5,7 @@ description: Create, edit, or delete date ranges using the API.
 
 # Date ranges API
 
-The Analytics 2.0 Date Range APIs allow you to retrieve, update, or create date ranges programmatically through Adobe I/O. These APIs use the same data and methods that Adobe uses inside the product UI.
+The Analytics 2.0 Date Range APIs allow you to retrieve, update, or create date ranges programmatically through Adobe Developer. These APIs use the same data and methods that Adobe uses inside the product UI.
 
 ## Retrieve multiple date ranges
 

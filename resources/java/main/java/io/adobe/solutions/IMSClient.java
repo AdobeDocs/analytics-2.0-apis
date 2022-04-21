@@ -68,7 +68,7 @@ public class IMSClient {
 		// $ openssl req -nodes -text -x509 -newkey rsa:2048 -keyout secret.pem -out
 		// certificate.pem -days 356
 		//
-		// Upload the certificate.pem in Adobe IO Console-> Your Integration-> Public
+		// Upload the certificate.pem in Adobe Developer Console-> Your Integration-> Public
 		// keys
 		//
 		// # convert private key to DER format

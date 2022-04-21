@@ -25,9 +25,9 @@ Ask/answer questions, participate in discussions, or submit ideas around the Ana
 
 <DiscoverBlock slots="link, text" width="25%"/>
 
-[Adobe I/O forum](https://experienceleaguecommunities.adobe.com/t5/adobe-i-o-console/ct-p/adobe-io-console) 
+[Adobe Developer forum](https://experienceleaguecommunities.adobe.com/t5/adobe-i-o-console/ct-p/adobe-io-console)
 
-Ask/answer questions or participate in discussions around the Adobe I/O console.
+Ask/answer questions or participate in discussions around the Adobe Developer console.
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 

@@ -8,7 +8,7 @@ description: Learn the first steps that you can take to start using the Analytic
 There are several steps to take before using the Analytics APIs.
 
 * **Permissions**: Configure permissions for the developer in the Adobe Admin Console.
-* **API Client**: Create a client configuration in the Adobe I/O Console.
+* **API Client**: Create a client configuration in the Adobe Developer Console.
 * **Authentication**: Obtain the necessary credentials to send data to Adobe.
 
 ## Permissions
@@ -44,7 +44,7 @@ At this point, you decide how you want to authenticate with the API.
 
 Adobe offers two primary methods to authenticate:
 
-* **OAuth**: Use your own account to authenticate with the API. See [OAuth connection](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/OAuthIntegration.md) in the Adobe I/O Authentication user guide.
-* **JWT**: Use a service account to authenticate with the API. See [JSON web token](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWTCertificate.md) in the Adobe I/O Authentication user guide.
+* **OAuth**: Use your own account to authenticate with the API. See [OAuth connection](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/OAuthIntegration.md) in the Adobe Developer Authentication user guide.
+* **JWT**: Use a service account to authenticate with the API. See [JSON web token](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWTCertificate.md) in the Adobe Developer Authentication user guide.
 
 Choose your desired authentication method, and complete the remaining steps to finish the API client wizard.
