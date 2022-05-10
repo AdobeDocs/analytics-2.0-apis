@@ -117,7 +117,7 @@
 	right: 0px;
 	height: auto;
 	min-height: 60px;
-	background-color: #ffffff;
+	background-color: #000000;
 }
 
 .swagger-section #controls {
@@ -146,13 +146,19 @@
   text-align:center;
 }
 
+.button::-moz-focus-inner{
+  border: 0;
+  padding: 0;
+}
+
 .button.spectrum{
 	align-items: center;
 	background-color: rgb(20,115,230);
 	border-color: rgb(20,115,230);
 	border-radius: 16px;
 	border-width: 2px;
-	font-family: adobe-clean, "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Trebuchet MS", "Lucida Grande", sans-serif;
+	border-style: solid;
+	font-family: adobe-clean, Helvetica, Arial, sans-serif;
 	box-shadow: none;
 	cursor: pointer;
 	display: inline-flex;
@@ -170,17 +176,22 @@
 	text-decoration-color: #ffffff;
 	text-decoration-line: none;
 	text-decoration-style: solid;
+	color:white;
 }
 </style>
 
 <body class="swagger-section">
+	<div id='header'>
+		<div class="swagger-ui-wrap">
+			<a id="logo">Adobe Analytics</a>
+		</div>
+	</div>
 	<div id="controls-wrap">
 		<div id="controls-ui-container">
 			<div id="controls">
 				<form id='api_selector'>
-					<div id='login-container' style='display:block'>
-						<label>To start using the Analytics APIs you first need to login:</label>
-						<button class="spectrum button" type="button" id="button_login" style="margin-left:5px">Login</button>
+					<div id='login-container' style='display:block;margin-left:auto;margin-right:10px;'>
+						<button class="spectrum button" type="button" id="button_login" style="margin-left:5px">Sign in</button>
 					</div>
 					<div id='select-company-container' style='display:none'>
 						<div id='select-company-dropdown-container' style='display:inline'>
