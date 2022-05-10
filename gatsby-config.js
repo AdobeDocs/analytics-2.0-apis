@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         title: 'API Reference',
-        path: 'spec/index.html'
+        path: 'api.html'
       },
       {
         title: 'Support',
