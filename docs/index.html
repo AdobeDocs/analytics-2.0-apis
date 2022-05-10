@@ -97,7 +97,7 @@
 
 <style>
 .swagger-section #header {
-	background-color: #000000;
+	background-color: #ffffff;
 	padding: 14px;
 }
 
@@ -117,7 +117,7 @@
 	right: 0px;
 	height: auto;
 	min-height: 60px;
-	background-color: #000000;
+	background-color: #ffffff;
 }
 
 .swagger-section #controls {
@@ -126,7 +126,7 @@
 	margin-right: auto;
 	text-decoration: none;
 	font-family: adobe-clean, Helvetica, Arial, sans-serif;
-	color: white;
+	color: black;
 }
 
 .swagger-section #companySelector {
@@ -188,20 +188,20 @@
 	</div>
 	<div id="controls-wrap">
 		<div id="controls-ui-container">
-			<div id="controls">
+			<div id="controls" style="margin-left:auto;margin-right:19px;">
 				<form id='api_selector'>
-					<div id='login-container' style='display:block;margin-left:auto;margin-right:10px;'>
-						<button class="spectrum button" type="button" id="button_login" style="margin-left:5px">Sign in</button>
+					<div style='display:block;'>
+						<button class="spectrum button" type="button" id="button_login">Sign in</button>
 					</div>
 					<div id='select-company-container' style='display:none'>
 						<div id='select-company-dropdown-container' style='display:inline'>
 							<label>Select Company:</label>
-							<select id="companySelector"/></select>
+							<select id="companySelector"></select>
 						</div>
 						<div id='no-companies-available-container' style='display:none'>
 							<label>User does not have access to any Analytics Companies</label>
 						</div>
-						<button class="spectrum button" type="button" id="button_logout" style="margin-left:5px">Logout</button>
+						<button class="spectrum button" type="button" id="button_logout">Logout</button>
 					</div>
 					<input id="input_accessToken" name="accessToken" type="hidden" value=""/>
 				</form>
