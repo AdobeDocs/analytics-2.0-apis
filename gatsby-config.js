@@ -37,25 +37,8 @@ module.exports = {
         path: 'guides'
       },
       {
-        title: 'API References',
-        menu: [
-          {
-            title: 'Adobe Analytics 2.0 APIs',
-            path: 'apis/index.md'
-          },
-          {
-            title: 'Bulk Data Insertion API Reference',
-            path: 'apis/bulk-data-insertion.md'
-          },
-          {
-            title: 'Data Repair API Reference',
-            path: 'apis/data-repair.md'
-          },
-          {
-            title: 'Report Suite API Reference',
-            path: 'apis/report-suites.md'
-          }
-        ]
+        title: 'API Reference',
+        path: 'spec/index.html'
       },
       {
         title: 'Support',
