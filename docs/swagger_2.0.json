@@ -2499,7 +2499,7 @@
         },
         "post": {
           "tags": [
-            "Virtual Report Suites"
+            "reportsuites"
           ],
           "summary": "Creates a new virtual report suite",
           "description": "Creates a virtual report suite. The following attributes are required when creating a virtual report suite: name, parentRsid, and segmentList",
@@ -2656,7 +2656,7 @@
         },
         "put": {
           "tags": [
-            "Virtual Report Suites"
+            "reportsuites"
           ],
           "summary": "Update configuration for a virtual report suite",
           "operationId": "userUpdateVirtualReportSuite",
@@ -2737,7 +2737,7 @@
         },
         "delete": {
           "tags": [
-            "Virtual Report Suites"
+            "reportsuites"
           ],
           "summary": "Delete virtual report suite",
           "description": "Deletes or disables a virtual report suite by ID",
