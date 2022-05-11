@@ -38,7 +38,7 @@ module.exports = {
       },
       {
         title: 'API Reference',
-        path: 'api.html'
+        path: 'https://adobedocs.github.io/analytics-2.0-apis/'
       },
       {
         title: 'Support',
