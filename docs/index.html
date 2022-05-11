@@ -244,7 +244,7 @@
 					var analyticsBaseUrl = 'https://analytics.adobe.io';
 					if(curUrl.startsWith(analyticsBaseUrl)) {
 						var globalCompanyId = document.getElementById('companySelector').value;
-						req.headers['x-proxy-global-company-id'] = globalCompanyId;
+						//req.headers['x-proxy-global-company-id'] = globalCompanyId;
 						var endPath = curUrl.split(analyticsBaseUrl)[1];
 						req.url = analyticsBaseUrl + '/api/' + globalCompanyId + endPath;
 					}
