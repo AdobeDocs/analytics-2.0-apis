@@ -2,7 +2,8 @@
   "swagger": "2.0",
   "info": {
     "description": "The endpoints described here are routed through Adobe.io. In order to use these endpoints you must create an oAuth client that is subscribed to access the Adobe Analytics Reporting API.",
-    "title": "Adobe Analytics APIs"
+    "title": "Adobe Analytics APIs",
+    "version": "1.0"
   },
   "host": "analytics.adobe.io",
   "basePath": "/",
@@ -47,9 +48,7 @@
       "name": "usagelogs"
     }
   ],
-  "schemes": [
-    "https"
-  ],
+
   "paths": {
     "/annotations": {
       "get": {
@@ -161,7 +160,7 @@
             "in": "query",
             "description": "Sort direction (ASC or DESC",
             "required": false,
-            "type": "int",
+            "type": "integer",
             "default": "ASC"
           },
           {
@@ -173,26 +172,7 @@
             "default": "id"
           }
         ],
-        "security": [
-          {
-            "Access Token": []
-          },
-          {
-            "Global Company ID": []
-          },
-          {
-            "Company ID": []
-          },
-          {
-            "User ID": []
-          },
-          {
-            "Company Name": []
-          },
-          {
-            "User Name": []
-          }
-        ],
+
         "responses": {
           "200": {
             "description": "successful operation",
@@ -265,26 +245,7 @@
             "default": "en_US"
           }
         ],
-        "security": [
-          {
-            "Access Token": []
-          },
-          {
-            "Global Company ID": []
-          },
-          {
-            "Company ID": []
-          },
-          {
-            "User ID": []
-          },
-          {
-            "Company Name": []
-          },
-          {
-            "User Name": []
-          }
-        ],
+
         "responses": {
           "200": {
             "description": "successful operation",
@@ -357,26 +318,7 @@
             "default": "en_US"
           }
         ],
-        "security": [
-          {
-            "Access Token": []
-          },
-          {
-            "Global Company ID": []
-          },
-          {
-            "Company ID": []
-          },
-          {
-            "User ID": []
-          },
-          {
-            "Company Name": []
-          },
-          {
-            "User Name": []
-          }
-        ],
+
         "responses": {
           "200": {
             "description": "successful operation",
@@ -456,26 +398,7 @@
             "default": "en_US"
           }
         ],
-        "security": [
-          {
-            "Access Token": []
-          },
-          {
-            "Global Company ID": []
-          },
-          {
-            "Company ID": []
-          },
-          {
-            "User ID": []
-          },
-          {
-            "Company Name": []
-          },
-          {
-            "User Name": []
-          }
-        ],
+
         "responses": {
           "200": {
             "description": "successful operation",
@@ -512,26 +435,7 @@
             "default": "en_US"
           }
         ],
-        "security": [
-          {
-            "Access Token": []
-          },
-          {
-            "Global Company ID": []
-          },
-          {
-            "Company ID": []
-          },
-          {
-            "User ID": []
-          },
-          {
-            "Company Name": []
-          },
-          {
-            "User Name": []
-          }
-        ],
+
         "responses": {
           "200": {
             "description": "successful operation",
