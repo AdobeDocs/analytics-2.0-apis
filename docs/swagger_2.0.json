@@ -78,7 +78,6 @@
                 "color",
                 "applyToAllReports",
                 "scope",
-                "deleted",
                 "createdDate",
                 "modifiedDate",
                 "modifiedById",
@@ -108,7 +107,6 @@
               "type": "string",
               "enum": [
                 "all",
-                "deleted",
                 "shared"
               ]
             },
@@ -230,7 +228,6 @@
                 "color",
                 "applyToAllReports",
                 "scope",
-                "deleted",
                 "createdDate",
                 "modifiedDate",
                 "modifiedById",
@@ -325,7 +322,6 @@
                 "color",
                 "applyToAllReports",
                 "scope",
-                "deleted",
                 "createdDate",
                 "modifiedDate",
                 "modifiedById",
@@ -416,7 +412,6 @@
                 "color",
                 "applyToAllReports",
                 "scope",
-                "deleted",
                 "createdDate",
                 "modifiedDate",
                 "modifiedById",
