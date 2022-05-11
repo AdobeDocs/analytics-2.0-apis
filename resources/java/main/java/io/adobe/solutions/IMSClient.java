@@ -186,7 +186,7 @@ public class IMSClient {
 		// Add x-api-key header
 		con.setRequestProperty("x-api-key", apiKey);
 		// Add x-proxy-global-company-id header
-		//con.setRequestProperty("x-proxy-global-company-id", globalCompanyId);
+		con.setRequestProperty("x-proxy-global-company-id", globalCompanyId);
 
 		System.out.println("Sending 'GET' request to URL: " + usersMeUrl);
 		

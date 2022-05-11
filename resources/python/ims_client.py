@@ -54,7 +54,7 @@ def get_users_me(config, global_company_id, access_token):
         headers={
             "Authorization": "Bearer {}".format(access_token),
             "x-api-key": config["apikey"],
-            "x-proxy-global-company-id": global_company_id
+            #"x-proxy-global-company-id": global_company_id
         }
     )
     return response.json()
