@@ -9,13 +9,16 @@
   "basePath": "/",
   "tags": [
     {
+      "name": "annotations"
+    },
+    {
       "name": "calculatedmetrics"
     },
     {
       "name": "collections"
     },
     {
-      "name": "component-metadata - tags"
+      "name": "componentmetadata"
     },
     {
       "name": "dateranges"
@@ -25,6 +28,9 @@
     },
     {
       "name": "metrics"
+    },
+    {
+      "name": "projects"
     },
     {
       "name": "reports"
@@ -1338,7 +1344,7 @@
     "/componentmetadata/tags/component/search": {
       "post": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "search for tags for several components at once",
         "description": "",
@@ -1389,7 +1395,7 @@
     "/componentmetadata/tags": {
       "get": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Returns a list of tags for the current user's company",
         "description": "",
@@ -1432,7 +1438,7 @@
       },
       "post": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Saves the given tag(s) for the current user's company",
         "description": "Allows creation of a new tag and applies that new tag to the passed component",
@@ -1474,7 +1480,7 @@
       },
       "delete": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Disassociates all tags from the given components",
         "description": "Removes all tags from the passed componentIds. Note that currently this is done in a single DB query, so there is a single combined response for the entire operation.",
@@ -1537,7 +1543,7 @@
     "/componentmetadata/tags/search": {
       "get": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Retrieves a tags for a given component by componentId and componentType",
         "description": "Given a componentId, return all tags associated with that component",
@@ -1597,7 +1603,7 @@
     "/componentmetadata/tags/tagitems": {
       "put": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Tag a component with one or many tags at once. WARNING: Authoritative; deletes/overwrites all pre-existing associations",
         "description": "This endpoint allows many tags at once to be created/deleted. Any tags passed to this endpoint will become the *only* tags for that componentId (all other tags will be removed).",
@@ -1641,7 +1647,7 @@
     "/componentmetadata/tags/{id}": {
       "get": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Retrieves an tag by its id",
         "description": "",
@@ -1676,7 +1682,7 @@
       },
       "delete": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Removes the tagId and all associations from that tag to any components",
         "description": "Delete by tagId. Will un-tag any/all components that were associated with the passed tagId.",
@@ -1719,7 +1725,7 @@
     "/componentmetadata/tags/tagnames": {
       "get": {
         "tags": [
-          "component-metadata - tags"
+          "componentmetadata"
         ],
         "summary": "Retrieves component ids associated with the given tag names",
         "description": "Given a comma separated list of tag names, return component ids associated with them.",
