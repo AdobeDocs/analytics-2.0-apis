@@ -4056,6 +4056,117 @@
     }
   },
   "definitions": {
+    "AnalyticsAnnotation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string",
+          "enum": [
+            "STANDARD1",
+            "STANDARD2",
+            "STANDARD3",
+            "STANDARD4",
+            "STANDARD5",
+            "STANDARD6",
+            "STANDARD7",
+            "STANDARD8",
+            "STANDARD9"
+          ]
+        },
+        "applyToAllReports": {
+          "type": "boolean"
+        },
+        "scope": {
+          "$ref": "#/definitions/AnnotationScope"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modifiedById": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "shares": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "favorite": {
+          "type": "boolean"
+        },
+        "usageSummary": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "systemUserOwned": {
+          "type": "boolean"
+        },
+        "owner": {
+          "$ref": "#/definitions/Owner"
+        },
+        "companyId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "reportSuiteName": {
+          "type": "string"
+        },
+        "rsid": {
+          "type": "string"
+        }
+      }
+    },
+    "AnnotationScope": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScopeMetric"
+          }
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScopeFilter"
+          }
+        }
+      }
+    },
     "AnalyticsAsrErrorResponse": {
       "properties": {
         "errorDescription": {
@@ -4941,6 +5052,21 @@
         }
       }
     },
+    "ComponentSearch": {
+      "type": "object",
+      "properties": {
+        "componentType": {
+          "type": "string"
+        },
+        "componentIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "Column": {
       "type": "object",
       "properties": {
@@ -5786,6 +5912,40 @@
         }
       }
     },
+    "ScopeFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "operator": {
+          "type": "string"
+        },
+        "dimensionType": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "componentType": {
+          "type": "string"
+        }
+      }
+    },
+    "ScopeMetric": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "componentType": {
+          "type": "string"
+        }
+      }
+    },
     "SegmentCompatibility": {
       "type": "object",
       "properties": {
@@ -6001,21 +6161,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/RowItem"
-          }
-        }
-      }
-    },
-    "ComponentSearch": {
-      "type": "object",
-      "properties": {
-        "componentType": {
-          "type": "string"
-        },
-        "componentIds": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
           }
         }
       }
