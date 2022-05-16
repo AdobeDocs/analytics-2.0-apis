@@ -26,9 +26,9 @@ Before using the Data Repair API, make sure that all the following prerequisites
 
 Adobe recommends a careful and methodical approach when using the Data Repair API due to its ability to permanently delete or edit your data. The following steps provide multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected. Adobe recommends that you create a data repair job for each of the following in order:
 
-* A **development** Report Suite for **one day** of data.
+* A **development** Report Suite for **one day** (ideally the first) of data.
 * A **development** Report Suite for **one month** of data.
-* The **production** Report Suite for **one day** of data.
+* The **production** Report Suite for **one day** (ideally the first) of data.
 * The **production** Report Suite for **one month** of data.
 * Once all of your testing and validation is complete, you can proceed with the **full date range** of the data repair for **production** data.
 
