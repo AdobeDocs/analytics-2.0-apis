@@ -23,9 +23,17 @@ If you run a report in Adobe Analytics referencing a dimension and date range pr
 
 An eVar value can exist across multiple hits or visits depending on the expiration of the eVar.  Consequently, when repairing an eVar, it is important that you check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. See [Conversion Variables](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) in the Adobe Analytics Admin user guide for more information on eVar expiration and resetting persisted values.
 
+## How do late arriving hits work when repairing data?
+
+If late arriving hits are passed in after a repair has run for the time period included in the repair, it's possible for repaired values to be reintroduced.  Ideally, repairs would not be run on months that are still changing.  However, if that can't be guaranteed, we advise using the "Reset" option for the variable.  Take care, as this expires the evar for all active visits, not just those involved in a potentional repair.
+
 ## Can I repair a disabled variable?  Or do I need to enable it first?
 
 Data Repair will work on enabled or disabled variables.  You do not need to enable a variable in order for Data Repair to act on it.
+
+## Why aren't my URL repairs updating data as expected?
+
+When applying a URL operator (`deleteQueryString` or `deleteQueryStringParameters`), Data Repair will validate the value is a well formed URL before taking any action.  The most common mistake is having unencoded characters (the space character, most commonly) in the URL values.
 
 ## What are some limitations of using this tool?
 
