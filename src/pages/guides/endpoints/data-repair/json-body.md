@@ -70,7 +70,11 @@ Each variable requires an action. The Data Repair API supports the following fou
 * **`set`**: Overwrites the variable to the value in the `setValue` property. Include the `setValue` property alongside the `action` property inside the variable. It supports all filters by default; however, some variables do not support all filters for this action. See the above table to confirm that a variable supports a filter with this action.
 * **`delete`**: Clears the variable value. It supports all filters except `isEmpty` by default. Some variables do not support all filters for this action. See the above table to confirm that a variable supports a filter with this action.
 * **`deleteQueryString`**: Remove the entire query string from a variable value. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.
-* **`deleteQueryStringParameters`**: Remove one or more query string parameters and their values from a variable. The query parameters removed are based on the string array `parameters`. Include the `parameters` array alongside the `action` property inside the variable. Up to 10 parameters are supported. If the value does not appear to be a URL, no action is taken. Filters are not supported with this action.  Note: these parameters much match the query string parameters exactly, including case, to be applied.
+* **`deleteQueryStringParameters`**: Remove one or more query string parameters and their values from a variable. The query parameters removed are based on the string array `parameters`. Include the `parameters` array alongside the `action` property inside the variable.
+  * Up to 10 parameters are supported.
+  * Parameters are case sensitive.
+  * Filters are not supported with this action.
+  * If the value is not a correctly formatted URL, no action is taken.
 
 <CodeBlock slots="heading, code" repeat="4" languages="JSON,JSON,JSON,JSON"/>
 
@@ -128,7 +132,7 @@ Each variable requires an action. The Data Repair API supports the following fou
 
 The `set` and `delete` actions support filters, which allow you to selectively repair certain rows based on the filter criteria. Check the above variable table to make sure that an action supports the desired filter. The `deleteQueryString` and `deleteQueryStringParameters` actions do not support any filters.
 
-All filters are currently compared in a case sensitive manner, so the any string matches must be exact.  There are plans to update these checks to be case insensitive.
+All filters are currently case sensitive. Support for filters that are not case sensitive is planned.
 
 * **`inList`**: Include all rows where the variable contains at least one value from the `matchValues` array. The `matchValues` array can hold up to 1000 values.
 * **`isEmpty`**: Only include rows where the variable does not contain a value. Cannot be used with the `delete` action.

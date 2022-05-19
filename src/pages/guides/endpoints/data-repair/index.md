@@ -26,9 +26,9 @@ Before using the Data Repair API, make sure that all the following prerequisites
 
 Adobe recommends a careful and methodical approach when using the Data Repair API due to its ability to permanently delete or edit your data. The following steps provide multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected. Adobe recommends that you create a data repair job for each of the following in order:
 
-* A **development** Report Suite for **one day** (ideally the first) of data.
+* A **development** Report Suite for **one day** of data, ideally the first day in the desired range.
 * A **development** Report Suite for **one month** of data.
-* The **production** Report Suite for **one day** (ideally the first) of data.
+* The **production** Report Suite for **one day**  of data, ideally the first day in the desired range.
 * The **production** Report Suite for **one month** of data.
 * Once all of your testing and validation is complete, you can proceed with the **full date range** of the data repair for **production** data.
 
@@ -36,8 +36,8 @@ The following steps provide a typical Data Repair API request workflow:
 
 1. **Estimate repair size**: The Data Repair API incurs charges based on the number of Data Rows Scanned. The [Server call estimate](server-call-estimate.md) endpoint is a required step to help you estimate the cost of a repair. It returns a count of the Server Call volume for the Report Suite date range. The endpoint also returns a `validationToken`, which is required for step 2.
 
-1. **Create a data repair job**: Use the [Job](job.md) endpoint to create a data repair job. This endpoint requires a Report Suite, date range, `validationToken` (from [Server call estimate](server-call-estimate.md)), and a [Job definition](json-body.md). A Job ID is returned when a data repair job is created.
+2. **Create a data repair job**: Use the [Job](job.md) endpoint to create a data repair job. This endpoint requires a Report Suite, date range, `validationToken` (from [Server call estimate](server-call-estimate.md)), and a [Job definition](json-body.md). A Job ID is returned when a data repair job is created.
 
-1. **Monitor progress**: Use the [Job ID](job.md#view-an-individual-job) endpoint to monitor the status of a data repair job at any point after a data repair job submission. Completion time of a data repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
+3. **Monitor progress**: Use the [Job ID](job.md#view-an-individual-job) endpoint to monitor the status of a data repair job at any point after a data repair job submission. Completion time of a data repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
 
-1. **Review completed jobs**: Use the [Job list](job.md#view-a-job-list) endpoint to keep track of all existing and completed jobs.
+4. **Review completed jobs**: Use the [Job list](job.md#view-a-job-list) endpoint to keep track of all existing and completed jobs.

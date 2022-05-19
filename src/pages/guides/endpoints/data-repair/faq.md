@@ -25,7 +25,7 @@ An eVar value can exist across multiple hits or visits depending on the expirati
 
 ## How do late arriving hits work when repairing data?
 
-If late arriving hits are passed in after a repair has run for the time period included in the repair, it's possible for repaired values to be reintroduced.  Ideally, repairs would not be run on months that are still changing.  However, if that can't be guaranteed, we advise using the "Reset" option for the variable.  Take care, as this expires the evar for all active visits, not just those involved in a potentional repair.
+If late arriving hits are passed in after a repair has run for the time period included in the repair, it is possible for repaired values to be reintroduced.  Ideally, avoid performing repairs on months that can change due to late arriving or timestamped hits.  However, if that can't be guaranteed, Adobe recommends resetting the variable. Note that this action expires the eVar for all visitors, not just those involved in a repair.
 
 ## Can I repair a disabled variable?  Or do I need to enable it first?
 
@@ -33,7 +33,7 @@ Data Repair will work on enabled or disabled variables.  You do not need to enab
 
 ## Why aren't my URL repairs updating data as expected?
 
-When applying a URL operator (`deleteQueryString` or `deleteQueryStringParameters`), Data Repair will validate the value is a well formed URL before taking any action.  The most common mistake is having unencoded characters (the space character, most commonly) in the URL values.
+When applying a URL operator (`deleteQueryString` or `deleteQueryStringParameters`), the Data Repair API makes sure that the value is a correctly formatted URL before taking any action. A common mistake for incorrectly formatted URLs is having unencoded characters, such as a space, in the URL.
 
 ## What are some limitations of using this tool?
 
