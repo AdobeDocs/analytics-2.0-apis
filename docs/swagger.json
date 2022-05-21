@@ -46,9 +46,6 @@
     },
     {
       "name": "Usage Logs"
-    },
-    {
-      "name": "Virtual Report Suites"
     }
   ],
   "paths": {
@@ -1725,7 +1722,7 @@
             "description": "Use the new JSON def",
             "required": false,
             "type": "boolean",
-            "default": false,
+            "default": false
           },
           {
             "name": "locale",
@@ -1780,7 +1777,7 @@
                 "tags",
                 "sharesFullName",
                 "usageSummary",
-                "usageSummaryWithRelevancyScore",
+                "usageSummaryWithRelevancyScore"
               ]
             },
             "collectionFormat": "csv"
@@ -1800,7 +1797,7 @@
             "description": "Use the new JSON def",
             "required": false,
             "type": "boolean",
-            "default": false,
+            "default": false
           },
           {
             "name": "locale",
@@ -1903,7 +1900,7 @@
                 "tags",
                 "sharesFullName",
                 "usageSummary",
-                "usageSummaryWithRelevancyScore",
+                "usageSummaryWithRelevancyScore"
               ]
             },
             "collectionFormat": "csv"
@@ -1929,7 +1926,7 @@
             "description": "Use the new JSON def",
             "required": false,
             "type": "boolean",
-            "default": false,
+            "default": false
           },
           {
             "name": "filterByModifiedAfter",
@@ -2008,7 +2005,7 @@
                 "tags",
                 "sharesFullName",
                 "usageSummary",
-                "usageSummaryWithRelevancyScore",
+                "usageSummaryWithRelevancyScore"
               ]
             },
             "collectionFormat": "csv"
@@ -2019,7 +2016,7 @@
             "description": "Use the new JSON def",
             "required": false,
             "type": "boolean",
-            "default": false,
+            "default": false
           },
           {
             "name": "locale",
@@ -2093,7 +2090,7 @@
             "description": "Only include classifiable dimensions.",
             "required": false,
             "type": "boolean",
-            "default": false,
+            "default": false
           },
           {
             "name": "expansion",
@@ -3495,10 +3492,10 @@
         }
       }
     },
-    "/virtualreportsuites": {
+    "/reportsuites/virtualreportsuites": {
       "get": {
         "tags": [
-          "Virtual Report Suites"
+          "Report Suites"
         ],
         "summary": "Retrieves virtual report suites accessible to the current user.",
         "description": "",
@@ -3663,7 +3660,7 @@
       },
       "post": {
         "tags": [
-          "Virtual Report Suites"
+          "Report Suites"
         ],
         "summary": "Creates a new virtual report suite",
         "description": "Creates a virtual report suite. The following attributes are available when creating a virtual report suite:\nRequired: name, parentRsid",
@@ -3753,10 +3750,10 @@
         }
       }
     },
-    "/virtualreportsuites/validate": {
+    "/reportsuites/virtualreportsuites/validate": {
       "post": {
         "tags": [
-          "Virtual Report Suites"
+          "Report Suites"
         ],
         "summary": "Validates a virtual report suite",
         "description": "Validates a virtual report suite.",
@@ -3788,7 +3785,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "successful operation"
           },
           "500": {
             "description": "External API error; Virtual report suite validation failed"
@@ -3799,10 +3796,10 @@
         }
       }
     },
-    "/virtualreportsuites/{id}": {
+    "/reportsuites/virtualreportsuites/{id}": {
       "get": {
         "tags": [
-          "Virtual Report Suites"
+          "Report Suites"
         ],
         "summary": "Retrieves a single virtual report suite by ID.",
         "description": "",
@@ -3884,7 +3881,7 @@
       },
       "put": {
         "tags": [
-          "Virtual Report Suites"
+          "Report Suites"
         ],
         "summary": "Updates configuration for a virtual report suite.",
         "description": "",
@@ -3973,7 +3970,7 @@
       },
       "delete": {
         "tags": [
-          "Virtual Report Suites"
+          "Report Suites"
         ],
         "summary": "Delete a virtual report suite by ID",
         "description": "",
@@ -5302,7 +5299,7 @@
           "additionalProperties": {
             "type": "object"
           }
-        },
+        }
       }
     },
     "JsonNode": {
