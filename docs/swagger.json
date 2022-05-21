@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "The endpoints described here are routed through Adobe.io. In order to use these endpoints you must create an oAuth client that is subscribed to access the Adobe Analytics Reporting API.",
+    "description": "The endpoints described here are routed through analytics.adobe.io. In order to use these endpoints you must create an oAuth client that is subscribed to access the Adobe Analytics Reporting API.",
     "title": "Adobe Analytics APIs",
     "version": "1.0"
   },
@@ -9,51 +9,53 @@
   "basePath": "/",
   "tags": [
     {
-      "name": "annotations"
+      "name": "Annotations"
     },
     {
-      "name": "calculatedmetrics"
+      "name": "Calculated Metrics"
     },
     {
-      "name": "collections"
+      "name": "Collections"
     },
     {
-      "name": "componentmetadata"
+      "name": "Component Meta Data"
     },
     {
-      "name": "dateranges"
+      "name": "Date Ranges"
     },
     {
-      "name": "dimensions"
+      "name": "Dimensions"
     },
     {
-      "name": "metrics"
+      "name": "Metrics"
     },
     {
-      "name": "projects"
+      "name": "Projects"
     },
     {
-      "name": "reports"
+      "name": "Reports"
     },
     {
-      "name": "reportsuites"
+      "name": "Report Suites"
     },
     {
-      "name": "segments"
+      "name": "Segments"
     },
     {
-      "name": "users"
+      "name": "Users"
     },
     {
-      "name": "usagelogs"
+      "name": "Usage Logs"
+    },
+    {
+      "name": "Virtual Report Suites"
     }
   ],
-
   "paths": {
     "/annotations": {
       "get": {
         "tags": [
-          "annotations"
+          "Annotations"
         ],
         "summary": "Retrieves all annotations",
         "description": "",
@@ -172,7 +174,6 @@
             "default": "id"
           }
         ],
-
         "responses": {
           "200": {
             "description": "successful operation",
@@ -184,7 +185,7 @@
       },
       "post": {
         "tags": [
-          "annotations"
+          "Annotations"
         ],
         "summary": "Create new annotation",
         "description": "",
@@ -245,7 +246,6 @@
             "default": "en_US"
           }
         ],
-
         "responses": {
           "200": {
             "description": "successful operation",
@@ -259,7 +259,7 @@
     "/annotations/{annotationId}": {
       "get": {
         "tags": [
-          "annotations"
+          "Annotations"
         ],
         "summary": "Get existing annotation",
         "description": "",
@@ -318,7 +318,6 @@
             "default": "en_US"
           }
         ],
-
         "responses": {
           "200": {
             "description": "successful operation",
@@ -330,7 +329,7 @@
       },
       "put": {
         "tags": [
-          "annotations"
+          "Annotations"
         ],
         "summary": "Update existing annotation",
         "description": "",
@@ -398,7 +397,6 @@
             "default": "en_US"
           }
         ],
-
         "responses": {
           "200": {
             "description": "successful operation",
@@ -410,7 +408,7 @@
       },
       "delete": {
         "tags": [
-          "annotations"
+          "Annotations"
         ],
         "summary": "Delete existing annotation",
         "description": "",
@@ -435,7 +433,6 @@
             "default": "en_US"
           }
         ],
-
         "responses": {
           "200": {
             "description": "successful operation",
@@ -449,7 +446,7 @@
     "/calculatedmetrics": {
       "get": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Retrieve many calculated metrics",
         "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information about calculated metrics go [here](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/calculatedmetrics.md)\n\n",
@@ -644,7 +641,7 @@
       },
       "post": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Create a new Calculated Metric",
         "description": "Creates a new calculated metric. The following attributes are available when creating a calculated metric:\n\nIMPORTANT: Required Fields: name, definition, rsid\n\nOptional fields: description\n\nExample definition for use in testing API below (\"Visits per visitor\"):\n\n```json\n\n\"definition\": {\r\n      \"formula\": {\r\n        \"func\": \"divide\",\r\n        \"col1\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visits\",\r\n          \"description\": \"Visits\"\r\n        },\r\n        \"col2\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visitors\",\r\n          \"description\": \"Unique Visitors\"\r\n        }\r\n      },\r\n      \"func\": \"calc-metric\",\r\n      \"version\": [\r\n        1,\r\n        0,\r\n        0\r\n      ]\r\n    }\n```\n\nA calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field as defined/documented in the GET endpoints (see GET \"/calculatedmetrics\" or GET \"/calculatedmetrics/{id}\" for more documentation).",
@@ -728,7 +725,7 @@
     "/calculatedmetrics/functions": {
       "get": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Retrieve calculated metric functions",
         "description": "",
@@ -768,7 +765,7 @@
     "/calculatedmetrics/functions/{id}": {
       "get": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Retrieve a calculated metric function by id",
         "description": "",
@@ -818,7 +815,7 @@
     "/calculatedmetrics/validate": {
       "post": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Validate a calculated metric definition",
         "description": "",
@@ -881,7 +878,7 @@
     "/calculatedmetrics/{id}": {
       "get": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Retrieve a single calculated metric by id",
         "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information about calculated metrics go [here](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/calculatedmetrics.md)\n\n",
@@ -958,7 +955,7 @@
       },
       "put": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Update an existing calculated metric",
         "description": "The following fields can be modified through this endpoint: <br/><b>name, description, definition, owner, rsid</b>\nExample \"defintion\" for use in testing API below (\"Visits per visitor\"):<br/>\n\"definition\": {\r\n      \"formula\": {\r\n        \"func\": \"divide\",\r\n        \"col1\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visits\",\r\n          \"description\": \"Visits\"\r\n        },\r\n        \"col2\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visitors\",\r\n          \"description\": \"Unique Visitors\"\r\n        }\r\n      },\r\n      \"func\": \"calc-metric\",\r\n      \"version\": [\r\n        1,\r\n        0,\r\n        0\r\n      ]\r\n    }<br/><br/>Response will be the newly modified calculated metric object after the update request completes.<br/><br/><b><span style=\"text-decoration: underline;\">CalculatedMetricResponse</span></b><br/>A calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field as defined/documented in the GET endpoints (see GET \"/calculatedmetrics\" or GET \"/calculatedmetrics/{id}\" for more documentation).",
@@ -1059,7 +1056,7 @@
       },
       "delete": {
         "tags": [
-          "calculatedmetrics"
+          "Calculated Metrics"
         ],
         "summary": "Deletion of Calculated Metrics by Id",
         "description": "",
@@ -1103,7 +1100,7 @@
     "/collections/suites": {
       "get": {
         "tags": [
-          "collections"
+          "Collections"
         ],
         "summary": "Retrieves report suites that match the given filters.",
         "description": "Returns all report suite types in a single collection.",
@@ -1184,7 +1181,7 @@
     "/collections/suites/{rsid}": {
       "get": {
         "tags": [
-          "collections"
+          "Collections"
         ],
         "summary": "Retrieves report suite by id",
         "description": "Returns all report suite types in a single collection.",
@@ -1242,7 +1239,7 @@
     "/componentmetadata/tags/component/search": {
       "post": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "search for tags for several components at once",
         "description": "",
@@ -1293,7 +1290,7 @@
     "/componentmetadata/tags": {
       "get": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Returns a list of tags for the current user's company",
         "description": "",
@@ -1336,7 +1333,7 @@
       },
       "post": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Saves the given tag(s) for the current user's company",
         "description": "Allows creation of a new tag and applies that new tag to the passed component",
@@ -1378,7 +1375,7 @@
       },
       "delete": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Disassociates all tags from the given components",
         "description": "Removes all tags from the passed componentIds. Note that currently this is done in a single DB query, so there is a single combined response for the entire operation.",
@@ -1441,7 +1438,7 @@
     "/componentmetadata/tags/search": {
       "get": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Retrieves a tags for a given component by componentId and componentType",
         "description": "Given a componentId, return all tags associated with that component",
@@ -1501,7 +1498,7 @@
     "/componentmetadata/tags/tagitems": {
       "put": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Tag a component with one or many tags at once. WARNING: Authoritative; deletes/overwrites all pre-existing associations",
         "description": "This endpoint allows many tags at once to be created/deleted. Any tags passed to this endpoint will become the *only* tags for that componentId (all other tags will be removed).",
@@ -1545,7 +1542,7 @@
     "/componentmetadata/tags/{id}": {
       "get": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Retrieves an tag by its id",
         "description": "",
@@ -1580,7 +1577,7 @@
       },
       "delete": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Removes the tagId and all associations from that tag to any components",
         "description": "Delete by tagId. Will un-tag any/all components that were associated with the passed tagId.",
@@ -1623,7 +1620,7 @@
     "/componentmetadata/tags/tagnames": {
       "get": {
         "tags": [
-          "componentmetadata"
+          "Component Meta Data"
         ],
         "summary": "Retrieves component ids associated with the given tag names",
         "description": "Given a comma separated list of tag names, return component ids associated with them.",
@@ -1680,48 +1677,24 @@
         }
       }
     },
-    "/dateranges": {
+    "/dateranges/{dateRangeId}": {
       "get": {
         "tags": [
-          "dateranges"
+          "Date Ranges"
         ],
-        "summary": "Returns a list of dateranges for the user",
-        "description": "This API allows users to store commonly used date ranges so that they can be reused throughout the product.",
-        "operationId": "getDateRanges",
+        "summary": "Retrieves configuration for a DateRange.",
+        "description": "",
+        "operationId": "getDateRange_1",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "locale",
-            "in": "query",
-            "description": "Locale",
-            "required": false,
-            "type": "string",
-            "default": "en_US"
-          },
-          {
-            "name": "filterByIds",
-            "in": "query",
-            "description": "Filter list to only include date ranges in the specified list (comma-delimited list of IDs)",
-            "required": false,
+            "name": "dateRangeId",
+            "in": "path",
+            "description": "The DateRange id for which to retrieve information",
+            "required": true,
             "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results per page",
-            "required": false,
-            "type": "integer",
-            "default": 10
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page number (base 0 - first page is \"0\")",
-            "required": false,
-            "type": "integer",
-            "default": 0
           },
           {
             "name": "expansion",
@@ -1735,57 +1708,124 @@
                 "definition",
                 "ownerFullName",
                 "modified",
-                "tags"
+                "approved",
+                "favorite",
+                "shares",
+                "tags",
+                "sharesFullName",
+                "usageSummary",
+                "usageSummaryWithRelevancyScore"
               ]
             },
-            "collectionFormat": "csv",
-            "enum": [
-              "definition",
-              "ownerFullName",
-              "modified",
-              "tags"
-            ]
+            "collectionFormat": "csv"
           },
           {
-            "name": "includeType",
+            "name": "newDefinition",
             "in": "query",
-            "description": "Include additional date ranges not owned by user. The \"all\" option takes precedence over \"shared\"",
+            "description": "Use the new JSON def",
             "required": false,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "all",
-                "shared",
-                "templates"
-              ]
-            },
-            "collectionFormat": "csv",
-            "enum": [
-              "all",
-              "shared",
-              "templates"
-            ]
+            "type": "boolean",
+            "default": false,
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/AnalyticsDateRange"
+              "$ref": "#/definitions/ExpandedDateRange"
             }
           }
         }
-      }
-    },
-    "/dateranges/{dateRangeId}": {
-      "get": {
+      },
+      "put": {
         "tags": [
-          "dateranges"
+          "Date Ranges"
         ],
-        "summary": "Retrieves configuration for a DateRange.",
+        "summary": "Updates configuration for a date range.",
         "description": "",
-        "operationId": "getDateRange",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "dateRangeId",
+            "in": "path",
+            "description": "The DateRange id for which to retrieve information",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional date range metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "definition",
+                "ownerFullName",
+                "modified",
+                "approved",
+                "favorite",
+                "shares",
+                "tags",
+                "sharesFullName",
+                "usageSummary",
+                "usageSummaryWithRelevancyScore",
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing date range keys/value pairs to be updated.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ExpandedDateRange"
+            }
+          },
+          {
+            "name": "newDefinition",
+            "in": "query",
+            "description": "Use the new JSON def",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ExpandedDateRange"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Date Ranges"
+        ],
+        "summary": "deletes a date range.",
+        "description": "",
         "produces": [
           "application/json"
         ],
@@ -1804,6 +1844,46 @@
             "required": false,
             "type": "string",
             "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/DeleteResponse"
+            }
+          }
+        }
+      }
+    },
+    "/dateranges": {
+      "get": {
+        "tags": [
+          "Date Ranges"
+        ],
+        "summary": "Returns a list of dateranges for the user",
+        "description": "This API allows users to store commonly used date ranges so that they can be reused throughout the product.",
+        "operationId": "getDateRanges_1",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "includeType",
+            "in": "query",
+            "description": "Include additional dateranges not owned by user. The \"all\" option takes precedence over \"shared\"",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "all",
+                "shared",
+                "templates",
+                "curatedItem"
+              ]
+            },
+            "collectionFormat": "csv"
           },
           {
             "name": "expansion",
@@ -1817,23 +1897,144 @@
                 "definition",
                 "ownerFullName",
                 "modified",
-                "tags"
+                "approved",
+                "favorite",
+                "shares",
+                "tags",
+                "sharesFullName",
+                "usageSummary",
+                "usageSummaryWithRelevancyScore",
               ]
             },
-            "collectionFormat": "csv",
-            "enum": [
-              "definition",
-              "ownerFullName",
-              "modified",
-              "tags"
-            ]
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "filterByIds",
+            "in": "query",
+            "description": "Filter list to only include date ranges in the specified list (comma-delimited list of IDs)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "newDefinition",
+            "in": "query",
+            "description": "Use the new JSON def",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+          },
+          {
+            "name": "filterByModifiedAfter",
+            "in": "query",
+            "description": "Filter list to only include date ranges modified since this date (ISO8601 format)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "curatedRsid",
+            "in": "query",
+            "description": "Include the curatedItem status for given Rsid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/AnalyticsDateRange"
+              "$ref": "#/definitions/ExpandedDateRange"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Date Ranges"
+        ],
+        "summary": "Creates a single date range.",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing date range keys/value pairs to be updated.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ExpandedDateRange"
+            }
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional date range metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "definition",
+                "ownerFullName",
+                "modified",
+                "approved",
+                "favorite",
+                "shares",
+                "tags",
+                "sharesFullName",
+                "usageSummary",
+                "usageSummaryWithRelevancyScore",
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "newDefinition",
+            "in": "query",
+            "description": "Use the new JSON def",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ExpandedDateRange"
             }
           }
         }
@@ -1842,7 +2043,7 @@
     "/dimensions": {
       "get": {
         "tags": [
-          "dimensions"
+          "Dimensions"
         ],
         "summary": "Returns a list of dimensions for a given report suite.",
         "description": "",
@@ -1893,9 +2094,6 @@
             "required": false,
             "type": "boolean",
             "default": false,
-            "enum": [
-              "true"
-            ]
           },
           {
             "name": "expansion",
@@ -1944,7 +2142,7 @@
     "/dimensions/{dimensionId}": {
       "get": {
         "tags": [
-          "dimensions"
+          "Dimensions"
         ],
         "summary": "Returns a dimension for the given report suite",
         "description": "",
@@ -2013,7 +2211,7 @@
     "/metrics": {
       "get": {
         "tags": [
-          "metrics"
+          "Metrics"
         ],
         "summary": "Returns a list of metrics for the given report suite",
         "description": "This returns the metrics list primarily for the Analytics product. The platform identity API Returns a list of all possible metrics for the supported systems.",
@@ -2025,7 +2223,7 @@
           {
             "name": "rsid",
             "in": "query",
-            "description": "ID of desired report suite ie. myrsid",
+            "description": "ID of desired report suite",
             "required": true,
             "type": "string"
           },
@@ -2089,7 +2287,7 @@
     "/metrics/{id}": {
       "get": {
         "tags": [
-          "metrics"
+          "Metrics"
         ],
         "summary": "Returns a metric for the given report suite",
         "description": "",
@@ -2108,7 +2306,7 @@
           {
             "name": "rsid",
             "in": "query",
-            "description": "ID of desired report suite ie. myrsid",
+            "description": "ID of desired report suite",
             "required": true,
             "type": "string"
           },
@@ -2164,7 +2362,7 @@
     "/projects/{projectId}": {
       "get": {
         "tags": [
-          "projects"
+          "Projects"
         ],
         "summary": "Retrieves configuration for a Project.",
         "description": "",
@@ -2220,7 +2418,7 @@
       },
       "put": {
         "tags": [
-          "projects"
+          "Projects"
         ],
         "summary": "Updates configuration for a project.",
         "description": "",
@@ -2285,7 +2483,7 @@
       },
       "delete": {
         "tags": [
-          "projects"
+          "Projects"
         ],
         "summary": "deletes a project.",
         "description": "",
@@ -2323,7 +2521,7 @@
     "/projects/validate": {
       "post": {
         "tags": [
-          "projects"
+          "Projects"
         ],
         "summary": "Validates a Project definition",
         "description": "",
@@ -2341,15 +2539,7 @@
             "description": "JSON-formatted Object containing key/value pairs for Project validation.",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "project": {
-                  "type": "object",
-                  "schema": {
-                    "$ref": "#/definitions/AnalyticsProject"
-                  }
-                }
-              }
+              "$ref": "#/definitions/AnalyticsProject"
             }
           },
           {
@@ -2380,7 +2570,7 @@
     "/projects": {
       "get": {
         "tags": [
-          "projects"
+          "Projects"
         ],
         "summary": "Returns a list of projects for the user",
         "description": "This Returns the projects list primarily for the Analytics product. ",
@@ -2490,7 +2680,7 @@
       },
       "post": {
         "tags": [
-          "projects"
+          "Projects"
         ],
         "summary": "Creates a single project.",
         "description": "",
@@ -2550,7 +2740,7 @@
     "/reports": {
       "post": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Runs a report for the request in the post body",
         "description": "See the [Reporting User Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.",
@@ -2596,7 +2786,7 @@
     "/reports/topItems": {
       "get": {
         "tags": [
-          "reports"
+          "Reports"
         ],
         "summary": "Runs a top items report for the request in the post body",
         "description": "Get the top X items (based on paging restriction) for the specified dimension and rsid. Defaults to last 90 days.",
@@ -2684,13 +2874,6 @@
             "type": "string"
           },
           {
-            "name": "searchPhrase",
-            "in": "query",
-            "description": "A full search phrase that will be searched for.",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "lookupNoneValues",
             "in": "query",
             "description": "Controls None values to be included",
@@ -2740,7 +2923,7 @@
     "/segments": {
       "get": {
         "tags": [
-          "segments"
+          "Segments"
         ],
         "summary": "Retrieve All Segments",
         "description": "",
@@ -2908,7 +3091,7 @@
       },
       "post": {
         "tags": [
-          "segments"
+          "Segments"
         ],
         "summary": "Creates Segment",
         "description": "",
@@ -2990,7 +3173,7 @@
     "/segments/validate": {
       "post": {
         "tags": [
-          "segments"
+          "Segments"
         ],
         "summary": "Validate a Segment",
         "description": "Returns a segment validation for the segment contained in the post body of the report.",
@@ -3038,7 +3221,7 @@
     "/segments/{id}": {
       "get": {
         "tags": [
-          "segments"
+          "Segments"
         ],
         "summary": "Get a Single Segment",
         "description": "",
@@ -3113,7 +3296,7 @@
       },
       "put": {
         "tags": [
-          "segments"
+          "Segments"
         ],
         "summary": "Update a Segment",
         "description": "",
@@ -3209,7 +3392,7 @@
       },
       "delete": {
         "tags": [
-          "segments"
+          "Segments"
         ],
         "summary": "Delete Segment",
         "description": "",
@@ -3250,11 +3433,10 @@
     "/users": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Returns a list of users for the current user's login company",
         "description": "Retrieves a list of all users for the company designated by the auth token.",
-        "operationId": "findAll",
         "produces": [
           "application/json"
         ],
@@ -3295,7 +3477,7 @@
     "/users/me": {
       "get": {
         "tags": [
-          "users"
+          "Users"
         ],
         "summary": "Get the current user",
         "description": "",
@@ -3313,428 +3495,534 @@
         }
       }
     },
-    "/reportsuites/virtualreportsuites": {
+    "/virtualreportsuites": {
       "get": {
         "tags": [
-          "reportsuites"
+          "Virtual Report Suites"
         ],
-        "summary": "Retrieves many virtual report suites using the given search criteria",
-        "operationId": "userGetVirtualReportSuites",
+        "summary": "Retrieves virtual report suites accessible to the current user.",
+        "description": "",
+        "operationId": "getVirtualReportSuites",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "globalCompanyKey",
+                "parentRsid",
+                "parentRsidName",
+                "timezone",
+                "timezoneZoneinfo",
+                "currentTimezoneOffset",
+                "segmentList",
+                "description",
+                "modified",
+                "approved",
+                "favorite",
+                "tags",
+                "ownerFullName",
+                "numGroups",
+                "userGroups",
+                "dataCurrentAsOf",
+                "compatibility",
+                "dataSchema",
+                "darkSessionsEnabled",
+                "sessionDefinition",
+                "curatedComponents",
+                "type"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "includeType",
+            "in": "query",
+            "description": "Include report suites with the following parameters in the return list.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "deleted"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "Comma-delimited list of types of virtual report suites to return.  No selection returns all types.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "vrs",
+                "advancedVrs"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "name": "filterByModifiedAfter",
+            "in": "query",
+            "description": "Filter list to only include virtual report suites modified since this date (ISO8601 format)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "relevantOnly",
+            "in": "query",
+            "description": "Return only report suites that are considered recent.",
+            "required": false,
+            "type": "string",
+            "default": "false",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          {
+            "name": "rsids",
+            "in": "query",
+            "description": "Filter list to only include suites in this RSID list (comma-delimited)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "cached",
+            "in": "query",
+            "description": "Return cached results",
+            "required": false,
+            "type": "string",
+            "default": "true",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          {
+            "name": "idContains",
+            "in": "query",
+            "description": "Filter list to only include suites whose id contains idContains.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "useMicroservice",
+            "in": "query",
+            "description": "Use VRS Microservice developed by Intelligent Services",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
           {
             "name": "limit",
             "in": "query",
             "description": "Number of results per page",
-            "schema": {
-              "type": "string",
-              "default": "10"
-            }
+            "required": false,
+            "type": "integer",
+            "default": 10
           },
           {
             "name": "page",
             "in": "query",
             "description": "Page number (base 0 - first page is \"0\")",
-            "schema": {
-              "type": "string",
-              "default": "0"
-            }
-          },
-          {
-            "name": "expansion",
-            "in": "query",
-            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response",
             "required": false,
-            "style": "form",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "globalCompanyKey",
-                  "parentRsid",
-                  "parentRsidName",
-                  "timezone",
-                  "timezoneZoneinfo",
-                  "currentTimezoneOffset",
-                  "segmentList",
-                  "description",
-                  "modified",
-                  "isDeleted",
-                  "dataCurrentAsOf",
-                  "compatibility",
-                  "dataSchema",
-                  "sessionDefinition",
-                  "curatedComponents",
-                  "type",
-                  "backgroundSessionsEnabled"
-                ]
-              }
-            }
-          },
-          {
-            "name": "filterByIds",
-            "in": "query",
-            "description": "filter list to only include specified virtual report suites",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "idContains",
-            "in": "query",
-            "description": "Filter list to only include suites whose id contains idContains",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "segmentIds",
-            "in": "query",
-            "description": "Filter list to only include virtual report suites that have a segment in this Comma-delimited list of segmentids",
-            "schema": {
-              "type": "string"
-            }
+            "type": "integer",
+            "default": 0
           }
         ],
         "responses": {
-          "500": {
-            "description": "Unexpected error; virtual report suite search failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
             }
           },
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/VirtualReportSuite"
-                }
-              }
-            }
+          "500": {
+            "description": "Unexpected error; virtual report suite retrieval failed"
           }
         }
       },
       "post": {
         "tags": [
-          "reportsuites"
+          "Virtual Report Suites"
         ],
         "summary": "Creates a new virtual report suite",
-        "description": "Creates a virtual report suite. The following attributes are required when creating a virtual report suite: name, parentRsid, and segmentList",
-        "operationId": "userCreateVirtualReportSuite",
+        "description": "Creates a virtual report suite. The following attributes are available when creating a virtual report suite:\nRequired: name, parentRsid",
+        "operationId": "createVirtualReportSuite",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "expansion",
             "in": "query",
-            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response",
+            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response.",
             "required": false,
-            "style": "form",
-            "explode": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "parentRsid,segmentList",
+              "enum": [
+                "globalCompanyKey",
+                "parentRsid",
+                "parentRsidName",
+                "timezone",
+                "timezoneZoneinfo",
+                "currentTimezoneOffset",
+                "segmentList",
+                "description",
+                "modified",
+                "approved",
+                "favorite",
+                "tags",
+                "ownerFullName",
+                "numGroups",
+                "userGroups",
+                "dataCurrentAsOf",
+                "compatibility",
+                "dataSchema",
+                "darkSessionsEnabled",
+                "sessionDefinition",
+                "curatedComponents",
+                "type"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing key/value pairs for virtual report suite creation.",
+            "required": false,
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "globalCompanyKey",
-                  "parentRsid",
-                  "parentRsidName",
-                  "timezone",
-                  "timezoneZoneinfo",
-                  "currentTimezoneOffset",
-                  "segmentList",
-                  "description",
-                  "modified",
-                  "isDeleted",
-                  "dataCurrentAsOf",
-                  "compatibility",
-                  "dataSchema",
-                  "sessionDefinition",
-                  "curatedComponents",
-                  "type",
-                  "backgroundSessionsEnabled"
-                ]
-              }
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Virtual report suite creation JSON object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/VirtualReportSuite"
-              }
-            }
-          }
-        },
-        "responses": {
-          "500": {
-            "description": "Unexpected error; Virtual report suite create failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
             }
           },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "useMicroservice",
+            "in": "query",
+            "description": "Use VRS Microservice developed by Intelligent Services",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/VirtualReportSuite"
-                }
-              }
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
             }
+          },
+          "500": {
+            "description": "External API error; Virtual report suite create or retrieval failed"
+          },
+          "400": {
+            "description": "Invalid input; name and parentRsid are required."
           }
         }
       }
     },
-    "/reportsuites/virtualreportsuites/{id}": {
+    "/virtualreportsuites/validate": {
+      "post": {
+        "tags": [
+          "Virtual Report Suites"
+        ],
+        "summary": "Validates a virtual report suite",
+        "description": "Validates a virtual report suite.",
+        "operationId": "validateVirtualReportSuite",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing key/value pairs for virtual report suite creation.",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
+            }
+          },
+          {
+            "name": "useMicroservice",
+            "in": "query",
+            "description": "Use VRS Microservice developed by Intelligent Services",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+          },
+          "500": {
+            "description": "External API error; Virtual report suite validation failed"
+          },
+          "400": {
+            "description": "Invalid input."
+          }
+        }
+      }
+    },
+    "/virtualreportsuites/{id}": {
       "get": {
         "tags": [
-          "reportsuites"
+          "Virtual Report Suites"
         ],
-        "summary": "Retrieves a single virtual report suite by ID",
-        "operationId": "userGetVirtualReportSuite",
+        "summary": "Retrieves a single virtual report suite by ID.",
+        "description": "",
+        "operationId": "getVirtualReportSuite",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "expansion",
             "in": "query",
-            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response",
+            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response.",
             "required": false,
-            "style": "form",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "globalCompanyKey",
-                  "parentRsid",
-                  "parentRsidName",
-                  "timezone",
-                  "timezoneZoneinfo",
-                  "currentTimezoneOffset",
-                  "segmentList",
-                  "description",
-                  "modified",
-                  "isDeleted",
-                  "dataCurrentAsOf",
-                  "compatibility",
-                  "dataSchema",
-                  "sessionDefinition",
-                  "curatedComponents",
-                  "type",
-                  "backgroundSessionsEnabled"
-                ]
-              }
-            }
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "globalCompanyKey",
+                "parentRsid",
+                "parentRsidName",
+                "timezone",
+                "timezoneZoneinfo",
+                "currentTimezoneOffset",
+                "segmentList",
+                "description",
+                "modified",
+                "approved",
+                "favorite",
+                "tags",
+                "ownerFullName",
+                "numGroups",
+                "userGroups",
+                "dataCurrentAsOf",
+                "compatibility",
+                "dataSchema",
+                "darkSessionsEnabled",
+                "sessionDefinition",
+                "curatedComponents",
+                "type"
+              ]
+            },
+            "collectionFormat": "csv"
           },
           {
             "name": "id",
             "in": "path",
+            "description": "The vrsid to retrieve",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "useMicroservice",
+            "in": "query",
+            "description": "Use VRS Microservice developed by Intelligent Services",
+            "required": false,
+            "type": "boolean",
+            "default": false
           }
         ],
         "responses": {
-          "404": {
-            "description": "Could not find the virtual report suite for the given id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
             }
           },
           "500": {
-            "description": "Unexpected error; virtual report suite retrieval failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/VirtualReportSuite"
-                }
-              }
-            }
+            "description": "Unexpected error; virtual report suite retrieval failed"
           }
         }
       },
       "put": {
         "tags": [
-          "reportsuites"
+          "Virtual Report Suites"
         ],
-        "summary": "Update configuration for a virtual report suite",
-        "operationId": "userUpdateVirtualReportSuite",
+        "summary": "Updates configuration for a virtual report suite.",
+        "description": "",
+        "operationId": "updateVirtualReportSuite",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
-          {
-            "name": "expansion",
-            "in": "query",
-            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response",
-            "required": false,
-            "style": "form",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "globalCompanyKey",
-                  "parentRsid",
-                  "parentRsidName",
-                  "timezone",
-                  "timezoneZoneinfo",
-                  "currentTimezoneOffset",
-                  "segmentList",
-                  "description",
-                  "modified",
-                  "isDeleted",
-                  "dataCurrentAsOf",
-                  "compatibility",
-                  "dataSchema",
-                  "sessionDefinition",
-                  "curatedComponents",
-                  "type",
-                  "backgroundSessionsEnabled"
-                ]
-              }
-            }
-          },
           {
             "name": "id",
             "in": "path",
+            "description": "The vrsid to update",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "default": "parentRsid,segmentList",
+              "enum": [
+                "globalCompanyKey",
+                "parentRsid",
+                "parentRsidName",
+                "timezone",
+                "timezoneZoneinfo",
+                "currentTimezoneOffset",
+                "segmentList",
+                "description",
+                "modified",
+                "approved",
+                "favorite",
+                "tags",
+                "ownerFullName",
+                "numGroups",
+                "userGroups",
+                "dataCurrentAsOf",
+                "compatibility",
+                "dataSchema",
+                "darkSessionsEnabled",
+                "sessionDefinition",
+                "curatedComponents",
+                "type"
+              ]
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON-formatted Object containing virtual report suite keys/value pairs to be updated.",
+            "required": false,
             "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Virtual report suite creation JSON object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/VirtualReportSuite"
-              }
-            }
-          }
-        },
-        "responses": {
-          "500": {
-            "description": "Unexpected error; virtual report suite update failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
             }
           },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "useMicroservice",
+            "in": "query",
+            "description": "Use VRS Microservice developed by Intelligent Services",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/VirtualReportSuite"
-                }
-              }
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/AnalyticsVirtualReportSuite"
             }
           }
         }
       },
       "delete": {
         "tags": [
-          "reportsuites"
+          "Virtual Report Suites"
         ],
-        "summary": "Delete virtual report suite",
-        "description": "Deletes or disables a virtual report suite by ID",
-        "operationId": "userDeleteVirtualReportSuite",
+        "summary": "Delete a virtual report suite by ID",
+        "description": "",
+        "operationId": "deleteVirtualReportSuite",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "description": "The virtual report suite ID to be deleted",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "permanent",
+            "in": "query",
+            "description": "Permanently delete the virtual report suite (Not allowed in Beta or Production environments)",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "locale",
+            "in": "query",
+            "description": "Locale",
+            "required": false,
+            "type": "string",
+            "default": "en_US"
+          },
+          {
+            "name": "useMicroservice",
+            "in": "query",
+            "description": "Use VRS Microservice developed by Intelligent Services",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
             "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "500": {
-            "description": "Unexpected error; virtual report suite deletion failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
+              "$ref": "#/definitions/DeleteResponse"
             }
           },
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/DeleteResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/reportsuites/virtualreportsuites/validate": {
-      "post": {
-        "tags": [
-          "reportsuites"
-        ],
-        "summary": "Validates a virtual report suite",
-        "operationId": "userValidateVirtualReportSuite",
-        "parameters": [],
-        "requestBody": {
-          "description": "Virtual report suite creation JSON object",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/definitions/VirtualReportSuite"
-              }
-            }
-          }
-        },
-        "responses": {
           "500": {
-            "description": "Unexpected error; Virtual report suite validation failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/VrsCompatibility"
-                }
-              }
-            }
+            "description": "External API error; Virtual report suite delete failed"
           }
         }
       }
@@ -3742,7 +4030,7 @@
     "/reportsuites/virtualreportsuites/search": {
       "post": {
         "tags": [
-          "reportsuites"
+          "Report Suites"
         ],
         "summary": "Retrieves many virtual report suites using the given search criteria",
         "operationId": "searchAll",
@@ -3751,27 +4039,21 @@
             "name": "limit",
             "in": "query",
             "description": "Number of results per page",
-            "schema": {
-              "type": "string",
-              "default": "10"
-            }
+            "type": "string",
+            "default": "10"
           },
           {
             "name": "page",
             "in": "query",
             "description": "Page number (base 0 - first page is \"0\")",
-            "schema": {
-              "type": "string",
-              "default": "0"
-            }
+            "type": "string",
+            "default": "0"
           },
           {
             "name": "expansion",
-            "in": "",
+            "in": "body",
             "description": "Comma-delimited list of additional virtual report suite metadata fields to include on response",
             "required": false,
-            "style": "form",
-            "explode": false,
             "schema": {
               "type": "array",
               "items": {
@@ -3786,7 +4068,6 @@
                   "segmentList",
                   "description",
                   "modified",
-                  "isDeleted",
                   "dataCurrentAsOf",
                   "compatibility",
                   "dataSchema",
@@ -3799,47 +4080,17 @@
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "expansion": {
-                    "type": "string"
-                  },
-                  "filterByIds": {
-                    "type": "string"
-                  },
-                  "idContains": {
-                    "type": "string"
-                  },
-                  "segmentIds": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
         "responses": {
           "500": {
             "description": "Unexpected error; virtual report suite search failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/AnalyticsAsrErrorResponse"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/AnalyticsAsrErrorResponse"
             }
           },
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/VirtualReportSuite"
-                }
-              }
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/VirtualReportSuite"
             }
           }
         }
@@ -3848,7 +4099,7 @@
     "/reportsuites/reportsuites/timezones": {
       "get": {
         "tags": [
-          "reportsuites"
+          "Report Suites"
         ],
         "summary": "Get Timezones",
         "description": "Retrieves all supported timezones.",
@@ -3856,12 +4107,9 @@
         "parameters": [],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/definitions/TimezoneSettings"
-                }
-              }
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimezoneSettings"
             }
           }
         }
@@ -3870,7 +4118,7 @@
     "/auditlogs/usage": {
       "get": {
         "tags": [
-          "usagelogs"
+          "Usage Logs"
         ],
         "summary": "Retrieves usage and access logs for the search criteria provided.",
         "description": "This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.",
@@ -3960,6 +4208,20 @@
     }
   },
   "definitions": {
+    "AlternateVariableNames": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "baseName": {
+          "type": "string"
+        },
+        "curatedName": {
+          "type": "string"
+        }
+      }
+    },
     "AnalyticsAnnotation": {
       "type": "object",
       "properties": {
@@ -4166,77 +4428,6 @@
         }
       }
     },
-    "AnalyticsDateRange": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "System generated id",
-          "readOnly": true
-        },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "rsid": {
-          "type": "string",
-          "description": "The report suite id for which the component was created/updated"
-        },
-        "reportSuiteName": {
-          "type": "string",
-          "description": "The report suite name for which the component was created/updated",
-          "readOnly": true
-        },
-        "owner": {
-          "$ref": "#/definitions/Owner"
-        },
-        "definition": {
-          "type": "object"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Tag"
-          }
-        },
-        "siteTitle": {
-          "type": "string"
-        },
-        "modified": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "AnalyticsDateRangeDefinition": {
-      "type": "object",
-      "properties": {
-        "start": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RollingDateFunction"
-          }
-        },
-        "end": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RollingDateFunction"
-          }
-        },
-        "calendarType": {
-          "$ref": "#/definitions/CalendarType"
-        },
-        "version": {
-          "type": "string"
-        }
-      }
-    },
     "AnalyticsDimension": {
       "type": "object",
       "properties": {
@@ -4389,6 +4580,116 @@
           "items": {
             "$ref": "#/definitions/Tag"
           }
+        }
+      }
+    },
+    "AnalyticsProject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "System generated id",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "rsid": {
+          "type": "string",
+          "description": "The report suite id for which the component was created/updated"
+        },
+        "reportSuiteName": {
+          "type": "string",
+          "description": "The report suite name for which the component was created/updated",
+          "readOnly": true
+        },
+        "migratedIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "companyTemplate": {
+          "type": "boolean"
+        },
+        "template": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "project",
+            "mobileScorecard"
+          ]
+        },
+        "definition": {
+          "$ref": "#/definitions/JsonNode"
+        },
+        "externalReferences": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "accessLevel": {
+          "type": "string"
+        },
+        "versionNotes": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "shares": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "favorite": {
+          "type": "boolean"
+        },
+        "usageSummary": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "complexity": {
+          "type": "object"
+        },
+        "owner": {
+          "$ref": "#/definitions/Owner"
+        },
+        "siteTitle": {
+          "type": "string"
+        },
+        "modified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -4703,59 +5004,6 @@
         }
       }
     },
-    "CalcMetricCompatibility": {
-      "type": "object",
-      "properties": {
-        "valid": {
-          "type": "boolean"
-        },
-        "message": {
-          "type": "string"
-        },
-        "identityMetrics": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/IdentityMetric"
-          }
-        },
-        "identityDimensions": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "segments": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "functions": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
-        },
-        "validator_version": {
-          "type": "string"
-        },
-        "supported_products": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "supported_schema": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "CalcMetricFunction": {
       "type": "object",
       "properties": {
@@ -4910,29 +5158,6 @@
         }
       }
     },
-    "CalendarSettings": {
-      "properties": {
-        "rsid": {
-          "type": "string"
-        },
-        "anchorDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "GREGORIAN",
-            "NRF",
-            "QRS",
-            "CUSTOM_454",
-            "CUSTOM_445",
-            "MODIFIED_GREGORIAN",
-            "CUSTOM_544"
-          ]
-        }
-      }
-    },
     "CalendarType": {
       "type": "object",
       "properties": {
@@ -4971,30 +5196,6 @@
         }
       }
     },
-    "Column": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "DIMENSION",
-            "METRIC"
-          ]
-        },
-        "id": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "segmentIds": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "CuratedComponent": {
       "required": [
         "componentId"
@@ -5023,40 +5224,85 @@
         }
       }
     },
-    "IdentityMetric": {
+    "ExpandedDateRange": {
       "type": "object",
       "properties": {
-        "identity": {
+        "id": {
           "type": "string"
         },
-        "dimensionView": {
-          "type": "string",
-          "enum": [
-            "LINEAR_ALLOCATION",
-            "PARTICIPATION_ALLOCATION",
-            "LAST_TOUCH_ALLOCATION",
-            "MC_FIRST_TOUCH_ALLOCATION",
-            "MC_LAST_TOUCH_ALLOCATION"
-          ]
+        "name": {
+          "type": "string"
         },
-        "allocationModel": {
+        "description": {
+          "type": "string"
+        },
+        "modified": {
           "type": "string",
-          "enum": [
-            "ALLOCATION_FIRST_TOUCH",
-            "ALLOCATION_LAST_TOUCH",
-            "ALLOCATION_INSTANCE",
-            "ALLOCATION_DEDUPED_INSTANCE",
-            "ALLOCATION_LAST_KNOWN",
-            "ALLOCATION_LEGACY",
-            "ALLOCATION_LINEAR",
-            "ALLOCATION_PARTICIPATION",
-            "ALLOCATION_POSITION_BASED",
-            "ALLOCATION_TIME_DECAY",
-            "ALLOCATION_U_SHAPED",
-            "ALLOCATION_J_SHAPED",
-            "ALLOCATION_REVERSE_J_SHAPED"
-          ]
-        }
+          "format": "date-time"
+        },
+        "companyId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "owner": {
+          "type": "object"
+        },
+        "definition": {
+          "type": "object"
+        },
+        "template": {
+          "type": "boolean"
+        },
+        "createDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "disabledDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "alternateVariableNames": {
+          "$ref": "#/definitions/AlternateVariableNames"
+        },
+        "curatedItem": {
+          "type": "boolean"
+        },
+        "imsOrgId": {
+          "type": "string"
+        },
+        "systemUserOwned": {
+          "type": "boolean"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "shares": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "favorite": {
+          "type": "boolean"
+        },
+        "usageSummary": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
       }
     },
     "JsonNode": {
@@ -5221,66 +5467,24 @@
         },
         "name": {
           "type": "string",
-          "position": 1,
           "description": "the friendly full login name of the owner, included when the expansion parameter ownerFullName is true"
         },
         "login": {
           "type": "string",
-          "position": 1,
           "description": "the friendly full login name of the owner, included when the expansion parameter ownerFullName is true"
         }
       }
     },
-    "Pageable": {
+    "ProjectCompatibility": {
       "type": "object",
       "properties": {
-        "offset": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "sort": {
-          "$ref": "#/definitions/Sort"
-        },
-        "pageNumber": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "pageSize": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "PredictiveSettings": {
-      "type": "object",
-      "properties": {
-        "trainingPeriods": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "highAnomalies": {
+        "valid": {
           "type": "boolean"
         },
-        "lowAnomalies": {
-          "type": "boolean"
-        }
-      }
-    },
-    "PublishingStatus": {
-      "type": "object",
-      "properties": {
-        "published": {
-          "type": "boolean"
+        "validatorVersion": {
+          "type": "string"
         },
-        "publishedDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "lookbackPeriod": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "lookbackGranularity": {
+        "message": {
           "type": "string"
         }
       }
@@ -5703,45 +5907,6 @@
         }
       }
     },
-    "RollingDateFunction": {
-      "type": "object",
-      "properties": {
-        "function": {
-          "type": "string"
-        },
-        "granularity": {
-          "type": "string",
-          "enum": [
-            "year",
-            "quarter",
-            "month",
-            "week",
-            "day",
-            "hour",
-            "minute"
-          ]
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "dow": {
-          "type": "string",
-          "enum": [
-            "monday",
-            "tuesday",
-            "wednesday",
-            "thursday",
-            "friday",
-            "saturday",
-            "sunday"
-          ]
-        },
-        "date": {
-          "type": "string"
-        }
-      }
-    },
     "Row": {
       "type": "object",
       "properties": {
@@ -5882,40 +6047,6 @@
         }
       }
     },
-    "Sort": {
-      "type": "object"
-    },
-    "Suite": {
-      "properties": {
-        "calendarType": {
-          "$ref": "#/definitions/CalendarSettings"
-        },
-        "rsid": {
-          "title": "Report Suite id",
-          "type": "string"
-        },
-        "parentRsid": {
-          "title": "Parent report suite id for virtual report suite",
-          "type": "string"
-        },
-        "name": {
-          "title": "Suite name",
-          "type": "string"
-        },
-        "timezoneZoneinfo": {
-          "title": "Suite friendly timezone name",
-          "type": "string"
-        },
-        "currency": {
-          "title": "Suite currency",
-          "type": "string"
-        },
-        "id": {
-          "title": "Suite id",
-          "type": "string"
-        }
-      }
-    },
     "SuiteCollectionItem": {
       "type": "object",
       "properties": {
@@ -5989,7 +6120,7 @@
         "tags": {
           "type": "array",
           "items": {
-            "type": "Tag"
+            "type": "string"
           }
         }
       }
@@ -6167,9 +6298,6 @@
         },
         "reportSuiteName": {
           "type": "string"
-        },
-        "isDeleted": {
-          "type": "boolean"
         },
         "currentTimezoneOffset": {
           "type": "number",
