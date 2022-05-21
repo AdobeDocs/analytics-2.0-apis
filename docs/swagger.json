@@ -15,9 +15,6 @@
       "name": "Calculated Metrics"
     },
     {
-      "name": "Collections"
-    },
-    {
       "name": "Component Meta Data"
     },
     {
@@ -1090,145 +1087,6 @@
             "schema": {
               "$ref": "#/definitions/CalculatedMetricErrorStatus"
             }
-          }
-        }
-      }
-    },
-    "/collections/suites": {
-      "get": {
-        "tags": [
-          "Collections"
-        ],
-        "summary": "Retrieves report suites that match the given filters.",
-        "description": "Returns all report suite types in a single collection.",
-        "operationId": "findAll",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "rsids",
-            "in": "query",
-            "description": "Filter list to only include suites in this RSID list (comma-delimited)",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "rsidContains",
-            "in": "query",
-            "description": "Filter list to only include suites whose rsid contains rsidContains.",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Number of results per page",
-            "required": false,
-            "type": "integer",
-            "default": 10
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page number (base 0 - first page is \"0\")",
-            "required": false,
-            "type": "integer",
-            "default": 0
-          },
-          {
-            "name": "expansion",
-            "in": "query",
-            "description": "Comma-delimited list of additional metadata fields to include on response.",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "name",
-                "parentRsid",
-                "currency",
-                "calendarType",
-                "timezoneZoneinfo"
-              ]
-            },
-            "collectionFormat": "csv",
-            "enum": [
-              "name",
-              "parentRsid",
-              "currency",
-              "calendarType",
-              "timezoneZoneinfo"
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/SuiteCollectionItem"
-            }
-          },
-          "500": {
-            "description": "Unexpected error; report suite retrieval failed"
-          }
-        }
-      }
-    },
-    "/collections/suites/{rsid}": {
-      "get": {
-        "tags": [
-          "Collections"
-        ],
-        "summary": "Retrieves report suite by id",
-        "description": "Returns all report suite types in a single collection.",
-        "operationId": "findOne",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "rsid",
-            "in": "path",
-            "description": "The rsid of the suite to return",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "expansion",
-            "in": "query",
-            "description": "Comma-delimited list of additional metadata fields to include on response.",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "name",
-                "parentRsid",
-                "currency",
-                "calendarType",
-                "timezoneZoneinfo"
-              ]
-            },
-            "collectionFormat": "csv",
-            "enum": [
-              "name",
-              "parentRsid",
-              "currency",
-              "calendarType",
-              "timezoneZoneinfo"
-            ]
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/SuiteCollectionItem"
-            }
-          },
-          "500": {
-            "description": "Unexpected error; report suite retrieval failed"
           }
         }
       }
@@ -3492,6 +3350,164 @@
         }
       }
     },
+    "/reportsuites/collections/suites": {
+      "get": {
+        "tags": [
+          "Report Suites"
+        ],
+        "summary": "Retrieves report suites that match the given filters.",
+        "description": "Returns all report suite types in a single collection.",
+        "operationId": "findAll",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "rsids",
+            "in": "query",
+            "description": "Filter list to only include suites in this RSID list (comma-delimited)",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "rsidContains",
+            "in": "query",
+            "description": "Filter list to only include suites whose rsid contains rsidContains.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number (base 0 - first page is \"0\")",
+            "required": false,
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "name",
+                "parentRsid",
+                "currency",
+                "calendarType",
+                "timezoneZoneinfo"
+              ]
+            },
+            "collectionFormat": "csv",
+            "enum": [
+              "name",
+              "parentRsid",
+              "currency",
+              "calendarType",
+              "timezoneZoneinfo"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SuiteCollectionItem"
+            }
+          },
+          "500": {
+            "description": "Unexpected error; report suite retrieval failed"
+          }
+        }
+      }
+    },
+    "/reportsuites/collections/suites/{rsid}": {
+      "get": {
+        "tags": [
+          "Report Suites"
+        ],
+        "summary": "Retrieves report suite by id",
+        "description": "Returns all report suite types in a single collection.",
+        "operationId": "findOne",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "The rsid of the suite to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expansion",
+            "in": "query",
+            "description": "Comma-delimited list of additional metadata fields to include on response.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "name",
+                "parentRsid",
+                "currency",
+                "calendarType",
+                "timezoneZoneinfo"
+              ]
+            },
+            "collectionFormat": "csv",
+            "enum": [
+              "name",
+              "parentRsid",
+              "currency",
+              "calendarType",
+              "timezoneZoneinfo"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/SuiteCollectionItem"
+            }
+          },
+          "500": {
+            "description": "Unexpected error; report suite retrieval failed"
+          }
+        }
+      }
+    },
+    "/reportsuites/reportsuites/timezones": {
+      "get": {
+        "tags": [
+          "Report Suites"
+        ],
+        "summary": "Get Timezones",
+        "description": "Retrieves all supported timezones.",
+        "operationId": "getTimezones_1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/TimezoneSettings"
+            }
+          }
+        }
+      }
+    },
     "/reportsuites/virtualreportsuites": {
       "get": {
         "tags": [
@@ -4088,25 +4104,6 @@
             "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/VirtualReportSuite"
-            }
-          }
-        }
-      }
-    },
-    "/reportsuites/reportsuites/timezones": {
-      "get": {
-        "tags": [
-          "Report Suites"
-        ],
-        "summary": "Get Timezones",
-        "description": "Retrieves all supported timezones.",
-        "operationId": "getTimezones_1",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "schema": {
-              "$ref": "#/definitions/TimezoneSettings"
             }
           }
         }
