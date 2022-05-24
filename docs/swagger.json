@@ -250,7 +250,7 @@
         }
       }
     },
-    "/annotations/{annotationId}": {
+    "/annotations/{id}": {
       "get": {
         "tags": [
           "Annotations"
@@ -1902,7 +1902,7 @@
         }
       }
     },
-    "/dateranges/{dateRangeId}": {
+    "/dateranges/{id}": {
       "get": {
         "tags": [
           "Date Ranges"
@@ -2364,7 +2364,7 @@
         }
       }
     },
-    "/dimensions/{dimensionId}": {
+    "/dimensions/{id}": {
       "get": {
         "tags": [
           "Dimensions"
@@ -2584,7 +2584,7 @@
         }
       }
     },
-    "/projects/{projectId}": {
+    "/projects/{id}": {
       "get": {
         "tags": [
           "Projects"
@@ -3801,7 +3801,7 @@
         }
       }
     },
-    "/reportsuites/collections/suites/{rsid}": {
+    "/reportsuites/collections/suites/{id}": {
       "get": {
         "tags": [
           "Report Suites"
