@@ -134,7 +134,7 @@ The `set` and `delete` actions support filters, which allow you to selectively r
 
 All filters are currently case sensitive. Support for filters that are not case sensitive is planned.
 
-* **`inList`**: Include all rows where the variable contains at least one value from the `matchValues` array. The `matchValues` array can hold up to 1000 values.
+* **`inList`**: Include all rows where the variable is an exact match to at least one value from the `matchValues` array. The `matchValues` array can hold up to 1000 values.
 * **`isEmpty`**: Only include rows where the variable does not contain a value. Cannot be used with the `delete` action.
 * **`contains`**: Include rows where the variable contains the value in `matchValue`.
 * **`doesNotContain`**: Include rows where the value in `matchValue` is not present.
