@@ -297,7 +297,7 @@
             "collectionFormat": "csv"
           },
           {
-            "name": "annotationId",
+            "name": "id",
             "in": "path",
             "description": "Annotation id to get",
             "required": true,
@@ -376,7 +376,7 @@
             }
           },
           {
-            "name": "annotationId",
+            "name": "id",
             "in": "path",
             "description": "Annotation id to update",
             "required": true,
@@ -412,7 +412,7 @@
         ],
         "parameters": [
           {
-            "name": "annotationId",
+            "name": "id",
             "in": "path",
             "description": "Annotation id to update",
             "required": true,
@@ -1915,7 +1915,7 @@
         ],
         "parameters": [
           {
-            "name": "dateRangeId",
+            "name": "id",
             "in": "path",
             "description": "The DateRange id for which to retrieve information",
             "required": true,
@@ -1981,7 +1981,7 @@
         ],
         "parameters": [
           {
-            "name": "dateRangeId",
+            "name": "id",
             "in": "path",
             "description": "The DateRange id for which to retrieve information",
             "required": true,
@@ -2056,7 +2056,7 @@
         ],
         "parameters": [
           {
-            "name": "dateRangeId",
+            "name": "id",
             "in": "path",
             "description": "The DateRange id for which to retrieve information",
             "required": true,
@@ -2377,7 +2377,7 @@
         ],
         "parameters": [
           {
-            "name": "dimensionId",
+            "name": "id",
             "in": "path",
             "description": "The dimension ID. For example a valid id is a value like 'evar1'",
             "required": true,
@@ -2597,7 +2597,7 @@
         ],
         "parameters": [
           {
-            "name": "projectId",
+            "name": "id",
             "in": "path",
             "description": "The Project id for which to retrieve information",
             "required": true,
@@ -2653,7 +2653,7 @@
         ],
         "parameters": [
           {
-            "name": "projectId",
+            "name": "id",
             "in": "path",
             "description": "The Project id for which to retrieve information",
             "required": true,
@@ -2718,7 +2718,7 @@
         ],
         "parameters": [
           {
-            "name": "projectId",
+            "name": "id",
             "in": "path",
             "description": "The Project id for which to retrieve information",
             "required": true,
@@ -3814,9 +3814,9 @@
         ],
         "parameters": [
           {
-            "name": "rsid",
+            "name": "id",
             "in": "path",
-            "description": "The rsid of the suite to return",
+            "description": "The report suite ID to return",
             "required": true,
             "type": "string"
           },
