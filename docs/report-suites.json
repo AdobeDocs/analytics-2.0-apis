@@ -815,7 +815,8 @@
 						"type": "boolean"
 					},
 					"dataSchema": {
-						"type": "string"
+						"type": "string",
+						"enum": ["ExperienceCloudPlatform", "Stitched", "Cache", "CacheAndMid"]
 					},
 					"curatedComponents": {
 						"type": "array",
