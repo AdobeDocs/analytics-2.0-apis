@@ -21,7 +21,7 @@ Data with timestamps older than 24 hours can take 2 hours or longer depending on
 
 ### I accidentally put two of the same header columns in a file. How is that data ingested?
 
-If a column header is duplicated in a file, only the first instance of the column and its corresponding data fields are used; the duplicate columns are ignored, even if the first column was empty.
+If a column header is duplicated in a file, we will mark the file as invalid and return an error response and note the duplicate column. Keep in mind that column headers are case-insensitive, so providing "Column1" and "column1" as 2 separate columns will be interpreted as duplicate and result in an invalid file.  Also remember that column headers are separate from querystring fields.  It is possible to send in a value in a column that is duplicated as a querystring field. In such case, the column value will be used.
 
 ### What is the throttle limit for API calls?
 
