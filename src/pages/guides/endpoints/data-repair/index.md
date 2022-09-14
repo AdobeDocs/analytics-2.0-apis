@@ -22,6 +22,8 @@ Before using the Data Repair API, make sure that all the following prerequisites
 
    ![data repair permission](../../../images/data-repair-permission.png)
 
+* Fix any implementation errors that may be causing unwanted data to be collected
+
 ## Workflow
 
 Adobe recommends a careful and methodical approach when using the Data Repair API due to its ability to permanently delete or edit your data. The following steps provide multiple checkpoints to minimize the risk of accidental data deletion. Review the data after each step to confirm that the data repair job completes as expected. Adobe recommends that you create a data repair job for each of the following in order:
