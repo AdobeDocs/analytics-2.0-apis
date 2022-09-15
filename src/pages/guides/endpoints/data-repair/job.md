@@ -26,7 +26,9 @@ This endpoint requires multiple components:
 #### Request
 
 ```sh
-curl -X POST -H "accept: application/json" \
+curl -X POST \
+  -H "accept: application/json" \
+  -H "content-type: application/json" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "x-api-key: {CLIENTID}" \
   -d '{"variables": {"ipaddress": {"action": "delete"}}}' \
