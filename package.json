@@ -15,7 +15,7 @@
     "@adobe/gatsby-theme-aio": "^3.24.2",
     "gatsby": "^3.6.0",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "start": "gatsby build && gatsby serve",
