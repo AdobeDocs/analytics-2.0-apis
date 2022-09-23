@@ -1,9 +1,46 @@
+
+# OS and IDE generated files #
+##############################
+.DS_Store
+.vscode
+.history
+.idea
+.editorconfig
+
+# npm yarn
+node_modules
+package.lock
+yarn-error.log
+.pnp.*
+.yarn/*
+
+# keep in repo
+!.gitignore
+!.yarn.lock
+!.yarnrc.yml
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # gatsby files
+.env
 .cache
 public
-node_modules
 
-yarn-error.log
-.editorconfig
-.env
-.idea
+# cypress
+cypress/videos
+cypress/screenshots
+
+# lerna
+lerna-debug.log
+
+# local actions
+.actrc
+.secrets
+local-test.yml
+
+# yalc
+.yalc
+yalc.lock
