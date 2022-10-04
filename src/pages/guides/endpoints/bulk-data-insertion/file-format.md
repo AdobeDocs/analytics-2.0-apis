@@ -84,6 +84,14 @@ Column header name | `queryString` equivalent | Description
 `eVar1` - `eVar250` | `v1` - `v250` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions.
 `events` | `events` | The [`events`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/events/events-overview.html) implementation variable.
 `hier1` - `hier5` | `h1` - `h5` | [Hierarchy variables](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/hier.html).
+`hints.architecture` | `h.architecture` | Client Hints: The underlying architecture for the device
+`hints.bitness` | `h.bitness` | Client Hints: "bitness" of the user-agent's CPU architecture — typically 64 or 32
+`hints.brands` | `h.brands` | Client Hints: List of browser brands and their significant version. JSON object format: [{"brand":"Chromium","version":"104"},{"brand":"Google Chrome","version":"104"}]
+`hints.mobile` | `h.mobile` | Client Hints: Boolean indicating if the browser is on a mobile device
+`hints.model` | `h.model` | Client Hints: The device model
+`hints.platform` | `h.platform` | Client Hints: The platform for the device, usually the operating system (OS)
+`hints.platformversion` | `h.platformversion` | Client Hints: The version for the platform or OS
+`hints.wow64` | `h.wow64` | Client Hints: Boolean indicating if a 32-bit user-agent application is running on a 64-bit Windows machine
 `ipaddress` | N/A (Only available with column header) | The visitor's IP address.
 `javaEnabled` | `v` | The [Java enabled](https://experienceleague.adobe.com/docs/analytics/components/dimensions/java-enabled.html) dimension.
 `language` | N/A (Only available with column header) | The [Language](https://experienceleague.adobe.com/docs/analytics/components/dimensions/language.html) dimension.
