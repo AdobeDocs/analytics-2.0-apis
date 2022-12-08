@@ -33,9 +33,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@adobe/gatsby-theme-aio@npm:^4.6.6":
-  version: 4.6.6
-  resolution: "@adobe/gatsby-theme-aio@npm:4.6.6"
+"@adobe/gatsby-theme-aio@npm:^4.7.5":
+  version: 4.7.5
+  resolution: "@adobe/gatsby-theme-aio@npm:4.7.5"
   dependencies:
     "@adobe/focus-ring-polyfill": ^0.1.5
     "@adobe/gatsby-source-github-file-contributors": ^0.3.1
@@ -95,6 +95,7 @@ __metadata:
     gatsby-transformer-sharp: 4.23.0
     https-browserify: ^1.0.0
     jsdom: ^20.0.0
+    lottie-web: ^5.9.6
     mdx-embed: ^1.0.0
     mobx: ^6.6.2
     normalize-path: ^3.0.0
@@ -124,7 +125,7 @@ __metadata:
     gatsby: ^4.22.0
     react: ^17.0.2
     react-dom: ^17.0.2
-  checksum: 573aa83e406cb3c53c7b78fceb88102224a41bf417b5a1bdb9418b868dbb4f6dba218916f8e6a72dc20641686d151b1098dbb38acab25cf201a157049590c56c
+  checksum: 8b725699c22461c76c2c44c77f2891eb13bbba7032471c456f3e1503c46b7922fb8eb1219a859aa4321c86c4f5fb210906767f0c74b5e6a4068ba6c3a06c94b8
   languageName: node
   linkType: hard
 
@@ -4852,7 +4853,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "analytics-2.0-apis@workspace:."
   dependencies:
-    "@adobe/gatsby-theme-aio": ^4.6.6
+    "@adobe/gatsby-theme-aio": ^4.7.5
     gatsby: 4.22.0
     react: ^18.2.0
     react-dom: ^17.0.2
@@ -12661,6 +12662,13 @@ __metadata:
   bin:
     loose-envify: cli.js
   checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
+  languageName: node
+  linkType: hard
+
+"lottie-web@npm:^5.9.6":
+  version: 5.10.0
+  resolution: "lottie-web@npm:5.10.0"
+  checksum: f590581b59437ffac984ee3fe3deaa03aa0d6f97b37443a9fd5f42c5e237fc40de8713685b075a90723d421db9d0b4dcabd1f48ae2fc1335d4beb123149561f6
   languageName: node
   linkType: hard
 
