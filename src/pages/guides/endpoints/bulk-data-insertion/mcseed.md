@@ -18,7 +18,7 @@ Before using this method to identify visitors, make sure that all of the followi
 
 When uploading files to the BDIA API and the customer ID is the desired visitor identifier for the row, make sure that all the following are met:
 
-* The case-sensitive `customerID.[customerIDType].id` (i.e. Audience Manager's integration code, DO NOT include brackets) is specified in the file's column header row
+* The case-sensitive `customerID.[customerIDType].id` is specified in the file's column header row. The [customerIDType] will be Audience Manager's integration code (DO NOT include brackets). 
 * `customerID.[customerIDType].id` contains a value for each row
 * `customerID.[customerIDType].isMCSeed` is set to `1` (true) for each row
 
@@ -36,7 +36,7 @@ If either of these variables are blank, Adobe falls back to other visitor identi
    * AAM Partner ID (pid)
    * AAM Data Provider ID (dpid)
    * Salt value (ex. mycompanyreportsuite)
-5. Once your are notified of successful configuration, you would include the following fields in your BDIA file:
+5. Once you are notified of successful configuration, you would include the following fields in your BDIA file:
    * customerID.email.id.  (value will be a unique email address for each user)
    * customerID.email.isMCSeed (value will be 1 for all rows)
 
