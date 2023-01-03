@@ -18,8 +18,25 @@ Before using this method to identify visitors, make sure that all of the followi
 
 When uploading files to the BDIA API and the customer ID is the desired visitor identifier for the row, make sure that all the following are met:
 
-* The case-sensitive `customerID.[customerIDType].id` (i.e. Audience Manager's integration code) is specified in the file's column header row
+* The case-sensitive `customerID.[customerIDType].id` is specified in the file's column header row. The [customerIDType] will be Audience Manager's integration code (DO NOT include brackets). 
 * `customerID.[customerIDType].id` contains a value for each row
 * `customerID.[customerIDType].isMCSeed` is set to `1` (true) for each row
 
 If either of these variables are blank, Adobe falls back to other visitor identification columns. If there are no other visitor identifiers present in the row, the row is skipped. Rows that fall back to other visitor identification columns are treated as separate visitors.
+
+## Example Integration Workflow
+1. Select a field that you wish to use as a seed to generate an MCID. For example, you could choose the customer's email address.
+2. Setup an integration with Audience Manager. The seed field will be your "integration code". You will also give them a preferred unique salt value. We recommend using your report suite name.
+3. Audience Manager will give back to you the following fields:
+   * Partner ID (pid)
+   * Data Provider ID (dpid)
+4. Give the following values to your consultant to pass on to the BDIA team:
+   * IMS Org Id
+   * Integration Code (ex. email)
+   * AAM Partner ID (pid)
+   * AAM Data Provider ID (dpid)
+   * Salt value (ex. mycompanyreportsuite)
+5. Once you are notified of successful configuration, you would include the following fields in your BDIA file:
+   * customerID.email.id.  (value will be a unique email address for each user)
+   * customerID.email.isMCSeed (value will be 1 for all rows)
+
