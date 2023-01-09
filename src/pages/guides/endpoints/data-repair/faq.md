@@ -39,5 +39,7 @@ When applying a URL operator (`deleteQueryString` or `deleteQueryStringParameter
 
 * Data repair job date ranges cannot include the current month. A job must start within the last 60 months and end prior to the current month.
 * Report Suites with [Cross-Device Analytics](https://experienceleague.adobe.com/docs/analytics/components/cda/overview.html) are not supported.
-* Dimensions that have [Merchandising](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) currently enabled or was enabled historically are not supported. If you run a data repair job on a variable that has had merchandising enabled in the past, you may see unexpected attribution results.
+* Any actions involving the editing or deletion of [Metrics](https://experienceleague.adobe.com/docs/analytics/components/dimensions/entry-dimensions.html) are not supported.
+* The [Product](https://experienceleague.adobe.com/docs/analytics/components/dimensions/product.html) dimension is not supported.
+* Dimensions that have [Merchandising](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) currently enabled or was enabled historically are not supported. If you run a data repair job on a variable that has had merchandising enabled in the past, you risk seeing incorrect or unexpected attribution results.
 * Only one data repair job at a time can run per Report Suite.
