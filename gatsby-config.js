@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         title: 'Endpoint guides',
-        path: 'guides'
+        path: 'guides/endpoints'
       },
       {
         title: 'API Reference',
