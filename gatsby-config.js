@@ -12,28 +12,23 @@
 
 module.exports = {
   siteMetadata: {
-    home: {
-      title: 'Adobe Analytics',
-      path: '/analytics-apis/'
-    },
     versions: [
       {
         title: 'v2.0',
         selected: true
-      }
-      /*
+      },
       {
         title: 'v1.4',
         path: '/analytics-apis/docs/1.4/'
-      }*/
+      }
     ],
     pages: [
       {
-        title: 'Overview',
+        title: 'Adobe Analytics',
         path: 'index.md'
       },
       {
-        title: 'Guides',
+        title: 'Endpoint guides',
         path: 'guides'
       },
       {
@@ -48,7 +43,7 @@ module.exports = {
     subPages: [
       {
         title: 'Getting Started',
-        path: 'guides/index.md',
+        path: 'guides',
         pages: [
           {
             title: 'JWT',
@@ -66,11 +61,11 @@ module.exports = {
       },
       {
         title: 'Endpoint guides',
-        path: 'guides/endpoints/index.md',
+        path: 'guides/endpoints',
         pages: [
           {
             title: 'Annotations',
-            path: 'guides/endpoints/annotations/index.md',
+            path: 'guides/endpoints/annotations',
             pages: [
               {
                 title: 'Definition data structure',
@@ -84,7 +79,7 @@ module.exports = {
           },
           {
             title: 'Bulk data insertion',
-            path: 'guides/endpoints/bulk-data-insertion/index.md',
+            path: 'guides/endpoints/bulk-data-insertion',
             pages: [
               {
                 title: 'File format',
@@ -114,7 +109,7 @@ module.exports = {
           },
           {
             title: 'Calculated metrics',
-            path: 'guides/endpoints/calculatedmetrics/index.md',
+            path: 'guides/endpoints/calculatedmetrics',
             pages: [
               {
                 title: 'Functions',
@@ -132,7 +127,7 @@ module.exports = {
           },
           {
             title: 'Component Meta Data',
-            path:'guides/endpoints/componentmetadata/index.md',
+            path:'guides/endpoints/componentmetadata',
             pages: [
               {
                 title: 'Tags',
@@ -146,7 +141,7 @@ module.exports = {
           },
           {
             title: 'Data repair',
-            path: 'guides/endpoints/data-repair/index.md',
+            path: 'guides/endpoints/data-repair',
             pages: [
               {
                 title: 'Server call estimate',
@@ -168,7 +163,7 @@ module.exports = {
           },
           {
             title: 'Date ranges',
-            path: 'guides/endpoints/date-ranges/index.md',
+            path: 'guides/endpoints/date-ranges',
             pages: [
               {
                 title: 'Parameters',
@@ -186,7 +181,7 @@ module.exports = {
           },
           {
             title: 'Projects',
-            path: 'guides/endpoints/projects/index.md',
+            path: 'guides/endpoints/projects',
             pages: [
               {
                 title: 'Definition data structure',
@@ -204,7 +199,7 @@ module.exports = {
           },
           {
             title: 'Reports',
-            path: 'guides/endpoints/reports/index.md',
+            path: 'guides/endpoints/reports',
             pages: [
               {
                 title: 'Breakdowns',
@@ -234,7 +229,7 @@ module.exports = {
           },
           {
             title: 'Segments',
-            path: 'guides/endpoints/segments/index.md',
+            path: 'guides/endpoints/segments',
             pages: [
               {
                 title: 'Definitions',
@@ -260,7 +255,7 @@ module.exports = {
           },
           {
             title: 'Virtual report suites',
-            path: 'guides/endpoints/vrs/index.md',
+            path: 'guides/endpoints/vrs',
             pages: [
               {
                 title: 'JSON body reference',
@@ -276,7 +271,7 @@ module.exports = {
       },
       {
         title: 'Use cases',
-        path: 'guides/use-cases/index.md',
+        path: 'guides/use-cases',
         pages: [
           {
             title: 'cURL',
