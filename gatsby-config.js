@@ -28,12 +28,20 @@ module.exports = {
         path: 'index.md'
       },
       {
+        title: 'Getting started',
+        path: 'guides'
+      },
+      {
         title: 'Endpoint guides',
         path: 'guides/endpoints'
       },
       {
         title: 'API Reference',
         path: 'https://adobedocs.github.io/analytics-2.0-apis/'
+      },
+      {
+        title: 'Use cases',
+        path: 'guides/use-cases'
       },
       {
         title: 'Support',
