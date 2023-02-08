@@ -32,7 +32,7 @@ You must first configure Postman to authenticate with your Adobe ID. Once you au
     Access Token URL | `https://ims-na1.adobelogin.com/ims/token/v1`
     Client ID | The **Client ID** in the Adobe Developer Console
     Client Secret | The **Client Secret** in the Adobe Developer Console
-    Scope | `openid, AdobeID, read_organizations, additional_info.projectedProductContext, additional_info.job_function`
+    Scope | `openid AdobeID read_organizations additional_info.projectedProductContext additional_info.job_function`
     State | Can be left blank
     Client Authentication | `Send client credentials in body`
 
