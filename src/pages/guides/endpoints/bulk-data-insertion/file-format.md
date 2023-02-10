@@ -78,20 +78,20 @@ Column header name | `queryString` equivalent | Description
 `contextData.key` | `c.[key]` | [`contextData`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/contextdata.html) implementation variables.
 `cookiesEnabled` | `k` | The [Cookie support](https://experienceleague.adobe.com/docs/analytics/components/dimensions/cookie-support.html) dimension.
 `currencyCode` | `cc` | The [`currencyCode`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/config-vars/currencycode.html) implementation variable.
-`customerID.[customerIDType].id` | `cid.[customerIDType].id` | The `id` used in the Experience Cloud Identity Service [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/id-service-api/methods/setcustomerids.html) method.
-`customerID.[customerIDType].authState` | `cid.[customerIDType].as` | The `authState` used in the Experience Cloud Identity Service [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/reference/authenticated-state.html) method. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string: Not logged in<br/>`1` or `AUTHENTICATED`: Logged in<br/>`2` or `LOGGED_OUT`: Logged out
-`customerID.[customerIDType].isMCSeed` | `cid.[customerIDType].ismcseed` | An integer boolean that lets you use `customerID.[customerIDType].id` as the hit's identifier. Use `1` for true and `0` for false. See [Use customer ID to identify visitors](mcseed.md).
+`customerID.` <br/> `[customerIDType].` <br/> `id` | `cid.[customerIDType].id` | The `id` used in the Experience Cloud Identity Service [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/id-service-api/methods/setcustomerids.html) method.
+`customerID.` <br/> `[customerIDType].` <br/> `authState` | `cid.[customerIDType].as` | The `authState` used in the Experience Cloud Identity Service [`setCustomerIDs`](https://experienceleague.adobe.com/docs/id-service/using/reference/authenticated-state.html) method. String values are not case sensitive. Supported values are:<br/>`0` or `UNKNOWN` or an empty string: Not logged in<br/>`1` or `AUTHENTICATED`: Logged in<br/>`2` or `LOGGED_OUT`: Logged out
+`customerID.` <br/> `[customerIDType].` <br/> `isMCSeed` | `cid.[customerIDType].ismcseed` | An integer boolean that lets you use `customerID.[customerIDType].id` as the hit's identifier. Use `1` for true and `0` for false. See [Use customer ID to identify visitors](mcseed.md).
 `eVar1` - `eVar250` | `v1` - `v250` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions.
 `events` | `events` | The [`events`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/events/events-overview.html) implementation variable.
 `hier1` - `hier5` | `h1` - `h5` | [Hierarchy variables](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/hier.html).
-`hints.architecture` | `h.architecture` | Client Hints: The underlying architecture for the device
-`hints.bitness` | `h.bitness` | Client Hints: "bitness" of the user-agent's CPU architecture — typically 64 or 32
-`hints.brands` | `h.brands` | Client Hints: List of browser brands and their significant version. JSON object format: [{"brand":"Chromium","version":"104"},{"brand":"Google Chrome","version":"104"}]
-`hints.mobile` | `h.mobile` | Client Hints: Boolean indicating if the browser is on a mobile device
-`hints.model` | `h.model` | Client Hints: The device model
-`hints.platform` | `h.platform` | Client Hints: The platform for the device, usually the operating system (OS)
-`hints.platformversion` | `h.platformversion` | Client Hints: The version for the platform or OS
-`hints.wow64` | `h.wow64` | Client Hints: Boolean indicating if a 32-bit user-agent application is running on a 64-bit Windows machine
+`hints.architecture` | `h.architecture` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The underlying architecture for the device
+`hints.bitness` | `h.bitness` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): "bitness" of the user-agent's CPU architecture — typically 64 or 32
+`hints.brands` | `h.brands` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): List of browser brands and their significant version. JSON object format: [{"brand":"Chromium","version":"104"}, {"brand":"Google Chrome","version":"104"}]
+`hints.mobile` | `h.mobile` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): Boolean indicating if the browser is on a mobile device
+`hints.model` | `h.model` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The device model
+`hints.platform` | `h.platform` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The platform for the device, usually the operating system (OS)
+`hints.platformversion` | `h.platformversion` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The version for the platform or OS
+`hints.wow64` | `h.wow64` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): Boolean indicating if a 32-bit user-agent application is running on a 64-bit Windows machine
 `ipaddress` | N/A (Only available with column header) | The visitor's IP address.
 `javaEnabled` | `v` | The [Java enabled](https://experienceleague.adobe.com/docs/analytics/components/dimensions/java-enabled.html) dimension.
 `language` | N/A (Only available with column header) | The [Language](https://experienceleague.adobe.com/docs/analytics/components/dimensions/language.html) dimension.
