@@ -84,14 +84,14 @@ Column header name | `queryString` equivalent | Description
 `eVar1` - `eVar250` | `v1` - `v250` | [eVar](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar.html) dimensions.
 `events` | `events` | The [`events`](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/events/events-overview.html) implementation variable.
 `hier1` - `hier5` | `h1` - `h5` | [Hierarchy variables](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/hier.html).
-`hints.architecture` | `h.architecture` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The underlying architecture for the device
-`hints.bitness` | `h.bitness` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): "bitness" of the user-agent's CPU architecture — typically 64 or 32
-`hints.brands` | `h.brands` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): List of browser brands and their significant version, formatted as a serialized JSON object array: [{"brand":"Chromium","version":"104"}, {"brand":"Google Chrome","version":"104"}]
-`hints.mobile` | `h.mobile` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): Boolean indicating if the browser is on a mobile device
-`hints.model` | `h.model` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The device model
-`hints.platform` | `h.platform` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The platform for the device, usually the operating system (OS)
-`hints.platformversion` | `h.platformversion` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): The version for the platform or OS
-`hints.wow64` | `h.wow64` | [Client Hints](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/useragentclienthints.html): Boolean indicating if a 32-bit user-agent application is running on a 64-bit Windows machine
+`hints.architecture` | `h.architecture` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The underlying architecture for the device
+`hints.bitness` | `h.bitness` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): "bitness" of the user-agent's CPU architecture — typically 64 or 32
+`hints.brands` | `h.brands` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): List of browser brands and their significant version, formatted as a serialized JSON object array: [{"brand":"Chromium","version":"104"}, {"brand":"Google Chrome","version":"104"}]
+`hints.mobile` | `h.mobile` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): Boolean indicating if the browser is on a mobile device
+`hints.model` | `h.model` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The device model
+`hints.platform` | `h.platform` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The platform for the device, usually the operating system (OS)
+`hints.platformversion` | `h.platformversion` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The version for the platform or OS
+`hints.wow64` | `h.wow64` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): Boolean indicating if a 32-bit user-agent application is running on a 64-bit Windows machine
 `ipaddress` | N/A (Only available with column header) | The visitor's IP address.
 `javaEnabled` | `v` | The [Java enabled](https://experienceleague.adobe.com/docs/analytics/components/dimensions/java-enabled.html) dimension.
 `language` | N/A (Only available with column header) | The [Language](https://experienceleague.adobe.com/docs/analytics/components/dimensions/language.html) dimension.
