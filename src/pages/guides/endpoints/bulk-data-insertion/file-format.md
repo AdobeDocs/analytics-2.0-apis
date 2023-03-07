@@ -24,7 +24,7 @@ Batch files are flexible in the following ways:
 
 * There are no restrictions on file names. When you submit a file to this API, Adobe returns a `file_id` that you can use to track the file. The name of the file is recorded under `upload_name` in the response object as well.
 * Adobe supports both `CRLF` and `LF` line breaks to separate rows. A line break at the end of a data file is optional.
-* Column header names are not case sensitive (with one exception for customerIDType, see [Use customer ID to identify visitors](mcseed.md).
+* Column header names are not case sensitive (with one exception for customerIDType, see [Use customer ID to identify visitors](mcseed.md)).
 * Columns can appear in any order.
 * Key/value pairs in the `QueryString` field are also valid in any order.
 
@@ -86,7 +86,7 @@ Column header name | `queryString` equivalent | Description
 `hier1` - `hier5` | `h1` - `h5` | [Hierarchy variables](https://experienceleague.adobe.com/docs/analytics/implementation/vars/page-vars/hier.html).
 `hints.architecture` | `h.architecture` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The underlying architecture for the device
 `hints.bitness` | `h.bitness` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): "bitness" of the user-agent's CPU architecture — typically 64 or 32
-`hints.brands` | `h.brands` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): List of browser brands and their significant version. JSON object format: [{"brand":"Chromium","version":"104"}, {"brand":"Google Chrome","version":"104"}]
+`hints.brands` | `h.brands` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): List of browser brands and their significant version, formatted as a serialized JSON object array: [{"brand":"Chromium","version":"104"}, {"brand":"Google Chrome","version":"104"}]
 `hints.mobile` | `h.mobile` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): Boolean indicating if the browser is on a mobile device
 `hints.model` | `h.model` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The device model
 `hints.platform` | `h.platform` | [Client Hints](https://experienceleague.adobe.com/docs/experience-platform/edge/fundamentals/user-agent-client-hints.html): The platform for the device, usually the operating system (OS)
