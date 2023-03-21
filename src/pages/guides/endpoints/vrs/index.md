@@ -11,28 +11,28 @@ The Virtual report suites endpoint allows you to programmatically create, edit o
 
 Returns an object containing all report suites that match the criteria.
 
-`GET https://analytics.adobe.io/reportsuites/virtualreportsuites/`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reportsuites/virtualreportsuites/`
 
 ## Retrieve a single virtual report suite
 
 Returns details around the specific virtual report suite.
 
-`GET https://analytics.adobe.io/reportsuites/virtualreportsuites/{ID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reportsuites/virtualreportsuites/{ID}`
 
 ## Create a virtual report suite
 
 Programmatically create a virtual report suite. A JSON body is required with this call. See [JSON body reference](reference.md) for all supported parameters, and [Examples](examples.md) for ways to formulate the JSON body.
 
-`POST https://analytics.adobe.io/reportsuites/virtualreportsuites/`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reportsuites/virtualreportsuites/`
 
 ## Edit an existing virtual report suite
 
 Edit a virtual report suite. A JSON body is required with this call, containing the desired settings to update.
 
-`PUT https://analytics.adobe.io/reportsuites/virtualreportsuites/{ID}`
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reportsuites/virtualreportsuites/{ID}`
 
 ## Delete a virtual report suite
 
 Deletes a virtual report suite.
 
-`DELETE https://analytics.adobe.io/reportsuites/virtualreportsuites/{ID}`
+`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reportsuites/virtualreportsuites/{ID}`
