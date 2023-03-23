@@ -18,7 +18,9 @@ This guide includes instructions for using the following endpoints:
 
 Use this endpoint to return a list of metrics for a given report suite ID.
 
-**GET**  `https://analytics.adobe.io/api/metrics?rsid={RSID}`
+**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/metrics?rsid={RSID}`
+
+You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
 
 ### Request parameters
 
@@ -58,7 +60,7 @@ The GET metrics endpoint includes the following response parameters:
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response tab** to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request. 
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
@@ -116,7 +118,6 @@ curl -X GET "https://analytics.adobe.io/api/experi14/metrics?rsid=examplersid&lo
 ]
 ```
 
-
 #### Request example details
 
 In the above example, the GET metrics request specifies the `rsid` as `examplersid`. It includes the query parameters `locale` as `en_US`, `segmentable` as `true`, and the `expansion` parameter `allowedForReporting` as `true`.
@@ -126,22 +127,22 @@ In the above example, the GET metrics request specifies the `rsid` as `examplers
 
 In the above example, the GET metrics response lists two metric IDs for this report suite, including `campaigninstances` and `cartadditions` with similar `title` and `name`. Both have the same `type` as `int`. But they differ in `category`--the first is `Traffic sources` and the second is `Conversion`. The remaining response parameters provide more details of the metrics. This includes the information that both metrics are `segmentable` and `allowedForReporting`, as shown by the values `true` for each.
 
-
 ## GET metrics ID
 
 Use this endpoint to retrieve information for a single metric in a report suite.
 
-**GET**  `https://analytics.adobe.io/api//dimensions/{Metric ID}?rsid={report suite ID}`
+**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/metrics/{Metric ID}?rsid={report suite ID}`
+
+You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
 
 ### Request parameters
 
 The GET metrics ID endpoint includes the following request query parameters:
 
-
 | Parameter | Req/Opt | Type | Description |
 | --- | --- | -- | --|
-| `id` | required | string | Dimenstion ID (e.g.`evar1`) |
-| `rsid` | required | string | Report suite ID |
+| `id` | required | string | The metrics ID (e.g.`evar1`) |
+| `rsid` | required | string | The report suite ID |
 | `locale` | optional | string | The specified language |
 | `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
 
@@ -151,14 +152,14 @@ The GET metrics ID endpoint includes the same response parameters as the GET met
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request. Click the **Response** tab to see a successful JSON response for the request. 
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=en_US&limit=10&page=0" \
+curl -X GET "https://analytics.adobe.io/api/{globalCompanyId/metrics/carts?rsid=examplersid&locale=en_US&expansion=categories" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
@@ -166,76 +167,36 @@ curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=e
 #### Response
 
 ```json
-[    
-  {
-    "id": "cm_bouncerate_defaultmetric",
-    "name": "Bounce Rate",
-    "description": "Default Bounce Rate Metric",
-    "polarity": "positive",
-    "precision": 1,
-    "type": "percent",
-    "definition": {
-      "formula": {
-        "col": {
-          "func": "divide",
-          "col2": {
-            "func": "metric",
-            "name": "metrics/entries",
-            "description": "Entries"
-          },
-          "col1": {
-            "func": "metric",
-            "name": "metrics/bounces",
-            "description": "Bounces"
-          }
-        },
-        "func": "visualization-group"
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
-  },
-  {
-    "id": "cm_revenue_visitor_defaultmetric",
-    "name": "Revenue / Visitor",
-    "description": "Default Revenue / Visitor Metric",
-    "polarity": "positive",
-    "precision": 2,
-    "type": "currency",
-    "definition": {
-      "formula": {
-        "func": "divide",
-        "col2": {
-          "func": "metric",
-          "name": "metrics/visitors"
-        },
-        "col1": {
-          "func": "metric",
-          "name": "metrics/revenue"
-        }
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
-  }
-]
+{
+  "id": "metrics/carts",
+  "title": "Carts",
+  "name": "Carts",
+  "type": "int",
+  "category": "Conversion",
+  "categories": [],
+  "support": [
+    "oberon",
+    "dataWarehouse"
+  ],
+  "allocation": true,
+  "precision": 0,
+  "calculated": false,
+  "segmentable": true,
+  "supportsDataGovernance": true,
+  "description": "The number of times visitors to the site added items to their online shopping carts.",
+  "polarity": "positive",
+  "standardComponent": true
+}
 ```
+
+#### Request example details
+
+In the above example, the GET metrics ID request specifies the metric ID as `carts` and the `rsid` as `examplersid`. It includes the query parameters `locale` as `en_US`, and the `expansion` parameter `categories` as `true`.
+
+
+#### Response example details
+
+In the above example, the GET metrics ID response shows information for the `carts` metric. Note that the `type` is `int`, and the `category` is `Conversion`. The remaining response parameters provide more details of the this metric. No `categories` metadata is associated with this metric.
 
 
 For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
