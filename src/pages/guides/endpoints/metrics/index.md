@@ -5,7 +5,7 @@ description: Retrieve metrics information using the API.
 
 # Analytics Metrics API
 
-The Analytics 2.0 Metrics API endpoints allow you to retrieve metrics programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with metrics in the UI. See [Metrics](https://experienceleague.adobe.com/docs/analytics/components/metrics/overview.html?lang=en) in the Analytics Components guide for more information. For information on  using Calculated Metrics API, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/). 
+The Analytics 2.0 Metrics API endpoints allow you to retrieve metrics programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with metrics in the UI. See [Metrics](https://experienceleague.adobe.com/docs/analytics/components/metrics/overview.html?lang=en) in the Analytics Components guide for more information. For information on  using Calculated Metrics API (a separate service), see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/). 
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
@@ -18,7 +18,7 @@ This guide includes instructions for using the following endpoints:
 
 Use this endpoint to return a list of metrics for a given report suite ID.
 
-**GET**  `https://analytics.adobe.io/api//dimensions?rsid={RSID number}`
+**GET**  `https://analytics.adobe.io/api/metrics?rsid={RSID}`
 
 ### Request parameters
 
@@ -27,7 +27,7 @@ The GET metrics endpoint includes the following request query parameters:
 
 | Parameter | Req/Opt | Type | Description |
 | --- | --- | -- | --|
-| `rsid` | required | string | report suite ID |
+| `rsid` | required | string | The report suite ID |
 | `locale` | optional | string | The specified language |
 | `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
 | `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
@@ -44,28 +44,28 @@ The GET metrics endpoint includes the following response parameters:
 | `name` | string | Dimension name |
 | `type` | array of enums | Lists the data type of the dimension |
 | `category` | string | Product category |
-| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
 | `support` | string | Support information |
+| `tags` | string | An extra metadata item in response to the `expansion` request parameter. |
+| `allowedForReporting` | boolean | An extra metadata item in response to the `expansion` request parameter. Indicates whether the dimension is set to be allowed for reporting. |
+| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
 | `pathable` | boolean | Whether the report/dimension is pathing enabled |
 | `parent` | string | Parent dimension |
 | `extraTitleInfo` | string | Additional title info |
 | `segmentable` | boolean | Whether the dimension is segmentable |
 | `reportable` | array (string) | Whether the dimension is segmentable |
 | `description` | string | Contents of report/dimension description field |
-| `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
-| `tags` | object | Metadata tags. An extra metadata item in response to the `expansion` request parameter. |
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response tab** to see a successful JSON response for the request. 
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=en_US&limit=10&page=0" \
+curl -X GET "https://analytics.adobe.io/api/experi14/metrics?rsid=examplersid&locale=en_US&segmentable=true&expansion=allowedForReporting" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
@@ -73,82 +73,65 @@ curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=e
 #### Response
 
 ```json
-[    
+[
   {
-    "id": "cm_bouncerate_defaultmetric",
-    "name": "Bounce Rate",
-    "description": "Default Bounce Rate Metric",
+    "id": "metrics/campaigninstances",
+    "title": "Campaign Click-throughs",
+    "name": "Campaign Click-throughs",
+    "type": "int",
+    "category": "Traffic Sources",
+    "support": [
+      "oberon",
+      "dataWarehouse"
+    ],
+    "allocation": true,
+    "precision": 0,
+    "calculated": false,
+    "segmentable": true,
+    "supportsDataGovernance": false,
     "polarity": "positive",
-    "precision": 1,
-    "type": "percent",
-    "definition": {
-      "formula": {
-        "col": {
-          "func": "divide",
-          "col2": {
-            "func": "metric",
-            "name": "metrics/entries",
-            "description": "Entries"
-          },
-          "col1": {
-            "func": "metric",
-            "name": "metrics/bounces",
-            "description": "Bounces"
-          }
-        },
-        "func": "visualization-group"
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
+    "allowedForReporting": true,
+    "standardComponent": true
   },
   {
-    "id": "cm_revenue_visitor_defaultmetric",
-    "name": "Revenue / Visitor",
-    "description": "Default Revenue / Visitor Metric",
+    "id": "metrics/cartadditions",
+    "title": "Cart Additions",
+    "name": "Cart Additions",
+    "type": "int",
+    "category": "Conversion",
+    "support": [
+      "oberon",
+      "dataWarehouse"
+    ],
+    "allocation": true,
+    "precision": 0,
+    "calculated": false,
+    "segmentable": true,
+    "supportsDataGovernance": true,
+    "description": "The number of times a visitor added something to their cart. This can help you understand at what part of the conversion funnel that customers show enough interest in a product to add it to their cart.",
     "polarity": "positive",
-    "precision": 2,
-    "type": "currency",
-    "definition": {
-      "formula": {
-        "func": "divide",
-        "col2": {
-          "func": "metric",
-          "name": "metrics/visitors"
-        },
-        "col1": {
-          "func": "metric",
-          "name": "metrics/revenue"
-        }
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
-  }
+    "allowedForReporting": true,
+    "standardComponent": true
+  },
 ]
 ```
 
+
+#### Request example details
+
+In the above example, the GET metrics request specifies the `rsid` as `examplersid`. It includes the query parameters `locale` as `en_US`, `segmentable` as `true`, and the `expansion` parameter `allowedForReporting` as `true`.
+
+
+#### Response example details
+
+In the above example, the GET metrics response lists two metric IDs for this report suite, including `campaigninstances` and `cartadditions` with similar `title` and `name`. Both have the same `type` as `int`. But they differ in `category`--the first is `Traffic sources` and the second is `Conversion`. The remaining response parameters provide more details of the metrics. This includes the information that both metrics are `segmentable` and `allowedForReporting`, as shown by the values `true` for each.
+
+
 ## GET metrics ID
 
-Use this endpoint to retrieve information for a specified metric in a report suite.
+Use this endpoint to retrieve information for a single metric in a report suite.
 
-**GET**  `https://analytics.adobe.io/api//dimensions/{Dimension ID}?rsid={RSID number}`
+**GET**  `https://analytics.adobe.io/api//dimensions/{Metric ID}?rsid={report suite ID}`
 
 ### Request parameters
 
@@ -253,5 +236,6 @@ curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=e
   }
 ]
 ```
+
 
 For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
