@@ -120,12 +120,12 @@ curl -X GET "https://analytics.adobe.io/api/experi14/metrics?rsid=examplersid&lo
 
 #### Request example details
 
-In the above example, the GET metrics request specifies the `rsid` as `examplersid`. It includes the query parameters `locale` as `en_US`, `segmentable` as `true`, and the `expansion` parameter `allowedForReporting` as `true`.
+In the above example, the GET metrics request specifies the `rsid` as `examplersid`. It includes the query parameter `locale` as `en_US`. Also, the request specifies both `segmentable` and the `expansion` parameter `allowedForReporting` as `true` so that information for those items will be returned.
 
 
 #### Response example details
 
-In the above example, the GET metrics response lists two metric IDs for this report suite, including `campaigninstances` and `cartadditions` with similar `title` and `name`. Both have the same `type` as `int`. But they differ in `category`--the first is `Traffic sources` and the second is `Conversion`. The remaining response parameters provide more details of the metrics. This includes the information that both metrics are `segmentable` and `allowedForReporting`, as shown by the values `true` for each.
+In the above example, the GET metrics response lists two metric IDs for this report suite, including `campaigninstances` and `cartadditions` with similar `title` and `name`. Both have the same `type` as `int`. But they differ in `category` -- the first is `Traffic sources` and the second is `Conversion`. The remaining response parameters provide more details of the metrics. This includes the information that both metrics are `segmentable` and `allowedForReporting`, as requested. This is indicated by the value `true` for each pair.
 
 ## GET metrics ID
 
