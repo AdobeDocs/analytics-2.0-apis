@@ -18,7 +18,10 @@ This guide includes instructions for using the following endpoints:
 
 Use this endpoint to return a list of dimensions for a given report suite ID.
 
-**GET**  `https://analytics.adobe.io/api//dimensions?rsid={RSID number}`
+**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid={RSID}`
+
+You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+
 
 ### Request parameters
 
@@ -52,21 +55,21 @@ The GET dimensions endpoint includes the following response parameters:
 | `extraTitleInfo` | string | Additional title info |
 | `segmentable` | boolean | Whether the dimension is segmentable |
 | `reportable` | array (string) | Whether the dimension is segmentable |
-| `description` | string | Contents of report/dimension description field |
+| `description` | string | Contents of dimension description field in report|
 | `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
-| `tags` | object | Metadata tags. An extra metadata item in response to the `expansion` request parameter. |
+| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. | |
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request. 
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=en_US&limit=10&page=0" \
+curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=amc.exl.global.prod&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
@@ -74,82 +77,66 @@ curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=e
 #### Response
 
 ```json
-[    
+[
   {
-    "id": "cm_bouncerate_defaultmetric",
-    "name": "Bounce Rate",
-    "description": "Default Bounce Rate Metric",
-    "polarity": "positive",
-    "precision": 1,
-    "type": "percent",
-    "definition": {
-      "formula": {
-        "col": {
-          "func": "divide",
-          "col2": {
-            "func": "metric",
-            "name": "metrics/entries",
-            "description": "Entries"
-          },
-          "col1": {
-            "func": "metric",
-            "name": "metrics/bounces",
-            "description": "Bounces"
-          }
-        },
-        "func": "visualization-group"
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
+    "id": "variables/campaign",
+    "title": "Tracking Code",
+    "name": "Tracking Code",
+    "type": "string",
+    "category": "Traffic Sources",
+    "categories": [],
+    "support": [
+      "dataWarehouse",
+      "oberon"
+    ],
+    "pathable": false,
+    "segmentable": true,
+    "reportable": [
+      "oberon"
+    ],
+    "supportsDataGovernance": true,
+    "multiValued": false,
+    "standardComponent": true
   },
   {
-    "id": "cm_revenue_visitor_defaultmetric",
-    "name": "Revenue / Visitor",
-    "description": "Default Revenue / Visitor Metric",
-    "polarity": "positive",
-    "precision": 2,
-    "type": "currency",
-    "definition": {
-      "formula": {
-        "func": "divide",
-        "col2": {
-          "func": "metric",
-          "name": "metrics/visitors"
-        },
-        "col1": {
-          "func": "metric",
-          "name": "metrics/revenue"
-        }
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
+    "id": "variables/clickmaplink",
+    "title": "Activity Map Link",
+    "name": "Activity Map Link",
+    "type": "string",
+    "category": "ClickMap",
     "categories": [
-      "Calculated Metrics"
-    ]
-  }
+      "Activity Map"
+    ],
+    "support": [
+      "oberon",
+      "dataWarehouse"
+    ],
+    "pathable": false,
+    "segmentable": true,
+    "reportable": [
+      "oberon"
+    ],
+    "supportsDataGovernance": true,
+    "dataGroup": "clickmap",
+    "multiValued": false
+  },
 ]
 ```
+
+#### Request example details
+
+In the above example, the GET dimensions request specifies the `rsid` as `examplersid`. It includes the query parameter `locale` as `en_US`. The request specifies that `segmentable`, `reportable`, `classifiable`, and the `expansion` parameter `categories` as `true` so that information for those items will be returned.
+
+
+#### Response example details
+
+In the above example, the GET dimensions response lists two `classifiable` dimensions for this report suite, including `campaign` and `clickmaplink`. Each dimension title and name are also included. Both dimensions have the same `type` as `string`. But they differ in `category` -- the first is `Traffic sources` and the second is `ClickMap`. It also includes the information that both dimensions are `reportable` in `oberon` and that both are `segmentable`. Note that the dimension `campaign` does not have any categories associated with it but that the `clickmaplink` dimension is associated with `Activity Map`.
 
 ## GET dimensions ID
 
 Use this endpoint to retrieve information for a specified dimension in a report suite.
 
-**GET**  `https://analytics.adobe.io/api//dimensions/{Dimension ID}?rsid={RSID number}`
+**GET**  `https://analytics.adobe.io/api/[globalCompanyId}/dimensions/{Dimension ID}?rsid={RSID number}`
 
 ### Request parameters
 
@@ -176,7 +163,8 @@ Click the **Request** tab in the following example to see a cURL request. Click 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=en_US&limit=10&page=0" \
+curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickmaplink?rsid=amc.exl.global.prod&locale=en_US&expansion=allowedForReporting
+" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
@@ -184,75 +172,36 @@ curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=e
 #### Response
 
 ```json
-[    
-  {
-    "id": "cm_bouncerate_defaultmetric",
-    "name": "Bounce Rate",
-    "description": "Default Bounce Rate Metric",
-    "polarity": "positive",
-    "precision": 1,
-    "type": "percent",
-    "definition": {
-      "formula": {
-        "col": {
-          "func": "divide",
-          "col2": {
-            "func": "metric",
-            "name": "metrics/entries",
-            "description": "Entries"
-          },
-          "col1": {
-            "func": "metric",
-            "name": "metrics/bounces",
-            "description": "Bounces"
-          }
-        },
-        "func": "visualization-group"
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
-  },
-  {
-    "id": "cm_revenue_visitor_defaultmetric",
-    "name": "Revenue / Visitor",
-    "description": "Default Revenue / Visitor Metric",
-    "polarity": "positive",
-    "precision": 2,
-    "type": "currency",
-    "definition": {
-      "formula": {
-        "func": "divide",
-        "col2": {
-          "func": "metric",
-          "name": "metrics/visitors"
-        },
-        "col1": {
-          "func": "metric",
-          "name": "metrics/revenue"
-        }
-      },
-      "func": "calc-metric",
-      "version": [
-        1,
-        0,
-        0
-      ]
-    },
-    "template": true,
-    "categories": [
-      "Calculated Metrics"
-    ]
-  }
-]
+{
+  "id": "variables/clickmaplink",
+  "title": "Activity Map Link",
+  "name": "Activity Map Link",
+  "type": "string",
+  "category": "ClickMap",
+  "support": [
+    "oberon",
+    "dataWarehouse"
+  ],
+  "pathable": false,
+  "segmentable": true,
+  "reportable": [
+    "oberon"
+  ],
+  "supportsDataGovernance": true,
+  "dataGroup": "clickmap",
+  "allowedForReporting": true,
+  "multiValued": false
+}
 ```
+
+#### Request example details
+
+In the above example, the request specifies the GET dimensions ID for `clickmaplink` in the `examplersid` report suite. The query parameter `locale` is included as `en_US`. The request also specifies that the response include information on whether the dimension is `allowedForReporting`.
+
+
+#### Response example details
+
+In the above example, the GET dimensions ID response shows the `clickmaplink` dimension in the `examplersid` report suite. In addition to providing standard response details for the dimension, the example shows that the dimension is `allowedForReporting`.
+
 
 For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
