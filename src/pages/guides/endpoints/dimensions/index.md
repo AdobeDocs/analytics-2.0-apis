@@ -69,7 +69,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=amc.exl.global.prod&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
+curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=examplersid&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
@@ -125,12 +125,33 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=am
 
 #### Request example details
 
-In the above example, the GET dimensions request specifies the `rsid` as `examplersid`. It includes the query parameter `locale` as `en_US`. The request specifies that `segmentable`, `reportable`, `classifiable`, and the `expansion` parameter `categories` as `true` so that information for those items will be returned.
+The above example requests the following details:
+
+* The GET dimensions list for the `examplersid` report suite. 
+
+* The language as US English with the query parameter `locale` as `en_US`. 
+
+* The values for the `segmentable`, `reportable`, and `classifiable` parameters.
+
+* Information for `expansion` parameter `categories`. 
+
 
 
 #### Response example details
 
-In the above example, the GET dimensions response lists two `classifiable` dimensions for this report suite, including `campaign` and `clickmaplink`. Each dimension title and name are also included. Both dimensions have the same `type` as `string`. But they differ in `category` -- the first is `Traffic sources` and the second is `ClickMap`. It also includes the information that both dimensions are `reportable` in `oberon` and that both are `segmentable`. Note that the dimension `campaign` does not have any categories associated with it but that the `clickmaplink` dimension is associated with `Activity Map`.
+The above JSON response example shows the following details:
+
+* Information for two `classifiable` dimensions in the `examplersid` report suite, including `campaign` and `clickmaplink`.
+
+* The `title` and `name` values for each dimension.
+
+* Both dimensions have the same data `type`, set as `string`. 
+
+* The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`. 
+
+* Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
+
+* The dimension `campaign` does not have any categories associated with it but the `clickmaplink` dimension is associated with `Activity Map`.
 
 ## GET dimensions ID
 
@@ -163,7 +184,7 @@ Click the **Request** tab in the following example to see a cURL request. Click 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickmaplink?rsid=amc.exl.global.prod&locale=en_US&expansion=allowedForReporting
+curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting
 " \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
@@ -196,12 +217,22 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickma
 
 #### Request example details
 
-In the above example, the request specifies the GET dimensions ID for `clickmaplink` in the `examplersid` report suite. The query parameter `locale` is included as `en_US`. The request also specifies that the response include information on whether the dimension is `allowedForReporting`.
+The above example requests the following details:
+
+* The GET dimensions ID for `clickmaplink` in the `examplersid` report suite. 
+
+* The language as US English with the query parameter `locale` as `en_US`. 
+
+* Information on whether the dimension is `allowedForReporting`.
 
 
 #### Response example details
 
-In the above example, the GET dimensions ID response shows the `clickmaplink` dimension in the `examplersid` report suite. In addition to providing standard response details for the dimension, the example shows that the dimension is `allowedForReporting`.
+The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite: 
+
+* Standard response details for the dimension, including the information that it is reportable to the `oberon` tool. 
+
+* The dimension is `allowedForReporting`.
 
 
 For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
