@@ -128,11 +128,8 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=ex
 The above example requests the following details:
 
 * The GET dimensions list for the `examplersid` report suite. 
-
-* The language as US English with the query parameter `locale` as `en_US`. 
-
+* Specifies the response language in `locale` as US English with the value `en_US`. 
 * The values for the `segmentable`, `reportable`, and `classifiable` parameters.
-
 * Information for `expansion` parameter `categories`. 
 
 
@@ -142,15 +139,10 @@ The above example requests the following details:
 The above JSON response example shows the following details:
 
 * Information for two `classifiable` dimensions in the `examplersid` report suite, including `campaign` and `clickmaplink`.
-
 * The `title` and `name` values for each dimension.
-
 * Both dimensions have the same data `type`, set as `string`. 
-
 * The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`. 
-
 * Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
-
 * The dimension `campaign` does not have any categories associated with it but the `clickmaplink` dimension is associated with `Activity Map`.
 
 ## GET dimensions ID
@@ -220,9 +212,7 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickma
 The above example requests the following details:
 
 * The GET dimensions ID for `clickmaplink` in the `examplersid` report suite. 
-
-* The language as US English with the query parameter `locale` as `en_US`. 
-
+* Specifies the response language in `locale` as US English with the value `en_US`. 
 * Information on whether the dimension is `allowedForReporting`.
 
 
@@ -231,8 +221,7 @@ The above example requests the following details:
 The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite: 
 
 * Standard response details for the dimension, including the information that it is reportable to the `oberon` tool. 
-
-* The dimension is `allowedForReporting`.
+* The dimension is allowed for reporting as indicated by `allowedForReporting: true`.
 
 
 For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
