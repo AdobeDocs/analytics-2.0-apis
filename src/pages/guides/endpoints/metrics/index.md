@@ -31,8 +31,8 @@ The GET metrics endpoint includes the following request query parameters:
 | --- | --- | -- | --|
 | `rsid` | required | string | Report suite ID |
 | `locale` | optional | string | Specified language |
-| `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
-| `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
+| `segmentable` | optional | boolean | Whether to include only metrics that are valid within a segment |
+| `reportable` | optional | boolean | Whether to include only metrics that are valid within the report |
 | `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
 
 ### Response parameters
@@ -41,10 +41,10 @@ The GET metrics endpoint includes the following response parameters:
 
 | Parameter | Type | Description |
 | --- | --- | -- |
-| `id` | string | Dimension ID |
-| `title` | string | Dimension title |
-| `name` | string | Dimension name |
-| `type` | array of enums | Lists the data type of the dimension |
+| `id` | string | Metric ID |
+| `title` | string | Metric title |
+| `name` | string | Metric name |
+| `type` | array of enums | Lists the data type of the metric |
 | `extraTitleInfo` | string | Additional title info |
 | `category` | string | Product category |
 | `support` | string | Support information |
@@ -54,14 +54,14 @@ The GET metrics endpoint includes the following response parameters:
 | `polarity` | string | Whether the polarity is `positive` or `negative` |
 | `helplink` | string | URL that provides documentation resources |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
-| `allowedForReporting` | boolean | An extra metadata item in response to the `expansion` request parameter. Indicates whether the dimension is set to be allowed for reporting. |
+| `allowedForReporting` | boolean | An extra metadata item in response to the `expansion` request parameter. Indicates whether the metric is set to be allowed for reporting. |
 | `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
-| `pathable` | boolean | Whether the report/dimension is pathing enabled |
-| `parent` | string | Parent dimension |
-| `segmentable` | boolean | Whether the dimension is segmentable |
-| `reportable` | array (string) | Whether the dimension is segmentable |
-| `description` | string | Contents of dimension description field in report |
-| `noneSettings` | boolean | Whether "none" item report setting is set.  |
+| `pathable` | boolean | Whether the metric in the report is pathing enabled |
+| `parent` | string | Parent metric |
+| `segmentable` | boolean | Whether the metric is segmentable |
+| `reportable` | array (string) | Whether the metric is segmentable |
+| `description` | string | Contents of metric description field in report |
+| `noneSettings` | boolean | Whether "none" item report setting is set  |
 
 ### Request and response examples
 
@@ -130,8 +130,8 @@ The above example requests the following details:
 
 * The GET metrics list for `examplersid` report suite. 
 * Specifies the response language in `locale` as US English with the value as `en_US`. 
-* To retrieve only `segmentable` metrics. This is specified with the value`true`.
-* Information on whether the dimension is `allowedForReporting`.
+* To retrieve only `segmentable` metrics. This is specified with the value `true`.
+* Information on whether the metric is `allowedForReporting`.
 
 
 #### Response example details
@@ -147,7 +147,7 @@ The above JSON response example shows the following details:
 
 Use this endpoint to retrieve information for a single metric in a report suite.
 
-**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/dimensions/{Dimension ID}?rsid={report suite ID}`
+**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/metrics/{Metric ID}?rsid={report suite ID}`
 
 You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
 
@@ -164,7 +164,7 @@ The GET metrics ID endpoint includes the following request query parameters:
 
 ### Response parameters
 
-The GET dimensions ID endpoint includes the same response parameters as the GET dimensions response parameters, as described above.
+The GET metrics ID endpoint includes the same response parameters as the GET metrics response parameters, as described above.
 
 ### Request and response examples
 
