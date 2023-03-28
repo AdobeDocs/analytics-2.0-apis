@@ -184,8 +184,16 @@ module.exports = {
             ]
           },
           {
+            title: 'Dimensions',
+            path: 'guides/endpoints/dimensions',
+          },
+          {
             title: 'Discovery',
             path: 'guides/endpoints/discovery.md'
+          },
+          {
+            title: 'Metrics',
+            path: 'guides/endpoints/metrics.md'
           },
           {
             title: 'Projects',
