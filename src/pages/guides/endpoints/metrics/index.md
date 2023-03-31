@@ -211,7 +211,7 @@ In the above example, the GET metrics ID request specifies the metric ID as `car
 
 The above example requests the following details:
 
-* The GET metrics ID for `Carts` in the `examplersid` report suite. 
+* The GET metrics ID for `carts` in the `examplersid` report suite. 
 * Specifies the response language in `locale` as US English with the value as `en_US`. 
 * Information on any data associated with `expansion` parameter `categories`.
 
