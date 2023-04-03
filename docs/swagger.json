@@ -5309,9 +5309,7 @@
         },
         "segmentDefinition": {
           "type": "object",
-          "additionalProperties": {
-            "type": "object"
-          }
+          "$ref": "#/definitions/AnalyticsSegmentDefinition"
         },
         "dateRange": {
           "type": "string"
