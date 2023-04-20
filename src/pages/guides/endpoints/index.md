@@ -57,6 +57,12 @@ Retrieve information about a report suite.
 
 <DiscoverBlock slots="link, text"/>
 
+[Livestream](livestream/index.md)
+
+Retrieve Analytics traffic information in real time.
+
+<DiscoverBlock slots="link, text"/>
+
 [Segments](segments/index.md)
 
 Retrieve, update, or create segments.
