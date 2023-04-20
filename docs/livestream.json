@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "description": "Livestream description",
+    "version": "1.0",
+    "title": "Adobe Analytics Livestream"
+  },
+  "servers": [
+    {
+      "url": "https://livestream.adobe.net/api/1"
+    }
+  ],
+  "paths": {
+    "/schema": {
+      "get": {
+        "tags": [
+          "schema"
+        ],
+        "summary": "Get the Adobe Analytics Livestream data schema",
+        "description": "Livestream provides a stream of newline-delimited json records for consumption. This endpoint returns the json schema for a single json record in that stream.",
+        "responses": {
+          "200": {
+            "description": "The Adobe Analytics Livestream data schema.",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "schemaExample": {
+                    "externalValue": "https://livestream.adobe.net/api/1/schema"
+                  }
+                },
+                "schema": {
+                  "$ref": "https://json-schema.org/draft/2020-12/schema"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
