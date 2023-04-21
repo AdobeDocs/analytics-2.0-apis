@@ -5,9 +5,9 @@ description: Retrieve metrics information using the API.
 
 # Analytics Metrics API
 
-The Analytics 2.0 Metrics API endpoints allow you to retrieve metrics programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with metrics in the UI. See [Metrics](https://experienceleague.adobe.com/docs/analytics/components/metrics/overview.html?lang=en) in the Analytics Components guide for more information. For information on  using Calculated Metrics API (a separate service), see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/). 
+The Analytics 2.0 Metrics API endpoints allow you to retrieve metrics programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with metrics in the UI. See [Metrics](https://experienceleague.adobe.com/docs/analytics/components/metrics/overview.html) in the Analytics Components guide for more information. For information on using the Calculated Metrics API (a separate service), see the [Calculated Metrics API endpoint guide](../calculatedmetrics/index.md). 
 
-The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
 This guide includes instructions for using the following endpoints:
 
@@ -20,7 +20,7 @@ Use this endpoint to return a list of metrics for a given report suite ID.
 
 **GET**  `https://analytics.adobe.io/api/{globalCompanyId}/metrics?rsid={RSID}`
 
-You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+You can find your global company ID by using the [Discovery API](../discovery.md).
 
 ### Request parameters
 

@@ -20,7 +20,7 @@ Use this endpoint to return a list of dimensions for a given report suite ID.
 
 **GET**  `https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid={RSID}`
 
-You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+You can find your global company ID by using the [Discovery API](../discovery.md).
 
 
 ### Request parameters
