@@ -62,7 +62,7 @@ The `validationToken` is consumed when you create a data repair job. You must us
 
 ## View a Data Repair API job list
 
-Use this endpoint to retrieve a list of your data repair jobs that were created for the given Report Suite. It includes both currently running and completed jobs.
+Use this endpoint to retrieve a list of your most recent 20 data repair jobs for the given Report Suite. It includes both currently running and completed jobs.
 
 `GET https://analytics.adobe.io/api/{COMPANY_ID}/datarepair/v1/{RSID}/job`
 
