@@ -1,3 +1,8 @@
+---
+title: Livestream API
+description: Getting started with Analytics Livestream
+---
+
 # Getting started with Adobe Analytics Livestream
 
 Livestream is a reporting feature in Adobe Analytics that allows a client to receive traffic processed by Adobe Analytics in real-time. Traffic is streamed to the client on a hit or impression basis, in the same order and rate that hits are processed.
