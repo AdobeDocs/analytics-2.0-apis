@@ -43,3 +43,8 @@ When applying a URL operator (`deleteQueryString` or `deleteQueryStringParameter
 * The [Product](https://experienceleague.adobe.com/docs/analytics/components/dimensions/product.html) dimension is not supported.
 * Dimensions that have [Merchandising](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) currently enabled or was enabled historically are not supported. If you run a data repair job on a variable that has had merchandising enabled in the past, you risk seeing incorrect or unexpected attribution results.
 * Only one data repair job at a time can run per Report Suite.
+
+
+### How do I refresh my authentication token? 
+
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)

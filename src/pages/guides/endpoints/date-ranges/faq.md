@@ -17,3 +17,8 @@ Frequently asked questions around the date ranges endpoint.
 ### What is the difference between a predefined date range and a date range that I create?
 
 Adobe provides predefined date range templates. Although original templates cannot be modified or deleted, you can create copies of them to modify. Predefined templates have the attribute `template: true`. You can use these date range templates in Workspace projects like any other type of date range.
+
+
+### How do I refresh my authentication token? 
+
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)

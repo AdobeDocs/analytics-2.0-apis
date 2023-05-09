@@ -6,6 +6,9 @@ In order to create a JWT integration on the Adobe Developer Console, you need Sy
 
 Instructions for creating the JWT client and generating the JWT token can be found in [JWT Authentication Guide](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
 
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+
+
 ## Permissions
 
 The amount of access to an integration is governed by the product profiles associated with it. Product profiles have Analytics-specific permissions for managing integration access to reporting features and data.

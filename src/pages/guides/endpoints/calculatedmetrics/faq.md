@@ -18,3 +18,7 @@ Adobe recommends the following practices:
 ## How can I create complex calculated metrics using the API?
 
 Creating a calculated metric from scratch can be difficult without familiarity of the definition terms. You can use the Analysis Workspace UI for to create a calculated metric, then use the [Debugger]. Then use this API to retrieve the calculated metric and modify the definition to match what you want to do programmatically. Then we recommend that you `POST` that calculated metric with the modified definition back to this API.
+
+### How do I refresh my authentication token? 
+
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)

@@ -45,6 +45,10 @@ You must first configure Postman to authenticate with your Adobe ID. Once you au
 
 The token is now configured, and you can use it in any API requests from Postman. When the token expires (typically after 24 hours), you can navigate back to the Authorization section and click **Get New Access Token**. Once you authenticate using your Adobe ID, a new access token is generated.
 
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+
+
+
 ## Obtain a global company ID
 
 Most endpoints require a `globalCompanyId` value in the request URL. You can use the Discovery API to obtain this value.

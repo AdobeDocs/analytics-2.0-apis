@@ -48,3 +48,6 @@ Adobe offers two primary methods to authenticate:
 * **JWT**: Use a service account to authenticate with the API. See [JSON web token](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWTCertificate.md) in the Adobe Developer Authentication user guide.
 
 Choose your desired authentication method, and complete the remaining steps to finish the API client wizard.
+
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+

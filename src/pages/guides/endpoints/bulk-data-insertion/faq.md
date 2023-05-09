@@ -58,3 +58,8 @@ Your best course of action depends on how many invalid rows exist:
 ### How do I remove data that was inadvertently uploaded?
 
 **Data uploaded through the Bulk data insertion API is permanent.** In some cases, you can use the [Data Repair API](../data-repair/index.md), but Adobe strongly recommends that you validate uploads before ingesting them into Adobe Analytics. Adobe Engineering Services can also assist customers in removing undesired data through a paid service engagement. Contact your Adobe Account Team for more information.
+
+
+### How do I refresh my authentication token? 
+
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
