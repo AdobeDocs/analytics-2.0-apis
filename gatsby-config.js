@@ -193,7 +193,7 @@ module.exports = {
           },
           {
             title: 'Livestream API',
-            path: 'guides/livestream/index.md',
+            path: 'guides/endpoints/livestream/index.md',
             pages: [
               {
                 title: 'Variable reference',
