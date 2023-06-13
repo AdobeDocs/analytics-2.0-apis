@@ -210,7 +210,7 @@ module.exports = {
               {
                 title: 'FAQ',
                 path: 'guides/endpoints/livestream/faq.md'
-              }
+              },
               {
                 title: 'Client implementation',
                 path: 'guides/endpoints/livestream/client-implementation.md'
