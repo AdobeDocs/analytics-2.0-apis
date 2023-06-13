@@ -197,19 +197,23 @@ module.exports = {
             pages: [
               {
                 title: 'Variable reference',
-                path: 'guides/livestream/variable-reference.md'
+                path: 'guides/endpoints/livestream/variable-reference.md'
               },
               {
                 title: 'Example output',
-                path: 'guides/livestream/example-output.md'
+                path: 'guides/endpoints/livestream/example-output.md'
               },
               {
                 title: 'Troubleshooting',
-                path: 'guides/livestream/troubleshooting.md'
+                path: 'guides/endpoints/livestream/troubleshooting.md'
               },
               {
                 title: 'FAQ',
-                path: 'guides/livestream/faq.md'
+                path: 'guides/endpoints/livestream/faq.md'
+              }
+              {
+                title: 'Client implementation',
+                path: 'guides/endpoints/livestream/client-implementation.md'
               }
             ]
           },
