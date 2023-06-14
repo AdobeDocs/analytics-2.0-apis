@@ -2,7 +2,6 @@
 title: Getting started with the Analytics API
 description: Learn the first steps that you can take to start using the Analytics API.
 ---
-
 # Getting started with the Analytics API
 
 There are several steps to take before using the Analytics APIs.
@@ -44,10 +43,11 @@ At this point, you decide how you want to authenticate with the API.
 
 Adobe offers two primary methods to authenticate:
 
-* **OAuth**: Use your own account to authenticate with the API. See [OAuth connection](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/OAuthIntegration.md) in the Adobe Developer Authentication user guide.
-* **JWT**: Use a service account to authenticate with the API. See [JSON web token](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWTCertificate.md) in the Adobe Developer Authentication user guide.
+* **OAuth User**: Use your own account to authenticate with the API. See [OAuth User Authentication](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/) in the Adobe Developer Authentication user guide.
+* **OAuth Server to Server**: Use a server to server account to authenticate with the API. See [OAuth Server to Server Authentication](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/) in the Adobe Developer Authentication user guide.
+
+JWT authentication is deprecated and will only be supported until January 1, 2025. Current integrations using JWT will need to [migrate](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/migration/) to OAuth Server to Server prior to January 1, 2025.
 
 Choose your desired authentication method, and complete the remaining steps to finish the API client wizard.
 
 To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
-
