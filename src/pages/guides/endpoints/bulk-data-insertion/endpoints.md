@@ -5,7 +5,7 @@ description: All of the available endpoints related to the BDIA.
 
 # Bulk Data Insertion API endpoints
 
-Once you have met all [prerequisites](index.md), have a [correctly formatted file](file-format.md) and have checked your file for syntax errors with our [validation](#validate) tool, you can begin making API calls to Adobe's ingestion endpoint for this API.
+Once you have met all [prerequisites](../#prerequisites), have a [correctly formatted file](file-format.md) and have checked your file for syntax errors with our [validation](#validate) tool, you can begin making API calls to Adobe's ingestion endpoint for this API.
 
 ## Primary ingestion endpoint
 
