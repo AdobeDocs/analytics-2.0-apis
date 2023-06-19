@@ -9,17 +9,24 @@ A JSON request body is required when creating a Data Repair API job. This page p
 
 ## Structure
 
-A JSON request body consists of one or more variables with the desired action for each variable. You can also optionally include a filter for a given variable.
+A JSON request body consists of one or more variables with the desired action for each variable. You can also optionally include filters for a given variable.
 
 ```json
 {
   "variables": {
     "{VARIABLE_1}": {
-      "action": "{ACTION_1}",
-      "filter": {"condition":  "{CONDITION_1}"}
+      "action": "{ACTION_1}"
     },
     "{VARIABLE_2}": {
-      "action": "{ACTION_2}"
+      "action": "{ACTION_2}",
+      "filter": {"condition":  "{CONDITION_2}"}
+    },
+    "{VARIABLE_3}": {
+      "action": "{ACTION_3}",
+      "filters": [
+        {"condition":  "{CONDITION_1}"},
+        {"condition":  "{CONDITION_2}"}
+      ]
     }
   }
 }
@@ -133,7 +140,9 @@ Each variable requires an action. The Data Repair API supports the following fou
 
 The `set` and `delete` actions support filters, which allow you to selectively repair certain rows based on the filter criteria. Check the above variable table to make sure that an action supports the desired filter. The `deleteQueryString` and `deleteQueryStringParameters` actions do not support any filters.
 
-All filters are currently case sensitive. Support for filters that are not case sensitive is planned.
+You can specify a single filter using `filter` or multiple filters using `filters`.  When using multiple filters, each row must match all filters to be included in the repair.  We support matching when both filter A AND filter B apply, but not when either filter A OR filter B apply.
+
+All filters are case-sensitive.
 
 * **`inList`**: Include all rows where the variable is an exact match to at least one value from the `matchValues` array. The `matchValues` array can hold up to 1000 values.
 * **`isEmpty`**: Only include rows where the variable does not contain a value. Cannot be used with the `delete` action.
@@ -145,8 +154,10 @@ All filters are currently case sensitive. Support for filters that are not case 
 * **`doesNotEndWith`**: Limit the action to rows where the value does not end with the value in `matchValue`.
 * **`isURL`**: Only include the row if the Data Repair API recognizes the value as a URL.
 * **`isNotURL`**: Only include the row if the Data Repair API recognizes that the value is not a URL.
+* **`isNumeric`**: Include rows where the variable contains only numbers (0-9).
+* **`isNotNumeric`**: Include rows where the variable contains characters other than numbers.
 
-<CodeBlock slots="heading, code" repeat="6" languages="JSON,JSON,JSON,JSON,JSON,JSON"/>
+<CodeBlock slots="heading, code" repeat="7" languages="JSON,JSON,JSON,JSON,JSON,JSON,JSON"/>
 
 #### inList
 
@@ -159,6 +170,16 @@ All filters are currently case sensitive. Support for filters that are not case 
         "condition": "inList",
         "matchValues": ["match1", "match2"]
       }
+    },
+    "evar2": {
+      "action": "delete",
+      "filters": [{
+        "condition": "inList",
+        "matchValues": ["match1", "match2"]
+      }, {
+        "condition": "inList",
+        "matchValues": ["match2", "match3"]
+      }]
     }
   }
 }
@@ -243,15 +264,49 @@ All filters are currently case sensitive. Support for filters that are not case 
 }
 ```
 
+#### isNumeric
+
+```json
+{
+  "variables": {
+    "evar1": {
+      "action": "delete",
+      "filter": {
+        "condition": "isNumeric"
+      }
+    }
+  }
+}
+```
+
+#### Filter Variables
+
+By default, a filter is applied to the variable being repaired.  Use `filter.variable` to filter by a variable other
+than the target variable.  For example, the following means `delete evar2 where evar3 contains '@'`:
+
+```json
+{
+  "evar2": {
+    "action": "delete",
+    "filter": {
+      "condition": "contains",
+      "matchValue": "@",
+      "variable": "evar3"
+    }
+  }
+}
+
+
 ## Example Data Repair API definition file
 
-The following Data Repair API definition simultaneously performs the following four actions:
+The following Data Repair API definition simultaneously performs the following five actions:
 
 * Deletes all activity map data
 * Deletes the value in `prop12` across all rows
 * Sets `eVar74` to the value of "Turtles" across all rows
 * Deletes the value in `eVar107` if the existing eVar value contains "Fox" or "Dog"
-
+* Deletes the value in `evar110` where `evar110` starts with `Horse` AND `evar111` starts with `Zebra`
+        
 ```json
 {
   "variables": {
@@ -271,6 +326,17 @@ The following Data Repair API definition simultaneously performs the following f
         "condition": "inList",
         "matchValues": ["Fox", "Dog"]
       }
+    },
+    "evar110": {
+      "action": "delete",
+      "filters": [{
+        "condition": "startsWith",
+        "matchValue": "Horse"
+      }, {
+        "condition": "startsWith",
+        "matchValue": "Zebra",
+        "variable": "evar111"
+      }]
     }
   }
 }
