@@ -140,7 +140,7 @@ Each variable requires an action. The Data Repair API supports the following fou
 
 The `set` and `delete` actions support filters, which allow you to selectively repair certain rows based on the filter criteria. Check the above variable table to make sure that an action supports the desired filter. The `deleteQueryString` and `deleteQueryStringParameters` actions do not support any filters.
 
-You can specify a single filter using `filter` or multiple filters using `filters`.  When using multiple filters, each row must match all filters to be included in the repair.  We support matching when both filter A AND filter B apply, but not when either filter A OR filter B apply.
+You can specify a single filter using `filter` or multiple filters using `filters`. Matching one of multiple filters (using an 'OR' operator) is not supported; when using multiple filters, each row must match all filters to be included in the repair.
 
 All filters are case-sensitive.
 
