@@ -54,8 +54,8 @@ module.exports = {
         path: 'guides',
         pages: [
           {
-            title: 'JWT',
-            path: 'guides/jwt.md'
+            title: 'OAuth',
+            path: 'guides/oauth.md'
           },
           {
             title: 'Migrating from 1.4',
