@@ -1,12 +1,12 @@
-# JWT Authentication
+# OAuth Authentication
 
-You can use JSON Web Token (JWT) authentication for situations requiring server-to-server, service-token, or other long-running authentications.
+You can use OAuth authentication for situations requiring either user or server-to-server API authentication.
 
-In order to create a JWT integration on the Adobe Developer Console, you need System Admin or [Developer](https://helpx.adobe.com/enterprise/using/manage-developers.html) rights for your organization.
+In order to create an integration on the Adobe Developer Console, you need System Admin or [Developer](https://helpx.adobe.com/enterprise/using/manage-developers.html) rights for your organization.
 
-Instructions for creating the JWT client and generating the JWT token can be found in [JWT Authentication Guide](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
+Instructions for using OAuth authentication and [refreshing access tokens](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens) can be found in the [Authentication Guide](https://developer.adobe.com/developer-console/docs/guides/authentication/).
 
-To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+JWT authentication is deprecated and will only be supported until January 1, 2025. Current integrations using JWT will need to [migrate](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/migration/) to OAuth Server to Server prior to January 1, 2025.
 
 
 ## Permissions
