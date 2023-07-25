@@ -8,7 +8,6 @@ Instructions for using OAuth authentication and [refreshing access tokens](https
 
 JWT authentication is deprecated and will only be supported until January 1, 2025. Current integrations using JWT will need to [migrate](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/migration/) to OAuth Server to Server prior to January 1, 2025.
 
-
 ## Permissions
 
 The amount of access to an integration is governed by the product profiles associated with it. Product profiles have Analytics-specific permissions for managing integration access to reporting features and data.
