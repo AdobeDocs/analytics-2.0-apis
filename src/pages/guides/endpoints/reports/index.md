@@ -19,6 +19,8 @@ This guide includes API instructions that correspond to an example free-form tab
 
 This example appears in Analysis Workspaces similar to the following graphic:
 
+
+
 sample table screen shot
 
 To make the request, use the following URI for your POST HTTP method:
