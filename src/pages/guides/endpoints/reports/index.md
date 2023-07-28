@@ -375,3 +375,13 @@ A 206 status code indicates a partial response. This status code means that ther
 * **Global Dimension Not Enabled**: The global dimension for this request is not enabled in this report suite
 * **Unexpected Number of Items**: Anomaly Detection algorithm returned an unexpected number of anomalies
 * **General Service Error**: General Anomaly Detection service error
+
+## Additonial information
+
+For more information on the Reporting API, see the following resources:
+
+* [Breakdown dimensions](breakdowns.md)
+* [Example reporting API calls](examples.md)
+* [Search filters](search-filters.md)
+* [Use segments in the reporting API](segments.md)
+* [Oberon XML and JSON debugger](debugger.md)
