@@ -9,7 +9,7 @@ The Analytics Reports API includes the primary endpoint for reporting requests. 
 
 This guide does not include descriptions for all request and response parameters for the reports endpoint. For more information on parameters included with this endpoint, see the [API reference](/src/pages/apis/index.md). Also, you can copy API JSON request payloads and responses associated with any visualization directly from Analysis Workspace with the [Oberon debugger tool](https://developer.adobe.com/cja-apis/docs/endpoints/reporting/debugger/). This can be a helpful aid in structuring any API reporting request from Analysis Workspace visualizations.
 
-## Request reporting data 
+## Request reporting data
 
 This guide includes API instructions that correspond to an example free-form table visualization in Analysis Workspace with the `page` dimension and the following metrics:
 
@@ -17,7 +17,7 @@ This guide includes API instructions that correspond to an example free-form tab
 * `visits`
 * `visitors`
 
-This example, appears in Analysis Workspaces similar to the following graphic: 
+This example appears in Analysis Workspaces similar to the following graphic:
 
 sample table screen shot
 
@@ -26,7 +26,7 @@ To make the request, use the following URI for your POST HTTP method:
 POST `https://analytics.adobe.io/api/{global-company-id}/reports`
 
 Click the **Request** tab in the following example to see a a request for the data shown in the visualization above, limited to the top ten values.
-Click the **Response** tab to see a successful JSON response for the request. 
+Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
@@ -282,7 +282,7 @@ The example request includes the following parameters in the payload:
 | `associations` | optional | array | Contains `name` and `value` parameters for each type of metadata associated with report; e.g., `applicationName`, `projectId`, `projectName`, and `panelName`|
 | `name` | optional | string | The associated category type of the associated metadata |
 | `value` | optional | string | The actual name or title specified for the metadata category in the report |
- 
+
 ### Example response details
 
 The response above shows the following top ten ranked pages for this month according to the `pageViews`, `pageViews`, and `visitors` metrics:
@@ -351,7 +351,7 @@ GET `https://analytics.adobe.io/api/{global-company-id}/reports/topItems`
 
 The following example shows a request for a top items report for POST body shown above:
 
-```
+```curl
 curl -X 'GET' \
   'https://analytics.adobe.io/api/{Global company ID}/reports/topItems?rsid=examplersid=variables%2Fpage&locale=en_US&lookupNoneValues=false&limit=10&page=0' \
   -H 'accept: application/json' \
