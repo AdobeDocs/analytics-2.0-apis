@@ -21,7 +21,7 @@ This example appears in Analysis Workspaces similar to the following graphic:
 
 ![visualization](../../../images/free-form-example.png)
 
-To make the request, use the following URI for your POST HTTP method:
+To make the request, use the following URI for your POST HTTP call:
 
 POST `https://analytics.adobe.io/api/{global-company-id}/reports`
 
@@ -285,7 +285,7 @@ The example request includes the following parameters in the payload:
 
 ### Example response details
 
-The response above shows the following top ten ranked pages for this month according to the `pageViews`, `pageViews`, and `visitors` metrics:
+The response above shows the following top ten ranked pages for this month according to the `pageViews`, `visits`, and `visitors` metrics:
 
 1. home
 1. category 5
@@ -302,7 +302,7 @@ Additionally, the response above shows the following:
 
 * Each `row` secion contains each report record.
 
-* The `value` property contains the dimension value. Because the request includes a total of page views by day, the value of each row will contain a date identifier for the day. Note that for time series data, this identifier changes based on the granularity you specify. For example, if you request variables/daterangemonth instead, each value will contain a month/year identifier.
+* The `value` property contains the dimension value. 
 
 * The `data` property contains a list of metric counts for each metric requested.
 
@@ -319,9 +319,9 @@ The example response includes the following parameters:
 | `totalPages` | integer | The total number of pages with data |
 | `firstPage` | boolean | Whether to include the first page of results |
 | `lastPage` | boolean | Whether to include the last page of results |
-| `numberOfElements` | integert | Lists the data type of the dimension |
+| `numberOfElements` | integer | The number of item elements in the report |
 | `number` | integer | The number of pages, starting with `0` |
-| `totalElements` | integer | Product categories. An extra metadata item in response to the `expansion` request parameter. |
+| `totalElements` | integer | Total number of elements in the report |
 | `columns` | object | Contains column and `dimension` data |
 | `dimension` | object | Contains `id` and `type` |
 | `id` | string | Name of the dimension |
@@ -336,20 +336,20 @@ The example response includes the following parameters:
 | `annotations` | string | Annotations for the summary data, if specified |
 | `totals` | number($double) | The data totals |
 | `annotationExceptions` | string | Exceptions for annotations |
-| `col-max` | optional | string | The column maximum |
-| `col-min` | optional | string | The column minimum |
+| `col-max` | optional | The column maximum |
+| `col-min` | optional | The column minimum |
 
 ## Retrieve top items
 
-The GET reports/topItems request will return only the top items from the previous POST body, according the maximum number of items you want returned. They are returned in ranked order (excluding `NonValues`). You can specify the maximum with the `limit` included as a query parameter in the request.
+Use the GET Top Items request to return only the top items from the previous POST body, according the maximum number of items you want returned (excluding `NonValues`). They are returned in ranked order. You can specify the maximum with `limit` included as a query parameter in the request.
 
-To make the request, use the following URI for your GET HTTP method:
+To make the request, use the following URI for your GET HTTP call:
 
 GET `https://analytics.adobe.io/api/{global-company-id}/reports/topItems`
 
 ### Example request
 
-The following example shows a request for a top items report for POST body shown above:
+The following example shows a request for a top items report for the POST body shown above:
 
 ```curl
 curl -X 'GET' \
@@ -359,7 +359,7 @@ curl -X 'GET' \
   -H 'Authorization: {Bearer-token} 
 ```
 
-In this example you append the previous request body to the cURL call. Note that this request specifies that "NoneValues" not be included and that the `limit` of items to return is 10.
+In this example, you append the previous request body to the cURL call. Note that this request specifies that "NoneValues" not be included and that the `limit` of items to return be `10``.
 
 The response for this request is the same as the example response shown above.
 
