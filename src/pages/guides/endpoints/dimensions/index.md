@@ -149,7 +149,7 @@ Use this endpoint to retrieve information for a specified dimension in a report 
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
