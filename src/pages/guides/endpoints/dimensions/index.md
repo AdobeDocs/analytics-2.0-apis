@@ -5,7 +5,7 @@ description: Retrieve dimensions information using the API
 
 # Analytics Dimensions API
 
-The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information. 
+The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information.
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
@@ -24,7 +24,7 @@ You can find your global company ID by using the [Discovery API](../discovery.md
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
@@ -89,17 +89,17 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=ex
 
 The above example requests the following details:
 
-* The GET dimensions list for the `examplersid` report suite. 
-* Specifies the response language in `locale` as US English with the value `en_US`. 
+* The GET dimensions list for the `examplersid` report suite.
+* Specifies the response language in `locale` as US English with the value `en_US`.
 * The values for the `segmentable`, `reportable`, and `classifiable` parameters.
-* Information for `expansion` parameter `categories`. 
+* Information for `expansion` parameter `categories`.
 
 #### Request parameters
 
 The GET dimensions endpoint includes the following request query parameters:
 
 | Parameter | Req/Opt | Type | Description |
-| --- | --- | -- | --|
+| --- | --- | -- | -- |
 | `rsid` | required | string | report suite ID |
 | `locale` | optional | string | The specified language |
 | `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
@@ -139,7 +139,7 @@ The GET dimensions endpoint includes the following response parameters:
 | `description` | string | Contents of dimension description field in report|
 | `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
-| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. | |
+| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
 
 ## GET dimensions ID
 
@@ -186,12 +186,13 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickma
   "multiValued": false
 }
 ```
+
 ### Request example details
 
 The above example requests the following details:
 
-* The GET dimensions ID for `clickmaplink` in the `examplersid` report suite. 
-* Specifies the response language in `locale` as US English with the value `en_US`. 
+* The GET dimensions ID for `clickmaplink` in the `examplersid` report suite.
+* Specifies the response language in `locale` as US English with the value `en_US`.
 * Information on whether the dimension is `allowedForReporting`.
 
 #### Request parameters
@@ -199,7 +200,7 @@ The above example requests the following details:
 The GET dimensions ID endpoint includes the following request query parameters:
 
 | Parameter | Req/Opt | Type | Description |
-| --- | --- | -- | --|
+| --- | --- | -- | -- |
 | `id` | required | string | Dimenstion ID (e.g.`evar1`) |
 | `rsid` | required | string | Report suite ID |
 | `locale` | optional | string | The specified language |
@@ -207,9 +208,10 @@ The GET dimensions ID endpoint includes the following request query parameters:
 
 ### Response example details
 
-The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite: 
+The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite:
 
-* Standard response details for the dimension, including the information that it is reportable to the `oberon` tool. 
+* Standard response details for the dimension, including the information that it is reportable to the `oberon` tool.
+  
 * The dimension is allowed for reporting as indicated by `allowedForReporting: true`.
 
 #### Response parameters
