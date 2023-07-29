@@ -1,6 +1,6 @@
 ---
 title: Dimensions API
-description: Retrieve dimensions information using the API.
+description: Retrieve dimensions information using the API
 ---
 
 # Analytics Dimensions API
@@ -21,44 +21,6 @@ Use this endpoint to return a list of dimensions for a given report suite ID.
 **GET**  `https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid={RSID}`
 
 You can find your global company ID by using the [Discovery API](../discovery.md).
-
-
-### Request parameters
-
-The GET dimensions endpoint includes the following request query parameters:
-
-
-| Parameter | Req/Opt | Type | Description |
-| --- | --- | -- | --|
-| `rsid` | required | string | report suite ID |
-| `locale` | optional | string | The specified language |
-| `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
-| `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
-| `classifiable` | optional | boolean | Whether to include only classifiable dimensions |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
-
-### Response parameters
-
-The GET dimensions endpoint includes the following response parameters:
-
-| Parameter | Type | Description |
-| --- | --- | -- |
-| `id` | string | Dimension ID |
-| `title` | string | Dimension title |
-| `name` | string | Dimension name |
-| `type` | array of enums | Lists the data type of the dimension |
-| `category` | string | Product category |
-| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
-| `support` | string | Support information |
-| `pathable` | boolean | Whether the report/dimension is pathing enabled |
-| `parent` | string | Parent dimension |
-| `extraTitleInfo` | string | Additional title info |
-| `segmentable` | boolean | Whether the dimension is segmentable |
-| `reportable` | array (string) | Whether the dimension is segmentable |
-| `description` | string | Contents of dimension description field in report|
-| `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
-| `noneSettings` | boolean | Whether "none" item report setting is set.  |
-| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. | |
 
 ### Request and response examples
 
@@ -123,7 +85,7 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=ex
 ]
 ```
 
-#### Request example details
+### Request example details
 
 The above example requests the following details:
 
@@ -132,7 +94,18 @@ The above example requests the following details:
 * The values for the `segmentable`, `reportable`, and `classifiable` parameters.
 * Information for `expansion` parameter `categories`. 
 
+#### Request parameters
 
+The GET dimensions endpoint includes the following request query parameters:
+
+| Parameter | Req/Opt | Type | Description |
+| --- | --- | -- | --|
+| `rsid` | required | string | report suite ID |
+| `locale` | optional | string | The specified language |
+| `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
+| `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
+| `classifiable` | optional | boolean | Whether to include only classifiable dimensions |
+| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
 
 #### Response example details
 
@@ -144,28 +117,35 @@ The above JSON response example shows the following details:
 * The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`. 
 * Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
 * The dimension `campaign` does not have any categories associated with it but the `clickmaplink` dimension is associated with `Activity Map`.
+  
+#### Response parameters
+
+The GET dimensions endpoint includes the following response parameters:
+
+| Parameter | Type | Description |
+| --- | --- | -- |
+| `id` | string | Dimension ID |
+| `title` | string | Dimension title |
+| `name` | string | Dimension name |
+| `type` | array of enums | Lists the data type of the dimension |
+| `category` | string | Product category |
+| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
+| `support` | string | Support information |
+| `pathable` | boolean | Whether the report/dimension is pathing enabled |
+| `parent` | string | Parent dimension |
+| `extraTitleInfo` | string | Additional title info |
+| `segmentable` | boolean | Whether the dimension is segmentable |
+| `reportable` | array (string) | Whether the dimension is segmentable |
+| `description` | string | Contents of dimension description field in report|
+| `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
+| `noneSettings` | boolean | Whether "none" item report setting is set.  |
+| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. | |
 
 ## GET dimensions ID
 
 Use this endpoint to retrieve information for a specified dimension in a report suite.
 
 **GET**  `https://analytics.adobe.io/api/[globalCompanyId}/dimensions/{Dimension ID}?rsid={RSID number}`
-
-### Request parameters
-
-The GET dimensions ID endpoint includes the following request query parameters:
-
-
-| Parameter | Req/Opt | Type | Description |
-| --- | --- | -- | --|
-| `id` | required | string | Dimenstion ID (e.g.`evar1`) |
-| `rsid` | required | string | Report suite ID |
-| `locale` | optional | string | The specified language |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
-
-### Response parameters
-
-The GET dimensions ID endpoint includes the same response parameters as the GET dimensions response parameters, as described above.
 
 ### Request and response examples
 
@@ -206,8 +186,7 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickma
   "multiValued": false
 }
 ```
-
-#### Request example details
+### Request example details
 
 The above example requests the following details:
 
@@ -215,13 +194,26 @@ The above example requests the following details:
 * Specifies the response language in `locale` as US English with the value `en_US`. 
 * Information on whether the dimension is `allowedForReporting`.
 
+#### Request parameters
 
-#### Response example details
+The GET dimensions ID endpoint includes the following request query parameters:
+
+| Parameter | Req/Opt | Type | Description |
+| --- | --- | -- | --|
+| `id` | required | string | Dimenstion ID (e.g.`evar1`) |
+| `rsid` | required | string | Report suite ID |
+| `locale` | optional | string | The specified language |
+| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
+
+### Response example details
 
 The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite: 
 
 * Standard response details for the dimension, including the information that it is reportable to the `oberon` tool. 
 * The dimension is allowed for reporting as indicated by `allowedForReporting: true`.
 
+#### Response parameters
+
+The GET dimensions ID endpoint includes the same response parameters as the GET dimensions response parameters, as described above.
 
 For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
