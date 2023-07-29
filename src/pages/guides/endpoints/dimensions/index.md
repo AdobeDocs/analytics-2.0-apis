@@ -28,7 +28,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
-#### Request
+### Request
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=examplersid&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
@@ -36,7 +36,7 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=ex
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
 
-#### Response
+### Response
 
 ```json
 [
@@ -113,11 +113,11 @@ The above JSON response example shows the following details:
 
 * Information for two `classifiable` dimensions in the `examplersid` report suite, including `campaign` and `clickmaplink`.
 * The `title` and `name` values for each dimension.
-* Both dimensions have the same data `type`, set as `string`. 
-* The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`. 
+* Both dimensions have the same data `type`, set as `string`.
+* The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`.
 * Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
 * The dimension `campaign` does not have any categories associated with it but the `clickmaplink` dimension is associated with `Activity Map`.
-  
+
 #### Response parameters
 
 The GET dimensions endpoint includes the following response parameters:
@@ -211,7 +211,7 @@ The GET dimensions ID endpoint includes the following request query parameters:
 The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite:
 
 * Standard response details for the dimension, including the information that it is reportable to the `oberon` tool.
-  
+
 * The dimension is allowed for reporting as indicated by `allowedForReporting: true`.
 
 #### Response parameters
