@@ -5,7 +5,14 @@ description: Use the Reporting API to retrieve data from a report suite.
 
 # Reporting API
 
-The Analytics Reports API includes the primary endpoint for reporting requests. While Analysis Workspace can help an analyst or digital marketer answer key questions, the Analytics API can automate those answers by reporting to executive dashboards, custom reporting platforms, or tight Experience Cloud integrations. Because the reports endpoint uses the same API as the Analytics UI, you can configure it for many options.
+The Analytics 2.0 reporting API endpoints allow you to access reports programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with reports in the UI. By using this API, you can programmatically report to executive dashboards, custom reporting platforms, tight Experience Cloud integrations, or other options.
+
+The report endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+
+This guide includes instructions for using the following endpoints:
+
+* POST reports: Requests and returns report data from an existing report suite
+* GET top items: Returns only the specified number of items in the report, ranked by highest data values
 
 This guide does not include descriptions for all request and response parameters for the reports endpoint. For more information on parameters included with this endpoint, see the [API reference](/src/pages/apis/index.md). Also, you can copy API JSON request payloads and responses associated with any visualization directly from Analysis Workspace with the [Oberon debugger tool](https://developer.adobe.com/cja-apis/docs/endpoints/reporting/debugger/). This can be a helpful aid in structuring any API reporting request from Analysis Workspace visualizations.
 
