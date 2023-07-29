@@ -38,7 +38,7 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -H 'x-api-key: {API-key}' \
-  -H 'Authorization: Bearer {Bearer-token}
+  -H 'Authorization: {Bearer-token}
   -d '{REQUESTJSON}
 {
     "rsid": "examplersid",
@@ -302,7 +302,7 @@ Additionally, the response above shows the following:
 
 * Each `row` secion contains each report record.
 
-* The `value` property contains the dimension value. 
+* The `value` property contains the dimension value.
 
 * The `data` property contains a list of metric counts for each metric requested.
 
@@ -353,13 +353,13 @@ The following example shows a request for a top items report for the POST body s
 
 ```curl
 curl -X 'GET' \
-  'https://analytics.adobe.io/api/{Global company ID}/reports/topItems?rsid=examplersid=variables%2Fpage&locale=en_US&lookupNoneValues=false&limit=10&page=0' \
+  'https://analytics.adobe.io/api/{global-company-id}/reports/topItems?rsid=examplersid=variables%2Fpage&locale=en_US&lookupNoneValues=false&limit=10&page=0' \
   -H 'accept: application/json' \
   -H 'x-api-key: 5a8dcc2cfa71472cbfa4fb53671c45ed' \
   -H 'Authorization: {Bearer-token} 
 ```
 
-In this example, you append the previous request body to the cURL call. Note that this request specifies that "NoneValues" not be included and that the `limit` of items to return be `10``.
+In this example, you append the previous request body to the cURL call. Note that this request specifies that `NoneValues` not be included and that the `limit` of items to return be `10`.
 
 The response for this request is the same as the example response shown above.
 
