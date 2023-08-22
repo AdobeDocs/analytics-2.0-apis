@@ -107,6 +107,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 ​
 ### Response example details
 ​
+
 ### Request Parameters
 ​
 The following table describes the PUT upload file request parameters:
@@ -117,13 +118,17 @@ The following table describes the PUT upload file request parameters:
 ​
 ### Payload Example
 ​
+
 ```JSON
 Content-Type: multipart/form-data
 Key: file
 Value: file path
 ```
+
 ​
+
 ### Response Parameters
+
 ​
 No response parameters are returned. A `200` status code indicates a successful upload.
 ​
