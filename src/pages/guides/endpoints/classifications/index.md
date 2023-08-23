@@ -7,7 +7,9 @@ description: Use Analytics classification APIs to categorize variable data.
 
 The Analytics 2.0 Classification API endpoints allow you to categorize variable data, then display it in different ways when you generate reports. The endpoints use the same data and methods that are used when working with classifications in the UI. See the [Classifications overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/c-classifications.html) for more information.
 
-The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](../../index.md).
+The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
+
+Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md)
 
 This guide includes instructions for using the following endpoints:
 
@@ -23,11 +25,11 @@ This guide includes instructions for using the following endpoints:
 
 ## Importing Classification Datasets
 
-This guide includes instructions for importing JSON classification datasets smaller than 50 MB. With this method, you include the dataset in the payload as part of a POST request. To import classification datasets that are larger than 50 MB, or that include a .tsv or tab file, see Importing classifications by file upload.
+This guide includes instructions for importing JSON classification datasets smaller than 50 MB. With this method, you include the dataset in the payload as part of a POST request. To import classification datasets that are larger than 50 MB, or that include a .tsv or .tab file, see [Importing classifications by file upload](classifications/import-file.md).
 
 ## POST import JSON classification
 
-Use this endpoint to create a classification smaller than 50 MB.
+Use this endpoint to create a classification smaller than 50 MB. For more information on importing classifications, see [Classifications importer overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-working-with-saint.html).
 
 `POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/job/import/json/{DATASET_ID}`
 
@@ -36,9 +38,90 @@ Use this endpoint to create a classification smaller than 50 MB.
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/import/json/{DATASET_ID}" \
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}" \
+     -d '{
+  "dataFormat": "json",
+  "encoding": "UTF8",
+  "jobName": "example_dataset_name-example-dataset_id at example_time",
+  "notifications": [
+    {
+      "method": "email",
+      "state": "completed",
+      "recipients": [
+        "john@example.com
+      ]
+    }
+  ],
+  "listDelimiter": ",",
+  "source": "Direct API Upload",
+  "keyOptions": {
+    "byte_length": 0,
+    "type": "string"
+  },
+  "data": [
+    {
+      "key": "Key20230730-json1",
+      "data": {
+        "Product Brand": "Basket Ball Jam",
+        "Category": "",
+        "Size": "Winter Fun",
+        "Weight": "Sports",
+        "Origin": "Origin-4"
+      }
+    },
+    {
+      "key": "Key20230730-json2",
+      "data": {
+        "Product Brand": "Basket Ball Jam",
+        "Category": "",
+        "Size": "Winter Fun",
+        "Weight": "Sports",
+        "Origin": "Origin-5"
+      }
+    },
+    {
+      "key": "Key20230730-json3",
+      "data": {
+        "Product Brand": "Basket Ball Jam",
+        "Category": "",
+        "Size": "Winter Fun",
+        "Weight": "Sports",
+        "Origin": "Origin-6"
+      }
+    }
+  ]
+}'
+```
+
+#### Response
+
+```json
+{
+  "import_job_id": "91f38377-b674-4230-9459-e2219cae3e9c",
+  "api_job_id": "5e116b45-32a8-4978-b123-4b0ce0eceab1"
+}
+```
+
 ### Request example details
 
+The example above requests the following:
+
+* the `dataFormat` for the classification as `json`
+* the `jobName` as `example_dataset_name-example-dataset_id at example_time`
+* the `notifications` to be sent by `email` when the status is `completed`
+* the import `data` is comma delimited with key value pairs for `key`, `data`, `Category`, `Weight`, and `Origin`
+
 ### Response example details
+
+The response example above shows `import_job_id` and ``api_job_id` values that can be used with other classification endpoints.
 
 ### Request parameters
 
@@ -156,7 +239,7 @@ The following table describes the POST export classification response parameters
 
 ## GET export classification file
 
-Use this endpoint to retrieve the contents of an export classification file. When using this endpoint, you must supply the export job ID returned with the POST export classification endpoint.
+Use this endpoint to retrieve the contents of an export classification file. When using this endpoint, you must supply the export job ID returned with the POST export classification endpoint. For more information on classification data, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html).
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/file/{JOB_ID}`
 
@@ -183,7 +266,7 @@ No response parameters are returned. The response includes the classification da
 
 ## GET classification template
 
-Use this endpoint to retrieve a template showing the structure of exported data.
+Use this endpoint to retrieve a template showing how to structure exported data. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html) and [Classification template](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-download-saint-data.html).
 
 `GET  https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/template/{DATASET_ID}`
 
@@ -211,7 +294,7 @@ No response parameters are returned. The response includes a sample structure of
 
 ## GET all classification datasets
 
-Use this endpoint to retrieve all datasets for a specified report suite ID.
+Use this endpoint to retrieve all datasets for a specified report suite ID. For more information on classification sets, see [Classification sets overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/overview.html).
 
 `GET  https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/compatibilityMetrics/{RSID}`
 
@@ -245,7 +328,7 @@ The following table describes the GET all classification datasets response param
 
 ## GET a single classification
 
-Use this endpoint to retrieve information for a specified dataset.
+Use this endpoint to retrieve information for a specified dataset. For more information on classification sets, see [Classification sets overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/overview.html).
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}`
 
@@ -275,7 +358,7 @@ The following table describes the response parameters for this endpoint:
 | `owner` | container | Contact information that contains the `name` and `email` parameters |
 | `name` | string | Name of person responsible for the classification definition and/or data |
 | `email` | string | Email address for person responsible for the classification definition and/or data |
-| `subscriptions` | container | A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists. Contains the `rsid`, `dimension`, `unique`, and `editable` parameters. |
+| `subscriptions` | container | A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists. Contains the `rsid`, `dimension`, `unique`, and `editable` parameters. See [Classification settings](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/manage/settings.html) for more information. |
 | `rsid` | string | The report suite ID |
 | `dimension` | string | The dimension you would like to be classified. Should be prefixed with `variables/`, e.g., `variables/page`. |
 | `unique` | boolean | Whether a forced update of unique_hash is used to avoid duplicate subscriptions |
@@ -302,7 +385,7 @@ The following table describes the response parameters for this endpoint:
 
 ## GET classification job information
 
-Use this endpoint to retrieve job information for a specified job ID.
+Use this endpoint to retrieve job information for a specified job ID. For more information about classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html)
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/{JOB_ID}`
 
@@ -425,7 +508,7 @@ The following table describes the response parameters for this endpoint:
 
 ## DELETE classification
 
-Use this endpoint to delete a specified classification.
+Use this endpoint to delete a specified classification. For information, see [Delete classification data](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/t-delete-classification-data.html)
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification//datasets/{DATASET_ID}`
 
@@ -449,3 +532,7 @@ The following table describes the DELETE classification request parameters:
 ### Response Parameters
 
 No response parameters are returned. A `200` signals a successful DELETE.
+
+## API status codes
+
+For a description of API status codes and tips for troubleshooting, see the [Platform FAQ and troubleshooting guide](https://experienceleague.adobe.com/docs/experience-platform/landing/troubleshooting.html#api-status-codes).
