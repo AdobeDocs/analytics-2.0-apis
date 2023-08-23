@@ -383,7 +383,7 @@ A 206 status code indicates a partial response. This status code means that ther
 * **Unexpected Number of Items**: Anomaly Detection algorithm returned an unexpected number of anomalies
 * **General Service Error**: General Anomaly Detection service error
 
-## Additonial information
+## Additional information
 
 For more information on the Reporting API, see the following resources:
 
