@@ -279,7 +279,7 @@ All filters are case-sensitive.
 }
 ```
 
-#### Filter Variables
+### Filter Variables
 
 By default, a filter is applied to the variable being repaired.  Use `filter.variable` to filter by a variable other
 than the target variable.  For example, the following means `delete evar2 where evar3 contains '@'`:
@@ -295,7 +295,7 @@ than the target variable.  For example, the following means `delete evar2 where 
     }
   }
 }
-
+```
 
 ## Example Data Repair API definition file
 
