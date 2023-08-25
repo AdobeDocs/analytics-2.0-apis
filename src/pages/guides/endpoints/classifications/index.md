@@ -48,57 +48,57 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -d '{
-  "dataFormat": "json",
-  "encoding": "UTF8",
-  "jobName": "example_dataset_name-example-dataset_id at example_time",
-  "notifications": [
-    {
-      "method": "email",
-      "state": "completed",
-      "recipients": [
-        "john@example.com
-      ]
-    }
-  ],
-  "listDelimiter": ",",
-  "source": "Direct API Upload",
-  "keyOptions": {
-    "byte_length": 0,
-    "type": "string"
-  },
-  "data": [
-    {
-      "key": "Key20230730-json1",
-      "data": {
-        "Product Brand": "Basket Ball Jam",
-        "Category": "",
-        "Size": "Winter Fun",
-        "Weight": "Sports",
-        "Origin": "Origin-4"
-      }
-    },
-    {
-      "key": "Key20230730-json2",
-      "data": {
-        "Product Brand": "Basket Ball Jam",
-        "Category": "",
-        "Size": "Winter Fun",
-        "Weight": "Sports",
-        "Origin": "Origin-5"
-      }
-    },
-    {
-      "key": "Key20230730-json3",
-      "data": {
-        "Product Brand": "Basket Ball Jam",
-        "Category": "",
-        "Size": "Winter Fun",
-        "Weight": "Sports",
-        "Origin": "Origin-6"
-      }
-    }
-  ]
-}'
+            "dataFormat": "json",
+            "encoding": "UTF8",
+            "jobName": "example_dataset_name-example-dataset_id at example_time",
+            "notifications": [
+                {
+                "method": "email",
+                "state": "completed",
+                "recipients": [
+                    "john@example.com
+                ]
+                }
+            ],
+            "listDelimiter": ",",
+            "source": "Direct API Upload",
+            "keyOptions": {
+                "byte_length": 0,
+                "type": "string"
+            },
+            "data": [
+                {
+                "key": "Key20230730-json1",
+                "data": {
+                    "Product Brand": "Basket Ball Jam",
+                    "Category": "",
+                    "Size": "Winter Fun",
+                    "Weight": "Sports",
+                    "Origin": "Origin-4"
+                }
+                },
+                {
+                "key": "Key20230730-json2",
+                "data": {
+                    "Product Brand": "Basket Ball Jam",
+                    "Category": "",
+                    "Size": "Winter Fun",
+                    "Weight": "Sports",
+                    "Origin": "Origin-5"
+                }
+                },
+                {
+                "key": "Key20230730-json3",
+                "data": {
+                    "Product Brand": "Basket Ball Jam",
+                    "Category": "",
+                    "Size": "Winter Fun",
+                    "Weight": "Sports",
+                    "Origin": "Origin-6"
+                }
+               }
+             ]
+            }'
 ```
 
 #### Response
@@ -133,7 +133,7 @@ The following table describes the POST import JSON classification request parame
 | `dataFormat` | optional | string | The data format options |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
-| `fileBasename` | optional | string |  |
+| `fileBasename` | optional | string | The name of the file currently being read, without path or extension |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
 | `state` | optional | string | The state of the notification. Includes the following enums: `created`, `queued`, `validated`, `failed_validation`, `processing`, `done_processing`, `failed_processing`, and `completed`. |
@@ -153,7 +153,7 @@ The following table describes the POST import JSON classification request parame
 | `dataFormat` | optional | string | The data format options. Includes `tsv`, `tab`, or `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
-| `fileBasename` | optional | string |  |
+| `fileBasename` | optional | string | The name of the file currently being read, without path or extension |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
 | `state` | optional | string | The state of the notification. Includes the following enums: `created`, `queued`, `validated`, `failed_validation`, `processing`, `done_processing`, `failed_processing`, and `completed`. |
@@ -166,8 +166,8 @@ The following table describes the POST import JSON classification request parame
 | `originalDataUri` | optional | string | The original data URI |
 | `overwrite` | optional | boolean | Whether or not the import will overwrite. |
 | `notification_extras` | optional | container | Extra options for notifications. Contains the `key`, and `value` parameters. |
-| `key` | optional | string |  |
-| `value` | optional | string |  |
+| `key` | optional | string | The field or column name associated with key value |
+| `value` | optional | string | The actual value of the key (as in a field or column name) |
 
 ### Response Parameters
 
@@ -184,9 +184,125 @@ Use this endpoint to create an export job for a classification dataset. The data
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/{DATASET_ID}' \
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}" \
+     -d '{
+            "dataFormat": "json",
+            "encoding": "UTF8",
+            "jobName": "example_dataset_name-example-dataset_id at example_time",
+            "notifications": [
+            {
+                "method": "email",
+                "state": "failed_validation",
+                "recipients": [
+                "john@example.com"
+                ]
+            },
+            {
+                "method": "email",
+                "state": "completed",
+                "recipients": [
+                "john@example.com"
+                ]
+            },
+            ],
+            "listDelimiter": ",",
+            "source": "string",
+            "rowLimit": 50000,
+            "offset": 0,
+            "columns": [
+                "string"
+            ],
+            "keys": [
+                "string"
+            ],
+            "keyRegex": "string",
+            "exactMatch": {},
+            "regexMatch": {},
+            "dateFilterStart": "2022-12-07T22:29:07.446Z",
+            "dateFilterEnd": "2022-12-07T22:29:07.446Z"
+}'
+```
+
+#### Response
+
+```json
+{
+  "datasetId": "6449b63563c1e069c6159415",
+  "history": [
+    {
+      "timestamp": "2023-08-08 20:35:39",
+      "jobState": "created",
+      "message": "Created export job via API"
+    },
+    {
+      "timestamp": "2023-08-08 20:35:39",
+      "jobState": "queued",
+      "message": "Job queued and ready for processing."
+    }
+  ],
+  "imsOrgId": "0DFE76D95967D5B50A494010@AdobeOrg",
+  "jobOptions": {
+    "dataFormat": "tsv",
+    "encoding": "utf8",
+    "listDelimiter": ",",
+    "rowLimit": 50000,
+    "offset": 0,
+    "dateFilterStart": "2023-05-01T22:29:07Z",
+    "dateFilterEnd": "2023-08-08T14:35:38Z",
+    "notifications": [
+      {
+        "method": "email",
+        "state": "failed_validation",
+        "recipients": [
+          "john@example.com"
+        ]
+      },
+      {
+        "method": "email",
+        "state": "completed",
+        "recipients": [
+          "john@example.com"
+        ]
+      },
+    ]
+  },
+  "jobId": "16e38fbc-fc82-4fdf-88de-ec33e63489d5",
+  "jobSize": -1,
+  "name": "example_dataset_name-example-dataset_id at example_time",
+  "setName": "example_name",
+  "state": "queued",
+  "totalLines": -1,
+  "noeffectLines": null,
+  "type": "export"
+}
+```
+
 ### Request example details
 
+The example above requests the following:
+
+* the `dataFormat` for the classification as `json`
+* the `jobName` to be `example_dataset_name-example-dataset_id at example_time`
+* the `notifications`to be delivered by `email` when the state is `failed_validation` and `completed`
+* the `rowLimit` to be `50000`
+* the `dateFilterStart` and `dateFilterEnd` are set to `2022-12-07T22:29:07.446Z` and `2022-12-07T22:29:07.446Z`
+
 ### Response example details
+
+The example above returns the following:
+
+* the dataset ID of `6449b63563c1e069c6159415`
+* the `name` of `example_dataset_name-example-dataset_id at example_time`
+* the classification `setName` of `example_name`
+* the job `type` of `export`
 
 ### Request Parameters
 
@@ -203,7 +319,7 @@ The following table describes the POST export classification request parameters:
 | `offset` | optional | integer |  |
 | `columns` | optional | string | The included columns |
 | `keys` | optional | string |  |
-| `keyRegex` | optional | string |  |
+| `keyRegex` | optional | string | Key regular expression |
 | `exactMatch` | optional |  |  |
 | `regexMatch` | optional |  |  |
 | `dateFilterStart` | optional | string | The first value in the date filter |
@@ -248,9 +364,43 @@ Use this endpoint to retrieve the contents of an export classification file. Whe
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/file/{JOB_ID}" \
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```tab
+## SC   SiteCatalyst saint Import File  v:2.1
+## SC   '## SC' indicates a SiteCatalyst pre-process header. Please do not remove these lines.
+## SC   D:2023-07-31 18:00:11  A:xxxxxx:xx
+ 
+Key File Name   File Option Directory
+Key20230522-1   File Name-1 Option-1    Directory-1
+Key20230522-2   File Name-2 Option-2    Directory-2
+Key20230522-3   File Name-3 Option-3    Directory-3
+Key20230522-4   File Name-4 Option-4    Directory-4
+Key20230522-5   File Name-5 Option-5    Directory-5
+Key20230522-6   File Name-6 Option-6    Directory-6
+Key20230522-7   File Name-7 Option-7    Directory-7
+Key20230522-8   File Name-8 Option-8    Directory-8
+Key20230522-9   File Name-9 Option-9    Directory-9
+```
+
 ### Request example details
 
+The example above requests the export file of `{JOB_ID}`
+
 ### Response example details
+
+The example above returns a table containing the exported data
 
 ### Request Parameters
 
@@ -275,9 +425,34 @@ Use this endpoint to retrieve a template showing how to structure exported data.
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/template/{DATASET_ID}" \
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```tab
+## SC   SiteCatalyst saint Import File  v:2.1
+## SC   '## SC' indicates a SiteCatalyst pre-process header. Please do not remove these lines.
+## SC   D:2023-07-31 23:13:42  A:xxxxxx:xx
+ 
+Key Column A    Column B    Column C    Column D
+```
+
 ### Request example details
 
+The example above requests a template showing how to structure data
+
 ### Response example details
+
+The example above returns a template showing how to structure data
 
 ### Request Parameters
 
@@ -303,9 +478,56 @@ Use this endpoint to retrieve all datasets for a specified report suite ID. For 
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/compatibilityMetrics/{RSID}" \
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```JSON
+{
+  "report_suite_id": "example_RSID",
+  "metrics": [
+    {
+      "id": [
+        "evar5"
+      ],
+      "datasets": [
+        "646e65bfc2d00205dbc5f034"
+      ]
+    },
+    {
+      "id": [
+        "evar11"
+      ],
+      "datasets": [
+        "64c437bc6f71754e2e56e019",
+        "64c437886f71754e2e56e011",
+        "64c437396f71754e2e56e005",
+        "64c437616f71754e2e56e009"
+      ]
+    },
+  ]
+}
+```
+
 ### Request example details
 
+The example above requests the classification datasets associated with the given `{RSID}`
+
 ### Response example details
+
+The example above returns the following:
+
+* the `report_suite_id` that is associated with the datsets is `example_RSID`
+* the `metrics` associated with the `example_RSID`
 
 ### Request Parameters
 
@@ -337,9 +559,72 @@ Use this endpoint to retrieve information for a specified dataset. For more info
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}"
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```JSON
+{
+  "name": "taxoappsrvtest evar7 classifications",
+  "description": "taxoappsrvtest evar7 classifications",
+  "default_list_delimiter": ",",
+  "default_encoding": "UTF8",
+  "columns": [
+    {
+      "column_id": "5849115441721086447",
+      "name": "Column A",
+      "display_name": "Column A",
+      "type": "text",
+      "tags": []
+    },
+    {
+      "column_id": "495411758226162142",
+      "name": "Column B",
+      "display_name": "Column B",
+      "type": "text",
+      "tags": []
+    },
+  ],
+  "subscriptions": [
+    {
+      "rsid": "taxoappsrvtest",
+      "dimension": "variables/evar7",
+      "unique": true,
+      "editable": true
+    }
+  ],
+  "notifications": [],
+  "dataset_id": "64b1d77b235090539e282308",
+  "ims_org_id": "0DFE76D95967D5B50A494010@AdobeOrg",
+  "owner": {
+    "name": "Unknown User",
+    "email": "no-reply@adobe.com"
+  },
+  "last_modified_date": "2023-07-14T23:35:10Z"
+}
+```
+
 ### Request example details
 
+The example above requests the data associated with the given `{DATASET_ID}`
+
 ### Response example details
+
+The example above returns the following:
+
+* the `name` of the dataset is `taxoappsrvtest evar7 classifications`
+* the `columns` inside the dataset are `5849115441721086447` and `495411758226162142`
+* the `name` of the columns are `"Column A"` and `"Column B"`
+* the `subscriptions` associated with the dataset
 
 ### Request Parameters
 
@@ -394,9 +679,101 @@ Use this endpoint to retrieve job information for a specified job ID. For more i
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/{JOB_ID}"
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```JSON
+{
+  "datasetId": "6449b63563c1e069c6159415",
+  "history": [
+    {
+      "timestamp": "2023-08-07 22:06:56",
+      "jobState": "created",
+      "message": "Created export job via API"
+    },
+    {
+      "timestamp": "2023-08-07 22:06:56",
+      "jobState": "queued",
+      "message": "Job queued and ready for processing."
+    },
+    {
+      "timestamp": "2023-08-07 22:06:56",
+      "jobState": "processing",
+      "message": "Started processing"
+    },
+    {
+      "timestamp": "2023-08-07 22:06:58",
+      "jobState": "completed",
+      "message": "Successfully exported 50000/50000 records."
+    }
+  ],
+  "imsOrgId": "0DFE76D95967D5B50A494010@AdobeOrg",
+  "jobOptions": {
+    "dataFormat": "tsv",
+    "encoding": "utf8",
+    "listDelimiter": ",",
+    "rowLimit": 50000,
+    "offset": 0,
+    "dateFilterStart": "2023-05-01T22:29:07Z",
+    "dateFilterEnd": "2023-08-07T16:06:55Z",
+    "notifications": [
+      {
+        "method": "email",
+        "state": "failed_validation",
+        "recipients": [
+          "john@example.com"
+        ]
+      },
+      {
+        "method": "email",
+        "state": "failed_processing",
+        "recipients": [
+          "john@example.com"
+        ]
+      },
+      {
+        "method": "email",
+        "state": "completed",
+        "recipients": [
+          "john@example.com"
+        ]
+      }
+    ]
+  },
+  "jobId": "7dafc070-afec-4a8d-8187-24f572f7d0f8",
+  "jobSize": 26410225,
+  "name": "example_dataset_name-example-dataset_id at example_time",
+  "setName": "taxoappsrvtest evar1 classifications",
+  "state": "completed",
+  "totalLines": 50000,
+  "noeffectLines": null,
+  "type": "export"
+}
+```
+
 ### Request example details
 
+The example above requests the job information associated with the given `{JOB_ID}`
+
 ### Response example details
+
+The example above returns the following:
+
+* the `datasetId` the job is associated with
+* the `history` of the job
+* the `jobOptions` of the job
+* the `name` of the job is `example_dataset_name-example-dataset_id at example_time`
+* the `state` of the job is `completed`
 
 ### Request Parameters
 
@@ -439,9 +816,101 @@ Use this endpoint to update a classification dataset.
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}"
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```JSON
+{
+  "datasetId": "6449b63563c1e069c6159415",
+  "history": [
+    {
+      "timestamp": "2023-08-07 22:06:56",
+      "jobState": "created",
+      "message": "Created export job via API"
+    },
+    {
+      "timestamp": "2023-08-07 22:06:56",
+      "jobState": "queued",
+      "message": "Job queued and ready for processing."
+    },
+    {
+      "timestamp": "2023-08-07 22:06:56",
+      "jobState": "processing",
+      "message": "Started processing"
+    },
+    {
+      "timestamp": "2023-08-07 22:06:58",
+      "jobState": "completed",
+      "message": "Successfully exported 50000/50000 records."
+    }
+  ],
+  "imsOrgId": "0DFE76D95967D5B50A494010@AdobeOrg",
+  "jobOptions": {
+    "dataFormat": "tsv",
+    "encoding": "utf8",
+    "listDelimiter": ",",
+    "rowLimit": 50000,
+    "offset": 0,
+    "dateFilterStart": "2023-05-01T22:29:07Z",
+    "dateFilterEnd": "2023-08-07T16:06:55Z",
+    "notifications": [
+      {
+        "method": "email",
+        "state": "failed_validation",
+        "recipients": [
+          "john@example.com"
+        ]
+      },
+      {
+        "method": "email",
+        "state": "failed_processing",
+        "recipients": [
+          "john@example.com"
+        ]
+      },
+      {
+        "method": "email",
+        "state": "completed",
+        "recipients": [
+          "john@example.com"
+        ]
+      }
+    ]
+  },
+  "jobId": "7dafc070-afec-4a8d-8187-24f572f7d0f8",
+  "jobSize": 26410225,
+  "name": "Direct API Export job for dataset taxoappsrvtest evar1 classifications - 6449b63563c1e069c6159415 at 1691446015",
+  "setName": "taxoappsrvtest evar1 classifications",
+  "state": "completed",
+  "totalLines": 50000,
+  "noeffectLines": null,
+  "type": "export"
+}
+```
+
 ### Request example details
 
+The example above requests to update the job information associated with the given `{JOB_ID}`
+
 ### Response example details
+
+The example above returns the following:
+
+* the `datasetId` the job is associated with
+* the `history` of the job
+* the `jobOptions` of the job
+* the `name` of the job is `example_dataset_name-example-dataset_id at example_time`
+* the `state` of the job is `completed`
 
 ### Request Parameters
 
@@ -517,9 +986,36 @@ Use this endpoint to delete a specified classification. For information, see [De
 Request and response examples
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification//datasets/{DATASET_ID}"
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```JSON
+{
+  "success": true,
+  "message": "The dataset 123456 has been deleted"
+}
+```
+
 ### Request example details
 
+The example above requests to delete the given `{DATASET_ID}`
+
 ### Response example details
+
+The example above returns the following:
+
+* the `success` of the job is `true`
+* the `message` given is `The dataset 123456 has been deleted`
 
 ### Request Parameters
 
