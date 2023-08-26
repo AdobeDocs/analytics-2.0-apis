@@ -23,7 +23,7 @@ This guide includes instructions for using the following endpoints:
 * [PUT classification dataset update](#put-classification-dataset-update): Updates a classification dataset
 * [DELETE classification](#delete-classification): Deletes a specified classification
 
-## Importing Classification Datasets
+## Importing classification datasets
 
 This guide includes instructions for importing JSON classification datasets smaller than 50 MB. With this method, you include the dataset in the payload as part of a POST request. To import classification datasets that are larger than 50 MB, or that include a .tsv or .tab file, see [Importing classifications by file upload](classifications/import-file.md).
 
