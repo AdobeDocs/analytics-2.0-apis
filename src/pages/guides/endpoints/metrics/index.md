@@ -168,7 +168,7 @@ The GET metrics ID endpoint includes the same response parameters as the GET met
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response** tab to see a successful JSON response for the request. 
+Click the **Request** tab in the following example to see a cURL request. Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
@@ -204,7 +204,6 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId/metrics/carts?rsid=
   "standardComponent": true
 }
 ```
-
 #### Request example details
 
 In the above example, the GET metrics ID request specifies the metric ID as `carts` and the `rsid` as `examplersid`. It includes the query parameters `locale` as `en_US`, and the `expansion` parameter `categories` as `true`.
@@ -215,13 +214,12 @@ The above example requests the following details:
 * Specifies the response language in `locale` as US English with the value as `en_US`. 
 * Information on any data associated with `expansion` parameter `categories`.
 
-
 #### Response example details
 
 The above JSON response example shows the following details:
 
 * Information for the `carts` metric in the `examplersid` report suite. 
-* The `type` is `int`, and the `category` is `Conversion`. 
+* The `type` is `int`, and the `category` is `Conversion`.
 * No `categories` metadata is associated with this metric.
 
 For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
