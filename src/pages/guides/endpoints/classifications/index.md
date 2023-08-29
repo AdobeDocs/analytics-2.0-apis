@@ -9,7 +9,7 @@ The Analytics 2.0 Classification API endpoints allow you to categorize variable 
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
 
-Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md)
+Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md).
 
 This guide includes instructions for using the following endpoints:
 
@@ -113,14 +113,14 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/
 
 The example above requests the following:
 
-* the `dataFormat` for the classification as `json`
-* the `jobName` as `example_dataset_name-example-dataset_id at example_time`
-* the `notifications` to be sent by `email` when the status is `completed`
-* the import `data` is comma delimited with key value pairs for `key`, `data`, `Category`, `Weight`, and `Origin`
+* the `dataFormat` for the classification as `json`.
+* the `jobName` as `example_dataset_name-example-dataset_id at example_time`.
+* the `notifications` to be sent by `email` when the status is `completed`.
+* the import `data` is comma delimited with key value pairs for `key`, `data`, `Category`, `Weight`, and `Origin`.
 
 ### Response example details
 
-The response example above shows `import_job_id` and ``api_job_id` values that can be used with other classification endpoints.
+The response example above shows `import_job_id` and `api_job_id` values that can be used with other classification endpoints.
 
 ### Request parameters
 
@@ -282,22 +282,22 @@ curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/
 
 The example request above specifies the following export job options:
 
-* the `dataFormat` for the classification as `json`
-* the `jobName` to be `example_dataset_name-example-dataset_id at example_time`
-* the `notifications`to be delivered by `email` to `john@example.com` when the state is `failed_validation` and `completed`
-* the data `source` is `"Direct API Upload"`
-* the `rowLimit` to be `50000`
-* the `dateFilterStart` and `dateFilterEnd` are set to `2022-12-07T22:29:07.446Z` and `2022-12-07T22:29:07.446Z`
+* the `dataFormat` for the classification as `json`.
+* the `jobName` to be `example_dataset_name-example-dataset_id at example_time`.
+* the `notifications`to be delivered by `email` to `john@example.com` when the state is `failed_validation` and `completed`.
+* the data `source` is `"Direct API Upload"`.
+* the `rowLimit` to be `50000`.
+* the `dateFilterStart` and `dateFilterEnd` are set to `2022-12-07T22:29:07.446Z` and `2022-12-07T22:29:07.446Z`.
 
 ### Response example details
 
 The response above shows the following information for the export job:
 
-* the `datasetID` of the job is `6449b63563c1e069c6159415`
-* the `jobID` of the job is `16e38fbc-fc82-4fdf-88de-ec33e63489d5`
-* the `name` of the job is `example_dataset_name-example-dataset_id at example_time`
-* the classification `setName` of the job is `example_name`
-* the job `type` is `export`
+* the `datasetID` of the job is `6449b63563c1e069c6159415`.
+* the `jobID` of the job is `16e38fbc-fc82-4fdf-88de-ec33e63489d5`.
+* the `name` of the job is `example_dataset_name-example-dataset_id at example_time`.
+* the classification `setName` of the job is `example_name`.
+* the job `type` is `export`.
 
 ### Request Parameters
 
@@ -454,7 +454,7 @@ The following table describes the GET classification template file request param
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `dataset_id` | required | string | Classification dataset ID |
-| `format` | optional | string | Template format. The default is `tsv`. Includes the enums: `tsv`, `csv`. |
+| `format` | optional | string | Template format. The default is `tsv`. Includes the enums: `tsv`, and `csv`. |
 
 ### Response Parameters
 
@@ -615,7 +615,7 @@ The example above returns the following information for the dataset named: `test
 * the `name` of the two columns are `"Column A"` and `"Column B"`.
 * the `column_id` for the two columns are `5849115441721086447` and `495411758226162142`.
 * the `name` of the dataset is `testsuite evar7 classifications`.
-* the subscription is associated with the `testsuite` report suite ID
+* the subscription is associated with the `testsuite` report suite ID.
 
 ### Request Parameters
 
@@ -661,7 +661,7 @@ The following table describes the response parameters for this endpoint:
 
 ## GET classification job information
 
-Use this endpoint to retrieve job information for a specified job ID. For more information about classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html)
+Use this endpoint to retrieve job information for a specified job ID. For more information about classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html).
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/{JOB_ID}`
 
