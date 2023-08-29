@@ -32,8 +32,8 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=examplersid&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
-    -H "x-api-key: {CLIENTID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}"
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 ### Response
@@ -141,7 +141,7 @@ The GET dimensions endpoint includes the following response parameters:
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
 
-## GET dimensions ID
+## GET a single dimension
 
 Use this endpoint to retrieve information for a specified dimension in a report suite.
 
@@ -158,8 +158,8 @@ Click the **Request** tab in the following example to see a cURL request. Click 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting
 " \
-    -H "x-api-key: {CLIENTID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}"
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -191,7 +191,7 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickma
 
 The above example requests the following details:
 
-* The GET dimensions ID for `clickmaplink` in the `examplersid` report suite.
+* The dimensions information with the `clickmaplink` ID in the `examplersid` report suite.
 * Specifies the response language in `locale` as US English with the value `en_US`.
 * Information on whether the dimension is `allowedForReporting`.
 
