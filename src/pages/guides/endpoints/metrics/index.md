@@ -133,7 +133,6 @@ The above example requests the following details:
 * To retrieve only `segmentable` metrics. This is specified with the value `true`.
 * Information on whether the metric is `allowedForReporting`.
 
-
 #### Response example details
 
 The above JSON response example shows the following details:
@@ -204,6 +203,7 @@ curl -X GET "https://analytics.adobe.io/api/{globalCompanyId/metrics/carts?rsid=
   "standardComponent": true
 }
 ```
+
 #### Request example details
 
 In the above example, the GET metrics ID request specifies the metric ID as `carts` and the `rsid` as `examplersid`. It includes the query parameters `locale` as `en_US`, and the `expansion` parameter `categories` as `true`.
