@@ -11,14 +11,14 @@ The endpoints described in this guide are routed through analytics.adobe.io. To 
 
 This guide includes instructions for using the following endpoints:
 
-* GET dimensions: Returns a list of dimensions for a given report suite ID
-* GET dimensions ID: Returns a dimension corresponding to a supplied ID for a given report suite
+* GET multiple dimensions: Returns a list of dimensions for a given report suite ID
+* GET a single dimensions: Returns a dimension corresponding to a supplied ID for a given report suite
 
-## GET dimensions
+## GET multiple dimensions
 
 Use this endpoint to return a list of dimensions for a given report suite ID.
 
-**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid={RSID}`
+**GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions?rsid={RSID}`
 
 You can find your global company ID by using the [Discovery API](../discovery.md).
 
@@ -31,7 +31,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 ### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions?rsid=examplersid&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions?rsid=examplersid&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
     -H "x-api-key: {CLIENT_ID}" \
     -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
@@ -116,7 +116,7 @@ The above JSON response example shows the following details:
 * Both dimensions have the same data `type`, set as `string`.
 * The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`.
 * Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
-* The dimension `campaign` does not have any categories associated with it but the `clickmaplink` dimension is associated with `Activity Map`.
+* The dimension `campaign` does not have any categories associated with it, but the `clickmaplink` dimension is associated with `Activity Map`.
 
 #### Response parameters
 
@@ -145,7 +145,7 @@ The GET dimensions endpoint includes the following response parameters:
 
 Use this endpoint to retrieve information for a specified dimension in a report suite.
 
-**GET**  `https://analytics.adobe.io/api/[globalCompanyId}/dimensions/{Dimension ID}?rsid={RSID number}`
+**GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions/{DIMENSION_ID}?rsid={RSID}`
 
 ### Request and response examples
 
@@ -156,7 +156,7 @@ Click the **Request** tab in the following example to see a cURL request. Click 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting
 " \
     -H "x-api-key: {CLIENT_ID}" \
     -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -211,7 +211,6 @@ The GET dimensions ID endpoint includes the following request query parameters:
 The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite:
 
 * Standard response details for the dimension, including the information that it is reportable to the `oberon` tool.
-
 * The dimension is allowed for reporting as indicated by `allowedForReporting: true`.
 
 #### Response parameters
