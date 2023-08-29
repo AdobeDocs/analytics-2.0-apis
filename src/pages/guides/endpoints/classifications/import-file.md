@@ -37,25 +37,25 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/jo
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -d '{
-            "dataFormat": "tsv",
-            "encoding": "UTF8",
-            "jobName": "testsuite evar1 classifications",
-            "notifications": [
-                {
-                "method": "email",
-                "state": "completed",
-                "recipients": [
-                    john@example.com
-                ]
-                }
-            ],
-            "listDelimiter": ",",
-            "source": "Direct API Upload",
-            "keyOptions": {
-                "byte_length": 0,
-                "type": "string"
+          "dataFormat": "tsv",
+          "encoding": "UTF8",
+          "jobName": "testsuite evar1 classifications",
+          "notifications": [
+            {
+              "method": "email",
+              "state": "completed",
+              "recipients": [
+                "john@example.com"
+              ]
             }
-         }'
+          ],
+          "listDelimiter": ",",
+          "source": "Direct API Upload",
+          "keyOptions": {
+            "byte_length": 0,
+            "type": "string"
+          }
+        }'
 ```
 
 #### Response
@@ -104,17 +104,17 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/jo
 
 The example request above creates an import job with the following specifications:
 
-* the `dataFormat` for the classification as `tsv`.
-* the `jobName` to be `testsuite evar1 classifications`.
-* the notification will be delivered by `email` to `john@example.com` when the state is `completed`.
-* the data source is `Direct API Upload`.
+* The `dataFormat` for the classification as `tsv`.
+* The `jobName` to be `testsuite evar1 classifications`.
+* The notification will be delivered by `email` to `john@example.com` when the state is `completed`.
+* The data source is `Direct API Upload`.
 
 ### Response example details
 
 The example response above shows the following job creation information:
 
-* the `api_job_id` is `a6fc824c-4d6f-45f9-8f55-456f918e0b41`. This ID is necessary to both upload and commit the dataset with the other endpoints in this guide.
-* the notification details, including its `completed` state.
+* The `api_job_id` is `a6fc824c-4d6f-45f9-8f55-456f918e0b41`. This ID is necessary to both upload and commit the dataset with the other endpoints in this guide.
+* The notification details, including its `completed` state.
 
 ### Request Parameters
 
@@ -198,8 +198,8 @@ curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/j
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -H "Content-Type: multipart/form-data" \
      -d '{
-        "Key": "example_file.tsv",
-        "Value": "/files/examples/example_file.tsv"
+          "Key": "example_file.tsv",
+          "Value": "/files/examples/example_file.tsv"
          }' 
 ```
 
@@ -207,8 +207,8 @@ curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/j
 
 ```json
 {
-    "api_job_id": "a6fc824c-4d6f-45f9-8f55-456f918e0b41",
-    "status": "success"
+  "api_job_id": "a6fc824c-4d6f-45f9-8f55-456f918e0b41",
+  "status": "success"
 }
 ```
 
@@ -216,8 +216,8 @@ curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/j
 
 The example above shows a cURL request with the following:
 
-* the `Key` parameter specified as the file name `example_file.tsv`.
-* the `Value` parameter specified as the file path `/files/examples/example_file.tsv`.
+* The `Key` parameter specified as the file name `example_file.tsv`.
+* The `Value` parameter specified as the file path `/files/examples/example_file.tsv`.
 
 ### Response example details
 
