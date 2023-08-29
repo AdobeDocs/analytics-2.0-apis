@@ -1,9 +1,9 @@
 ---
-title: Analytics Classification APIs
+title: Analytics Classifications API
 description: Use Analytics classification APIs to categorize variable data.
 ---
 
-# Analytics Classification APIs
+# Analytics Classifications API
 
 The Analytics 2.0 Classification API endpoints allow you to categorize variable data, then display it in different ways when you generate reports. The endpoints use the same data and methods that are used when working with classifications in the UI. See the [Classifications overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/c-classifications.html) for more information.
 
