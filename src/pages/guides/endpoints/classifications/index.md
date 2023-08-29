@@ -113,10 +113,10 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/
 
 The example above requests the following:
 
-* The `dataFormat` for the classification as `json`
-* The `jobName` as `example_dataset_name-example-dataset_id at example_time`
-* The `notifications` to be sent by `email` when the status is `completed`
-* The import `data` is comma delimited with key value pairs for `key`, `data`, `Category`, `Weight`, and `Origin`
+* The `dataFormat` for the classification as `json`.
+* The `jobName` as `example_dataset_name-example-dataset_id at example_time`.
+* The `notifications` to be sent by `email` when the status is `completed`.
+* The import `data` is comma delimited with key value pairs for `key`, `data`, `Category`, `Weight`, and `Origin`.
 
 ### Response example details
 
@@ -282,22 +282,22 @@ curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/
 
 The example request above specifies the following export job options:
 
-* The `dataFormat` for the classification as `json`
-* The `jobName` to be `example_dataset_name-example-dataset_id at example_time`
-* The `notifications`to be delivered by `email` to `john@example.com` when the state is `failed_validation` and `completed`
-* The data `source` is `"Direct API Upload"`
-* The `rowLimit` to be `50000`
-* The `dateFilterStart` and `dateFilterEnd` are set to `2022-12-07T22:29:07.446Z` and `2022-12-07T22:29:07.446Z`
+* The `dataFormat` for the classification as `json`.
+* The `jobName` to be `example_dataset_name-example-dataset_id at example_time`.
+* The `notifications`to be delivered by `email` to `john@example.com` when the state is `failed_validation` and `completed`.
+* The data `source` is `"Direct API Upload"`.
+* The `rowLimit` to be `50000`.
+* The `dateFilterStart` and `dateFilterEnd` are set to `2022-12-07T22:29:07.446Z` and `2022-12-07T22:29:07.446Z`.
 
 ### Response example details
 
 The response above shows the following information for the export job:
 
-* The `datasetID` of the job is `6449b63563c1e069c6159415`
-* The `jobID` of the job is `16e38fbc-fc82-4fdf-88de-ec33e63489d5`
-* The `name` of the job is `example_dataset_name-example-dataset_id at example_time`
-* The classification `setName` of the job is `example_name`
-* The job `type` is `export`
+* The `datasetID` of the job is `6449b63563c1e069c6159415`.
+* The `jobID` of the job is `16e38fbc-fc82-4fdf-88de-ec33e63489d5`.
+* The `name` of the job is `example_dataset_name-example-dataset_id at example_time`.
+* The classification `setName` of the job is `example_name`.
+* The job `type` is `export`.
 
 ### Request Parameters
 
@@ -759,10 +759,10 @@ The example above shows a cURL request for the job information associated with t
 
 The example above returns the following classification job information:
 
-* the `history` of the job, including the details associated with its various states. This includes the `created`, `queued`, `processing`, and `completed` states.
-* the recipient for the `state` notifications: `john@example.com`.
-* the `name` of the job is `example_dataset_name-example-dataset_id at example_time`.
-* the final `state` of the job is `completed`.
+* The `history` of the job, including the details associated with its various states. This includes the `created`, `queued`, `processing`, and `completed` states.
+* The recipient for the `state` notifications: `john@example.com`.
+* The `name` of the job is `example_dataset_name-example-dataset_id at example_time`.
+* The final `state` of the job is `completed`.
 
 ### Request Parameters
 
