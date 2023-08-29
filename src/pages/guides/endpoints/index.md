@@ -33,6 +33,12 @@ Alter or delete data already collected in a report suite.
 
 <DiscoverBlock slots="link, text"/>
 
+[Dimensions API](dimensions/index.md)
+
+Retrieve dimension information in a report suite.
+
+<DiscoverBlock slots="link, text"/>
+
 [Discovery API](discovery.md)
 
 Obtain information about the account making API calls for use in other endpoints.
@@ -62,6 +68,12 @@ Retrieve information about a report suite.
 Retrieve Analytics traffic information in real time.
 
 <DiscoverBlock slots="link, text"/>
+
+<DiscoverBlock slots="link, text"/>
+
+[Metrics API](metrics/index.md)
+
+Retrieve metrics information in a report suite.
 
 [Segments](segments/index.md)
 
