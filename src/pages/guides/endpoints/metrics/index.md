@@ -9,59 +9,18 @@ The Analytics 2.0 Metrics API endpoints allow you to retrieve metrics programmat
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
+You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+
 This guide includes instructions for using the following endpoints:
 
-* GET metrics: Returns a list of metrics for a given report suite ID
-* GET metrics ID: Returns a metric corresponding to a supplied ID for a given report suite
+* GET multiple metrics: Returns a list of metrics for a given report suite ID
+* GET a single metric: Returns a metric corresponding to a supplied ID for a given report suite
 
-## GET metrics
+## GET multiple metrics
 
 Use this endpoint to return a list of metrics for a given report suite ID.
 
-**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/metrics?rsid={RSID}`
-
-You can find your global company ID by using the [Discovery API](../discovery.md).
-
-### Request parameters
-
-The GET metrics endpoint includes the following request query parameters:
-
-
-| Parameter | Req/Opt | Type | Description |
-| --- | --- | -- | --|
-| `rsid` | required | string | Report suite ID |
-| `locale` | optional | string | Specified language |
-| `segmentable` | optional | boolean | Whether to include only metrics that are valid within a segment |
-| `reportable` | optional | boolean | Whether to include only metrics that are valid within the report |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
-
-### Response parameters
-
-The GET metrics endpoint includes the following response parameters:
-
-| Parameter | Type | Description |
-| --- | --- | -- |
-| `id` | string | Metric ID |
-| `title` | string | Metric title |
-| `name` | string | Metric name |
-| `type` | array of enums | Lists the data type of the metric |
-| `extraTitleInfo` | string | Additional title info |
-| `category` | string | Product category |
-| `support` | string | Support information |
-| `allocation` | boolean | Allocation information |
-| `precision` | $int32 | Support information |
-| `calculated` | boolean | Whether it is a calculated metric |
-| `polarity` | string | Whether the polarity is `positive` or `negative` |
-| `helplink` | string | URL that provides documentation resources |
-| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
-| `allowedForReporting` | boolean | An extra metadata item in response to the `expansion` request parameter. Indicates whether the metric is set to be allowed for reporting. |
-| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
-| `pathable` | boolean | Whether the metric in the report is pathing enabled |
-| `parent` | string | Parent metric |
-| `segmentable` | boolean | Whether the metric is segmentable |
-| `reportable` | array (string) | Whether the metric is segmentable |
-| `description` | string | Contents of metric description field in report |
-| `noneSettings` | boolean | Whether "none" item report setting is set  |
+**GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics?rsid={RSID}`
 
 ### Request and response examples
 
@@ -72,10 +31,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/metrics?rsid=examplersid&locale=en_US&segmentable=true&expansion=allowedForReporting" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics?rsid=examplersid&locale=en_US&segmentable=true&expansion=allowedForReporting" \
 " \
-    -H "x-api-key: {CLIENTID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}"
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -138,36 +97,59 @@ The above example requests the following details:
 The above JSON response example shows the following details:
 
 * Information for two metrics in the `examplersid` report suite, including `campaigninstances` and `cartadditions`.
-* Both metrics have the same data `type`, set as `int`. 
-* The metrics differ in `category`. The `category` for `campaigninstances` is `Traffic sources`. The `category` for `cartadditions` is `Conversion`. 
+* Both metrics have the same data `type`, set as `int`.
+* The metrics differ in `category`. The `category` for `campaigninstances` is `Traffic sources`. The `category` for `cartadditions` is `Conversion`.
 * The information that both metrics are `segmentable` and `allowedForReporting`, as requested. This is indicated by the value `true` for each pair.
-
-## GET metrics ID
-
-Use this endpoint to retrieve information for a single metric in a report suite.
-
-**GET**  `https://analytics.adobe.io/api/{globalCompanyId}/metrics/{Metric ID}?rsid={report suite ID}`
-
-You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
 
 ### Request parameters
 
-The GET metrics ID endpoint includes the following request query parameters:
+The GET multiple metrics endpoint includes the following request query parameters:
 
 | Parameter | Req/Opt | Type | Description |
 | --- | --- | -- | --|
-| `id` | required | string | Metric ID (e.g.`evar1`) |
 | `rsid` | required | string | Report suite ID |
 | `locale` | optional | string | Specified language |
+| `segmentable` | optional | boolean | Whether to include only metrics that are valid within a segment |
+| `reportable` | optional | boolean | Whether to include only metrics that are valid within the report |
 | `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
 
 ### Response parameters
 
-The GET metrics ID endpoint includes the same response parameters as the GET metrics response parameters, as described above.
+The GET multiple metrics endpoint includes the following response parameters:
+
+| Parameter | Type | Description |
+| --- | --- | -- |
+| `id` | string | Metric ID |
+| `title` | string | Metric title |
+| `name` | string | Metric name |
+| `type` | array of enums | Lists the data type of the metric |
+| `extraTitleInfo` | string | Additional title info |
+| `category` | string | Product category |
+| `support` | string | Support information |
+| `allocation` | boolean | Allocation information |
+| `precision` | $int32 | Support information |
+| `calculated` | boolean | Whether it is a calculated metric |
+| `polarity` | string | Whether the polarity is `positive` or `negative` |
+| `helplink` | string | URL that provides documentation resources |
+| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
+| `allowedForReporting` | boolean | An extra metadata item in response to the `expansion` request parameter. Indicates whether the metric is set to be allowed for reporting. |
+| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
+| `pathable` | boolean | Whether the metric in the report is pathing enabled |
+| `parent` | string | Parent metric |
+| `segmentable` | boolean | Whether the metric is segmentable |
+| `reportable` | array (string) | Whether the metric is segmentable |
+| `description` | string | Contents of metric description field in report |
+| `noneSettings` | boolean | Whether "none" item report setting is set  |
+
+## GET a single metric
+
+Use this endpoint to retrieve information for a single metric in a report suite.
+
+**GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/{Metric_ID}?rsid={report suite ID}`
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response** tab to see a successful JSON response for the request.
+Click the **Request** tab in the following example to see a cURL request. Click the **Response** tab to see a successful JSON response for the request. 
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
@@ -175,8 +157,8 @@ Click the **Request** tab in the following example to see a cURL request. Click 
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/{globalCompanyId/metrics/carts?rsid=examplersid&locale=en_US&expansion=categories" \
-    -H "x-api-key: {CLIENTID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}"
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -210,16 +192,32 @@ In the above example, the GET metrics ID request specifies the metric ID as `car
 
 The above example requests the following details:
 
-* The GET metrics ID for `carts` in the `examplersid` report suite. 
-* Specifies the response language in `locale` as US English with the value as `en_US`. 
+* The GET metrics ID for `carts` in the `examplersid` report suite.
+* Specifies the response language in `locale` as US English with the value as `en_US`.
 * Information on any data associated with `expansion` parameter `categories`.
 
 #### Response example details
 
 The above JSON response example shows the following details:
 
-* Information for the `carts` metric in the `examplersid` report suite. 
+* Information for the `carts` metric in the `examplersid` report suite.
 * The `type` is `int`, and the `category` is `Conversion`.
 * No `categories` metadata is associated with this metric.
 
 For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
+
+### Request parameters
+
+The GET a single metric endpoint includes the following request query parameters:
+
+| Parameter | Req/Opt | Type | Description |
+| --- | --- | -- | --|
+| `id` | required | string | Metric ID (e.g.`evar1`) |
+| `rsid` | required | string | Report suite ID |
+| `locale` | optional | string | Specified language |
+| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
+
+### Response parameters
+
+The GET a single metric endpoint includes the same response parameters as the GET multiple metrics response parameters, as described above.
+
