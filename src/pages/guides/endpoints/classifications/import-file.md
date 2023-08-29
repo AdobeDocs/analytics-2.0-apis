@@ -7,7 +7,7 @@ description: Import Analytics classification APIs through file uploads.
 
 This guide includes instructions for importing JSON classification datasets that are larger than 50 MB, or that include a .tsv or .tab file. With this method, a dataset is uploaded as a file with the POST request. Alternatively, your dataset can be imported as a JSON body of the POST request if it is smaller than 50MB. For more information on this alternative, see the [Analytics classification APIs](classifications/index.md) guide.
 
-Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md)
+Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md).
 
 To import an API classification by uploading a file, you follow a three-step process:
 
@@ -216,8 +216,8 @@ curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/j
 
 The example above shows a cURL request with the following:
 
-* the `Key` parameter specified as the file name `example_file.tsv`
-* the `Value` parameter specified as the file path `/files/examples/example_file.tsv`
+* the `Key` parameter specified as the file name `example_file.tsv`.
+* the `Value` parameter specified as the file path `/files/examples/example_file.tsv`.
 
 ### Response example details
 
@@ -239,7 +239,7 @@ The following table describes the PUT upload file response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `api_job_id` | string | The API job ID for uploading the file. This ID was provided with the response of the POST create job endpoint. |
+| `api_job_id` | string | The API job ID for uploading the file. This ID is provided with the response of the POST create job endpoint. |
 | `status` | string | The status of the API job |
 
 ## POST commit job
@@ -278,7 +278,7 @@ The example above shows a cURL request to commit the job associated with the `ap
 
 ### Response example details
 
-The example above shows the successful response for committing the job, including the `import_job_id` and `api_job_id`.
+The example above shows the successful response for committing the job, including the values for `import_job_id` and `api_job_id`.
 
 ### Request Parameters
 
