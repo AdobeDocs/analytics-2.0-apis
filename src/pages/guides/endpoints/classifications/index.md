@@ -287,7 +287,7 @@ The example request above specifies the following export job options:
 * The `notifications`to be delivered by `email` to `john@example.com` when the state is `failed_validation` and `completed`.
 * The data `source` is `"Direct API Upload"`.
 * The `rowLimit` to be `50000`.
-* The `dateFilterStart` and `dateFilterEnd` are set to `2022-12-07T22:29:07.446Z` and `2022-12-07T22:29:07.446Z`.
+* The `dateFilterStart` and `dateFilterEnd` are set to `YYYY-12-07T22:29:07.446Z` and `YYYY-12-07T22:29:07.446Z`.
 
 ### Response example details
 
