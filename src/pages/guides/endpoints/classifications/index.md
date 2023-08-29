@@ -9,7 +9,7 @@ The Analytics 2.0 Classification API endpoints allow you to categorize variable 
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
 
-Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md).
+Additionally, using these endpoints requires your global company ID in each request. If you receive the response error message "Cannot find proper global company ID," add the following header to your requests: `x-proxy-global-company-id:{GLOBAL_COMPANY_ID}`. You can find your global company ID by using the [Discovery API](../discovery.md).
 
 This guide includes instructions for using the following endpoints:
 
