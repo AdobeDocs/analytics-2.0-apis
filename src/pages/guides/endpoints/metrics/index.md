@@ -31,10 +31,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{globalCompanyId}/metrics?rsid=examplersid&locale=en_US&segmentable=true&expansion=allowedForReporting" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics?rsid=examplersid&locale=en_US&segmentable=true&expansion=allowedForReporting" \
 " \
-    -H "x-api-key: {CLIENTID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}"
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -97,8 +97,8 @@ The above example requests the following details:
 The above JSON response example shows the following details:
 
 * Information for two metrics in the `examplersid` report suite, including `campaigninstances` and `cartadditions`.
-* Both metrics have the same data `type`, set as `int`. 
-* The metrics differ in `category`. The `category` for `campaigninstances` is `Traffic sources`. The `category` for `cartadditions` is `Conversion`. 
+* Both metrics have the same data `type`, set as `int`.
+* The metrics differ in `category`. The `category` for `campaigninstances` is `Traffic sources`. The `category` for `cartadditions` is `Conversion`.
 * The information that both metrics are `segmentable` and `allowedForReporting`, as requested. This is indicated by the value `true` for each pair.
 
 ### Request parameters
@@ -157,8 +157,8 @@ Click the **Request** tab in the following example to see a cURL request. Click 
 
 ```sh
 curl -X GET "https://analytics.adobe.io/api/{globalCompanyId/metrics/carts?rsid=examplersid&locale=en_US&expansion=categories" \
-    -H "x-api-key: {CLIENTID}" \
-    -H "Authorization: Bearer {ACCESSTOKEN}"
+    -H "x-api-key: {CLIENT_ID}" \
+    -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -192,16 +192,16 @@ In the above example, the GET metrics ID request specifies the metric ID as `car
 
 The above example requests the following details:
 
-* The GET metrics ID for `carts` in the `examplersid` report suite. 
-* Specifies the response language in `locale` as US English with the value as `en_US`. 
+* The GET metrics ID for `carts` in the `examplersid` report suite.
+* Specifies the response language in `locale` as US English with the value as `en_US`.
 * Information on any data associated with `expansion` parameter `categories`.
 
 #### Response example details
 
 The above JSON response example shows the following details:
 
-* Information for the `carts` metric in the `examplersid` report suite. 
-* The `type` is `int`, and the `category` is `Conversion`. 
+* Information for the `carts` metric in the `examplersid` report suite.
+* The `type` is `int`, and the `category` is `Conversion`.
 * No `categories` metadata is associated with this metric.
 
 For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
