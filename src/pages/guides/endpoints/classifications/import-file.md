@@ -7,7 +7,7 @@ description: Import Analytics classification APIs through file uploads.
 
 This guide includes instructions for importing JSON classification datasets that are larger than 50 MB, or that include a .tsv or .tab file. With this method, a dataset is uploaded as a file with the POST request. Alternatively, your dataset can be imported as a JSON body of the POST request if it is smaller than 50MB. For more information on this alternative, see the [Analytics classification APIs](classifications/index.md) guide.
 
-Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md).
+Additionally, using these endpoints requires your global company ID in each request. If you receive the response error message "Cannot find proper global company ID," add the following header to your requests: `x-proxy-global-company-id:{GLOBAL_COMPANY_ID}`. You can find your global company ID by using the [Discovery API](../discovery.md).
 
 To import an API classification by uploading a file, you follow a three-step process:
 
