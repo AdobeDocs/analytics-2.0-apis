@@ -358,7 +358,7 @@ Use this endpoint to retrieve the contents of an export classification file. Whe
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,Text"/>
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,TEXT"/>
 
 #### Request
 
