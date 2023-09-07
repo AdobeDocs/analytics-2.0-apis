@@ -69,8 +69,6 @@ Retrieve Analytics traffic information in real time.
 
 <DiscoverBlock slots="link, text"/>
 
-<DiscoverBlock slots="link, text"/>
-
 [Metrics API](metrics/index.md)
 
 Retrieve metrics information in a report suite.
