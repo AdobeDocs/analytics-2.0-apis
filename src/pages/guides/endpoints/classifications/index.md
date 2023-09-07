@@ -7,7 +7,7 @@ description: Use Analytics classification APIs to categorize variable data.
 
 The Analytics 2.0 Classification API endpoints allow you to categorize variable data, then display it in different ways when you generate reports. The endpoints use the same data and methods that are used when working with classifications in the Adobe Analytics UI. See the [Classifications overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/c-classifications.html) for more information.
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. You must first create a client with access to the Adobe Developer Console to use them. See [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md) for more information.
+The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md) for more information.
 
 Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md).
 
@@ -454,7 +454,7 @@ The following table describes the GET classification template file request param
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `dataset_id` | required | string | Classification dataset ID |
-| `format` | optional | string | Template format. The default is `tsv`. Possible values include `tsv` or `csv`. |
+| `format` | optional | string | Template format. The default is `tsv`. Includes the `enum` options `tsv` or `csv`. |
 
 ### Response Parameters
 
@@ -634,7 +634,7 @@ The following table describes the response parameters for this endpoint:
 | `owner` | container | Contact information that contains the `name` and `email` parameters |
 | `name` | string | Name of person responsible for the classification definition and/or data |
 | `email` | string | Email address for person responsible for the classification definition and/or data |
-| `subscriptions` | container | A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists. Contains the `rsid`, `dimension`, `unique`, and `editable` parameters. See [Classification settings](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/manage/settings.html) for more information. |
+| `subscriptions` | container | A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists. Contains the `rsid`, `dimension`, `unique`, and `editable` parameters. For more information, see [Classification settings](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/manage/settings.html).|
 | `rsid` | string | The report suite ID |
 | `dimension` | string | The dimension you would like to be classified. Should be prefixed with `variables/`, e.g., `variables/page`. |
 | `unique` | boolean | Whether a forced update of unique_hash is used to avoid duplicate subscriptions |
