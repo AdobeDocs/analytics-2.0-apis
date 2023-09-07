@@ -71,5 +71,4 @@ Query parameter | Description
 
 * Your site must support redirects to receive the output.
 * The output data in Livestream is already processed through [VISTA](https://experienceleague.adobe.com/docs/analytics/technotes/vista.html) and processing rules.
-
 * To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
