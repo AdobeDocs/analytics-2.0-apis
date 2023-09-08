@@ -81,6 +81,6 @@ Clients that heavily aggregate or perform statistical modeling, etc, may struggl
 
 You can use multiple clients to connect to the same stream by using the query parameter `?maxConnections=[1-8]`. All clients connect using the same URI.
 
-### Client has Crashed or Disconnected
+#### Service or Client Disconnects
 
-If your client crashes or disconnects, you can reconnect within a few minutes of the disconnection to continue receiving data.
+Adobe recommends that clients implement automatic reconnects in their code. Disconnections are expected behavior, and can result from Adobe performing regular maintenance, from disruptions happening between Adobe and the client, or from a client-side issue. If your client crashes or disconnects, you will be able to reconnect within a few minutes of the disconnection to continue receiving data. 
