@@ -23,6 +23,12 @@ Insert rows of data into a report suite.
 
 [Calculated metrics API](calculatedmetrics/index.md)
 
+Retrieve, export, update, create, or delete classifications.
+
+<DiscoverBlock slots="link, text"/>
+
+[Classifications API](classifications/index.md)
+
 Retrieve, update, or create calculated metrics.
 
 <DiscoverBlock slots="link, text"/>
