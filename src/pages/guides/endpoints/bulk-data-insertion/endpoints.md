@@ -24,8 +24,8 @@ You must also add the file, which should be compressed in gzip format, and inclu
 
 The `https://analytics-collection.adobe.io` domain automatically routes your API call to the best region for processing. However, if you are legally required to have your data processed in a specific part of the world, you can use one of the following regional host names for API calls:
 
-* **US processing**: `https://analytics-collection-va7.adobe.io`
-* **European processing**: `https://analytics-collection-nld2.adobe.io`
+* **US processing**: `https://analytics-collection-us.adobe.io`
+* **European processing**: `https://analytics-collection-eu.adobe.io`
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
