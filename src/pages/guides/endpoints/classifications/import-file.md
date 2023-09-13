@@ -70,7 +70,6 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/jo
     "dataFormat": "tsv",
     "encoding": "utf8",
     "jobName": "testsuite evar1 classifications",
-    "fileBasename": null,
     "notifications": [
       {
         "method": "email",
@@ -80,12 +79,8 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/jo
         ]
       }
     ],
-    "statesWithQueuedNotifications": [],
     "listDelimiter": ",",
-    "pipelineTag": "",
     "source": "Direct API Upload",
-    "dataUri": null,
-    "originalDataUri": null,
     "keyOptions": {
       "byte_length": 255,
       "type": "string"
@@ -125,17 +120,12 @@ The following table describes the POST create job request parameters:
 | `dataFormat` | required | string | The data format options. Includes `tsv`, `tab`, or `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
-| `fileBasename` | optional | string | The name of the file currently being read, without path or extension |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
 | `state` | optional | string | The state of the notification. Includes the following enums: `created`, `queued`, `validated`, `failed_validation`, `processing`, `done_processing`, `failed_processing`, and `completed`. |
 | `recipients` | optional | string | The recipients of the notification |
-| `statesWithQueuedNotifications` | optional | string | Notifications for queued states |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
-| `pipelineTag` | optional | string | Pipeline tag |
 | `source` | optional | string | The data source. Default value is `Direct API Upload`. |
-| `dataUri` | optional | string | The data URI |
-| `originalDataUri` | optional | string | The original data URI |
 | `keyOptions` | optional | container | Contains the `byte_length`, `type`, and `overwrite` parameters |
 | `byte_length` | optional | integer | The byte length of the job |
 | `type` | optional | string | The type of the job |
@@ -155,21 +145,16 @@ The following table describes the POST create job response parameters:
 | `api_job_id` | string | The API Job ID for uploading the file |
 | `ims_org_id` | string | The ID associated with the analytics company of the user |
 | `taxonomist_job_id` | string | Job ID for taxonomist |
-| `job_options` | container | Contains the options for jobs. Includes the `dataFormat`, `encoding`, `jobName`, `fileBasename`, and `notifications` parameters as shown in the following five rows. |
+| `job_options` | container | Contains the options for jobs. Includes the `dataFormat`, `encoding`, `jobName`, and `notifications` parameters as shown in the following five rows. |
 | `dataFormat` | string | The data format options. Includes `tsv`, `tab`, or `json`. |
 | `encoding` | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | string | The name of the job |
-| `fileBasename` | string | The name of the file currently being read, without path or extension |
 | `notifications` | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
 | `state` | string | The state of the notification. Includes the following enums: `created`, `queued`, `validated`, `failed_validation`, `processing`, `done_processing`, `failed_processing`, and `completed`. |
 | `recipients` | string | The recipients of the notification |
-| `statesWithQueuedNotifications` | string | Notifications for queued states |
 | `listDelimiter` | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
-| `pipelineTag` | string | Pipeline tag |
 | `source` | string | The data source. Default value is `"Direct API Upload"`. |
-| `dataUri` | string | The data URI |
-| `originalDataUri` | string | The original data URI |
 | `keyOptions` | container | Contains the `byte_length` `type` and `overwrite` parameters |
 | `byte_length` | integer | The byte length of the job |
 | `type` | string | The type of the job |
