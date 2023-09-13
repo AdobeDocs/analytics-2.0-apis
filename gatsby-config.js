@@ -134,6 +134,16 @@ module.exports = {
             ]
           },
           {
+            title: 'Classifications',
+            path: 'guides/endpoints/classifications',
+            pages: [
+              {
+                title: 'Import classificatons by uploading files',
+                path: 'guides/endpoints/classifications/import-file.md'
+              },
+            ]
+          },
+          {
             title: 'Component Meta Data',
             path:'guides/endpoints/componentmetadata',
             pages: [
