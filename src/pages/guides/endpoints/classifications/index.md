@@ -9,7 +9,7 @@ The Analytics 2.0 Classification API endpoints provide advanced methods for cate
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md) for more information.
 
-Additionally, using these endpoints requires your global company ID in each request. You can find your global company ID by using the [Discovery API](../discovery.md).
+Additionally, using these endpoints require your global company ID in each request. If you receive the response error message "Cannot find proper global company ID," add the following header to your requests: `x-proxy-global-company-id:{GLOBAL_COMPANY_ID}`. You can find your global company ID by using the [Discovery API](../discovery.md).
 
 This guide includes instructions for using the following endpoints:
 
@@ -129,35 +129,25 @@ The following table describes the POST import JSON classification request parame
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `dataset_id` | required | string | The dataset ID for creating API import job |
-| `dataFormat` | optional | string | The data format options |
+| `dataFormat` | required | string | The data format option for this endpoint is `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
-| `fileBasename` | optional | string | The name of the file currently being read, without path or extension |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
 | `state` | optional | string | The state of the notification. Includes the following enums: `created`, `queued`, `validated`, `failed_validation`, `processing`, `done_processing`, `failed_processing`, and `completed`. |
 | `recipients` | optional | string | The recipients of the notification |
-| `statesWithQueuedNotifications` | optional | string | States with notifications that are queued |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
-| `pipelineTag` | optional | string | Pipeline tag |
-| `source` | optional | string | The data source. Default value is `"Direct API Upload"`. |
-| `dataUri` | optional | string | The data URI |
-| `originalDataUri` | optional | string | The original data URI |
 | `keyOptions` | optional | container | Contains the `byte_length`, `type`, and `overwrite` parameters |
 | `byte_length` | optional | integer | The byte length of the job |
 | `type` | optional | string | The type of the job |
 | `overwrite` | optional | boolean | Whether or not the import will overwrite. |
 | `data` | required |  | The data to be imported |
-| `jobImportOption` | optional | container | Contains the `dataFormat`, `encoding`, `jobName`, `fileBasename`, `notifications`, `statesWithQueuedNotifications`,`listDelimeter`, `pipelineTag`, `source`, `dataUri`, `originalDataUri`, `keyOptions`, and `notification_extras` parameters. As described in the following 12 rows. |
+| `jobImportOption` | optional | container | Contains the `dataFormat`, `encoding`, `jobName`, `notifications`,`listDelimeter`, `source`, `keyOptions`, and `notification_extras` parameters. As described in the following 12 rows. |
 | `dataFormat` | optional | string | The data format options. Includes `tsv`, `tab`, or `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
-| `fileBasename` | optional | string | The name of the file currently being read, without path or extension |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
-| `pipelineTag` | optional | string |  |
 | `source` | optional | string | The data source. Default value is `"Direct API Upload"`. |
-| `dataUri` | optional | string | The data URI |
-| `originalDataUri` | optional | string | The original data URI |
 | `overwrite` | optional | boolean | Whether or not the import will overwrite. |
 | `notification_extras` | optional | container | Extra options for notifications. Contains the `key`, and `value` parameters. |
 | `key` | optional | string | The field or column name associated with key value |
@@ -319,7 +309,6 @@ The following table describes the POST export classification request parameters:
 | `regexMatch` | optional |  | Finds the `regexMatch` |
 | `dateFilterStart` | optional | string | The first value in the date filter |
 | `dateFilterEnd` | optional | string | The last value in the date filter |
-| `dataUri` | optional | string | The data URI |
 | `source` | optional | string | The data source. Default value is `"Direct API Upload"`. |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
@@ -575,14 +564,12 @@ curl GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/data
       "name": "Column A",
       "display_name": "Column A",
       "type": "text",
-      "tags": []
     },
     {
       "column_id": "495411758226162142",
       "name": "Column B",
       "display_name": "Column B",
       "type": "text",
-      "tags": []
     },
   ],
   "subscriptions": [
@@ -640,19 +627,18 @@ The following table describes the response parameters for this endpoint:
 | `unique` | boolean | Whether a forced update of unique_hash is used to avoid duplicate subscriptions |
 | `editable` | boolean | Whether the subscription is editable by the current user based on report suite permissions |
 | `default_encoding` | string | Default encoding for jobs. Defaults to `utf8`. Includes the enums `utf8` and `latin1`. |
-| `columns` | container | A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists. Contains the `column_id`, `name`, `display_name`, `type`, `classified_by`, and `tags` parameters. |
+| `columns` | container | A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists. Contains the `column_id`, `name`, `display_name`, `type`, and `classified_by`. |
 | `column_id` | string | A UUID that is generated when a column is created |
 | `name` | string | The name for this given data column. It cannot be changed after column creation. It also can be any valid UTF-8 string. |
 | `display_name` | string | The display name for the given data column. The value can be changed. It can be any valid UTF-8 string. |
 | `type` | string | Defaults to `text`. This cannot be changed after column creation. Includes the following enums: `text`, `integer`, `float`, and `list`. |
 | `classified_by` | string | An optional classification dataset ID that classifies this column's data |
-| `tags` | string | Internal column tags used to store info (like div nums) to support migration |
 | `dataset_id` | string | An auto-generated ID value created by the system on creation of the dataset, in the form of an ObjectId |
 | `name` | string | A friendly display name for users to easily identify the classification definition |
 | `description` | string | A long description for the purpose of this classification set |
 | `last_modified_date` | string | The last modified date/time of the classification set |
 | `last_modified_by` | string | The email address of the last person that modified the classification set |
-| `ims_ord_id` | string | The ID associated with the analytics company of the user |
+| `ims_org_id` | string | The ID associated with the analytics company of the user |
 | `default_list_delimiter` | string | The default delimiter for list column types. Defaults to `,` (comma). If you have no list columns, this field does not apply. |
 | `notifications` | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
@@ -914,12 +900,11 @@ The following table describes the request parameters for this endpoint:
 | `dimension` | required | string | The dimension you would like to be classified. Should be prefixed with `variables/`, e.g., `variables/page`. |
 | `unique` | required | boolean | Whether a forced update of unique_hash is used to avoid duplicate subscriptions |
 | `default encoding` | optional | string | Default encoding for jobs. Defaults to `utf8`. Includes the enums: `utf8` and `latin1`. |
-| `columns` | required | container | A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists. Contains the `name`, `display_name`, `type`, `classified_by`, and `tags` parameters. |
+| `columns` | required | container | A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists. Contains the `name`, `display_name`, `type`, and `classified_by`. |
 | `name` | required | string | The name for this given data column. It cannot be changed after column creation. It also can be any valid UTF-8 string. |
 | `display_name` | required | string | The display name for the given data column. The value can be changed. It can be any valid UTF-8 string. |
 | `type` | optional | string | Defaults to `text`. This cannot be changed after column creation. Includes the following enums: `text`, `integer`, `float`, and `list`. |
 | `classified_by` | optional | string | An optional classification dataset ID that classifies this column's data |
-| `tags` | optional | string | Internal column tags. Used to store info (like div nums) to support migration. |
 | `name` | optional | string | A friendly display name for users to easily identify the classification definition |
 | `description` | optional | string | A long description for the purpose of this classification set |
 | `default_list_delimiter` | optional | string | The default delimiter for list column types. Defaults to `,` (comma). If you have no list columns, this field does not apply. |
@@ -943,13 +928,12 @@ The following table describes the response parameters for this endpoint:
 | `unique` | boolean | Whether a forced update of unique_hash is used to avoid duplicate subscriptions |
 | `editable` | boolean | Whether the subscription is editable by the current user based on report suite permissions |
 | `default encoding` | string | Default encoding for jobs. Defaults to `utf8`. Includes the enums: `utf8` and `latin1`. |
-| `columns` | container | A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists. Contains the `column_id`, `name`, `display_name`, `type`, `classified_by`, and `tags` parameters. |
+| `columns` | container | A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists. Contains the `column_id`, `name`, `display_name`, `type`, and `classified_by` parameters. |
 | `column_id` | string | A UUID that will be generated when a column is created |
 | `name` | string | The name for this given data column. It cannot be changed after column creation. It also can be any valid UTF-8 string. |
 | `display_name` | string | The display name for the given data column. The value can be changed. It can be any valid UTF-8 string. |
 | `type` | string | Defaults to `text`. This cannot be changed after column creation. Includes the following enums: `text`, `integer`, `float`, and `list`. |
 | `classified_by` | string | An optional classification dataset ID that classifies this column's data |
-| `tags` | string | Internal column tags. Used to store info (like div nums) to support migration |
 | `dataset_id` | string | An auto-generated ID value created by the system on creation of the dataset, in the form of an ObjectId |
 | `name` | string | A friendly display name for users to easily identify the classification definition |
 | `description` | string | A long description for the purpose of this classification set |
