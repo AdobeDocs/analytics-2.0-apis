@@ -21,7 +21,7 @@ The endpoints described in this guide are routed through analytics.adobe.io. To 
 
 Use this endpoint to create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
 
-`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/job/import/createApiJob/{DATASET_ID}`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -32,7 +32,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/job/import/createApiJob/6449b63563c1e069c6159415" \
+curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/6449b63563c1e069c6159415" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -167,7 +167,7 @@ The following table describes the POST create job response parameters:
 
 Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, tab, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html)
 
-`PUT https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/job/import/uploadFile/{API_JOB_ID}`
+`PUT https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
 
 ### Request and Response Examples
 
@@ -178,7 +178,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/job/import/uploadFile/a6fc824c-4d6f-45f9-8f55-456f918e0b41"
+curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/a6fc824c-4d6f-45f9-8f55-456f918e0b41"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -H "Content-Type: multipart/form-data" \
@@ -231,7 +231,7 @@ The following table describes the PUT upload file response parameters:
 
 Use this endpoint to commit the changes of a specified job ID. This endpoint finalizes the file uploading process. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
 
-`POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/job/import/commitApiJob/{API_JOB_ID}`
+`POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/{API_JOB_ID}`
 
 ### Request and Response Examples
 
@@ -242,7 +242,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classification/job/import/commitApiJob/a6fc824c-4d6f-45f9-8f55-456f918e0b41" \
+curl -X POST "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/a6fc824c-4d6f-45f9-8f55-456f918e0b41" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
