@@ -31,7 +31,7 @@ This guide includes instructions for importing JSON classification datasets smal
 
 Use this endpoint to create a classification smaller than 50 MB. For more information on importing classifications, see [Classifications importer overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-working-with-saint.html).
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/import/json/{DATASET_ID}`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/json/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -42,7 +42,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/import/json/{DATASET_ID}" \
+curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/json/{DATASET_ID}" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -161,7 +161,7 @@ No response parameters are returned. Successful requests are indicated by a `200
 
 Use this endpoint to create an export job for a classification dataset. The dataset can be retrieved in a subsequent request by providing the job ID returned with this endpoint.
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/{DATASET_ID}`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/export/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -172,7 +172,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/{DATASET_ID}' \
+curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/export/{DATASET_ID}' \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -341,7 +341,7 @@ The following table describes the POST export classification response parameters
 
 Use this endpoint to retrieve the contents of an export classification file. When using this endpoint, you must supply the export job ID returned with the POST export classification endpoint. For more information on classification data, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html).
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/file/{JOB_ID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/export/file/{JOB_ID}`
 
 ### Request and Response Examples
 
@@ -352,7 +352,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/export/file/16e38fbc-fc82-4fdf-88de-ec33e63489d5" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/export/file/16e38fbc-fc82-4fdf-88de-ec33e63489d5" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -401,7 +401,7 @@ The response includes the classification data in the format specified with the e
 
 Use this endpoint to retrieve a template showing how to structure data. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html) and [Classification template](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-download-saint-data.html).
 
-`GET  https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/template/{DATASET_ID}`
+`GET  https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/template/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -412,7 +412,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/template/{DATASET_ID}" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/template/{DATASET_ID}" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -453,7 +453,7 @@ The response includes a sample structure of how the data will be formatted while
 
 Use this endpoint to retrieve all datasets for a specified report suite ID. For more information on classification sets, see [Classification sets overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/overview.html).
 
-`GET  https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/compatibilityMetrics/{RSID}`
+`GET  https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/compatibilityMetrics/{RSID}`
 
 ### Request and Response Examples
 
@@ -464,7 +464,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/compatibilityMetrics/{example_RSID}" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/compatibilityMetrics/{example_RSID}" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -533,7 +533,7 @@ The following table describes the GET all classification datasets response param
 
 Use this endpoint to retrieve information for a specified dataset. For more information on classification sets, see [Classification sets overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/overview.html).
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -544,7 +544,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{64b1d77b235090539e282308}"
+curl GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{64b1d77b235090539e282308}"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -649,7 +649,7 @@ The following table describes the response parameters for this endpoint:
 
 Use this endpoint to retrieve job information for a specified job ID. For more information about classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html).
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/{JOB_ID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/{JOB_ID}`
 
 ### Request and Response Examples
 
@@ -660,7 +660,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/job/7dafc070-afec-4a8d-8187-24f572f7d0f8"
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/7dafc070-afec-4a8d-8187-24f572f7d0f8"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -784,7 +784,7 @@ The following table describes the GET classification job information response pa
 
 Use this endpoint to update a classification dataset.
 
-`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}`
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -795,7 +795,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}"
+curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{DATASET_ID}"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -950,7 +950,7 @@ The following table describes the response parameters for this endpoint:
 
 Use this endpoint to delete a specified classification. For more information, see [Delete classification data](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/t-delete-classification-data.html).
 
-`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification/datasets/{DATASET_ID}`
+`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -961,7 +961,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classification//datasets/6449b63563c1e069c6159415"
+curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications//datasets/6449b63563c1e069c6159415"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
