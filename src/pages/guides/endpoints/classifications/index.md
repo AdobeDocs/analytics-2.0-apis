@@ -805,85 +805,67 @@ curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 
 ```JSON
 {
-  "datasetId": "6449b63563c1e069c6159415",
-  "history": [
+  "name": "taxoappsrvtest evar7 classifications",
+  "description": "taxoappsrvtest evar7 classifications",
+  "default_list_delimiter": ",",
+  "default_encoding": "UTF8",
+  "columns": [
     {
-      "timestamp": "YYYY-08-07 22:06:56",
-      "jobState": "created",
-      "message": "Created export job via API"
+      "column_id": "5849115441721086447",
+      "name": "Column A",
+      "display_name": "Column A",
+      "type": "text",
+      ]
     },
     {
-      "timestamp": "YYYY-08-07 22:06:56",
-      "jobState": "queued",
-      "message": "Job queued and ready for processing."
+      "column_id": "495411758226162142",
+      "name": "Column B",
+      "display_name": "Column B",
+      "type": "text",
+      ]
     },
     {
-      "timestamp": "YYYY-08-07 22:06:56",
-      "jobState": "processing",
-      "message": "Started processing"
+      "column_id": "399739691265197434",
+      "name": "Column C",
+      "display_name": "Column C",
+      "type": "text",
+      ]
     },
     {
-      "timestamp": "YYYY-08-07 22:06:58",
-      "jobState": "completed",
-      "message": "Successfully exported 50000/50000 records."
+      "column_id": "1759968069842527446",
+      "name": "Column D",
+      "display_name": "Column D",
+      "type": "text",
     }
   ],
-  "imsOrgId": "0DFE76D95967D5B50A494010@AdobeOrg",
-  "jobOptions": {
-    "dataFormat": "tsv",
-    "encoding": "utf8",
-    "listDelimiter": ",",
-    "rowLimit": 50000,
-    "offset": 0,
-    "dateFilterStart": "YYYY-05-01T22:29:07Z",
-    "dateFilterEnd": "YYYY-08-07T16:06:55Z",
-    "notifications": [
-      {
-        "method": "email",
-        "state": "failed_validation",
-        "recipients": [
-          "john@example.com"
-        ]
-      },
-      {
-        "method": "email",
-        "state": "failed_processing",
-        "recipients": [
-          "john@example.com"
-        ]
-      },
-      {
-        "method": "email",
-        "state": "completed",
-        "recipients": [
-          "john@example.com"
-        ]
-      }
-    ]
+  "subscriptions": [
+    {
+      "rsid": "taxoappsrvtest",
+      "dimension": "variables/evar7",
+      "unique": true,
+      "editable": true
+    },
+    {
+      "rsid": "taxoappsrvtest",
+      "dimension": "taxoappsrvdataingesttest0/evar75",
+      "unique": true,
+      "editable": true
+    }
+  ],
+  "notifications": [],
+  "dataset_id": "64b1d77b235090539e282308",
+  "ims_org_id": "0DFE76D95967D5B50A494010@AdobeOrg",
+  "owner": {
+    "name": "Unknown User",
+    "email": "no-reply@adobe.com"
   },
-  "jobId": "7dafc070-afec-4a8d-8187-24f572f7d0f8",
-  "jobSize": 26410225,
-  "name": "Direct API Export job for dataset taxoappsrvtest evar1 classifications - 6449b63563c1e069c6159415 at 1691446015",
-  "setName": "taxoappsrvtest evar1 classifications",
-  "state": "completed",
-  "totalLines": 50000,
-  "noeffectLines": null,
-  "type": "export"
+  "last_modified_date": "YYYY-07-14T23:35:10Z"
 }
 ```
 
 ### Request example details
 
-The example above shows a cURL request to update the job associated with the `7dafc070-afec-4a8d-8187-24f572f7d0f8` job ID.
-
-### Response example details
-
-The example above returns the following information for the update:
-
-* The `history` of the job, including the details associated with its various states. This includes the `created`, `queued`, `processing`, and `completed` states.
-* The recipient for the `state` notifications: `john@example.com`.
-* The `name` of the job is `example_dataset_name-example-dataset_id at example_time`.
-* The final `state` of the job is `completed`.
+The example above shows a cURL request to update the dataset ID `7dafc070-afec-4a8d-8187-24f572f7d0f8`.
 
 ### Request Parameters
 
