@@ -961,7 +961,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications//datasets/6449b63563c1e069c6159415"
+curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/6449b63563c1e069c6159415"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"

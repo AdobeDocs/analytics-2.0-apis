@@ -21,7 +21,7 @@ The endpoints described in this guide are routed through analytics.adobe.io. To 
 
 Use this endpoint to create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
 
-`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/job/import/createApiJob/{DATASET_ID}`
+`POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/{DATASET_ID}`
 
 ### Request and Response Examples
 
@@ -32,7 +32,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classification/job/import/createApiJob/6449b63563c1e069c6159415" \
+curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/6449b63563c1e069c6159415" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
