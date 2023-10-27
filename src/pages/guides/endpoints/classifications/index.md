@@ -9,8 +9,6 @@ The Analytics 2.0 Classifications API endpoints provide advanced methods for cat
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md) for more information.
 
-Additionally, using these endpoints require your global company ID in each request. If you receive the response error message "Cannot find proper global company ID," add the following header to your requests: `x-proxy-global-company-id:{GLOBAL_COMPANY_ID}`. You can find your global company ID by using the [Discovery API](../discovery.md).
-
 This guide includes instructions for using the following endpoints:
 
 * [POST import JSON classification](#post-import-json-classification): Creates a classification from a JSON payload
@@ -67,7 +65,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
           },
           "data": [
             {
-              "key": "Key20230730-json1",
+              "key": "KeyYYYY0730-json1",
               "data": {
                 "Product Brand": "Basket Ball Jam",
                 "Category": "",
@@ -77,7 +75,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
               }
             },
             {
-              "key": "Key20230730-json2",
+              "key": "KeyYYYY0730-json2",
               "data": {
                 "Product Brand": "Basket Ball Jam",
                 "Category": "",
@@ -87,7 +85,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
               }
             },
             {
-              "key": "Key20230730-json3",
+              "key": "KeyYYYY0730-json3",
               "data": {
                 "Product Brand": "Basket Ball Jam",
                 "Category": "",
@@ -363,18 +361,18 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 ```tab
 ## SC   SiteCatalyst saint Import File  v:2.1
 ## SC   '## SC' indicates a SiteCatalyst pre-process header. Please do not remove these lines.
-## SC   D:2023-07-31 18:00:11  A:xxxxxx:xx
+## SC   D:YYYY-07-31 18:00:11  A:xxxxxx:xx
  
 Key File Name   File Option Directory
-Key20230522-1   File Name-1 Option-1    Directory-1
-Key20230522-2   File Name-2 Option-2    Directory-2
-Key20230522-3   File Name-3 Option-3    Directory-3
-Key20230522-4   File Name-4 Option-4    Directory-4
-Key20230522-5   File Name-5 Option-5    Directory-5
-Key20230522-6   File Name-6 Option-6    Directory-6
-Key20230522-7   File Name-7 Option-7    Directory-7
-Key20230522-8   File Name-8 Option-8    Directory-8
-Key20230522-9   File Name-9 Option-9    Directory-9
+KeyYYYY0522-1   File Name-1 Option-1    Directory-1
+KeyYYYY0522-2   File Name-2 Option-2    Directory-2
+KeyYYYY0522-3   File Name-3 Option-3    Directory-3
+KeyYYYY0522-4   File Name-4 Option-4    Directory-4
+KeyYYYY0522-5   File Name-5 Option-5    Directory-5
+KeyYYYY0522-6   File Name-6 Option-6    Directory-6
+KeyYYYY0522-7   File Name-7 Option-7    Directory-7
+KeyYYYY0522-8   File Name-8 Option-8    Directory-8
+KeyYYYY0522-9   File Name-9 Option-9    Directory-9
 ```
 
 ### Request example details
@@ -423,7 +421,7 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 ```tab
 ## SC   SiteCatalyst saint Import File  v:2.1
 ## SC   '## SC' indicates a SiteCatalyst pre-process header. Please do not remove these lines.
-## SC   D:2023-07-31 23:13:42  A:xxxxxx:xx
+## SC   D:YYYY-07-31 23:13:42  A:xxxxxx:xx
  
 Key Column A    Column B    Column C    Column D
 ```
@@ -985,7 +983,3 @@ The following table describes the DELETE classification response parameters:
 | --- | --- | --- |
 | `success` | boolean | Whether the DELETE request succeded |
 | `message` | string | Additional information |
-
-## API status codes
-
-For a description of API status codes and tips for troubleshooting, see the [Platform FAQ and troubleshooting guide](https://experienceleague.adobe.com/docs/experience-platform/landing/troubleshooting.html#api-status-codes).

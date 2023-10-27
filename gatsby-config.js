@@ -141,6 +141,10 @@ module.exports = {
                 title: 'Import classificatons by uploading files',
                 path: 'guides/endpoints/classifications/import-file.md'
               },
+              {
+                title: 'Troubleshooting',
+                path: 'guides/endpoints/classifications/troubleshooting.md'
+              }
             ]
           },
           {

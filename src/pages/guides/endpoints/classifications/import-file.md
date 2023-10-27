@@ -283,7 +283,3 @@ The following table describes the POST commit job response parameters:
 | `api_job_id` | string | The API job ID for uploading the file. This ID was provided with the response of the POST create job endpoint. |
 
 After importing your classification datasets you can export them to other applications. See the [Analytics classification APIs guide](classifications/index.md) for more information.
-
-## API status codes
-
-For a description of API status codes and tips for troubleshooting, see the [Platform FAQ and troubleshooting guide](https://experienceleague.adobe.com/docs/experience-platform/landing/troubleshooting.html#api-status-codes).
