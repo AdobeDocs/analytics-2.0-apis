@@ -9,7 +9,7 @@ description: Send API calls to Adobe using the Postman API client.
 
 ## Prerequisites
 
-* Follow the instructions listed under [Getting Started](../index.md). This step includes developer permissions, creating an API client, and choosing `OAuth` as the authentication method. You can set the **Redirect URI** and **Redirect URI pattern** to any value; Postman does not use it for authentication.
+* Follow the instructions listed under [Getting Started](../../index.md). This step includes developer permissions, creating an API client, and choosing `OAuth` as the authentication method. You can set the **Redirect URI** and **Redirect URI pattern** to any value; Postman does not use it for authentication.
 * Download and install [Postman](https://www.postman.com/downloads/).
 
 ## Configure Postman for authentication
@@ -38,10 +38,10 @@ You must first configure Postman to authenticate with your Adobe ID. Once you au
 
     ![Token configuration](../../images/postman-oauth2-token.png)
 
-2. Click **Get New Access Token**. A popup appears requesting your AdobeID credentials.
-3. Authenticate using the popup. Make sure that you log in to the same IMS org that you created the API client in the Adobe Developer Console.
-4. Once authenticated, the popup closes and a modal window appears with your access token.
-5. Click the **Use Token** button.
+1. Click **Get New Access Token**. A popup appears requesting your AdobeID credentials.
+1. Authenticate using the popup. Make sure that you log in to the same IMS org that you created the API client in the Adobe Developer Console.
+1. Once authenticated, the popup closes and a modal window appears with your access token.
+1. Click the **Use Token** button.
 
 The token is now configured, and you can use it in any API requests from Postman. When the token expires (typically after 24 hours), you can navigate back to the Authorization section and click **Get New Access Token**. Once you authenticate using your Adobe ID, a new access token is generated.
 
