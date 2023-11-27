@@ -307,7 +307,7 @@ The response above shows the following top ten ranked pages for this month accor
 
 Additionally, the response above shows the following:
 
-* Each `row` secion contains each report record.
+* Each `row` section contains each report record.
 
 * The `value` property contains the dimension value.
 
