@@ -11,7 +11,7 @@ Adobe offers a way to simplify the process of generating an identifier used by t
 
 Before using this method to identify visitors, make sure that all of the following are met:
 
-* Communicate your intent to use this feature to the BDIA team. It requires coordination between the BDIA team and the Adobe Audience Manager team to provision the desired integration on the backend.
+* Communicate your intent to use this feature to the team responsible for the [Bulk Data Insertion API and associated format](./file-format.md). It requires coordination between this team and the Adobe Audience Manager team to provision the desired integration on the backend.
 * Only one `customerIDType` can be used as a seed per IMS organization. If you attempt to set `isMCSeed` to `true` on a `customerIDType` other than the one provisioned by Adobe, it is ignored.
 
 ## File requirements
