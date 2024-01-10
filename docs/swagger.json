@@ -1116,7 +1116,7 @@
           {
             "name": "userid",
             "in": "query",
-            "description": "The user ID to return details for. Only admins may user this option.",
+            "description": "The user ID to return details for. Only admins may use this option.",
             "required": false,
             "type": "integer",
             "format": "int32"
