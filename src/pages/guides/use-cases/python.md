@@ -24,7 +24,7 @@ description: Send API calls to Adobe using Python.
     $ pip install -r requirements.txt
     ```
 
-4. Create (or re-use) a [JWT Integration](../jwt.md)
+4. Set up [authentication](https://developer.adobe.com/commerce/webapi/get-started/authentication/gs-authentication-oauth/).
 
 5. Populate `config.ini` with parameters specific to your integration
 
