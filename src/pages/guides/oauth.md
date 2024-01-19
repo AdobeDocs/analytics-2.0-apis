@@ -27,8 +27,3 @@ For more information on creating profiles and managing permissions, see [Manage 
 ## Technical Account User Information
 
 Once your integration is added to a product profile, an Analytics user is created in your Adobe Analytics Login Company. The user has a unique ID for the first name that matches the first part of the email address generated for the technical account. The last name of the user is `techacct.adobe.com`. All API calls through this integration are associated with this technical account user in Analytics. Assets such as Segments and Calculated Metrics created through the API using this integration are owned by this technical account user. To allow other user access to assets created by this API user, use the share feature in Adobe Analytics.
-
-## Example Code
-
-* [Java example](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/resources/java/) on GitHub
-* [Python example](https://github.com/AdobeDocs/analytics-2.0-apis/tree/main/resources/python/) on GitHub
