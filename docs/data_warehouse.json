@@ -2,7 +2,7 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "Adobe Analytics Data Warehouse API",
-    "description" : "Adobe Analytics Data Warehouse API 2.0",
+    "description" : "Adobe Analytics Data Warehouse API 2.0 \n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
     "version" : "v2"
   },
   "servers": [
@@ -19,7 +19,7 @@
     "/report/{UUID}" : {
       "get" : {
         "tags" : [ "Data Warehouse Report API" ],
-        "summary" : "Retrieve a detailed data warehouse report for a scheduled request",
+        "summary" : "Retrieves a detailed data warehouse report for a scheduled request",
         "operationId" : "get",
         "parameters" : [ {
           "name" : "UUID",
@@ -42,7 +42,7 @@
             }
           },
           "200" : {
-            "description" : "Response body describes the Data Warehouse Report with the matching ID",
+            "description" : "Response containing the Data Warehouse report for the specified ID",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -56,7 +56,7 @@
       "put" : {
         "tags" : [ "Data Warehouse Report API" ],
         "summary" : "Updates a data warehouse report",
-        "description" : "Allows updating an existing Scheduled Data Warehouse Request. A simple example request body that would resend the report with the UUID passed as a path parameter is below.\n\n```json\n{\r\n  \"metadata\": {\r\n    \"status\": \"resend\"\r\n  }\r\n}\r\n```\n\n",
+        "description" : "Updates an existing scheduled Data Warehouse request.",
         "operationId" : "updateDataWarehouseJob",
         "parameters" : [ {
           "name" : "UUID",
@@ -88,7 +88,7 @@
             }
           },
           "200" : {
-            "description" : "Response body describes the updated Data Warehouse Report",
+            "description" : "Response body describes the updated Data Warehouse report",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -103,7 +103,7 @@
     "/report" : {
       "get" : {
         "tags" : [ "Data Warehouse Report API" ],
-        "summary" : "Retrieve summarized information for many data warehouse reports matching filters",
+        "summary" : "Retrieves summarized information for data warehouse reports that match specified filters",
         "operationId" : "get_1",
         "parameters" : [ {
           "name" : "scheduledRequestUUID",
@@ -115,35 +115,35 @@
         }, {
           "name" : "createdAfter",
           "in" : "query",
-          "description" : "Filter that requires reports to have been created on or after this ISO 8601 datetime.",
+          "description" : "Filters for reports created on or after the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "createdBefore",
           "in" : "query",
-          "description" : "Filter that requires reports to have been created on or before this ISO 8601 datetime.",
+          "description" : "Filters for reports created on or before the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "updatedAfter",
           "in" : "query",
-          "description" : "Filter that requires reports to have been updated on or after this ISO 8601 datetime.",
+          "description" : "Filters for reports updated on or after the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "updatedBefore",
           "in" : "query",
-          "description" : "Filter that requires reports to have been updated on or before this ISO 8601 datetime.",
+          "description" : "Filters for reports updated on or before the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "status",
           "in" : "query",
-          "description" : "Status for reports. It will only return reports with a matching status. Valid values are 'Completed', 'Canceled', 'Error - Failure To Send', 'Error - Processing', 'Created', 'Processing', and 'Pending'.",
+          "description" : "Filters for reports based on specified status. Valid values are 'Completed', 'Canceled', 'Error - Failure To Send', 'Error - Processing', 'Created', 'Processing', and 'Pending'.",
           "schema" : {
             "type" : "array",
             "items" : {
@@ -178,7 +178,7 @@
             }
           },
           "200" : {
-            "description" : "Response body includes a listing of Data Warehouse Reports that match the filters",
+            "description" : "Returns a list of Data Warehouse reports that match the specified filters",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -193,7 +193,7 @@
     "/scheduled" : {
       "get" : {
         "tags" : [ "Data Warehouse Scheduled Requests API" ],
-        "summary" : "Retrieve summarized information for many data warehouse scheduled requests matching filters",
+        "summary" : "Retrieves summarized information data warehouse scheduled requests that match specified filters",
         "operationId" : "getScheduledRequest_2",
         "parameters" : [ {
           "name" : "rsid",
@@ -208,35 +208,35 @@
         }, {
           "name" : "createdAfter",
           "in" : "query",
-          "description" : "Filter that requires reports to have been created on or after this ISO 8601 datetime.",
+          "description" : "Filters for reports created on or after the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "createdBefore",
           "in" : "query",
-          "description" : "Filter that requires reports to have been created on or before this ISO 8601 datetime.",
+          "description" : "Filters for reports created on or before the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "updatedAfter",
           "in" : "query",
-          "description" : "Filter that requires reports to have been updated on or after this ISO 8601 datetime.",
+          "description" : "Filters for reports pdated on or after the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "updatedBefore",
           "in" : "query",
-          "description" : "Filter that requires reports to have been updated on or before this ISO 8601 datetime.",
+          "description" : "Filters for reports updated on or before the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "status",
           "in" : "query",
-          "description" : "The status of the request. Valid values are: 'Scheduled', 'Completed', 'Canceled', and 'Error'.",
+          "description" : "Filters for reports based on status. Valid values are: 'Scheduled', 'Completed', 'Canceled', and 'Error'.",
           "schema" : {
             "type" : "array",
             "items" : {
@@ -285,7 +285,7 @@
       "post" : {
         "tags" : [ "Data Warehouse Scheduled Requests API" ],
         "summary" : "Create a data warehouse scheduled request",
-        "description" : "Creates a new Schedule Data Warehouse Request. Example definition for use in testing API below. This creates a request that generates a single report. For this to work properly the user will need to replace request.rsid with a report suite that the user has access for Data Warehouse and add a valid Export Location UUID under delivery.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"runOnceSetPeriod\"\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run-Once Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"startDateTime\": \"2023-01-01T00:00:00Z\",\r\n              \"endDateTime\": \"2023-01-01T23:59:59Z\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\n Below is an example of how you could make the same request, but have it generate a daily report (for yesterday's data) for 10 days.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"daily\"\r\n    }, \"cancelSettings\": {\r\n      \"cancelMethod\": \"afterOccurrences\",\r\n      \"endAfterNumOccurrences\": 10\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run Daily Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"preset\": \"Yesterday\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\nThe 'id' of items in the metricList are identity service names. Below is an example of what an entry in metricsList would look like to use the participation metric instead.\n\n```json\n{\r\n  \"id\": \"metrics/campaigninstances\",\r\n  \"properties\": {\r\n     \"isParticipation\": true\r\n   }\r\n}\r\n\r\n```\n\nFor dimensionList the entries can be from identity service or segment service and the 'id' should be the 'id' of the value in either service. This is an example of a what an entry in dimenionList that uses an identity would look like.\n\n```json\n{\r\n  \"id\": \"variables/geocity\",\r\n}\r\n\r\n```\n\nThis is an example of a what an entry in dimenionList that uses an segment would look like.\n\n```json\n{\r\n  \"namespace\": \"Segment Service\",\r\n  \"id\": \"s0_000000000000000000000000\",\r\n}\r\n\r\n```\n\n",
+        "description" : "Creates a new Schedule Data Warehouse request. An example definition for use in testing the API is shown below. This creates a request that generates a single report. To work properly, replace request.rsid with a report suite to which the user has access for Data Warehouse, and then add a valid export Location UUID under delivery.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"runOnceSetPeriod\"\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run-Once Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"startDateTime\": \"2023-01-01T00:00:00Z\",\r\n              \"endDateTime\": \"2023-01-01T23:59:59Z\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\n Below is an example of how you could make the same request, but have it generate a daily report (for yesterday's data) for 10 days.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"daily\"\r\n    }, \"cancelSettings\": {\r\n      \"cancelMethod\": \"afterOccurrences\",\r\n      \"endAfterNumOccurrences\": 10\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run Daily Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"preset\": \"Yesterday\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\nThe 'id' of items in the metricList are identity service names. Below is an example of what an entry in metricsList would look like to use the participation metric instead.\n\n```json\n{\r\n  \"id\": \"metrics/campaigninstances\",\r\n  \"properties\": {\r\n     \"isParticipation\": true\r\n   }\r\n}\r\n\r\n```\n\nFor dimensionList the entries can be from identity service or segment service and the 'id' should be the 'id' of the value in either service. This is an example of a what an entry in dimenionList that uses an identity would look like.\n\n```json\n{\r\n  \"id\": \"variables/geocity\",\r\n}\r\n\r\n```\n\nThis is an example of a what an entry in dimenionList that uses an segment would look like.\n\n```json\n{\r\n  \"namespace\": \"Segment Service\",\r\n  \"id\": \"s0_000000000000000000000000\",\r\n}\r\n\r\n```\n\n",
         "operationId" : "createDataWarehouseScheduledJob",
         "parameters" : [],
         "requestBody" : {
@@ -309,7 +309,7 @@
             }
           },
           "200" : {
-            "description" : "Response body describes the created Scheduled Data Warehouse Request",
+            "description" : "Response describes the created scheduled Data Warehouse request",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -324,7 +324,7 @@
     "/scheduled/{UUID}" : {
       "get" : {
         "tags" : [ "Data Warehouse Scheduled Requests API" ],
-        "summary" : "Retrieve a detailed data warehouse scheduled request",
+        "summary" : "Retrieves a detailed data warehouse scheduled request",
         "operationId" : "getScheduledRequest_1",
         "parameters" : [ {
           "name" : "UUID",
@@ -347,7 +347,7 @@
             }
           },
           "200" : {
-            "description" : "Response body describes the Scheduled Data Warehouse Request with the matching ID",
+            "description" : "Response body describes the scheduled Data Warehouse request for the specified ID",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -361,7 +361,7 @@
       "put" : {
         "tags" : [ "Data Warehouse Scheduled Requests API" ],
         "summary" : "Updates a data warehouse scheduled request",
-        "description" : "Allows updating an existing Scheduled Data Warehouse Request. A simple example request body that would cancel the request and all of the recent reports for the UUID passed as the path parameter is below.\n\n```json\n{\r\n  \"metadata\": {\r\n    \"status\": \"cancelIncludeReports\"\r\n  }\r\n}\r\n```\n\n",
+        "description" : "Updates an existing scheduled Data Warehouse request. An example request body is shown below. This example cancels a request and all recent reports for the UUID, as specified as a path parameter.\n\n```json\n{\r\n  \"metadata\": {\r\n    \"status\": \"cancelIncludeReports\"\r\n  }\r\n}\r\n```\n\n",
         "operationId" : "updateDataWarehouseTemplate",
         "parameters" : [ {
           "name" : "UUID",
@@ -393,7 +393,7 @@
             }
           },
           "200" : {
-            "description" : "Response body describes the Scheduled Data Warehouse Request updated the update",
+            "description" : "Response indicates the scheduled Data Warehouse request has been updated",
             "content" : {
               "application/json" : {
                 "schema" : {
