@@ -208,35 +208,35 @@
         }, {
           "name" : "createdAfter",
           "in" : "query",
-          "description" : "Filters for reports created on or after the specified datetime.",
+          "description" : "Filters for requests created on or after the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "createdBefore",
           "in" : "query",
-          "description" : "Filters for reports created on or before the specified datetime.",
+          "description" : "Filters for requests created on or before the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "updatedAfter",
           "in" : "query",
-          "description" : "Filters for reports pdated on or after the specified datetime.",
+          "description" : "Filters for requests updated on or after the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "updatedBefore",
           "in" : "query",
-          "description" : "Filters for reports updated on or before the specified datetime.",
+          "description" : "Filters for requests updated on or before the specified datetime.",
           "schema" : {
             "type" : "string"
           }
         }, {
           "name" : "status",
           "in" : "query",
-          "description" : "Filters for reports based on status. Valid values are: 'Scheduled', 'Completed', 'Canceled', and 'Error'.",
+          "description" : "Filters for requests based on status. Valid values are: 'Scheduled', 'Completed', 'Canceled', and 'Error'.",
           "schema" : {
             "type" : "array",
             "items" : {
