@@ -22,8 +22,6 @@ This guide is intended to help users of the 1.3/1.4 versions of the Analytics AP
 
 The 2.0 APIs currently do not support the following:
 
-* Classifications
-* Data Warehouse
 * Data Sources
 * Data Feeds
 * Data Insertion
