@@ -25,7 +25,6 @@ The 2.0 APIs currently do not support the following:
 * Data Sources
 * Data Feeds
 * Data Insertion
-* Real-time Data (soon to released for 2.0 APIs)
 
 If you rely upon these features, you can still use a hybrid approach of using the 1.4 APIs for the above features and 2.0 APIs for everything else.
 
@@ -365,7 +364,3 @@ You can cache historical data as part of the client application. This means that
 ### Breakdowns
 
 With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like, instead of the limit of four with the 1.4 APIs. To request a breakdown report, use an `itemId` in the `metricFilter` section of your request (as shown above). See [Breakdowns](endpoints/reports/breakdowns.md) for more detailed information.
-
-### Real-time and current data
-
-The `"source"="realtime"` and `"currentData"=true` flags in the 1.4 API allow you to request data that is minutes (possibly seconds) old. The `/reports` endpoint currently does not support this functionality. Adobe recommends that you continue to use the 1.4 API or LiveStream API for these use cases.
