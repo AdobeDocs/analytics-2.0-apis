@@ -44,7 +44,7 @@ All 2.0 API endpoints require the global company id of your Adobe Analytics comp
 
 **GET** `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations`
 
-To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics UI:
+To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics user interface:
 
 1. Select **Admin** > **All Admin** from the top menu.
 1. Select **Company settings home** from the **Company settings** list.
