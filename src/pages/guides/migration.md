@@ -28,30 +28,27 @@ The 2.0 APIs currently do not support the following:
 
 If you rely upon these features, you can still use a hybrid approach of using the 1.4 APIs for the above features and 2.0 APIs for everything else.
 
-
 ## How the 2.0 APIs work
 
 The 2.0 APIs introduce some fundamental changes in their operation from the 1.4 APIs.
 
 ### HTTP methods
 
-The 2.0 APIs use standard HTTP methods for retrieving resources (`GET`), creating child resources (`POST`), creating or replacing resources (`PUT`), updating (parts of) a resource (`PATCH`) or deleting a resource (`DELETE`). 
+The 2.0 APIs use standard HTTP methods for retrieving resources (`GET`), creating child resources (`POST`), creating or replacing resources (`PUT`), updating (parts of) a resource (`PATCH`) or deleting a resource (`DELETE`).
 
 The 1.4 APIs only use the HTTP `POST` method for all of its operations, irrespective of its intent.
 
 ### Global Company Id
 
-All 2.0 API endpoints require the global company id of your Adobe Analytics company as part of the URL path. For example: 
+All 2.0 API endpoints require the global company id of your Adobe Analytics company as part of the URL path. For example:
 
 **GET** `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations`
-
 
 To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics UI:
 
 1. Select **Admin** > **All Admin** from the top menu.
-1. Select **Company settings home** from the ![Building](https://spectrum.adobe.com/static/icons/workflow_18/Smock_Building_18_N.svg) **Company settings** list.
-1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company id is displayed in bol at the top of the page.
-
+1. Select **Company settings home** from the <img src="https://spectrum.adobe.com/static/icons/workflow_18/Smock_Building_18_N.svg" width="15"/> **Company settings** list.
+1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company id is displayed in **bold** at the top of the page.
 
 ### Unique paths
 
@@ -67,16 +64,13 @@ In the 1.4 APIs, methods are uniquely identified using the `method` request para
 
 **POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetMetrics` (for metrics)
 
-
 ## Metrics and dimensions
 
 For 2.0 APIs, metrics and dimension are named slightly different. Similarly, the query for individual or the full list of available metrics and dimensions is different. Aside from the difference in endpoints (see [How the 2.0 API's work](#how-the-20-apis-work)), the information returned is different.
 
 In the 1.4 APIs, using
 
-**POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetElements` with a JSON body specifying at least the report suite.
-
-returns the following information for the `browser` dimension:
+**POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetElements` with a JSON body specifying at least the report suite, returns the following information for the `browser` dimension:
 
 ```json
 {
@@ -205,11 +199,11 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
    ```json
     {
         "data": [
-            2948.0,                             /* pageviews                   */  
-            606.0,                              /* visits                      */
-            254.0                               /* visitors                    */
+            2948.0,                             /* pageviews    */  
+            606.0,                              /* visits       */
+            254.0                               /* visitors     */
         ],
-        "itemId": "3484165051",                 /* campaign identifier         */ 
+        "itemId": "3484165051",                 /* campaign id  */ 
         "value": "BJ4T3D2C"
     }
    ```
@@ -254,14 +248,14 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
             "metricFilters": [
             {
                 "id":"0",
-                "type":"breakdown",                   /* breakdown             */ 
-                "dimension":"variables/campaign",     /* a specific campaign   */
-                "itemId": "3484165051"                /* using an identifier   */
+                "type":"breakdown",                   /* breakdown  */ 
+                "dimension":"variables/campaign",     /* a campaign */
+                "itemId": "3484165051"                /* using id   */
             }
             
         ]
         },
-        "dimension": "variables/geocity",             /* on geocity            */
+        "dimension": "variables/geocity",             /* on geocity */
         "settings": {
             "countRepeatInstances": true,
             "limit": 100,
@@ -279,12 +273,10 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
             16.0,
              4.0
         ],
-        "itemId": "1280116081",                       /* geocity identifier    */
+        "itemId": "1280116081",                       /* geocity id */
         "value": "Grand Rapids (Michigan, United States)"
     }
    ```
-
-
 
 3. For each `geocity`, request a breakdown of the top 100 `page` values.
 
@@ -326,13 +318,13 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
             "metricFilters": [
                 {
                     "id":"0",
-                    "type":"breakdown",               /* breakdown             */
-                    "dimension":"variables/geocity",  /* a speficic geocity    */
-                    "itemId": "1280116081"            /* using an identifier   */
+                    "type":"breakdown",               /* breakdown  */
+                    "dimension":"variables/geocity",  /* a geocity  */
+                    "itemId": "1280116081"            /* using id   */
                 }    
             ]
         },
-        "dimension": "variables/page",                 /* on page              */
+        "dimension": "variables/page",                 /* on page   */
         "settings": {
             "countRepeatInstances": false,
             "limit": 5,
@@ -355,7 +347,6 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
         "value": "home page"
     }
    ```
-
 
 4. Request a separate report for each metric. This means that you go through steps 1-3 for `pageviews`, then again for `visits`, and so on.
 
