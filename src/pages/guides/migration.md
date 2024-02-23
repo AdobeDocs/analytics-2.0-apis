@@ -28,30 +28,27 @@ The 2.0 APIs currently do not support the following:
 
 If you rely upon these features, you can still use a hybrid approach of using the 1.4 APIs for the above features and 2.0 APIs for everything else.
 
-
 ## How the 2.0 APIs work
 
 The 2.0 APIs introduce some fundamental changes in their operation from the 1.4 APIs.
 
 ### HTTP methods
 
-The 2.0 APIs use standard HTTP methods for retrieving resources (`GET`), creating child resources (`POST`), creating or replacing resources (`PUT`), updating (parts of) a resource (`PATCH`) or deleting a resource (`DELETE`). 
+The 2.0 APIs use standard HTTP methods for retrieving resources (`GET`), creating child resources (`POST`), creating or replacing resources (`PUT`), updating (parts of) a resource (`PATCH`) or deleting a resource (`DELETE`).
 
 The 1.4 APIs only use the HTTP `POST` method for all of its operations, irrespective of its intent.
 
 ### Global Company Id
 
-All 2.0 API endpoints require the global company id of your Adobe Analytics company as part of the URL path. For example: 
+All 2.0 API endpoints require the global company id of your Adobe Analytics company as part of the URL path. For example:
 
 **GET** `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations`
-
 
 To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics UI:
 
 1. Select **Admin** > **All Admin** from the top menu.
 1. Select **Company settings home** from the **Company settings** list.
 1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company id is displayed in **bold** at the top of the page.
-
 
 ### Unique paths
 
@@ -66,7 +63,6 @@ In the 1.4 APIs, methods are uniquely identified using the `method` request para
 **POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetElements` (for dimensions)
 
 **POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetMetrics` (for metrics)
-
 
 ## Metrics and dimensions
 
@@ -282,8 +278,6 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
     }
    ```
 
-
-
 3. For each `geocity`, request a breakdown of the top 100 `page` values.
 
    ```json
@@ -353,7 +347,6 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
         "value": "home page"
     }
    ```
-
 
 4. Request a separate report for each metric. This means that you go through steps 1-3 for `pageviews`, then again for `visits`, and so on.
 
