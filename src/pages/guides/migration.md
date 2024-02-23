@@ -47,7 +47,7 @@ All 2.0 API endpoints require the global company id of your Adobe Analytics comp
 To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics UI:
 
 1. Select **Admin** > **All Admin** from the top menu.
-1. Select **Company settings home** from the **Company settings** list.
+1. Select **Company settings home** from the <img src="https://spectrum.adobe.com/static/icons/workflow_18/Smock_Building_18_N.svg" width="15"/> **Company settings** list.
 1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company id is displayed in **bold** at the top of the page.
 
 ### Unique paths
