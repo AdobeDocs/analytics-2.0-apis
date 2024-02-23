@@ -1,11 +1,11 @@
 ---
-title: Migrating to the 2.0 APIs
+title: Migrating to the 2.0 API
 description: Learn what steps that you can take to move from previous versions of the Analytics API to 2.0.
 ---
 
 # Migrating to the 2.0 APIs
 
-This guide is intended to help users of the 1.3/1.4 versions of the Analytics API migrate to the newer and more capable 2.0 APIs. By migrating to the 2.0 APIs, you can take advantage of the following features:
+This guide is intended to help users of the 1.3 and 1.4 versions of the Analytics APIs migrate to the newer and more capable 2.0 APIs. By migrating to the 2.0 APIs, you can take advantage of the following features:
 
 * Faster response times with simpler and more efficient query methods, eliminating the need for polling
 * Programmatic capability for queries and dynamic report updates
@@ -25,9 +25,10 @@ The 2.0 APIs currently do not support the following:
 * Data Sources
 * Data Feeds
 * Data Insertion
-* Real-time data
+* Real-time Data (soon to released for 2.0 APIs)
 
-If you rely upon these features, you can still use a hybrid approach of using 1.4 APIs for the above features and 2.0 APIs for everything else.
+If you rely upon these features, you can still use a hybrid approach of using the 1.4 APIs for the above features and 2.0 APIs for everything else.
+
 
 ## How the 2.0 APIs work
 
@@ -43,7 +44,7 @@ The 1.4 APIs only use the HTTP `POST` method for all of its operations, irrespec
 
 All 2.0 API endpoints require the global company id of your Adobe Analytics company as part of the URL path. For example: 
 
-**GET** `https://analytics.adobe.io/api/{GLOBALCOMPANYID}/annotations`
+**GET** `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations`
 
 
 To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics UI:
@@ -70,7 +71,7 @@ In the 1.4 APIs, methods are uniquely identified using the `method` request para
 
 ## Metrics and dimensions
 
-For 2.0 APIs, metrics and dimension are named slightly different. Similarly, query for individual or the full list of available metrics and dimensions is different. Aside from the difference in endpoints (see [How the 2.0 API's work](#how-the-20-apis-work)), the information returned is different.
+For 2.0 APIs, metrics and dimension are named slightly different. Similarly, the query for individual or the full list of available metrics and dimensions is different. Aside from the difference in endpoints (see [How the 2.0 API's work](#how-the-20-apis-work)), the information returned is different.
 
 In the 1.4 APIs, using
 
@@ -89,16 +90,13 @@ returns the following information for the `browser` dimension:
 
 In the 2.0 APIs, using
 
-**GET** `https://analytics.adobe.io/api/{GLOBALCOMPANYID}/dimensions?rsid={RSID}&expansion=tags,categories,allowedForReporting`
+**GET** `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions?rsid={RSID}&expansion=allowedForReporting`
 
-returns the following information for the `browser` dimension information (especially because of using the optional `expansion` query parameter):
+returns the following detailed information for the `browser` dimension:
 
 ```json
 {
     "allowedForReporting": true,
-    "categories": [
-        "Technology"
-    ],
     "category": "Audience",
     "description": "Shows the name and version of the browser used to access the site. This can help you prioritize which browsers and browser versions you use when testing new features or versions of your site.",
     "id": "variables/browser",
@@ -115,7 +113,6 @@ returns the following information for the `browser` dimension information (espec
         "dataWarehouse"
     ],
     "supportsDataGovernance": true,
-    "tags": [],
     "title": "Browser",
     "type": "string"
 }
@@ -123,13 +120,15 @@ returns the following information for the `browser` dimension information (espec
 
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
+The exampe `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is highly recommended to query for dimensions and metrics that are allowed to report on using the 2.0 APIs (see [Reports](#reports)).
+
 See [Dimensions](endpoints/dimensions/index.md) and [Metrics](endpoints/metrics/index.md) endpoint guides for more information.
 
 ## Reports
 
 For the 2.0 APIs, the `reports` endpoint contains the biggest change. It utilizes the same underlying processing pipeline as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
 
-The `/reports` end point is intended to run very small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. To migrate to the 2.0  `/reports` end point, you will want to break these large requests down into multiple calls. With this practice, results are much quicker and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
+The `/reports` end point is intended to run very small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. To migrate to the 2.0  `/reports` endpoint, you want to split these large requests into multiple simpler and quicker calls. Following this practice, results are provided much quicker and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
 
 ## Use case example
 
@@ -202,21 +201,21 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
     }
    ```
 
-   This results in a response, containing 10 rows of data, each row looking like:
+   This results in a response, containing 10 rows of `campaign` data, each row looking like:
 
    ```json
     {
         "data": [
-            2948.0,
-            606.0,
-            254.0
+            2948.0,                             /* pageviews                   */  
+            606.0,                              /* visits                      */
+            254.0                               /* visitors                    */
         ],
-        "itemId": "3484165051",
+        "itemId": "3484165051",                 /* campaign identifier         */ 
         "value": "BJ4T3D2C"
     }
    ```
 
-2. For each of those responses, request a breakdown of the top 100 `geocity` values. 
+2. For each `campaign`, request a breakdown of the top 100 `geocity` values:
 
     ```json
     {
@@ -256,14 +255,14 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
             "metricFilters": [
             {
                 "id":"0",
-                "type":"breakdown",
-                "dimension":"variables/campaign",
-                "itemId": "3484165051"      
+                "type":"breakdown",                   /* breakdown             */ 
+                "dimension":"variables/campaign",     /* a specific campaign   */
+                "itemId": "3484165051"                /* using an identifier   */
             }
             
         ]
         },
-        "dimension": "variables/geocity",
+        "dimension": "variables/geocity",             /* on geocity            */
         "settings": {
             "countRepeatInstances": true,
             "limit": 100,
@@ -272,7 +271,7 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
     }
     ```
 
-   This results in a response, containing 100 rows of data, each row looking like:
+   This results in a response, containing 100 rows of `geocity` data, each row looking like:
 
    ```json
     {
@@ -281,14 +280,14 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
             16.0,
              4.0
         ],
-        "itemId": "1280116081",
+        "itemId": "1280116081",                       /* geocity identifier    */
         "value": "Grand Rapids (Michigan, United States)"
-    },
+    }
    ```
 
 
 
-3. For each of those values, request a breakdown of the top 100 `page` values.
+3. For each `geocity`, request a breakdown of the top 100 `page` values.
 
    ```json
     {
@@ -328,13 +327,13 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
             "metricFilters": [
                 {
                     "id":"0",
-                    "type":"breakdown",
-                    "dimension":"variables/geocity",
-                    "itemId": "1280116081"      
+                    "type":"breakdown",               /* breakdown             */
+                    "dimension":"variables/geocity",  /* a speficic geocity    */
+                    "itemId": "1280116081"            /* using an identifier   */
                 }    
             ]
         },
-        "dimension": "variables/page",
+        "dimension": "variables/page",                 /* on page              */
         "settings": {
             "countRepeatInstances": false,
             "limit": 5,
@@ -343,7 +342,7 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
     }
    ```
 
-   This results in a response, containing 100 rows of data, each row looking like:
+   This results in a response, containing 100 rows of `page` data, each row looking like:
 
    ```json
 
@@ -355,7 +354,7 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
         ],
         "itemId": "2616484196",
         "value": "home page"
-    },
+    }
    ```
 
 
@@ -365,7 +364,7 @@ You can cache historical data as part of the client application. This means that
 
 ### Breakdowns
 
-With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like, instead of the limit of four with the 1.4 API. To request a breakdown report, use an `itemId` in the `metricFilter` section of your request. See [Breakdowns](endpoints/reports/breakdowns.md) for more detailed information.
+With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like, instead of the limit of four with the 1.4 APIs. To request a breakdown report, use an `itemId` in the `metricFilter` section of your request (as shown above). See [Breakdowns](endpoints/reports/breakdowns.md) for more detailed information.
 
 ### Real-time and current data
 
