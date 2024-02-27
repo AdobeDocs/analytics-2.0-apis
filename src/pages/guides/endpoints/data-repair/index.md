@@ -13,6 +13,10 @@ While most data types and variables are available to repair or delete through th
 
 Use of the Data Repair API permanently deletes or edits existing Adobe Analytics data. Adobe recommends that you take a careful approach when executing Data Repair API jobs to minimize accidental deletion or alteration of your data. Read through all pages of this guide carefully before using the Data Repair API.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Prerequisites
 
 Before using the Data Repair API, make sure that all the following prerequisites are met:
