@@ -48,6 +48,10 @@ Frequently asked questions around using the Segments endpoint.
 },
 ```
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ### What is segment compatibility?
 
 Some segments can only be used with certain reporting engines. For example, some segments work only with Data Warehouse and some work only with Analysis Workspace. The compatibility expansion includes a return object that specifies the products in which the segment can be used. The version information of the products is also included in the response. The version information is for internal use and can be ignored. Compatibility and version information cannot be edited because they are derived from the definition of the segment.
