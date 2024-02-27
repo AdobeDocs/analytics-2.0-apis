@@ -15,7 +15,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 A query string that allows you to obtain additional information around an annotation. You can include multiple expansions, separated by a comma.
 
-`GET https://analytics.adobe.io/api/exampleco/annotations?expansion=name,description,dateRange,color`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations?expansion=name,description,dateRange,color`
 
 * **`name`**: The name of the annotation.
 * **`description`**: The annotation's description.
@@ -40,7 +40,7 @@ A query string that allows you to obtain additional information around an annota
 
 By default, results only include annotations that the user owns. You can add this query string which allows results to include additional annotations not owned by the user.
 
-`GET https://analytics.adobe.io/api/exampleco/annotations?includeType=all,shared`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations?includeType=all,shared`
 
 * **`all`**: Returns all annotations that the user can access. Typically used by product admins.
 * **`shared`**: Returns all annotations shared with the user.
@@ -49,7 +49,7 @@ By default, results only include annotations that the user owns. You can add thi
 
 A query string that returns strings localized by Adobe into the desired language. Localization does not apply to user-defined fields, such as annotation names.
 
-`GET https://analytics.adobe.io/api/exampleco/annotations?locale=en_US`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations?locale=en_US`
 
 * **`en_US`**: English
 * **`fr_FR`**: French
@@ -65,7 +65,7 @@ A query string that returns strings localized by Adobe into the desired language
 
 You can filter annotations by modification date or annotations in a specific date range.
 
-`GET https://analytics.adobe.io/api/exampleco/annotations?filterByModifiedAfter=YYYY-MM-DDTHH:MM:SSZ&filterByDateRange=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations?filterByModifiedAfter=YYYY-MM-DDTHH:MM:SSZ&filterByDateRange=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ`
 
 * **`filterByModifiedAfter`**: An ISO 8601 date that returns only annotations that were modified after the desired date.
 * **`filterByDateRange`**: Two ISO 8601 dates separated by a forward slash (`/`) that returns only annotations that fully reside within the desired date range.
@@ -74,7 +74,7 @@ You can filter annotations by modification date or annotations in a specific dat
 
 You can paginate annotation API calls so that the result is not too large to use.
 
-`GET https://analytics.adobe.io/api/exampleco/annotations?limit=10&page=2`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations?limit=10&page=2`
 
 * **`limit`**: An integer that represents the number of results per page.
 * **`page`**: An integer that represents which page to return results. The first page is `0`. The API supports up to 1000 pages.
