@@ -12,7 +12,7 @@ Adobe offers a way to simplify the process of generating an identifier used by t
 Before using this method to identify visitors, make sure that all of the following are met:
 
 * Communicate your intent to use this feature to the team responsible for the [Bulk Data Insertion API and associated format](./file-format.md). It requires coordination between this team and the Adobe Audience Manager team to provision the desired integration on the backend.
-* Only one `customerIDType` can be used as a seed per IMS organization. If you attempt to set `isMCSeed` to `true` on a `customerIDType` other than the one provisioned by Adobe, it is ignored.
+* Only one `customerIDType` can be used as a seed per global company ID. If you attempt to set `isMCSeed` to `true` on a `customerIDType` other than the one provisioned by Adobe, it is ignored.
 
   <InlineAlert variant="info" slots="text" />
 
@@ -35,7 +35,7 @@ If either of these variables are blank, Adobe falls back to other visitor identi
    * Partner ID (pid)
    * Data Provider ID (dpid)
 4. Give the following values to your consultant to pass on to the BDIA team:
-   * IMS Org Id
+   * Global Company ID
    * Integration Code (ex. email)
    * AAM Partner ID (pid)
    * AAM Data Provider ID (dpid)
