@@ -7,6 +7,10 @@ description: Create a file in the correct format so Adobe can ingest it.
 
 The Bulk Data Insertion API ingests data into Adobe Analytics using batch files. These files are in a specific CSV format where each row of the file contains details of a server call. Each row, or server call, must specify an identifier for a visitor as well as a timestamp for when the interaction occurred. The server calls must be ordered chronologically by their timestamps, from earliest to latest, in the batch files. Each batch file must also be compressed.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Batch file requirements
 
 Batch files must conform to all of the following requirements:
