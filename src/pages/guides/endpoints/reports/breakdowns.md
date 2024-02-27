@@ -9,7 +9,13 @@ Breakdowns in the reporting API are useful when you want to see the cross-produc
 
 The following example requests a breakdown report containing a list of the top five "Internal Search Terms" used by visitors who saw campaign 10. Within the `metricsFilters` parameter, the type is set to `breakdown` (line 21), and `evar1` is the marketing campaign (line 22). Within the `dimensions` parameter, `evar2` is the "Internal Search Terms" (line 27).
 
-**Note:** If the text value of item is already known, it can be passed inside the `metricFilter` object as `itemValue` field (Make sure to pass the exact text value). For example, instead of passing the item id `"itemId":"743855946"` of the item "Campaign 10", we can pass the text value of the item like this `"itemValue" : "10"` Passing an item value instead of item id will result in slightly slower performance, but it will be useful in preventing multiple reporting calls to retrieve item ids.
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
+<InlineAlert variant="info" slots="text" />
+
+If the text value of item is already known, it can be passed inside the `metricFilter` object as `itemValue` field (Make sure to pass the exact text value). For example, instead of passing the item id `"itemId":"743855946"` of the item "Campaign 10", we can pass the text value of the item like this `"itemValue" : "10"` Passing an item value instead of item id will result in slightly slower performance, but it will be useful in preventing multiple reporting calls to retrieve item ids.
 
 <CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
 
