@@ -7,6 +7,10 @@ description: Use Analytics classification APIs to categorize variable data.
 
 The Analytics 2.0 Classifications API endpoints provide advanced methods for categorizing variable data and displaying it in reports. The endpoints use the same data and methods that are used when working with classifications in the Adobe Analytics UI. See the [Classifications overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/c-classifications.html) for more information.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md) for more information.
 
 This guide includes instructions for using the following endpoints:
