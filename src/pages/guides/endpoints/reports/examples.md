@@ -7,6 +7,10 @@ description: View example Reporting API calls and their responses.
 
 Use the following examples to help supplement the creation of API calls in your own organization. You can also use the [Debugger](debugger.md) within Analysis Workspace to view API calls tailored to your organization.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Ranked report example
 
 A basic report that uses a dimension and a metric. This example retrieves the top 5 eVar1 dimension values, sorted by the most page views.
