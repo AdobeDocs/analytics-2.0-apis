@@ -7,6 +7,10 @@ description: Check to see if a segment API call is valid.
 
 Because report suites can have different configurations, variables, or metrics, one segment that is valid in one report suite may not be valid in another. To determine which segments to use in different report suites, you can use the `validate` endpoint. This endpoint allows you to `POST` a definition along with a target `rsid`. The validate endpoint responds with compatibility information on the segment.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 The response shows validation for the segment, including its compatibility with supported products, supported schema, and supported features.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
