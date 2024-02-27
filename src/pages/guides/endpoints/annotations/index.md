@@ -7,6 +7,10 @@ description: Create, edit, or delete annotations using the API.
 
 The Analytics 2.0 Annotations APIs allow you to retrieve, update, or create annotations programmatically through Adobe Developer. These APIs use the same data and methods that Adobe uses inside the product UI.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Retrieve multiple annotations
 
 Retrieve a list of annotations that the user can access. See [Annotation parameters](parameters.md) for query strings that you can attach to this API call.
