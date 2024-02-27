@@ -7,6 +7,10 @@ description: All parameters you can include in a segment definition JSON object.
 
 The segment definition data structure is used to communicate segment rules to the API. This data structure defines the raw logic that is used to isolate the segment data. The segment definition is a hierarchical data structure of containers, functions, and boolean logic that is used to define the segment. The segment tool in the Adobe Analytics UI follows these rules and can be a useful tool for understanding how the data structure looks.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Terms
 
 The following terms are used in segment definitions:
