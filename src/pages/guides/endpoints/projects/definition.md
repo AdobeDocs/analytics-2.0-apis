@@ -7,6 +7,10 @@ description: See an example of how a project's data structure looks.
 
 The project definition data structure is used to communicate project rules to the API. This data structure defines the raw logic that is used to layout a workspace project. The project definition is a hierarchical data structure of workspaces, panels, and other properties that are used to define the project. Analysis Workspace defines these rules and can be a useful tool for creating and understanding how projects are structured.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Example
 
 The following example is a simple report showing visits for the last month. Though it is a simple project, the definition is large. Adobe recommends creating a project in the product UI, then use the API to update or copy projects.
