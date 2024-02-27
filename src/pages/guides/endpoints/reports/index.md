@@ -7,6 +7,10 @@ description: Use the Reporting API to retrieve data from a report suite.
 
 The Analytics 2.0 reporting API endpoints allow you to access reports programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with reports in the UI. By using this API, you can programmatically report to executive dashboards, custom reporting platforms, tight Experience Cloud integrations, or other options.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 The report endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
 This guide includes instructions for using the following endpoints:
