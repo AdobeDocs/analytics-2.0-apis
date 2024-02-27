@@ -7,6 +7,10 @@ description: Add, edit, or delete calculated metrics using the API.
 
 The Analytics 2.0 Calculated Metrics APIs allow you to retrieve, update, or create calculated metrics programmatically through Adobe Developer. The APIs use the same data and methods that are used when working with calculated metrics in the UI. See [Calculated metrics](https://experienceleague.adobe.com/docs/analytics/components/calculated-metrics/cm-overview.html) in the Analytics Components guide for more information.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Predefined calculated metrics
 
 Adobe provides predefined calculated metrics templates for clients. Although original templates cannot be modified or deleted, copies of them can be made and then the copies can be modified. You can identify templates by the additional attribute `template: true`. Also, all template ids start with `cm_`. These calculated metrics templates can be used in Workspace projects like any other type of calculated metric but will not work in any other contexts.
@@ -69,7 +73,7 @@ The following example shows a calculated metrics request for a response localize
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/exampleco/calculatedmetrics?locale=en_US&limit=10&page=0" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/calculatedmetrics?locale=en_US&limit=10&page=0" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
@@ -187,7 +191,7 @@ The `DELETE` single calculated metric can be used to remove a calculated metric 
 The request is the same as retrieving a single calculated metric except to change the HTTP method to `DELETE`.
 
 ```sh
-curl -X DELETE "https://analytics.adobe.io/api/exampleco/calculatedmetrics/{ID}?locale=en_US" \
+curl -X DELETE "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/calculatedmetrics/{ID}?locale=en_US" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}"
 ```
