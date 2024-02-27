@@ -7,6 +7,10 @@ description: Determine what components are shared with whom in your organization
 
 The Analytics 2.0 Shares APIs allow you to retrieve, update, or create associations with components programmatically through Adobe Developer. The APIs use the same data and methods that Adobe uses in the product UI.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Retrieve multiple shares
 
 Retrieve a list of shares that the user can access.
