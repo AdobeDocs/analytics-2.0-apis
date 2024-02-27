@@ -14,6 +14,10 @@ Before using this method to identify visitors, make sure that all of the followi
 * Communicate your intent to use this feature to the team responsible for the [Bulk Data Insertion API and associated format](./file-format.md). It requires coordination between this team and the Adobe Audience Manager team to provision the desired integration on the backend.
 * Only one `customerIDType` can be used as a seed per IMS organization. If you attempt to set `isMCSeed` to `true` on a `customerIDType` other than the one provisioned by Adobe, it is ignored.
 
+  <InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## File requirements
 
 When uploading files to the BDIA API and the customer ID is the desired visitor identifier for the row, make sure that all the following are met:
