@@ -15,6 +15,11 @@ You can use the `search` parameter to filter your results more narrowly. The `se
 * `clause` - A search clause to use when filtering dimensions
 * `includeSearchTotal` - Includes a special element called 'searchTotals' in the response that contains the total of the filtered items. The default is `false`.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
+
 ## Example `search` Request
 
 The following example requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9). The response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
