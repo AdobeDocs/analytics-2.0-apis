@@ -7,7 +7,12 @@ description: View audit logs around how your organization uses Adobe Analytics.
 
 The Usage API allows you to retrieve the usage and access log data provided within the Logs tool.
 
-`GET https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/auditlogs/usage`
+
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 
 ## Supported query string parameters
 
@@ -70,7 +75,7 @@ By default, all event types are included when you make a request to get usage lo
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=YYYY-01-01T00%3A00%3A00-07&endDate=YYYY-01-15T14%3A32%3A33-07&limit=10" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/auditlogs/usage?startDate=YYYY-01-01T00%3A00%3A00-07&endDate=YYYY-01-15T14%3A32%3A33-07&limit=10" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
     -H "Accept: application/json"
@@ -180,7 +185,7 @@ The following request contains query string parameters to filter the logs by eve
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/auditlogs/usage?startDate=YYYY-01-01T00%3A00%3A00-07&endDate=YYYY-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/auditlogs/usage?startDate=YYYY-01-01T00%3A00%3A00-07&endDate=YYYY-01-15T14%3A32%3A33-07&ip=10&eventType=5&event=viewed&limit=10" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESS_TOKEN}" \
     -H "Accept: application/json"
