@@ -7,6 +7,10 @@ description: All of the available endpoints related to the BDIA.
 
 Once you have met all [prerequisites](../#prerequisites), have a [correctly formatted file](file-format.md) and have checked your file for syntax errors with our [validation](#validate) tool, you can begin making API calls to Adobe's ingestion endpoint for this API.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Primary ingestion endpoint
 
 The file ingestion endpoint is found here.
