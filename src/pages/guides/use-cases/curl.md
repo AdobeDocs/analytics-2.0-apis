@@ -119,7 +119,7 @@ curl -X GET --header "Accept: application/json" --header "x-api-key: {CLIENT ID}
 2. Use the `globalCompanyId` value in your response (in the above example, it is shown as `testco0`) to test the `GET /users/me` endpoint. To do this, replace the `{COMPANY_ID}` parameters in the following request with their corresponding values.
 
    ```sh
-   curl -X GET "https://analytics.adobe.io/api/{COMPANY_ID}/users/me" \
+   curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/users/me" \
        -H "x-api-key: {CLIENTID}" \
        -H "Authorization: Bearer {ACCESSTOKEN}"
    ```
