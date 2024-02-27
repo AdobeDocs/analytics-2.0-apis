@@ -7,6 +7,10 @@ description: Call or reference calculated metric functions in API requests.
 
 Calculated Metrics are comprised of several different mathematical functions that work on available metrics for a given report suite.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## Get all functions
 
 Returns a full list of calculated metric functions that the user can access.
