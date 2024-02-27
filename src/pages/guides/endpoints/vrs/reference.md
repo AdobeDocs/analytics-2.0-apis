@@ -7,6 +7,10 @@ description: List of all JSON objects you can use with the Virtual report suite 
 
 Use the following object parameters when creating or editing virtual report suites. See also [Examples](examples.md) for context around how to use them.
 
+<InlineAlert variant="info" slots="text" />
+
+Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+
 ## VirtualReportSuite
 
 | Attribute | Type | Description |
@@ -21,7 +25,7 @@ Use the following object parameters when creating or editing virtual report suit
 | `currentTimezoneOffset` | `integer` | Timezone offset from GMT |
 | `timezoneZoneinfo` | `string` | Friendly timezone name |
 | `segmentList` | Array of `string` | List of segment ids to be used to filter the data for this virtual report suite. Retrieve segment IDs using the [Segments API](../segments/index.md). |
-| `globalCompanyKey` | `string` | The global company id of the Analytics Company that owns the virtual report suite |
+| `globalCompanyKey` | `string` | The global company ID of the Analytics Company that owns the virtual report suite |
 | `modified` | `string` (date-time) | The date and time the virtual report suite was last modified. System generated. |
 | `dataCurrentAsOf` | `string` (date-time) | Timestamp of the most recent data that is processed and ready for reporting for this report suite. System generated. |
 | `type` | `string` | The virtual report suite type. System generated.<br/>**advancedVrs**: A VRS is advanced if `dataSchema` is `CacheAndMid` or `Stitched`.<br/>**vrs**: A VRS is basic if `dataSchema` is set to `Cache` |
