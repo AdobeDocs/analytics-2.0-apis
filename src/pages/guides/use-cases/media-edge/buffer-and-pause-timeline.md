@@ -8,15 +8,17 @@ This guide provides a use case example of a media session tracked with the Media
 
 To view a use case example that includes two chapters separated by an ad break, see [Use case: Media Edge API Two Chapters Separated by an Ad Break](https://experienceleague.adobe.com)
 
-Media Edge APIs are built on the Adobe Experience Platform to provide media event tracking data within the framework of [XDM schemas](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html#:~:text=Experience%20Data%20Model%20(XDM)%2C,the%20power%20of%20digital%20experiences). For more information, see the [Media Edge API overview](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/overview.html).
+Media Edge APIs are built on the Adobe Experience Platform to provide media event tracking data within the framework of [XDM schemas](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html). For more information, see the [Media Edge API overview](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/overview.html).
 
 <InlineAlert variant="info" slots="text" />
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
+When creating a datastream, you can find the id 
+
 ## Use case introduction
 
-For this session, you will need to make an API request for each action that you want to track. After [configuring a datastream](https://experienceleague.adobe.com/docs/experience-platform/datastreams/configure.html), you can begin tracking a session by providing the data stream ID in the following request:
+For this session, you want to make an API request for each action that you want to track. You have [configured a datastream](https://experienceleague.adobe.com/docs/media-analytics/using/implementation/edge-recommended/media-edge-sdk/implementation-edge.html?lang=en#configure-a-datastream-in-adobe-experience-platform) and captured its id. You need the datastream id in every request as the value for the `configId` request parameter, like in the `sessionStart` example.
 
 POST `https://edge.adobedc.net/ee-pre-prd/va/v1/sessionStart?configId={dataStreamID}`
 
@@ -107,11 +109,13 @@ This call signals the intention of the user to play a video. The player state is
 }
 ```
 
-#### 2. [Ping event timer](https://experienceleague.adobe.com/docs/media-analytics/using/implementation/analytics-only/streaming-media-apis/mc-api-impl/mc-api-sed-pings.html)
+#### 2. Start ping event timer
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client Request |
 | --- | --- | --- | --- | --- |
 | 2 | The ping event timer starts | 0 | 0 | `/ping?configId=<datastreamID>` |
+
+The Media Edge SDK requires you to fire ping events every 10 seconds. See [Sending ping events](https://experienceleague.adobe.com/docs/media-analytics/using/implementation/analytics-only/streaming-media-apis/mc-api-impl/mc-api-sed-pings.html) for more information.
 
 The application starts the ping timer. A call is not sent for this event, but the first ping call should be fired 10 seconds later.
 
