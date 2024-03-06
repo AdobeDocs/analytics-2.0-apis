@@ -57,9 +57,12 @@ Each subsequent request is made in the same manner, but with changes to the endp
 
 ### Timeline of actions
 
-The following table summarizes a timeline of actions to be tracked for this use case. Each row shows an action and its request endpoint. Each action is described in more detail with payloads below the table. The Client request column shows the final path parameter and the other parameters required to include in the call. Note that the **playhead position**, (the current position indicated in the horizontal timeline of the video) is not advanced during buffering or pausing, even though real-time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
+The following diagram shows a timeline of actions for this example session. Each number (1-18) represents an action and its request endpoint. Each numbered action is also described in the table and example payloads below the diagram. 
 
-Note that for tracking you must fire ping events every 10 seconds, tracked in real-time, beginning after 10 seconds have elapsed from the session start. This must happen regardless of other API events that you have sent. 
+![Timeline actions](/images/ad-break-action.png)
+
+The Client request column in the table below shows the final path parameter and the other parameters required to include in the call. 
+
 
 | # | Action | Elapsed Real-Time (from beginning in seconds) | Playhead Position (in seconds)| Client request |
 | --- | --- | --- | --- | --- |
@@ -81,6 +84,14 @@ Note that for tracking you must fire ping events every 10 seconds, tracked in re
 | 16 | Sends ping | 50 | 50 | `/ping?configId=<datastreamID>` |
 | 17 | Tracks completion of `Chapter 2`| 54 | 54 | `/chapterComplete?configId=<datastreamID>` |
 | 18 | Tracks completion of session when user finishes watching the content to the end | 55 | 55 | `/sessionComplete?configId=<datastreamID>` |
+
+<InlineAlert variant="info" slots="text" />
+
+The playead position (the current position indicated in the horizontal timeline of the video) does not advance during an ad break, buffering, pausing, even though real time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
+
+<InlineAlert variant="info" slots="text" />
+
+For media tracking, you must fire ping events every 10 seconds, tracked in real-time, beginning after 10 seconds have elapsed from the session start. This must happen regardless of other API events that you have sent. 
 
 ### Detailed description of actions
 
