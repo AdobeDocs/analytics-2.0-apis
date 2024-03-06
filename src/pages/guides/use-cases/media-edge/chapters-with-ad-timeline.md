@@ -59,8 +59,6 @@ Each subsequent request is made in the same manner, but with changes to the endp
 
 The following diagram shows a timeline of actions for this example session. Each number (1-18) represents an action and its request endpoint. Each numbered action is also described in the table and example payloads below the diagram. 
 
-![Timeline actions](/images/ad-break-action.png)
-
 The Client request column in the table below shows the final path parameter and the other parameters required to include in the call. 
 
 
