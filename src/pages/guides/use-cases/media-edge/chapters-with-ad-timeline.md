@@ -55,14 +55,31 @@ For more information regarding how to start the session, see the [Media Edge API
 
 Each subsequent request is made in the same manner, but with changes to the endpoint path, parameters, and request payload to match the action.
 
+### Playhead behavior during an ad break
+
+<InlineAlert variant="info" slots="text" />
+
+The playhead position (the current position indicated in the horizontal timeline of the video) does not advance during an ad break, buffering, or pausing, even though real time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
+
+The following timeline and playhead diagrams show the differences in time during an ad break.
+
+#### Timeline diagram
+
+![Timeline diagram](../../../images/timeline-diagram.png)
+
+#### Playhead diagram
+
+![Playhead diagram](../../../images/playhead-diagram.png)
+
 ## Timeline of actions
 
-The following diagram shows a timeline of actions for this example session. Each number (1-18) represents an action and its request endpoint. Each numbered action is also described in the table and example payloads below the diagram. 
+The following diagram shows a timeline of actions for this example session. Each number (1-18) represents an action and its request endpoint. These numbers also correspond to event descriptions in both the **Timeline summary table** and the **Detailed descriptions** section below.
 
 ![Action timeline](../../../images/ad-break-action.png)
 
-The Client request column in the table below shows the final path parameter and the other parameters required to include in the call. 
+### Timeline summary table
 
+The Client request column in the table below shows the final path parameter and the other parameters required to include in the call. 
 
 | # | Action | Elapsed Real-Time (from beginning in seconds) | Playhead Position (in seconds)| Client request |
 | --- | --- | --- | --- | --- |
@@ -84,23 +101,6 @@ The Client request column in the table below shows the final path parameter and 
 | 16 | Sends ping | 50 | 50 | `/ping?configId=<datastreamID>` |
 | 17 | Tracks completion of `Chapter 2`| 54 | 54 | `/chapterComplete?configId=<datastreamID>` |
 | 18 | Tracks completion of session when user finishes watching the content to the end | 55 | 55 | `/sessionComplete?configId=<datastreamID>` |
-
-### Playhead behavior
-
-<InlineAlert variant="info" slots="text" />
-
-The playhead position (the current position indicated in the horizontal timeline of the video) does not advance during an ad break, buffering, or pausing, even though real time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
-
-The following timeline and playhead diagrams show the differences in time during an ad break.
-
-#### Timeline diagram
-
-![Timeline diagram](../../../images/timeline-diagram.png)
-
-#### Playhead diagram
-
-![Playhead diagram](../../../images/playhead-diagram.png)
-
 
 <InlineAlert variant="info" slots="text" />
 
