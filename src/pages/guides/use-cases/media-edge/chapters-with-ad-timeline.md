@@ -59,6 +59,8 @@ Each subsequent request is made in the same manner, but with changes to the endp
 
 The following diagram shows a timeline of actions for this example session. Each number (1-18) represents an action and its request endpoint. Each numbered action is also described in the table and example payloads below the diagram. 
 
+![Action timeline](../../../images/ad-break-action.png)
+
 The Client request column in the table below shows the final path parameter and the other parameters required to include in the call. 
 
 
@@ -86,6 +88,15 @@ The Client request column in the table below shows the final path parameter and 
 <InlineAlert variant="info" slots="text" />
 
 The playead position (the current position indicated in the horizontal timeline of the video) does not advance during an ad break, buffering, pausing, even though real time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
+
+#### Timeline diagram
+
+![Timeline diagram](../../../images/timeline-diagram.png)
+
+#### Playhead diagram
+
+![Playhead diagram](../../../images/playhead-diagram.png)
+
 
 <InlineAlert variant="info" slots="text" />
 
