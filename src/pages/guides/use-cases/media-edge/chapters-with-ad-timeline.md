@@ -55,7 +55,7 @@ For more information regarding how to start the session, see the [Media Edge API
 
 Each subsequent request is made in the same manner, but with changes to the endpoint path, parameters, and request payload to match the action.
 
-### Timeline of actions
+## Timeline of actions
 
 The following diagram shows a timeline of actions for this example session. Each number (1-18) represents an action and its request endpoint. Each numbered action is also described in the table and example payloads below the diagram. 
 
@@ -85,9 +85,13 @@ The Client request column in the table below shows the final path parameter and 
 | 17 | Tracks completion of `Chapter 2`| 54 | 54 | `/chapterComplete?configId=<datastreamID>` |
 | 18 | Tracks completion of session when user finishes watching the content to the end | 55 | 55 | `/sessionComplete?configId=<datastreamID>` |
 
+### Playhead behavior
+
 <InlineAlert variant="info" slots="text" />
 
-The playead position (the current position indicated in the horizontal timeline of the video) does not advance during an ad break, buffering, pausing, even though real time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
+The playhead position (the current position indicated in the horizontal timeline of the video) does not advance during an ad break, buffering, or pausing, even though real time has elapsed. Both **playhead position** and the passing of real time are measured in seconds.
+
+The following timeline and playhead diagrams show the differences in time during an ad break.
 
 #### Timeline diagram
 
