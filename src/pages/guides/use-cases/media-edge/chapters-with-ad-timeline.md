@@ -104,6 +104,10 @@ The Client request column in the table below shows the final path parameter and 
 
 <InlineAlert variant="info" slots="text" />
 
+The events sent are ordered based on the timestamp at which they were sent. If they are sent at the same second, as illustrated in the examples below, they are still sent with different ascending timestamps.
+
+<InlineAlert variant="info" slots="text" />
+
 For media tracking, you must fire ping events every 10 seconds, tracked in real-time, beginning after 10 seconds have elapsed from the session start. This must happen regardless of other API events that you have sent. 
 
 ### Detailed description of actions
