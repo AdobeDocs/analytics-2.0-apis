@@ -89,18 +89,18 @@ The Client request column in the table below shows the final path parameter and 
 | 4 | Tracks the start of `Chapter 1` | 1 | 1 | `/chapterStart?configId=<datastreamID>` |
 | 5 | Sends a ping | 10 | 10 | `/ping?configId=<datastreamID>` |
 | 6 | Tracks the completion of `Chapter 1` | 15 | 15 | `/chapterComplete?configId=<datastreamID>` |
-| 7 | Tracks the start of ad break | 16 | 16 | `/adBreakStart?configId=<datastreamID>` |
-| 8 | Tracks the start of `Ad 1` in ad break | 16 | 16 | `/adStart?configId=<datastreamID>` |
-| 9 | Sends a ping twice during `Ad 1`, each 10 seconds apart | 20,30 | 20,30 | `/ping?configId=<datastreamID>` |
-| 10 | Tracks completion of `Ad 1` | 31 | 31 | `/adComplete?configId=<datastreamID>` |
-| 11 | Tracks the start of `Ad 2` in ad break | 31 | 31 | `/adStart?configId=<datastreamID>` |
-| 12 | Sends ping | 40 | 40 | `/ping?configId=<datastreamID>` |
-| 13 | Tracks completion of `Ad 2` | 43 | 43 | `/adComplete?configId=<datastreamID>` |
-| 14 | Tracks completion of ad break | 43 | 43 | `/adBreakComplete?configId=<datastreamID>` |
-| 15 | Tracks the start of `Chapter 2` | 44 | 44 | `/chapterStart?configId=<datastreamID>` |
-| 16 | Sends ping | 50 | 50 | `/ping?configId=<datastreamID>` |
-| 17 | Tracks completion of `Chapter 2`| 54 | 54 | `/chapterComplete?configId=<datastreamID>` |
-| 18 | Tracks completion of session when user finishes watching the content to the end | 55 | 55 | `/sessionComplete?configId=<datastreamID>` |
+| 7 | Tracks the start of ad break | 15 | 15 | `/adBreakStart?configId=<datastreamID>` |
+| 8 | Tracks the start of `Ad 1` in ad break | 15 | 15 | `/adStart?configId=<datastreamID>` |
+| 9 | Sends a ping twice during `Ad 1`, each 10 seconds apart | 20, 30 | 15, 15 | `/ping?configId=<datastreamID>` |
+| 10 | Tracks completion of `Ad 1` | 31 | 15 | `/adComplete?configId=<datastreamID>` |
+| 11 | Tracks the start of `Ad 2` in ad break | 31 | 15 | `/adStart?configId=<datastreamID>` |
+| 12 | Sends ping | 40 | 15 | `/ping?configId=<datastreamID>` |
+| 13 | Tracks completion of `Ad 2` | 43 | 15 | `/adComplete?configId=<datastreamID>` |
+| 14 | Tracks completion of ad break | 43 | 15 | `/adBreakComplete?configId=<datastreamID>` |
+| 15 | Tracks the start of `Chapter 2` | 43 | 15 | `/chapterStart?configId=<datastreamID>` |
+| 16 | Sends ping | 50 | 22 | `/ping?configId=<datastreamID>` |
+| 17 | Tracks completion of `Chapter 2`| 54 | 26 | `/chapterComplete?configId=<datastreamID>` |
+| 18 | Tracks completion of session when user finishes watching the content to the end | 55 | 26 | `/sessionComplete?configId=<datastreamID>` |
 
 <InlineAlert variant="info" slots="text" />
 
