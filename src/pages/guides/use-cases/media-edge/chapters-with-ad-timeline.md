@@ -114,13 +114,13 @@ For media tracking, you must fire ping events every 10 seconds, tracked in real-
 
 Each timeline action shown in the previous table is described in detail below. Each description includes the payload that is sent as part of a Media Edge API.
 
-#### 1. Start before play
+#### 1. Session start
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
 | 1 | The auto-play function occurs or Play button is pressed and the video starts loading | 0 | 0 | `/sessionStart?configId=<datastreamID>` |
 
-This call returns a Session ID {SID} to the client. The {SID} is used to identify all subsequent tracking calls within the session.  This call also generates a reporting event that is pushed to AEP and/or Analytics, depending on your datastream configuration. This action represents the start of the process but not yet in the *playing* state. Required parameters must be included, as shown in [endpoint reference](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/swagger.html).
+This call signals the intent of the user to play a video and returns a Session ID {SID} to the client. The {SID} is used to identify all subsequent tracking calls within the session.  This call also generates a reporting event that is pushed to AEP and/or Analytics, depending on your datastream configuration. This action represents the start of the process but not yet in the *playing* state. Required parameters must be included, as shown in [endpoint reference](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/swagger.html).
 
 **Example payload**
 
@@ -133,7 +133,7 @@ This call returns a Session ID {SID} to the client. The {SID} is used to identif
     "sessionDetails": {
       "name": "VA API Sample Player",
       "friendlyName": "ClickMe",
-      "length": 60,
+      "length": 54,
       "contentType": "VOD",
       "playerName": "sample-html5-api-player",
       "channel": "sample-channel",
@@ -142,7 +142,7 @@ This call returns a Session ID {SID} to the client. The {SID} is used to identif
   }
 }
 ```
-#### 2. [Ping event timer](https://experienceleague.adobe.com/docs/media-analytics/using/implementation/analytics-only/streaming-media-apis/mc-api-impl/mc-api-sed-pings.html)
+#### 2. [Ping timer starts](https://experienceleague.adobe.com/docs/media-analytics/using/implementation/analytics-only/streaming-media-apis/mc-api-impl/mc-api-sed-pings.html)
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
@@ -171,7 +171,7 @@ Tracking enters the *playing* state using the `play` event.
 }
 ```
 
-#### 4. Track Chapter 1
+#### 4. Track Chapter 1 start
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
@@ -192,7 +192,7 @@ Tracks the start `Chapter 1`.
       "index": 1,
       "offset": 0,
       "friendlyName": "Chapter one",
-      "length": 5
+      "length": 15
     }
   }
 }
