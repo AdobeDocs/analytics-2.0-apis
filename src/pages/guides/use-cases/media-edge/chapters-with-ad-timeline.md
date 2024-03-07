@@ -33,7 +33,7 @@ curl -i --request POST '{uri}/ee/va/v1/sessionStart?configId={dataStreamId}' \
     {
       "xdm": {
         "eventType": "media.sessionStart",
-        "timestamp": "YYYY-08-01T02:00:00.000Z",
+        "timestamp": "YYYY-MM-DDT02:00:00.000Z",
         "mediaCollection": {
           "playhead": 0,
           "sessionDetails": {
@@ -127,7 +127,7 @@ This call signals the intent of the user to play a video and returns a Session I
 ```json
 {
   "eventType": "media.sessionStart",
-  "timestamp": "YYYY-08-01T02:00:00.000Z",
+  "timestamp": "YYYY-MM-DD`T02:00:00.000Z",
   "mediaCollection": {
     "playhead": 0,
     "sessionDetails": {
@@ -163,7 +163,7 @@ Tracking enters the *playing* state using the `play` event.
 ```json
 {
   "eventType": "media.play",
-  "timestamp": "YYYY-08-01T02:00:00Z",
+  "timestamp": "YYYY-0MM-DDT02:00:00Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 0
@@ -184,7 +184,7 @@ Tracks the start `Chapter 1`.
 ```json
 {
   "eventType": "media.chapterStart",
-  "timestamp": "YYYY-08-01T02:00:01Z",
+  "timestamp": "YYYY-MM-DDT02:00:01Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 1,
@@ -211,7 +211,7 @@ A ping call is sent to the back-end every 10 seconds.
 ```json
 {
   "eventType": "media.ping",
-  "timestamp": "YYYY-08-01T02:00:10Z",
+  "timestamp": "YYYY-MM-DDT02:00:10Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 10
@@ -232,7 +232,7 @@ A ping call is sent to the back-end every 10 seconds.
 ```json
 {
   "eventType": "media.chapterComplete",
-  "timestamp": "YYYY-08-01T02:00:15Z",
+  "timestamp": "YYYY-MM-DDT02:00:15Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 15
@@ -253,7 +253,7 @@ Ad break starts. It will contain two ads.
 ```json
 {
   "eventType": "media.adBreakStart",
-  "timestamp": "YYYY-08-01T02:00:16Z",
+  "timestamp": "YYYY-MM-DDT02:00:16Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 16,
@@ -279,7 +279,7 @@ Ad break starts. It will contain two ads.
 ```json
 {
   "eventType": "media.adStart",
-  "timestamp": "YYYY-08-01T02:00:16Z",
+  "timestamp": "YYYY-MM-DDT02:00:16Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 0,
@@ -323,7 +323,7 @@ A ping call is sent to the back-end every 10 seconds. In this particular case, t
 ```json
 {
   "eventType": "media.ping",
-  "timestamp": "YYYY-08-01T02:00:20Z",
+  "timestamp": "YYYY-MM-DDT02:00:20Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 20
@@ -334,7 +334,7 @@ A ping call is sent to the back-end every 10 seconds. In this particular case, t
 ```json
 {
   "eventType": "media.ping",
-  "timestamp": "YYYY-08-01T02:00:30Z",
+  "timestamp": "YYYY-MM-DDT02:00:30Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 30
@@ -355,7 +355,7 @@ The completion of `Ad 1` is tracked.
 ```json
 {
   "eventType": "media.adComplete",
-  "timestamp": "YYYY-08-01T02:00:31Z",
+  "timestamp": "YYYY-MM-DDT02:00:31Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 31
@@ -376,7 +376,7 @@ The completion of `Ad 1` is tracked.
 ```json
 {
   "eventType": "media.adStart",
-  "timestamp": "YYYY-08-01T02:00:31Z",
+  "timestamp": "YYYY-MM-DDT02:00:31Z",
   "mediaCollection": {
     "playhead": 0,
     "sessionID": "{SID}",
@@ -410,7 +410,7 @@ A ping call is sent to the backend every 10 seconds.
 ```json
 {
   "eventType": "media.ping",
-  "timestamp": "YYYY-08-01T02:00:40Z",
+  "timestamp": "YYYY-MM-DDT02:00:40Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 40
@@ -431,7 +431,7 @@ The completion of `Ad 2` is tracked.
 ```json
 {
   "eventType": "media.adComplete",
-  "timestamp": "YYYY-08-01T02:00:43Z",
+  "timestamp": "YYYY-MM-DDT02:00:43Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 43
@@ -452,7 +452,7 @@ The completion of the ad break is tracked.
 ```json
 {
   "eventType": "media.adBreakComplete",
-  "timestamp": "YYYY-08-01T02:00:43Z",
+  "timestamp": "YYYY-MM-DDT02:00:43Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 43
@@ -473,7 +473,7 @@ The start of `Chapter 2` is tracked directly after the completion of the ad brea
 ```json
 {
   "eventType": "media.chapterStart",
-  "timestamp": "YYYY-08-01T02:00:44Z",
+  "timestamp": "YYYY-MM-DDT02:00:44Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 1,
@@ -500,7 +500,7 @@ A ping call is sent to the backend every 10 seconds.
 ```json
 {
   "eventType": "media.ping",
-  "timestamp": "YYYY-08-01T02:00:50Z",
+  "timestamp": "YYYY-MM-DDT02:00:50Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 50
@@ -521,7 +521,7 @@ The completion of `Chapter 2` is tracked.
 ```json
 {
   "eventType": "media.chapterComplete",
-  "timestamp": "YYYY-08-01T02:00:54Z",
+  "timestamp": "YYYY-MM-DDT02:00:54Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 54
@@ -542,7 +542,7 @@ The completion of `Chapter 2` is tracked.
 ```json
 {
   "eventType": "media.sessionComplete",
-  "timestamp": "YYYY-08-01T02:00:55Z",
+  "timestamp": "YYYY-MM-DDT02:00:55Z",
   "mediaCollection": {
     "sessionID": "{SID}",
     "playhead": 55
