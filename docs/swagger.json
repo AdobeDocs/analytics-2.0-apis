@@ -2373,6 +2373,7 @@
               "$ref" : "#/definitions/UnhashReportData"
             }
           },
+<<<<<<< Updated upstream
           "206" : {
             "description" : "Partially successful operation.  Some response columns contain errors.  See the [Partial Responses](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md#partial-responses-206-status-code) for details.",
             "schema" : {
@@ -2383,6 +2384,12 @@
             "description" : "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
             "schema" : {
               "$ref" : "#/definitions/ReportErrorStatus"
+=======
+          "400": {
+            "description": "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
+            "schema": {
+              "$ref": "#/definitions/ReportErrorStatus"
+>>>>>>> Stashed changes
             }
           }
         }
