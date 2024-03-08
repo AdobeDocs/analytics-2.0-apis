@@ -331,7 +331,7 @@ module.exports = {
         pages: [
           {
             title: 'Media Edge API ',
-            path: 'guides/use-cases/media-edge'
+            path: 'guides/use-cases/media-edge',
             pages: [
               {
                 title: 'Session with two chapters separated by an ad break',
