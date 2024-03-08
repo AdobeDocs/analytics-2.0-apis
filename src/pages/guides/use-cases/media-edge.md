@@ -5,9 +5,8 @@ Media Edge API use cases include the following example scenarios:
 * Two chapters separated by an ad break
 * A Buffer State and a Pause
 
-
-
 Use case 1
+
 * Two chapters: `Chapter 1` and `Chapter 2`.
 * An ad break inserted at the middle of the content that contains two ads: `Ad 1` and `Ad 2`.
 
@@ -28,4 +27,3 @@ Media Edge APIs are built on the Adobe Experience Platform to provide media even
 <InlineAlert variant="info" slots="text" />
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
-
