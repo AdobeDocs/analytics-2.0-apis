@@ -2,25 +2,25 @@
 
 Media Edge API use cases include the following example scenarios:
 
-* Two chapters separated by an ad break
-* A Buffer State and a Pause
+* [Two chapters separated by an ad break](https://developer-stage.adobe.com/analytics-apis/docs/2.0/guides/use-cases/media-edge/chapters-with-ad-timeline/)
+* [A Buffer State and a Pause](https://developer-stage.adobe.com/analytics-apis/docs/2.0/guides/use-cases/buffer-and-pause-timeline/)
 
-Use case 1
+## Two chapters separated by an ad break
+
+This example in this use case includes the following:
 
 * Two chapters: `Chapter 1` and `Chapter 2`.
 * An ad break inserted at the middle of the content that contains two ads: `Ad 1` and `Ad 2`.
+* A timeline that shows an offset in the playhead position that corresponds to behavior during an ad break.
 
-In contrast to the [Buffer state and a pause Media Edge use case](https://developer.adobe.com/analytics-apis/docs/2.0/guides/use-cases/media-edge/buffer-and-pause-timeline/), this example presents a differing offset playhead position in the timeline.
+## A Buffer state and a Pause
 
-Media Edge APIs are built on the Adobe Experience Platform to provide media event tracking data within the framework of [XDM schemas](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html#:~:text=Experience%20Data%20Model%20(XDM)%2C,the%20power%20of%20digital%20experiences). For more information, see the [Media Edge API overview](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/overview.html).
-
-Use case 2
+This example in this use case includes the following:
 
 * A `buffering` state.
 * The user pressing `pause`.
 * The user closing the app without finishing the content to the end.
-
-In contrast to the [Media Edge API use case example with two chapters separated by an ad break](https://developer.adobe.com/analytics-apis/docs/2.0/guides/use-cases/media-edge/chapters-with-ad-timeline/), this example presents a differing offset playhead position in the timeline.
+* A timeline that shows an offset in the playhead position that corresponds to behavior during an pause.
 
 Media Edge APIs are built on the Adobe Experience Platform to provide media event tracking data within the framework of [XDM schemas](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html#:~:text=Experience%20Data%20Model%20(XDM)%2C,the%20power%20of%20digital%20experiences). For more information, see the [Media Edge API overview](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/overview.html).
 
