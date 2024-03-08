@@ -112,7 +112,7 @@ For media tracking, you must fire ping events every 10 seconds, tracked in real-
 
 ### Detailed description of actions
 
-Each timeline action shown in the previous table is described in detail below. Each description includes the payload that is sent as part of a Media Edge API.
+Each timeline action shown in the previous table is described in detail below. Each description includes the payload that is sent as part of a Media Edge API request.
 
 #### 1. Session start
 
@@ -120,7 +120,7 @@ Each timeline action shown in the previous table is described in detail below. E
 | --- | --- | --- | --- | --- |
 | 1 | The auto-play function occurs or Play button is pressed and the video starts loading | 0 | 0 | `/sessionStart?configId=<datastreamID>` |
 
-This call signals the intent of the user to play a video and returns a Session ID {SID} to the client. The {SID} is used to identify all subsequent tracking calls within the session.  This call also generates a reporting event that is pushed to AEP and/or Analytics, depending on your datastream configuration. This action represents the start of the process but not yet in the *playing* state. Required parameters must be included, as shown in [endpoint reference](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/swagger.html).
+This call signals the intent of the user to play a video and returns a Session ID {SID} to the client. The {SID} is used to identify all subsequent tracking calls within the session.  This call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on your datastream configuration. This action represents the start of the process but not yet in the *playing* state. Required parameters must be included, as shown in [endpoint reference](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/swagger.html).
 
 **Example payload**
 
@@ -225,7 +225,7 @@ A ping call is sent to the back-end every 10 seconds.
 | --- | --- | --- | --- | --- |
 | 6 | Tracks the completion of `Chapter 1` | 15 | 15 | `/chapterComplete?configId=<datastreamID>` |
 
-`Chapter 1` ends directly before the ad break.
+`Chapter 1` ends directly before the ad break. On the backend, this call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on the datastream configuration.
 
 **Example payload**
 
@@ -244,7 +244,7 @@ A ping call is sent to the back-end every 10 seconds.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 7 | Tracks the start of ad break | 16 | 16 | `/adBreakStart?configId=<datastreamID>` |
+| 7 | Tracks the start of ad break | 15 | 15 | `/adBreakStart?configId=<datastreamID>` |
 
 Ad break starts. It will contain two ads.
 
@@ -256,11 +256,11 @@ Ad break starts. It will contain two ads.
   "timestamp": "YYYY-MM-DDT02:00:16Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 16,
+    "playhead": 15,
     "advertisingPodDetails": {
       "index": 0,
-      "offset": 0,
-      "friendlyName": "Mid-roll"
+      "offset": 15,
+      "friendlyName": "Mid-roll break"
     }
   }
 }
@@ -270,9 +270,9 @@ Ad break starts. It will contain two ads.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 8 | Tracks the start of `Ad 1` in ad break | 16 | 16 | `/adStart?configId=<datastreamID>` |
+| 8 | Tracks the start of `Ad 1` in ad break | 15 | 15 | `/adStart?configId=<datastreamID>` |
 
-`Ad 1` begins to play.
+`Ad 1` begins to play. On the backend, this call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on the datastream configuration.
 
 **Example payload**
 
@@ -282,14 +282,14 @@ Ad break starts. It will contain two ads.
   "timestamp": "YYYY-MM-DDT02:00:16Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 0,
+    "playhead": 15,
     "advertisingDetails": {
       "name": "001",
       "advertiser": "Ad Guys",
       "campaignID": "1",
       "creativeID": "42",
       "creativeURL": "https://example.com",
-      "length": 15,
+      "length": 16,
       "friendlyName": "Ad 1",
       "placementID": "sample_placement",
       "playerName": "Sample Player",
@@ -314,7 +314,7 @@ Ad break starts. It will contain two ads.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 9 | Sends a ping twice during `Ad 1`, each 10 seconds apart | 20,30 | 20,30 | `/ping?configId=<datastreamID>` |
+| 9 | Sends a ping twice during `Ad 1`, each 10 seconds apart | 20,30 | 15,15 | `/ping?configId=<datastreamID>` |
 
 A ping call is sent to the back-end every 10 seconds. In this particular case, two separate events are sent at the timestamps 20 and 30, respectively.
 
@@ -326,7 +326,7 @@ A ping call is sent to the back-end every 10 seconds. In this particular case, t
   "timestamp": "YYYY-MM-DDT02:00:20Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 20
+    "playhead": 15
   }
 }
 ```
@@ -337,7 +337,7 @@ A ping call is sent to the back-end every 10 seconds. In this particular case, t
   "timestamp": "YYYY-MM-DDT02:00:30Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 30
+    "playhead": 15
   }
 }
 ```
@@ -346,9 +346,9 @@ A ping call is sent to the back-end every 10 seconds. In this particular case, t
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 10 | Tracks completion of `Ad 1` | 31 | 31 | `/adComplete?configId=<datastreamID>` |
+| 10 | Tracks completion of `Ad 1` | 31 | 15 | `/adComplete?configId=<datastreamID>` |
 
-The completion of `Ad 1` is tracked.
+The completion of `Ad 1` is tracked. On the backend, this call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on the datastream configuration.
 
 **Example payload**
 
@@ -358,7 +358,7 @@ The completion of `Ad 1` is tracked.
   "timestamp": "YYYY-MM-DDT02:00:31Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 31
+    "playhead": 15
   }
 }
 ```
@@ -367,9 +367,9 @@ The completion of `Ad 1` is tracked.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 11 | Tracks the start of `Ad 2` in ad break | 31 | 31 | `/adStart?configId=<datastreamID>` |
+| 11 | Tracks the start of `Ad 2` in ad break | 31 | 15 | `/adStart?configId=<datastreamID>` |
 
-`Ad 2` begins to play.
+`Ad 2` begins to play. On the backend, this call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on the datastream configuration.
 
 **Example payload**
 
@@ -401,9 +401,9 @@ The completion of `Ad 1` is tracked.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 12 | Sends ping | 40 | 40 | `/ping?configId=<datastreamID>` |
+| 12 | Sends ping | 40 | 15 | `/ping?configId=<datastreamID>` |
 
-A ping call is sent to the backend every 10 seconds.
+A ping call is sent to the backend every 10 seconds. In this scenario, at timelines 20 and 30 seconds.
 
 **Example payload**
 
@@ -413,7 +413,7 @@ A ping call is sent to the backend every 10 seconds.
   "timestamp": "YYYY-MM-DDT02:00:40Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 40
+    "playhead": 15
   }
 }
 ```
@@ -422,9 +422,9 @@ A ping call is sent to the backend every 10 seconds.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 13 | Tracks completion of `Ad 2` | 43 | 43 | `/adComplete?configId=<datastreamID>` |
+| 13 | Tracks completion of `Ad 2` | 43 | 15 | `/adComplete?configId=<datastreamID>` |
 
-The completion of `Ad 2` is tracked.
+The completion of `Ad 2` is tracked. On the backend, this call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on the datastream configuration.
 
 **Example payload**
 
@@ -434,7 +434,7 @@ The completion of `Ad 2` is tracked.
   "timestamp": "YYYY-MM-DDT02:00:43Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 43
+    "playhead": 15
   }
 }
 ```
@@ -455,7 +455,7 @@ The completion of the ad break is tracked.
   "timestamp": "YYYY-MM-DDT02:00:43Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 43
+    "playhead": 15
   }
 }
 ```
@@ -464,7 +464,7 @@ The completion of the ad break is tracked.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 15 | Tracks the start of `Chapter 2` | 44 | 44 | `/chapterStart?configId=<datastreamID>` |
+| 15 | Tracks the start of `Chapter 2` | 43 | 15 | `/chapterStart?configId=<datastreamID>` |
 
 The start of `Chapter 2` is tracked directly after the completion of the ad break.
 
@@ -476,12 +476,12 @@ The start of `Chapter 2` is tracked directly after the completion of the ad brea
   "timestamp": "YYYY-MM-DDT02:00:44Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 1,
+    "playhead": 15,
     "chapterDetails": {
       "index": 2,
-      "offset": 44,
+      "offset": 43,
       "friendlyName": "Chapter two",
-      "length": 10
+      "length": 11
     }
   }
 }
@@ -491,7 +491,7 @@ The start of `Chapter 2` is tracked directly after the completion of the ad brea
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 16 | Sends ping | 50 | 50 | `/ping?configId=<datastreamID>` |
+| 16 | Sends ping | 50 | 22 | `/ping?configId=<datastreamID>` |
 
 A ping call is sent to the backend every 10 seconds.
 
@@ -503,7 +503,7 @@ A ping call is sent to the backend every 10 seconds.
   "timestamp": "YYYY-MM-DDT02:00:50Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 50
+    "playhead": 22
   }
 }
 ```
@@ -512,7 +512,7 @@ A ping call is sent to the backend every 10 seconds.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 17 | Tracks completion of `Chapter 2`| 54 | 54 | `/chapterComplete?configId=<datastreamID>` |
+| 17 | Tracks completion of `Chapter 2`| 54 | 26 | `/chapterComplete?configId=<datastreamID>` |
 
 The completion of `Chapter 2` is tracked.
 
@@ -524,7 +524,7 @@ The completion of `Chapter 2` is tracked.
   "timestamp": "YYYY-MM-DDT02:00:54Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 54
+    "playhead": 26
   }
 }
 ```
@@ -533,9 +533,9 @@ The completion of `Chapter 2` is tracked.
 
 | # | Action | Elapsed Real-Time (from beginning) | Playhead Position | Client request |
 | --- | --- | --- | --- | --- |
-| 18 | Tracks completion of session when user finishes watching the content to the end | 55 | 55 | `/sessionComplete?configId=<datastreamID>` |
+| 18 | Tracks completion of session when user finishes watching the content to the end | 54 | 26 | `/sessionComplete?configId=<datastreamID>` |
 
-`sessionComplete` is sent to the backend to indicate that the user finished watching the entire content.
+`sessionComplete` is sent to the backend to indicate that the user finished watching the entire content. On the backend, this call also generates a reporting event that is pushed to either Adobe Experience Platform, or Adobe Analytics, or both, depending on the datastream configuration.
 
 **Example payload**
 
@@ -545,7 +545,7 @@ The completion of `Chapter 2` is tracked.
   "timestamp": "YYYY-MM-DDT02:00:55Z",
   "mediaCollection": {
     "sessionID": "{SID}",
-    "playhead": 55
+    "playhead": 26
   }
 }
 ```
