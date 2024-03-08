@@ -5174,6 +5174,9 @@
         "includeAnomalyDetection": {
           "type": "boolean"
         },
+        "includeForecasting": {
+          "type": "boolean"
+        },
         "includePercentChange": {
           "type": "boolean"
         },
@@ -5494,6 +5497,27 @@
         "longitude": {
           "type": "number",
           "format": "double"
+        },
+        "dataForecasted": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "dataForecastedUpperBound": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "dataForecastedLowerBound": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
         }
       }
     },
