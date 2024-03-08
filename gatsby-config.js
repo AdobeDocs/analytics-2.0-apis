@@ -330,6 +330,20 @@ module.exports = {
         path: 'guides/use-cases',
         pages: [
           {
+            title: 'Media Edge API ',
+            path: 'guides/use-cases/media-edge',
+            pages: [
+              {
+                title: 'Session with two chapters separated by an ad break',
+                path: 'guides/use-cases/media-edge/chapters-with-ad-timeline.md'
+              },
+              {
+                title: 'Session with a buffer and a pause',
+                path: 'guides/use-cases/buffer-and-pause-timeline.md'
+              }
+            ]
+          },
+          {
             title: 'cURL',
             path: 'guides/use-cases/curl.md'
           },
