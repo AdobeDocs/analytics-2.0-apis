@@ -6,7 +6,7 @@ This guide provides a use case example of a media session tracked with the Media
 * The user pressing `pause`.
 * The user closing the app without finishing the content to the end.
 
-In contrast to the [Media Edge API use case example with two chapters separated by an ad break](https://experienceleague.adobe.com), this example presents a differing offset playhead position in the timeline.
+In contrast to the [Media Edge API use case example with two chapters separated by an ad break](https://developer.adobe.com/analytics-apis/docs/2.0/guides/use-cases/media-edge/chapters-with-ad-timeline/), this example presents a differing offset playhead position in the timeline.
 
 Media Edge APIs are built on the Adobe Experience Platform to provide media event tracking data within the framework of [XDM schemas](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html#:~:text=Experience%20Data%20Model%20(XDM)%2C,the%20power%20of%20digital%20experiences). For more information, see the [Media Edge API overview](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/overview.html).
 
