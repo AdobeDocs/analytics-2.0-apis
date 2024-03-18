@@ -61,9 +61,9 @@ The playhead position (the current position indicated in the horizontal timeline
 
 The following action and playhead diagrams show the differences in time during an ad break.
 
-#### Timeline diagram
+#### Action diagram
 
-![Timeline diagram](../../../images/timeline-diagram.png)
+![Action diagram](../../../images/timeline-diagram.png)
 
 #### Playhead diagram
 
