@@ -60,18 +60,19 @@ The playhead position (the current position indicated in the horizontal timeline
 
 The following actions and playhead diagrams show the differences in time during a buffer and a pause:
 
-#### Actions diagram
-
-![Action diagram](../../../images/bufferpause-diagram.png)
-
-#### Playhead diagram
+### Playhead diagram
 
 ![Playhead diagram](../../../images/bufferpause-playhead.png)
 
+### Actions diagram
 
-### Timeline of actions
+![Action diagram](../../../images/bufferpause-diagram.png)
 
-The following table shows a timeline of actions to be tracked for this use case. Each row summarizes the action and the request endpoint. Each action is described in more detail with payloads below the table. The Client request column shows the final path parameter and the other parameters required to include in the call. Note that he **playhead position**, (the current position indicated in the horizontal timeline of the video) is not advanced during buffering or pausing, even though elapsed real-time has passed. Both of these are measured in seconds.
+Each number in the previous diagram (1-9) corresponds to an action and its request endpoint shown in the **Timeline summary table**, as well as to the **Detailed descriptions** below.
+
+### Timeline summary table
+
+The following table shows a timeline of actions to be tracked for this use case. Each row summarizes the action and the request endpoint. Each action is described in more detail with payloads below the table. The **Client Request** column shows the final path parameter and other parameters required to include in the call. Note that he **playhead position**, (the current position indicated in the horizontal timeline of the video) is not advanced during buffering or pausing, even though elapsed real-time has passed. Both of these are measured in seconds.
 
 Note that for tracking you must fire ping events every 10 seconds, tracked in real-time, beginning after 10 seconds have elapsed from the session start. This must happen regardless of other API events that you have sent.
 
@@ -87,7 +88,15 @@ Note that for tracking you must fire ping events every 10 seconds, tracked in re
 | 8 | User presses `play` to resume the main content | 24 | 12 | `/play?configId=<datastreamID>` |
 | 9 | User closes the app without watching the content to the end | 29 | 17 | `/sessionEnd?configId=<datastreamID>` |
 
-#### Description
+<InlineAlert variant="info" slots="text" />
+
+The events sent are ordered based on the timestamp at which they were sent. If they are sent at the same second, as illustrated in the examples below, they are still sent with different ascending timestamps.
+
+<InlineAlert variant="info" slots="text" />
+
+For media tracking, you must fire ping events every 10 seconds, tracked in real-time, beginning after 10 seconds have elapsed from the session start. This must happen regardless of other API events that you have sent. 
+
+#### Detailed descriptions of actions
 
 The description of each action, together with the payload sent to Media Edge API are presented below.
 
