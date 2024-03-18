@@ -6,8 +6,6 @@ This guide provides a use case example of a media session tracked with the Media
 * The user pressing `pause`.
 * The user closing the app without finishing the content to the end.
 
-In contrast to the [Media Edge API use case example with two chapters separated by an ad break](https://developer.adobe.com/analytics-apis/docs/2.0/guides/use-cases/media-edge/chapters-with-ad-timeline/), this example presents a differing offset playhead position in the timeline.
-
 Media Edge APIs are built on the Adobe Experience Platform to provide media event tracking data within the framework of [XDM schemas](https://experienceleague.adobe.com/docs/experience-platform/xdm/home.html#:~:text=Experience%20Data%20Model%20(XDM)%2C,the%20power%20of%20digital%20experiences). For more information, see the [Media Edge API overview](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/overview.html).
 
 <InlineAlert variant="info" slots="text" />
@@ -34,7 +32,7 @@ curl -i --request POST '{uri}/ee/va/v1/sessionStart?configId={dataStreamId}' \
     {
       "xdm": {
         "eventType": "media.sessionStart",
-        "timestamp": "YYYY-08-01T02:00:00.000Z",
+        "timestamp": "YYYY-MM-DDT02:00:00.000Z",
         "mediaCollection": {
           "playhead": 0,
           "sessionDetails": {
@@ -55,6 +53,13 @@ curl -i --request POST '{uri}/ee/va/v1/sessionStart?configId={dataStreamId}' \
 For more information regarding how to start the session, see the [Media Edge API getting started](https://experienceleague.adobe.com/docs/experience-platform/edge-network-server-api/media-edge-apis/getting-started.html?lang=en#:~:text=configId%3D%7Bdatastream%20ID%7D%20%5C-,Example,-request) guide.
 
 Each subsequent request is made in the same manner, but with changes to the endpoint path and parameters as well as the payload to match the action.
+
+## Playhead behavior during a buffer and a pause
+
+The playhead position (the current position indicated in the horizontal timeline of the video) does not advance during buffering, pausing, or an ad break, even though real time has elapsed. Both playhead position and the passing of real time are measured in seconds.
+
+The following timeline and playhead diagrams show the differences in time during a buffer and a pause:
+
 
 ### Timeline of actions
 
