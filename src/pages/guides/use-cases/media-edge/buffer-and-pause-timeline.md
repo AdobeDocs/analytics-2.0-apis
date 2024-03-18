@@ -1,4 +1,4 @@
-# Media Edge API use case: A Buffer State and a Pause
+# Media Edge API use case: A buffer state and a pause
 
 This guide provides a use case example of a media session tracked with the Media Edge API service. The example session shown for this use case contains the following elements:
 
