@@ -58,9 +58,9 @@ Each subsequent request is made in the same manner, but with changes to the endp
 
 The playhead position (the current position indicated in the horizontal timeline of the video) does not advance during buffering, pausing, or an ad break, even though real time has elapsed. Both playhead position and the passing of real time are measured in seconds.
 
-The following action and playhead diagrams show the differences in time during a buffer and a pause:
+The following actions and playhead diagrams show the differences in time during a buffer and a pause:
 
-#### Action diagram
+#### Actions diagram
 
 ![Action diagram](../../../images/bufferpause-diagram.png)
 
