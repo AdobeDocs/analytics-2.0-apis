@@ -546,7 +546,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{64b1d77b235090539e282308}"
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{64b1d77b235090539e282308}"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
