@@ -376,14 +376,14 @@ The following table describes the request paraemeters for GET scheduled requests
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `rsid` |  | string | The report suite ID |
-| `createdAfter` |  | string | Filters for requests created on or after the specified datetime |
-| `createdBefore` |  | string | Filters for requests created on or before the specified datetime |
-| `updatedAfter` |  | string | Filters for requests updated on or after the specified datetime |
-| `updatedBefore` |  | string | Filters for requests updated on or before the specified datetime |
-| `status` |  | string | Filters for requests based on status. Valid values are: `Scheduled`, `Completed`, `Canceled`, and `Error`. |
-| `sort` |  | string | Determines the order of returned reports. This parameter must be two values separated by a colon. The first value must be either `createdDate` or `updatedDate`. The second value must be either `asc` or `desc`. An example pair would be `createdDate:asc`. |
-| `limit` |  | integer | Max number of requests that will be returned |
+| `rsid` | required | string | The report suite ID |
+| `createdAfter` | optional | string | Filters for requests created on or after the specified datetime |
+| `createdBefore` | optional | string | Filters for requests created on or before the specified datetime |
+| `updatedAfter` | optional | string | Filters for requests updated on or after the specified datetime |
+| `updatedBefore` | optional | string | Filters for requests updated on or before the specified datetime |
+| `status` | optional | string | Filters for requests based on status. Valid values are: `Scheduled`, `Completed`, `Canceled`, and `Error`. |
+| `sort` | optional | string | Determines the order of returned reports. This parameter must be two values separated by a colon. The first value must be either `createdDate` or `updatedDate`. The second value must be either `asc` or `desc`. An example pair would be `createdDate:asc`. |
+| `limit` | optional | integer | Max number of requests that will be returned |
 
 ### Response Parameters
 
