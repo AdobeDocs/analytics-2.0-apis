@@ -192,7 +192,7 @@ The following table describes request parameters for creating a scheduled reques
 | Name | Req/Opt | Type | Description |
 | --- | --- | --- | --- |
 | `schedule` | required | container | Contains parameters detailing the scheduled request, including `scheduleAt`, `periodSettings`, and `cancelSettings` parameters. |
-| `scheduleAt` | required | string | Timestamp of when the request is scheuduled  |
+| `scheduleAt` | required | string | Timestamp of when the request is scheduled  |
 | `periodSettings` | required | container | The settings for the frequency of delivery. Contains the `frequency`, `every`, `dayOfMonth`, `dayOfWeek`, `month`, and `weekOfMonth` parameters. |
 | `frequency` | required | string | How often the report is to be generated, e.g. `daily` |
 | `every` | required | integer | The number associated with the `frequency`|
@@ -802,7 +802,7 @@ curl -X 'PUT' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
     "metadata": {
-        "status": "Compoleted"
+        "status": "Completed"
     }
 }'
 ```
