@@ -72,7 +72,7 @@ In the 1.4 APIs, methods are uniquely identified using the `method` request para
 
 ## Metrics and dimensions
 
-The additional differences between 1.4 and 2.0 APIs for retrieving metrics or dimensions include the following:
+This section describes differences between 1.4 and 2.0 APIs for metrics and dimensions. These include the following changes for retrieving metrics or dimensions:
 
 * Naming of some components
 * Query structure
@@ -134,7 +134,7 @@ See [Dimensions](endpoints/dimensions/index.md) and [Metrics](endpoints/metrics/
 
 ## Reports
 
-For 2.0 APIs, the `reports` endpoint includes the most changes. It uses the same underlying process as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call, and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
+This section describes differences between 1.4 and 2.0 report APIs.  The 2.0 `reports` endpoint includes many important changes. It uses the same underlying process as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call, and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
 
 The `/reports` endpoint is intended to run small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. When migrating to the 2.0  `/reports` endpoint, split these large requests into multiple simpler and quicker calls. Following this practice, results are provided more quickly, and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
 
@@ -375,5 +375,13 @@ You can cache historical data as part of the client application so that you woul
 With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like, instead of the limit of four with the 1.4 APIs. To request a breakdown report, use an `itemId` in the `metricFilter` section of your request (as shown above). See [Breakdowns](endpoints/reports/breakdowns.md) for more detailed information.
 
 ## Data Warehouse
+
+This section describes the difference between Data Warehouse 1.4 and 2.0 APIs.
+
+With 1.4 APIs, you can run Data Warehouse reports with the `Report.Run` method in a [POST request](https://adobedocs.github.io/analytics-1.4-apis/#/Report/Report.Run). This is requested by setting `source":"warehouse" in the `reportDescription` object in the request payload. This service returns requested analytics data, as described in [Adobe Analytics 1.4 Data Warehouse Reports](https://developer.adobe.com/analytics-apis/docs/1.4/guides/reporting/data-warehouse/).
+
+With 2.0 APIs, Data Warehouse functions similar to an export service that includes granular scheduling and detailed reports generated from scheduled requests. The Data Warehouse reports returned by the 2.0 APIs do not return analytics data.
+
+Currently, you must make your first scheduled request in Analysis Workspace. Subsequently, you can create additional scheduled requests, update requests, and retrieve request information with the 2.0 APIs. You can also update and retrieve reports generated from scheduled requests. The 2.0 APIs include destination options for sending request information and reports. For more information, refer to both the [Data Warehouse 2.0 Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Warehouse%20APIs) and the [Data Warehouse 2.0 Endpoint Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse/).
 
 
