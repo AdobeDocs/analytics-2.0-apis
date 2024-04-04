@@ -203,7 +203,7 @@ module.exports = {
           },
           {
             title: 'Dimensions',
-            path: 'guides/endpoints/dimensions',
+            path: 'guides/endpoints/dimensions.md'
           },
           {
             title: 'Discovery',
