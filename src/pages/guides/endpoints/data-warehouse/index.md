@@ -47,7 +47,6 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
-
 #### Request
 
 ```sh
@@ -572,29 +571,115 @@ curl -X 'PUT' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
-    "metadata": {
-        "status": "cancelIncludeReports"
+  "request": {
+    "name": "New example report name",
+    "sharing": {
+      "shareWithOtherUsers": true
+    },
+    "reportParameters": {
+      "numberOfRowsInTable": 50
     }
+  }
 }'
 ```
 
 #### Response
 
 ```json
- "cancelSettings": {
-      "cancelMethod": "afterOccurrences",
+ {
+  "metadata": {
+    "scheduledRequestUUID": "44444444-3333-2222-1111-000000000000",
+    "scheduledRequestLegacyID": 0000001,
+    "status": "Scheduled",
+    "createdDate": "YYYY-01-25T18:23:33Z",
+    "updatedDate": "YYYY-04-03T20:34:07Z",
+    "jobType": "Data Warehouse",
+    "ownerInfo": {
+      "company": "Example org",
+      "login": "example_user@example.com",
+      "imsUserId": "dw-rest-api@AdobeID",
+      "email": "example_user@example.com",
+      "phone": null
+    }
+  },
+  "schedule": {
+    "scheduleAt": "YYYY-05-06T02:00:00Z",
+    "periodSettings": {
+      "frequency": "monthlyByWeek",
+      "every": 1,
+      "dayOfMonth": null,
+      "dayOfWeek": "Monday",
+      "month": null,
+      "weekOfMonth": "first"
+    },
+    "cancelSettings": {
+      "cancelMethod": "never",
       "cancelDate": null,
-      "endAfterNumOccurrences": 1
- }
+      "endAfterNumOccurrences": null
+    }
+  },
+  "request": {
+    "name": "New report name",
+    "sharing": {
+      "shareWithOtherUsers": true
+    },
+    "outputFile": {
+      "compressionFormat": "default",
+      "outputFileBasename": "Report",
+      "fileFormat": "csv",
+      "sendEmptyFileForNoDataReport": false,
+      "beginningOfReportComments": "",
+      "sendDigitalSignatureFile": false,
+      "sendManifestFile": false
+    },
+    "reportParameters": {
+      "dimensionList": [],
+      "metricList": [
+        {
+          "namespace": "Identity Service",
+          "id": "metrics/visitors",
+          "properties": null
+        }
+      ],
+      "segmentList": [],
+      "dateGranularity": "none",
+      "numberOfRowsInTable": 50,
+      "reportRange": {
+        "preset": "Today",
+        "startDateTime": null,
+        "endDateTime": null
+      },
+      "sortByMetrics": false
+    },
+    "rsid": "examplersid"
+  },
+  "delivery": {
+    "exportLocationUUID": "000fxf00-12d1-1234-a6aa-00000000000a",
+    "email": null,
+    "legacyEmail": null,
+    "legacyAzure": null,
+    "legacyFTP": null,
+    "legacyS3": null
+  }
+}
 ```
 
 #### Request Example Details
 
-The example above cancels the scheduled request and the reports associated with the `scheduledRequestUUID` of `44444444-3333-2222-1111-000000000000`.
+The example above requests the following updates for the sheduled request:
+
+* Renaming  to "New example report name"
+* Sharing is enabled with other users
+* Specifies `50` as the number of rows in tables
 
 #### Response Example Details
 
-The example above shows the section of the response confirming the cancellation update.
+The example response confirms that each of the three values specified in the request have been updated. Additionally, it also shows the date it was updated after its creation. Note the following lines:
+
+```
+"createdDate": "YYYY-01-25T18:23:33Z",
+"updatedDate": "YYYY-04-03T20:34:07Z",
+```
 
 ### Request parameters
 
