@@ -378,7 +378,7 @@ With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like
 
 This section describes the difference between Data Warehouse 1.4 and 2.0 APIs.
 
-With 1.4 APIs, you can run Data Warehouse reports with the `Report.Run` method in a [POST request](https://adobedocs.github.io/analytics-1.4-apis/#/Report/Report.Run). This is requested by setting `source":"warehouse" in the `reportDescription` object in the request payload. This service returns requested analytics data, as described in [Adobe Analytics 1.4 Data Warehouse Reports](https://developer.adobe.com/analytics-apis/docs/1.4/guides/reporting/data-warehouse/).
+With 1.4 APIs, you can run Data Warehouse reports with the `Report.Run` method in a [POST request](https://adobedocs.github.io/analytics-1.4-apis/#/Report/Report.Run). This is requested by specifying `source":"warehouse"` in the `reportDescription` object in the request payload. This service returns requested analytics data, as described in [Adobe Analytics 1.4 Data Warehouse Reports](https://developer.adobe.com/analytics-apis/docs/1.4/guides/reporting/data-warehouse/).
 
 With 2.0 APIs, Data Warehouse functions similar to an export service that includes granular scheduling and detailed reports generated from scheduled requests. The Data Warehouse reports returned by the 2.0 APIs do not return analytics data.
 
