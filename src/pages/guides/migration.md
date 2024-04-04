@@ -128,7 +128,7 @@ returns the following detailed information for the `browser` dimension:
 ```
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
-The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports(see [Reports](#reports)).
+The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reports](#reports)).
 
 See [Dimensions](endpoints/dimensions/index.md) and [Metrics](endpoints/metrics/index.md) endpoint guides for more information.
 
