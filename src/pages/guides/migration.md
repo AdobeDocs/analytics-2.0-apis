@@ -3,7 +3,7 @@ title: Migrating to the 2.0 API
 description: Learn what steps that you can take to move from previous versions of the Analytics API to 2.0.
 ---
 
-# Migrating to the 2.0 APIs
+# Migrating to Analytics 2.0 APIs
 
 This guide is intended to help users of the 1.3 and 1.4 versions of the Analytics APIs migrate to the newer and more capable 2.0 APIs. By migrating to the 2.0 APIs, you can take advantage of the following features:
 
@@ -38,27 +38,33 @@ The 2.0 APIs use standard HTTP methods for retrieving resources (`GET`), creatin
 
 The 1.4 APIs only use the HTTP `POST` method for all of its operations, irrespective of its intent.
 
-### Global Company Id
+### Global Company ID
 
-All 2.0 API endpoints require the global company id of your Adobe Analytics company as part of the URL path. For example:
+All 2.0 API endpoints require the global company ID of your Adobe Analytics company as part of the URL path. For example:
 
 **GET** `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations`
 
-To retrieve the global company id for your Adobe Analytics company, in the Adobe Analytics user interface:
+To retrieve your global company ID in the user interface, follow these steps:
 
 1. Select **Admin** > **All Admin** from the top menu.
 1. Select **Company settings home** from the **Company settings** list.
-1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company id is displayed in **bold** at the top of the page.
+1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company ID is displayed in **bold** at the top of the page.
+
+To retrieve your global company ID with an API, use the [Analytics Discovery endpoint](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/), as shown below:
+
+```
+curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
+```
 
 ### Unique paths
 
-Every method in the 2.0 APIs has its own unique path. For example, to retrieve the names of dimensions and metrics in the 2.0 APIs, you use the following requests:
+Every method in the 2.0 APIs has a unique path. For example, to retrieve the names of dimensions and metrics in the 2.0 APIs, you use the following two requests:
 
 **GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions?rsid={RSID}`
 
 **GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics?rsid={RSID}`
 
-In the 1.4 APIs, methods are uniquely identified using the `method` request parameter, while most endpoints use the same path `/admin/1.4/rest/`. To retrieve names of dimensions and metrics in the 1.4 APIs, you use the following requests:
+In the 1.4 APIs, methods are uniquely identified using the `method` request parameter, while most endpoints use the same path `/admin/1.4/rest/`. For example, to retrieve names of dimensions and metrics in the 1.4 APIs, you use the following two requests:
 
 **POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetElements` (for dimensions)
 
@@ -66,11 +72,19 @@ In the 1.4 APIs, methods are uniquely identified using the `method` request para
 
 ## Metrics and dimensions
 
-For 2.0 APIs, metrics and dimension are named slightly different. Similarly, the query for individual or the full list of available metrics and dimensions is different. Aside from the difference in endpoints (see [How the 2.0 API's work](#how-the-20-apis-work)), the information returned is different.
+The additional differences between 1.4 and 2.0 APIs for retrieving metrics or dimensions include the following:
 
-In the 1.4 APIs, using
+* Naming of some components
+* Query structure
+* The type and quantity of information retrieved
+* Obtaining multiple or singular metrics or dimensions
+* Using `expansion` member objects to include more specificity in retrieval options
 
-**POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetElements` with a JSON body specifying at least the report suite, returns the following information for the `browser` dimension:
+**1.4 Dimensions example**
+
+For example, in the 1.4 dimensions request
+
+**POST** `https://api.omniture.com/admin/1.4/rest/?method=Report.GetElements` with a JSON body specifying at least the report suite, the following information for the `browser` dimension is returned:
 
 ```json
 {
@@ -80,6 +94,8 @@ In the 1.4 APIs, using
     "subrelation": true
 }
 ```
+
+**2.0 Dimensions example**
 
 In the 2.0 APIs, using
 
@@ -110,22 +126,25 @@ returns the following detailed information for the `browser` dimension:
     "type": "string"
 }
 ```
-
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
-The exampe `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is highly recommended to query for dimensions and metrics that are allowed to report on using the 2.0 APIs (see [Reports](#reports)).
+The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports(see [Reports](#reports)).
 
 See [Dimensions](endpoints/dimensions/index.md) and [Metrics](endpoints/metrics/index.md) endpoint guides for more information.
 
 ## Reports
 
-For the 2.0 APIs, the `reports` endpoint contains the biggest change. It utilizes the same underlying processing pipeline as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
+For 2.0 APIs, the `reports` endpoint includes the most changes. It uses the same underlying process as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call, and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
 
-The `/reports` end point is intended to run very small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. To migrate to the 2.0  `/reports` endpoint, you want to split these large requests into multiple simpler and quicker calls. Following this practice, results are provided much quicker and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
+The `/reports` endpoint is intended to run small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. When migrating to the 2.0  `/reports` endpoint, split these large requests into multiple simpler and quicker calls. Following this practice, results are provided more quickly, and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
 
-## Use case example
+### Example report differences
 
-To see how the migration affects your reports, consider the following example.
+The examples in this section show how migration from 1.4 to 2.0 APIs affects your reports.
+
+#### 1.4 example
+
+The following 1.4 report queries ten `campaign` items. For each of those, it queries 100 `geocity` items. Finally, for each city, it queries the top 100 `pages`. In addition, it tries to get three metrics for each of those items. Finally, it tries to do that for each day in the date range, which can span multiple years. This report has the potential to return 1,000,000 records or more.
 
 Example 1.4 request:
 
@@ -150,9 +169,8 @@ Example 1.4 request:
 }
 ```
 
-This 1.4 report queries ten `campaign` items. For each of those, it queries 100 `geocity` items. Finally, for each city, it queries the top 100 `pages`. In addition, it tries to get three metrics for each of those items. Finally, it tries to do that for each day in the date range, which can span multiple years. This report has the potential to return 1,000,000 records or more.
 
-### Changes for 2.0 request
+#### 2.0 example
 
 Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
 
@@ -350,8 +368,12 @@ Requests to the 2.0 `/reports` endpoint are smaller and made in sequence:
 
 4. Request a separate report for each metric. This means that you go through steps 1-3 for `pageviews`, then again for `visits`, and so on.
 
-You can cache historical data as part of the client application. This means that you would only need to query the newest day's worth of data each day.
+You can cache historical data as part of the client application so that you would only need to query the newest day's worth of data each day.
 
 ### Breakdowns
 
 With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like, instead of the limit of four with the 1.4 APIs. To request a breakdown report, use an `itemId` in the `metricFilter` section of your request (as shown above). See [Breakdowns](endpoints/reports/breakdowns.md) for more detailed information.
+
+## Data Warehouse
+
+
