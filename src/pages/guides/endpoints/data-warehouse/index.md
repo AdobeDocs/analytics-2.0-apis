@@ -801,36 +801,65 @@ curl -X 'PUT' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
-    "metadata": {
-        "status": "Completed"
-    }
+  "metadata": {
+    "status": "resend"
+  }
 }'
 ```
 
 #### Response
 
-```json
-    "metadata": {
-    "legacyReportID": 000000001,
+```
+{
+  "delivery": {
+    "exportLocationUUID": "000fxf00-12d1-1234-a6aa-00000000000a",
+    "email": {
+      "notificationEmailTo": "notification_email_in_delivery_profile",
+      "notificationEmailFrom": "example_user@example.com",
+      "notificationEmailSubject": "Data Warehouse: for examplersid",
+      "notificationEmailNotes": null
+    },
+    "legacyEmail": null,
+    "legacyAzure": null,
+    "legacyFTP": null,
+    "legacyS3": null
+  },
+  "outputFile": {
+    "compressionFormat": "default",
+    "outputFileBasename": "Report",
+    "fileFormat": "csv",
+    "sendEmptyFileForNoDataReport": true,
+    "beginningOfReportComments": "",
+    "sendDigitalSignatureFile": null,
+    "sendManifestFile": null
+  },
+  "metadata": {
+    "legacyReportID": 0000001,
     "reportUUID": "99999999-8888-7777-6666-555555555555",
     "scheduledRequestUUID": "44444444-3333-2222-1111-000000000000",
     "createdDate": "YYYY-MM-DDT00:00:00Z",
     "updatedDate": "YYYY-MM-DDT00:00:00Z",
     "startedDate": "YYYY-MM-DDT00:00:00Z",
     "completedDate": "YYYY-MM-DDT00:00:00Z",
-    "status": "Completed",
+    "status": "Processing",
     "currentTask": "",
     "jobType": "Data Warehouse"
   },
+  "report": {
+    "rsid": "examplersid",
+    "fromDate": "YYYY-MM-DDT00:00:00Z",
+    "toDate": "YYYY-MM-DDT00:00:00Z"
+  }
+}
 ```
 
 #### Request Example Details
 
-The example above requests that the `status` of the report associated with `reportUUID` of  `99999999-8888-7777-6666-555555555555` be updated to  `Completed`.
+The example above requests a `resend` in the `status` of the `metadata` object.
 
 #### Response Example Details
 
-The response example above shows that the `status` of the report associated with `reportUUID` of  `99999999-8888-7777-6666-555555555555` has been updated to  `Completed`.
+The response example above shows that the `status` in the `metadata` object has been updated from `Complete` to  `Processing`.
 
 ### Request parameters
 
