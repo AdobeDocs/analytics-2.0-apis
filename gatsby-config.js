@@ -198,6 +198,10 @@ module.exports = {
             ]
           },
           {
+            title: 'Data Warehouse',
+            path: 'guides/endpoints/data-warehouse.md'
+          },
+          {
             title: 'Dimensions',
             path: 'guides/endpoints/dimensions',
           },
