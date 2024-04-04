@@ -15,7 +15,7 @@ The Data Warehouse endpoints described in this guide do not return Analytics dat
 
 **Data Warehouse scheduled requests**
 
-These enpoints provide methods for creating, viewing, managing, and updating Data Warehouse scheduled requests:
+These endpoints provide methods for creating, viewing, managing, and updating Data Warehouse scheduled requests:
 
 * [POST scheduled request](#post-scheduled-request): Creates a scheduled request
 * [GET scheduled requests](#get-scheduled-requests): Retrieves summarized scheduled requests that match specified filters
@@ -202,7 +202,7 @@ The following table describes request parameters for creating a scheduled reques
 | `cancelSettings` | optional | container | The settings for cancelling the scheduled request. Contains the `cancelMethod`, `cancelDate`, and `endAfterNumOccurrences` parameters. |
 | `cancelMethod` | optional | string |  |
 | `cancelDate` | optional | string | The date on which the scheduled request will be cancelled |
-| `endAfterNumOccurrences` | optional | integer | The number of time for report generation prior to the scheduled request being cancelled |
+| `endAfterNumOccurrences` | optional | integer | The number of times a report is to be generated before the scheduled request is cancelled |
 | `request` | required | container | The details of what the scheduled request will generate. Contains the `name`, `sharing`, `outputFile`, `reportParameters`, and `rsid` parameters. |
 | `name` | required | string | The name of the scheduled request |
 | `sharing` | optional | container | Whether the scheduled request will be shared with others. Contains the `shareWithOtherUsers` parameter. |
@@ -237,7 +237,7 @@ The following table describes request parameters for creating a scheduled reques
 | `rsid` | required | string | The report suite ID |
 | `delivery` | required | container | Settings for report delivery. Contains the `exportLocationUUID` and `email` parameters. If the `exportLocationUUID` includes an email in its inherent configuration, do not include the email parameter. For more information about delivery options see the [Data Warehouse Delivery Guide](https://experienceleague.adobe.com/docs/analytics/export/data-warehouse/dw-create-request/dw-request-report-destinations.html).|
 | `exportLocationUUID` | required | string | The UUID of the export location. You can retrieve this value with the GET scheduled request by ID endpoint. |
-| `email` | optional | container | The settings regarding email notification. Do not use if the exportLocationUUID includes an email delivery in its inherent cofiguration. Contains the `notificationEmailTo`, `notificationEmailFrom`, `notificationEmailSubject`, and `notificationEmailNotes` parameters. |
+| `email` | optional | container | The settings regarding email notification. Do not use if the `exportLocationUUID` includes an email delivery in its inherent configuration. Contains the `notificationEmailTo`, `notificationEmailFrom`, `notificationEmailSubject`, and `notificationEmailNotes` parameters. |
 | `notificationEmailTo` | optional | string | The notification email destination |
 | `notificationEmailFrom` | optional | string | The origin of the email |
 | `notificationEmailSubject` | optional | string | The subject line of the notification email |
@@ -273,7 +273,7 @@ The response parameters for creating a scheduled request include those described
 | `company` | string | The company of the owner of the scheduled request |
 | `login` | string | The login of the owner of the scheduled request |
 | `imsUserId` | string | The IMS User ID of the owner of the scheduled request |
-| `email` | string | The email of the owner of the scheduled request |
+| `email` | string | The email address of the owner for the scheduled request |
 | `phone` | string | The phone number of the owner of the scheduled request |
 
 ## GET scheduled requests
@@ -365,13 +365,13 @@ The example above shows a request for a summarized list Data Warehouse scheduled
 
 The successful JSON response example above shows the following details:
 
-* Two scheduled requests are associated with the`examplersid` report suite: `Exampledwrequest` and `Second request example`.
+* Two scheduled requests are associated with the `examplersid` report suite: `Exampledwrequest` and `Second request example`.
 * The status of `Exampldwrequest` is `Completed` and the status of `Second request example` is `Processing`. 
 * The owner and login associated with these requests is `example_user@adobe.com`.
 
 ### Request parameters
 
-The following table describes the request paraemeters for GET scheduled requests:
+The following table describes the request parameters for GET scheduled requests:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -397,7 +397,7 @@ The following table describes the response parameters for GET scheduled requests
 | `metadata` | container | The metadata associated with the report. Contains the `legacyReportID`, `uuid`, and `status` parameters. |
 | `legacyReportID` | integer | The legacy report ID of the report |
 | `uuid` | string | The UUID of the report |
-| `status` | string | The satus of the report delivery. Possible statuses are: `Created`, `Pending`, `Processing`, `Completed`, `Scheduled`, `Canceled`, `Error - Processing`, and `Error - Failure To Send`. |
+| `status` | string | The status of the report delivery. Possible statuses are: `Created`, `Pending`, `Processing`, `Completed`, `Scheduled`, `Canceled`, `Error - Processing`, and `Error - Failure To Send`. |
 | `request` | container | The name and RSID of the scheduled request. Contains the `name` and `rsid` parameters |
 | `name` | string | The name of the scheduled request |
 | `rsid` | string | The RSID of the request |
@@ -666,7 +666,7 @@ curl -X 'PUT' \
 
 #### Request Example Details
 
-The example above requests the following updates for the sheduled request:
+The example above requests the following updates for the scheduled request:
 
 * Renaming  to "New example report name"
 * Sharing is enabled with other users
