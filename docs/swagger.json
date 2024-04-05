@@ -3005,6 +3005,49 @@
         }
       }
     },
+     "/reports/realtime": {
+      "post": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Runs a Real time report for the request in the post body",
+        "description": "This section will be updated with new real time reporting Guide.",
+        "operationId": "runRealTimeReport",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RankedRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/RankedReportData"
+            }
+          },
+          "400": {
+            "description": "Invalid input; Valid metric, dimension, rsid and Real-time config for rsid are required. Definition must be formatted as a JSON Object.",
+            "schema": {
+              "$ref": "#/definitions/ReportErrorStatus"
+            }
+          },
+          "403" : {
+            "description" : "User should have access to the metrics and dimensions used in the request"
+          }
+        }
+      }
+    },
     "/reports/topItems": {
       "get": {
         "tags": [
