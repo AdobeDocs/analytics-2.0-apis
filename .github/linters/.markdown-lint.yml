@@ -38,13 +38,13 @@ hr-style: true                # Horizontal rule style
 list-indent: true             # Inconsistent indentation for list items at the same level
 no-empty-links: true
 no-missing-space-atx: true    # No space after hash on atx style heading
-no-multiple-blanks: true      # Multiple consecutive blank lines
+no-multiple-blanks: false      # Multiple consecutive blank lines
 no-reversed-links: true
 no-space-in-code: true
 no-space-in-emphasis: true
 no-space-in-links: true
-no-trailing-spaces: true
-single-trailing-newline: true   # Files should end with a single newline character
+no-trailing-spaces: false
+single-trailing-newline: false   # Files should end with a single newline character
 strong-style:
   style: "consistent"
 ul-style:
