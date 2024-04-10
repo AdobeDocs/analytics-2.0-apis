@@ -3005,14 +3005,14 @@
         }
       }
     },
-     "/reports/realtime": {
+    "/reports/realtime": {
       "post": {
         "tags": [
           "Reports"
         ],
-        "summary": "Runs a Real time report for the request in the post body",
-        "description": "This section will be updated with new real time reporting Guide.",
-        "operationId": "runRealTimeReport",
+        "summary": "Runs a Realtime report for the request in the post body",
+        "description": "See the [Reporting User Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.",
+        "operationId": "runRealtimeReport",
         "consumes": [
           "application/json"
         ],
@@ -3023,7 +3023,7 @@
           {
             "in": "body",
             "name": "body",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/RankedRequest"
             }
@@ -3036,14 +3036,17 @@
               "$ref": "#/definitions/RankedReportData"
             }
           },
+          "206": {
+            "description": "Partially successful operation.  Some response columns contain errors.  See the [Partial Responses](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md#partial-responses-206-status-code) for details.",
+            "schema": {
+              "$ref": "#/definitions/RankedReportData"
+            }
+          },
           "400": {
-            "description": "Invalid input; Valid metric, dimension, rsid and Real-time config for rsid are required. Definition must be formatted as a JSON Object.",
+            "description": "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
             "schema": {
               "$ref": "#/definitions/ReportErrorStatus"
             }
-          },
-          "403" : {
-            "description" : "User should have access to the metrics and dimensions used in the request"
           }
         }
       }
