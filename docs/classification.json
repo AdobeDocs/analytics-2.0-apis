@@ -357,6 +357,68 @@
           }
         }
       },
+      "/job/byDataset/{dataset_id}" : {
+        "get" : {
+          "tags" : [ "Classification Job" ],
+          "summary" : "Retrieve classification jobs for specified dataset",
+          "description" : "Retrieve classification jobs for specified dataset",
+          "operationId" : "findJobsByDataset",
+          "parameters" : [ {
+            "name" : "dataset_id",
+            "in" : "path",
+            "description" : "Classification Dataset ID",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "lookbackDays",
+            "in" : "query",
+            "description" : "Look back Windows (Days)",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32",
+              "default" : 30
+            }
+          }, {
+            "name" : "page",
+            "in" : "query",
+            "description" : "The page number",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32",
+              "default" : 0
+            }
+          }, {
+            "name" : "size",
+            "in" : "query",
+            "description" : "The page size",
+            "schema" : {
+              "type" : "integer",
+              "format" : "int32",
+              "default" : 10
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successfully retrieved classification job for specified dataset",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/ApiClassificationJobPage"
+                  }
+                }
+              }
+            },
+            "403" : {
+              "description" : "User does not have classification permission to perform this action"
+            },
+            "404" : {
+              "description" : "Cannot find job for specified dataset"
+            }
+          }
+        }
+      },
       "/job/{job_id}" : {
         "get" : {
           "tags" : [ "Classification Job" ],
@@ -940,6 +1002,42 @@
             },
             "jobImportOption" : {
               "$ref" : "#/components/schemas/JobImportOptions"
+            }
+          }
+        },
+        "ApiClassificationJobPage" : {
+          "properties" : {
+            "size" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "numberOfElements" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "last" : {
+              "type" : "boolean"
+            },
+            "totalPages" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "page" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "content" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/components/schemas/ApiClassificationJob"
+              }
+            },
+            "first" : {
+              "type" : "boolean"
+            },
+            "totalElements" : {
+              "type" : "integer",
+              "format" : "int64"
             }
           }
         }
