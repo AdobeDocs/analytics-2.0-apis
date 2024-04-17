@@ -22,6 +22,7 @@ This guide includes instructions for using the following endpoints:
 * [GET all classification datasets](#get-all-classification-datasets): Retrieves all datasets for a specified report suite ID
 * [GET a single classification](#get-a-single-classification): Retrieves information for the specified dataset
 * [GET classification job information](#get-classification-job-information): Retrieves job information for the specified job ID
+* [GET classification jobs by dataset](#get-classification-jobs-by-dataset): Retrieves job information for the specified dataset
 * [PUT classification dataset update](#put-classification-dataset-update): Updates a classification dataset
 * [DELETE classification](#delete-classification): Deletes a specified classification
 
@@ -781,6 +782,200 @@ The following table describes the GET classification job information response pa
 | `state` | string | The state of the job |
 | `type` | string | The type of the job |
 | `imsOrgId` | string | The global company ID |
+
+## GET classifications jobs by dataset
+
+Use this endpoint to retrieve job information for a specified dataset ID. For more information about classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html).
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/byDataset/{DATASET_ID}`
+
+### Request and Response Examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/byDataset/62e2ecdf813be76dff0020d9?page=0&size=10" \
+     -H "Accept: */*" \
+     -H "User-Agent: Example Client (https://www.exampleclient.com)" \
+     -H "x-api-key: {CLIENT_ID}" \
+     -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```JSON
+{
+  "content": [
+    {
+      "datasetId": "62e2ecdf813be76dff0020d9",
+      "history": [
+        {
+          "timestamp": "YYYY-04-04 21:15:14",
+          "jobState": "created",
+          "message": "Created import job via API"
+        },
+        {
+          "timestamp": "YYYY-04-04 21:15:14",
+          "jobState": "queued",
+          "message": "Job queued and ready for processing."
+        },
+        {
+          "timestamp": "YYYY-04-04 21:15:14",
+          "jobState": "processing",
+          "message": "Started processing"
+        },
+        {
+          "timestamp": "YYYY-04-04 21:15:15",
+          "jobState": "completed",
+          "message": "Successfully imported 5/5 records."
+        }
+      ],
+      "imsOrgId": "1BC13D035792A0A27F000101@AdobeOrg",
+      "jobOptions": {
+        "dataFormat": "tsv",
+        "encoding": "utf8",
+        "listDelimiter": ",",
+        "keyOptions": {
+          "byte_length": 255,
+          "type": "string",
+          "overwrite": true
+        }
+      },
+      "jobId": "5cd1e9c9-de84-4cf4-8e67-6f5a6d2ec186",
+      "jobSize": 384,
+      "name": "Example Import for phpVUNxEV",
+      "setName": "exampleset evar11 classifications",
+      "state": "completed",
+      "totalLines": 5,
+      "noeffectLines": 0,
+      "type": "import"
+    },
+    {
+      "datasetId": "62e2ecdf813be76dff0020d9",
+      "history": [
+        {
+          "timestamp": "YYYY-04-04 21:14:56",
+          "jobState": "created",
+          "message": "Created import job via API"
+        },
+        {
+          "timestamp": "YYYY-04-04 21:14:56",
+          "jobState": "queued",
+          "message": "Job queued and ready for processing."
+        },
+        {
+          "timestamp": "YYYY-04-04 21:14:57",
+          "jobState": "processing",
+          "message": "Started processing"
+        },
+        {
+          "timestamp": "YYYY-04-04 21:14:58",
+          "jobState": "completed",
+          "message": "Successfully imported 5/5 records."
+        }
+      ],
+      "imsOrgId": "1BC13D035792A0A27F000101@AdobeOrg",
+      "jobOptions": {
+        "dataFormat": "tsv",
+        "encoding": "utf8",
+        "listDelimiter": ",",
+        "keyOptions": {
+          "byte_length": 255,
+          "type": "string",
+          "overwrite": true
+        }
+      },
+      "jobId": "0f37093f-d2a0-46b6-b2b6-e58316970808",
+      "jobSize": 383,
+      "name": "Example Import for phpaahhNJ",
+      "setName": "exampleset evar11 classifications",
+      "state": "completed",
+      "totalLines": 5,
+      "noeffectLines": 0,
+      "type": "import"
+    },
+    {
+      "datasetId": "62e2ecdf813be76dff0020d9",
+      "history": [
+        {
+          "timestamp": "YYYY-04-04 21:13:41",
+          "jobState": "created",
+          "message": "Created export job via API"
+        },
+        {
+          "timestamp": "YYYY-04-04 21:13:41",
+          "jobState": "queued",
+          "message": "Job queued and ready for processing."
+        },
+        {
+          "timestamp": "YYYY-04-04 21:13:41",
+          "jobState": "processing",
+          "message": "Started processing"
+        },
+        {
+          "timestamp": "YYYY-04-04 21:13:41",
+          "jobState": "completed",
+          "message": "Successfully exported 0/0 records."
+        }
+      ],
+      "imsOrgId": "1BC13D035792A0A27F000101@AdobeOrg",
+      "jobOptions": {
+        "dataFormat": "tsv",
+        "encoding": "utf8",
+        "listDelimiter": ",",
+        "rowLimit": 0,
+        "offset": 0,
+        "dateFilterStart": "YYYY-01-01T00:00:00Z",
+        "dateFilterEnd": "YYYY-01-31T23:59:59Z"
+      },
+      "jobId": "0ede459b-9e30-4ccb-801a-57f47fa6fe6e",
+      "jobSize": 231,
+      "name": "Example Export",
+      "setName": "exampleset evar11 classifications",
+      "state": "completed",
+      "totalLines": 0,
+      "noeffectLines": null,
+      "type": "export"
+    }
+  ],
+  "page": 0,
+  "size": 10,
+  "totalPages": 1,
+  "totalElements": 3,
+  "numberOfElements": 3,
+  "first": true,
+  "last": true
+}
+```
+
+### Request example details
+
+The example above requests the following classification job information:
+
+* The job information associated with the `62e2ecdf813be76dff0020d9` dataset ID.
+* The `page` to be returned is `0`.
+* The `size` of each page should be `10` jobs.
+
+### Response example details
+
+The example above returns the following classification job information:
+
+* The `history` of each of the jobs, including the details associated with its various states. This includes the `created`, `queued`, `processing`, and `completed` states.
+* The `jobOptions` of each of the jobs, including the `dataFormat`, `encoding`, and `listDelimiter` parameters.
+* The `jobId` of each of the jobs.
+* The `totalElements` of the specified dataset are `3`.
+
+### Request Parameters
+
+The GET jobs by dataset endpoint uses the same request parameters as those described in the tables above.
+
+### Response Parameters
+
+The GET jobs by dataset endpoint uses the same response parameters as those described in the tables above.
 
 ## PUT classification dataset update
 
