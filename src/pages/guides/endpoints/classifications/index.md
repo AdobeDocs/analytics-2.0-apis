@@ -957,12 +957,12 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 The example above requests the following classification job information:
 
 * The job information associated with the dataset ID `exampledatasetxxd9`.
-* The `page` to be returned is `0`.
-* The `size` of each page should be `10` jobs.
+* The `page` to be returned is `0`, or the first page.
+* The `size` of each page should be limited to `10` jobs.
 
 ### Response example details
 
-The example above returns the following classification job information:
+The example above returns the following classification job information for the provided dataset ID:
 
 * The `history` of each of the jobs, including the details associated with its various states. This includes the `created`, `queued`, `processing`, and `completed` states.
 * The `jobOptions` of each of the jobs, including the `dataFormat`, `encoding`, and `listDelimiter` parameters.
