@@ -878,7 +878,7 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
           "message": "Successfully imported 5/5 records."
         }
       ],
-      "imsOrgId": "1BC13D035792A0A27F000101@AdobeOrg",
+      "imsOrgId": "exampleorg@AdobeOrg",
       "jobOptions": {
         "dataFormat": "tsv",
         "encoding": "utf8",
@@ -956,7 +956,7 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 
 The example above requests the following classification job information:
 
-* The job information associated with the `62e2ecdf813be76dff0020d9` dataset ID.
+* The job information associated with the dataset ID `exampledatasetxxd9`.
 * The `page` to be returned is `0`.
 * The `size` of each page should be `10` jobs.
 
@@ -971,11 +971,11 @@ The example above returns the following classification job information:
 
 ### Request Parameters
 
-The GET jobs by dataset endpoint uses the same request parameters as those described in the tables above.
+The GET jobs by dataset endpoint uses the same request parameters as those described in tables above.
 
 ### Response Parameters
 
-The GET jobs by dataset endpoint uses the same response parameters as those described in the tables above.
+The GET jobs by dataset endpoint uses the same response parameters as those described in tables above.
 
 ## PUT classification dataset update
 
