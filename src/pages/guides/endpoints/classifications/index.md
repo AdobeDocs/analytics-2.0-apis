@@ -676,22 +676,22 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
   "datasetId": "6449b63563c1e069c6159415",
   "history": [
     {
-      "timestamp": "YYYY-08-07 22:06:56",
+      "timestamp": "YYYY-MM-DD 22:06:56",
       "jobState": "created",
       "message": "Created export job via API"
     },
     {
-      "timestamp": "YYYY-08-07 22:06:56",
+      "timestamp": "YYYY-MM-DD 22:06:56",
       "jobState": "queued",
       "message": "Job queued and ready for processing."
     },
     {
-      "timestamp": "YYYY-08-07 22:06:56",
+      "timestamp": "YYYY-MM-DD 22:06:56",
       "jobState": "processing",
       "message": "Started processing"
     },
     {
-      "timestamp": "YYYY-08-07 22:06:58",
+      "timestamp": "YYYY-MM-DD 22:06:58",
       "jobState": "completed",
       "message": "Successfully exported 50000/50000 records."
     }
@@ -703,8 +703,8 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
     "listDelimiter": ",",
     "rowLimit": 50000,
     "offset": 0,
-    "dateFilterStart": "YYYY-05-01T22:29:07Z",
-    "dateFilterEnd": "YYYY-08-07T16:06:55Z",
+    "dateFilterStart": "YYYY-MM-DDT22:29:07Z",
+    "dateFilterEnd": "YYYY-MM-DDT16:06:55Z",
     "notifications": [
       {
         "method": "email",
@@ -783,7 +783,7 @@ The following table describes the GET classification job information response pa
 | `type` | string | The type of the job |
 | `imsOrgId` | string | The global company ID |
 
-## GET classifications jobs by dataset
+## GET classification jobs by dataset
 
 Use this endpoint to retrieve job information for a specified dataset ID. For more information about classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html).
 
@@ -798,7 +798,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/byDataset/62e2ecdf813be76dff0020d9?page=0&size=10" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/byDataset/{DATASET_ID}?page=0&size=10" \
      -H "Accept: */*" \
      -H "User-Agent: Example Client (https://www.exampleclient.com)" \
      -H "x-api-key: {CLIENT_ID}" \
@@ -811,30 +811,30 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 {
   "content": [
     {
-      "datasetId": "62e2ecdf813be76dff0020d9",
+      "datasetId": "exampledatasetxxd9",
       "history": [
         {
-          "timestamp": "YYYY-04-04 21:15:14",
+          "timestamp": "YYYY-MM-DD 21:15:14",
           "jobState": "created",
           "message": "Created import job via API"
         },
         {
-          "timestamp": "YYYY-04-04 21:15:14",
+          "timestamp": "YYYY-MM-DD 21:15:14",
           "jobState": "queued",
           "message": "Job queued and ready for processing."
         },
         {
-          "timestamp": "YYYY-04-04 21:15:14",
+          "timestamp": "YYYY-MM-DD 21:15:14",
           "jobState": "processing",
           "message": "Started processing"
         },
         {
-          "timestamp": "YYYY-04-04 21:15:15",
+          "timestamp": "YYYY-MM-DD 21:15:15",
           "jobState": "completed",
           "message": "Successfully imported 5/5 records."
         }
       ],
-      "imsOrgId": "1BC13D035792A0A27F000101@AdobeOrg",
+      "imsOrgId": "exampleorg@AdobeOrg",
       "jobOptions": {
         "dataFormat": "tsv",
         "encoding": "utf8",
@@ -855,25 +855,25 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
       "type": "import"
     },
     {
-      "datasetId": "62e2ecdf813be76dff0020d9",
+      "datasetId": "exampledatasetd9",
       "history": [
         {
-          "timestamp": "YYYY-04-04 21:14:56",
+          "timestamp": "YYYY-MM-DD 21:14:56",
           "jobState": "created",
           "message": "Created import job via API"
         },
         {
-          "timestamp": "YYYY-04-04 21:14:56",
+          "timestamp": "YYYY-MM-DD 21:14:56",
           "jobState": "queued",
           "message": "Job queued and ready for processing."
         },
         {
-          "timestamp": "YYYY-04-04 21:14:57",
+          "timestamp": "YYYY-MM-DD 21:14:57",
           "jobState": "processing",
           "message": "Started processing"
         },
         {
-          "timestamp": "YYYY-04-04 21:14:58",
+          "timestamp": "YYYY-MM-DD 21:14:58",
           "jobState": "completed",
           "message": "Successfully imported 5/5 records."
         }
@@ -899,38 +899,38 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
       "type": "import"
     },
     {
-      "datasetId": "62e2ecdf813be76dff0020d9",
+      "datasetId": "exampledatasetd9",
       "history": [
         {
-          "timestamp": "YYYY-04-04 21:13:41",
+          "timestamp": "YYYY-MM-DD 21:13:41",
           "jobState": "created",
           "message": "Created export job via API"
         },
         {
-          "timestamp": "YYYY-04-04 21:13:41",
+          "timestamp": "YYYY-MM-DD 21:13:41",
           "jobState": "queued",
           "message": "Job queued and ready for processing."
         },
         {
-          "timestamp": "YYYY-04-04 21:13:41",
+          "timestamp": "YYYY-MM-DD 21:13:41",
           "jobState": "processing",
           "message": "Started processing"
         },
         {
-          "timestamp": "YYYY-04-04 21:13:41",
+          "timestamp": "YYYY-MM-DD 21:13:41",
           "jobState": "completed",
           "message": "Successfully exported 0/0 records."
         }
       ],
-      "imsOrgId": "1BC13D035792A0A27F000101@AdobeOrg",
+      "imsOrgId": "exampleorg@AdobeOrg",
       "jobOptions": {
         "dataFormat": "tsv",
         "encoding": "utf8",
         "listDelimiter": ",",
         "rowLimit": 0,
         "offset": 0,
-        "dateFilterStart": "YYYY-01-01T00:00:00Z",
-        "dateFilterEnd": "YYYY-01-31T23:59:59Z"
+        "dateFilterStart": "YYYY-MM-01T00:00:00Z",
+        "dateFilterEnd": "YYYY-MM-31T23:59:59Z"
       },
       "jobId": "0ede459b-9e30-4ccb-801a-57f47fa6fe6e",
       "jobSize": 231,
