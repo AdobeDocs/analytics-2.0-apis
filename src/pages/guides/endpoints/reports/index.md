@@ -15,7 +15,7 @@ The report endpoints described in this guide are routed through analytics.adobe.
 
 This guide includes instructions for using the following endpoints:
 
-* POST reports: Creates report requests for an existing report suite. This is similar to creating visualizations in the UI by specifying components and values in the POST request payload.
+* POST reports: Creates report requests and returns data for an existing report suite. This corresponds to creating a visualization in the UI.
 * GET top items: Returns only the specified number of items in the report, ranked by highest data values
 
 This guide does not include descriptions for all request and response parameters for the reports endpoint. For more information on parameters included with this endpoint, see the [API reference](/src/pages/apis/index.md). Also, you can copy API JSON request payloads and responses associated with any visualization directly from Analysis Workspace with the [Oberon debugger tool](https://developer.adobe.com/cja-apis/docs/endpoints/reporting/debugger/). This can be a helpful aid in structuring any API reporting request from Analysis Workspace visualizations.
@@ -36,7 +36,7 @@ To make the request, use the following URI for your POST HTTP call:
 
 POST `https://analytics.adobe.io/api/{global-company-id}/reports`
 
-Click the **Request** tab in the following example to see a a request for the data shown in the visualization above, limited to the top ten values.
+Click the **Request** tab in the following example to see a POST request corresponding to the data shown in the visualization above, limited to the top ten values.
 Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
@@ -256,11 +256,11 @@ curl -X 'POST' \
 
 ### Example request details
 
-In addition to the metrics described above, the JSON body requests the following:
+In addition to the metrics described above, the JSON payload requests the following:
 
 * Time period From July 1, 2023 00:00:00.000 - August 1, 2023 00:00:00.000, using the report suite timezone
 
-* Sort response `visits` by descending `value`, i.e. highest to lowest
+* To sort response `visits` by descending `value`, i.e. highest to lowest
 
 #### Request parameters
 
