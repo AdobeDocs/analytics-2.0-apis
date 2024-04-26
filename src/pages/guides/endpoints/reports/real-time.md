@@ -37,11 +37,11 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"\
   -d '{
-  "rsid": "obue.analytics.spa",
+  "rsid": "examplersid",
   "globalFilters": [
     {
       "type": "dateRange",
-      "dateRange": "2024-04-26T09:00:00/2024-04-26T09:30:00"
+      "dateRange": "YYYY-DD-D1T09:00:00/YYYY-MM-D1T09:30:00"
     }
   ],
   "metricContainer": {
@@ -68,50 +68,60 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
 ### Response
 
 ```json
-[
-  {
-    "id": "variables/campaign",
-    "title": "Tracking Code",
-    "name": "Tracking Code",
-    "type": "string",
-    "category": "Traffic Sources",
-    "categories": [],
-    "support": [
-      "dataWarehouse",
-      "oberon"
-    ],
-    "pathable": false,
-    "segmentable": true,
-    "reportable": [
-      "oberon"
-    ],
-    "supportsDataGovernance": true,
-    "multiValued": false,
-    "standardComponent": true
-  },
-  {
-    "id": "variables/clickmaplink",
-    "title": "Activity Map Link",
-    "name": "Activity Map Link",
-    "type": "string",
-    "category": "ClickMap",
-    "categories": [
-      "Activity Map"
-    ],
-    "support": [
-      "oberon",
-      "dataWarehouse"
-    ],
-    "pathable": false,
-    "segmentable": true,
-    "reportable": [
-      "oberon"
-    ],
-    "supportsDataGovernance": true,
-    "dataGroup": "clickmap",
-    "multiValued": false
-  },
-]
+{
+  "totalPages": 1,
+  "firstPage": true,
+  "lastPage": true,
+  "numberOfElements": 3,
+  "number": 0,
+  "totalElements": 3,
+  "rows": [
+    {
+      "itemIds": [
+        "12403260900"
+      ],
+      "values": [
+        "09:00 2024-04-26"
+      ],
+      "data": [
+        2183
+      ],
+      "value": "09:00 2024-04-26",
+      "itemId": "12403260900"
+    },
+    {
+      "itemIds": [
+        "12403260910"
+      ],
+      "values": [
+        "09:10 2024-04-26"
+      ],
+      "data": [
+        2256
+      ],
+      "value": "09:10 2024-04-26",
+      "itemId": "12403260910"
+    },
+    {
+      "itemIds": [
+        "12403260920"
+      ],
+      "values": [
+        "09:20 2024-04-26"
+      ],
+      "data": [
+        2034
+      ],
+      "value": "09:20 2024-04-26",
+      "itemId": "12403260920"
+    }
+  ],
+  "summaryData": {
+    "totals": [
+      6473
+    ]
+  }
+}
 ```
 
 ### Request example details
