@@ -81,12 +81,12 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
         "12403260900"
       ],
       "values": [
-        "09:00 2024-04-26"
+        "09:00 YYYY-MM-D1"
       ],
       "data": [
         2183
       ],
-      "value": "09:00 2024-04-26",
+      "value": "09:00 YYYY-MM-D1",
       "itemId": "12403260900"
     },
     {
@@ -94,12 +94,12 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
         "12403260910"
       ],
       "values": [
-        "09:10 2024-04-26"
+        "09:10 YYYY-MM-D1"
       ],
       "data": [
         2256
       ],
-      "value": "09:10 2024-04-26",
+      "value": "09:10 YYYY-MM-D1",
       "itemId": "12403260910"
     },
     {
@@ -107,12 +107,12 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
         "12403260920"
       ],
       "values": [
-        "09:20 2024-04-26"
+        "09:20 YYY-MM-D1"
       ],
       "data": [
         2034
       ],
-      "value": "09:20 2024-04-26",
+      "value": "09:20 YYYY-MM-D1",
       "itemId": "12403260920"
     }
   ],
@@ -126,12 +126,11 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
 
 ### Request example details
 
-The above example requests the following details:
+The above example creates a real-time report request for the following:
 
-* The GET dimensions list for the `examplersid` report suite.
-* Specifies the response language in `locale` as US English with the value `en_US`.
-* The values for the `segmentable`, `reportable`, and `classifiable` parameters.
-* Information for `expansion` parameter `categories`.
+* To show data for the dimension `daterangeminute` and the metric `occurences`for the rsid `examplersid`.
+* To show data over a 30-minute time period from `YYYY-DD-D1T09:00:00` to `YYYY-MM-D1T09:30:00`, where `D1` represents the same day, between the time from `09:00` to `09:30`. The start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
+* To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`.
 
 #### Request parameters
 
@@ -180,86 +179,3 @@ The GET dimensions endpoint includes the following response parameters:
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
 
-## GET a single dimension
-
-Use this endpoint to retrieve information for a specified dimension in a report suite.
-
-**GET**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions/{DIMENSION_ID}?rsid={RSID}`
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
-#### Request
-
-```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting
-" \
-    -H "x-api-key: {CLIENT_ID}" \
-    -H "Authorization: Bearer {ACCESS_TOKEN}"
-```
-
-#### Response
-
-```json
-{
-  "id": "variables/clickmaplink",
-  "title": "Activity Map Link",
-  "name": "Activity Map Link",
-  "type": "string",
-  "category": "ClickMap",
-  "support": [
-    "oberon",
-    "dataWarehouse"
-  ],
-  "pathable": false,
-  "segmentable": true,
-  "reportable": [
-    "oberon"
-  ],
-  "supportsDataGovernance": true,
-  "dataGroup": "clickmap",
-  "allowedForReporting": true,
-  "multiValued": false
-}
-```
-
-### Request example details
-
-The above example requests the following details:
-
-* The dimensions information with the `clickmaplink` ID in the `examplersid` report suite.
-* Specifies the response language in `locale` as US English with the value `en_US`.
-* Information on whether the dimension is `allowedForReporting`.
-
-#### Request parameters
-
-The GET dimensions ID endpoint includes the following request query parameters:
-
-| Parameter | Req/Opt | Type | Description |
-| --- | --- | -- | -- |
-| `id` | required | string | Dimenstion ID (e.g.`evar1`) |
-| `rsid` | required | string | Report suite ID |
-| `locale` | optional | string | The specified language |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
-
-### Response example details
-
-The above JSON response example shows the following `clickmaplink` dimension details for the `examplersid` report suite:
-
-* Standard response details for the dimension, including the information that it is reportable to the `oberon` tool.
-* The dimension is allowed for reporting as indicated by `allowedForReporting: true`.
-
-#### Response parameters
-
-The GET dimensions ID endpoint includes the same response parameters as the GET dimensions response parameters, as described above.
-
-For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
-
-{
-  "errorCode": "invalid_data",
-  "errorDescription": "Start date cannot be earlier than 20 hours ago (relative to ReportSuite timezone) for real-time reports.",
-  "errorId": "4e34c864-8cb5-4d07-a25b-6cd8ecfe97dd"
-}
