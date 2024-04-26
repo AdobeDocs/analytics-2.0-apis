@@ -5,8 +5,7 @@ description: Retrieve real-time reports using the API
 
 # Analytics real-time reports API
 
-The Analytics 2.0 real-time report API endpoint allows you to access real-time data programmatically through Adobe Developer. The endpoint uses the same data and methods that are used when working with real-time data in the UI. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis.
-See the [Real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime) for more information.
+The Analytics 2.0 real-time report API endpoint allows you to access real-time data programmatically through Adobe Developer. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis. See the [Real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime) for more information.
 
 The endpoint described in this guide is routed through analytics.adobe.io. To use it, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
@@ -20,6 +19,8 @@ Use this endpoint to Generates a real-time report for the data requested in a PO
 
 **POST**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports/realtime'
 
+<InlineAlert variant="info" slots="text" />
+
 You can find your global company ID by using the [Discovery API](../discovery.md).
 
 ### Request and response examples
@@ -31,9 +32,37 @@ Click the **Request** tab in the following example to see a cURL request for thi
 ### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions?rsid=examplersid&locale=en_US&segmentable=true&reportable=true&classifiable=true&expansion=categories" \
-    -H "x-api-key: {CLIENT_ID}" \
-    -H "Authorization: Bearer {ACCESS_TOKEN}"
+curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtime" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"\
+  -d '{
+  "rsid": "obue.analytics.spa",
+  "globalFilters": [
+    {
+      "type": "dateRange",
+      "dateRange": "2024-04-26T09:00:00/2024-04-26T09:30:00"
+    }
+  ],
+  "metricContainer": {
+    "metrics": [
+      {
+        "columnId": "0",
+	"id": "metrics/occurrences"
+      }
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "variables/daterangeminute",
+      "dimensionColumnId": "0"
+    }
+  ],
+  "settings": {
+    "realTimeMinuteGranularity": 10,
+    "limit": 20
+  }
+}'
 ```
 
 ### Response
@@ -218,3 +247,9 @@ The above JSON response example shows the following `clickmaplink` dimension det
 The GET dimensions ID endpoint includes the same response parameters as the GET dimensions response parameters, as described above.
 
 For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
+
+{
+  "errorCode": "invalid_data",
+  "errorDescription": "Start date cannot be earlier than 20 hours ago (relative to ReportSuite timezone) for real-time reports.",
+  "errorId": "4e34c864-8cb5-4d07-a25b-6cd8ecfe97dd"
+}
