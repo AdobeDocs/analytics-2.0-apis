@@ -17,7 +17,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 Use this endpoint to Generates a real-time report for the data requested in a POST body.
 
-**POST**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports/realtime'
+**POST**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports/realtime`
 
 <InlineAlert variant="info" slots="text" />
 
