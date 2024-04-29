@@ -185,11 +185,11 @@ The GET dimensions endpoint includes the following response parameters:
 
 ```json
 {
-  "rsid": "obue.analytics.spa",
+  "rsid": "examplersid",
   "globalFilters": [
     {
       "type": "dateRange",
-      "dateRange": "2024-04-25T09:00:00/2024-04-25T09:30:00"
+      "dateRange": "YYYY-MM-25T09:00:00/YYYY-MM-25T09:30:00"
     }
   ],
   "metricContainer": {
@@ -222,11 +222,11 @@ The GET dimensions endpoint includes the following response parameters:
 
 ```json
 {
-    "rsid": "obue.analytics.spa",
+    "rsid": "examplersid",
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2024-04-25T09:31:01/2024-04-25T10:00"
+            "dateRange": "YYYY-MM-25T09:31:01/YYYY-MM-25T10:00"
         }
     ],
     "metricContainer": {
