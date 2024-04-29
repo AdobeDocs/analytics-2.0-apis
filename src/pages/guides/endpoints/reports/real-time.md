@@ -179,3 +179,89 @@ The GET dimensions endpoint includes the following response parameters:
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
 
+
+## Second example
+
+
+```json
+{
+  "rsid": "obue.analytics.spa",
+  "globalFilters": [
+    {
+      "type": "dateRange",
+      "dateRange": "2024-04-25T09:00:00/2024-04-25T09:30:00"
+    }
+  ],
+  "metricContainer": {
+    "metrics": [
+      {
+        "columnId": "0",
+    "id": "metrics/occurrences"
+      }
+    ]
+  },
+  "dimensions": [
+    {
+      "id": "variables/daterangeminute",
+      "dimensionColumnId": "0"
+    },
+        {
+      "id": "variables/clickmaplinkbyregion",
+      "dimensionColumnId": "1"
+    }
+  ],
+  "settings": {
+    "realTimeMinuteGranularity": 10,
+    "limit": 20
+  }
+}
+```
+
+
+## Third example
+
+```json
+{
+    "rsid": "obue.analytics.spa",
+    "globalFilters": [
+        {
+            "type": "dateRange",
+            "dateRange": "2024-04-25T09:31:01/2024-04-25T10:00"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "0",
+                "id": "metrics/occurrences",
+                "filters": [
+                    "0"
+                ]
+            }
+        ],
+        "metricFilters": [
+            {
+                "id": "0",
+                "type": "breakdown",
+                "dimension": "variables/clickmaplinkbyregion",
+                "itemId": "812776935"
+            }
+        ]
+    },
+    "dimensions": [
+        {
+            "id": "variables/daterangeminute",
+            "dimensionColumnId": "0"
+        },
+        {
+            "id": "variables/clickmappage",
+            "dimensionColumnId": "1"
+        }
+    ],
+    "settings": {
+        "realTimeMinuteGranularity": 1
+    }
+}
+```
+
+
