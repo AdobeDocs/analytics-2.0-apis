@@ -41,7 +41,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
   "globalFilters": [
     {
       "type": "dateRange",
-      "dateRange": "YYYY-DD-D1T09:00:00/YYYY-MM-D1T09:30:00"
+      "dateRange": "YYYY-MM-24T09:00:00/YYYY-MM-24T09:30:00"
     }
   ],
   "metricContainer": {
@@ -81,12 +81,12 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
         "12403260900"
       ],
       "values": [
-        "09:00 YYYY-MM-D1"
+        "09:00 YYYY-MM-24"
       ],
       "data": [
         2183
       ],
-      "value": "09:00 YYYY-MM-D1",
+      "value": "09:00 YYYY-MM-24",
       "itemId": "12403260900"
     },
     {
@@ -94,12 +94,12 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
         "12403260910"
       ],
       "values": [
-        "09:10 YYYY-MM-D1"
+        "09:10 YYYY-MM-24"
       ],
       "data": [
         2256
       ],
-      "value": "09:10 YYYY-MM-D1",
+      "value": "09:10 YYYY-MM-24",
       "itemId": "12403260910"
     },
     {
@@ -107,12 +107,12 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
         "12403260920"
       ],
       "values": [
-        "09:20 YYY-MM-D1"
+        "09:20 YYY-MM-24"
       ],
       "data": [
         2034
       ],
-      "value": "09:20 YYYY-MM-D1",
+      "value": "09:20 YYYY-MM-24",
       "itemId": "12403260920"
     }
   ],
@@ -129,7 +129,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
 The above example creates a real-time report request for the following:
 
 * To show data for the dimension `daterangeminute` and the metric `occurences`for the rsid `examplersid`.
-* To show data over a 30-minute time period from `YYYY-DD-D1T09:00:00` to `YYYY-MM-D1T09:30:00`, where `D1` represents the same day, between the time from `09:00` to `09:30`. The start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
+* To show data over a 30-minute time period on from `YYYY-MM-24T09:00:00` to `YYYY-MM-24T09:30:00`, or on the same day--the 24th between the time from `09:00` to `09:30`. The start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
 * To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`.
 
 #### Request parameters
@@ -155,12 +155,10 @@ The POST real-time reports endpoint includes the following request parameters:
 
 The above JSON response example shows the following details:
 
-* Information for two `classifiable` dimensions in the `examplersid` report suite, including `campaign` and `clickmaplink`.
-* The `title` and `name` values for each dimension.
-* Both dimensions have the same data `type`, set as `string`.
-* The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`.
-* Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
-* The dimension `campaign` does not have any categories associated with it, but the `clickmaplink` dimension is associated with `Activity Map`.
+* The number of `occurrences` from 9:00 to 9:10 on the 24th is `2183`.
+* The number of `occurrences` from 9:10 to 9:20 on the 24th is `2256`.
+* The number of `occurrences` from 9:20 to just before 9:30 on the 24th is `2034`.
+* The total number of `occurrences` from 9:00 to 9:30 on the 24th is `6473.
 
 #### Response parameters
 
