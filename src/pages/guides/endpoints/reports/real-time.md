@@ -150,6 +150,7 @@ The POST real-time reports endpoint includes the following request parameters:
 | `dimensionColumnId` | required | string | The dimension column ID |
 | `settings` | optional | container | Contains the settings object members for the specified real-time report, including `realTimeMinuteGranularity` |
 | `realtimeMinuteGranularity` | optional |  | The number of minutes between the reporting of the specified data |
+| `limit` | optional | $int32 | The maximum number of items to show per page |
 
 ### Response example details
 
@@ -162,27 +163,22 @@ The above JSON response example shows the following details:
 
 #### Response parameters
 
-The GET dimensions endpoint includes the following response parameters:
+The POST real-time reports endpoint includes the following response parameters:
 
 | Parameter | Type | Description |
 | --- | --- | -- |
-| `id` | string | Dimension ID |
-| `title` | string | Dimension title |
-| `name` | string | Dimension name |
-| `type` | array of enums | Lists the data type of the dimension |
-| `category` | string | Product category |
-| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
-| `support` | string | Support information |
-| `pathable` | boolean | Whether the report/dimension is pathing enabled |
-| `parent` | string | Parent dimension |
-| `extraTitleInfo` | string | Additional title info |
-| `segmentable` | boolean | Whether the dimension is segmentable |
-| `reportable` | array (string) | Whether the dimension is segmentable |
-| `description` | string | Contents of dimension description field in report|
-| `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
-| `noneSettings` | boolean | Whether "none" item report setting is set.  |
-| `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
-
+| `totalPages` | string | Dimension ID |
+| `firstPage` | string | Dimension title |
+| `lastPage` | string | Dimension name |
+| `numberOfElements` | array of enums | Lists the data type of the dimension |
+| `rows` | string | Product category |
+| `itemIds` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
+| `values` | string | Support information |
+| `data` | boolean | Whether the report/dimension is pathing enabled |
+| `value` | string | Parent dimension |
+| `itemId` | string | Additional title info |
+| `summaryData` | boolean | Whether the dimension is segmentable |
+| `totals` | array (string) | Whether the dimension is segmentable |
 
 ## Second example
 
