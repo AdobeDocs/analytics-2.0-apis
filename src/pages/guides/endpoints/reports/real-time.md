@@ -145,17 +145,13 @@ The GET dimensions endpoint includes the following request query parameters:
 | `dateRange` | optional | string | The start and end dates for the report. The format is `YYYY-DD-DDT00:00:00/YYYY-MM-DDT00:00:00`and is based on the timezone of the `rsid`.|
 | `metricContainer` | optional | container | Contains the `metrics` container |
 | `columnId` | optional | string | The column ID |
-| `id` | optional | string | The metric ID |
-| `dimensions` | optional | dateRange | The type of filter to be applied |
+| `id` | optional | string | The metric or dimension ID |
+| `dimensions` | required | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. |
+| `dimensionColumnId` | required | string | The dimension column ID |
+| `settings` | optional | container | Contains the settings object members for the specified real-time report, including `realTimeMinuteGranularity` |
+| `realtimeMinuteGranularity` | optional |  | The number of minutes between the reporting of the specified data |
 
-
-
-| `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
-| `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
-| `classifiable` | optional | boolean | Whether to include only classifiable dimensions |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
-
-#### Response example details
+### Response example details
 
 The above JSON response example shows the following details:
 
