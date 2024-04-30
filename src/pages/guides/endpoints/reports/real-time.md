@@ -140,6 +140,16 @@ The GET dimensions endpoint includes the following request query parameters:
 | --- | --- | -- | -- |
 | `rsid` | required | string | report suite ID |
 | `locale` | optional | string | The specified language |
+| `globalFilters` | optional | container | Contains the `type` and `dateRange` parameters |
+| `type` | optional | dateRange | The type of filter to be applied |
+| `dateRange` | optional | string | The start and end dates for the report. The format is `YYYY-DD-DDT00:00:00/YYYY-MM-DDT00:00:00`and is based on the timezone of the `rsid`.|
+| `metricContainer` | optional | container | Contains the `metrics` container |
+| `columnId` | optional | string | The column ID |
+| `id` | optional | string | The metric ID |
+| `dimensions` | optional | dateRange | The type of filter to be applied |
+
+
+
 | `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
 | `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
 | `classifiable` | optional | boolean | Whether to include only classifiable dimensions |
