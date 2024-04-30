@@ -134,7 +134,7 @@ The above example creates a real-time report request for the following:
 
 #### Request parameters
 
-The GET dimensions endpoint includes the following request query parameters:
+The POST real-time reports endpoint includes the following request parameters:
 
 | Parameter | Req/Opt | Type | Description |
 | --- | --- | -- | -- |
