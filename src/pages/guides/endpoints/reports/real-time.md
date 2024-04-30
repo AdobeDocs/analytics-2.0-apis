@@ -158,7 +158,7 @@ The above JSON response example shows the following details:
 * The number of `occurrences` from 9:00 to 9:10 on the 24th is `2183`.
 * The number of `occurrences` from 9:10 to 9:20 on the 24th is `2256`.
 * The number of `occurrences` from 9:20 to just before 9:30 on the 24th is `2034`.
-* The total number of `occurrences` from 9:00 to 9:30 on the 24th is `6473.
+* The total number of `occurrences` from 9:00 to 9:30 on the 24th is `6473`.
 
 #### Response parameters
 
