@@ -167,14 +167,14 @@ The POST real-time reports endpoint includes the following response parameters:
 
 | Parameter | Type | Description |
 | --- | --- | -- |
-| `totalPages` | $int32 | Dimension ID |
-| `firstPage` | string | Dimension title |
-| `lastPage` | string | Dimension name |
-| `numberOfElements` | array of enums | Lists the data type of the dimension |
-| `rows` | string | Product category |
+| `totalPages` | $int32 | The total pages for the report |
+| `firstPage` | boolean | Dimension title |
+| `lastPage` | boolean | Dimension name |
+| `numberOfElements` | $int32 | Lists the data type of the dimension |
+| `rows` | container | Contains the `row` parameters `itemIds`, `values`, `data`, `value`, and `itemId`. |
 | `itemIds` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
 | `values` | string | Support information |
-| `data` | boolean | Whether the report/dimension is pathing enabled |
+| `data` | $double | Whether the report/dimension is pathing enabled |
 | `value` | string | Parent dimension |
 | `itemId` | string | Additional title info |
 | `summaryData` | boolean | Whether the dimension is segmentable |
