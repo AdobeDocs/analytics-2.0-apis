@@ -167,7 +167,7 @@ The POST real-time reports endpoint includes the following response parameters:
 
 | Parameter | Type | Description |
 | --- | --- | -- |
-| `totalPages` | string | Dimension ID |
+| `totalPages` | $int32 | Dimension ID |
 | `firstPage` | string | Dimension title |
 | `lastPage` | string | Dimension name |
 | `numberOfElements` | array of enums | Lists the data type of the dimension |
