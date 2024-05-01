@@ -172,7 +172,7 @@ The POST real-time reports endpoint includes the following response parameters:
 | `lastPage` | boolean | Dimension name |
 | `numberOfElements` | $int32 | Lists the data type of the dimension |
 | `rows` | container | Contains the `row` parameters `itemIds`, `values`, `data`, `value`, and `itemId`. |
-| `itemIds` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
+| `itemIds` | string | Processing number used to associate time values |
 | `values` | string | Support information |
 | `data` | $double | Whether the report/dimension is pathing enabled |
 | `value` | string | Parent dimension |
