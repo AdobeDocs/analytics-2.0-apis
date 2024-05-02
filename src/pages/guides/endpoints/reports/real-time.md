@@ -230,12 +230,12 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```json
 {
-  "totalPages": 2,
+  "totalPages": 1,
   "firstPage": true,
-  "lastPage": false,
-  "numberOfElements": 20,
+  "lastPage": true,
+  "numberOfElements": 5,
   "number": 0,
-  "totalElements": 30,
+  "totalElements": 5,
   "rows": [
     {
       "itemIds": [
@@ -243,7 +243,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
         "1411878551"
       ],
       "values": [
-        "09:00 2024-05-02",
+        "09:00 YYYY-MM-25",
         "Save|BODY"
       ],
       "data": [
@@ -256,7 +256,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
         "4192888170"
       ],
       "values": [
-        "09:00 2024-05-02",
+        "09:00 YYY-MM-25",
         "Discard changes|BODY"
       ],
       "data": [
@@ -269,7 +269,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
         "1411878551"
       ],
       "values": [
-        "09:10 2024-05-02",
+        "09:10 YYYY-MM-25",
         "Save|BODY"
       ],
       "data": [
@@ -282,22 +282,35 @@ Click the **Request** tab in the following example to see a cURL request for thi
         "4192888170"
       ],
       "values": [
-        "09:10 2024-05-02",
+        "09:10 YYYY-MM-25",
         "Discard changes|BODY"
       ],
       "data": [
         45
       ]
+    },
+    {
+      "itemIds": [
+        "12404020920",
+        "1146295988"
+      ],
+      "values": [
+        "09:20 YYYY-MM-25",
+        "Save|BODY"
+      ],
+      "data": [
+        214
+      ]
     }
   ],
   "summaryData": {
     "totals": [
-      202
+      414
     ],
     "realTimeTotalsPerPeriod": [
-      3726,
-      3710,
-      3998
+      97,
+      105,
+      214
     ]
   }
 }
