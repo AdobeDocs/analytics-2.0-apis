@@ -182,8 +182,15 @@ The POST real-time reports endpoint includes the following response parameters:
 
 ## Trended real-time report
 
-The following example includes a trended real-time report.
+The following example shows a trended real-time report. The POST request includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is an additional row with the data values for the added dimension.
 
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+### Request
 
 ```json
 {
@@ -218,6 +225,7 @@ The following example includes a trended real-time report.
   }
 }
 ```
+### Response
 
 
 ## Third example
