@@ -180,7 +180,7 @@ The POST real-time reports endpoint includes the following response parameters:
 | `summaryData` | container | Contains objects providing summary for report |
 | `totals` | $int32 | The total for all `data` results in the report |
 
-## Real-time report with an addiional dimension
+## Real-time report with an additional dimension
 
 The POST request example includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is additional data values for the added dimension and combined dimension `occurences`.
 
@@ -347,13 +347,13 @@ The request parameters shown in this example are described in the table above.
 
 The above JSON response example shows the following details:
 
-* The number of `occurrences` for the clickmap in the `Save|BODY` region from 9:00 to 9:10 on the 25th is `53`.
-* The number of `occurrences` for the clickmap in the `Discard|BODY` region from 9:00 to 9:10 on the 25th is `44`.
-* The number of `occurrences` for the clickmap in the `Save|BODY` region from 9:10 to 9:20 on the 25th is `60`.
-* The number of `occurrences` for the clickmap in the `Discard|BODY` region from 9:10 to 9:20 on the 25th is `45`.
-* The number of `occurrences` for the clickmap in the `Save|BODY` region from 9:20 to 9:30 on the 25th is `214`.
-* The number of `occurrences` for the clickmap in the `Discard|BODY` region from 9:20 to 9:30 on the 25th is `33`.
-* The total number of `occurrences` from 9:00 to 9:30 on the 25th is `449`.
+* The number of clickmap `occurrences` for the `Save|BODY` region from 9:00 to 9:10 on the 25th is `53`.
+* The number of clickmap `occurrences` for the `Discard|BODY` region from 9:00 to 9:10 on the 25th is `44`.
+* The number of clickmap `occurrences` for the `Save|BODY` region from 9:10 to 9:20 on the 25th is `60`.
+* The number of clickmap `occurrences` for the `Discard|BODY` region from 9:10 to 9:20 on the 25th is `45`.
+* The number of clickmap `occurrences` for the `Save|BODY` region from 9:20 to 9:30 on the 25th is `214`.
+* The number of clickmap `occurrences` for the `Discard|BODY` region from 9:20 to 9:30 on the 25th is `33`.
+* The total number of clickmap `occurrences` from 9:00 to 9:30 on the 25th is `449`.
 
 
 ## Third example
