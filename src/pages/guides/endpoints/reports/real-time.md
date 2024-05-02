@@ -356,50 +356,6 @@ The above JSON response example shows the following details:
 * The total number of clickmap `occurrences` from 9:00 to 9:30 on the 25th is `449`.
 
 
-## Third example
+## Real-time breakdown reports
 
-```json
-{
-    "rsid": "examplersid",
-    "globalFilters": [
-        {
-            "type": "dateRange",
-            "dateRange": "YYYY-MM-25T09:31:01/YYYY-MM-25T10:00"
-        }
-    ],
-    "metricContainer": {
-        "metrics": [
-            {
-                "columnId": "0",
-                "id": "metrics/occurrences",
-                "filters": [
-                    "0"
-                ]
-            }
-        ],
-        "metricFilters": [
-            {
-                "id": "0",
-                "type": "breakdown",
-                "dimension": "variables/clickmaplinkbyregion",
-                "itemId": "812776935"
-            }
-        ]
-    },
-    "dimensions": [
-        {
-            "id": "variables/daterangeminute",
-            "dimensionColumnId": "0"
-        },
-        {
-            "id": "variables/clickmappage",
-            "dimensionColumnId": "1"
-        }
-    ],
-    "settings": {
-        "realTimeMinuteGranularity": 1
-    }
-}
-```
-
-
+Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied. To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
