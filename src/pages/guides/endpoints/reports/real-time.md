@@ -226,7 +226,288 @@ Click the **Request** tab in the following example to see a cURL request for thi
 }
 ```
 ### Response
-
+```
+{
+  "totalPages": 2,
+  "firstPage": true,
+  "lastPage": false,
+  "numberOfElements": 20,
+  "number": 0,
+  "totalElements": 30,
+  "rows": [
+    {
+      "itemIds": [
+        "12404020900",
+        "1146295988"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Save|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        217
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "1411878551"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Save|BODY"
+      ],
+      "data": [
+        53
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "1307648754"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Save as|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        57
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "4192888170"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Discard changes|BODY"
+      ],
+      "data": [
+        44
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "3794048908"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Create|react-spectrum-29-content"
+      ],
+      "data": [
+        30
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "1707590997"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Cancel|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        18
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "2520348285"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Apply|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        11
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "3014768080"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Apply|calendarPopover_4"
+      ],
+      "data": [
+        13
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "3730006130"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "Cancel|BODY"
+      ],
+      "data": [
+        19
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020900",
+        "934715588"
+      ],
+      "values": [
+        "09:00 2024-05-02",
+        "New project|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        14
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "1146295988"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Save|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        197
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "1411878551"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Save|BODY"
+      ],
+      "data": [
+        60
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "1307648754"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Save as|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        42
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "4192888170"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Discard changes|BODY"
+      ],
+      "data": [
+        45
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "3794048908"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Create|react-spectrum-29-content"
+      ],
+      "data": [
+        31
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "1707590997"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Cancel|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        23
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "2520348285"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Apply|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        25
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "3014768080"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Apply|calendarPopover_4"
+      ],
+      "data": [
+        23
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "3730006130"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "Cancel|BODY"
+      ],
+      "data": [
+        10
+      ]
+    },
+    {
+      "itemIds": [
+        "12404020910",
+        "934715588"
+      ],
+      "values": [
+        "09:10 2024-05-02",
+        "New project|single-spa-application:@aaui/analyticsui-analytics_web_spa"
+      ],
+      "data": [
+        17
+      ]
+    }
+  ],
+  "summaryData": {
+    "totals": [
+      11434
+    ],
+    "realTimeTotalsPerPeriod": [
+      3726,
+      3710,
+      3998
+    ]
+  }
+}
+```
 
 ## Third example
 
