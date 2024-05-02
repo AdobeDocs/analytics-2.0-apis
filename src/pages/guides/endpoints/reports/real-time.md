@@ -148,7 +148,7 @@ The POST real-time reports endpoint includes the following request parameters:
 | `id` | optional | string | The metric or dimension ID |
 | `dimensions` | required | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. |
 | `dimensionColumnId` | required | string | The dimension column ID |
-| `settings` | optional | container | Contains the settings object members for the specified real-time report, including `realTimeMinuteGranularity` |
+| `settings` | optional | container | Contains the `settings` object members for the specified real-time report, including `realTimeMinuteGranularity` |
 | `realtimeMinuteGranularity` | optional |  | The number of minutes between the reporting of the specified data |
 | `limit` | optional | $int32 | The maximum number of items to show per page |
 
@@ -168,17 +168,17 @@ The POST real-time reports endpoint includes the following response parameters:
 | Parameter | Type | Description |
 | --- | --- | -- |
 | `totalPages` | $int32 | The total pages for the report |
-| `firstPage` | boolean | Dimension title |
-| `lastPage` | boolean | Dimension name |
-| `numberOfElements` | $int32 | Lists the data type of the dimension |
+| `firstPage` | boolean | Whether the response includes the first page of report |
+| `lastPage` | boolean | Whether the response includes the last page of report |
+| `numberOfElements` | $int32 | The total number of elements included in the report |
 | `rows` | container | Contains the `row` parameters `itemIds`, `values`, `data`, `value`, and `itemId`. |
-| `itemIds` | string | Processing number used to associate time values |
-| `values` | string | Support information |
-| `data` | $double | Whether the report/dimension is pathing enabled |
-| `value` | string | Parent dimension |
-| `itemId` | string | Additional title info |
-| `summaryData` | boolean | Whether the dimension is segmentable |
-| `totals` | array (string) | Whether the dimension is segmentable |
+| `itemIds` | string | Processing numbers used to associate time values |
+| `values` | string | The `values`--or in this case the tim--associated with the `data`|
+| `data` | $double | The `data`--or in this case the `occurrences`--associated with the specified item and `value` |
+| `value` | string | The `values`--or in this case the tim--associated with the `data` |
+| `itemId` | string | Processing number used to associate time values |
+| `summaryData` | container | Contains objects providing summary for report |
+| `totals` | $int32 | The total for all `data` results in the report |
 
 ## Second example
 
