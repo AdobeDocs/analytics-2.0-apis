@@ -225,8 +225,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
   }
 }
 ```
+
 ### Response
-```
+
+```json
 {
   "totalPages": 2,
   "firstPage": true,
