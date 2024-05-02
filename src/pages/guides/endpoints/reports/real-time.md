@@ -129,7 +129,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
 The above example creates a real-time report request for the following:
 
 * To show data for the dimension `daterangeminute` and the metric `occurences`for the rsid `examplersid`.
-* To show data over a 30-minute time period on from `YYYY-MM-24T09:00:00` to `YYYY-MM-24T09:30:00`, or on the same day--the 24th between the time from `09:00` to `09:30`. The start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
+* To show data over a 30-minute time period on from `YYYY-MM-24T09:00:00` to `YYYY-MM-24T09:30:00`, or on the same day--the 24th between the time from `09:00` to `09:30`. Note: the start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
 * To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`.
 
 #### Request parameters
@@ -180,9 +180,9 @@ The POST real-time reports endpoint includes the following response parameters:
 | `summaryData` | container | Contains objects providing summary for report |
 | `totals` | $int32 | The total for all `data` results in the report |
 
-## Real-time report with multiple dimensions
+## Real-time report with an addiional dimension
 
-The following example shows a trended real-time report. The POST request includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is an additional row with the data values for the added dimension.
+The POST request example includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is additional data values for the added dimension and combined dimension `occurences`.
 
 ### Request and response examples
 
@@ -192,8 +192,12 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ### Request
 
-```json
-{
+```sh
+curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtime" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"\
+  -d '{
   "rsid": "examplersid",
   "globalFilters": [
     {
@@ -292,7 +296,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
     {
       "itemIds": [
         "12404020920",
-        "1146295988"
+        "1146295927"
       ],
       "values": [
         "09:20 YYYY-MM-25",
@@ -301,20 +305,56 @@ Click the **Request** tab in the following example to see a cURL request for thi
       "data": [
         214
       ]
+    },
+    {
+      "itemIds": [
+        "12404020920",
+        "1146295956"
+      ],
+      "values": [
+        "09:20 YYYY-MM-25",
+        "Discard changes|BODY"
+      ],
+      "data": [
+        33
+      ]
     }
   ],
   "summaryData": {
     "totals": [
-      414
+      449
     ],
     "realTimeTotalsPerPeriod": [
       97,
       105,
-      214
+      247
     ]
   }
 }
 ```
+
+### Request example details
+
+The above example creates a real-time report request for the following:
+
+* To show data for the dimensions `daterangeminute` and `clickmaplinkbyregion` according to the metric `occurences`for the rsid `examplersid`.
+* To show data over a 30-minute time period on from `YYYY-MM-25T09:00:00` to `YYYY-MM-25T09:30:00`, or on the same day--the 25th between the time from `09:00` to `09:30`. Note: the start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
+* To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`.
+
+The request parameters shown in this example are described in the table above.
+
+### Response example details
+
+The above JSON response example shows the following details:
+
+* The number of `occurrences` for the clickmap in the `Save|BODY` region from 9:00 to 9:10 on the 25th is `53`.
+* The number of `occurrences` for the clickmap in the `Discard|BODY` region from 9:00 to 9:10 on the 25th is `44`.
+* The number of `occurrences` for the clickmap in the `Save|BODY` region from 9:10 to 9:20 on the 25th is `60`.
+* The number of `occurrences` for the clickmap in the `Discard|BODY` region from 9:10 to 9:20 on the 25th is `45`.
+* The number of `occurrences` for the clickmap in the `Save|BODY` region from 9:20 to 9:30 on the 25th is `214`.
+* The number of `occurrences` for the clickmap in the `Discard|BODY` region from 9:20 to 9:30 on the 25th is `33`.
+* The total number of `occurrences` from 9:00 to 9:30 on the 25th is `449`.
+
 
 ## Third example
 
