@@ -3,7 +3,7 @@ title: Real-time reports API
 description: Retrieve real-time reports using the API
 ---
 
-# Analytics real-time reports API
+# Analytics 2.0 real-time reports API
 
 The Analytics 2.0 real-time report API endpoint allows you to access real-time data programmatically through Adobe Developer. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis. See the [Real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime) for more information.
 
@@ -180,7 +180,9 @@ The POST real-time reports endpoint includes the following response parameters:
 | `summaryData` | container | Contains objects providing summary for report |
 | `totals` | $int32 | The total for all `data` results in the report |
 
-## Second example
+## Trended real-time report
+
+The following example includes a trended real-time report.
 
 
 ```json
