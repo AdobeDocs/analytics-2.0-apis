@@ -355,7 +355,26 @@ The above JSON response example shows the following details:
 * The number of clickmap `occurrences` for the `Discard|BODY` region from 9:20 to 9:30 on the 25th is `33`.
 * The total number of clickmap `occurrences` from 9:00 to 9:30 on the 25th is `449`.
 
-
 ## Real-time breakdown reports
 
 Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied. To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
+
+## Troubleshooting
+
+If you receive a 400 status code error response, make sure your requests comply with the following rules:
+
+Provide only valid metrics or metrics that are supported by realtime requests.
+Provide only valid dimensions or a dimensions that are supported by realtime requests.
+Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
+First dimension should always be variables/dateRangeMinute since real time reports are always time bound and reported over minute granularity.
+Provide combinations of metrics/dimensions that does not qualify as as "overtime", "trended" or "breakdown" types. Those are defined in the wiki.
+Search input is only supported for trended reports.
+realTimeMinuteGranularity in settings object should be atleast 10.
+User cannot pass statistics, identityOverrides, bulkExportSettings. These are valid for normal reports but not realtime.
+Global filter can only contain on entry that should be dateRange type.
+Calculated metrics cannot be passed for real-time reports.
+Segment filtering cannot be done for real-time reports.
+Start date of the report cannot be earlier than 20 hours ago (relative to report suite timezone) and start date cannot be in future.
+Global Date range is required and should be of the format StartDate/EndDate (eg 2024-03-27T09:00:00/2024-03-27T09:30:00). Start date cannot be earlier than end date.
+Page passed in the input should be a non negative number.
+
