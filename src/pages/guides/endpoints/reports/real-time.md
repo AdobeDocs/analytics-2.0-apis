@@ -364,17 +364,31 @@ Breakdown reports are useful when you want to see the cross-product of values fr
 If you receive a 400 status code error response, make sure your requests comply with the following rules:
 
 Provide only valid metrics or metrics that are supported by realtime requests.
+
 Provide only valid dimensions or a dimensions that are supported by realtime requests.
+
 Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
+
 First dimension should always be variables/dateRangeMinute since real time reports are always time bound and reported over minute granularity.
+
 Provide combinations of metrics/dimensions that does not qualify as as "overtime", "trended" or "breakdown" types. Those are defined in the wiki.
+
 Search input is only supported for trended reports.
+
 realTimeMinuteGranularity in settings object should be atleast 10.
+
 User cannot pass statistics, identityOverrides, bulkExportSettings. These are valid for normal reports but not realtime.
+
 Global filter can only contain on entry that should be dateRange type.
+
 Calculated metrics cannot be passed for real-time reports.
+
 Segment filtering cannot be done for real-time reports.
+
 Start date of the report cannot be earlier than 20 hours ago (relative to report suite timezone) and start date cannot be in future.
+
 Global Date range is required and should be of the format StartDate/EndDate (eg 2024-03-27T09:00:00/2024-03-27T09:30:00). Start date cannot be earlier than end date.
+
 Page passed in the input should be a non negative number.
+
 
