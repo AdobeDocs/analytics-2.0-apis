@@ -128,7 +128,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
 
 The above example creates a real-time report request for the following:
 
-* To show data for the dimension `daterangeminute` and the metric `occurences`for the rsid `examplersid`.
+* To show data for the dimension `daterangeminute` and the metric `occurrences` for the rsid `examplersid`.
 * To show data over a 30-minute time period on from `YYYY-MM-24T09:00:00` to `YYYY-MM-24T09:30:00`, or on the same day--the 24th between the time from `09:00` to `09:30`. Note: the start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
 * To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`.
 
@@ -182,7 +182,7 @@ The POST real-time reports endpoint includes the following response parameters:
 
 ## Real-time report with an additional dimension
 
-The following POST request example includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is additional data values for the added dimension and combined dimension `occurences`.
+The following POST request example includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is additional data values for the added dimension and combined dimension `occurrences`.
 
 ### Request and response examples
 
@@ -376,7 +376,7 @@ HTTP code | Meaning | Description
 
 If you receive a 400 status code error response, make sure your requests comply with the following rules:
 
-* Provide only valid metrics or dimensions that are [supported by realtime requests](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime-metrics).
+* Provide only valid metrics or dimensions that are [supported by real-time requests](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime-metrics).
 * Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
 * Always specify your first dimension as `variables/dateRangeMinute` since real time reports are always time bound and reported over minute granularity.
 * Provide combinations of metrics and dimensions that do not qualify as as "overtime", "trended" or "breakdown" types.
@@ -395,7 +395,7 @@ If you receive a 400 status code error response, make sure your requests comply 
 
 For more information on real-time reports, see the following:
 
-* [Adobe Anayltics 2.0 API real-time report reference](https://adobedocs.github.io/analytics-2.0-apis/#/Reports/runRealtimeReport)
+* [Adobe Analytics 2.0 API real-time report reference](https://adobedocs.github.io/analytics-2.0-apis/#/Reports/runRealtimeReport)
 * [Adobe Analytics 2.0 API reporting guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/)
 * [Adobe Analytics API breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/)
 * [Adobe Analytics real-time reports configuration](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/manage-report-suites/edit-report-suite/real-time-reports/t-realtime-admin)
