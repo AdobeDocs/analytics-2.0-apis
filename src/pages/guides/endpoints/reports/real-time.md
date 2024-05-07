@@ -391,4 +391,18 @@ If you receive a 400 status code error response, make sure your requests comply 
 * Always include a global date range in format **StartDate/EndDate** (YYYY-MM-DDT00:00:00/YY-MM-DDT00:00:00). The start date cannot be earlier than the end date.
 * Do not specify negative numbers for `page` parameters.
 
+  For more information on real-time reports, see the following:
+
+* Adobe Anayltics 2.0 API real-time report reference
+* Adobe Analytics 2.0 API report guide
+* Adobe Analytics API dimensions breakdown
+* Adobe Analytics real-time reports configuration
+* Adobe Analytics supported real-time metrics and dimensions
+* Adobe Analytics real-time reporting overview
+* Adobe Analytics Tech Notes: Real-time reports
+* Adobe Analytics Admin Guide: Real-time reports
+  
+  
+  
+
 
