@@ -373,7 +373,8 @@ HTTP code | Meaning | Description
 
 ## Troubleshooting
 
-* If you receive a 400 status code error response, make sure your requests comply with the following rules:
+If you receive a 400 status code error response, make sure your requests comply with the following rules:
+
 * Provide only valid metrics or metrics that are supported by realtime requests.
 * Provide only valid dimensions or a dimensions that are supported by realtime requests.
 * Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
