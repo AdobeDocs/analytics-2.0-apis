@@ -360,12 +360,13 @@ The above JSON response example shows the following details:
 Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied. To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
 
 ## Status codes
+
 Each web API call returns an HTTP status code that reflects the result of a request:
 
 HTTP code | Meaning | Description
 --- | --- | ---
 200 | Success | The request is successful.
-400 | Bad Request | The request was improperly constructed, missing key information, and/or contained incorrect syntax. This error code could indicate a problem such as a missing required parameter or the supplied data didn't pass validation.
+400 | Bad Request | The request was improperly constructed, missing key information, and/or contained incorrect syntax. This error code could indicate a problem such as a missing required parameter or the supplied data did not pass validation.
 401 | Authentication failed | The request did not pass an authentication check. Your access token may be missing or invalid. Similarly, you may have attempted to access an object that requires administrator permissions. See the OAuth token errors section below for more details.
 403 | Forbidden | The resource was found, but you do not have the right credentials to view it. You might not have the required permissions to access or edit the resource for reasons not applicable to status code 401.
 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly.
@@ -375,8 +376,7 @@ HTTP code | Meaning | Description
 
 If you receive a 400 status code error response, make sure your requests comply with the following rules:
 
-* Provide only valid metrics or metrics that are supported by realtime requests.
-* Provide only valid dimensions or a dimensions that are supported by realtime requests.
+* Provide only valid metrics or dimensions that are [supported by realtime requests](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime-metrics).
 * Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
 * Always specify your first dimension as `variables/dateRangeMinute` since real time reports are always time bound and reported over minute granularity.
 * Provide combinations of metrics and dimensions that do not qualify as as "overtime", "trended" or "breakdown" types.
@@ -396,14 +396,12 @@ If you receive a 400 status code error response, make sure your requests comply 
 For more information on real-time reports, see the following:
 
 * [Adobe Anayltics 2.0 API real-time report reference](https://adobedocs.github.io/analytics-2.0-apis/#/Reports/runRealtimeReport)
-* Adobe Analytics 2.0 API report guide
-* Adobe Analytics API dimensions breakdown
-* Adobe Analytics real-time reports configuration
-* Adobe Analytics supported real-time metrics and dimensions
+* [Adobe Analytics 2.0 API reporting guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/)
+* [Adobe Analytics API breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/)
+* [Adobe Analytics real-time reports configuration](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/manage-report-suites/edit-report-suite/real-time-reports/t-realtime-admin)
+* [Adobe Analytics supported real-time metrics and dimensions](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime-metrics)
 * [Adobe Analytics real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime)
-* [Adobe Analytics Tech Notes: Real-time reports](https://experienceleague.adobe.com/en/docs/analytics/technotes/ga-to-aa/reports/realtime-reports)
-* [Adobe Analytics Admin Guide: Real-time reports](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/manage-report-suites/edit-report-suite/real-time-reports/t-realtime-admin)
-  
+* [Adobe Analytics Tech Notes: Real-time reports](https://experienceleague.adobe.com/en/docs/analytics/technotes/ga-to-aa/reports/realtime-reports)  
   
   
 
