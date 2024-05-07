@@ -395,14 +395,14 @@ If you receive a 400 status code error response, make sure your requests comply 
 
 For more information on real-time reports, see the following:
 
-* Adobe Anayltics 2.0 API real-time report reference
+* [Adobe Anayltics 2.0 API real-time report reference](https://adobedocs.github.io/analytics-2.0-apis/#/Reports/runRealtimeReport)
 * Adobe Analytics 2.0 API report guide
 * Adobe Analytics API dimensions breakdown
 * Adobe Analytics real-time reports configuration
 * Adobe Analytics supported real-time metrics and dimensions
-* Adobe Analytics real-time reporting overview
-* Adobe Analytics Tech Notes: Real-time reports
-* Adobe Analytics Admin Guide: Real-time reports
+* [Adobe Analytics real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime)
+* [Adobe Analytics Tech Notes: Real-time reports](https://experienceleague.adobe.com/en/docs/analytics/technotes/ga-to-aa/reports/realtime-reports)
+* [Adobe Analytics Admin Guide: Real-time reports](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/manage-report-suites/edit-report-suite/real-time-reports/t-realtime-admin)
   
   
   
