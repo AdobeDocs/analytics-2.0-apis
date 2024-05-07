@@ -373,36 +373,21 @@ HTTP code | Meaning | Description
 
 ## Troubleshooting
 
-If you receive a 400 status code error response, make sure your requests comply with the following rules:
-
-Provide only valid metrics or metrics that are supported by realtime requests.
-
-Provide only valid dimensions or a dimensions that are supported by realtime requests.
-
-Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
-
-Always specify your first dimension as `variables/dateRangeMinute` since real time reports are always time bound and reported over minute granularity.
-
-Provide combinations of metrics and dimensions that do not qualify as as "overtime", "trended" or "breakdown" types.
-
-Supply search inputs only for trended reports.
-
-Specify `realTimeMinuteGranularity` in settings object of at least `10`.
-
-Do not pass `statistics`, `identityOverrides`, or `bulkExportSettings`. These are valid for normal reports but not for realtime.
-
-When using global filters, provide only a `dateRange` type entry.
-
-Do not include calculated metrics for real-time report requests.
-
-Do not incluce segment filtering for real-time report request.
-
-Do not specify the start date of the report earlier than 20 hours ago (relative to report suite timezone).
-
-Do not specify the start date in the future.
-
-Always include a global date range in format **StartDate/EndDate** (YYYY-MM-DDT00:00:00/YY-MM-DDT00:00:00). The start date cannot be earlier than the end date.
-
-Do not specify negative numbers for `page` parameters.
+* If you receive a 400 status code error response, make sure your requests comply with the following rules:
+* Provide only valid metrics or metrics that are supported by realtime requests.
+* Provide only valid dimensions or a dimensions that are supported by realtime requests.
+* Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
+* Always specify your first dimension as `variables/dateRangeMinute` since real time reports are always time bound and reported over minute granularity.
+* Provide combinations of metrics and dimensions that do not qualify as as "overtime", "trended" or "breakdown" types.
+* Supply search inputs only for trended reports.
+* Specify `realTimeMinuteGranularity` in settings object of at least `10`.
+* Do not pass `statistics`, `identityOverrides`, or `bulkExportSettings`. These are valid for normal reports but not for realtime.
+* When using global filters, provide only a `dateRange` type entry.
+* Do not include calculated metrics for real-time report requests.
+* Do not incluce segment filtering for real-time report request.
+* Do not specify the start date of the report earlier than 20 hours ago (relative to report suite timezone).
+* Do not specify the start date in the future.
+* Always include a global date range in format **StartDate/EndDate** (YYYY-MM-DDT00:00:00/YY-MM-DDT00:00:00). The start date cannot be earlier than the end date.
+* Do not specify negative numbers for `page` parameters.
 
 
