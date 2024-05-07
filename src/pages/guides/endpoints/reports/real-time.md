@@ -359,6 +359,18 @@ The above JSON response example shows the following details:
 
 Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied. To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
 
+## Status codes
+Each web API call returns an HTTP status code that reflects the result of a request:
+
+HTTP code | Meaning | Description
+--- | --- | ---
+200 | Success | The request is successful.
+400 | Bad Request | The request was improperly constructed, missing key information, and/or contained incorrect syntax. This error code could indicate a problem such as a missing required parameter or the supplied data didn't pass validation.
+401 | Authentication failed | The request did not pass an authentication check. Your access token may be missing or invalid. Similarly, you may have attempted to access an object that requires administrator permissions. See the OAuth token errors section below for more details.
+403 | Forbidden | The resource was found, but you do not have the right credentials to view it. You might not have the required permissions to access or edit the resource for reasons not applicable to status code 401.
+404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly.
+500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Wait for a moment before trying your request again, and contact your administrator if the problem persists.
+
 ## Troubleshooting
 
 If you receive a 400 status code error response, make sure your requests comply with the following rules:
@@ -369,26 +381,28 @@ Provide only valid dimensions or a dimensions that are supported by realtime req
 
 Pass only one metric per request. Currently, the service returns 400 if more than one is passed.
 
-First dimension should always be variables/dateRangeMinute since real time reports are always time bound and reported over minute granularity.
+Always specify your first dimension as `variables/dateRangeMinute` since real time reports are always time bound and reported over minute granularity.
 
-Provide combinations of metrics/dimensions that does not qualify as as "overtime", "trended" or "breakdown" types. Those are defined in the wiki.
+Provide combinations of metrics and dimensions that do not qualify as as "overtime", "trended" or "breakdown" types.
 
-Search input is only supported for trended reports.
+Supply search inputs only for trended reports.
 
-realTimeMinuteGranularity in settings object should be atleast 10.
+Specify `realTimeMinuteGranularity` in settings object of at least `10`.
 
-User cannot pass statistics, identityOverrides, bulkExportSettings. These are valid for normal reports but not realtime.
+Do not pass `statistics`, `identityOverrides`, or `bulkExportSettings`. These are valid for normal reports but not for realtime.
 
-Global filter can only contain on entry that should be dateRange type.
+When using global filters, provide only a `dateRange` type entry.
 
-Calculated metrics cannot be passed for real-time reports.
+Do not include calculated metrics for real-time report requests.
 
-Segment filtering cannot be done for real-time reports.
+Do not incluce segment filtering for real-time report request.
 
-Start date of the report cannot be earlier than 20 hours ago (relative to report suite timezone) and start date cannot be in future.
+Do not specify the start date of the report earlier than 20 hours ago (relative to report suite timezone).
 
-Global Date range is required and should be of the format StartDate/EndDate (eg 2024-03-27T09:00:00/2024-03-27T09:30:00). Start date cannot be earlier than end date.
+Do not specify the start date in the future.
 
-Page passed in the input should be a non negative number.
+Always include a global date range in format **StartDate/EndDate** (YYYY-MM-DDT00:00:00/YY-MM-DDT00:00:00). The start date cannot be earlier than the end date.
+
+Do not specify negative numbers for `page` parameters.
 
 
