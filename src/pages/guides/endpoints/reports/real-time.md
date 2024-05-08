@@ -130,7 +130,7 @@ The above example creates a real-time report request for the following:
 
 * To show data for the dimension `daterangeminute` and the metric `occurrences` for the rsid `examplersid`.
 * To show data over a 30-minute time period on from `YYYY-MM-24T09:00:00` to `YYYY-MM-24T09:30:00`, or on the same day--the 24th between the time from `09:00` to `09:30`. Note: the start date cannot be earlier than 20 hours from the time the request is made, according to the time zone specified for the report suite.
-* To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`.
+* To show data at a granularity of `10` minutes, as specified in the value of `realTimeMinuteGranularity`. The default granularity is one minute.
 
 #### Request parameters
 
