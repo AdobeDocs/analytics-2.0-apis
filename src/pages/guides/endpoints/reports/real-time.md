@@ -386,7 +386,7 @@ In this case, the `variables/prop1` dimension and its `itemId` are applied as a 
 
 ## Status codes
 
-Each web API call returns an HTTP status code that reflects the result of a request:
+Each API request returns an HTTP status code that reflects the result, as follows:
 
 HTTP code | Meaning | Description
 --- | --- | ---
