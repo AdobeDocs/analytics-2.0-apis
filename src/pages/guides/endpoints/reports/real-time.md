@@ -359,6 +359,18 @@ The above JSON response example shows the following details:
 
 Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied. To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
 
+### Real-time limitations
+
+1.  At a high level, real-time reports only support a single level of breakdown (i.e. one dimension broken down by another dimension). Realtime "report configuration" rows are set with one metric and 1-3 dimensions. Real-time breakdown reports (i.e. relating multiple dimensions in a single report) can only be run on dimensions that are configured as part of the same "report configuration" row in the data. Therefore, dimensions that exist in different "report configuration" rows cannot be executed together in a real-time report. 
+
+2.  Only the first dimension in a report row is related or correlated to the other row dimensions. The second and third dimensions are not correlated to each other. As a result, any configuration that includes three dimensions can only show two possible breakdowns, as follows:
+
+	* Valid: Dimension1 by Dimension2
+	* Valid: Dimension1 by Dimension3
+	* Not valid: Dimension2 by Dimension3
+
+	Note: Correlations work in both directions automatically. A single report on two dimensions together allows reporting breakdowns in either direction.
+
 ## Status codes
 
 Each web API call returns an HTTP status code that reflects the result of a request:
@@ -388,6 +400,7 @@ If you receive a 400 status code error response, make sure your requests comply 
 * Do not incluce segment filtering for real-time report request.
 * Do not specify the start date of the report earlier than 20 hours ago (relative to report suite timezone).
 * Do not specify the start date in the future.
+* Only 60 or fewer time periods can be requested per report.
 * Always include a global date range in format **StartDate/EndDate** (YYYY-MM-DDT00:00:00/YY-MM-DDT00:00:00). The start date cannot be earlier than the end date.
 * Do not specify negative numbers for `page` parameters.
 
