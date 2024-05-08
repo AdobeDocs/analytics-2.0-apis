@@ -357,7 +357,20 @@ The above JSON response example shows the following details:
 
 ## Real-time breakdown reports
 
-Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied. To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
+Breakdown reports are useful when you want to see the cross-product of values from two different dimensions. When creating a real-time breakdown report, use the same endpoint as shown above. A real-time breakdown report includes the `variable/daterangeminute` dimension, a metric, an additional dimension, and a breakdown `itemId`. Within the payload of the request, use the `metricsFilters` parameter to specify the filter to be applied, as shown below:
+
+```json
+"metricFilters":[
+         {
+            "id":"0",
+            "type":"breakdown",
+            "dimension":"variables/prop1",
+            "itemId":"2939795554"
+         }
+      ]
+```
+
+To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
 
 ### Real-time breakdown limitations
 
