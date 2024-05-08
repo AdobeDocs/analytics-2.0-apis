@@ -370,7 +370,7 @@ Breakdown reports are useful when you want to see the cross-product of values fr
       ]
 ```
 
-To see an example of a breakdown request that specifies an object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
+In this case, the `variables/prop1` dimension and its `itemId` are applied as a filter to produce the breakdown. To see an example of a breakdown request that specifies a different object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
 
 ### Real-time breakdown limitations
 
