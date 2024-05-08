@@ -391,11 +391,11 @@ In some instances, the number of dimension values returned per specified time pe
 ```json
 "settings": {
     "realTimeMinuteGranularity": 30,
-	realTimeValuesPerPeriod": 12
+	"realTimeValuesPerPeriod": 12
   }
 ```
 
-Note: Any specified `limit` or `page` parameter settings will over-ride the `realTimeValuePerPeriod` setting. 
+Note: Any specified `limit` or `page` parameter settings will over-ride the `realTimeValuesPerPeriod` setting. 
 
 ## Status codes
 
