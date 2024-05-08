@@ -13,9 +13,19 @@ The endpoint described in this guide is routed through analytics.adobe.io. To us
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-## POST real-time report
+This guide includes the following sections:
 
-Use this endpoint to Generates a real-time report for the data requested in a POST body.
+* [Real-time report API endpoint](#real-time-report-API-endpoint)
+* [Real-time reports with an additional dimension](#real-time-reports-with-an-additional-dimension)
+* [Real-time breakdown reports](#real-time-breakdown-reports)
+* [Limiting the number of dimension return values per period](#limiting-the-number-of-dimension-return-values-per-period)
+* [Status codes](#status-codes)
+* [Trouble-shooting](#troubleshooting)
+* [More information](#more-information)
+
+## Real-time report API endpoint
+
+Use the following endpoint to generate a real-time report for the data requested in a POST body.
 
 **POST**  `https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports/realtime`
 
@@ -180,7 +190,7 @@ The POST real-time reports endpoint includes the following response parameters:
 | `summaryData` | container | Contains objects providing summary for report |
 | `totals` | $int32 | The total for all `data` results in the report |
 
-## Real-time report with an additional dimension
+## Real-time reports with an additional dimension
 
 The following POST request example includes an additional dimension ([`clickmaplinkbyregion`](https://experienceleague.adobe.com/en/docs/analytics/components/dimensions/compatibility)), along with the `daterangeminute` dimension shown in the first example above. The result is additional data values for the added dimension and combined dimension `occurrences`.
 
@@ -384,7 +394,7 @@ In this case, the `variables/prop1` dimension and its `itemId` are applied as a 
 
 	Note: Correlations work in both directions automatically. A single report on two dimensions together allows reporting breakdowns in either direction.
 
-## Limiting the number of dimension return values per period (`realTimeValuesPerPeriod`)
+## Limiting the number of dimension return values per period
 
 In some instances, the number of dimension values returned per specified time period may be too high or excessive. To manage this, use the `realTimeValuePerPeriod` parameter in the `settings` object to specify the number of values you want returned. When using this parameter, you should specify a number of `10` (minimum) or higher or the setting will produce an error. The default is `10` values. For example, to have a certain dimension return only 12 values per time period (such as 30 minutes), the settings object would appear as follows:
 
