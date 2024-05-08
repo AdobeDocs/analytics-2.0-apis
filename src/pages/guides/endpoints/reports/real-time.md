@@ -384,6 +384,19 @@ In this case, the `variables/prop1` dimension and its `itemId` are applied as a 
 
 	Note: Correlations work in both directions automatically. A single report on two dimensions together allows reporting breakdowns in either direction.
 
+## Limiting the number of dimension return values per period (`realTimeValuesPerPeriod`)
+
+In some instances, the number of dimension values returned per specified time period may be too high or excessive. To manage this, use the `realTimeValuePerPeriod` parameter in the `settings` object to specify the number of values you want returned. When using this parameter, you should specify a number of `10` (minimum) or higher or the setting will produce an error. The default is `10` values. For example, to have a certain dimension return only 12 values per time period (such as 30 minutes), the settings object would appear as follows:
+
+```json
+"settings": {
+    "realTimeMinuteGranularity": 30,
+	realTimeValuesPerPeriod": 12
+  }
+```
+
+Note: Any specified `limit` or `page` parameter settings will over-ride the `realTimeValuePerPeriod` setting. 
+
 ## Status codes
 
 Each API request returns an HTTP status code that reflects the result, as follows:
