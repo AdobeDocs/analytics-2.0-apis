@@ -67,6 +67,10 @@ Programmatically manipulate Analysis Workspace projects.
 
 Retrieve data from a report suite using the same API calls that Analysis Workspace uses.
 
+[Real-time reporting API](reports/real-time.md)
+
+Create real-time reports with the POST reports realtime endpoint.
+
 <DiscoverBlock slots="link, text"/>
 
 [Report suites](report-suites.md)
