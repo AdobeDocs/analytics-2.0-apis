@@ -143,9 +143,9 @@ The POST real-time reports endpoint includes the following request parameters:
 | `globalFilters` | optional | container | Contains the `type` and `dateRange` parameters |
 | `type` | optional | dateRange | The type of filter to be applied |
 | `dateRange` | optional | string | The start and end dates for the report. The format is `YYYY-DD-DDT00:00:00/YYYY-MM-DDT00:00:00`and is based on the timezone of the `rsid`.|
-| `metricContainer` | optional | container | Contains the `metrics` container |
-| `columnId` | optional | string | The column ID |
-| `id` | optional | string | The metric or dimension ID |
+| `metricContainer` | required | container | Contains the `metrics` container. One metric is required for each real-time report. |
+| `columnId` | required | string | The column ID. One metric column ID is required for each real-time report. |
+| `id` | required | string | The metric or dimension ID. One metric ID is required for each real-time report. |
 | `dimensions` | required | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. |
 | `dimensionColumnId` | required | string | The dimension column ID |
 | `settings` | optional | container | Contains the `settings` object members for the specified real-time report, including `realTimeMinuteGranularity` |
