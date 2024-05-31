@@ -198,6 +198,10 @@ module.exports = {
             ]
           },
           {
+            title: 'Data Sources',
+            path: 'guides/endpoints/data-sources.md'
+          },
+          {
             title: 'Data Warehouse',
             path: 'guides/endpoints/data-warehouse.md'
           },
