@@ -18,7 +18,7 @@ This guide includes instructions for using the following endpoints:
 * [POST import JSON classification](#post-import-json-classification): Creates a classification from a JSON payload
 * [POST export classification](#post-export-classification): Creates an export job for a specified dataset ID
 * [GET export classification file](#get-export-classification-file): Retrieves the output of an export
-* [GET classification job file partition list](#get-classification-job-file-partition-list): Retrieve a list of classification file parts
+* [GET classification job file partition list](#get-classification-job-file-partition-list): Retrieves a list of classification file parts
 * [GET classification export job file part](#get-classification-export-job-file-part): Retrieves a part of a classification file
 * [GET classification template](#get-classification-template): Retrieves a template showing structure of exported data
 * [GET all classification datasets](#get-all-classification-datasets): Retrieves all datasets for a specified report suite ID
