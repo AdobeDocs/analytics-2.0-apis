@@ -15,6 +15,10 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 This guide includes instructions for using the following endpoints:
 
+## Classification Jobs
+* [POST import API job ID](#post-import-json-classification): Commits an API import job for processing
+* [POST import JSON classification](#post-import-json-classification): Creates a classification from a JSON payload
+
 * [POST import JSON classification](#post-import-json-classification): Creates a classification from a JSON payload
 * [POST export classification](#post-export-classification): Creates an export job for a specified dataset ID
 * [GET export classification file](#get-export-classification-file): Retrieves the output of an export
