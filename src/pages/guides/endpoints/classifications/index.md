@@ -206,7 +206,6 @@ curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
           "listDelimiter": ",",
           "source": "Direct API Upload",
           "rowLimit": 50000,
-          "offset": 0,
           "columns": [
             "string"
           ],
@@ -244,7 +243,6 @@ curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
     "encoding": "utf8",
     "listDelimiter": ",",
     "rowLimit": 50000,
-    "offset": 0,
     "dateFilterStart": "YYYY-05-01T22:29:07Z",
     "dateFilterEnd": "YYYY-08-08T14:35:38Z",
     "notifications": [
@@ -308,7 +306,6 @@ The following table describes the POST export classification request parameters:
 | `jobName` | optional | string | The name of the job |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
 | `rowLimit` | optional | integer | The limit of included rows |
-| `offset` | optional | integer | The position in the dataset of a particular record |
 | `columns` | optional | string | The included columns |
 | `keys` | optional | string | The field or column name associated with key value |
 | `keyRegex` | optional | string | Key regular expression |
