@@ -305,7 +305,7 @@ The following table describes the POST export classification request parameters:
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
-| `rowLimit` | optional | integer | The limit of included rows |
+| `rowLimit` | optional | integer | The limit of included rows. The maximum value is 1,000,000. The default value is 100,000. |
 | `columns` | optional | string | The included columns |
 | `keys` | optional | string | The field or column name associated with key value |
 | `keyRegex` | optional | string | Key regular expression |
