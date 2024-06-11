@@ -485,6 +485,73 @@
           }
         }
       },
+      "/job/export/file/{job_id}/{file_name}" : {
+        "get" : {
+          "tags" : [ "Classification Job" ],
+          "summary" : "Retrieve export file by export job ID and file name",
+          "description" : "Retrieve export file by export job ID and file name",
+          "operationId" : "retrieveArtifactById",
+          "parameters" : [ {
+            "name" : "job_id",
+            "in" : "path",
+            "description" : "Export Job ID",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          }, {
+            "name" : "file_name",
+            "in" : "path",
+            "description" : "File Name",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successfully retrieved export file by export job ID and file name"
+            },
+            "400" : {
+              "description" : "The export job is not complete and the file is not ready to download"
+            },
+            "403" : {
+              "description" : "User does not have classification permission to perform this action"
+            },
+            "404" : {
+              "description" : "Cannot find job in the IMS ORG"
+            }
+          }
+        }
+      },
+      "/job/export/file/{job_id}/list" : {
+        "get" : {
+          "tags" : [ "Classification Job" ],
+          "summary" : "Retrieve export file list by export job ID ",
+          "description" : "Retrieve export file list by export job ID",
+          "operationId" : "retrieveArtifactList",
+          "parameters" : [ {
+            "name" : "job_id",
+            "in" : "path",
+            "description" : "Export Job ID",
+            "required" : true,
+            "schema" : {
+              "type" : "string"
+            }
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Successfully retrieved export file list by export job ID"
+            },
+            "403" : {
+              "description" : "User does not have classification permission to perform this action"
+            },
+            "404" : {
+              "description" : "Cannot find job in the IMS ORG"
+            }
+          }
+        }
+      },
       "/job/import/uploadFile/{api_job_id}" : {
         "post" : {
           "tags" : [ "Classification Job" ],
