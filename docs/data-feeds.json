@@ -1,1 +1,1522 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Adobe Analytics - Data Feed API V2",
+    "description": "This API allows access to Data Feeds",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "Datafeed API",
+      "description": "API to create, update and retrieve datafeeds with a user token"
+    },
+    {
+      "name": "Manage API",
+      "description": "API for users to resend, reprocess and redo datafeed requests with a user token"
+    },
+    {
+      "name": "Column Presets API",
+      "description": "API to create, update and retrieve column presets for datafeeds with a user token"
+    }
+  ],
+  "paths": {
+    "/datafeed": {
+      "post": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Create datafeed",
+        "operationId": "create_1",
+        "parameters": [
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataFeedCreateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to create Datafeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeed created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/{feedId}": {
+      "get": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Get datafeed by ID",
+        "operationId": "get_1",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Datafeed not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeed retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Update datafeed",
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataFeedUpdateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to update Datafeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Datafeed not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeed updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/requests": {
+      "post": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Gets datafeed requests",
+        "operationId": "getDataFeedRequests_1",
+        "parameters": [
+          {
+            "name": "customerVisible",
+            "in": "query",
+            "description": "Filters for Datafeed requests based on customer visibility",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataFeedRequestsSearchBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to retrieve Datafeeds requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Datafeed requests not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeed requests retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataFeedRequestView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/request/{rsid}/{feedId}": {
+      "get": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Gets datafeed requests for a report suite and feed ID",
+        "operationId": "getDataFeedRequestsForFeed_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "The report suite ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Filters for Datafeed requests on or after the specified datetime",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Filters for Datafeed requests on or before the specified datetime",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to retrieve Datafeeds requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Datafeed requests not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeed requests retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataFeedRequestView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/suite/{rsid}": {
+      "get": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Gets datafeeds for a report suite",
+        "operationId": "getDataFeedsForReportSuite_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "The report suite ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to retrieve Datafeeds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Datafeed not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeeds for report suite retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataFeedUpdaterView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/suite": {
+      "post": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Gets datafeeds for an array of report suite",
+        "operationId": "getDataFeedsForReportSuites_1",
+        "parameters": [
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportSuiteList"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to retrieve Datafeeds",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Datafeed not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeeds for multiple report suite retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataFeedUpdaterView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/status/{feedId}/{status}": {
+      "put": {
+        "tags": [
+          "Datafeed API"
+        ],
+        "summary": "Update datafeed status",
+        "operationId": "updateStatus_1",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "description": "Valid values: active, canceled and hold",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to update Datafeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Datafeed not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Datafeed status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/{feedId}/{requestId}/redo": {
+      "get": {
+        "tags": [
+          "Manage API"
+        ],
+        "summary": "Redo a datafeed by request ID",
+        "operationId": "redoDatafeed_1",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "The datafeed request ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to resend request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The redo request succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/{feedId}/{requestId}/reprocess": {
+      "get": {
+        "tags": [
+          "Manage API"
+        ],
+        "summary": "Reprocess a datafeed by request ID",
+        "operationId": "reprocessDatafeed_1",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "The datafeed request ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to resend request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The reprocess request succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeed/{feedId}/{requestId}/resend": {
+      "get": {
+        "tags": [
+          "Manage API"
+        ],
+        "summary": "Resend a data feed by request ID",
+        "operationId": "resendDatafeed_1",
+        "parameters": [
+          {
+            "name": "feedId",
+            "in": "path",
+            "description": "The feed ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "The datafeed request ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to resend request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The resend request succeeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presets/columns/{rsid}": {
+      "get": {
+        "tags": [
+          "Column Presets API"
+        ],
+        "summary": "Get available column presets by rsid",
+        "operationId": "getColumnPresetByRsid_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "The report suite ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerVisible",
+            "in": "query",
+            "description": "Filters for Datafeed requests based on customer visibility",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Column Preset for report suite not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Column Presets for report suite retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ColumnPresetView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Column Presets API"
+        ],
+        "summary": "Create a new column preset",
+        "operationId": "createColumnPresetByRsid_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "The report suite ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColumnPresetCreateBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to create Column Preset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Column Presets for report suite retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnPresetView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presets/columns/all": {
+      "get": {
+        "tags": [
+          "Column Presets API"
+        ],
+        "summary": "Get all columns",
+        "operationId": "getAllColumnNames_1",
+        "parameters": [
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Column names not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "All Column Names retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/String"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presets/columns/id/{presetId}": {
+      "get": {
+        "tags": [
+          "Column Presets API"
+        ],
+        "summary": "Get a column preset by ID",
+        "operationId": "getColumnPreset_1",
+        "parameters": [
+          {
+            "name": "presetId",
+            "in": "path",
+            "description": "The column preset ID ",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "x-proxy-global-company-id",
+            "in": "header",
+            "description": "Proxy global company ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Column Preset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Column Preset retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColumnPresetView"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IndicatorType": {
+        "type": "object"
+      },
+      "Thrown": {
+        "type": "object",
+        "properties": {
+          "exception": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stack": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "thrown": {
+            "$ref": "#/components/schemas/Thrown"
+          }
+        }
+      },
+      "DataFeedRequestView": {
+        "properties": {
+          "feedName": {
+            "type": "string"
+          },
+          "requestState": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestPeriodBegin": {
+            "type": "string"
+          },
+          "rsid": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "submittedDate": {
+            "type": "string"
+          },
+          "feedState": {
+            "type": "string"
+          },
+          "completeDate": {
+            "type": "string"
+          },
+          "errorMsg": {
+            "type": "string"
+          },
+          "feedId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "requestPeriodEnd": {
+            "type": "string"
+          },
+          "requestId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "runAttempt": {
+            "type": "string"
+          },
+          "useUTC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "runCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DataFeedRequestsSearchBody": {
+        "type": "object",
+        "properties": {
+          "rsids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "feedIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "requestStates": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sortOrder": {
+            "type": "string"
+          },
+          "orderBy": {
+            "type": "string"
+          },
+          "billingCustomerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "useUtc": {
+            "type": "boolean"
+          },
+          "minStartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxStartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minEndDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxEndDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minAttemptDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxAttemptDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minCompletionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxCompletionDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minSubmittedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxSubmittedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DataFeedUpdaterView": {
+        "properties": {
+          "notes": {
+            "type": "string"
+          },
+          "lateHitsLookback": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chunkSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "manifest": {
+            "type": "string"
+          },
+          "packaging": {
+            "type": "string"
+          },
+          "notificationEmail": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dynamicLookups": {
+            "type": "boolean"
+          },
+          "modificationDate": {
+            "type": "string"
+          },
+          "columnPreset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "feedId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "noDataManifest": {
+            "type": "boolean"
+          },
+          "lateHits": {
+            "type": "boolean"
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "compression": {
+            "type": "string"
+          },
+          "replaceEscapedChars": {
+            "type": "boolean"
+          },
+          "cloudLocationUUID": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportSuiteList": {
+        "type": "object",
+        "properties": {
+          "rsids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AnalyticsAsrErrorResponse": {
+        "properties": {
+          "errorDescription": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorId": {
+            "type": "string"
+          }
+        }
+      },
+      "DataFeedView": {
+        "properties": {
+          "notes": {
+            "type": "string"
+          },
+          "feedName": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "feedState": {
+            "type": "string"
+          },
+          "feedId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "noDataManifest": {
+            "type": "boolean"
+          },
+          "lateHits": {
+            "type": "boolean"
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "replaceEscapedChars": {
+            "type": "boolean"
+          },
+          "lateHitsLookback": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chunkSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "manifest": {
+            "type": "string"
+          },
+          "rsid": {
+            "type": "string"
+          },
+          "packaging": {
+            "type": "string"
+          },
+          "creationDate": {
+            "type": "string"
+          },
+          "notificationEmail": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dynamicLookups": {
+            "type": "boolean"
+          },
+          "modificationDate": {
+            "type": "string"
+          },
+          "columnPreset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "feedType": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "string"
+          },
+          "compression": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "cloudLocationUUID": {
+            "type": "string"
+          }
+        }
+      },
+      "ColumnPresetView": {
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ColumnName"
+            }
+          },
+          "customerVisible": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "columnPresetId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "String": {
+        "properties": {
 
+        }
+      },
+      "DataFeedCreateBody": {
+        "required": [
+          "cloudLocationUUID",
+          "columnPreset",
+          "delay",
+          "feedName",
+          "interval",
+          "notificationEmail",
+          "rsid",
+          "startDate"
+        ],
+        "type": "object",
+        "properties": {
+          "rsid": {
+            "type": "string"
+          },
+          "feedState": {
+            "type": "string"
+          },
+          "feedName": {
+            "type": "string"
+          },
+          "feedType": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cloudLocationUUID": {
+            "type": "string"
+          },
+          "columnPreset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interval": {
+            "type": "string"
+          },
+          "compression": {
+            "type": "string"
+          },
+          "packaging": {
+            "type": "string"
+          },
+          "chunkSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "manifest": {
+            "type": "string"
+          },
+          "noDataManifest": {
+            "type": "boolean"
+          },
+          "notificationEmail": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dynamicLookups": {
+            "type": "boolean"
+          },
+          "replaceEscapedChars": {
+            "type": "boolean"
+          },
+          "lateHits": {
+            "type": "boolean"
+          },
+          "lateHitsLookback": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "DataFeedUpdateBody": {
+        "required": [
+          "cloudLocationUUID",
+          "columnPreset",
+          "notificationEmail"
+        ],
+        "type": "object",
+        "properties": {
+          "feedId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "feedState": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cloudLocationUUID": {
+            "type": "string"
+          },
+          "columnPreset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "compression": {
+            "type": "string"
+          },
+          "packaging": {
+            "type": "string"
+          },
+          "chunkSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "manifest": {
+            "type": "string"
+          },
+          "noDataManifest": {
+            "type": "boolean"
+          },
+          "notificationEmail": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dynamicLookups": {
+            "type": "boolean"
+          },
+          "replaceEscapedChars": {
+            "type": "boolean"
+          },
+          "lateHits": {
+            "type": "boolean"
+          },
+          "lateHitsLookback": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ColumnName": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ColumnPresetCreateBody": {
+        "required": [
+          "data",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "applicationType": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ColumnName"
+            }
+          }
+        }
+      }
+    }
+  }
+}
