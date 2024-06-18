@@ -44,6 +44,6 @@ The following steps provide a typical Data Repair API request workflow:
 
 2. **Create a data repair job**: Use the [Job](job.md) endpoint to create a data repair job. This endpoint requires a Report Suite, date range, `validationToken` (from [Server call estimate](server-call-estimate.md)), and a [Job definition](json-body.md). A Job ID is returned when a data repair job is created.
 
-3. **Monitor progress**: Use the [Job ID](job.md#view-an-individual-job) endpoint to monitor the status of a data repair job at any point after a data repair job submission. Completion time of a data repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
+3. **Monitor progress**: Use the [Job ID](job.md#view-an-individual-data-repair-api-job) endpoint to monitor the status of a data repair job at any point after a data repair job submission. Completion time of a data repair job depends on its size; small jobs can complete within hours while large jobs can take multiple days.
 
-4. **Review completed jobs**: Use the [Job list](job.md#view-a-job-list) endpoint to keep track of all existing and completed jobs.
+4. **Review completed jobs**: Use the [Job list](job.md#view-a-data-repair-api-job-list) and [Usage](usage.md) endpoints to keep track of all existing and completed jobs.

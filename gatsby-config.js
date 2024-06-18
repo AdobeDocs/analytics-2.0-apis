@@ -178,6 +178,10 @@ module.exports = {
                 path: 'guides/endpoints/data-repair/job.md'
               },
               {
+                title: 'Usage endpoints',
+                path: 'guides/endpoints/data-repair/usage.md'
+              },
+              {
                 title: 'FAQ',
                 path: 'guides/endpoints/data-repair/faq.md'
               }
