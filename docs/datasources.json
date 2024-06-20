@@ -329,7 +329,7 @@
         }, {
           "name" : "data_source_id",
           "in" : "path",
-          "description" : "The Data Source ID to which the job is associated",
+          "description" : "The Data Source ID associated with the job",
           "required" : true,
           "schema" : {
             "type" : "string"
