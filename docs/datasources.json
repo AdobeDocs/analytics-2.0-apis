@@ -5,6 +5,9 @@
     "description" : "A service for managing and uploading data to Data Sources accounts.",
     "version" : "1.0"
   },
+  "servers": [
+    {"url": "https://analytics.adobe.io/datasources/"}
+  ],
   "tags" : [ {
     "name" : "Account",
     "description" : "Manage Data Sources accounts associated with a report suite"
@@ -42,9 +45,14 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       },
-      "put" : {
+      "post" : {
         "tags" : [ "Account" ],
         "summary" : "Create a Data Sources account",
         "description" : "Creates a new Data Sources account associated with the given report suite.",
@@ -90,7 +98,12 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       }
     },
     "/account/{report_suite_id}/{data_source_id}" : {
@@ -102,7 +115,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The report suite ID associated with the Data Sources account",
+          "description" : "The Report Suite ID to which the Data Sources account is associated",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -127,7 +140,12 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       },
       "delete" : {
         "tags" : [ "Account" ],
@@ -137,7 +155,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The report suite ID associated with the Data Sources",
+          "description" : "The Report Suite ID to which the Data Sources account is associated",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -162,7 +180,12 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       }
     },
     "/job/{report_suite_id}/{data_source_id}" : {
@@ -229,9 +252,14 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       },
-      "put" : {
+      "post" : {
         "tags" : [ "Job" ],
         "summary" : "Upload data to a Data Sources account.",
         "description" : "Uploads a data file to a Data Sources account associated with the given report suite. The file must be formatted identically to files uploaded to Data Sources FTP accounts. A job is created, which can be queried later by its job ID. File validation will be performed at the time the job is processed, not upon upload.",
@@ -239,7 +267,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The report suite ID associated wtih the Data Sources account",
+          "description" : "The Report Suite ID to which the Data Sources account is associated",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -254,11 +282,13 @@
           }
         } ],
         "requestBody" : {
-          "description" : "The data file to upload",
           "content" : {
-            "*/*" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MultipartFile"
+            "multipart/form-data" : {
+              "examples" : {
+                "file" : {
+                  "description" : "A file formatted to be imported to Data Sources",
+                  "value" : "date    event 1 evar 1\n1/1/2024    1   Test Data 1\n1/1/2024    2   Test Data 2\n"
+                }
               }
             }
           }
@@ -274,7 +304,12 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       }
     },
     "/job/{report_suite_id}/{data_source_id}/{job_id}" : {
@@ -286,7 +321,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID associated with the Data Sources account",
+          "description" : "The Report Suite ID to which the Data Sources account is associated",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -294,7 +329,7 @@
         }, {
           "name" : "data_source_id",
           "in" : "path",
-          "description" : "The Data Source ID associated with the job",
+          "description" : "The Data Source ID to which the job is associated",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -319,40 +354,23 @@
               }
             }
           }
-        }
+        },
+        "security" : [ {
+          "global_company_id" : [ ]
+        }, {
+          "ims_user_token" : [ ]
+        } ]
       }
     }
   },
   "components" : {
     "schemas" : {
-      "IndicatorType" : {
-        "type" : "object"
-      },
-      "Thrown" : {
-        "type" : "object",
-        "properties" : {
-          "exception" : {
-            "type" : "string"
-          },
-          "message" : {
-            "type" : "string"
-          },
-          "stack" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          },
-          "thrown" : {
-            "$ref" : "#/components/schemas/Thrown"
-          }
-        }
-      },
       "DataSourcesAccount" : {
         "type" : "object",
         "properties" : {
           "name" : {
             "type" : "string",
+            "description" : "The client provided descriptive name for this account",
             "example" : "My Data Sources Account"
           },
           "email" : {
@@ -361,11 +379,13 @@
           },
           "data_source_id" : {
             "type" : "integer",
+            "description" : "The ID of the Data Sources account",
             "format" : "int32",
             "example" : 1
           },
           "type" : {
             "type" : "string",
+            "description" : "The Type of data this account can accept",
             "example" : "generic"
           },
           "ftp_hostname" : {
@@ -398,101 +418,37 @@
       "DataSourcesJob" : {
         "type" : "object",
         "properties" : {
-          "Filename" : {
+          "filename" : {
             "type" : "string",
+            "description" : "The original name of the file",
             "example" : "my_data_file.txt"
           },
-          "The number of rows successfully processed" : {
+          "rows" : {
             "type" : "integer",
+            "description" : "The number of rows successfully processed",
             "format" : "int64",
             "example" : 100
           },
-          "Job ID" : {
+          "job_id" : {
             "type" : "integer",
             "format" : "int64",
             "example" : 12345
           },
-          "Status of the job" : {
+          "status" : {
             "type" : "string",
             "example" : "processing"
           },
-          "Date the job was created" : {
+          "uploaded_date" : {
             "type" : "string",
-            "example" : "1/1/2024 00:00:00"
+            "example" : "1999/12/31 23:59:59"
           },
-          "Date the job began processing" : {
+          "started_processing_date" : {
             "type" : "string",
-            "example" : "1/1/2024 00:00:00"
+            "example" : "1999/12/31 23:59:59"
           },
-          "Date the job finished processing" : {
+          "finished_processing_date" : {
             "type" : "string",
-            "example" : "1/1/2024 00:00:00"
-          }
-        }
-      },
-      "MultipartFile" : {
-        "type" : "object",
-        "properties" : {
-          "contentType" : {
-            "type" : "string"
-          },
-          "originalFilename" : {
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "bytes" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string",
-              "format" : "byte"
-            }
-          },
-          "empty" : {
-            "type" : "boolean"
-          },
-          "resource" : {
-            "$ref" : "#/components/schemas/Resource"
-          },
-          "size" : {
-            "type" : "integer",
-            "format" : "int64"
-          },
-          "inputStream" : {
-            "type" : "object"
-          }
-        }
-      },
-      "Resource" : {
-        "type" : "object",
-        "properties" : {
-          "file" : {
-            "type" : "string",
-            "format" : "binary"
-          },
-          "uri" : {
-            "type" : "string",
-            "format" : "uri"
-          },
-          "url" : {
-            "type" : "string",
-            "format" : "url"
-          },
-          "description" : {
-            "type" : "string"
-          },
-          "readable" : {
-            "type" : "boolean"
-          },
-          "filename" : {
-            "type" : "string"
-          },
-          "open" : {
-            "type" : "boolean"
-          },
-          "inputStream" : {
-            "type" : "object"
+            "example" : "1999/12/31 23:59:59"
           }
         }
       },
@@ -516,6 +472,19 @@
             "example" : 1
           }
         }
+      }
+    },
+    "securitySchemes" : {
+      "global_company_id" : {
+        "type" : "apiKey",
+        "description" : "An Adobe global company ID",
+        "name" : "x-proxy-global-company-id",
+        "in" : "header"
+      },
+      "ims_user_token" : {
+        "type" : "http",
+        "description" : "An Adobe IMS user access token",
+        "scheme" : "Bearer"
       }
     }
   }
