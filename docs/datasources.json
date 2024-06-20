@@ -60,7 +60,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID to which the new account will be associated",
+          "description" : "The report suite ID associated with this account",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -115,7 +115,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID to which the Data Sources account is associated",
+          "description" : "The report suite ID associated with the account",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -155,7 +155,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID to which the Data Sources account is associated",
+          "description" : "The report suite ID associated with the Data Sources account",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -192,12 +192,12 @@
       "get" : {
         "tags" : [ "Job" ],
         "summary" : "Retrieve information for jobs uploaded to a Data Sources account.",
-        "description" : "Retrieves information for jobs uploaded to a Data Sources account associated with the given Report Suite. The results can be filtered by several criteria and are paginated at 100 entries per page.",
+        "description" : "Retrieves information for jobs uploaded to a Data Sources account associated with the given report suite. The results can be filtered by several criteria and are paginated at 100 entries per page.",
         "operationId" : "getJobs",
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID to which the Data Sources account is associated",
+          "description" : "The report suite ID associated with the Data Sources account",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -267,7 +267,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID to which the Data Sources account is associated",
+          "description" : "The report suite ID associated with the Data Sources account",
           "required" : true,
           "schema" : {
             "type" : "string"
@@ -321,7 +321,7 @@
         "parameters" : [ {
           "name" : "report_suite_id",
           "in" : "path",
-          "description" : "The Report Suite ID to which the Data Sources account is associated",
+          "description" : "The report suite ID associated with the Data Sources account",
           "required" : true,
           "schema" : {
             "type" : "string"
