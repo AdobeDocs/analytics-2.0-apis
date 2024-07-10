@@ -5363,6 +5363,9 @@
         "dateRange": {
           "type": "string"
         },
+        "dateRangeRelative": {
+          "type": "string"
+        },
         "excludeItemIds": {
           "type": "array",
           "items": {
