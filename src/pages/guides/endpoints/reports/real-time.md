@@ -58,7 +58,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY-ID}/reports/realtim
     "metrics": [
       {
         "columnId": "0",
-	"id": "metrics/occurrences"
+    "id": "metrics/occurrences"
       }
     ]
   },
@@ -189,6 +189,44 @@ The POST real-time reports endpoint includes the following response parameters:
 | `itemId` | string | Processing number used to associate time values |
 | `summaryData` | container | Contains objects providing summary for report |
 | `totals` | $int32 | The total for all `data` results in the report |
+
+### Real-time reports with relative dates
+
+The POST real-time reports endpoint also supports requests with relative date ranges. Many users find these values easier to specify for real-time querying. Relative date ranges differ from absolute date range values in how they are specified. Relative dates use the format `from /to` to specify the ranges. The following examples show the difference: 
+
+**Absolute date range example**:
+
+`"dateRange":"YYYY-10-01T00:00:00.000/YYYY-10-01T00:20:00.000", //Note: 20 minute range`
+
+**Relative date range value**:
+
+`"dateRangeRelative":"30 minutes ago/10 minutes ago" //Note: 20 minute range`
+
+**Relative date range in JSON**:
+
+```json
+{
+   "rsid":"examplersid.suiteall",
+   "globalFilters":[
+      {
+         "type":"dateRange",
+         "dateRangeRelative":"30 minutes ago/10 minutes ago" 
+      }
+   ],
+}
+```
+
+##### Possible values for `from` and `to`:
+
+* minutes, for example: `20 minutes ago`
+* hours, for example: `1 hour ago`
+* `now`
+* `midnight`
+* `noon`
+* hour time with AM/PM, for example: `3:45 PM` or `3 PM`
+* `yesterday` hour time with AM/PM, for example: `yesterday 12:30 PM` or `yesterday 12 PM`
+
+
 
 ## Real-time reports with an additional dimension
 
@@ -388,11 +426,11 @@ In this case, the `variables/prop1` dimension and its `itemId` are applied as a 
 
 2.  Only the first dimension in a report row is related or correlated to the other row dimensions. The second and third dimensions are not correlated to each other. As a result, any configuration that includes three dimensions can only show two possible breakdowns, as follows:
 
-	* Valid: Dimension1 by Dimension2
-	* Valid: Dimension1 by Dimension3
-	* Not valid: Dimension2 by Dimension3
+    * Valid: Dimension1 by Dimension2
+    * Valid: Dimension1 by Dimension3
+    * Not valid: Dimension2 by Dimension3
 
-	Note: Correlations work in both directions automatically. A single report on two dimensions together allows reporting breakdowns in either direction.
+    Note: Correlations work in both directions automatically. A single report on two dimensions together allows reporting breakdowns in either direction.
 
 ## Limiting the number of dimension return values per period
 
@@ -401,7 +439,7 @@ In some instances, the number of dimension values returned per specified time pe
 ```json
 "settings": {
     "realTimeMinuteGranularity": 30,
-	"realTimeValuesPerPeriod": 12
+    "realTimeValuesPerPeriod": 12
   }
 ```
 
