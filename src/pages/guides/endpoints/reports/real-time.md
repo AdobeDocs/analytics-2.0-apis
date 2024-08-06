@@ -16,6 +16,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 This guide includes the following sections:
 
 * [Real-time report API endpoint](#real-time-report-API-endpoint)
+* [Real-time reports with relative date ranges](#real-time-reports-with-relative-date-ranges)
 * [Real-time reports with an additional dimension](#real-time-reports-with-an-additional-dimension)
 * [Real-time breakdown reports](#real-time-breakdown-reports)
 * [Limiting the number of dimension return values per period](#limiting-the-number-of-dimension-return-values-per-period)
