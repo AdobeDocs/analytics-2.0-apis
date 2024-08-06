@@ -199,7 +199,7 @@ The POST real-time reports endpoint also supports requests with relative date ra
 
 `"dateRange":"YYYY-10-01T00:00:00.000/YYYY-10-01T00:20:00.000", //Note: 20 minute range`
 
-**Relative date range value**:
+**Relative date range example**:
 
 `"dateRangeRelative":"30 minutes ago/10 minutes ago" //Note: 20 minute range`
 
