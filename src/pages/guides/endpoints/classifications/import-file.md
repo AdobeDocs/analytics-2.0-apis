@@ -16,7 +16,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 To import an API classification by uploading a file, you follow a three-step process:
 
 1. Create an import job with the [POST create job](#post-create-job) endpoint.
-2. Upload a file using the [PUT upload file](#put-upload-file) endpoint.
+2. Upload a file using the [POST upload file](#put-upload-file) endpoint.
 3. Commit your upload using the [POST commit job](#post-commit-job) endpoint.
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
@@ -167,11 +167,11 @@ The following table describes the POST create job response parameters:
 | `key` | string | The field or column name associated with key value |
 | `value` | string | The actual value of the key (as in a field or column name) |
 
-## PUT upload file
+## POST upload file
 
 Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, tab, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html)
 
-`PUT https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
+`POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
 
 ### Request and Response Examples
 
@@ -182,7 +182,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X PUT "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/a6fc824c-4d6f-45f9-8f55-456f918e0b41"
+curl -X POST "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/a6fc824c-4d6f-45f9-8f55-456f918e0b41"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -H "Content-Type: multipart/form-data" \
