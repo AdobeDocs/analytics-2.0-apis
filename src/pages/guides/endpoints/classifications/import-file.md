@@ -13,7 +13,13 @@ Additionally, using these endpoints requires your global company ID in each requ
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-To import an API classification by uploading a file, you follow a three-step process:
+To import an API classification by uploading a file, you use following enpoints:
+
+* [POST create job](#post-create-job)
+* [POST upload file](#put-upload-file)
+* [POST commit job](#post-commit-job)
+
+Each endpoint is used in the following process:
 
 1. Create an import job with the [POST create job](#post-create-job) endpoint.
 2. Upload a file using the [POST upload file](#put-upload-file) endpoint.
