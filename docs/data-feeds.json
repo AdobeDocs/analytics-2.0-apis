@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://analytics.adobe.io/data_feeds/"
+      "url": "https://analytics.adobe.io/data-feeds/"
     }
   ],
   "tags" : [ {
