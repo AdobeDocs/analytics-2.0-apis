@@ -17,7 +17,7 @@ The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics pro
 
 * [Quick start guide](guides/index.md)
 * [Endpoint guides](guides/endpoints/index.md)
-* [API reference](apis/index.md)
+* [API reference](https://adobedocs.github.io/analytics-2.0-apis/)
 * [Github repository](https://github.com/AdobeDocs/analytics-2.0-apis)
 
 ## Overview
