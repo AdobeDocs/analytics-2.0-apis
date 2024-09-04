@@ -60,7 +60,7 @@ This section shows an example request and response of a dimension breakdown.
 
 <InlineAlert variant="info" slots="text" />
 
-You can also specify the text value for items instead of item IDs. If you already know the text value for the item, you can specify it with the `itemValue` parameter within the `metricFilter` object. For example, if the item is "Campaign 10", you can specify `"itemValue" : "10"` instead of `"itemId":"743855946"`, as shown above. Use only the text value when specifying the `itemValue`. Passing an item value instead of item ID results in slightly slower performance, but it is useful in preventing multiple reporting calls to retrieve item IDs.
+To avoid making multiple reporting calls to retrieve item IDs, you can instead specify the text value for items instead of item IDs. If you already know the text value for the item, you can specify it with the `itemValue` parameter within the `metricFilter` object. For example, if the item is "Campaign 10", you can specify `"itemValue" : "10"` instead of `"itemId":"743855946"`, as shown above. Use only the text value when specifying the `itemValue`. Passing an item value instead of item ID will result in slightly slower performance.
 
 #### Example Response
 
