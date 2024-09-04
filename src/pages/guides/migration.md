@@ -52,7 +52,7 @@ To retrieve your global company ID in the user interface, follow these steps:
 
 To retrieve your global company ID with an API, use the [Analytics Discovery endpoint](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/), as shown below:
 
-```
+```curl
 curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
 ```
 
@@ -126,6 +126,7 @@ returns the following detailed information for the `browser` dimension:
     "type": "string"
 }
 ```
+
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
 The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reports](#reports)).
