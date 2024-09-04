@@ -1,6 +1,6 @@
 ---
 title: Migrating to the 2.0 API
-description: Learn what steps that you can take to move from previous versions of the Analytics API to 2.0.
+description: Steps to move from previous versions of the Analytics API to 2.0.
 ---
 
 # Migrating to Adobe Analytics 2.0 APIs
@@ -52,7 +52,7 @@ To retrieve your global company ID in the user interface, follow these steps:
 
 To retrieve your global company ID with an API, use the [Analytics Discovery endpoint](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/), as shown below:
 
-```
+```curl
 curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
 ```
 
@@ -126,6 +126,7 @@ returns the following detailed information for the `browser` dimension:
     "type": "string"
 }
 ```
+
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
 The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reports](#reports)).
@@ -374,6 +375,10 @@ You can cache historical data as part of the client application so that you woul
 
 With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like, instead of the limit of four with the 1.4 APIs. To request a breakdown report, use an `itemId` in the `metricFilter` section of your request (as shown above). See [Breakdowns](endpoints/reports/breakdowns.md) for more detailed information.
 
+### Real-time
+
+The [Analytics 2.0 real-time report API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/real-time/) endpoint allows you to access real-time data programmatically through Adobe Developer. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis.
+
 ## Data Warehouse
 
 This section describes the difference between Data Warehouse 1.4 and 2.0 APIs.
@@ -384,4 +389,42 @@ With 2.0 APIs, Data Warehouse functions similar to an export service that includ
 
 Currently, you must make your first scheduled request in Analysis Workspace. Subsequently, you can create additional scheduled requests, update requests, and retrieve request information with the 2.0 APIs. You can also update and retrieve reports generated from scheduled requests. The 2.0 APIs include destination options for sending request information and reports. For more information, refer to both the [Data Warehouse 2.0 AI Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Warehouse%20APIs) and the [Data Warehouse 2.0 API Endpoint Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse/).
 
+## Data Sources
 
+This section includes the difference between Data Sources 1.4 and 2.0 APIs.
+
+### RESTful methods
+
+With the 1.4 APIs, all Data Source requests are structured with the `POST` method and then appended with a query parameter method description in the URI. For example, the 1.4 `GetJobs` endpoint URI that returns all current jobs for a data source is shown below:
+
+`curl -X POST "https://api.omniture.com/admin/1.4/rest/?method=DataSources.GetJobs"`
+
+The Data Sources 2.0 APIs use fully RESTful methods for working with data source accounts. Each method is used to perform the inherent operation of the request. For example, the 2.0 **GET all jobs** endpoint URI that returns all current jobs is shown below:
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datasources/job/{REPORT_SUITE_ID}/{DATA_SOURCE_ID}`
+
+With this 2.0 example, the report suite ID and the data source ID are added as query parameters, so there is no need to add a JSON payload. With the 1.4 request, a JSON payload is needed to make a similar request.
+
+### Managing accounts and jobs
+
+The 1.4 APIs include one method for retrieving current jobs, as shown above, as well as functions for saving, uploading, restarting, and deleting. The 2.0 APIs divide requests into working with accounts and working with jobs. Account-based endpoints allow you to create, view, and delete data sources accounts. Job-based endpoints include three methods for getting all jobs,  getting single job, and for uploading a file to a data source account. When you upload a file with the **PUT data** endpoint, a job is automatically created for you to manage.
+
+For more information, see the [2.0 Data Sources API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-sources/#get-all-jobs) and the [2.0 API Data Sources API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Sources%202.0%20APIs).
+
+
+## Classifications
+
+
+The [1.4 Classifications APIs](https://adobedocs.github.io/analytics-1.4-apis/#/Classifications) allow for SAINT job importing, exporting, retrieving, filtering, templating, and attaching. The [2.0 Classifications APIs](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs) instead allow for more flexible ways of working with classification datasets. The 2.0 APIs use the same data and methods that are used when working with classifications in the Adobe Analytics UI.
+
+Instead of importing SAINT classifications, with the 2.0 APIs you can [import API classifications by uploading data files](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/). You can create, upload, and commit classification jobs with data files in `.tsv`, `.tab`, or JSON format. The following table describes this uploading process:
+
+| Step | API | Description |
+| --- | --- | -- |
+| 1 | [POST create job](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/#post-create-job) | Create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. |
+| 2 | [POST upload file](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/#post-upload-file) | Uploads a file that will be associated with the job ID created with the POST create job endpoint. |
+| 3 | [POST commit job](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/#post-commit-job) | Commits the changes of a specified job ID. |
+
+Additionally, the 2.0 Classifications APIs provide 12 more endpoints for creating, importing, exporting, retrieving, updating, and deleting classification datasets and the jobs associated with them. 
+
+For more information, see the [2.0 Classifications API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/) and the [2.0 API Classifications API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs).
