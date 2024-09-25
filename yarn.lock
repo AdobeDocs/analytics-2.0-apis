@@ -33,9 +33,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@adobe/gatsby-theme-aio@npm:^4.11.3":
-  version: 4.11.3
-  resolution: "@adobe/gatsby-theme-aio@npm:4.11.3"
+"@adobe/gatsby-theme-aio@npm:^4.14.11":
+  version: 4.14.11
+  resolution: "@adobe/gatsby-theme-aio@npm:4.14.11"
   dependencies:
     "@adobe/focus-ring-polyfill": ^0.1.5
     "@adobe/gatsby-source-github-file-contributors": ^0.3.1
@@ -108,7 +108,7 @@ __metadata:
     penpal: ^6.2.2
     postcss: ^8.4.16
     preact: ^10.11.0
-    preact-render-to-string: ^5.2.4
+    preact-render-to-string: ^6.5.5
     prism-react-renderer: 1.3.5
     prop-types: ^15.8.1
     react-helmet: ^6.1.0
@@ -131,7 +131,7 @@ __metadata:
     gatsby: ^4.22.0
     react: ^17.0.2
     react-dom: ^17.0.2
-  checksum: 36b7256aba793747b6da40b867b8ad4ecd32835c1ea5bc76ee3fef5cd73d7aa14ba9734ef3c5a7db6866d806fc61afd02bf44053a1ffdd93ec8016cf130f84b7
+  checksum: 41e31cfb082c4ac02fd24997ee52b4623b6b6f727dc2936ebb24ca9827476337b55abf9e22e8901ba74946f110b575b12f794763903f5ad8a6a2b2ef8d5ad724
   languageName: node
   linkType: hard
 
@@ -5146,7 +5146,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "analytics-2.0-apis@workspace:."
   dependencies:
-    "@adobe/gatsby-theme-aio": ^4.11.3
+    "@adobe/gatsby-theme-aio": ^4.14.11
     gatsby: ^4.22.0
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -15919,14 +15919,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"preact-render-to-string@npm:^5.2.4":
-  version: 5.2.4
-  resolution: "preact-render-to-string@npm:5.2.4"
-  dependencies:
-    pretty-format: ^3.8.0
+"preact-render-to-string@npm:^6.5.5":
+  version: 6.5.11
+  resolution: "preact-render-to-string@npm:6.5.11"
   peerDependencies:
     preact: ">=10"
-  checksum: cb29e280174bb4e8a77be454b927dfa35f2672d9bf2eb11d6634208b076d81508a35d53a38a5dfee7676fc48be2c1e0db2e83fca955f7016ce5ed844f35d92b4
+  checksum: 6dcf890fa1bfb9dfe52ef1ae18cb39c792756ed306bea1f83ad2d007a6398be689e369b9d8365a7efd6c8a02a262fdadfacb412b2d96738b9be3dfa9bd8d3f23
   languageName: node
   linkType: hard
 
@@ -15972,13 +15970,6 @@ __metadata:
     lodash: ^4.17.20
     renderkid: ^2.0.4
   checksum: 16775d06f9a695d17103414d610b1281f9535ee1f2da1ce1e1b9be79584a114aa7eac6dcdcc5ef151756d3c014dfd4ac1c7303ed8016d0cec12437cfdf4021c6
-  languageName: node
-  linkType: hard
-
-"pretty-format@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "pretty-format@npm:3.8.0"
-  checksum: 21a114d43ef06978f8f7f6212be4649b0b094f05d9b30e14e37550bf35c8ca24d8adbca9e5adc4cc15d9eaf7a1e7a30478a4dc37b30982bfdf0292a5b385484c
   languageName: node
   linkType: hard
 
