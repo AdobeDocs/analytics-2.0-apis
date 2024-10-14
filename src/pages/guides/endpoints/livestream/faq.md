@@ -19,8 +19,6 @@ Livestream data can be impacted by other factors:
 *	When the report suite is configured with A4T, the time range typically increases by 10 minutes, because Livestream is dependent upon upstream processing. 
 *	In other rare cases where collection and/or processing takes longer than normal upstream, this also impacts the processing for Livestream.
 
-Livestream does not provide an SLA because of its dependencies on other services that can impact its standard cadence. 
-
 You can find other contributors to latency before data is streamed by Livestream, under [Data availability and latency in Adobe Analytics](https://experienceleague.adobe.com/en/docs/analytics/technotes/latency).
 
 ## Can I request uncompressed Livestream data?
