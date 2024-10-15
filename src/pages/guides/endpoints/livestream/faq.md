@@ -12,10 +12,10 @@ You can use the `reset` query string to request old or new data. For example, `?
 
 ## What is the latency between when a hit is collected by Adobe and when it appears in Livestream?
 
-Latency for Livestream data will typically range between 20 seconds and 5 minutes on a regular cadence, pending dependencies. Livestream data can be impacted by factors, including:
+Latency for Livestream data typically ranges between 20 seconds and 5 minutes. This time range is not a guarantee or a service-level agreement. Several factors can increase this time range, including:
 
-*	When the report suite is configured with A4T, the time range typically increases by 10 minutes, because Livestream is dependent upon upstream processing. 
-*	In other rare cases where collection and/or processing takes longer than normal upstream, this also impacts the processing for Livestream.
+*	Report suites configured for A4T increase latency by about 10 minutes. Livestream data must wait for the A4T collection pipeline to finish.
+*	In other rare cases where collection or processing is delayed upstream.
 
 You can find other contributors to latency before data is streamed by Livestream, under [Data availability and latency in Adobe Analytics](https://experienceleague.adobe.com/en/docs/analytics/technotes/latency).
 
