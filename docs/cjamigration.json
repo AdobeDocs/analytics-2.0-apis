@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Components Migration Service (AA to CJA) - Prod - ACC - AA",
+    "title": "Components Migration Service (AA to CJA)",
     "description": "AA to CJA Components Migration",
     "version": "1.0"
   },
@@ -12,15 +12,15 @@
   ],
   "tags": [
     {
-      "name": "Components Migration - Users",
+      "name": "Components Migration",
       "description": "Operations pertaining to components migration"
     },
     {
-      "name": "Dimension Mapping - Users",
+      "name": "Dimension Mapping",
       "description": "Operations pertaining to dimension mapping"
     },
     {
-      "name": "Metric Mapping - Users",
+      "name": "Metric Mapping",
       "description": "Operations pertaining to metric mapping"
     }
   ],
@@ -28,7 +28,7 @@
     "/projects/{projectId}/migrate": {
       "post": {
         "tags": [
-          "Components Migration - Users"
+          "Components Migration"
         ],
         "operationId": "migrateByProjectId",
         "parameters": [
@@ -78,7 +78,7 @@
     "/projects/{projectId}/summary": {
       "get": {
         "tags": [
-          "Components Migration - Users"
+          "Components Migration"
         ],
         "operationId": "summary_1",
         "parameters": [
@@ -119,7 +119,7 @@
     "/mapping/dimensions/csv": {
       "get": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimension Mapping"
         ],
         "summary": "get dimensions mappings as CSV file",
         "description": "get dimension mappings with given rsid and dataId",
@@ -174,7 +174,7 @@
       },
       "put": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimension Mapping"
         ],
         "summary": "update dimensions mapping with CSV file",
         "description": "Update dimension mapping with given rsid and dataId",
@@ -238,7 +238,7 @@
       },
       "post": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimension Mapping"
         ],
         "summary": "create dimensions mapping with CSV file",
         "description": "Override dimension mapping with given rsid and dataId",
@@ -302,7 +302,7 @@
       },
       "delete": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimension Mapping"
         ],
         "summary": "Delete mappings from a csv file",
         "description": "Delete mappings from a csv file for the given report suite and data view. If the fileis empty, returns a bad request code. Skips any mappings that do not exist. CSV file mustcontain a header row.",
@@ -365,7 +365,7 @@
     "/mapping/dimensions/all": {
       "delete": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimension Mapping"
         ],
         "summary": "delete all dimension mappings",
         "description": "Delete all dimension mappings for the given report suite and data view ids. If there are no mappings, this will return a success response.",
@@ -414,7 +414,7 @@
     "/mapping/metrics/csv": {
       "get": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metric Mapping"
         ],
         "summary": "get metrics mappings as CSV file",
         "description": "get metrics mapping with given rsid and dataId",
@@ -469,7 +469,7 @@
       },
       "put": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metric Mapping"
         ],
         "summary": "update metric mappings with CSV file",
         "description": "Update metric mappings with given rsid and dataId",
@@ -533,7 +533,7 @@
       },
       "post": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metric Mapping"
         ],
         "summary": "create metrics mapping with CSV file",
         "description": "Override metric mapping with given rsid and dataId",
@@ -597,7 +597,7 @@
       },
       "delete": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metric Mapping"
         ],
         "summary": "Delete mappings from a csv file",
         "description": "Delete mappings from a csv file for the given report suite and data view. If the fileis empty, returns a bad request code. Skips any mappings that do not exist. CSV file mustcontain a header row.",
@@ -660,7 +660,7 @@
     "/mapping/metrics/all": {
       "delete": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metric Mapping"
         ],
         "summary": "Delete all metric mappings",
         "description": "Delete all metric mappings for the given report suite and data view. If there are nomappings, returns a success response.",
