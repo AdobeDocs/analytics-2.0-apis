@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Components Migration Service (AA to CJA)",
+    "title": "Components Migration Service (AA to CJA) - Prod - ACC - AA",
     "description": "AA to CJA Components Migration",
     "version": "1.0"
   },
@@ -12,15 +12,15 @@
   ],
   "tags": [
     {
-      "name": "Components Migration",
+      "name": "Components Migration - Users",
       "description": "Operations pertaining to components migration"
     },
     {
-      "name": "Dimension Mapping",
+      "name": "Dimension Mapping - Users",
       "description": "Operations pertaining to dimension mapping"
     },
     {
-      "name": "Metric Mapping",
+      "name": "Metric Mapping - Users",
       "description": "Operations pertaining to metric mapping"
     }
   ],
@@ -28,7 +28,7 @@
     "/projects/{projectId}/migrate": {
       "post": {
         "tags": [
-          "Components Migration"
+          "Components Migration - Users"
         ],
         "operationId": "migrateByProjectId",
         "parameters": [
@@ -53,6 +53,7 @@
         },
         "responses": {
           "200": {
+            "description" : "Project migration started successfully.",
             "content": {
               "application/json": {
                 "schema": {
@@ -78,7 +79,7 @@
     "/projects/{projectId}/summary": {
       "get": {
         "tags": [
-          "Components Migration"
+          "Components Migration - Users"
         ],
         "operationId": "summary_1",
         "parameters": [
@@ -94,6 +95,7 @@
         ],
         "responses": {
           "200": {
+            "description" : "Project migration summary retrieved successfully.",
             "content": {
               "application/json": {
                 "schema": {
@@ -119,7 +121,7 @@
     "/mapping/dimensions/csv": {
       "get": {
         "tags": [
-          "Dimension Mapping"
+          "Dimension Mapping - Users"
         ],
         "summary": "get dimensions mappings as CSV file",
         "description": "get dimension mappings with given rsid and dataId",
@@ -154,6 +156,7 @@
         ],
         "responses": {
           "200": {
+            "description": "Dimensions mappings retrieved successfully",
             "content": {
               "text/csv": {
                 "schema": {
@@ -174,7 +177,7 @@
       },
       "put": {
         "tags": [
-          "Dimension Mapping"
+          "Dimension Mapping - Users"
         ],
         "summary": "update dimensions mapping with CSV file",
         "description": "Update dimension mapping with given rsid and dataId",
@@ -215,6 +218,7 @@
         },
         "responses": {
           "200": {
+            "description": "Dimensions mappings updated successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -238,7 +242,7 @@
       },
       "post": {
         "tags": [
-          "Dimension Mapping"
+          "Dimension Mapping - Users"
         ],
         "summary": "create dimensions mapping with CSV file",
         "description": "Override dimension mapping with given rsid and dataId",
@@ -279,6 +283,7 @@
         },
         "responses": {
           "200": {
+            "description": "Dimensions mappings created successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -299,73 +304,12 @@
             "x-user-auth": []
           }
         ]
-      },
-      "delete": {
-        "tags": [
-          "Dimension Mapping"
-        ],
-        "summary": "Delete mappings from a csv file",
-        "description": "Delete mappings from a csv file for the given report suite and data view. If the fileis empty, returns a bad request code. Skips any mappings that do not exist. CSV file mustcontain a header row.",
-        "operationId": "deleteMappingsByCSV_1",
-        "parameters": [
-          {
-            "name": "rsid",
-            "in": "query",
-            "description": "rsid in Analytics",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "dataId",
-            "in": "query",
-            "description": "dataId in CJA",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "*/*": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "object"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteControllerResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "x-gw-ims-org-id": []
-          },
-          {
-            "x-user-auth": []
-          }
-        ]
       }
     },
     "/mapping/dimensions/all": {
       "delete": {
         "tags": [
-          "Dimension Mapping"
+          "Dimension Mapping - Users"
         ],
         "summary": "delete all dimension mappings",
         "description": "Delete all dimension mappings for the given report suite and data view ids. If there are no mappings, this will return a success response.",
@@ -392,6 +336,7 @@
         ],
         "responses": {
           "200": {
+            "description": "Dimensions mappings deleted successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -414,7 +359,7 @@
     "/mapping/metrics/csv": {
       "get": {
         "tags": [
-          "Metric Mapping"
+          "Metric Mapping - Users"
         ],
         "summary": "get metrics mappings as CSV file",
         "description": "get metrics mapping with given rsid and dataId",
@@ -449,6 +394,7 @@
         ],
         "responses": {
           "200": {
+            "description": "Dimensions mappings retrieved successfully",
             "content": {
               "text/csv": {
                 "schema": {
@@ -469,7 +415,7 @@
       },
       "put": {
         "tags": [
-          "Metric Mapping"
+          "Metric Mapping - Users"
         ],
         "summary": "update metric mappings with CSV file",
         "description": "Update metric mappings with given rsid and dataId",
@@ -510,6 +456,7 @@
         },
         "responses": {
           "200": {
+            "description": "Metrics mappings updated successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -533,7 +480,7 @@
       },
       "post": {
         "tags": [
-          "Metric Mapping"
+          "Metric Mapping - Users"
         ],
         "summary": "create metrics mapping with CSV file",
         "description": "Override metric mapping with given rsid and dataId",
@@ -574,6 +521,7 @@
         },
         "responses": {
           "200": {
+            "description": "Metrics mapping created successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -594,73 +542,12 @@
             "x-user-auth": []
           }
         ]
-      },
-      "delete": {
-        "tags": [
-          "Metric Mapping"
-        ],
-        "summary": "Delete mappings from a csv file",
-        "description": "Delete mappings from a csv file for the given report suite and data view. If the fileis empty, returns a bad request code. Skips any mappings that do not exist. CSV file mustcontain a header row.",
-        "operationId": "deleteMappingsByCSV_3",
-        "parameters": [
-          {
-            "name": "rsid",
-            "in": "query",
-            "description": "rsid in Analytics",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "dataId",
-            "in": "query",
-            "description": "dataId in CJA",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "*/*": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "object"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteControllerResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "x-gw-ims-org-id": []
-          },
-          {
-            "x-user-auth": []
-          }
-        ]
       }
     },
     "/mapping/metrics/all": {
       "delete": {
         "tags": [
-          "Metric Mapping"
+          "Metric Mapping - Users"
         ],
         "summary": "Delete all metric mappings",
         "description": "Delete all metric mappings for the given report suite and data view. If there are nomappings, returns a success response.",
@@ -687,6 +574,7 @@
         ],
         "responses": {
           "200": {
+            "description": "All metrics mapping deleted successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -925,6 +813,32 @@
           }
         }
       },
+      "ComponentMigrationRequest" : {
+        "type" : "object",
+        "properties" : {
+          "aaId" : {
+            "type" : "string"
+          },
+          "globalCompanyId" : {
+            "type" : "string"
+          },
+          "imsOrgId" : {
+            "type" : "string"
+          },
+          "imsUserId" : {
+            "type" : "string"
+          },
+          "imsUserName" : {
+            "type" : "string"
+          },
+          "rsidDataIdMap" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
       "ControllerResponse": {
         "properties": {
           "result": {
@@ -942,6 +856,10 @@
             "type": "string"
           }
         }
+      },
+      "Response": {
+        "type": "string",
+        "format": "binary"
       },
       "MigrationEventStatusEntity": {
         "properties": {
