@@ -53,11 +53,11 @@ String line = reader.readLine();
 
 #### Example Java-based client
 
-For example code of a client that decouples consumption and processing, you can view and copy the `[LivestreamConsumer.java file](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/LivestreamConsumer.java)`. Adobe also provides [XML-based resources](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/pom.xml) for implementing this configuration. 
+For example code of a client that decouples consumption and processing, you can view and copy the `[LivestreamConsumer.java file](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/LivestreamConsumer.java)`. The example code includes annotations to describe the functions of the code. Adobe also provides [XML-based resources](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/pom.xml) for implementing this configuration. 
 
 #### Handling redirects
 
-Many client libraries remove the Authorization header on a redirect. The example `LivestreamConsumer.java` referenced above shows how to handle redirects manually to avoid this issue, including the following lines
+Many client libraries remove the Authorization header on a redirect. The example [`LivestreamConsumer.java`](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/LivestreamConsumer.java#L66-L70) shows how to handle redirects manually to avoid this issue, including the following lines
 
 ```java
  private HttpURLConnection getConnection(final String streamUrl, final String accessToken) throws IOException {
@@ -69,8 +69,6 @@ Many client libraries remove the Authorization header on a redirect. The example
         connection.setRequestProperty("Accept-Encoding", "gzip");
         connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 
-        // Many client libraries remove the Authorization header on a redirect
-        // This application handles redirects manually to avoid that
         connection.setInstanceFollowRedirects(false);
 
         return connection;
