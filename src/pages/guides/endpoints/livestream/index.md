@@ -35,6 +35,10 @@ Review the list of [dimensions and metrics](variable-reference.md) to identify a
 
 Depending on the use case for your stream, create an application for the service. This application should include the business logic you want to use. 
 
+### Example Java-based client
+
+Adobe provides example code for a `[LivestreamCoinsumer.java](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/LivestreamConsumer.java)` client that decopuples consumption from processing. that you can use if appropriate. Adobe also provides [XML-based resources](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/pom.xml). For more information, see [Implement a client for Livestream data](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/client-readme.md).
+
 ## Connect to the stream
 
 To connect to the steam, make a request that looks similar to the following:
