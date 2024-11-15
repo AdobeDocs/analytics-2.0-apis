@@ -35,16 +35,53 @@ Review the list of [dimensions and metrics](variable-reference.md) to identify a
 
 Depending on the use case for your stream, create an application for the service. This application should include the business logic you want to use. 
 
-### Example Java-based client
+### Decouple consumption from processing
 
-Adobe provides example code for a `[LivestreamCoinsumer.java](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/LivestreamConsumer.java)` client that decopuples consumption from processing. that you can use if appropriate. Adobe also provides [XML-based resources](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/pom.xml). For more information, see [Implement a client for Livestream data](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/client-readme.md).
+To avoid data bottlenecks, Adobe recommends using a client that decouples consumption from processing. You can implement this with the following methods:
+* Use example Java code that includes those features, as referenced in sections below.
+* Use buffers.
+* Cache the data.
+* Use queues and delegate work to another thread, or write to a data queue like Apache Kafka. The example Java client described below incorportes this with the following lines of code:
+
+```java
+String line = reader.readLine();
+        while (line != null) {
+            dataQueue.put(line);
+            line = reader.readLine();
+        }
+```
+
+#### Example Java-based client
+
+For example code of a client that decouples consumption and processing, you can view and copy the `[LivestreamConsumer.java file](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/LivestreamConsumer.java)`. Adobe also provides [XML-based resources](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/resources/java/livestream/pom.xml) for implementing this configuration. 
+
+#### Handling redirects
+
+Many client libraries remove the Authorization header on a redirect. The example `LivestreamConsumer.java` referenced above shows how to handle redirects manually to avoid this issue, including the following lines
+
+```java
+ private HttpURLConnection getConnection(final String streamUrl, final String accessToken) throws IOException {
+        URL url = new URL(streamUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setReadTimeout((int) Duration.ofSeconds(60).toMillis());
+        connection.setConnectTimeout((int) Duration.ofSeconds(10).toMillis());
+
+        connection.setRequestProperty("Accept-Encoding", "gzip");
+        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+
+        // Many client libraries remove the Authorization header on a redirect
+        // This application handles redirects manually to avoid that
+        connection.setInstanceFollowRedirects(false);
+
+        return connection;
+```
 
 ## Connect to the stream
 
 To connect to the steam, make a request that looks similar to the following:
 
 
-```
+```curl
 curl -X GET "https://livestream.adobe.net/api/1/stream/adobe-livestream-{endpoint-name}" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
