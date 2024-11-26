@@ -13,7 +13,7 @@
   "tags": [
     {
       "name": "Components Migration - Users",
-      "description": "Operations pertaining to components migration"
+      "description": "API Methods for migrating components from Adobe Analytics to Customer Journey Analytics"
     },
     {
       "name": "Dimension Mapping - Users",
