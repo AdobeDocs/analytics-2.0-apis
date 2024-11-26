@@ -22,7 +22,7 @@ These endpoints provide methods for viewing, creating, and deleting Data Sources
 
 Use Data Sources Jobs endpoints to upload and view data to a Data Sources account:
 
-* [PUT data](#put-data): Uploads a file to a Data Sources account
+* [POST data](#post-data): Uploads a file to a Data Sources account
 * [GET all jobs](#get-all-jobs): Retrieves all jobs associated with a Data Sources account
 * [GET a single job](#get-a-single-job): Retrieves a single job by ID
 
@@ -342,11 +342,11 @@ The following table describes the DELETE Data Sources account response parameter
 | `success` | boolean | Whether the delete succeeded |
 | `message` | string | Indicates the action of the operation |
 
-## PUT data
+## POST data
 
 Use this endpoint to upload a data file to an existing Data Sources account. For more information on data uploads, see the [Upload data sources file to Adobe](https://experienceleague.adobe.com/en/docs/analytics/import/data-sources/file-upload) guide.
 
-`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datasources/job/{REPORT_SUITE_ID}/{DATA_SOURCE_ID}`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datasources/job/{REPORT_SUITE_ID}/{DATA_SOURCE_ID}`
 
 ### Request and Response Examples
 
@@ -357,7 +357,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl  -X PUT \
+curl  -X POST \
   'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datasources/job/examplersid/621' \
   --H 'Accept: application/json' \
   --H 'x-api-key: {CLIENT_ID}' \
