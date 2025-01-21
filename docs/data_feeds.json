@@ -62,6 +62,7 @@
       "post" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Create datafeed",
+        "description" : "**Required fields are:**\n\n- feedName: Name of the datafeed\n- rsid: Report suite String identifier\n- columnPreset: Column preset identifier\n- schedule.startDate: Start date of the schedule in ISO 8601 format\n- delivery.cloudLocationUUID: Cloud storage location UUID\n- delivery.notificationEmail: List of notification email addresses\n\n**Optional fields and defaults are:**\n\n- feedState: State of the datafeed [created, hold, active(default)]\n- dynamicLookups: Boolean to enable/disable dynamic lookups [true, false(default)]\n- replaceEscapedChars: Boolean to enable/disable replacing escaped characters [true, false(default)]\n- schedule.interval: Delivery interval [daily, hourly(default)]\n- schedule.delay: Integer representing the delay in processing in minutes 0 to 9999 (default=0)\n- packaging.type: String representing the packaging type [flat, chunked(default)]\n- packaging.chunkSize: Integer representing the chunk size in MB [1024, 2048(default), 4096]\n- packaging.compression: String representing the compression type [zip, gzip(default)]\n- packaging.manifest: String representing the manifest type [none, fin, chunked(default)]\n- packaging.noDataManifest: Boolean to enable/disable no data manifest [true, false(default)]\n- lateHits.enabled: Boolean to enable/disable late hits [true, false(default)]\n- lateHits.lookback: Integer representing the lookback period in hours [0 to 26280 (default = 0)]\n\n**Example 1 with only required fields:**\n\n```json\n{\n  \"feedName\": \"ExampleFeed1\",\n  \"rsid\": \"example-rsid\",\n  \"columnPreset\": 1,\n  \"schedule\": {\n    \"startDate\": \"2024-01-01T00:00:00Z\"\n  },\n  \"delivery\": {\n    \"cloudLocationUUID\": \"your-location-uuid\",\n    \"notificationEmail\": [\"test@example.com\"]\n  }\n}\n```\n\n**Example 2 with required and optional fields:**\n\n```json\n{\n  \"feedName\": \"ExampleFeed2\",\n  \"rsid\": \"example-rsid\",\n  \"feedState\": \"active\",\n  \"columnPreset\": 1,\n  \"notes\": \"Example feed\",\n  \"dynamicLookups\": true,\n  \"replaceEscapedChars\": false,\n  \"schedule\": {\n    \"startDate\": \"2025-06-01T00:00:00Z\",\n    \"endDate\": \"2026-12-31T23:59:59Z\",\n    \"interval\": \"hourly\",\n    \"delay\": 100\n  },\n  \"packaging\": {\n    \"type\": \"chunked\",\n    \"chunkSize\": 4096,\n    \"compression\": \"gzip\",\n    \"manifest\": \"chunked\",\n    \"noDataManifest\": true\n  },\n  \"delivery\": {\n    \"cloudLocationUUID\": \"your-location-uuid\",\n    \"notificationEmail\": [\"test@example.com\"]\n  },\n  \"lateHits\": {\n    \"enabled\": true,\n    \"lookback\": 1000\n  }\n}\n```\n",
         "operationId" : "create_1",
         "parameters" : [ {
           "name" : "x-proxy-global-company-id",
@@ -190,6 +191,7 @@
       "put" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Update datafeed",
+        "description" : "This endpoint allows updating specific fields of an existing datafeed.\n\n**Fields that can be updated:**\n\n- columnPreset: Integer value representing the column preset.\n- notes: String field to add notes about the datafeed.\n- dynamicLookups: Boolean to enable/disable dynamic lookups.\n- replaceEscapedChars: Boolean to enable/disable replacing escaped characters.\n- schedule.endDate: String representing the end date of the datafeed.\n- schedule.delay: Integer representing the delay in minutes.\n- delivery.cloudLocationUUID: UUID string of the delivery location.\n- delivery.notificationEmail: List of strings representing notification email addresses.\n- lateHits.enabled: Boolean to enable/disable late hits.\n- lateHits.lookback: Integer representing the lookback period in hours.\n- packaging.type: String representing the packaging type (e.g., 'flat', 'chunked').\n- packaging.compression: String representing the compression type (e.g., 'gzip', 'zip').\n- packaging.chunkSize: Integer representing the chunk size in MB.\n- packaging.manifest: String representing the manifest type (e.g., 'none', 'fin', 'chunked').\n- packaging.noDataManifest: Boolean to enable/disable no data manifest.\n\n**Example request body:**\n\n```json\n{\n  \"columnPreset\": 0,\n  \"notes\": \"string\",\n  \"dynamicLookups\": true,\n  \"replaceEscapedChars\": true,\n  \"metadata\": {\n    \"feedId\": 0,\n    \"feedState\": \"string\"\n  },\n  \"schedule\": {\n    \"startDate\": \"string\",\n    \"endDate\": \"string\",\n    \"interval\": \"string\",\n    \"delay\": 0\n  },\n  \"packaging\": {\n    \"type\": \"string\",\n    \"chunkSize\": 0,\n    \"compression\": \"string\",\n    \"manifest\": \"string\",\n    \"noDataManifest\": true\n  },\n  \"delivery\": {\n    \"cloudLocationUUID\": \"string\",\n    \"notificationEmail\": [\n      \"string\"\n    ]\n  },\n  \"lateHits\": {\n    \"enabled\": true,\n    \"lookback\": 0\n  }\n}\n```\n",
         "operationId" : "update_1",
         "parameters" : [ {
           "name" : "feedId",
@@ -259,6 +261,7 @@
       "post" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Gets datafeed requests",
+        "description" : "This endpoint allows searching for datafeed requests using various filtering criteria.\n\nThe request body supports the following fields:\n\n- rsids **[Required]:** One or more report suite IDs to filter the search.\n\n- feedIds **[Required]**: One or more datafeed IDs to filter the search.\n\n- requestStates: Filter by request states [created, processing, completed].\n\n- billingCustomerId: Filter by billing customer ID.\n\n- useUtc: Indicates whether the date filters should use UTC (default=false).\n\n***Pagination:***\n\n- limit: Maximum number of results to return (default=100).\n\n- offset: Offset for pagination (default=0).\n\n***Sorting:***\n\n- sortOrder: 'asc' or 'desc' (default='desc').\n\n- orderBy: Field to sort by (first_run_date, complete_date, req_period_begin_utc ).\n\n***Date Filters:*** Dates must be in ISO 8601 format with timezone (yyyy-MM-dd'T'HH:mm:ssXXX) or UTC (yyyy-MM-ddTHH:mm:ssZ):\n\n- minRequestPeriodStartDate, maxRequestPeriodStartDate: Filter by request period start date range.\n\n- minAttemptDate, maxAttemptDate: Filter by attempt date range.\n\n- minCompletionDate, maxCompletionDate: Filter by completion date range.\n\n- minSubmittedDate, maxSubmittedDate: Filter by submission date range.\n\n**Example request body:**\n\n```json\n{\n  \"rsids\": [\n    \"inttest\"\n  ],\n  \"feedIds\": [\n    6, 7\n  ],\n  \"requestStates\": [\n    \"created\", \"processing\", \"completed\"\n  ],\n  \"limit\": 10,\n  \"offset\": 0,\n  \"sortOrder\": \"desc\",\n  \"minRequestPeriodStartDate\": \"2023-05-21T08:00:00Z\",\n  \"maxRequestPeriodStartDate\": \"2023-07-21T08:10:00Z\"\n}\n```\n",
         "operationId" : "getDataFeedRequests_1",
         "parameters" : [ {
           "name" : "customerVisible",
@@ -311,7 +314,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedRequestList"
+                  "$ref" : "#/components/schemas/DataFeedRequestListView"
                 }
               }
             }
@@ -326,6 +329,7 @@
       "get" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Gets datafeed requests for a report suite and feed ID",
+        "description" : "If no dates are provided, the API will return the latest datafeed requests.\n\n",
         "operationId" : "getDataFeedRequestsForFeed_1",
         "parameters" : [ {
           "name" : "rsid",
@@ -357,6 +361,22 @@
           "description" : "Filters for Datafeed requests on or before the specified datetime",
           "schema" : {
             "type" : "string"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "Maximum number of records to return. Max value allowed is 5000. Defaults to 500.",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "Number of records to skip for pagination. Defaults to 0.",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }, {
           "name" : "x-proxy-global-company-id",
@@ -393,7 +413,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedRequestList"
+                  "$ref" : "#/components/schemas/DataFeedRequestListView"
                 }
               }
             }
@@ -842,13 +862,6 @@
             "type" : "string"
           }
         }, {
-          "name" : "customerVisible",
-          "in" : "query",
-          "description" : "Filters for Datafeed requests based on customer visibility",
-          "schema" : {
-            "type" : "boolean"
-          }
-        }, {
           "name" : "x-proxy-global-company-id",
           "in" : "header",
           "description" : "Proxy global company ID",
@@ -1238,6 +1251,31 @@
           "hostname" : {
             "type" : "string"
           },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "directoryPath" : {
+            "type" : "string"
+          },
+          "prefix" : {
+            "type" : "string"
+          },
+          "skipRename" : {
+            "type" : "boolean"
+          },
+          "bucket" : {
+            "type" : "string"
+          },
+          "container" : {
+            "type" : "string"
+          },
+          "accountName" : {
+            "type" : "string"
+          },
+          "projectId" : {
+            "type" : "string"
+          },
           "exportLocationId" : {
             "type" : "string"
           }
@@ -1353,13 +1391,64 @@
           }
         }
       },
-      "DataFeedRequestList" : {
+      "ActiveFeed" : {
+        "type" : "object",
         "properties" : {
+          "feedId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "feedName" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ActiveFeedsForLocation" : {
+        "properties" : {
+          "activeFeeds" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ActiveFeed"
+            }
+          },
+          "total" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "exportLocationUUID" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ActiveFeedsListView" : {
+        "type" : "object",
+        "properties" : {
+          "activeFeedsByLocations" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ActiveFeedsForLocation"
+            }
+          }
+        }
+      },
+      "DataFeedRequestListView" : {
+        "properties" : {
+          "offset" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
           "data" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/DataFeedRequestView"
             }
+          },
+          "limit" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
@@ -1464,16 +1553,10 @@
           "useUtc" : {
             "type" : "boolean"
           },
-          "minStartDate" : {
+          "minRequestPeriodStartDate" : {
             "type" : "string"
           },
-          "maxStartDate" : {
-            "type" : "string"
-          },
-          "minEndDate" : {
-            "type" : "string"
-          },
-          "maxEndDate" : {
+          "maxRequestPeriodStartDate" : {
             "type" : "string"
           },
           "minAttemptDate" : {
@@ -1628,11 +1711,27 @@
       },
       "ColumnPresetList" : {
         "properties" : {
-          "data" : {
+          "total" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "columnPresets" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/ColumnPresetView"
+              "$ref" : "#/components/schemas/SimpleColumnPresetView"
             }
+          }
+        }
+      },
+      "SimpleColumnPresetView" : {
+        "type" : "object",
+        "properties" : {
+          "columnPresetId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
           }
         }
       },
@@ -1712,6 +1811,31 @@
             "type" : "string"
           },
           "hostname" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "directoryPath" : {
+            "type" : "string"
+          },
+          "prefix" : {
+            "type" : "string"
+          },
+          "skipRename" : {
+            "type" : "boolean"
+          },
+          "bucket" : {
+            "type" : "string"
+          },
+          "container" : {
+            "type" : "string"
+          },
+          "accountName" : {
+            "type" : "string"
+          },
+          "projectId" : {
             "type" : "string"
           },
           "exportLocationId" : {
@@ -1952,11 +2076,27 @@
       "ColumnPresetList_User" : {
         "type" : "object",
         "properties" : {
-          "data" : {
+          "total" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "columnPresets" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/ColumnPresetView_User"
+              "$ref" : "#/components/schemas/SimpleColumnPresetView_User"
             }
+          }
+        }
+      },
+      "SimpleColumnPresetView_User" : {
+        "type" : "object",
+        "properties" : {
+          "columnPresetId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
           }
         }
       }
