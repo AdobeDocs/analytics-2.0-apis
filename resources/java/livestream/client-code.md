@@ -1,3 +1,80 @@
+---
+title: Livestream API client implementation
+description: Client implementation for Analytics Livestream
+---
+
+# Implement a client for Livestream data
+
+Use the following information to create a client that can consume Analytics Livestream data:
+
+1. Install the required software:
+
+    * Java 11
+    * Maven
+
+2. Update the sample code below:
+
+    * Add your stream ID where specified in the code.
+    * Add your generated access token where specified in the code. For information on generating this token, see the [User Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/)
+
+3. Build a runnable JAR:
+
+    * Use the following: ```$ mvn package``` while running the application
+```$ java target/adobe-livestream-consumer-1.0-SNAPSHOT.jar```.
+
+    * It is highly recommended to have separate threads, one for reading Livestream and another to perform work on the data.
+
+    * The schema can be found at the following URL: https://livestream.adobe.net/api/1/schema.v
+
+## XML
+
+`resources/java/livestream/pom.xml`
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.adobe.analytics</groupId>
+  <artifactId>adobe-livestream-consumer</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>adobe-livestream-consumer</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.adobe.analytics.LivestreamConsumer</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+```
+
+## JAVA
+
+`resources/java/livestream/src/main/java/com/adobe/analytics/LivestreamConsumer.java`
+
+```java
 package com.adobe.analytics;
 
 import java.io.BufferedReader;
@@ -104,3 +181,5 @@ public class LivestreamConsumer implements Runnable
         }
     }
 }
+```
+
