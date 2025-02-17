@@ -239,7 +239,7 @@ module.exports = {
               },
               {
                 title: 'Client implementation',
-                path: 'guides/endpoints/livestream/client-implementation.md'
+                path: 'guides/endpoints/livestream/clientcode.md'
               }
             ]
           },
