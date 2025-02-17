@@ -1256,7 +1256,7 @@ The following table describes the response parameters for this endpoint:
 
 ## DELETE classification
 
-Use this endpoint to delete a specified classification. For more information, see [Delete classification data](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/t-delete-classification-data.html).
+Use this endpoint to delete a classification dataset. To remove a single field or to delete a key on the server, see [Remove classification fields or keys](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/remove-values). For more information deleting, see [Delete classification data](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/t-delete-classification-data.html).
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{DATASET_ID}`
 
