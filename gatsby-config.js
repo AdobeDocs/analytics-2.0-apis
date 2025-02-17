@@ -144,6 +144,10 @@ module.exports = {
               {
                 title: 'Troubleshooting',
                 path: 'guides/endpoints/classifications/troubleshooting.md'
+              },
+              {
+                title: 'Removing data',
+                path: 'guides/endpoints/classifications/remove-values.md'
               }
             ]
           },
