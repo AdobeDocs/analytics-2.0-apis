@@ -1,0 +1,18 @@
+---
+title: Remove classification data values
+description: Remove cell values or delete a key from server data
+---
+
+# Remove classification data values
+
+You can remove classification data from the server with POST import job by dataset ID endpoint. This includes the following methods:
+
+* Remove data cell values
+* Delete a key
+
+## Remove data cell values
+
+
+## Delete a key
+
+
