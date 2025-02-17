@@ -33,7 +33,7 @@ Use this endpoint to create an import job for a classification dataset. Creating
 
 `POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/{DATASET_ID}`
 
-You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see Removing classification data values.
+You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see Remove classification data values.
 
 ### Request and Response Examples
 
