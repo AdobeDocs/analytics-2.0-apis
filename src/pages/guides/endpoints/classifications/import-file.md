@@ -15,7 +15,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 To import an API classification by uploading a file, use the following enpoints:
 
-* [POST create job](#post-create-job)
+* [POST import job by dataset ID](#post-import-job-by-dataset-ID)
 * [POST upload file](#put-upload-file)
 * [POST commit job](#post-commit-job)
 
@@ -27,11 +27,13 @@ Each endpoint is used in the following process:
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
 
-## POST create job
+## POST import job by dataset ID
 
 Use this endpoint to create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
 
 `POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/{DATASET_ID}`
+
+You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see Removing classification data values.
 
 ### Request and Response Examples
 
