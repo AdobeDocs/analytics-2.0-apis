@@ -45,6 +45,8 @@ This endpoint is shown in the API reference as [POST /job/import/json/{dataset_i
 
 Use this endpoint to create a classification smaller than 50 MB. For more information on importing classifications, see [Classifications importer overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-working-with-saint.html).
 
+You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see [Remove classification fields or keys](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/remove-values).
+
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/json/{DATASET_ID}`
 
 ### Request and Response Examples
