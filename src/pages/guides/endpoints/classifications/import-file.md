@@ -16,14 +16,14 @@ Adobe may add optional request and response members (name/value pairs) to existi
 To import an API classification by uploading a file, use the following enpoints:
 
 * [POST import job by dataset ID](#post-import-job-by-dataset-ID)
-* [POST upload file](#put-upload-file)
-* [POST commit job](#post-commit-job)
+* [POST import upload file](#post-import-upload-file)
+* [POST import commit job ID](#post-commit-job-ID)
 
 Each endpoint is used in the following process:
 
-1. Create an import job with the [POST create job](#post-create-job) endpoint.
-2. Upload a file using the [POST upload file](#put-upload-file) endpoint.
-3. Commit your upload using the [POST commit job](#post-commit-job) endpoint.
+1. Create an import job with the [POST import job by dataset ID](#post-create-job) endpoint.
+2. Upload a file using the [POST import upload file](#post-import-upload-file) endpoint.
+3. Commit your upload using the [POST import commit job](#post-import-commit-job) endpoint.
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
 
@@ -33,7 +33,7 @@ Use this endpoint to create an import job for a classification dataset. Creating
 
 `POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/{DATASET_ID}`
 
-You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see Remove classification data values.
+You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see [Remove classification fields or keys](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/remove-values).
 
 ### Request and Response Examples
 
@@ -175,7 +175,7 @@ The following table describes the POST create job response parameters:
 | `key` | string | The field or column name associated with key value |
 | `value` | string | The actual value of the key (as in a field or column name) |
 
-## POST upload file
+## POST import upload file
 
 Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, tab, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html)
 
@@ -239,7 +239,7 @@ The following table describes the PUT upload file response parameters:
 | `api_job_id` | string | The API job ID for uploading the file. This ID is provided with the response of the POST create job endpoint. |
 | `status` | string | The status of the API job |
 
-## POST commit job
+## POST import commit job ID
 
 Use this endpoint to commit the changes of a specified job ID. This endpoint finalizes the file uploading process. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
 
