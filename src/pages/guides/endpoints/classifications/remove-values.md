@@ -7,12 +7,12 @@ description: Remove cell values or delete a key from server data
 
 You can remove classification fields or keys from the server with the following methods:
 
-* Remove a single field from a key
-* Delete a key
+* [Remove a single field from a key](#Remove-a-single-field-from-a-key)
+* [Delete a key](#Delete-a-key)
 
 ## Remove a single field from a key
 
-To remove a single field from a key, include the the following object data list for each removal in your **POST import json dataset ID** request:
+To remove a single field from a key, include the the following object data list for each removal in your [POST import json dataset ID](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/#post-import-json-classification) request:
 
 ```json
             {
@@ -74,7 +74,7 @@ The following example shows a request payload to remove both the `Brand` and `Ch
 
 ## Delete a key
 
-To remove one key and all the classification values for this key, include the the following with your **POST import json dataset ID** request:
+To remove one key and all the classification values for this key, include the the following with your *[POST import json dataset ID](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/#post-import-json-classification) request:
 
 
 ```json
@@ -88,7 +88,7 @@ This action results in the following value for the key: `~deletekey~`.
 
 ### Delete a key by uploading a file
 
-To delete a column value in an uploaded file, use the **POST import upload file** endpoint. The following shows a section of an uploaded `.tsv` file with an example change:
+To delete a column value in an uploaded file, use the [POST import upload file](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/) endpoint. The following shows a section of an uploaded `.tsv` file with an example change:
 
 ```
 Key ColA ColB
