@@ -3,7 +3,7 @@ title: Remove classification fields or keys
 description: Remove cell values or delete a key from server data
 ---
 
-# Remove a classification fields or keys
+# Remove classification fields or keys
 
 You can remove classification fields or keys from the server with the following methods:
 
