@@ -25,7 +25,7 @@ To remove a single field from a key, include the the following object data list 
 
 This action results in the following value for the cell: `~empty~`.
 
-Make sure the include `action` in the data list above. Leaving it out will result in updating the **entire** column with the `~empty~` value.
+Make sure to include `action` in the data list above. Leaving it out will result in updating the **entire** column with the `~empty~` value.
 
 ### Remove cell value example
 
