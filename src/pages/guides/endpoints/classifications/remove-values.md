@@ -41,7 +41,7 @@ The following example shows a request payload to remove both the `Brand` and `Ch
             "method": "email",
             "state": "completed",
             "recipients": [
-                "test_email@gap.com"
+                "test_email@example.com"
             ]
         }
     ],
@@ -53,14 +53,14 @@ The following example shows a request payload to remove both the `Brand` and `Ch
     },
     "data": [
         {
-            "key": "onaff998494",
+            "key": "xxxffxxxxxx",
             "action": "delete-field",
             "data": {
                 "Brand": ""
             }
         },
         {
-            "key": "onaff998494",
+            "key": "xxxffxxxxxx",
             "action": "delete-field",
             "data": {
                 "Channel": ""
