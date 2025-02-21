@@ -17,11 +17,60 @@
     "name" : "Manage API",
     "description" : "API for users to resend, reprocess and redo datafeed requests with a user token"
   }, {
-    "name" : "Column Presets API",
-    "description" : "API to create, update and retrieve column presets for datafeed with a user token"
+    "name" : "Column Preset API",
+    "description" : "API to create, update and retrieve column presets for datafeeds with a user token"
   } ],
   "paths" : {
     "/datafeed" : {
+      "get" : {
+        "tags" : [ "Datafeed API" ],
+        "summary" : "Gets datafeeds for a report suite",
+        "operationId" : "getDataFeedsForReportSuite_1",
+        "parameters" : [ {
+          "name" : "rsid",
+          "in" : "query",
+          "description" : "The report suite ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }],
+        "responses" : {
+          "404" : {
+            "description" : "Datafeeds not found for rsids.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error occurred while retrieving datafeeds for rsids.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Datafeeds for report suite retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DataFeedList"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "x-user-auth" : [ ]
+        } ]
+      },
       "post" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Create datafeed",
@@ -196,7 +245,7 @@
         } ]
       }
     },
-    "/datafeed/requests" : {
+    "/datafeed/requests/search" : {
       "post" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Gets datafeed requests",
@@ -249,7 +298,7 @@
         } ]
       }
     },
-    "/datafeed/request/{rsid}/{feedId}" : {
+    "/datafeed/requests" : {
       "get" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Gets datafeed requests for a report suite and feed ID",
@@ -257,7 +306,7 @@
         "operationId" : "getDataFeedRequestsForFeed_1",
         "parameters" : [ {
           "name" : "rsid",
-          "in" : "path",
+          "in" : "query",
           "description" : "The report suite ID",
           "required" : true,
           "schema" : {
@@ -265,7 +314,7 @@
           }
         }, {
           "name" : "feedId",
-          "in" : "path",
+          "in" : "query",
           "description" : "The feed ID",
           "required" : true,
           "schema" : {
@@ -391,7 +440,7 @@
         } ]
       }
     },
-    "/datafeed/suite" : {
+    "/datafeed/search" : {
       "post" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Gets datafeeds for an array of report suite",
@@ -443,7 +492,7 @@
         } ]
       }
     },
-    "/datafeed/status/{feedId}/{status}" : {
+    "/datafeed/{feedId}/status" : {
       "put" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Update datafeed status",
@@ -459,7 +508,7 @@
           }
         }, {
           "name" : "status",
-          "in" : "path",
+          "in" : "query",
           "description" : "Valid values: active, canceled and hold",
           "required" : true,
           "schema" : {
@@ -716,69 +765,20 @@
         } ]
       }
     },
-    "/presets/columns/{rsid}" : {
-      "get" : {
-        "tags" : [ "Column Presets API" ],
-        "summary" : "Get available column presets by rsid",
-        "operationId" : "getColumnPresetByRsid_1",
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "path",
-          "description" : "The report suite ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "404" : {
-            "description" : "Column Presets for report suite not found.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Error occurred while retrieving column presets for rsid.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Column Presets for report suite retrieved successfully.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ColumnPresetList"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
-      },
+    "/columnPreset" : {
       "post" : {
-        "tags" : [ "Column Presets API" ],
+        "tags" : [ "Column Preset API" ],
         "summary" : "Create a new column preset",
         "operationId" : "createColumnPresetByRsid_1",
         "parameters" : [ {
           "name" : "rsid",
-          "in" : "path",
+          "in" : "query",
           "description" : "The report suite ID",
           "required" : true,
           "schema" : {
             "type" : "string"
           }
-        } ],
+        }],
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -835,10 +835,10 @@
         } ]
       }
     },
-    "/presets/columns/all" : {
+    "/columnNames/all" : {
       "get" : {
-        "tags" : [ "Column Presets API" ],
-        "summary" : "Get all columns",
+        "tags" : [ "Column Preset API" ],
+        "summary" : "Get all column names",
         "operationId" : "getAllColumnNames_1",
         "parameters" : [ ],
         "responses" : {
@@ -878,21 +878,21 @@
         } ]
       }
     },
-    "/presets/columns/id/{presetId}" : {
+    "/columnPreset/{presetId}" : {
       "get" : {
-        "tags" : [ "Column Presets API" ],
+        "tags" : [ "Column Preset API" ],
         "summary" : "Get a column preset by ID",
         "operationId" : "getColumnPreset_1",
         "parameters" : [ {
           "name" : "presetId",
           "in" : "path",
-          "description" : "The column preset ID ",
+          "description" : "The column preset ID",
           "required" : true,
           "schema" : {
             "type" : "integer",
             "format" : "int32"
           }
-        } ],
+        }],
         "responses" : {
           "404" : {
             "description" : "Column preset not found.",
@@ -920,6 +920,57 @@
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/ColumnPresetView"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "x-user-auth" : [ ]
+        } ]
+      }
+    },
+    "/columnPresets" : {
+      "get" : {
+        "tags" : [ "Column Preset API" ],
+        "summary" : "Get column presets accessible by rsid",
+        "operationId" : "getColumnPresetByRsid_1",
+        "parameters" : [ {
+          "name" : "rsid",
+          "in" : "query",
+          "description" : "The report suite ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }],
+        "responses" : {
+          "404" : {
+            "description" : "Column Presets for report suite not found.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error occurred while retrieving column presets for rsid.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Column Presets for report suite retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ColumnPresetList"
                 }
               }
             }
