@@ -389,57 +389,6 @@
         } ]
       }
     },
-    "/datafeed/suite/{rsid}" : {
-      "get" : {
-        "tags" : [ "Datafeed API" ],
-        "summary" : "Gets datafeeds for a report suite",
-        "operationId" : "getDataFeedsForReportSuite_1",
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "path",
-          "description" : "The report suite ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "404" : {
-            "description" : "Datafeeds not found for rsids.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Error occurred while retrieving datafeeds for rsids.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Datafeeds for report suite retrieved successfully.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedList"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
-      }
-    },
     "/datafeed/search" : {
       "post" : {
         "tags" : [ "Datafeed API" ],
