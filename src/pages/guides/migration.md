@@ -23,7 +23,6 @@ This guide is intended to help users of the 1.3 and 1.4 versions of the Analytic
 The 2.0 APIs currently do not support the following:
 
 * Data Sources
-* Data Feeds
 * Data Insertion
 
 If you rely upon these features, you can still use a hybrid approach of using the 1.4 APIs for the above features and 2.0 APIs for everything else.
