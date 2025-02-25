@@ -502,7 +502,7 @@
       }
     },
     "/datafeed/{feedId}/{requestId}/redo" : {
-      "get" : {
+      "put" : {
         "tags" : [ "Manage API" ],
         "summary" : "Redo a datafeed by request ID. It first checks if a resend is possible, if not, it reprocesses the request.",
         "operationId" : "redoDatafeed_1",
@@ -573,7 +573,7 @@
       }
     },
     "/datafeed/{feedId}/{requestId}/reprocess" : {
-      "get" : {
+      "put" : {
         "tags" : [ "Manage API" ],
         "summary" : "Reprocess a datafeed by request ID",
         "operationId" : "reprocessDatafeed_1",
@@ -644,7 +644,7 @@
       }
     },
     "/datafeed/{feedId}/{requestId}/resend" : {
-      "get" : {
+      "put" : {
         "tags" : [ "Manage API" ],
         "summary" : "Resend a data feed by request ID",
         "operationId" : "resendDatafeed_1",
