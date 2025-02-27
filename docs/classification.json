@@ -1061,14 +1061,31 @@
             "keyOptions" : {
               "$ref" : "#/components/schemas/KeyOption"
             },
-            "data" : {
-              "type" : "array",
-              "items" : {
-                "type" : "object"
-              }
-            },
             "jobImportOption" : {
               "$ref" : "#/components/schemas/JobImportOptions"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/JsonRecord"
+              }
+            }
+          }
+        },
+        "JsonRecord": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            },
+            "action": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
             }
           }
         },
