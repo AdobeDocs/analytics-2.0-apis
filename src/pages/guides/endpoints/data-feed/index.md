@@ -223,6 +223,26 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 ## GET datafeed by ID
 
+Use this endpoint to retrieve datafeeds by a datafeed ID.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+ 
+
+
+
+
+
+
+
+
+
+
 
 ## PUT datafeed{feedId}
 
