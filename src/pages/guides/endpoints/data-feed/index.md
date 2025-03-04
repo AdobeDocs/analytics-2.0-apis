@@ -116,7 +116,7 @@ curl -X 'GET' \
         "timeZone": "US/Mountain",
         "createdBy": "user@example.com",
         "creationDate": "YYYY-MM-DDT18:33:11Z",
-        "modifiedBy": "jmisra@adobe.com",
+        "modifiedBy": "user@example.com",
         "modificationDate": "YYYY-MM-DDT18:33:11Z"
       },
       "schedule": {
@@ -135,7 +135,7 @@ curl -X 'GET' \
       "delivery": {
         "cloudLocationUUID": null,
         "notificationEmail": [
-          "jmisra@adobe.com"
+          "user@example.com"
         ]
       },
       "lateHits": {
@@ -147,12 +147,9 @@ curl -X 'GET' \
 }
 ```
 
-### Request parameters
+### Request and response parameters
 
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 ## POST datafeed
 
