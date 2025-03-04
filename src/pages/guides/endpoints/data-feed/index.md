@@ -36,6 +36,123 @@ This guide provides instructions for the following endpoints:
 
 ## GET datafeed
 
+Use this endpoint to get datafeeds for a report suite.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{REPORT_SUITE_ID}`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+ 
+ #### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/examplersid" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}" 
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    {
+      "feedName": "Example-DF-1",
+      "rsid": "example.examplersid",
+      "columnPreset": 13280,
+      "notes": "default note",
+      "dynamicLookups": true,
+      "replaceEscapedChars": false,
+      "customerVisible": true,
+      "metadata": {
+        "feedId": 5555,
+        "feedType": "standard",
+        "feedState": "canceled",
+        "timeZone": "US/Mountain",
+        "createdBy": "user@example.com",
+        "creationDate": "YYYY-MM-DDT18:33:11Z",
+        "modifiedBy": "examplename",
+        "modificationDate": "YYYY-MM-DDT07:38:08Z"
+      },
+      "schedule": {
+        "startDate": "YYYY-MM-DDT07:00:00Z",
+        "endDate": null,
+        "interval": "daily",
+        "delay": null
+      },
+      "packaging": {
+        "type": "flat",
+        "chunkSize": 1024,
+        "compression": "gzip",
+        "manifest": "manifest-file",
+        "noDataManifest": false
+      },
+      "delivery": {
+        "cloudLocationUUID": "99999999-f444-4547-9b8d-899be1111",
+        "notificationEmail": [
+          "user@example.com"
+        ]
+      },
+      "lateHits": {
+        "enabled": false,
+        "lookback": null
+      }
+    },
+    {
+      "feedName": "DataFeed- Daily",
+      "rsid": "example.examplersid",
+      "columnPreset": 20235,
+      "notes": "default note",
+      "dynamicLookups": false,
+      "replaceEscapedChars": false,
+      "metadata": {
+        "feedId": 8556,
+        "feedState": "canceled",
+        "timeZone": "US/Mountain",
+        "createdBy": "user@example.com",
+        "creationDate": "YYYY-MM-DDT18:33:11Z",
+        "modifiedBy": "jmisra@adobe.com",
+        "modificationDate": "YYYY-MM-DDT18:33:11Z"
+      },
+      "schedule": {
+        "startDate": "YYYY-MM-DDT18:33:11Z",
+        "endDate": null,
+        "interval": "hourly",
+        "delay": null
+      },
+      "packaging": {
+        "type": "flat",
+        "chunkSize": 1024,
+        "compression": "zip",
+        "manifest": "fin-file",
+        "noDataManifest": false
+      },
+      "delivery": {
+        "cloudLocationUUID": null,
+        "notificationEmail": [
+          "jmisra@adobe.com"
+        ]
+      },
+      "lateHits": {
+        "enabled": false,
+        "lookback": null
+      }
+    }
+  ]
+}
+```
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
 
 ## POST datafeed
 
