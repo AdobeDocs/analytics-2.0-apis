@@ -153,8 +153,75 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 ## POST datafeed
 
+Use this endpoint to create a datafeed.
 
-## GET datafeed{feedId}
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+ #### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/examplersid" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -d "{
+  "feedName": "example-feed-For-Doc2",
+  "rsid": "adele.adele01",
+  "columnPreset": 1,
+  "dynamicLookups": false,
+  "replaceEscapedChars": false,
+  "customerVisible": true,
+  "metadata": {
+    "feedId": 11111,
+    "feedType": "df2",
+    "feedState": "active",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "YYYY-MM-DDT18:33:11Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "YYYY-MM-DDT18:33:11Z"
+  },
+  "schedule": {
+    "startDate": "YYYY-MM-DDT18:33:11Z",
+    "endDate": "YYYY-MM-DDT18:33:11Z",
+    "interval": "hourly",
+    "delay": 100
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 4096,
+    "compression": "gzip",
+    "manifest": "manifest-file",
+    "noDataManifest": true
+  },
+  "delivery": {
+    "cloudLocationUUID": "xxxxxxxx-d8a5-4771-98ca-2bfcxxxxxxxx",
+    "notificationEmail": [
+      "test@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": true,
+    "lookback": 1000
+  }
+}
+```
+#### Response
+
+A successful response shows a `200 OK` status code.
+
+### Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+## GET datafeed by ID
 
 
 ## PUT datafeed{feedId}
