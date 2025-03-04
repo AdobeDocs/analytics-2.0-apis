@@ -1,0 +1,418 @@
+---
+title: Data Feed API
+description: Use Analytics Data Feed API to create, retrieve, and manage data feeds.
+---
+
+# Data Feed API
+
+The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retreive, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+This guide provides instructions for the following endpoints:
+
+**Datafeed API**
+
+* GET datafeed: Gets datafeeds for a report suite
+* POST datafeed: Creates a datafeed
+* GET datafeed: Retrieves a datafeed by ID
+* PUT datafeed: Updates a datafeed
+* POST datafeed requests search: Searches for datafeed requests
+* GET datafeed requests: Retrieves datafeed requests for a report suite and feed ID
+* POST datafeed search: Retrieves datafeeds for multiple report suites
+* PUT datafeed status: Updates the status of a datafeed
+
+**Manage Datafeeds API**
+
+* GET datafeed redo: Redoes a datafeed request (checks if resend is possible, otherwise reprocesses)
+* GET datafeed reprocess: Reprocesses a datafeed request by request ID
+* GET datafeed resend: Resends a datafeed request by request ID
+
+**Column Preset API**
+  
+* POST columnPreset: Creates a new column preset
+* GET columnNames all: Retrieves all available column names
+* GET columnPreset by ID: Retrieves a column preset by ID
+* GET columnPresets by rsid: Retrieves all column presets accessible by a given report suite ID
+
+
+## GET datafeed
+
+
+## POST datafeed
+
+
+## GET datafeed{feedId}
+
+
+## PUT datafeed{feedId}
+
+
+## POST datafeed requests search
+
+
+## GET datafeed requests
+
+
+## POST datafeed search
+
+
+## PUT datafeed{feedId} status
+
+
+## GET datafeed{feedId}{requestId} redo
+
+
+## GET datafeed{feedId}{requestId} reprocess
+
+
+## GET datafeed{feedId}{requestId} resend
+
+
+## POST columnPreset
+
+
+## GET columnNames all
+
+
+## GET columnPreset{presetId}
+
+
+## GET columnPresets
+---------
+## GET datafeed
+
+Use this endpoint to get datafeeds for a report suite.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## POST datafeed
+
+Use this endpoint to create a datafeed.
+
+POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## GET datafeed{feedId}
+
+Use this endpoint to retrieve a datafeed by ID.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## PUT datafeed{feedId}
+
+Use this endpoint to update a datafeed.
+
+PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## GET datafeed requests
+
+Use this endpoint to retrieve datafeed requests for a report suite and feed ID.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/requests
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## GET datafeed suite{rsid}
+
+Use this endpoint to retrieve datafeeds for a report suite.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/suite{rsid}
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## POST datafeed search
+
+Use this endpoint to retrieve datafeeds for multiple report suites.
+
+POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/search
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## PUT datafeed{feedId} status
+
+Use this endpoint to update the status of a datafeed.
+
+PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}/status
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## GET datafeed{feedId}{requestId} redo
+
+Use this endpoint to redo a datafeed request (checks if resend is possible, otherwise reprocesses).
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}/{requestId}/redo
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## POST columnPreset
+
+Use this endpoint to create a new column preset.
+
+POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/columnPreset
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## GET columnNames all
+
+Use this endpoint to retrieve all available column names.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/columnNames/all
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+## GET columnPreset{presetId}
+
+Use this endpoint to retrieve a column preset by ID.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/columnPreset{presetId}
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+| ---- | -------- | ---- | ----------- |
+
+---
+
+## **Next Steps**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------
+
+
+## GET datafeed
+
+Use this endpoint to get datafeeds for a report suite.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
+
+#### Request example details
+
+#### Response example details
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+|------|----------|------|-------------|
+
+### Response parameters
+
+This endpoint includes the following response parameters:
+
+| NAME | TYPE | DESCRIPTION |
+|------|------|-------------|
+
+---
+
+## POST datafeed
+
+Use this endpoint to create a datafeed.
+
+POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
+
+#### Request example details
+
+#### Response example details
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+|------|----------|------|-------------|
+
+### Response parameters
+
+This endpoint includes the following response parameters:
+
+| NAME | TYPE | DESCRIPTION |
+|------|------|-------------|
+
+---
+
+## GET datafeed{feedId}
+
+Use this endpoint to retrieve a datafeed by ID.
+
+GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
+
+#### Request example details
+
+#### Response example details
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+|------|----------|------|-------------|
+
+### Response parameters
+
+This endpoint includes the following response parameters:
+
+| NAME | TYPE | DESCRIPTION |
+|------|------|-------------|
+
+---
+
+## PUT datafeed{feedId}
+
+Use this endpoint to update a datafeed.
+
+PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
+
+#### Request example details
+
+#### Response example details
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+|------|----------|------|-------------|
+
+### Response parameters
+
+This endpoint includes the following response parameters:
+
+| NAME | TYPE | DESCRIPTION |
+|------|------|-------------|
+
+---
+
+## POST datafeed requests search
+
+Use this endpoint to search for datafeed requests.
+
+POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/requests/search
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
+
+#### Request example details
+
+#### Response example details
+
+### Request parameters
+
+This endpoint includes the following request parameters:
+
+| NAME | REQUIRED | TYPE | DESCRIPTION |
+|------|----------|------|-------------|
+
+### Response parameters
+
+This endpoint includes the following response parameters:
+
+| NAME | TYPE | DESCRIPTION |
+|------|------|-------------|
+
+---
+
+(Repeat this structure for all endpoints)
+
+---
+
+This Markdown is structured for **each endpoint**, ensuring that the **request and response parameter tables** are in place and ready to be filled in. 🚀 
+
+Would you like me to **update your project document** with these changes, or do you want to copy and paste manually?
+
+
+
+
+
