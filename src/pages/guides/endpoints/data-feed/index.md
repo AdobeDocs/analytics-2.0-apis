@@ -242,6 +242,7 @@ curl -X 'GET' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" 
 ```
+#### Response
 
 ```json
 {
@@ -291,11 +292,68 @@ curl -X 'GET' \
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-
 ## PUT datafeed by ID
 
+Use this endpoint to update a datafeed.
 
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}`
 
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+ #### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -d "{
+  "feedName": "example-feed-For-Doc2",
+  "rsid": "adele.adele01",
+  "columnPreset": 1,
+  "dynamicLookups": true,
+  "replaceEscapedChars": true,
+  "customerVisible": true,
+  "metadata": {
+    "feedId": 16876,
+    "feedType": "df2",
+    "feedState": "active",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "2025-02-25T04:59:37Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "2025-02-25T05:05:49Z"
+  },
+  "schedule": {
+    "startDate": "2025-02-26T00:00:00Z",
+    "endDate": "2025-12-31T00:00:00Z",
+    "interval": "hourly",
+    "delay": 0
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 4096,
+    "compression": "gzip",
+    "manifest": "no-file",
+    "noDataManifest": true
+  },
+  "delivery": {
+    "cloudLocationUUID": "e7afbd02-d8a5-4771-98ca-2bfcc83b64a5",
+    "notificationEmail": [
+      "test@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": true,
+    "lookback": 1000
+  }
+}
+```
 
 
 
