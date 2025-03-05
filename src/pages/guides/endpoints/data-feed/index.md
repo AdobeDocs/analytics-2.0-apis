@@ -171,7 +171,7 @@ curl -X 'GET' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d "{
+  -d {
   "feedName": "example-feed-For-Doc2",
   "rsid": "example.examplersid",
   "columnPreset": 1,
@@ -312,7 +312,7 @@ curl -X 'PUT' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d "{
+  -d {
   "feedName": "example-feed-For-Doc2",
   "rsid": "example.examplersid",
   "columnPreset": 1,
@@ -377,18 +377,220 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
  #### Request
 
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -d {
+    "limit": 5,
+    "offset": 0,
+    "data": [
+      {
+        "rsid": "example.exammplersid",
+        "feedId": 16756,
+        "feedName": "Dfeed example",
+        "requestId": 20000001,
+        "submittedDate": "YYYY-MM-DDT07:00:00Z",
+        "runCount": 1,
+        "runAttempt": "YYYY-MM-DDT07:00:00Z",
+        "completeDate": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodBegin": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodEnd": "YYYY-MM-DDT07:00:00Z",
+        "requestState": "error",
+        "errorCode": 300,
+        "errorMsg": "Delivery Error",
+        "timezone": "US/Mountain"
+      },
+      {
+        "rsid": "example.examplersid",
+        "feedId": 16756,
+        "feedName": "Dfeed example",
+        "requestId": 20000002,
+        "submittedDate": "YYYY-MM-DDT07:00:00Z",
+        "runCount": 1,
+        "runAttempt": "YYYY-MM-DDT07:00:00Z",
+        "completeDate": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodBegin": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodEnd": "YYYY-MM-DDT07:00:00Z",
+        "requestState": "error",
+        "errorCode": 300,
+        "errorMsg": "Delivery Error",
+        "timezone": "US/Mountain"
+      },
+      {
+        "rsid": "example.examplersid",
+        "feedId": 16756,
+        "feedName": "Dfeed example",
+        "requestId": 20000003,
+        "submittedDate": "YYYY-MM-DDT07:00:00Z",
+        "runCount": 1,
+        "runAttempt": "YYYY-MM-DDT07:00:00Z",
+        "completeDate": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodBegin": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodEnd": "YYYY-MM-DDT07:00:00Z",
+        "requestState": "error",
+        "errorCode": 300,
+        "errorMsg": "Delivery Error",
+        "timezone": "US/Mountain"
+      }
+    ]
+  }"
+  ```
 
+#### Response
 
+```json
+{
+  "rsids": [
+    "string"
+  ],
+  "feedIds": [
+    0
+  ],
+  "requestStates": [
+    "string"
+  ],
+  "limit": 0,
+  "offset": 0,
+  "sortOrder": "string",
+  "orderBy": "string",
+  "billingCustomerId": 0,
+  "useUtc": true,
+  "minRequestPeriodStartDate": "string",
+  "maxRequestPeriodStartDate": "string",
+  "minAttemptDate": "string",
+  "maxAttemptDate": "string",
+  "minCompletionDate": "string",
+  "maxCompletionDate": "string",
+  "minSubmittedDate": "string",
+  "maxSubmittedDate": "string"
+}
+```
 
+### Request and response examples
 
-
-
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
 
 ## GET datafeed requests
 
+Use this endpoint to retrieves datafeed requests for a specified report suite ID and datafeed ID. If no dates are specified with this request, it returns the most recent.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+ #### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+#### Response
+
+  ```json
+  {
+  "limit": 5,
+  "offset": 0,
+  "data": [
+    {
+      "rsid": "adele.adele01",
+      "feedId": 16756,
+      "feedName": "DF2 feed for exploc usage test",
+      "requestId": 20049248,
+      "submittedDate": "2025-02-25T22:05:23Z",
+      "runCount": 1,
+      "runAttempt": "2025-02-25T22:05:23Z",
+      "completeDate": "2025-02-25T22:17:38Z",
+      "requestPeriodBegin": "2025-02-25T21:00:00Z",
+      "requestPeriodEnd": "2025-02-25T22:00:00Z",
+      "requestState": "error",
+      "errorCode": 300,
+      "errorMsg": "Delivery Error",
+      "timezone": "US/Mountain"
+    },
+    {
+      "rsid": "adele.adele01",
+      "feedId": 16756,
+      "feedName": "DF2 feed for exploc usage test",
+      "requestId": 20049235,
+      "submittedDate": "2025-02-25T21:05:23Z",
+      "runCount": 1,
+      "runAttempt": "2025-02-25T21:05:23Z",
+      "completeDate": "2025-02-25T21:17:34Z",
+      "requestPeriodBegin": "2025-02-25T20:00:00Z",
+      "requestPeriodEnd": "2025-02-25T21:00:00Z",
+      "requestState": "error",
+      "errorCode": 300,
+      "errorMsg": "Delivery Error",
+      "timezone": "US/Mountain"
+    },
+    {
+      "rsid": "adele.adele01",
+      "feedId": 16756,
+      "feedName": "DF2 feed for exploc usage test",
+      "requestId": 20049220,
+      "submittedDate": "2025-02-25T20:05:21Z",
+      "runCount": 1,
+      "runAttempt": "2025-02-25T20:05:21Z",
+      "completeDate": "2025-02-25T20:18:33Z",
+      "requestPeriodBegin": "2025-02-25T19:00:00Z",
+      "requestPeriodEnd": "2025-02-25T20:00:00Z",
+      "requestState": "error",
+      "errorCode": 300,
+      "errorMsg": "Delivery Error",
+      "timezone": "US/Mountain"
+    }
+  ]
+}
+```
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
 ## POST datafeed search
+
+Use this endpoint to retrieve datafeed requests for an array of report suites. This retrieval endpoint utilizes a **POST** method to improve processing effectiveness.
+
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+ #### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## PUT datafeed{feedId} status
