@@ -167,13 +167,13 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/examplersid" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d "{
   "feedName": "example-feed-For-Doc2",
-  "rsid": "adele.adele01",
+  "rsid": "example.examplersid",
   "columnPreset": 1,
   "dynamicLookups": false,
   "replaceEscapedChars": false,
@@ -247,7 +247,7 @@ curl -X 'GET' \
 ```json
 {
   "feedName": "example-feed-For-Doc2",
-  "rsid": "adele.adele01",
+  "rsid": "example.examplersid",
   "columnPreset": 1,
   "dynamicLookups": true,
   "replaceEscapedChars": true,
@@ -314,7 +314,7 @@ curl -X 'PUT' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d "{
   "feedName": "example-feed-For-Doc2",
-  "rsid": "adele.adele01",
+  "rsid": "example.examplersid",
   "columnPreset": 1,
   "dynamicLookups": true,
   "replaceEscapedChars": true,
@@ -325,13 +325,13 @@ curl -X 'PUT' \
     "feedState": "active",
     "timeZone": "US/Mountain",
     "createdBy": "datafeeds",
-    "creationDate": "2025-02-25T04:59:37Z",
+    "creationDate": "YYYY-MM-DDT07:00:00Z",
     "modifiedBy": "datafeeds",
-    "modificationDate": "2025-02-25T05:05:49Z"
+    "modificationDate": "YYYY-MM-DDT07:00:00Z"
   },
   "schedule": {
-    "startDate": "2025-02-26T00:00:00Z",
-    "endDate": "2025-12-31T00:00:00Z",
+    "startDate": "YYYY-MM-DDT07:00:00Z",
+    "endDate": "YYYY-MM-DDT07:00:00Z",
     "interval": "hourly",
     "delay": 0
   },
@@ -343,7 +343,7 @@ curl -X 'PUT' \
     "noDataManifest": true
   },
   "delivery": {
-    "cloudLocationUUID": "e7afbd02-d8a5-4771-98ca-2bfcc83b64a5",
+    "cloudLocationUUID": "e7xxxxxx-d8a5-4771-98ca-2bfcxxxxxxxx",
     "notificationEmail": [
       "test@example.com"
     ]
@@ -355,10 +355,24 @@ curl -X 'PUT' \
 }
 ```
 
+#### Response
 
+A successful response shows a `200 OK` status code.
 
+### Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 ## POST datafeed requests search
+
+
+
+
+
+
+
+
+
 
 
 ## GET datafeed requests
