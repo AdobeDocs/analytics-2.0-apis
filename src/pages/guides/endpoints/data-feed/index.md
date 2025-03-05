@@ -223,7 +223,7 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 ## GET datafeed by ID
 
-Use this endpoint to retrieve datafeeds by a datafeed ID.
+Use this endpoint to retrieve datafeeds by a datafeed ID. To obtain a datafeed ID, use the CJA Cloud Location API.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}`
 
@@ -233,18 +233,71 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
  
+ #### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}" 
+```
+
+```json
+{
+  "feedName": "example-feed-For-Doc2",
+  "rsid": "adele.adele01",
+  "columnPreset": 1,
+  "dynamicLookups": true,
+  "replaceEscapedChars": true,
+  "customerVisible": true,
+  "metadata": {
+    "feedId": 16876,
+    "feedType": "df2",
+    "feedState": "active",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "YYYY-MM-DDT18:33:11Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "YYYY-MM-DDT18:33:11Z"
+  },
+  "schedule": {
+    "startDate": "YYYY-MM-DDT18:33:11Z",
+    "endDate": "YYYY-MM-DDT18:33:11Z",
+    "interval": "hourly",
+    "delay": 0
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 4096,
+    "compression": "gzip",
+    "manifest": "no-file",
+    "noDataManifest": true
+  },
+  "delivery": {
+    "cloudLocationUUID": "e7afbd0xxxxxx-4771-98ca-2bxxxxxxxxxx",
+    "notificationEmail": [
+      "test@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": true,
+    "lookback": 1000
+  }
+}
+```
+
+### Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+
+## PUT datafeed by ID
 
 
 
 
 
-
-
-
-
-
-
-## PUT datafeed{feedId}
 
 
 ## POST datafeed requests search
