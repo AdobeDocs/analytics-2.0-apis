@@ -171,7 +171,7 @@ curl -X 'GET' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d {
+  -d '{
   "feedName": "example-feed-For-Doc2",
   "rsid": "example.examplersid",
   "columnPreset": 1,
@@ -211,11 +211,13 @@ curl -X 'GET' \
     "enabled": true,
     "lookback": 1000
   }
-}
+}'
 ```
 #### Response
 
-A successful response shows a `200 OK` status code.
+```json
+200 OK
+```
 
 ### Request and response parameters
 
@@ -223,7 +225,7 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 ## GET datafeed by ID
 
-Use this endpoint to retrieve datafeeds by a datafeed ID. To obtain a datafeed ID, use the CJA Cloud Location API.
+Use this endpoint to retrieve datafeeds with a specified datafeed ID. To obtain a datafeed ID, use the CJA Cloud Location API.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}`
 
@@ -242,6 +244,7 @@ curl -X 'GET' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" 
 ```
+
 #### Response
 
 ```json
@@ -304,7 +307,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
- #### Request
+#### Request
 
 ```sh
 curl -X 'PUT' \
@@ -312,7 +315,7 @@ curl -X 'PUT' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d {
+  -d '{
   "feedName": "example-feed-For-Doc2",
   "rsid": "example.examplersid",
   "columnPreset": 1,
@@ -352,7 +355,7 @@ curl -X 'PUT' \
     "enabled": true,
     "lookback": 1000
   }
-}
+}'
 ```
 
 #### Response
@@ -375,15 +378,30 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
- #### Request
+#### Request
 
 ```sh
-curl -X 'PUT' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
+curl -X 'POST' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests/search" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d {
+  -d '{
+      "rsid": "exammplersid",
+      "feedId": 16756,
+      "limit": 2,
+      "offset": 0,
+      "sortOrder": desc,
+      "orderBy": "req_period_begin_utc",
+      "minRequestPeriodStartDate": "YYYY-02-22T00:00:00Z",
+      "maxRequestPeriodStart": "YYYY-02-28T00:00:00Z"
+      }'
+```
+
+#### Response
+
+```json
+    {
     "limit": 5,
     "offset": 0,
     "data": [
@@ -418,12 +436,148 @@ curl -X 'PUT' \
         "errorCode": 300,
         "errorMsg": "Delivery Error",
         "timezone": "US/Mountain"
-      },
+      }
+    ]
+  }
+```
+
+
+### Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+
+## GET datafeed requests
+
+Use this endpoint to retrieves datafeed requests with a specified report suite ID and datafeed ID. If no dates are specified with this request, it returns the most recent.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests/{REPORT_SUITE_ID}/{DATA_FEED_ID}`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests?rsid=examplersid&feedId=16756&minRequestPeriodStartDate=YYYY-02-22T00%3A00%3A00Z&maxRequestPeriodStartDate=YYYY-02-28T00%3A00%3A00Z&limit=2&offset=0" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+  ```json
+  {
+  "limit": 2,
+  "offset": 0,
+  "data": [
+    {
+      "rsid": "examplersid",
+      "feedId": 16756,
+      "feedName": "DF2 feed",
+      "requestId": 20055555,
+      "submittedDate": "YYYY-02-25T22:05:23Z",
+      "runCount": 1,
+      "runAttempt": "YYYY-02-25T22:05:23Z",
+      "completeDate": "YYYY-02-25T22:17:38Z",
+      "requestPeriodBegin": "YYYY-02-25T21:00:00Z",
+      "requestPeriodEnd": "YYYY-02-25T22:00:00Z",
+      "requestState": "error",
+      "errorCode": 300,
+      "errorMsg": "Delivery Error",
+      "timezone": "US/Mountain"
+    },
+    {
+      "rsid": "examplersid",
+      "feedId": 16756,
+      "feedName": "DF2 feed",
+      "requestId": 20055556,
+      "submittedDate": "YYYY-02-25T21:05:23Z",
+      "runCount": 1,
+      "runAttempt": "YYYY-02-25T21:05:23Z",
+      "completeDate": "YYYY-02-25T21:17:34Z",
+      "requestPeriodBegin": "YYYY-02-25T20:00:00Z",
+      "requestPeriodEnd": "YYYY-02-25T21:00:00Z",
+      "requestState": "error",
+      "errorCode": 300,
+      "errorMsg": "Delivery Error",
+      "timezone": "US/Mountain"
+    }
+  ]
+}
+```
+
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+
+## POST datafeed search
+
+Use this endpoint to retrieve datafeed requests for an array of report suites.
+
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'POST' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -d '{
+      "rsid": "exammplersid1", "examplersid2"
+      "feedId": 16756,
+      "limit": 2,
+      "offset": 0,
+      "sortOrder": desc,
+      "orderBy": "req_period_begin_utc",
+      "minRequestPeriodStartDate": "YYYY-02-22T00:00:00Z",
+      "maxRequestPeriodStart": "YYYY-02-28T00:00:00Z"
+      }'
+  ```
+
+#### Response
+
+```json
+    {
+    "limit": 5,
+    "offset": 0,
+    "data": [
       {
-        "rsid": "example.examplersid",
+        "rsid": "exammplersid1",
         "feedId": 16756,
         "feedName": "Dfeed example",
-        "requestId": 20000003,
+        "requestId": 20000001,
+        "submittedDate": "YYYY-MM-DDT07:00:00Z",
+        "runCount": 1,
+        "runAttempt": "YYYY-MM-DDT07:00:00Z",
+        "completeDate": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodBegin": "YYYY-MM-DDT07:00:00Z",
+        "requestPeriodEnd": "YYYY-MM-DDT07:00:00Z",
+        "requestState": "error",
+        "errorCode": 300,
+        "errorMsg": "Delivery Error",
+        "timezone": "US/Mountain"
+      },
+      {
+        "rsid": "example.examplersid2",
+        "feedId": 16756,
+        "feedName": "Dfeed example",
+        "requestId": 20000002,
         "submittedDate": "YYYY-MM-DDT07:00:00Z",
         "runCount": 1,
         "runAttempt": "YYYY-MM-DDT07:00:00Z",
@@ -436,164 +590,83 @@ curl -X 'PUT' \
         "timezone": "US/Mountain"
       }
     ]
-  }"
+  }
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+
+## PUT datafeed status by datafeed ID
+
+Use this endpoint to update a datafeed status. Valid `status` values include `active`, `canceled`, or `hold`.
+
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATA_FEED_ID}/{STATUS}`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'POST' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/status?status=hold&loginId=444444"" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
   ```
 
 #### Response
 
 ```json
 {
-  "rsids": [
-    "string"
-  ],
-  "feedIds": [
-    0
-  ],
-  "requestStates": [
-    "string"
-  ],
-  "limit": 0,
-  "offset": 0,
-  "sortOrder": "string",
-  "orderBy": "string",
-  "billingCustomerId": 0,
-  "useUtc": true,
-  "minRequestPeriodStartDate": "string",
-  "maxRequestPeriodStartDate": "string",
-  "minAttemptDate": "string",
-  "maxAttemptDate": "string",
-  "minCompletionDate": "string",
-  "maxCompletionDate": "string",
-  "minSubmittedDate": "string",
-  "maxSubmittedDate": "string"
+  "feedName": "DF2 feed",
+  "rsid": "examplersid",
+  "columnPreset": 13280,
+  "notes": "DF2 feed for test",
+  "dynamicLookups": false,
+  "replaceEscapedChars": false,
+  "metadata": {
+    "feedId": 16756,
+    "feedState": "hold",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "YYYY-11-06T18:05:34Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "YYYY-12-05T16:20:31Z"
+  },
+  "schedule": {
+    "startDate": "YYYY-01-01T00:00:00Z",
+    "endDate": null,
+    "interval": "hourly",
+    "delay": null
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 2048,
+    "compression": "gzip",
+    "manifest": "manifest-file",
+    "noDataManifest": false
+  },
+  "delivery": {
+    "cloudLocationUUID": "b21a89e3-ee92-4a67-af34-4a21711cc36b",
+    "notificationEmail": [
+      "user@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": false,
+    "lookback": null
+  }
 }
 ```
 
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
 
-## GET datafeed requests
-
-Use this endpoint to retrieves datafeed requests for a specified report suite ID and datafeed ID. If no dates are specified with this request, it returns the most recent.
-
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}`
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
- #### Request
-
-```sh
-curl -X 'PUT' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests" \
-  -H "accept: application/json" \
-  -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
-```
-#### Response
-
-  ```json
-  {
-  "limit": 5,
-  "offset": 0,
-  "data": [
-    {
-      "rsid": "adele.adele01",
-      "feedId": 16756,
-      "feedName": "DF2 feed for exploc usage test",
-      "requestId": 20049248,
-      "submittedDate": "2025-02-25T22:05:23Z",
-      "runCount": 1,
-      "runAttempt": "2025-02-25T22:05:23Z",
-      "completeDate": "2025-02-25T22:17:38Z",
-      "requestPeriodBegin": "2025-02-25T21:00:00Z",
-      "requestPeriodEnd": "2025-02-25T22:00:00Z",
-      "requestState": "error",
-      "errorCode": 300,
-      "errorMsg": "Delivery Error",
-      "timezone": "US/Mountain"
-    },
-    {
-      "rsid": "adele.adele01",
-      "feedId": 16756,
-      "feedName": "DF2 feed for exploc usage test",
-      "requestId": 20049235,
-      "submittedDate": "2025-02-25T21:05:23Z",
-      "runCount": 1,
-      "runAttempt": "2025-02-25T21:05:23Z",
-      "completeDate": "2025-02-25T21:17:34Z",
-      "requestPeriodBegin": "2025-02-25T20:00:00Z",
-      "requestPeriodEnd": "2025-02-25T21:00:00Z",
-      "requestState": "error",
-      "errorCode": 300,
-      "errorMsg": "Delivery Error",
-      "timezone": "US/Mountain"
-    },
-    {
-      "rsid": "adele.adele01",
-      "feedId": 16756,
-      "feedName": "DF2 feed for exploc usage test",
-      "requestId": 20049220,
-      "submittedDate": "2025-02-25T20:05:21Z",
-      "runCount": 1,
-      "runAttempt": "2025-02-25T20:05:21Z",
-      "completeDate": "2025-02-25T20:18:33Z",
-      "requestPeriodBegin": "2025-02-25T19:00:00Z",
-      "requestPeriodEnd": "2025-02-25T20:00:00Z",
-      "requestState": "error",
-      "errorCode": 300,
-      "errorMsg": "Delivery Error",
-      "timezone": "US/Mountain"
-    }
-  ]
-}
-```
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-## POST datafeed search
-
-Use this endpoint to retrieve datafeed requests for an array of report suites. This retrieval endpoint utilizes a **POST** method to improve processing effectiveness.
-
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search`
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
- #### Request
-
-```sh
-curl -X 'PUT' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search" \
-  -H "accept: application/json" \
-  -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## PUT datafeed{feedId} status
 
 
 ## GET datafeed{feedId}{requestId} redo
@@ -615,342 +688,3 @@ curl -X 'PUT' \
 
 
 ## GET columnPresets
----------
-## GET datafeed
-
-Use this endpoint to get datafeeds for a report suite.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## POST datafeed
-
-Use this endpoint to create a datafeed.
-
-POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## GET datafeed{feedId}
-
-Use this endpoint to retrieve a datafeed by ID.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## PUT datafeed{feedId}
-
-Use this endpoint to update a datafeed.
-
-PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## GET datafeed requests
-
-Use this endpoint to retrieve datafeed requests for a report suite and feed ID.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/requests
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## GET datafeed suite{rsid}
-
-Use this endpoint to retrieve datafeeds for a report suite.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/suite{rsid}
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## POST datafeed search
-
-Use this endpoint to retrieve datafeeds for multiple report suites.
-
-POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/search
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## PUT datafeed{feedId} status
-
-Use this endpoint to update the status of a datafeed.
-
-PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}/status
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## GET datafeed{feedId}{requestId} redo
-
-Use this endpoint to redo a datafeed request (checks if resend is possible, otherwise reprocesses).
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}/{requestId}/redo
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## POST columnPreset
-
-Use this endpoint to create a new column preset.
-
-POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/columnPreset
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## GET columnNames all
-
-Use this endpoint to retrieve all available column names.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/columnNames/all
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
-## GET columnPreset{presetId}
-
-Use this endpoint to retrieve a column preset by ID.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/columnPreset{presetId}
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-| ---- | -------- | ---- | ----------- |
-
----
-
-## **Next Steps**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-------------
-
-
-## GET datafeed
-
-Use this endpoint to get datafeeds for a report suite.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
-
-#### Request example details
-
-#### Response example details
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-|------|----------|------|-------------|
-
-### Response parameters
-
-This endpoint includes the following response parameters:
-
-| NAME | TYPE | DESCRIPTION |
-|------|------|-------------|
-
----
-
-## POST datafeed
-
-Use this endpoint to create a datafeed.
-
-POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
-
-#### Request example details
-
-#### Response example details
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-|------|----------|------|-------------|
-
-### Response parameters
-
-This endpoint includes the following response parameters:
-
-| NAME | TYPE | DESCRIPTION |
-|------|------|-------------|
-
----
-
-## GET datafeed{feedId}
-
-Use this endpoint to retrieve a datafeed by ID.
-
-GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
-
-#### Request example details
-
-#### Response example details
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-|------|----------|------|-------------|
-
-### Response parameters
-
-This endpoint includes the following response parameters:
-
-| NAME | TYPE | DESCRIPTION |
-|------|------|-------------|
-
----
-
-## PUT datafeed{feedId}
-
-Use this endpoint to update a datafeed.
-
-PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed{feedId}
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
-
-#### Request example details
-
-#### Response example details
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-|------|----------|------|-------------|
-
-### Response parameters
-
-This endpoint includes the following response parameters:
-
-| NAME | TYPE | DESCRIPTION |
-|------|------|-------------|
-
----
-
-## POST datafeed requests search
-
-Use this endpoint to search for datafeed requests.
-
-POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datafeed/requests/search
-
-### Request and response examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for that request.
-
-#### Request example details
-
-#### Response example details
-
-### Request parameters
-
-This endpoint includes the following request parameters:
-
-| NAME | REQUIRED | TYPE | DESCRIPTION |
-|------|----------|------|-------------|
-
-### Response parameters
-
-This endpoint includes the following response parameters:
-
-| NAME | TYPE | DESCRIPTION |
-|------|------|-------------|
-
----
-
-(Repeat this structure for all endpoints)
-
----
-
-This Markdown is structured for **each endpoint**, ensuring that the **request and response parameter tables** are in place and ready to be filled in. 🚀 
-
-Would you like me to **update your project document** with these changes, or do you want to copy and paste manually?
-
-
-
-
-
