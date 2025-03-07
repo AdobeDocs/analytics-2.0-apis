@@ -7,9 +7,9 @@ description: Use Analytics Data Feed API to create, retrieve, and manage data fe
 
 The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retreive, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-This guide provides instructions for the following endpoints:
-
 **Datafeed API**
+
+Use the Datafeed API to create, update, or retrieve data feeds and data feed requests. This includes the following endpoints:
 
 * GET datafeed: Gets datafeeds for a report suite
 * POST datafeed: Creates a datafeed
@@ -22,11 +22,15 @@ This guide provides instructions for the following endpoints:
 
 **Manage Datafeeds API**
 
+Use the Manage Datafeeds API to resend or reprocess datafeed requests. This includes the following endpoints:
+
 * GET datafeed redo: Redoes a datafeed request (checks if resend is possible, otherwise reprocesses)
 * GET datafeed reprocess: Reprocesses a datafeed request by request ID
 * GET datafeed resend: Resends a datafeed request by request ID
 
 **Column Preset API**
+
+Use the Column Preset API to create or retrieve the column presets used in datafeeds. This includes the following endpoints:
   
 * POST columnPreset: Creates a new column preset
 * GET columnNames all: Retrieves all available column names
@@ -173,7 +177,7 @@ curl -X 'GET' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
   "feedName": "example-feed-For-Doc2",
-  "rsid": "example.examplersid",
+  "rsid": "examplersid",
   "columnPreset": 1,
   "dynamicLookups": false,
   "replaceEscapedChars": false,
@@ -213,6 +217,7 @@ curl -X 'GET' \
   }
 }'
 ```
+
 #### Response
 
 ```json
@@ -250,7 +255,7 @@ curl -X 'GET' \
 ```json
 {
   "feedName": "example-feed-For-Doc2",
-  "rsid": "example.examplersid",
+  "rsid": "examplersid",
   "columnPreset": 1,
   "dynamicLookups": true,
   "replaceEscapedChars": true,
@@ -317,7 +322,7 @@ curl -X 'PUT' \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
   "feedName": "example-feed-For-Doc2",
-  "rsid": "example.examplersid",
+  "rsid": "examplersid",
   "columnPreset": 1,
   "dynamicLookups": true,
   "replaceEscapedChars": true,
@@ -360,7 +365,9 @@ curl -X 'PUT' \
 
 #### Response
 
-A successful response shows a `200 OK` status code.
+```json
+200 OK
+```
 
 ### Request and response parameters
 
@@ -613,8 +620,8 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/status?status=hold&loginId=444444"" \
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/status?status=hold&loginId=444444" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -665,26 +672,451 @@ curl -X 'POST' \
 }
 ```
 
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+## PUT datafeed redo
+
+Use this endpoint to resend or reprocess a datafeed request by specifying a datafeed ID and a datafeed request ID.
+
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATA_FEED_ID}/{REQUEST_ID}/redo`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/redo" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  ```
+
+#### Response
+
+```json
+{
+  "feedName": "DF2 feed",
+  "rsid": "examplersid",
+  "columnPreset": 13280,
+  "notes": "DF2 feed",
+  "dynamicLookups": false,
+  "replaceEscapedChars": false,
+  "metadata": {
+    "feedId": 16756,
+    "feedState": "active",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "YYYY-11-06T18:05:34Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "YYYY-12-05T16:20:31Z"
+  },
+  "schedule": {
+    "startDate": "YYYY-01-01T00:00:00Z",
+    "endDate": null,
+    "interval": "hourly",
+    "delay": null
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 2048,
+    "compression": "gzip",
+    "manifest": "manifest-file",
+    "noDataManifest": false
+  },
+  "delivery": {
+    "cloudLocationUUID": "b2666666-ee92-4444-af22-4a2188888888",
+    "notificationEmail": [
+      "user@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": false,
+    "lookback": null
+  }
+}
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 
+## PUT datafeed reprocess
+
+Use this endpoint to reprocess a datafeed request by specifying a datafeed ID and a datafeed request ID.
+
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATA_FEED_ID}/{REQUEST_ID}/reprocess`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/reprocess" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  ```
+
+#### Response
+
+```json
+{
+  "feedName": "DF2 feed",
+  "rsid": "examplersid",
+  "columnPreset": 13280,
+  "notes": "DF2 feed",
+  "dynamicLookups": false,
+  "replaceEscapedChars": false,
+  "metadata": {
+    "feedId": 16756,
+    "feedState": "active",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "YYYY-11-06T18:05:34Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "YYYY-12-05T16:20:31Z"
+  },
+  "schedule": {
+    "startDate": "YYYY-01-01T00:00:00Z",
+    "endDate": null,
+    "interval": "hourly",
+    "delay": null
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 2048,
+    "compression": "gzip",
+    "manifest": "manifest-file",
+    "noDataManifest": false
+  },
+  "delivery": {
+    "cloudLocationUUID": "b2666666-ee92-4444-af22-4a2188888888",
+    "notificationEmail": [
+      "user@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": false,
+    "lookback": null
+  }
+}
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 
-## GET datafeed{feedId}{requestId} redo
+## PUT datafeed resend
+
+Use this endpoint to resend a datafeed request by specifying a datafeed ID and a datafeed request ID.
+
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATA_FEED_ID}/{REQUEST_ID}/resend`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/resend" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  ```
 
 
-## GET datafeed{feedId}{requestId} reprocess
+#### Response
 
+```json
+{
+  "feedName": "DF2 feed",
+  "rsid": "examplersid",
+  "columnPreset": 13280,
+  "notes": "DF2 feed",
+  "dynamicLookups": false,
+  "replaceEscapedChars": false,
+  "metadata": {
+    "feedId": 16756,
+    "feedState": "active",
+    "timeZone": "US/Mountain",
+    "createdBy": "datafeeds",
+    "creationDate": "YYYY-11-06T18:05:34Z",
+    "modifiedBy": "datafeeds",
+    "modificationDate": "YYYY-12-05T16:20:31Z"
+  },
+  "schedule": {
+    "startDate": "YYYY-01-01T00:00:00Z",
+    "endDate": null,
+    "interval": "hourly",
+    "delay": null
+  },
+  "packaging": {
+    "type": "chunked",
+    "chunkSize": 2048,
+    "compression": "gzip",
+    "manifest": "manifest-file",
+    "noDataManifest": false
+  },
+  "delivery": {
+    "cloudLocationUUID": "b2666666-ee92-4444-af22-4a2188888888",
+    "notificationEmail": [
+      "user@example.com"
+    ]
+  },
+  "lateHits": {
+    "enabled": false,
+    "lookback": null
+  }
+}
+```
 
-## GET datafeed{feedId}{requestId} resend
+## Request and response parameters
 
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 ## POST columnPreset
 
+Use this endpoint to create a column preset for a datafeed. This feature defines the names and number of columns for the specified datafeed. 
 
-## GET columnNames all
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/?rsid=examplersid" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -d '{
+      "name":"Example-preset",
+      "columnNames":[
+        {"name":"post_sociallatlong"},
+        {"name":"browser"},
+        {"name":"channel"}]
+      }'
+```
+
+#### Response
+
+```json
+{
+  "columnPresetId": 22566,
+  "name": "Example-preset",
+  "columnNames": [
+    {
+      "name": "post_sociallatlong"
+    },
+    {
+      "name": "browser"
+    },
+    {
+      "name": "channel"
+    }
+  ]
+}
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 
-## GET columnPreset{presetId}
+## GET all column names
+
+Use this endpoint to retrieve all column names. 
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnNames/all`
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnNames/all" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```json
+{
+  "data": [
+    "accept_language",
+    "adclassificationcreative",
+    "adload",
+    "aemassetid",
+    "aemassetsource",
+    "aemclickedassetid",
+    "amo_cid",
+    "amo_ef_id",
+    "browser",
+    "browser_height",
+    "browser_width",
+    "campaign",
+    "carrier",
+    "channel",
+    "ch_hdr",
+    "visid_new",
+    "visid_timestamp",
+    "visid_type",
+    "visit_keywords",
+    "visit_num",
+    "visit_page_num",
+    "visit_referrer",
+    "visit_ref_domain",
+    "visit_ref_type",
+    "visit_search_engine",
+    "visit_start_pagename",
+    "visit_start_page_url",
+    "visit_start_time_gmt",
+    "weekly_visitor",
+    "yearly_visitor",
+    "zip"
+  ]
+}
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+## GET column preset by preset ID
+
+Use this endpoint to retrieve a column preset by preset ID.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/{COLUMN_PRESET_ID}
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/olumnPreset/22566
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```json
+{
+  "columnPresetId": 22566,
+  "name": "Example-preset",
+  "columnNames": [
+    {
+      "name": "post_sociallatlong"
+    },
+    {
+      "name": "browser"
+    },
+    {
+      "name": "channel"
+    }
+  ]
+}
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 
-## GET columnPresets
+## GET column presets by report suite ID
+
+Use this endpoint to retrieve a column preset by report suite ID. The report suite ID is passed as a query parameter.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets/{REPORT_SUITE_ID}
+
+### Request and response examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets?rsid=examplersid
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```json
+{
+  "total": 1103,
+  "columnPresets": [
+    {
+      "columnPresetId": 6,
+      "name": "All Columns (July 20XX)"
+    },
+    {
+      "columnPresetId": 351,
+      "name": "All Columns (Oct 20XX)"
+    },
+    {
+      "columnPresetId": 13280,
+      "name": "All Columns Premium (August 20XX)"
+    }
+  ]
+}
+```
+
+## Request and response parameters
+
+For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+
+## Status codes
+
+Each API request returns an HTTP status code that reflects the result, as follows:
+
+| HTTP code | Meaning | Description |
+| --- | --- | --- |
+| 200 | Success | The request is successful. |
+| 400 | Bad Request | The request was improperly constructed, missing key information, and/or contained incorrect syntax. This error code could indicate a problem such as a missing required parameter or the supplied data did not pass validation. |
+| 401 | Authentication failed | The request did not pass an authentication check. Your access token may be missing or invalid. Similarly, you may have attempted to access an object that requires administrator permissions. |
+| 403 | Forbidden | The resource was found, but you do not have the right credentials to view it. You might not have the required permissions to access or edit the resource for reasons not applicable to status code 401. |
+| 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly. |
+| 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Try your request again in a few minutes, and contact your administrator if the problem persists. |
+
