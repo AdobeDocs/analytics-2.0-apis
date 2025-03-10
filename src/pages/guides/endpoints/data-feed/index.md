@@ -50,7 +50,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
  
- #### Request
+#### Request
 
 ```sh
 curl -X 'GET' \
@@ -155,7 +155,7 @@ curl -X 'GET' \
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-## POST datafeed
+\## POST datafeed
 
 Use this endpoint to create a datafeed.
 
@@ -240,7 +240,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
  
- #### Request
+#### Request
 
 ```sh
 curl -X 'GET' \
@@ -320,7 +320,7 @@ curl -X 'PUT' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d '{
+  -d {
   "feedName": "example-feed-For-Doc2",
   "rsid": "examplersid",
   "columnPreset": 1,
@@ -360,7 +360,7 @@ curl -X 'PUT' \
     "enabled": true,
     "lookback": 1000
   }
-}'
+}
 ```
 
 #### Response
@@ -452,7 +452,6 @@ curl -X 'POST' \
 ### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
-
 
 ## GET datafeed requests
 
@@ -743,7 +742,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -819,7 +818,6 @@ curl -X 'PUT' \
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-
 ## PUT datafeed resend
 
 Use this endpoint to resend a datafeed request by specifying a datafeed ID and a datafeed request ID.
@@ -888,7 +886,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -941,7 +939,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -1054,7 +1052,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -1103,7 +1101,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
