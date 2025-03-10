@@ -167,7 +167,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
- #### Request
+#### Request
 
 ```sh
 curl -X 'GET' \
