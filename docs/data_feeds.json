@@ -174,7 +174,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedView"
+                  "$ref" : "#/components/schemas/DataFeedExtendedView"
                 }
               }
             }
@@ -1064,9 +1064,6 @@
           },
           "modificationDate" : {
             "type" : "string"
-          },
-          "legacyTransport" : {
-            "$ref" : "#/components/schemas/LegacyTransportConfig"
           }
         },
         "description" : "Metadata for DataFeedView"
@@ -1109,6 +1106,75 @@
             "format" : "int32"
           }
         }
+      },
+      "DataFeedExtendedView" : {
+        "properties" : {
+          "dynamicLookups" : {
+            "type" : "boolean"
+          },
+          "schedule" : {
+            "$ref" : "#/components/schemas/Schedule"
+          },
+          "delivery" : {
+            "$ref" : "#/components/schemas/Delivery"
+          },
+          "columnPreset" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "notes" : {
+            "type" : "string"
+          },
+          "feedName" : {
+            "type" : "string"
+          },
+          "extendedMetadata" : {
+            "$ref" : "#/components/schemas/ExtendedMetadata"
+          },
+          "rsid" : {
+            "type" : "string"
+          },
+          "lateHits" : {
+            "$ref" : "#/components/schemas/LateHits"
+          },
+          "packaging" : {
+            "$ref" : "#/components/schemas/Packaging"
+          },
+          "replaceEscapedChars" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ExtendedMetadata" : {
+        "type" : "object",
+        "properties" : {
+          "feedId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "feedState" : {
+            "type" : "string"
+          },
+          "timeZone" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "type" : "string"
+          },
+          "modifiedBy" : {
+            "type" : "string"
+          },
+          "modificationDate" : {
+            "type" : "string"
+          },
+          "legacyTransport" : {
+            "$ref" : "#/components/schemas/LegacyTransportConfig"
+          }
+        },
+        "description" : "Extended Metadata for DataFeedExtendedView"
       },
       "DataFeedRequestListView" : {
         "properties" : {
