@@ -5,7 +5,7 @@ description: Use Analytics Data Feed API to create, retrieve, and manage data fe
 
 # Data Feed API
 
-The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retreive, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retrieve, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 **Datafeed API**
 
@@ -50,9 +50,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
  
- #### Request
+#### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/examplersid" \
   -H "accept: application/json" \
@@ -167,15 +167,15 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
- #### Request
+#### Request
 
-```sh
-curl -X 'GET' \
+```curl
+curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d {
+  -d '{
   "feedName": "example-feed-For-Doc2",
   "rsid": "examplersid",
   "columnPreset": 1,
@@ -215,14 +215,12 @@ curl -X 'GET' \
     "enabled": true,
     "lookback": 1000
   }
-}
+}'
 ```
 
 #### Response
 
-```json
-200 OK
-```
+A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
@@ -240,9 +238,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
  
- #### Request
+#### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
   -H "accept: application/json" \
@@ -314,7 +312,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
   -H "accept: application/json" \
@@ -365,9 +363,7 @@ curl -X 'PUT' \
 
 #### Response
 
-```json
-200 OK
-```
+A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
@@ -387,7 +383,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests/search" \
   -H "accept: application/json" \
@@ -453,7 +449,6 @@ curl -X 'POST' \
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-
 ## GET datafeed requests
 
 Use this endpoint to retrieves datafeed requests with a specified report suite ID and datafeed ID. If no dates are specified with this request, it returns the most recent.
@@ -468,7 +463,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests?rsid=examplersid&feedId=16756&minRequestPeriodStartDate=YYYY-02-22T00%3A00%3A00Z&maxRequestPeriodStartDate=YYYY-02-28T00%3A00%3A00Z&limit=2&offset=0" \
   -H "accept: application/json" \
@@ -539,14 +534,14 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
-      "rsid": "exammplersid1", "examplersid2"
+      "rsid": ["exammplersid1", "examplersid2"]
       "feedId": 16756,
       "limit": 2,
       "offset": 0,
@@ -619,7 +614,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/status?status=hold&loginId=444444" \
   -H "accept: application/json" \
@@ -690,7 +685,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/redo" \
   -H "accept: application/json" \
@@ -743,7 +738,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -762,7 +757,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/reprocess" \
   -H "accept: application/json" \
@@ -819,7 +814,6 @@ curl -X 'PUT' \
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-
 ## PUT datafeed resend
 
 Use this endpoint to resend a datafeed request by specifying a datafeed ID and a datafeed request ID.
@@ -834,7 +828,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/resend" \
   -H "accept: application/json" \
@@ -888,7 +882,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -906,7 +900,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/?rsid=examplersid" \
   -H "accept: application/json" \
@@ -941,7 +935,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -960,7 +954,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnNames/all" \
   -H "accept: application/json" \
@@ -1016,7 +1010,7 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 Use this endpoint to retrieve a column preset by preset ID.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/{COLUMN_PRESET_ID}
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/{COLUMN_PRESET_ID}`
 
 ### Request and response examples
 
@@ -1026,9 +1020,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/olumnPreset/22566
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/22566
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -1054,7 +1048,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
@@ -1063,7 +1057,7 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 Use this endpoint to retrieve a column preset by report suite ID. The report suite ID is passed as a query parameter.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets/{REPORT_SUITE_ID}
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets/{REPORT_SUITE_ID}`
 
 ### Request and response examples
 
@@ -1073,7 +1067,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets?rsid=examplersid
   -H "accept: application/json" \
@@ -1103,7 +1097,7 @@ curl -X 'PUT' \
 }
 ```
 
-## Request and response parameters
+### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
