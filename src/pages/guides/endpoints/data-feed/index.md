@@ -220,9 +220,7 @@ curl -X 'GET' \
 
 #### Response
 
-```json
-200 OK
-```
+A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
@@ -365,9 +363,7 @@ curl -X 'PUT' \
 
 #### Response
 
-```json
-200 OK
-```
+A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
