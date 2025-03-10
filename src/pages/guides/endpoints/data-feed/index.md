@@ -5,7 +5,7 @@ description: Use Analytics Data Feed API to create, retrieve, and manage data fe
 
 # Data Feed API
 
-The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retreive, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retrieve, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
 **Datafeed API**
 
@@ -155,7 +155,7 @@ curl -X 'GET' \
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
 
-\## POST datafeed
+## POST datafeed
 
 Use this endpoint to create a datafeed.
 
@@ -170,7 +170,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```curl
-curl -X 'GET' \
+curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
@@ -541,7 +541,7 @@ curl -X 'POST' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
   -d '{
-      "rsid": "exammplersid1", "examplersid2"
+      "rsid": ["exammplersid1", "examplersid2"]
       "feedId": 16756,
       "limit": 2,
       "offset": 0,
@@ -1010,7 +1010,7 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 Use this endpoint to retrieve a column preset by preset ID.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/{COLUMN_PRESET_ID}
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/{COLUMN_PRESET_ID}`
 
 ### Request and response examples
 
@@ -1022,7 +1022,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```curl
 curl -X 'PUT' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/olumnPreset/22566
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/22566
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -1057,7 +1057,7 @@ For a full list of parameters, see the [Data Feed API Reference](https://adobedo
 
 Use this endpoint to retrieve a column preset by report suite ID. The report suite ID is passed as a query parameter.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets/{REPORT_SUITE_ID}
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets/{REPORT_SUITE_ID}`
 
 ### Request and response examples
 
