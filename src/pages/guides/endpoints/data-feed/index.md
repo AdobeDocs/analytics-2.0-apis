@@ -175,7 +175,7 @@ curl -X 'GET' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d '{
+  -d {
   "feedName": "example-feed-For-Doc2",
   "rsid": "examplersid",
   "columnPreset": 1,
@@ -215,7 +215,7 @@ curl -X 'GET' \
     "enabled": true,
     "lookback": 1000
   }
-}'
+}
 ```
 
 #### Response
