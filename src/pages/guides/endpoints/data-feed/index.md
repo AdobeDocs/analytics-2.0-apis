@@ -52,7 +52,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
  
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/examplersid" \
   -H "accept: application/json" \
@@ -169,7 +169,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed" \
   -H "accept: application/json" \
@@ -242,7 +242,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
  
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
   -H "accept: application/json" \
@@ -314,7 +314,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/{DATAFEED_ID}" \
   -H "accept: application/json" \
@@ -387,7 +387,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests/search" \
   -H "accept: application/json" \
@@ -467,7 +467,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/requests?rsid=examplersid&feedId=16756&minRequestPeriodStartDate=YYYY-02-22T00%3A00%3A00Z&maxRequestPeriodStartDate=YYYY-02-28T00%3A00%3A00Z&limit=2&offset=0" \
   -H "accept: application/json" \
@@ -538,7 +538,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/search" \
   -H "accept: application/json" \
@@ -618,7 +618,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/status?status=hold&loginId=444444" \
   -H "accept: application/json" \
@@ -689,7 +689,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/redo" \
   -H "accept: application/json" \
@@ -761,7 +761,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/reprocess" \
   -H "accept: application/json" \
@@ -832,7 +832,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/16756/20055556/resend" \
   -H "accept: application/json" \
@@ -904,7 +904,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPreset/?rsid=examplersid" \
   -H "accept: application/json" \
@@ -958,7 +958,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnNames/all" \
   -H "accept: application/json" \
@@ -1024,7 +1024,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/olumnPreset/22566
   -H "accept: application/json" \
@@ -1071,7 +1071,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_feed/datafeed/columnPresets?rsid=examplersid
   -H "accept: application/json" \
