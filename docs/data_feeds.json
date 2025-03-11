@@ -66,10 +66,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "Datafeed API" ],
@@ -127,10 +124,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}" : {
@@ -179,10 +173,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "Datafeed API" ],
@@ -239,10 +230,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/requests/search" : {
@@ -292,10 +280,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/requests" : {
@@ -383,10 +368,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/search" : {
@@ -435,10 +417,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/status" : {
@@ -495,10 +474,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/{requestId}/redo" : {
@@ -566,10 +542,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/{requestId}/reprocess" : {
@@ -637,10 +610,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/{requestId}/resend" : {
@@ -708,10 +678,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnPreset" : {
@@ -778,10 +745,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnNames/all" : {
@@ -821,10 +785,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnPreset/{presetId}" : {
@@ -873,10 +834,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnPresets" : {
@@ -924,10 +882,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     }
   },
@@ -1589,14 +1544,6 @@
             }
           }
         }
-      }
-    },
-    "securitySchemes" : {
-      "x-user-auth" : {
-        "type" : "apiKey",
-        "description" : "IMS user token",
-        "name" : "x-user-auth",
-        "in" : "header"
       }
     }
   }
