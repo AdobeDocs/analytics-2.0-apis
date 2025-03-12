@@ -447,16 +447,6 @@
               }
             }
           },
-          "400" : {
-            "description" : "Bad Request - Unable to get Datafeed(s).",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
           "404" : {
             "description" : "Datafeeds not found for rsids.",
             "content" : {
