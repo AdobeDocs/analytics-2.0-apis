@@ -46,6 +46,16 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "Error occurred while retrieving datafeeds for rsids.",
             "content" : {
@@ -86,6 +96,16 @@
         "responses" : {
           "400" : {
             "description" : "Bad Request - Unable to create Datafeed.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "Datafeed already exists.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -210,6 +230,16 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request - Unable to update Datafeed.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "Error occurred while updating datafeed.",
             "content" : {
@@ -252,6 +282,16 @@
         "responses" : {
           "404" : {
             "description" : "Datafeed requests not found.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed requests.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -338,6 +378,16 @@
           }
         } ],
         "responses" : {
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed requests.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "404" : {
             "description" : "Datafeed requests not found.",
             "content" : {
@@ -387,6 +437,26 @@
           }
         },
         "responses" : {
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "404" : {
             "description" : "Datafeeds not found for rsids.",
             "content" : {
@@ -446,6 +516,16 @@
         "responses" : {
           "404" : {
             "description" : "Datafeed not found.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - Unable to update Datafeed status.",
             "content" : {
               "application/json" : {
                 "schema" : {
