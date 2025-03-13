@@ -220,12 +220,7 @@ curl -X 'POST' \
 
 #### Response
 
-```json
-{
-  "data": [
-  ]
-}
-```
+A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
@@ -368,12 +363,7 @@ curl -X 'PUT' \
 
 #### Response
 
-```json
-{
-  "data": [
-  ]
-}
-```
+A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
