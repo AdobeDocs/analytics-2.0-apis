@@ -49,7 +49,7 @@ Use this endpoint to get datafeeds for a report suite.
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
- 
+
 #### Request
 
 ```curl
@@ -220,7 +220,12 @@ curl -X 'POST' \
 
 #### Response
 
-A successful request returns the `200 OK` response.
+```json
+{
+  "data": [
+  ]
+}
+```
 
 ### Request and response parameters
 
@@ -237,7 +242,7 @@ Use this endpoint to retrieve datafeeds with a specified datafeed ID. To obtain 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
- 
+
 #### Request
 
 ```curl
@@ -363,7 +368,12 @@ curl -X 'PUT' \
 
 #### Response
 
-A successful request returns the `200 OK` response.
+```json
+{
+  "data": [
+  ]
+}
+```
 
 ### Request and response parameters
 
@@ -444,7 +454,6 @@ curl -X 'POST' \
   }
 ```
 
-
 ### Request and response parameters
 
 For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
@@ -473,8 +482,8 @@ curl -X 'GET' \
 
 #### Response
 
-  ```json
-  {
+```json
+{
   "limit": 2,
   "offset": 0,
   "data": [
