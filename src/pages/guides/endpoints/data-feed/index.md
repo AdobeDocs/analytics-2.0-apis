@@ -59,6 +59,7 @@ curl -X 'GET' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" 
 ```
+
 #### Response
 
 ```json
