@@ -46,6 +46,16 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "Error occurred while retrieving datafeeds for rsids.",
             "content" : {
@@ -66,10 +76,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       },
       "post" : {
         "tags" : [ "Datafeed API" ],
@@ -89,6 +96,16 @@
         "responses" : {
           "400" : {
             "description" : "Bad Request - Unable to create Datafeed.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "409" : {
+            "description" : "Datafeed already exists.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -127,10 +144,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}" : {
@@ -174,15 +188,12 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedView"
+                  "$ref" : "#/components/schemas/DataFeedExtendedView"
                 }
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "Datafeed API" ],
@@ -219,6 +230,16 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request - Unable to update Datafeed.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "Error occurred while updating datafeed.",
             "content" : {
@@ -239,10 +260,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/requests/search" : {
@@ -272,6 +290,16 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed requests.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "Error occurred while retrieving datafeed requests.",
             "content" : {
@@ -292,10 +320,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/requests" : {
@@ -353,6 +378,16 @@
           }
         } ],
         "responses" : {
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed requests.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "404" : {
             "description" : "Datafeed requests not found.",
             "content" : {
@@ -383,10 +418,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/search" : {
@@ -405,6 +437,16 @@
           }
         },
         "responses" : {
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "404" : {
             "description" : "Datafeeds not found for rsids.",
             "content" : {
@@ -435,10 +477,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/status" : {
@@ -475,6 +514,16 @@
               }
             }
           },
+          "400" : {
+            "description" : "Bad Request - Unable to update Datafeed status.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
           "500" : {
             "description" : "Error occurred while updating datafeed status.",
             "content" : {
@@ -495,10 +544,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/{requestId}/redo" : {
@@ -566,10 +612,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/{requestId}/reprocess" : {
@@ -637,10 +680,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/datafeed/{feedId}/{requestId}/resend" : {
@@ -708,10 +748,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnPreset" : {
@@ -778,10 +815,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnNames/all" : {
@@ -821,10 +855,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnPreset/{presetId}" : {
@@ -873,10 +904,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     },
     "/columnPresets" : {
@@ -924,10 +952,7 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "x-user-auth" : [ ]
-        } ]
+        }
       }
     }
   },
@@ -1064,9 +1089,6 @@
           },
           "modificationDate" : {
             "type" : "string"
-          },
-          "legacyTransport" : {
-            "$ref" : "#/components/schemas/LegacyTransportConfig"
           }
         },
         "description" : "Metadata for DataFeedView"
@@ -1109,6 +1131,75 @@
             "format" : "int32"
           }
         }
+      },
+      "DataFeedExtendedView" : {
+        "properties" : {
+          "dynamicLookups" : {
+            "type" : "boolean"
+          },
+          "schedule" : {
+            "$ref" : "#/components/schemas/Schedule"
+          },
+          "delivery" : {
+            "$ref" : "#/components/schemas/Delivery"
+          },
+          "columnPreset" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "notes" : {
+            "type" : "string"
+          },
+          "feedName" : {
+            "type" : "string"
+          },
+          "extendedMetadata" : {
+            "$ref" : "#/components/schemas/ExtendedMetadata"
+          },
+          "rsid" : {
+            "type" : "string"
+          },
+          "lateHits" : {
+            "$ref" : "#/components/schemas/LateHits"
+          },
+          "packaging" : {
+            "$ref" : "#/components/schemas/Packaging"
+          },
+          "replaceEscapedChars" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ExtendedMetadata" : {
+        "type" : "object",
+        "properties" : {
+          "feedId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "feedState" : {
+            "type" : "string"
+          },
+          "timeZone" : {
+            "type" : "string"
+          },
+          "createdBy" : {
+            "type" : "string"
+          },
+          "creationDate" : {
+            "type" : "string"
+          },
+          "modifiedBy" : {
+            "type" : "string"
+          },
+          "modificationDate" : {
+            "type" : "string"
+          },
+          "legacyTransport" : {
+            "$ref" : "#/components/schemas/LegacyTransportConfig"
+          }
+        },
+        "description" : "Extended Metadata for DataFeedExtendedView"
       },
       "DataFeedRequestListView" : {
         "properties" : {
@@ -1523,14 +1614,6 @@
             }
           }
         }
-      }
-    },
-    "securitySchemes" : {
-      "x-user-auth" : {
-        "type" : "apiKey",
-        "description" : "IMS user token",
-        "name" : "x-user-auth",
-        "in" : "header"
       }
     }
   }
