@@ -47,8 +47,6 @@ Use this endpoint to get datafeeds for a report suite.
 ### Request and response examples
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
  
 #### Request
 
