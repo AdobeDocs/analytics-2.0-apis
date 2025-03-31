@@ -113,7 +113,7 @@ The GET dimensions endpoint includes the following request query parameters:
 
 #### Response example details
 
-The above JSON response example shows the following details:
+The JSON response example above shows the following details:
 
 * Information for two `classifiable` dimensions in the `examplersid` report suite, including `campaign` and `clickmaplink`.
 * The `title` and `name` values for each dimension.
