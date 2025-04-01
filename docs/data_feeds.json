@@ -22,62 +22,6 @@
   } ],
   "paths" : {
     "/datafeed" : {
-      "get" : {
-        "tags" : [ "Datafeed API" ],
-        "summary" : "Gets datafeeds for a report suite",
-        "operationId" : "getDataFeedsForReportSuite_1",
-        "parameters" : [ {
-          "name" : "rsid",
-          "in" : "query",
-          "description" : "The report suite ID",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }],
-        "responses" : {
-          "404" : {
-            "description" : "Datafeeds not found for rsids.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Bad Request - Unable to get Datafeed(s).",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Error occurred while retrieving datafeeds for rsids.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Datafeeds for report suite retrieved successfully.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedList"
-                }
-              }
-            }
-          }
-        }
-      },
       "post" : {
         "tags" : [ "Datafeed API" ],
         "summary" : "Create datafeed",
@@ -263,25 +207,32 @@
         }
       }
     },
-    "/datafeed/requests/search" : {
-      "post" : {
+    "/datafeed/{feedId}/status" : {
+      "put" : {
         "tags" : [ "Datafeed API" ],
-        "summary" : "Gets datafeed requests",
-        "description" : "This endpoint allows searching for datafeed requests using various filtering criteria.\n\nThe request body supports the following fields:\n\n- rsids **[Required]:** One or more report suite IDs to filter the search.\n\n- feedIds **[Required]**: One or more datafeed IDs to filter the search.\n\n- requestStates: Filter by request states [created, processing, completed].\n\n- billingCustomerId: Filter by billing customer ID.\n\n- useUtc: Indicates whether the date filters should use UTC (default=false).\n\n***Pagination:***\n\n- limit: Maximum number of results to return (default=100).\n\n- offset: Offset for pagination (default=0).\n\n***Sorting:***\n\n- sortOrder: 'asc' or 'desc' (default='desc').\n\n- orderBy: Field to sort by (first_run_date, complete_date, req_period_begin_utc ).\n\n***Date Filters:*** Dates must be in ISO 8601 format with timezone (yyyy-MM-dd'T'HH:mm:ssXXX) or UTC (yyyy-MM-ddTHH:mm:ssZ):\n\n- minRequestPeriodStartDate, maxRequestPeriodStartDate: Filter by request period start date range.\n\n- minAttemptDate, maxAttemptDate: Filter by attempt date range.\n\n- minCompletionDate, maxCompletionDate: Filter by completion date range.\n\n- minSubmittedDate, maxSubmittedDate: Filter by submission date range.\n\n**Example request body:**\n\n```json\n{\n  \"rsids\": [\n    \"inttest\"\n  ],\n  \"feedIds\": [\n    6, 7\n  ],\n  \"requestStates\": [\n    \"created\", \"processing\", \"completed\"\n  ],\n  \"limit\": 10,\n  \"offset\": 0,\n  \"sortOrder\": \"desc\",\n  \"minRequestPeriodStartDate\": \"2023-05-21T08:00:00Z\",\n  \"maxRequestPeriodStartDate\": \"2023-07-21T08:10:00Z\"\n}\n```\n",
-        "operationId" : "getDataFeedRequests_1",
-        "parameters" : [ ],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/DataFeedRequestsSearchBody"
-              }
-            }
+        "summary" : "Update datafeed status",
+        "operationId" : "updateStatus_1",
+        "parameters" : [ {
+          "name" : "feedId",
+          "in" : "path",
+          "description" : "The feed ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
           }
-        },
+        }, {
+          "name" : "status",
+          "in" : "query",
+          "description" : "Valid values: active, canceled and hold",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
         "responses" : {
           "404" : {
-            "description" : "Datafeed requests not found.",
+            "description" : "Datafeed not found.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -291,7 +242,7 @@
             }
           },
           "400" : {
-            "description" : "Bad Request - Unable to get Datafeed requests.",
+            "description" : "Bad Request - Unable to update Datafeed status.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -301,7 +252,7 @@
             }
           },
           "500" : {
-            "description" : "Error occurred while retrieving datafeed requests.",
+            "description" : "Error occurred while updating datafeed status.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -311,11 +262,128 @@
             }
           },
           "200" : {
-            "description" : "Datafeed requests retrieved successfully.",
+            "description" : "Datafeed status updated successfully.",
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedRequestListView"
+                  "$ref" : "#/components/schemas/DataFeedView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeeds" : {
+      "get" : {
+        "tags" : [ "Datafeed API" ],
+        "summary" : "Gets datafeeds for a report suite",
+        "operationId" : "getDataFeedsForReportSuite_1",
+        "parameters" : [ {
+          "name" : "rsid",
+          "in" : "query",
+          "description" : "The report suite ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "Datafeeds not found for rsid.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error occurred while retrieving datafeeds for rsid.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Datafeeds for report suite retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DataFeedList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datafeeds/search" : {
+      "post" : {
+        "tags" : [ "Datafeed API" ],
+        "summary" : "Gets datafeeds for an array of report suite",
+        "operationId" : "getDataFeedsForReportSuites_1",
+        "parameters" : [ ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReportSuiteList_User"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "400" : {
+            "description" : "Bad Request - Unable to get Datafeed(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Datafeeds not found for rsids.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error occurred while retrieving datafeeds for rsids.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Datafeeds for multiple report suite retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DataFeedList"
                 }
               }
             }
@@ -421,91 +489,25 @@
         }
       }
     },
-    "/datafeed/search" : {
+    "/datafeed/requests/search" : {
       "post" : {
         "tags" : [ "Datafeed API" ],
-        "summary" : "Gets datafeeds for an array of report suite",
-        "operationId" : "getDataFeedsForReportSuites_1",
+        "summary" : "Gets datafeed requests",
+        "description" : "This endpoint allows searching for datafeed requests using various filtering criteria.\n\nThe request body supports the following fields:\n\n- rsids **[Required]:** One or more report suite IDs to filter the search.\n\n- feedIds **[Required]**: One or more datafeed IDs to filter the search.\n\n- requestStates: Filter by request states [created, processing, completed].\n\n- billingCustomerId: Filter by billing customer ID.\n\n- useUtc: Indicates whether the date filters should use UTC (default=false).\n\n***Pagination:***\n\n- limit: Maximum number of results to return (default=100).\n\n- offset: Offset for pagination (default=0).\n\n***Sorting:***\n\n- sortOrder: 'asc' or 'desc' (default='desc').\n\n- orderBy: Field to sort by (first_run_date, complete_date, req_period_begin_utc ).\n\n***Date Filters:*** Dates must be in ISO 8601 format with timezone (yyyy-MM-dd'T'HH:mm:ssXXX) or UTC (yyyy-MM-ddTHH:mm:ssZ):\n\n- minRequestPeriodStartDate, maxRequestPeriodStartDate: Filter by request period start date range.\n\n- minAttemptDate, maxAttemptDate: Filter by attempt date range.\n\n- minCompletionDate, maxCompletionDate: Filter by completion date range.\n\n- minSubmittedDate, maxSubmittedDate: Filter by submission date range.\n\n**Example request body:**\n\n```json\n{\n  \"rsids\": [\n    \"inttest\"\n  ],\n  \"feedIds\": [\n    6, 7\n  ],\n  \"requestStates\": [\n    \"created\", \"processing\", \"completed\"\n  ],\n  \"limit\": 10,\n  \"offset\": 0,\n  \"sortOrder\": \"desc\",\n  \"minRequestPeriodStartDate\": \"2023-05-21T08:00:00Z\",\n  \"maxRequestPeriodStartDate\": \"2023-07-21T08:10:00Z\"\n}\n```\n",
+        "operationId" : "getDataFeedRequests_1",
         "parameters" : [ ],
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/ReportSuiteList_User"
+                "$ref" : "#/components/schemas/DataFeedRequestsSearchBody"
               }
             }
           }
         },
         "responses" : {
-          "400" : {
-            "description" : "Bad Request - Unable to get Datafeed(s).",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
           "404" : {
-            "description" : "Datafeeds not found for rsids.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Error occurred while retrieving datafeeds for rsids.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "Datafeeds for multiple report suite retrieved successfully.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedList"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/datafeed/{feedId}/status" : {
-      "put" : {
-        "tags" : [ "Datafeed API" ],
-        "summary" : "Update datafeed status",
-        "operationId" : "updateStatus_1",
-        "parameters" : [ {
-          "name" : "feedId",
-          "in" : "path",
-          "description" : "The feed ID",
-          "required" : true,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int32"
-          }
-        }, {
-          "name" : "status",
-          "in" : "query",
-          "description" : "Valid values: active, canceled and hold",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "404" : {
-            "description" : "Datafeed not found.",
+            "description" : "Datafeed requests not found.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -515,7 +517,7 @@
             }
           },
           "400" : {
-            "description" : "Bad Request - Unable to update Datafeed status.",
+            "description" : "Bad Request - Unable to get Datafeed requests.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -525,7 +527,7 @@
             }
           },
           "500" : {
-            "description" : "Error occurred while updating datafeed status.",
+            "description" : "Error occurred while retrieving datafeed requests.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -535,11 +537,11 @@
             }
           },
           "200" : {
-            "description" : "Datafeed status updated successfully.",
+            "description" : "Datafeed requests retrieved successfully.",
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/DataFeedView"
+                  "$ref" : "#/components/schemas/DataFeedRequestListView"
                 }
               }
             }
@@ -751,6 +753,46 @@
         }
       }
     },
+    "/columnNames/all" : {
+      "get" : {
+        "tags" : [ "Column Preset API" ],
+        "summary" : "Get all column names",
+        "operationId" : "getAllColumnNames_1",
+        "parameters" : [ ],
+        "responses" : {
+          "404" : {
+            "description" : "Column names not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error occurred while retrieving all columns",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "All Column Names retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ColumnList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/columnPreset" : {
       "post" : {
         "tags" : [ "Column Preset API" ],
@@ -764,7 +806,7 @@
           "schema" : {
             "type" : "string"
           }
-        }],
+        } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
@@ -818,46 +860,6 @@
         }
       }
     },
-    "/columnNames/all" : {
-      "get" : {
-        "tags" : [ "Column Preset API" ],
-        "summary" : "Get all column names",
-        "operationId" : "getAllColumnNames_1",
-        "parameters" : [ ],
-        "responses" : {
-          "404" : {
-            "description" : "Column names not found",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Error occurred while retrieving all columns",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                }
-              }
-            }
-          },
-          "200" : {
-            "description" : "All Column Names retrieved successfully.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ColumnList"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/columnPreset/{presetId}" : {
       "get" : {
         "tags" : [ "Column Preset API" ],
@@ -872,7 +874,7 @@
             "type" : "integer",
             "format" : "int32"
           }
-        }],
+        } ],
         "responses" : {
           "404" : {
             "description" : "Column preset not found.",
@@ -920,7 +922,7 @@
           "schema" : {
             "type" : "string"
           }
-        }],
+        } ],
         "responses" : {
           "404" : {
             "description" : "Column Presets for report suite not found.",
