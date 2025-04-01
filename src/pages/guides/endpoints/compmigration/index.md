@@ -9,19 +9,28 @@ Use this API to migrate components (dimensions, metrics, segments, calculated me
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
 
-This guide includes instructions for the following services and endpoints:
+This guide includes instructions for three API services:
 
 **Components Migration Service**
-- `POST /projects/{projectId}/migrate` - Migrate components for a specific project
-- `GET /projects/{projectId}/summary` - Get migration summary for a project
+
+The Components Migration Service includes the following endpoints for migrating components From Adobe Analytics to Customer Journey Analytics:
+
+* POST /projects/{projectId}/migrate: Creates a project migration
+* GET /projects/{projectId}/summary: Retrieves migration summary for a project
 
 **Dimension Mapping Service**
-- `GET /dimensions` - Get all dimensions
-- `GET /dimensions/{aaId}` - Get specific dimension
-- `POST /dimensions/map` - Map dimensions
-- `DELETE /dimensions/map/{aaId}` - Delete dimension mapping
+
+The Dimension Mapping service includes the following endpoints for performing dimension mapping operations:
+
+* GET /dimensions/csv: Retrieves all dimensions from a csv file
+* PUT /dimensions/csv: Updates dimension mappings with a csv file
+* POST /dimensions/map/csv: Creates a dimensions mapping with a csv file
+* DELETE /dimensions/map/all - Deletes all dimension mappings
 
 **Metric Mapping Service**
+
+The Metric Mapping service includes the following endpoints for performing metric mapping operations:
+
 - `GET /metrics` - Get all metrics
 - `GET /metrics/{aaId}` - Get specific metric
 - `POST /metrics/map` - Map metrics
