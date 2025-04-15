@@ -166,6 +166,10 @@ module.exports = {
             ]
           },
           {
+            title: 'Data feed',
+            path: 'guides/endpoints/data-feed.md'
+          },
+          {
             title: 'Data repair',
             path: 'guides/endpoints/data-repair',
             pages: [
