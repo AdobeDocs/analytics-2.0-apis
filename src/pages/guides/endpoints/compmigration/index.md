@@ -10,6 +10,8 @@ Use these APIs to migrate project components from Adobe Analytics to Customer Jo
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
 
+Before using these APIs, see the admin instructions for [preparing to migrate your components and projects from Adobe Analytics to Customer Journey Analytics] (https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/prepare-component-migration).
+
 This guide includes instructions for three API services:
 
 **Dimension Mapping Service**
