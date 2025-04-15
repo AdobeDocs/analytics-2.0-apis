@@ -12,20 +12,8 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 This guide includes instructions for three API services:
 
-## Migrate Project Components
-Project migration components include non-XDM dimensions and metrics, as well as segments, calculated metrics, and date ranges in Analysis Worksplace. Use the following endpoints to migrate project components:
-
-* POST /projects/{projectId}/migrate: Creates a project migration
-* GET /projects/{projectId}/summary: Retrieves migration summary for a project
-
 **Dimension Mapping Service**
 
-The Dimension Mapping service includes the following endpoints for performing dimension mapping operations:
-
-* GET /dimensions/csv: Retrieves all dimensions from a csv file
-* PUT /dimensions/csv: Updates dimension mappings with a csv file
-* POST /dimensions/map/csv: Creates a dimensions mapping with a csv file
-* DELETE /dimensions/map/all - Deletes all dimension mappings
 
 **Metric Mapping Service**
 
@@ -39,20 +27,19 @@ The Metric Mapping service includes the following endpoints for performing metri
 
 **Components Migration Service**
 
-These endpoints provide methods for migrating components from Adobe Analytics to Customer Journey Analytics:
+The endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. Project migration components include non-XDM dimensions and metrics, as well as segments, calculated metrics, and date ranges in Analysis Worksplace.
 
-* [POST migrate components](#post-migrate-components): Migrate components for a specific project
-* [GET migration summary](#get-migration-summary): Get migration summary for a project
+* [POST projects migrate](#post-projects-migrate): Creates a project migration
+* [GET projects migration summary](#get-migration-summary): Retrieves migration summary for a project
 
 **Dimension Mapping Service**
 
-These endpoints provide methods for managing dimension mappings:
+These endpoints provide methods for mapping dimensions to CJA within an XDM schema:
 
-* [GET dimensions CSV](#get-dimensions-csv): Get dimensions in CSV format
-* [GET dimensions](#get-dimensions): Get all dimensions
-* [GET dimension by ID](#get-dimension-by-id): Get a specific dimension
-* [POST map dimensions](#post-map-dimensions): Map dimensions
-* [DELETE dimension mapping](#delete-dimension-mapping): Delete a dimension mapping
+* [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings as a csv file
+* [GET mapping dimensions csv](#get-mapping-dimensions-csv): Retrieve dimensions mappings as a csv file
+* [PUT /dimensions/csv](#put-mapping-dimensions-csv): Update dimensions mappings as a csv file
+* [DELETE mapping dimension all](#delete-mapping-dimension-all): Delete a dimension mappings
 
 **Metric Mapping Service**
 
@@ -67,7 +54,7 @@ These endpoints provide methods for managing metric mappings:
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-## POST migrate components
+## POST projects migrate
 
 Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project.
 
@@ -127,7 +114,7 @@ The following table describes the migrate components request parameters:
 
 ### Response Parameters
 
-The following table describes the migrate components response parameters:
+The following table describes the response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -135,9 +122,9 @@ The following table describes the migrate components response parameters:
 | `method` | string | The HTTP method used |
 | `message` | string | A message describing the result |
 
-## GET migration summary
+## GET projects migration summary
 
-Use this endpoint to get the migration summary for a specific project.
+Use this endpoint to retrieve the migration summary for a specific project.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/summary`
 
