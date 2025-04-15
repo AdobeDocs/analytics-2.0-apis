@@ -35,7 +35,7 @@ Retrieve, update, or create calculated metrics.
 
 [Data feed API](data-feed/index.md)
 
-Create, update, and manage data feeds and column presets.
+Create, update, retrieve, and manage data feeds and column presets.
 
 <DiscoverBlock slots="link, text"/>
 
