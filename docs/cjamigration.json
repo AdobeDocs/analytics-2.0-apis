@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Components Migration Service (AA to CJA) - Prod - ACC - AA",
+    "title": "Adobe Analytics 2.0 Components Migration API. Migrate components from Adobe Analytics to Customer Journey Analytics (AA to CJA).",
     "description": "AA to CJA Components Migration",
     "version": "1.0"
   },
