@@ -34,6 +34,12 @@ The endpoints below provide methods for migrating project components from Adobe 
 
 **Dimension Mapping Service**
 
+To map dimensions from Adobe Analytics to Customer Journey Analytics within an XDM schema, follow these steps:
+
+In Customer Journey Analytics, create the dimensions that you want to be mapped from the existing Adobe Analytics dimensions.
+Obtain the 
+Use the dimension mapping APIs to upload the ma
+
 These endpoints provide methods for mapping dimensions to CJA within an XDM schema:
 
 * [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings as a csv file
@@ -107,8 +113,8 @@ The following table describes the migrate components request parameters:
 | `projectId` | required | string | The ID of the project to migrate components for |
 | `aaId` | required | string | The Adobe Analytics component ID |
 | `globalCompanyId` | required | string | The global company ID |
-| `imsOrgId` | required | string | The IMS organization ID |
-| `imsUserId` | required | string | The IMS user ID |
+| `imsOrgId` | required | string | The IMS organization ID for the CJA project |
+| `imsUserId` | required | string | The IMS user ID for the CJA project|
 | `imsUserName` | required | string | The IMS user name |
 | `rsidDataIdMap` | required | object | Mapping of report suite IDs to data IDs |
 
