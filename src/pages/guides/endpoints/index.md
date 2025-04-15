@@ -33,13 +33,19 @@ Retrieve, update, or create calculated metrics.
 
 <DiscoverBlock slots="link, text"/>
 
+[Data feed API](data-feed/index.md)
+
+Create, update, and manage data feeds and column presets.
+
+<DiscoverBlock slots="link, text"/>
+
 [Data repair API](data-repair/index.md)
 
 Create, view, delete, and manage data sources accounts.
 
 <DiscoverBlock slots="link, text"/>
 
-[Data Sources API](data-sources/index.md)
+[Data sources API](data-sources/index.md)
 
 Create, view, upload, or delete data sources accounts and jobs.
 
