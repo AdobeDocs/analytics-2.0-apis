@@ -27,7 +27,7 @@ To map dimensions from Adobe Analytics to a Customer Journey Analytics data view
 
 1. In Customer Journey Analytics, create the dimensions that you want to be mapped from the existing Adobe Analytics dimensions.
 2. Collect the dimension ID information to be used in the mappings. If you have a csv file that defines your XDM schema for a data view, it may be helpful to reference it. You can also use the [GET dimensions](https://developer.adobe.com/cja-apis/docs/endpoints/dimensions/) endpoint to see a list of dimensions and their IDs for a data view.
-3. Create a csv file that contains the mappings for your dimensions. The template for the mapping should appear as shown below. :
+3. Create a csv file that contains the mappings for your dimensions. In the example template below, the **aaId** column contains the names of the dimensions to be mapped to CJA. The **cjaId** column contains example dimension IDs as shown for a dataview in CJA. The **note** column contains any info helpful for explaining the dimension. This example shows four dimensions to be mapped. Yours may contain many more than this, and the limit is only set only by the number of evars you can create in Analytics.
 
     | aaId | cjaId | note |
     | --- | --- | --- |
@@ -35,10 +35,8 @@ To map dimensions from Adobe Analytics to a Customer Journey Analytics data view
     | evar7 | cja.evar7 | page |
     | evar8 | cja.evar8 | product |
     | evar9 | cja.evar9 | day |
-
-Note: In the example above, the **aaId** column contains the names of the dimensions to be mapped to CJA. The **cjaId** column contains example dimension IDs as shown for a dataview in CJA. The note column contains any info helpful for explaining the dimension. This example shows four dimensions to be mapped. Yours may contain many more than this, and the limit is only set only by the number of evars you can create in Analytics.
               
-4. Use the dimension mapping APIs to upload (or create), update, or retrieve the mappings to Customer Journey Analytics.
+5. Use the dimension mapping APIs to upload (or create), update, or retrieve the mappings to Customer Journey Analytics.
 
 These endpoints provide methods for mapping dimensions to CJA within an XDM schema:
 
