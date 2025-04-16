@@ -37,8 +37,8 @@ The endpoints below provide methods for migrating project components from Adobe 
 
 To map dimensions from Adobe Analytics to Customer Journey Analytics within an XDM schema, follow these steps:
 
-In Customer Journey Analytics, create the dimensions that you want to be mapped from the existing Adobe Analytics dimensions.
-If you have a csv file that defines your XDM schema for a data view, it may be helpful to reference it when creating your mappings in a csv file. You can also use the [GET dimensions](https://developer.adobe.com/cja-apis/docs/endpoints/dimensions/) endpoint to see a list of dimensions for a data view.
+1. In Customer Journey Analytics, create the dimensions that you want to be mapped from the existing Adobe Analytics dimensions.
+2. Collect the dimension ID information to be used in the mappings. If you have a csv file that defines your XDM schema for a data view, it may be helpful to reference it. You can also use the [GET dimensions](https://developer.adobe.com/cja-apis/docs/endpoints/dimensions/) endpoint to see a list of dimensions and their IDs for a data view.
 Obtain the 
 Use the dimension mapping APIs to upload the ma
 
