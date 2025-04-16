@@ -13,50 +13,48 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 This guide includes instructions for three API services:
 
-**Dimension Mapping Service**
-
-
-**Metric Mapping Service**
-
-The Metric Mapping service includes the following endpoints for performing metric mapping operations:
-
-* GET /metrics: Retrieves all metrics
-- `GET /metrics/{aaId}` - Get specific metric
-- `POST /metrics/map` - Map metrics
-- `DELETE /metrics/map/{aaId}` - Delete metric mapping
-
 
 **Components Migration Service**
 
-The endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. Project migration components include non-XDM dimensions and metrics, as well as segments, calculated metrics, and date ranges in Analysis Worksplace.
+The endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. Project migration components include non-XDM dimensions and metrics, as well as segments, calculated metrics, and date ranges in Analysis Worksplace. To use the endpoints, you will need the Adobe Analytics project ID and report suite ID, as well as the Customer Journey Analytics data view ID. If you plan to migrate XDM-defined dimensions and metrics, use the mappings APIs below first so that the project ID can be associated with those mappings when you migrate the project.  
 
 * [POST projects migrate](#post-projects-migrate): Creates a project migration
 * [GET projects migration summary](#get-migration-summary): Retrieves migration summary for a project
 
 **Dimension Mapping Service**
 
-To map dimensions from Adobe Analytics to Customer Journey Analytics within an XDM schema, follow these steps:
+To map dimensions from Adobe Analytics to a Customer Journey Analytics data view within an XDM schema, follow these steps:
 
 1. In Customer Journey Analytics, create the dimensions that you want to be mapped from the existing Adobe Analytics dimensions.
 2. Collect the dimension ID information to be used in the mappings. If you have a csv file that defines your XDM schema for a data view, it may be helpful to reference it. You can also use the [GET dimensions](https://developer.adobe.com/cja-apis/docs/endpoints/dimensions/) endpoint to see a list of dimensions and their IDs for a data view.
-Obtain the 
-Use the dimension mapping APIs to upload the ma
+3. Create a csv file that contains the mappings for your dimensions. The template for the mapping should appear as follows:
+
+| aaId | cjaId | note |
+| --- | --- | --- |
+| evar5 | cja.evar5 | organization |
+| evar7 | cja.evar7 | page |
+| evar8 | cja.evar8 | product |
+| evar9 | cja.evar9 | day |
+
+In the example above, the **aaId** column contains the names of the dimensions to be mapped to CJA. The **cjaId** column contains example dimension IDs as shown for a dataview in CJA. The note column contains any info helpful for explaining the dimension. This example shows four dimensions to be mapped. Yours may contain many more than this, and the limit is only set only by the number of evars you can create in Analytics.
+5. Use the dimension mapping APIs to upload (or create), update, or retrieve the mappings to Customer Journey Analytics.
 
 These endpoints provide methods for mapping dimensions to CJA within an XDM schema:
 
-* [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings as a csv file
-* [GET mapping dimensions csv](#get-mapping-dimensions-csv): Retrieve dimensions mappings as a csv file
-* [PUT /dimensions/csv](#put-mapping-dimensions-csv): Update dimensions mappings as a csv file
+* [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings with a csv file
+* [GET mapping dimensions csv](#get-mapping-dimensions-csv): Retrieve dimensions mappings with a csv file
+* [PUT /dimensions/csv](#put-mapping-dimensions-csv): Update dimensions mappings with a csv file
 * [DELETE mapping dimension all](#delete-mapping-dimension-all): Delete a dimension mappings
 
 **Metric Mapping Service**
 
 These endpoints provide methods for managing metric mappings:
 
-* [GET metrics](#get-metrics): Get all metrics
-* [GET metric by ID](#get-metric-by-id): Get a specific metric
-* [POST map metrics](#post-map-metrics): Map metrics
-* [DELETE metric mapping](#delete-metric-mapping): Delete a metric mapping
+* [GET mapping metrics csv](#get-mapping-metrics-csv): Retrieve metrics mappings with a csv file
+* [PUT mapping metrics csv](#put-mapping-metric-csv): Update metrics mappings with a csv file
+* [POST mapping metrics csv](#post-mapping-metrics-csv): Create metrics mappings with a csv file
+* [DELETE mapping metric all](#delete-metric-mapping-all): Delete all metrics mapping
+
 
 <InlineAlert variant="info" slots="text" />
 
