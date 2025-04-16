@@ -50,4 +50,4 @@ JWT authentication is deprecated and will only be supported until January 1, 202
 
 Choose your desired authentication method, and complete the remaining steps to finish the API client wizard.
 
-To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+To refresh authentication tokens, see the [Authentication Guide](https://developer.adobe.com/developer-console/docs/guides/authentication/).
