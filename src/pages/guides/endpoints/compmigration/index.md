@@ -87,10 +87,10 @@ curl -X 'POST' \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "aaId": "component-id",
-    "globalCompanyId": "company-id",
-    "imsOrgId": "org-id",
-    "imsUserId": "user-id",
+    "aaId": "exampleproject",
+    "globalCompanyId": "exampleorg",
+    "imsOrgId": "cja-exampleowner-org",
+    "imsUserId": "cja-exampleowner-id",
     "imsUserName": "user-name",
     "rsidDataIdMap": {
       "rsid1": "data-id1",
