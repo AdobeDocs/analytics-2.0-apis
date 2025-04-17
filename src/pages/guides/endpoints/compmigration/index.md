@@ -16,7 +16,7 @@ This guide includes instructions for three API services:
 
 **Components Migration Service**
 
-The endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. Project migration components include non-XDM dimensions and metrics, as well as segments, calculated metrics, and date ranges in Analysis Worksplace. To use the endpoints, you will need the Adobe Analytics project ID and report suite ID, as well as the Customer Journey Analytics data view ID. If you plan to migrate XDM-defined dimensions and metrics, use the mappings APIs below first so that the project ID can be associated with those mappings when you migrate the project.  
+The two Migration endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. This includes segments, calculated metrics, and date ranges in Analysis Workplace. It also includes dimensions and metrics if you have mapped them before using these two Migration APIs. If you plan to also migrate dimensions and metrics, use the mappings APIs below first so that the project ID can be associated with those mappings when you migrate the project. To use the following two Migration endpoints, you will need the Adobe Analytics project ID and report suite ID, as well as the Customer Journey Analytics data view ID. 
 
 * [POST projects migrate](#post-projects-migrate): Creates a project migration
 * [GET projects migration summary](#get-migration-summary): Retrieves migration summary for a project
