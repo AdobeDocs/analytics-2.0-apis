@@ -67,7 +67,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 ## POST projects migrate
 
-Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project.
+Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/migrate`
 
