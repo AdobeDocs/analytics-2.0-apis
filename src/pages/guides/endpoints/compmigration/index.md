@@ -134,7 +134,6 @@ The following table describes the migrate components request parameters:
 | `rsid1` | required | string | Report suite ID for first report suite. If additional report suites are to be mapped, add them in consecutive lines with increasing numbers, as shown in example.  |
 | `data-id1` | required | string | The data view ID in CJA that should be mapped to the report suite listed as the first part of the key value pair. If additional report suites are to be mapped, add them in consecutive lines with increasing numbers, as shown in example. |
 
-
 ### Response Parameters
 
 The following table describes the response parameters:
@@ -202,7 +201,7 @@ The following table describes the **GET migration summary** response parameters:
 
 ## POST mapping dimensions csv
 
-Use this endpoint to upload a csv file that maps Analytics dimensions to CJA dimensions within specified data views.
+Use this endpoint to upload a csv file that maps Analytics dimensions to CJA dimensions for a specified data views.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv`
 
@@ -221,7 +220,7 @@ curl -X 'POST' \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
-  -f 'file=examplecsv'
+  -F 'file=examplecsv'
 ```
 
 #### Response
@@ -234,36 +233,9 @@ curl -X 'POST' \
 }
 ```
 
-### Request Parameters
+### Request example details
 
-The following table describes the map dimensions request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `dimensions` | required | array | Array of dimension objects to map |
-| `id` | required | string | The dimension ID |
-| `name` | required | string | The dimension name |
-| `type` | required | string | The dimension type |
-
-### Response Parameters
-
-The following table describes the map dimensions response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-
-
-
-
-
-
-
-
-
-
+The example request above shows the file `examplefilecsv` to be uploaded as the body of the request. This file should contain the dimensions mappings as described above in the example template.
 
 ## GET dimensions CSV
 
