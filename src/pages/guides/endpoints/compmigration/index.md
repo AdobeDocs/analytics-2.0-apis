@@ -125,7 +125,7 @@ The following table describes the migrate components request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `aaId` or `projectId` | required | string | The Adobe Analytics project ID, as reflected by {projectId} in the cURL request above |
+| `aaId` or `projectId` | required | string | The Adobe Analytics project ID, as reflected by {projectId} in the URL of the cURL request above |
 | `globalCompanyId` | required | string | The global company ID of the Analytics org |
 | `imsOrgId` | required | string | The IMS organization ID for the CJA owner |
 | `imsUserId` | required | string | The IMS user ID for the CJA owner|
