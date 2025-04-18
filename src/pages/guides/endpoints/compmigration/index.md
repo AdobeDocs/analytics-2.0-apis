@@ -201,7 +201,7 @@ The following table describes the **GET migration summary** response parameters:
 
 ## POST mapping dimensions csv
 
-Use this endpoint to upload a csv file that maps Analytics dimensions to CJA dimensions for a specified data views.
+Use this endpoint to upload a csv file that maps Analytics dimensions to CJA dimensions for a specified data view.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv`
 
@@ -272,7 +272,7 @@ curl -X 'GET' \
 
 ### Request Parameters
 
-This endpoint does not require any request parameters.
+This endpoint does not require any request parameters other than the Global Company ID.
 
 ### Response Parameters
 
