@@ -56,9 +56,9 @@ To map metrics from Adobe Analytics to a Customer Journey Analytics data view wi
 
 Use these endpoints to map metrics to CJA within an XDM schema:
 
+* [POST mapping metrics csv](#post-mapping-metrics-csv): Create metrics mappings with a csv file
 * [GET mapping metrics csv](#get-mapping-metrics-csv): Retrieve metrics mappings with a csv file
 * [PUT mapping metrics csv](#put-mapping-metric-csv): Update metrics mappings with a csv file
-* [POST mapping metrics csv](#post-mapping-metrics-csv): Create metrics mappings with a csv file
 * [DELETE mapping metric all](#delete-metric-mapping-all): Delete all metrics mapping
 
 <InlineAlert variant="info" slots="text" />
@@ -174,15 +174,11 @@ curl -X 'GET' \
 
 ### Request Parameters
 
-The following table describes the get migration summary request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `projectId` | required | string | The ID of the project to get the migration summary for |
+The request parameters are the same as those shown above in **POST projects migrate** endpoint.
 
 ### Response Parameters
 
-The following table describes the get migration summary response parameters:
+The following table describes the GET migration summary response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -193,6 +189,79 @@ The following table describes the get migration summary response parameters:
 | `totalComponents` | integer | Total number of components |
 | `migratedComponents` | integer | Number of successfully migrated components |
 | `failedComponents` | integer | Number of failed component migrations |
+
+## POST mapping dimensions csv
+
+Use this endpoint to map Analytics dimensions to CJA dimensions for specified data views.
+
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv`
+
+### Request and Response Examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'POST' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dimensions": [
+      {
+        "id": "dimension1",
+        "name": "Dimension 1",
+        "type": "string"
+      }
+    ]
+  }'
+```
+
+#### Response
+
+```json
+{
+  "result": "success",
+  "method": "POST",
+  "message": "Dimensions mapped successfully"
+}
+```
+
+### Request Parameters
+
+The following table describes the map dimensions request parameters:
+
+| Name | Required | Type | Description |
+| --- | --- | --- | --- |
+| `dimensions` | required | array | Array of dimension objects to map |
+| `id` | required | string | The dimension ID |
+| `name` | required | string | The dimension name |
+| `type` | required | string | The dimension type |
+
+### Response Parameters
+
+The following table describes the map dimensions response parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `result` | string | The result of the operation (success/failure/partialSuccess) |
+| `method` | string | The HTTP method used |
+| `message` | string | A message describing the result |
+
+
+
+
+
+
+
+
+
+
 
 ## GET dimensions CSV
 
@@ -365,68 +434,6 @@ The following table describes the get dimension by ID response parameters:
 | `type` | string | The dimension type |
 | `values` | array | Array of dimension values |
 
-## POST map dimensions
-
-Use this endpoint to map dimensions.
-
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv`
-
-### Request and Response Examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
-#### Request
-
-```sh
-curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv" \
-  -H "accept: application/json" \
-  -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "dimensions": [
-      {
-        "id": "dimension1",
-        "name": "Dimension 1",
-        "type": "string"
-      }
-    ]
-  }'
-```
-
-#### Response
-
-```json
-{
-  "result": "success",
-  "method": "POST",
-  "message": "Dimensions mapped successfully"
-}
-```
-
-### Request Parameters
-
-The following table describes the map dimensions request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `dimensions` | required | array | Array of dimension objects to map |
-| `id` | required | string | The dimension ID |
-| `name` | required | string | The dimension name |
-| `type` | required | string | The dimension type |
-
-### Response Parameters
-
-The following table describes the map dimensions response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
 
 ## DELETE dimension mapping
 
