@@ -91,9 +91,9 @@ curl -X 'POST' \
     "globalCompanyId": "example-analytics-org",
     "imsOrgId": "cja-exampleowner-org",
     "imsUserId": "cja-exampleowner-id",
-    "imsUserName": "user-name",
+    "imsUserName": "cja-exampleowner-name",
     "rsidDataIdMap": {
-      "rsid1": "data-id1",
+      "examplersid1": "dataview-id1",
       "rsid2": "data-id2"
     }
   }'
@@ -108,6 +108,16 @@ curl -X 'POST' \
   "message": "Components migrated successfully"
 }
 ```
+
+### Request example details
+
+The example request above shows the following details:
+
+The Adobe Analytics project ID (`aaid`) is `exampleproject.` This is the project that contains the components to be transferred from Analytics to CJA.
+The globalCompanyId is example-analytics-org. This is the organization that ownership of the Analtyics project identified in the project ID.
+The imsOrgId, imsUserId, and imsUserName all apply to the exampleowner of the CJA data view where the components are to be transferred.
+The rsidDataIdMap object contains the parameters to map the Analytics report suite examplersid1 to the CJA data view dataview-id1. The next line provides the generic parameters of `rsid2` and `data-id2` instead of actual example names to show how to add additional mappings of Analytics report suites to CJA data views in the same request. 
+
 
 ### Request Parameters
 
