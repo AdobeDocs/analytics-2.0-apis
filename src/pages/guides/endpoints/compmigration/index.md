@@ -67,7 +67,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 ## POST projects migrate
 
-Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call.
+Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call. If you are migrating Analytics dimensions or metrics, first map them to a CJA with the mapping APIs below this section.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/migrate`
 
@@ -88,7 +88,7 @@ curl -X 'POST' \
   -H "Content-Type: application/json" \
   -d '{
     "aaId": "exampleproject",
-    "globalCompanyId": "exampleorg",
+    "globalCompanyId": "example-analytics-org",
     "imsOrgId": "cja-exampleowner-org",
     "imsUserId": "cja-exampleowner-id",
     "imsUserName": "user-name",
@@ -115,13 +115,15 @@ The following table describes the migrate components request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `projectId` | required | string | The ID of the project to migrate components for |
-| `aaId` | required | string | The Adobe Analytics project ID, as reflected by {projectId} in the cURL request above |
+| `aaId` or `projectId` | required | string | The Adobe Analytics project ID, as reflected by {projectId} in the cURL request above |
 | `globalCompanyId` | required | string | The global company ID of the Analytics org |
 | `imsOrgId` | required | string | The IMS organization ID for the CJA owner |
 | `imsUserId` | required | string | The IMS user ID for the CJA owner|
 | `imsUserName` | required | string | The IMS user name for the CJA owner |
-| `rsidDataIdMap` | required | object | Mapping of report suite IDs to data IDs |
+| `rsidDataIdMap` | required | object | Contains parameters for mapping report suite IDs to data view IDs |
+| `rsid1` | required | string | Report suite ID for first report suite. If additional report suites are to be mapped, add them in consecutive lines with increasing numbers, as shown in example.  |
+| `data-id1` | required | string | The data view ID in CJA that should be mapped to the report suite listed as the first part of the key value pair. If additional report suites are to be mapped, add them in consecutive lines with increasing numbers, as shown in example. |
+
 
 ### Response Parameters
 
