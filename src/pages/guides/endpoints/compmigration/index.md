@@ -54,7 +54,7 @@ To map metrics from Adobe Analytics to a Customer Journey Analytics data view wi
 3. Create a csv file that contains the mappings for your metrics. Refer to the csv example above for dimensions mappings and use the same format for your metrics.
 4. Use the metrics mapping APIs to upload (or create), update, or retrieve the mappings.
 
-Use these endpoints to map metrics to CJ within an XDM schema:
+Use these endpoints to map metrics to CJA within an XDM schema:
 
 * [GET mapping metrics csv](#get-mapping-metrics-csv): Retrieve metrics mappings with a csv file
 * [PUT mapping metrics csv](#put-mapping-metric-csv): Update metrics mappings with a csv file
@@ -116,11 +116,11 @@ The following table describes the migrate components request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `projectId` | required | string | The ID of the project to migrate components for |
-| `aaId` | required | string | The Adobe Analytics component ID |
-| `globalCompanyId` | required | string | The global company ID |
-| `imsOrgId` | required | string | The IMS organization ID for the CJA project |
-| `imsUserId` | required | string | The IMS user ID for the CJA project|
-| `imsUserName` | required | string | The IMS user name |
+| `aaId` | required | string | The Adobe Analytics project ID, as reflected by {projectId} in the cURL request above |
+| `globalCompanyId` | required | string | The global company ID of the Analytics org |
+| `imsOrgId` | required | string | The IMS organization ID for the CJA owner |
+| `imsUserId` | required | string | The IMS user ID for the CJA owner|
+| `imsUserName` | required | string | The IMS user name for the CJA owner |
 | `rsidDataIdMap` | required | object | Mapping of report suite IDs to data IDs |
 
 ### Response Parameters
