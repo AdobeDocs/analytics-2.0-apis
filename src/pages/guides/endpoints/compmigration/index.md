@@ -42,7 +42,7 @@ Use these endpoints to map dimensions to CJA within an XDM schema:
 
 * [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings with a csv file
 * [GET mapping dimensions csv](#get-mapping-dimensions-csv): Retrieve dimensions mappings with a csv file
-* [PUT /dimensions/csv](#put-mapping-dimensions-csv): Update dimensions mappings with a csv file
+* [PUT mapping dimensions csv](#put-mapping-dimensions-csv): Update dimensions mappings with a csv file
 * [DELETE mapping dimension all](#delete-mapping-dimension-all): Delete a dimension mappings
 
 **Metric Mapping Service**
@@ -69,7 +69,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call. If you are migrating Analytics dimensions or metrics, first map them to CJA with the mapping APIs below this section.
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/migrate`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/migrate`
 
 ### Request and Response Examples
 
@@ -81,7 +81,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/migrate" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/migrate" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -148,7 +148,7 @@ The following table describes the response parameters:
 
 Use this endpoint to retrieve the migration summary for a specific project.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/summary`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/summary`
 
 ### Request and Response Examples
 
@@ -160,7 +160,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/projects/{projectId}/summary" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/summary" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -199,11 +199,13 @@ The following table describes the **GET migration summary** response parameters:
 | `migratedComponents` | integer | Number of successfully migrated components |
 | `failedComponents` | integer | Number of failed component migrations |
 
+**Mappings Service APIs**
+
 ## POST mapping dimensions csv
 
 Use this endpoint to upload a csv file that maps Analytics dimensions to CJA dimensions for a specified data view.
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/map/csv`
 
 ### Request and Response Examples
 
@@ -215,7 +217,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/csv" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/map/csv?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -235,13 +237,21 @@ curl -X 'POST' \
 
 ### Request example details
 
-The example request above shows the file `examplefilecsv` to be uploaded as the body of the request. This file should contain the dimensions mappings as described above in the example template.
+The POST example above shows the `rsid` and `dataId` values as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters. The file `examplefilecsv` is included so that it is uploaded as the body of the request. This file should contain the dimensions mappings as described above in the example template.
 
-## GET dimensions CSV
+### Request parameters
 
-Use this endpoint to get dimensions in CSV format.
+This endpoint includes request parameters described in previous sections.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/csv`
+### Response Parameters
+
+This endpoint includes response parameters described in previous sections.
+
+## GET mapping dimensions csv
+
+Use this endpoint to retrieve a csv file of dimensions mappings associated with a data view. You can also use this  endpoint to retrieve a csv file with dimensions filtered by dimension IDs. 
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/csv`
 
 ### Request and Response Examples
 
@@ -253,7 +263,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/csv" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/csv?rsid=examplersid&dataId=exampledv&dimensionIds=cja1%2C%20cja2%2C%20cja3" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -265,31 +275,31 @@ curl -X 'GET' \
 {
   "result": "success",
   "method": "GET",
-  "message": "Dimensions CSV retrieved successfully",
+  "message": "examplecsv retrieved successfully",
   "data": "dimension1,dimension2,dimension3\nvalue1,value2,value3"
 }
 ```
 
-### Request Parameters
+### Request example details
 
-This endpoint does not require any request parameters other than the Global Company ID.
+The GET example above shows the following:
+
+* The  `rsid` and `dataId` values are included as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters. 
+* The request includes a list of dimension mappings filtered for only the dimensions with IDs: `cja1`, `cja2`, and `cja3`.
+
+### Request parameters
+
+This endpoint includes request parameters described in previous sections.
 
 ### Response Parameters
 
-The following table describes the get dimensions CSV response parameters:
+This endpoint includes response parameters described in previous sections.
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-| `data` | string | The CSV data containing dimensions |
+## PUT mapping dimensions csv
 
-## GET dimensions
+Use this endpoint to update a csv file that maps Analytics dimensions to CJA dimensions for a specified data view.
 
-Use this endpoint to get all dimensions.
-
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions`
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/csv`
 
 ### Request and Response Examples
 
@@ -300,120 +310,60 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions" \
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/csv?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -F 'file=examplecsv'
 ```
 
 #### Response
 
 ```json
+
 {
-  "result": "success",
-  "method": "GET",
-  "message": "Dimensions retrieved successfully",
-  "dimensions": [
-    {
-      "id": "dimension1",
-      "name": "Dimension 1",
-      "type": "string"
-    },
-    {
-      "id": "dimension2",
-      "name": "Dimension 2",
-      "type": "string"
-    }
-  ]
+      "cjaid": "cja.evar5",
+      "dataId": "exampledv",
+      "xdmMapped": "true",
+      "aaId": "evar5",
+      "rsid": "examplersid",
+      "xdmNotes": "organization"
 }
+
 ```
+
+### Request example details
+
+The PUT example above shows the following:
+
+* The  `rsid` and `dataId` values are included as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters.
+* The file updated `examplefilecsv` is included so that it is uploaded as the body of the request. This file should contain the dimensions mappings as described above in the example template.
+
+### Response example details
+
+The successful PUT example above shows the updated values for the parameter associated with the request. Note that the `xdmMapped` parameter also includes a `true` value, indicating a successful mapping. 
 
 ### Request Parameters
 
-This endpoint does not require any request parameters.
+This endpoint includes request parameters described in previous sections.
 
 ### Response Parameters
 
-The following table describes the get dimensions response parameters:
+The following table describes the PUT mapping dimensions response parameters not previously defined in other sections:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-| `dimensions` | array | Array of dimension objects |
-| `id` | string | The dimension ID |
-| `name` | string | The dimension name |
-| `type` | string | The dimension type |
+| `cjaId` | string | The dimension ID in CJA |
+| `dataId` | string | The data view ID in CJA |
+| `xdmMapped` | boolean | Whether the dimension was mapped in an XDM schema |
+| `xdmNotes` | string | The text of the note for the dimension in the uploaded csv file |
 
-## GET dimension by ID
+## DELETE mapping dimensions all
 
-Use this endpoint to get a specific dimension by its ID.
+Use this endpoint to delete all dimension mappings for specified report suites and data view IDs. If no mappings exist, this endpoint returns a successful response.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/{id}/csv`
-
-### Request and Response Examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
-#### Request
-
-```sh
-curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/{id}/csv" \
-  -H "accept: application/json" \
-  -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
-```
-
-#### Response
-
-```json
-{
-  "result": "success",
-  "method": "GET",
-  "message": "Dimension retrieved successfully",
-  "dimension": {
-    "id": "dimension1",
-    "name": "Dimension 1",
-    "type": "string",
-    "values": ["value1", "value2", "value3"]
-  }
-}
-```
-
-### Request Parameters
-
-The following table describes the get dimension by ID request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `id` | required | string | The ID of the dimension to retrieve |
-
-### Response Parameters
-
-The following table describes the get dimension by ID response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-| `dimension` | object | The dimension details |
-| `id` | string | The dimension ID |
-| `name` | string | The dimension name |
-| `type` | string | The dimension type |
-| `values` | array | Array of dimension values |
-
-
-## DELETE dimension mapping
-
-Use this endpoint to delete a dimension mapping.
-
-`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/{id}`
+`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/all`
 
 ### Request and Response Examples
 
@@ -425,7 +375,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'DELETE' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/mapping/dimensions/map/{id}" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/all?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -437,156 +387,28 @@ curl -X 'DELETE' \
 {
   "result": "success",
   "method": "DELETE",
-  "message": "Dimension mapping deleted successfully"
+  "message": "Dimensions mappings deleted successfully"  
 }
 ```
 
-### Request Parameters
+### Request example details
 
-The following table describes the delete dimension mapping request parameters:
+The DELETE example above shows the following:
 
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `id` | required | string | The ID of the dimension mapping to delete |
-
-### Response Parameters
-
-The following table describes the delete dimension mapping response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-
-## GET metrics
-
-Use this endpoint to get all metrics.
-
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics`
-
-### Request and Response Examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
-#### Request
-
-```sh
-curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics" \
-  -H "accept: application/json" \
-  -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
-```
-
-#### Response
-
-```json
-{
-  "result": "success",
-  "method": "GET",
-  "message": "Metrics retrieved successfully",
-  "metrics": [
-    {
-      "id": "metric1",
-      "name": "Metric 1",
-      "type": "number"
-    },
-    {
-      "id": "metric2",
-      "name": "Metric 2",
-      "type": "number"
-    }
-  ]
-}
-```
+* The `rsid` and `dataId` values are included as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters.
+* All of the dimensions in the specified report suite and CJA data view are to be deleted with this request.
 
 ### Request Parameters
 
-This endpoint does not require any request parameters.
+This endpoint includes request parameter described in previous sections. 
 
-### Response Parameters
+======================
 
-The following table describes the get metrics response parameters:
+## POST mapping metrics csv
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-| `metrics` | array | Array of metric objects |
-| `id` | string | The metric ID |
-| `name` | string | The metric name |
-| `type` | string | The metric type |
+Use this endpoint to upload a csv file that maps Analytics metrics to CJA metrics for a specified data view.
 
-## GET metric by ID
-
-Use this endpoint to get a specific metric by its ID.
-
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/{id}`
-
-### Request and Response Examples
-
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
-#### Request
-
-```sh
-curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/{id}" \
-  -H "accept: application/json" \
-  -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
-```
-
-#### Response
-
-```json
-{
-  "result": "success",
-  "method": "GET",
-  "message": "Metric retrieved successfully",
-  "metric": {
-    "id": "metric1",
-    "name": "Metric 1",
-    "type": "number",
-    "formula": "value1 + value2"
-  }
-}
-```
-
-### Request Parameters
-
-The following table describes the get metric by ID request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `id` | required | string | The ID of the metric to retrieve |
-
-### Response Parameters
-
-The following table describes the get metric by ID response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-| `metric` | object | The metric details |
-| `id` | string | The metric ID |
-| `name` | string | The metric name |
-| `type` | string | The metric type |
-| `formula` | string | The metric formula (if applicable) |
-
-## POST map metrics
-
-Use this endpoint to map metrics.
-
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/map`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv`
 
 ### Request and Response Examples
 
@@ -598,20 +420,12 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/map" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
-  -d '{
-    "metrics": [
-      {
-        "id": "metric1",
-        "name": "Metric 1",
-        "type": "number"
-      }
-    ]
-  }'
+  -F 'file=examplecsv'
 ```
 
 #### Response
@@ -624,32 +438,135 @@ curl -X 'POST' \
 }
 ```
 
-### Request Parameters
+### Request example details
 
-The following table describes the map metrics request parameters:
+The POST example above shows the `rsid` and `dataId` values as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters. The file `examplefilecsv` is included so that it is uploaded as the body of the request. This file should contain the metrics mappings as described above in the example template.
 
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `metrics` | required | array | Array of metric objects to map |
-| `id` | required | string | The metric ID |
-| `name` | required | string | The metric name |
-| `type` | required | string | The metric type |
+### Request parameters
+
+This endpoint includes request parameters described in previous sections.
 
 ### Response Parameters
 
-The following table describes the map metrics response parameters:
+This endpoint includes response parameters described in previous sections.
+
+## GET mapping metrics csv
+
+Use this endpoint to retrieve a csv file of metrics mappings associated with a data view. You can also use this  endpoint to retrieve a csv file with metrics filtered by metric IDs. 
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv`
+
+### Request and Response Examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv?rsid=examplersid&dataId=exampledv&metricIds=cja1%2C%20cja2%2C%20cja3" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+
+```json
+{
+  "result": "success",
+  "method": "GET",
+  "message": "examplecsv retrieved successfully",
+  "data": "dimension1,dimension2,dimension3\nvalue1,value2,value3"
+}
+```
+
+### Request example details
+
+The GET example above shows the following:
+
+* The  `rsid` and `dataId` values are included as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters. 
+* The request includes a list of metrics mappings filtered for only the metrics with IDs: `cja1`, `cja2`, and `cja3`.
+
+### Request parameters
+
+This endpoint includes request parameters described in previous sections.
+
+### Response Parameters
+
+This endpoint includes response parameters described in previous sections.
+
+## PUT mapping dimensions csv
+
+Use this endpoint to update a csv file that maps Analytics metrics to CJA metrics for a specified data view.
+
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv`
+
+### Request and Response Examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'PUT' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv?rsid=examplersid&dataId=exampledv" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -F 'file=examplecsv'
+```
+
+#### Response
+
+```json
+
+{
+      "cjaid": "cja.evar5",
+      "dataId": "exampledv",
+      "xdmMapped": "true",
+      "aaId": "evar5",
+      "rsid": "examplersid",
+      "xdmNotes": "organization"
+}
+
+```
+
+### Request example details
+
+The PUT example above shows the following:
+
+* The  `rsid` and `dataId` values are included as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters.
+* The file updated `examplefilecsv` is included so that it is uploaded as the body of the request. This file should contain the metrics mappings as described above in the example template.
+
+### Response example details
+
+The successful PUT example above shows the updated values for the parameter associated with the request. Note that the `xdmMapped` parameter also includes a `true` value, indicating a successful mapping. 
+
+### Request Parameters
+
+This endpoint includes request parameters described in previous sections.
+
+### Response Parameters
+
+The following table describes the PUT mapping metrics response parameters not previously defined in other sections:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
+| `cjaId` | string | The metric ID in CJA |
+| `dataId` | string | The data view ID in CJA |
+| `xdmMapped` | boolean | Whether the metric was mapped in an XDM schema |
+| `xdmNotes` | string | The text of the note for the metric in the uploaded csv file |
 
-## DELETE metric mapping
+## DELETE mapping dimensions all
 
-Use this endpoint to delete a metric mapping.
+Use this endpoint to delete all metric mappings for specified report suites and data view IDs. If no mappings exist, this endpoint returns a successful response.
 
-`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/map/{id}`
+`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/all`
 
 ### Request and Response Examples
 
@@ -661,7 +578,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'DELETE' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/metrics/map/{id}" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/all?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
@@ -673,27 +590,22 @@ curl -X 'DELETE' \
 {
   "result": "success",
   "method": "DELETE",
-  "message": "Metric mapping deleted successfully"
+  "message": "Metrics mappings deleted successfully"  
 }
 ```
 
+### Request example details
+
+The DELETE example above shows the following:
+
+* The `rsid` and `dataId` values are included as `examplersid` and `exampledv` respectively in the URL of the cURL request. These values are added as query parameters.
+* All of the metrics in the specified report suite and CJA data view are to be deleted with this request.
+
 ### Request Parameters
 
-The following table describes the delete metric mapping request parameters:
+This endpoint includes request parameter described in previous sections. 
 
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `id` | required | string | The ID of the metric mapping to delete |
 
-### Response Parameters
-
-The following table describes the delete metric mapping response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
 
 ## Status codes
 
@@ -707,11 +619,5 @@ Each API request returns an HTTP status code that reflects the result, as follow
 | 403 | Forbidden | The resource was found, but you do not have the right credentials to view it. You might not have the required permissions to access or edit the resource for reasons not applicable to status code 401. |
 | 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly. |
 | 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Try your request again in a few minutes, and contact your administrator if the problem persists. |
-
-For more information, or for trouble-shooting help, see the following:
-
-* [CJA overview](https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-overview).
-* [API Status Codes](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#api-status-codes).
-* [API request error headers](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#request-header-errors).
 
 
