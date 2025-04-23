@@ -871,10 +871,4 @@ For more information, or for trouble-shooting help, see the following:
 * [API Request Error Headers](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#request-header-errors)
 * [Getting Started Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/getting-started/)
 
-## Support
 
-If you need assistance with the Adobe Analytics Cloud Locations API:
-
-1. Check the [API Documentation](https://developer.adobe.com/analytics-apis/docs/2.0/)
-2. Review the [FAQ](https://developer.adobe.com/analytics-apis/docs/2.0/guides/faq/)
-3. Contact [Adobe Support](https://helpx.adobe.com/contact/enterprise-support.html)
