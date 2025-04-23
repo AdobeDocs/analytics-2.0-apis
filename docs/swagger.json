@@ -2328,6 +2328,7 @@
               "enum": [
                 "tags",
                 "allowedForReporting",
+                "attributionModel",
                 "categories"
               ]
             },
@@ -2335,6 +2336,7 @@
             "enum": [
               "tags",
               "allowedForReporting",
+              "attributionModel",
               "categories"
             ]
           }
@@ -2406,6 +2408,7 @@
               "enum": [
                 "tags",
                 "allowedForReporting",
+                "attributionModel",
                 "categories"
               ]
             },
@@ -2413,6 +2416,7 @@
             "enum": [
               "tags",
               "allowedForReporting",
+              "attributionModel",
               "categories"
             ]
           }
@@ -4139,6 +4143,12 @@
         },
         "allowedForReporting": {
           "type": "boolean"
+        },
+        "attributionModel": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
         },
         "noneSettings": {
           "$ref": "#/definitions/NoneSettings"
