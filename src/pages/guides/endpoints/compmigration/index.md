@@ -3,7 +3,15 @@ title: Component Migration API
 description: Use Analytics Component Migration APIs to migrate components from Adobe Analytics to CJA.
 ---
 
-# Component Migration API
+# Component Migration API overview
+
+Component Migration APIs consist of three services for migrating components from Adobe Analytics to Customer Journey Analytics:
+
+* Component Migration APIs
+* Dimension Mapping APIs
+* Metric Mapping APIs
+
+You can use Component Migration APIs for all components, but for dimensions and metrics, you must first map them from Analtyics to their CJA counterparts with the mapping APIs. 
 
 Use these APIs to migrate project components from Adobe Analytics to Customer Journey Analytics. You can also use the Mapping APIs below to map dimensions and metrics from Adobe Analytics to Customer Journey Analytics within an XDM schema. For more inforation, see the [Component Migration overview](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration).
 
