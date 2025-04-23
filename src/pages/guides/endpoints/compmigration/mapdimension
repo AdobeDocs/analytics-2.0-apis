@@ -3,7 +3,29 @@ title: Dimension Mapping API
 description: Use Analytics Dimension Mapping APIs to migrate dimensions from Adobe Analytics to CJA.
 ---
 
+# Dimension Mapping API
 
+To map dimensions from Adobe Analytics to a Customer Journey Analytics data view within an XDM schema, follow these steps:
+
+1. In Customer Journey Analytics, create the dimensions that you want to be mapped from the existing Adobe Analytics dimensions.
+2. Collect the dimension ID information to be used in the mappings. If you have a csv file that defines your XDM schema for a data view, it may be helpful to reference it. You can also use the [GET dimensions](https://developer.adobe.com/cja-apis/docs/endpoints/dimensions/) endpoint to see a list of dimensions and their IDs for a data view.
+3. Create a csv file that contains the mappings for your dimensions. In the example template below, the **aaId** column contains the names of the dimensions to be mapped to CJA. The **cjaId** column contains example dimension IDs as shown for a data view in CJA. The **note** column contains any info helpful for explaining the dimension. This example shows four dimensions to be mapped. Yours may contain many more than this, and the limit is only set only by the number of evars you can create in Analytics.
+
+    | aaId | cjaId | note |
+    | --- | --- | --- |
+    | evar5 | cja.evar5 | organization |
+    | evar7 | cja.evar7 | page |
+    | evar8 | cja.evar8 | product |
+    | evar9 | cja.evar9 | day |
+              
+4. Use the dimension mapping APIs to upload (or create), update, or retrieve the mappings.
+
+Use these endpoints to map dimensions to CJA within an XDM schema:
+
+* [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings with a csv file
+* [GET mapping dimensions csv](#get-mapping-dimensions-csv): Retrieve dimensions mappings with a csv file
+* [PUT mapping dimensions csv](#put-mapping-dimensions-csv): Update dimensions mappings with a csv file
+* [DELETE mapping dimension all](#delete-mapping-dimension-all): Delete a dimension mappings
 
 ## POST mapping dimensions csv
 
