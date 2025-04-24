@@ -26,7 +26,6 @@ The two migration endpoints below provide methods for migrating project componen
 * [POST projects migrate](#post-projects-migrate): Creates a project migration
 * [GET projects migration summary](#get-migration-summary): Retrieves migration summary for a project
 
-
 <InlineAlert variant="info" slots="text" />
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
@@ -83,7 +82,7 @@ The example request above shows the following details:
 
 <InlineAlert variant="info" slots="text" />
 
-The `aaId` parameter can have different key meanings depending upon context or endpoint. In a request body for Component Migration APIs, it is the project ID that is required for a successful call. In the dimension mapping or metric mapping endpoints, it is the label used for Analytics component ID used in the mappings file  
+The `aaId` parameter has different key meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the dimension mapping or metric mapping services, it is used as a label with a different meaning for a different function. 
 
 * The `globalCompanyId` is `example-analytics-org`. This is the organization that has ownership of the Analtyics project identified in the project ID.
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
