@@ -79,7 +79,12 @@ curl -X 'POST' \
 
 The example request above shows the following details:
 
-* The Adobe Analytics project ID (`aaid`) is `exampleproject.` This is the project that contains the components to be transferred from Analytics to CJA.
+* The Adobe Analytics project ID (`aaId`) is `exampleproject.` This is the project that contains the components to be transferred from Analytics to CJA.
+
+<InlineAlert variant="info" slots="text" />
+
+The `aaId` parameter can have different key meanings depending upon context or endpoint. In a request body for Component Migration APIs, it is the project ID that is required for a successful call. In the dimension mapping or metric mapping endpoints, it is the label used for Analytics component ID used in the mappings file  
+
 * The `globalCompanyId` is `example-analytics-org`. This is the organization that has ownership of the Analtyics project identified in the project ID.
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
 * The `rsidDataIdMap` object contains the parameters to map the Analytics report suite `examplersid1` to the CJA data view `dataview-id1`. The next line provides the generic parameters of `rsid2` and `data-id2` instead of actual example names to show how to include additional mappings of Analytics report suites to CJA data views in the same request. 
