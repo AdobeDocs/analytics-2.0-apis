@@ -82,7 +82,7 @@ The example request above shows the following details:
 
 <InlineAlert variant="info" slots="text" />
 
-The `aaId` parameter has different key meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the dimension mapping or metric mapping services, it is used as a label with a different meaning for a different function. 
+The `aaId` parameter, as shown in the JSON example request above, has different key meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the related dimension mapping or metric mapping services, the `aaId` parameter has a different key meaning with a different function. For more information on the difference, see the description for the `aaId` parameter in dimension mapping or metric mapping services. 
 
 * The `globalCompanyId` is `example-analytics-org`. This is the organization that has ownership of the Analtyics project identified in the project ID.
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
