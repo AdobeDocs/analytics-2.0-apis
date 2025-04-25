@@ -59,7 +59,7 @@ curl -X 'POST' \
     "imsUserName": "cja-exampleowner-name",
     "rsidDataIdMap": {
       "examplersid1": "dataview-id1",
-      "rsid2": "data-id2"
+      "examplersid2": "dataview-id2"
     }
   }'
 ```
