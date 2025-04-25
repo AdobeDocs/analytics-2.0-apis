@@ -100,9 +100,7 @@ The following table describes the migrate components request parameters:
 | `imsOrgId` | required | string | The IMS organization ID for the CJA owner |
 | `imsUserId` | required | string | The IMS user ID for the CJA owner|
 | `imsUserName` | required | string | The IMS user name for the CJA owner |
-| `rsidDataIdMap` | required | object | Contains parameters for mapping report suite IDs to data view IDs |
-| `rsid1` | required | string | Report suite ID for first report suite. If additional report suites are to be mapped, add them in consecutive lines with increasing numbers, as shown in example.  |
-| `data-id1` | required | string | The data view ID in CJA that should be mapped to the report suite listed as the first part of the key value pair. If additional report suites are to be mapped, add them in consecutive lines with increasing numbers, as shown in example. |
+| `rsidDataIdMap` | optional | object | This object includes key pairs that map Analytics report suites to CJA data views in the following format: `{REPORT_SUITE_ID}: {DATA_VIEW_ID}`. The parameter `additionalProp1" is shown as the first mapping in the object. Additional mappings can also be added in subsequent lines, as indicated by the parameters `additionalProp2` and `additionalProp3`. |
 
 ### Response Parameters
 
