@@ -86,7 +86,7 @@ The `aaId` parameter, as shown in the JSON example request above, has different 
 
 * The `globalCompanyId` is `example-analytics-org`. This is the organization that has ownership of the Analtyics project identified in the project ID.
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
-* The `rsidDataIdMap` object contains the parameters to map the Analytics report suite `examplersid1` to the CJA data view `dataview-id1`. The next line provides the generic parameters of `rsid2` and `data-id2` instead of actual example names to show how to include additional mappings of Analytics report suites to CJA data views in the same request. 
+* The `rsidDataIdMap` object contains object members that map the Analytics report suite to the CJA dataview. This includes the Analytics report suite `examplersid1` mapped to the CJA data view `dataview-id1`. You can add as many pairs as necessary to the object to map the report suites to the data views, as indicated by the next line mapping `examplersid2` to `dataview-id2`. The `rsidDataIdMap` object is optional but including it can improve migration precision. 
 
 
 ### Request Parameters
