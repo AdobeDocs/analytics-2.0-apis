@@ -24,22 +24,6 @@
           "summary" : "Get all Cloud Locations Accounts for a global company id",
           "operationId" : "getAccounts",
           "parameters" : [ {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "loginId",
-            "in" : "query",
-            "description" : "login in",
-            "schema" : {
-              "type" : "integer",
-              "format" : "int32"
-            }
-          }, {
             "name" : "createdBy",
             "in" : "query",
             "description" : "created user name",
@@ -53,22 +37,6 @@
             "schema" : {
               "type" : "string",
               "enum" : [ "ftp", "sftp", "gcp", "azure", "azure_rbac", "azure_sas", "s3", "s3_role_arn", "email"]
-            }
-          }, {
-            "name" : "page",
-            "in" : "query",
-            "description" : "Page",
-            "schema" : {
-              "type" : "integer",
-              "format" : "int32"
-            }
-          }, {
-            "name" : "limit",
-            "in" : "query",
-            "description" : "Limit (10-1000)",
-            "schema" : {
-              "type" : "integer",
-              "format" : "int32"
             }
           }],
           "responses" : {
@@ -100,15 +68,6 @@
           "tags" : [ "Analytics Cloud Locations Account API" ],
           "summary" : "Create a new Cloud Locations Account",
           "operationId" : "createAccount",
-          "parameters" : [ {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
           "requestBody" : {
             "content" : {
               "application/json" : {
@@ -156,14 +115,6 @@
             "schema" : {
               "type" : "string"
             }
-          }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
           } ],
           "responses" : {
             "400" : {
@@ -198,14 +149,6 @@
             "name" : "UUID",
             "in" : "path",
             "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
             "schema" : {
               "type" : "string"
             }
@@ -255,14 +198,6 @@
             "schema" : {
               "type" : "string"
             }
-          }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
           } ],
           "responses" : {
             "404" : {
@@ -303,22 +238,6 @@
               "type" : "string"
             }
           }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "loginId",
-            "in" : "query",
-            "description" : "login in",
-            "schema" : {
-              "type" : "integer",
-              "format" : "int32"
-            }
-          }, {
             "name" : "createdBy",
             "in" : "query",
             "description" : "created user name",
@@ -331,29 +250,6 @@
             "description" : "Application name",
             "schema" : {
               "type" : "string"
-            }
-          }, {
-            "name" : "applicationTag",
-            "in" : "query",
-            "description" : "Application tag",
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "page",
-            "in" : "query",
-            "description" : "Page",
-            "schema" : {
-              "type" : "integer",
-              "format" : "int32"
-            }
-          }, {
-            "name" : "limit",
-            "in" : "query",
-            "description" : "Limit (10-1000)",
-            "schema" : {
-              "type" : "integer",
-              "format" : "int32"
             }
           } ],
           "responses" : {
@@ -385,15 +281,6 @@
           "tags" : [ "Analytics Cloud Locations Location API" ],
           "summary" : "Create a new Cloud Location",
           "operationId" : "createLocation",
-          "parameters" : [ {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
           "requestBody" : {
             "content" : {
               "application/json" : {
@@ -441,14 +328,6 @@
             "schema" : {
               "type" : "string"
             }
-          }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
-            "schema" : {
-              "type" : "string"
-            }
           } ],
           "responses" : {
             "400" : {
@@ -483,14 +362,6 @@
             "name" : "UUID",
             "in" : "path",
             "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
             "schema" : {
               "type" : "string"
             }
@@ -537,14 +408,6 @@
             "name" : "UUID",
             "in" : "path",
             "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "x-proxy-global-company-id",
-            "in" : "header",
-            "description" : "Proxy global company id",
-            "required": true,
             "schema" : {
               "type" : "string"
             }
