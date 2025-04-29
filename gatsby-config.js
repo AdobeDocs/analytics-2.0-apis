@@ -151,6 +151,20 @@ module.exports = {
               }
             ]
           },
+           {
+            title: 'Component Migration',
+            path:'guides/endpoints/compmigration',
+            pages: [
+              {
+                title: 'Dimension mapping',
+                path: 'guides/endpoints/compmigration/mapdimension.md'
+              },
+              {
+                title: 'Metric mapping',
+                path: 'guides/endpoints/componentmetadata/mapmetric.md'
+              }
+            ]
+          },
           {
             title: 'Component Meta Data',
             path:'guides/endpoints/componentmetadata',
