@@ -24,7 +24,7 @@ The `aaId` label, as shown in the example mapping `csv` file above, has differen
 
 4. Use the dimension mapping APIs below to upload (or create), update, or retrieve the mappings.
 
-5. Use the [Component Migration API](/src\pages\guides\endpoints\compmigration\index.md) to migrate the dimensions to CJA.
+5. Use the [Component Migration API](index.md) to migrate the dimensions to CJA.
 
 Use these endpoints to map dimensions to CJA within an XDM schema:
 
