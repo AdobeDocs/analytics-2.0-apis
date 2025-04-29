@@ -33,6 +33,12 @@ Retrieve, update, or create calculated metrics.
 
 <DiscoverBlock slots="link, text"/>
 
+[Component Migration API](compmigration/index.md)
+
+Migrate Analytics components to Customer Journey Analtyics.
+
+<DiscoverBlock slots="link, text"/>
+
 [Data feed API](data-feed/index.md)
 
 Create, update, retrieve, and manage data feeds and column presets.
