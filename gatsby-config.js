@@ -161,7 +161,7 @@ module.exports = {
               },
               {
                 title: 'Metric mapping',
-                path: 'guides/endpoints/componentmetadata/mapmetric.md'
+                path: 'guides/endpoints/compmigration/mapmetric.md'
               }
             ]
           },
