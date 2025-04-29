@@ -8,20 +8,36 @@ description: Use Analytics Metric Mapping APIs to migrate metrics from Adobe Ana
 To map metrics from Adobe Analytics to a Customer Journey Analytics data view within an XDM schema, follow these steps:
 
 1. In Customer Journey Analytics, create the metrics that you want to be mapped from the existing Adobe Analytics metrics.
-2. Collect the metric ID information to be used in the mappings. If you have a csv file that defines your XDM schema for a data view, it may be helpful to reference it. You can also use the [GET metrics](https://developer.adobe.com/cja-apis/docs/endpoints/metrics/) endpoint to see a list of metrics and their IDs for a data view.
-3. Create a csv file that contains the mappings for your metrics. Refer to the csv example above for dimensions mappings and use the same format for your metrics.
-4. Use the metrics mapping APIs to upload (or create), update, or retrieve the mappings.
+
+2. Collect the metric ID information to be used in the mappings. If you have a `csv` file that defines your XDM schema for a data view, it may be helpful to reference it. You can also use the [GET metrics](https://developer.adobe.com/cja-apis/docs/endpoints/metrics/) endpoint to see a list of metrics and their IDs for a data view.
+
+3. Create a `csv` file that contains the mappings for your metrics. Refer to the `csv` example above for dimensions mappings and use the same format for your metrics.
+
+    | aaId | cjaId | note |
+    | --- | --- | --- |
+    | evar5 | cja.evar5 | organization |
+    | evar7 | cja.evar7 | page |
+    | evar8 | cja.evar8 | product |
+    | evar9 | cja.evar9 | day |
+              
+<InlineAlert variant="info" slots="text" />
+
+The `aaId` label, as shown in the example mapping `csv` file above, has different meanings, depending upon endpoint or API service. In the example `csv` above, it is the metric name in Analytics. In the related [Component Migration API service](/src\pages\guides\endpoints\compmigration\index.md), `aaId` is a parameter with a different function. For more information on the difference, see the description for the `aaId` parameter in the [Component Migration API guide](/src\pages\guides\endpoints\compmigration\index.md). 
+
+4. Use the metric mapping APIs below to upload (or create), update, or retrieve the mappings.
+
+5. Use the [Component Migration API](/src\pages\guides\endpoints\compmigration\index.md) to migrate the metrics to CJA.
 
 Use these endpoints to map metrics to CJA within an XDM schema:
 
-* [POST mapping metrics csv](#post-mapping-metrics-csv): Create metrics mappings with a csv file
-* [GET mapping metrics csv](#get-mapping-metrics-csv): Retrieve metrics mappings with a csv file
-* [PUT mapping metrics csv](#put-mapping-metric-csv): Update metrics mappings with a csv file
+* [POST mapping metrics csv](#post-mapping-metrics-csv): Create metrics mappings with a `csv` file
+* [GET mapping metrics csv](#get-mapping-metrics-csv): Retrieve metrics mappings with a `csv` file
+* [PUT mapping metrics csv](#put-mapping-metric-csv): Update metrics mappings with a `csv` file
 * [DELETE mapping metric all](#delete-metric-mapping-all): Delete all metrics mapping
 
 ## POST mapping metrics csv
 
-Use this endpoint to upload a csv file that maps Analytics metrics to CJA metrics for a specified data view.
+Use this endpoint to upload a `csv` file that maps Analytics metrics to CJA metrics for a specified data view.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv`
 
@@ -67,7 +83,7 @@ This endpoint includes response parameters described in previous sections.
 
 ## GET mapping metrics csv
 
-Use this endpoint to retrieve a csv file of metrics mappings associated with a data view. You can also use this  endpoint to retrieve a csv file with metrics filtered by metric IDs. 
+Use this endpoint to retrieve a `csv` file of metrics mappings associated with a data view. You can also use this  endpoint to retrieve a `csv` file with metrics filtered by metric IDs. 
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv`
 
@@ -115,7 +131,7 @@ This endpoint includes response parameters described in previous sections.
 
 ## PUT mapping dimensions csv
 
-Use this endpoint to update a csv file that maps Analytics metrics to CJA metrics for a specified data view.
+Use this endpoint to update a `csv` file that maps Analytics metrics to CJA metrics for a specified data view.
 
 `PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv`
 
@@ -175,7 +191,7 @@ The following table describes the PUT mapping metrics response parameters not pr
 | `cjaId` | string | The metric ID in CJA |
 | `dataId` | string | The data view ID in CJA |
 | `xdmMapped` | boolean | Whether the metric was mapped in an XDM schema |
-| `xdmNotes` | string | The text of the note for the metric in the uploaded csv file |
+| `xdmNotes` | string | The text of the note for the metric in the uploaded `csv` file |
 
 ## DELETE mapping dimensions all
 
