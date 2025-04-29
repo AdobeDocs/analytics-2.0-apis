@@ -12,16 +12,16 @@ Use the Component Migration APIs to migrate components, including segments, calc
 Component Migration APIs consist of three services for migrating components from Adobe Analytics to Customer Journey Analytics:
 
 * Component Migration APIs
-* Dimension Mapping APIs
-* Metric Mapping APIs
+* [Dimension Mapping APIs](src/pages/guides/endpoints/compmigration/mapdimension)
+* [Metric Mapping APIs](/src\pages\guides\endpoints\compmigration\mapmetric)
 
-If you plan to migrate Analytics dimensions or metrics, you must first map them with the Dimension Mapping API or the Metric Mapping API and then use the Component Migration APIs described in this guide to finalize the migration. This allows the dimensions or metrics to be migrated into an XDM schema within a CJA data view. For other components, you can use the Component Migration APIs described in this guide directly to migrate them. For more inforation, see the [Component Migration overview](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration).
+If you plan to migrate Analytics dimensions or metrics, you must first map them with the [Dimension Mapping API](/src\pages\guides\endpoints\compmigration\mapdimension) or the [Metric Mapping API](/src\pages\guides\endpoints\compmigration\mapmetric) and then use the Component Migration APIs described in this guide to finalize the migration. This allows the dimensions or metrics to be migrated into an XDM schema within a CJA data view. For other components, you can use the Component Migration APIs described in this guide directly to migrate them. For more inforation, see the [Component Migration overview](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration).
 
 Before using the Component Migration APIs, create a profile named **Component Migration** in the Adobe Admin Console (admin permissions required). Add **Component Migration** and **Analysis Workspace** access permissions to the profile. Also, make sure to auto-include all report suites to the profile. For complete information, see the admin instructions for [preparing to migrate your components and projects from Adobe Analytics to Customer Journey Analytics](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/prepare-component-migration).
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. Create a new project in the console and add Adobe Analytics APIs. Make sure to select the **Component Migration** profile you created when preparing your components for migration, as described above. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
-The two migration endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. This includes segments, calculated metrics, and date ranges in Analysis Workspace. It also includes dimensions and metrics if you have mapped them before using these two Migration APIs. If you plan to also migrate dimensions and metrics, use the mappings APIs below first so that the project ID can be associated with those mappings when you migrate the project. To use the following two migration endpoints, you will need the Adobe Analytics project ID and report suite ID, as well as the Customer Journey Analytics data view ID. 
+The two migration endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. This includes segments, calculated metrics, and date ranges in Analysis Workspace. It also includes dimensions and metrics if you have mapped them before using these two Migration APIs. If you plan to also migrate dimensions and metrics, use the mappings APIs first so that the project ID can be associated with those mappings when you migrate the project. To use the following two migration endpoints, you will need the Adobe Analytics project ID and report suite ID, as well as the Customer Journey Analytics data view ID. 
 
 * [POST projects migrate](#post-projects-migrate): Creates a project migration
 * [GET projects migration summary](#get-migration-summary): Retrieves migration summary for a project
@@ -82,7 +82,7 @@ The example request above shows the following details:
 
 <InlineAlert variant="info" slots="text" />
 
-The `aaId` parameter, as shown in the JSON example request above, has different key meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the related dimension mapping or metric mapping services, the `aaId` parameter has a different key meaning with a different function. For more information on the difference, see the description for the `aaId` parameter in dimension mapping or metric mapping services. 
+The `aaId` parameter, as shown in the JSON example request above, has different meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the related dimension mapping or metric mapping services, `aaId` is a label with a different meaning and a different function. For more information on the difference, see the description for `aaId` in [dimension mapping](/src\pages\guides\endpoints\compmigration\mapdimension) or [metric mapping](/src\pages\guides\endpoints\compmigration\mapmetric) services. 
 
 * The `globalCompanyId` is `example-analytics-org`. This is the organization that has ownership of the Analtyics project identified in the project ID.
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
