@@ -5,7 +5,17 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Adobe Analytics Cloud Locations API
 
-The Adobe Analytics Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage locations for exporting analytics data.
+The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data.
+
+You can use Cloud Locations APIs for the following:
+
+* Exporting files using Data Feed APIs
+
+* Exporting reports using Data Warehouse APIs
+
+* Working with Classification APIs
+
+To export data to a cloud location, you must first create a cloud location account. After creating the account, you can create as many locations on that account as you want.
 
 The endpoints described in this guide are routed through `analytics.adobe.io/export_locations/`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
 
@@ -15,17 +25,17 @@ The endpoints described in this guide are routed through `analytics.adobe.io/exp
 
 These endpoints provide methods for managing cloud storage accounts:
 
-* [GET accounts](#get-accounts): Get all Cloud Locations Accounts for a global company id
-* [POST create account](#post-create-account): Create a new Cloud Locations Account
-* [GET account by UUID](#get-account-by-uuid): Get a specific Cloud Locations Account
-* [PUT update account](#put-update-account): Update a specific Cloud Locations Account
-* [DELETE account](#delete-account): Delete a specific Cloud Locations Account
+* [GET accounts](#get-accounts): Get all Cloud Locations accounts for a Global Company ID
+* [POST create account](#post-create-account): Create a new Cloud Locations account
+* [GET account by UUID](#get-account-by-uuid): Get a specific Cloud Locations account
+* [PUT update account](#put-update-account): Update a specific Cloud Locations account
+* [DELETE account](#delete-account): Delete a specific Cloud Locations account
 
 **Analytics Cloud Locations Location API**
 
-These endpoints provide methods for managing cloud storage locations:
+These endpoints provide methods for managing cloud locations:
 
-* [GET locations](#get-locations): Get all Cloud Locations for a given global company id
+* [GET locations](#get-locations): Get all Cloud Locations for a Global Company ID
 * [POST create location](#post-create-location): Create a new Cloud Location
 * [GET location by UUID](#get-location-by-uuid): Get a specific Cloud Location
 * [PUT update location](#put-update-location): Update a specific Cloud Location
@@ -67,7 +77,7 @@ curl -X 'GET' \
     {
       "accountProperties": {},
       "shared": false,
-      "createdDate": "2023-01-01T00:00:00Z",
+      "createdDate": "YYY-01-01T00:00:00Z",
       "createdBy": "user@example.com",
       "lastModifiedDate": "2023-01-01T00:00:00Z",
       "name": "Example Account",
@@ -75,7 +85,7 @@ curl -X 'GET' \
       "modifiedBy": "user@example.com",
       "secret": "********",
       "type": "s3",
-      "uuid": "123e4567-e89b-12d3-a456-426614174000"
+      "uuid": "555x5555-x55x-55x5-x555-555555555555"
     }
   ],
   "number": 0,
@@ -94,8 +104,6 @@ The following table describes the get accounts request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
-| `loginId` | optional | integer | Login ID |
 | `createdBy` | optional | string | Created user name |
 | `type` | optional | string | Type (ftp, sftp, gcp, azure, azure_rbac, azure_sas, s3, s3_role_arn, email) |
 | `page` | optional | integer | Page number |
@@ -118,7 +126,7 @@ The following table describes the get accounts response parameters:
 
 ## POST create account
 
-Use this endpoint to create a new Cloud Locations Account.
+Use this endpoint to create a new Cloud Locations account.
 
 `POST https://analytics.adobe.io/export_locations/analytics/exportlocations/account`
 
@@ -155,7 +163,7 @@ curl -X 'POST' \
 {
   "accountProperties": {},
   "shared": false,
-  "createdDate": "2023-01-01T00:00:00Z",
+  "createdDate": "YYYY-01-01T00:00:00Z",
   "createdBy": "user@example.com",
   "lastModifiedDate": "2023-01-01T00:00:00Z",
   "name": "Example Account",
@@ -173,7 +181,6 @@ The following table describes the create account request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 | `type` | required | string | Account type |
 | `secret` | required | string | Account secret |
 | `accountProperties` | required | object | Account properties |
@@ -229,7 +236,7 @@ curl -X 'GET' \
 {
   "accountProperties": {},
   "shared": false,
-  "createdDate": "2023-01-01T00:00:00Z",
+  "createdDate": "YYYY-01-01T00:00:00Z",
   "createdBy": "user@example.com",
   "lastModifiedDate": "2023-01-01T00:00:00Z",
   "name": "Example Account",
@@ -248,7 +255,6 @@ The following table describes the get account by UUID request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `UUID` | required | string | Account UUID |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 
 ### Response Parameters
 
@@ -326,7 +332,6 @@ The following table describes the update account request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `UUID` | required | string | Account UUID |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 | `type` | required | string | Account type |
 | `secret` | required | string | Account secret |
 | `accountProperties` | required | object | Account properties |
@@ -392,7 +397,6 @@ The following table describes the delete account request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `UUID` | required | string | Account UUID |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 
 ### Response Parameters
 
@@ -434,7 +438,7 @@ curl -X 'GET' \
   "content": [
     {
       "shared": false,
-      "lastModifiedDate": "2023-01-01T00:00:00Z",
+      "lastModifiedDate": "YYYY-01-01T00:00:00Z",
       "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
       "description": "Example location description",
       "type": "s3",
@@ -466,7 +470,6 @@ The following table describes the get locations request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 | `accountUuid` | optional | string | Account UUID |
 | `application` | optional | string | Application (TAXONOMIST, DATA_WAREHOUSE, DATA_FEED) |
 | `page` | optional | integer | Page number |
@@ -527,7 +530,7 @@ curl -X 'POST' \
 ```json
 {
   "shared": false,
-  "lastModifiedDate": "2023-01-01T00:00:00Z",
+  "lastModifiedDate": "YYYY-01-01T00:00:00Z",
   "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
   "description": "Example location description",
   "type": "s3",
@@ -550,7 +553,6 @@ The following table describes the create location request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 | `type` | required | string | Location type |
 | `accountUuid` | required | string | Account UUID |
 | `properties` | required | object | Location properties |
@@ -579,7 +581,6 @@ The following table describes the create location response parameters:
 | `createdBy` | string | Creator |
 | `name` | string | Location name |
 | `modifiedBy` | string | Last modifier |
-| `globalCompanyId` | string | Global company ID |
 | `properties` | object | Location properties |
 
 ## GET location by UUID
@@ -611,7 +612,7 @@ curl -X 'GET' \
 ```json
 {
   "shared": false,
-  "lastModifiedDate": "2023-01-01T00:00:00Z",
+  "lastModifiedDate": "YYYY-01-01T00:00:00Z",
   "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
   "description": "Example location description",
   "type": "s3",
@@ -635,7 +636,6 @@ The following table describes the get location by UUID request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `UUID` | required | string | Location UUID |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 
 ### Response Parameters
 
@@ -699,7 +699,7 @@ curl -X 'PUT' \
 ```json
 {
   "shared": false,
-  "lastModifiedDate": "2023-01-02T00:00:00Z",
+  "lastModifiedDate": "YYYY-01-02T00:00:00Z",
   "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
   "description": "Updated location description",
   "type": "s3",
@@ -723,7 +723,6 @@ The following table describes the update location request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `UUID` | required | string | Location UUID |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 | `type` | required | string | Location type |
 | `accountUuid` | required | string | Account UUID |
 | `properties` | required | object | Location properties |
@@ -795,7 +794,6 @@ The following table describes the delete location request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `UUID` | required | string | Location UUID |
-| `x-proxy-global-company-id` | required | string | Proxy global company id |
 
 ### Response Parameters
 
@@ -819,48 +817,6 @@ Each API request returns an HTTP status code that reflects the result, as follow
 | 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly. |
 | 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Try your request again in a few minutes, and contact your administrator if the problem persists. |
 
-## Best Practices
-
-When using the Adobe Analytics Cloud Locations API, consider the following best practices:
-
-1. **Rate Limiting**
-   - Monitor your API usage to stay within rate limits
-   - Implement exponential backoff for retries
-   - Cache responses when appropriate
-
-2. **Error Handling**
-   - Always check response status codes
-   - Implement proper error handling for all API calls
-   - Log errors for debugging purposes
-
-3. **Security**
-   - Keep your API keys and tokens secure
-   - Use HTTPS for all API requests
-   - Regularly rotate your credentials
-
-4. **Performance**
-   - Use pagination for large result sets
-   - Implement caching where appropriate
-   - Optimize your request frequency
-
-## Troubleshooting
-
-Common issues and their solutions:
-
-1. **Authentication Errors**
-   - **Symptoms**: 401 Unauthorized responses
-   - **Cause**: Invalid or expired authentication tokens
-   - **Solution**: Verify your API key and token are valid and not expired
-
-2. **Rate Limiting**
-   - **Symptoms**: 429 Too Many Requests responses
-   - **Cause**: Exceeding API rate limits
-   - **Solution**: Implement exponential backoff and retry logic
-
-3. **Invalid Parameters**
-   - **Symptoms**: 400 Bad Request responses
-   - **Cause**: Missing or invalid request parameters
-   - **Solution**: Verify all required parameters are present and valid
 
 ## Additional Resources
 
@@ -870,5 +826,4 @@ For more information, or for trouble-shooting help, see the following:
 * [API Status Codes](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#api-status-codes)
 * [API Request Error Headers](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#request-header-errors)
 * [Getting Started Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/getting-started/)
-
 
