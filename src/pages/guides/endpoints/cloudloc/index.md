@@ -17,7 +17,7 @@ You can use Cloud Locations APIs for the following:
 
 To export data to a cloud location, you must first create a cloud location account. After creating the account, you can create as many locations on that account as you want.
 
-The endpoints described in this guide are routed through `analytics.adobe.io/export_locations/`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
+The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
 
 ## Service Categories
 
@@ -25,7 +25,7 @@ The endpoints described in this guide are routed through `analytics.adobe.io/exp
 
 These endpoints provide methods for managing cloud storage accounts:
 
-* [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts for a Global Company ID
+* [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
 * [POST create account](#post-create-account): Create a new Cloud Locations account
 * [GET account by UUID](#get-account-by-uuid): Retrieve a specific Cloud Locations account
 * [PUT update account](#put-update-account): Update a specific Cloud Locations account
@@ -47,7 +47,11 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 ## Cloud Locations Accounts API
 
-Analytics API Cloud Locations accounts are specified by `type.` Accounts types are described in the following table:
+The Accounts API includes all endpoints for managing Cloud Location accounts. 
+
+### Account Types
+
+Analytics API Cloud Locations accounts are specified by `type`. Account types are described in the following table:
 
 | Type | Description |
 | --- | --- |
@@ -129,8 +133,8 @@ curl -X 'GET' \
       "accountProperties": {
         "accountName": "exampleaccount"
       },
-      "name": "Azure Legacy Test Account",
-      "description": "Azure Legacy Test Account",
+      "name": "Azure Legacy Example Account",
+      "description": "Azure Legacy Example Account",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-09-15T19:49:37.207Z",
       "lastModifiedDate": "YYYY-09-15T19:49:37.207Z",
@@ -143,8 +147,8 @@ curl -X 'GET' \
       "accountProperties": {
         "to": "exampleuser@example.com"
       },
-      "name": "Test Email Account",
-      "description": "Test Email Account",
+      "name": "Example Email Account",
+      "description": "Example Email Account",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-09-15T20:34:37.292Z",
       "lastModifiedDate": "YYYY-09-15T20:34:37.292Z",
@@ -158,11 +162,11 @@ curl -X 'GET' \
       "accountProperties": {
         "keyVaultURI": "https://cja-export-qe-test.vault.azure.net/",
         "keyVaultSecretName": "sas-token",
-        "tenantId": "fa7b1b5a-7b34-4387-94ae-d2c178decee1",
-        "appId": "d00f3cdb-e98e-4ac4-aa7c-48fff72fdb38"
+        "tenantId": "fa4b4b4a-4b44-4444-44ae-d2c444decee4",
+        "appId": "d55f5cdb-e55e-5ac5-aa5c-55fff55fdb55"
       },
-      "name": "SAS Test Account",
-      "description": "SAS Test Account",
+      "name": "SAS Example Account",
+      "description": "SAS Example Account",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-09-15T19:47:30.173Z",
       "lastModifiedDate": "YYYY-09-15T19:47:30.173Z",
@@ -174,11 +178,11 @@ curl -X 'GET' \
       "type": "azure_rbac",
       "secret": "value-hidden",
       "accountProperties": {
-        "tenantId": "fa7b1b5a-7b34-4387-94ae-d2c178decee1",
-        "appId": "d00f3cdb-e98e-4ac4-aa7c-48fff72fdb38"
+        "tenantId": "fa4b4b4a-4b44-4444-44ae-d2c444decee4",
+        "appId": "d55f5cdb-e55e-5ac5-aa5c-55fff55fdb55"
       },
-      "name": "RBAC Test Account",
-      "description": "RBAC Test Account",
+      "name": "RBAC Example Account",
+      "description": "RBAC Example Account",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-09-15T19:43:44.128Z",
       "lastModifiedDate": "YYYY-09-15T19:43:44.128Z",
@@ -189,81 +193,100 @@ curl -X 'GET' \
     {
       "type": "s3_role_arn",
       "accountProperties": {
-        "userARN": "arn:aws:iam::828378095232:user/C-analyt6",
-        "roleARN": "arn:aws:iam::874012291498:role/cja-export-qe-role"
+        "userARN": "arn:aws:iam::111111111111:user/C-exampleorg",
+        "roleARN": "arn:aws:iam::222222222222:role/aa-example-qe-role"
       },
-      "name": "S3 ARN test Account",
-      "description": "S3 ARN test Account",
+      "name": "S3 ARN Example Account",
+      "description": "S3 ARN Example Account",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-09-15T19:56:34.577Z",
       "lastModifiedDate": "YYYY-09-15T19:56:34.577Z",
       "shared": false,
       "deleted": false,
-      "uuid": "17d0ae97-7e64-4ac6-8b2e-2e4580780865"
+      "uuid": "1111ae11-1e11-1ac1-1b1e-1e1111111111"
     },
     {
       "type": "gcp",
       "accountProperties": {
-        "email": "C-analyt6@adbe-gcp0315.iam.gserviceaccount.com",
-        "gcpId": "113537872486312646941",
-        "projectId": "adbe-gcp0306",
-        "name": "projects/adbe-gcp0315/serviceAccounts/C-analyt6@adbe-gcp0315.iam.gserviceaccount.com",
-        "displayName": "C-analyt6"
+        "email": "C-exampleorg@adbe-gcp0000.iam.gserviceaccount.com",
+        "gcpId": "111111111111111111111",
+        "projectId": "example-gcp0000",
+        "name": "projects/adbe-gcp0000",
+        "displayName": "C-exampleorg"
       },
-      "name": "GCP Test Account",
-      "description": "GCP Test Account",
+      "name": "GCP Example Account",
+      "description": "GCP Example Account",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-09-15T19:30:52.841Z",
       "lastModifiedDate": "YYYY-09-15T19:30:52.841Z",
       "shared": false,
       "deleted": false,
-      "uuid": "a1eafcf4-817d-4309-a3c8-40b16b2213f2"
+      "uuid": "a2eafcf2-222d-2222-a2c2-22b12b2222f2"
     },
     {
       "type": "sftp",
       "accountProperties": {
         "port": 22,
-        "hostname": "host",
+        "hostname": "examplehost",
         "uploadTemporaryFile": true,
         "username": "user"
       },
-      "name": "Example2 account",
+      "name": "Example sftp account",
       "description": "string",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-04-30T19:40:03.042745Z",
       "lastModifiedDate": "YYYY-04-30T19:40:03.042745Z",
       "shared": false,
       "deleted": false,
-      "uuid": "a4be4904-0dea-45fd-8edd-f1def07c5f94"
+      "uuid": "a3be3333-3dea-3333-3edd-f3def33c3f33"
     }
  
 ```
 
+### Example request details
+
+The example request above does not include any optional query parameters, so it retrieves all accounts of all types accessible to the user. 
+
+### Example response details
+
+The example response above shows the following:
+
+* A response body that includes accounts with all supported types as described in the [Account Types table](#account-types) above.
+
+* An `accountProperties` object for each account. This object contains parameters that are specific to the type of account. For more information, see the 
+
+* A `uuid` identifier for each account. This is not the same as the location `uuid` that is used in the Locations API.
+
 ### Request Parameters
 
-The following table describes the GET accounts request parameters:
+The following table describes the GET accounts query request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `createdBy` | optional | string | User name of account creator |
-| `type` | optional | string | Type (ftp, sftp, gcp, azure, azure_rbac, azure_sas, s3, s3_role_arn, email) |
-| `page` | optional | integer | Page number |
-| `limit` | optional | integer | Limit (10-1000) |
+| `createdBy` | optional | string | Username of account creator |
+| `type` | optional | string | The type of account as described in the [Account Types table](#account-types) |
+| `page` | optional | integer | The page number to return|
+| `limit` | optional | integer | Maximum number of items to show per page |
 
 ### Response Parameters
 
-The following table describes the get accounts response parameters:
+The following table describes the GET accounts response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `content` | array | Array of account objects |
-| `number` | integer | Page number |
-| `size` | integer | Page size |
-| `totalPages` | integer | Total number of pages |
-| `totalElements` | integer | Total number of elements |
-| `numberOfElements` | integer | Number of elements in current page |
-| `first` | boolean | Whether this is the first page |
-| `last` | boolean | Whether this is the last page |
+
+| `type` | string | The type of account as described in the [Account Types table](#account-types) |
+| `secret` | string | Array of account objects |
+| `accountProperties` | object | Contains object members specific to the account type that describe account properties. For more information see  |
+| `name` | string | The friendly name of the account |
+| `description` | string | Description of account |
+| `createdBy` | string | Username of account creator |
+| `modifiedBy` | integer | Username of account modifier, if modified |
+| `createdDate` | integer | Date the account creation |
+| `lastModifiedDate` | integer | Date the account was last modified, if modified |
+| `shared` | boolean | Whether this account was shared with the user or another user |
+| `deleted` | boolean | Whether this account was deleted |
+| `uuid` | boolean | The unique account identifier |
 
 ## POST create account
 
