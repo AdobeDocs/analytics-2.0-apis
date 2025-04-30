@@ -5,7 +5,9 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Cloud Locations API
 
-The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data. For example, you can use Cloud Locations APIs for the following:
+The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data.
+
+You can use Cloud Locations APIs for the following:
 
 * Exporting files using Data Feed APIs
 
@@ -23,9 +25,9 @@ The endpoints described in this guide are routed through `analytics.adobe.io/exp
 
 These endpoints provide methods for managing cloud storage accounts:
 
-* [GET accounts](#get-accounts): Get all Cloud Locations accounts for a Global Company ID
+* [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts for a Global Company ID
 * [POST create account](#post-create-account): Create a new Cloud Locations account
-* [GET account by UUID](#get-account-by-uuid): Get a specific Cloud Locations account
+* [GET account by UUID](#get-account-by-uuid): Retrieve a specific Cloud Locations account
 * [PUT update account](#put-update-account): Update a specific Cloud Locations account
 * [DELETE account](#delete-account): Delete a specific Cloud Locations account
 
@@ -33,9 +35,9 @@ These endpoints provide methods for managing cloud storage accounts:
 
 These endpoints provide methods for managing cloud locations:
 
-* [GET locations](#get-locations): Get all Cloud Locations for a Global Company ID
+* [GET locations](#get-locations): Retrieve all Cloud Locations for a Global Company ID
 * [POST create location](#post-create-location): Create a new Cloud Location
-* [GET location by UUID](#get-location-by-uuid): Get a specific Cloud Location
+* [GET location by UUID](#get-location-by-uuid): Retrieve a specific Cloud Location
 * [PUT update location](#put-update-location): Update a specific Cloud Location
 * [DELETE location](#delete-location): Delete a specific Cloud Location
 
@@ -43,9 +45,29 @@ These endpoints provide methods for managing cloud locations:
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
+## Cloud Locations Accounts API
+
+Analytics API Cloud Locations accounts are specified by `type.` Accounts types are described in the following table:
+
+| Type | Description |
+| --- | --- | --- | --- |
+| `email` | Data to be exported by email | 
+| `ftp` | Data to be exported by File Transfer Protocol |
+| `sftp` | Data to be exported by Secure File Transfer Protocol |
+| `gcp` | Data to be exported to the Google Cloud Platform |
+| `azure` | Data to be exported to Microsoft Azure (legacy) |
+| `azure_rbac` | Data to be exported to Microsoft Azure Role-Based Access Control |
+| `azure_sas` | Data to be exported to Microsoft Azure Shared Access Signatures |
+| `s3` | Data to be exported to Amazon Simple Storage Service |
+| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM) |
+
+Account types are specified upon account creation. Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type.
+
+Note: Both Cloud Locations accounts and locations have a `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
+
 ## GET accounts
 
-Use this endpoint to get all Cloud Locations Accounts for an organization.
+Use this endpoint to get all Cloud Locations accounts that you have created or that have been shared with you in your organization.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
@@ -69,38 +91,161 @@ curl -X 'GET' \
 
 ```json
 {
-  "content": [
-    {
-      "accountProperties": {},
-      "shared": false,
-      "createdDate": "YYY-01-01T00:00:00Z",
-      "createdBy": "user@example.com",
-      "lastModifiedDate": "2023-01-01T00:00:00Z",
-      "name": "Example Account",
-      "description": "Example account description",
-      "modifiedBy": "user@example.com",
-      "secret": "********",
       "type": "s3",
-      "uuid": "555x5555-x55x-55x5-x555-555555555555"
+      "secret": "value-hidden",
+      "accountProperties": {
+        "accessKeyID": "test"
+      },
+      "name": "S3 legacy example",
+      "description": "legacy",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-06-27T19:34:13.673Z",
+      "lastModifiedDate": "YYYY-06-27T19:34:13.673Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "555bc5a5-5d55-5555-5555-dd5d555ec55f"
+    },
+    {
+      "type": "ftp",
+      "secret": "value-hidden",
+      "accountProperties": {
+        "port": 21,
+        "hostname": "ftp.example.com",
+        "username": "test"
+      },
+      "name": "Example FTP",
+      "description": "",
+      "createdBy": "exampleuser@example.com",
+      "modifiedBy": "exampleuser@example.com",
+      "createdDate": "YYYY-08-09T20:56:35.380Z",
+      "lastModifiedDate": "YYYY-08-20T17:55:45.551Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "bee66666-6e66-666b-666f-dd66c6b6666e"
+    },
+    {
+      "type": "azure",
+      "secret": "value-hidden",
+      "accountProperties": {
+        "accountName": "exampleaccount"
+      },
+      "name": "Azure Legacy Test Account",
+      "description": "Azure Legacy Test Account",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-09-15T19:49:37.207Z",
+      "lastModifiedDate": "YYYY-09-15T19:49:37.207Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "dcb7ee77-777e-7777-77dc-7777777ba777"
+    },
+    {
+      "type": "email",
+      "accountProperties": {
+        "to": "exampleuser@example.com"
+      },
+      "name": "Test Email Account",
+      "description": "Test Email Account",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-09-15T20:34:37.292Z",
+      "lastModifiedDate": "YYYY-09-15T20:34:37.292Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "e88888b8-8cc8-888a-88ab-888f8888b88d"
+    },
+    {
+      "type": "azure_sas",
+      "secret": "value-hidden",
+      "accountProperties": {
+        "keyVaultURI": "https://cja-export-qe-test.vault.azure.net/",
+        "keyVaultSecretName": "sas-token",
+        "tenantId": "fa7b1b5a-7b34-4387-94ae-d2c178decee1",
+        "appId": "d00f3cdb-e98e-4ac4-aa7c-48fff72fdb38"
+      },
+      "name": "SAS Test Account",
+      "description": "SAS Test Account",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-09-15T19:47:30.173Z",
+      "lastModifiedDate": "YYYY-09-15T19:47:30.173Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "a999eecb-a9c9-999c-99f9-d9fd9999cf99"
+    },
+    {
+      "type": "azure_rbac",
+      "secret": "value-hidden",
+      "accountProperties": {
+        "tenantId": "fa7b1b5a-7b34-4387-94ae-d2c178decee1",
+        "appId": "d00f3cdb-e98e-4ac4-aa7c-48fff72fdb38"
+      },
+      "name": "RBAC Test Account",
+      "description": "RBAC Test Account",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-09-15T19:43:44.128Z",
+      "lastModifiedDate": "YYYY-09-15T19:43:44.128Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "0ef00a00-000c-00e0-bd00-0000ec000e00"
+    },
+    {
+      "type": "s3_role_arn",
+      "accountProperties": {
+        "userARN": "arn:aws:iam::828378095232:user/C-analyt6",
+        "roleARN": "arn:aws:iam::874012291498:role/cja-export-qe-role"
+      },
+      "name": "S3 ARN test Account",
+      "description": "S3 ARN test Account",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-09-15T19:56:34.577Z",
+      "lastModifiedDate": "YYYY-09-15T19:56:34.577Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "17d0ae97-7e64-4ac6-8b2e-2e4580780865"
+    },
+    {
+      "type": "gcp",
+      "accountProperties": {
+        "email": "C-analyt6@adbe-gcp0315.iam.gserviceaccount.com",
+        "gcpId": "113537872486312646941",
+        "projectId": "adbe-gcp0306",
+        "name": "projects/adbe-gcp0315/serviceAccounts/C-analyt6@adbe-gcp0315.iam.gserviceaccount.com",
+        "displayName": "C-analyt6"
+      },
+      "name": "GCP Test Account",
+      "description": "GCP Test Account",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-09-15T19:30:52.841Z",
+      "lastModifiedDate": "YYYY-09-15T19:30:52.841Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "a1eafcf4-817d-4309-a3c8-40b16b2213f2"
+    },
+    {
+      "type": "sftp",
+      "accountProperties": {
+        "port": 22,
+        "hostname": "host",
+        "uploadTemporaryFile": true,
+        "username": "user"
+      },
+      "name": "Example2 account",
+      "description": "string",
+      "createdBy": "exampleuser@example.com",
+      "createdDate": "YYYY-04-30T19:40:03.042745Z",
+      "lastModifiedDate": "YYYY-04-30T19:40:03.042745Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "a4be4904-0dea-45fd-8edd-f1def07c5f94"
     }
-  ],
-  "number": 0,
-  "size": 10,
-  "totalPages": 1,
-  "totalElements": 1,
-  "numberOfElements": 1,
-  "first": true,
-  "last": true
-}
+ 
 ```
 
 ### Request Parameters
 
-The following table describes the get accounts request parameters:
+The following table describes the GET accounts request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `createdBy` | optional | string | Created user name |
+| `createdBy` | optional | string | User name of account creator |
 | `type` | optional | string | Type (ftp, sftp, gcp, azure, azure_rbac, azure_sas, s3, s3_role_arn, email) |
 | `page` | optional | integer | Page number |
 | `limit` | optional | integer | Limit (10-1000) |
@@ -796,4 +941,3 @@ Each API request returns an HTTP status code that reflects the result, as follow
 | 403 | Forbidden | The resource was found, but you do not have the right credentials to view it. You might not have the required permissions to access or edit the resource for reasons not applicable to status code 401. |
 | 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly. |
 | 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Try your request again in a few minutes, and contact your administrator if the problem persists. |
-
