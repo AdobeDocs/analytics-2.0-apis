@@ -817,13 +817,3 @@ Each API request returns an HTTP status code that reflects the result, as follow
 | 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly. |
 | 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Try your request again in a few minutes, and contact your administrator if the problem persists. |
 
-
-## Additional Resources
-
-For more information, or for trouble-shooting help, see the following:
-
-* [Adobe Analytics API Overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/)
-* [API Status Codes](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#api-status-codes)
-* [API Request Error Headers](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#request-header-errors)
-* [Getting Started Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/getting-started/)
-
