@@ -50,7 +50,7 @@ Adobe may add optional request and response members (name/value pairs) to existi
 Analytics API Cloud Locations accounts are specified by `type.` Accounts types are described in the following table:
 
 | Type | Description |
-| --- | --- | --- | --- |
+| --- | --- |
 | `email` | Data to be exported by email | 
 | `ftp` | Data to be exported by File Transfer Protocol |
 | `sftp` | Data to be exported by Secure File Transfer Protocol |
@@ -941,3 +941,4 @@ Each API request returns an HTTP status code that reflects the result, as follow
 | 403 | Forbidden | The resource was found, but you do not have the right credentials to view it. You might not have the required permissions to access or edit the resource for reasons not applicable to status code 401. |
 | 404 | Not found | The requested resource could not be found on the server. The resource may have been deleted, or the requested path was entered incorrectly. |
 | 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. Try your request again in a few minutes, and contact your administrator if the problem persists. |
+
