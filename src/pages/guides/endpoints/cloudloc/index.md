@@ -3,7 +3,7 @@ title: Adobe Analytics Cloud Locations API
 description: Use the Adobe Analytics Cloud Locations API to manage export locations for analytics data.
 ---
 
-# Cloud Locations API
+# Adobe Analytics Cloud Locations API
 
 The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data.
 
@@ -47,9 +47,9 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 ## GET accounts
 
-Use this endpoint to get all Cloud Locations Accounts for a global company id.
+Use this endpoint to get all Cloud Locations Accounts for an organization.
 
-`GET https://analytics.adobe.io/export_locations/analytics/exportlocations/account`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
 ### Request and Response Examples
 
@@ -61,12 +61,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/account" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -128,7 +126,7 @@ The following table describes the get accounts response parameters:
 
 Use this endpoint to create a new Cloud Locations account.
 
-`POST https://analytics.adobe.io/export_locations/analytics/exportlocations/account`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
 ### Request and Response Examples
 
@@ -140,12 +138,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/account" \
-  -H "accept: application/json" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
@@ -210,7 +205,7 @@ The following table describes the create account response parameters:
 
 Use this endpoint to get a specific Cloud Locations Account.
 
-`GET https://analytics.adobe.io/export_locations/analytics/exportlocations/account/{UUID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
 ### Request and Response Examples
 
@@ -222,12 +217,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/account/123e4567-e89b-12d3-a456-426614174000" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -278,7 +271,7 @@ The following table describes the get account by UUID response parameters:
 
 Use this endpoint to update a specific Cloud Locations Account.
 
-`PUT https://analytics.adobe.io/export_locations/analytics/exportlocations/account/{UUID}`
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
 ### Request and Response Examples
 
@@ -290,12 +283,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'PUT' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/account/123e4567-e89b-12d3-a456-426614174000" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
@@ -359,9 +350,9 @@ The following table describes the update account response parameters:
 
 ## DELETE account
 
-Use this endpoint to delete a specific Cloud Locations Account.
+Use this endpoint to delete a specific Cloud Locations account.
 
-`DELETE https://analytics.adobe.io/export_locations/analytics/exportlocations/account/{UUID}`
+`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
 ### Request and Response Examples
 
@@ -373,12 +364,11 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'DELETE' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/account/123e4567-e89b-12d3-a456-426614174000" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}"
+  -H "x-proxy-global-company-id: {GLOBAL_COMPAY_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -411,7 +401,7 @@ The following table describes the delete account response parameters:
 
 Use this endpoint to get all Cloud Locations for a given global company id.
 
-`GET https://analytics.adobe.io/export_locations/analytics/exportlocations/location`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location`
 
 ### Request and Response Examples
 
@@ -423,12 +413,10 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/location" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -494,7 +482,7 @@ The following table describes the get locations response parameters:
 
 Use this endpoint to create a new Cloud Location.
 
-`POST https://analytics.adobe.io/export_locations/analytics/exportlocations/location`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location`
 
 ### Request and Response Examples
 
@@ -506,12 +494,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/location" \
-  -H "accept: application/json" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
@@ -587,7 +572,7 @@ The following table describes the create location response parameters:
 
 Use this endpoint to get a specific Cloud Location.
 
-`GET https://analytics.adobe.io/export_locations/analytics/exportlocations/location/{UUID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/{UUID}`
 
 ### Request and Response Examples
 
@@ -599,12 +584,11 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -663,7 +647,7 @@ The following table describes the get location by UUID response parameters:
 
 Use this endpoint to update a specific Cloud Location.
 
-`PUT https://analytics.adobe.io/export_locations/analytics/exportlocations/location/{UUID}`
+`PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/{UUID}`
 
 ### Request and Response Examples
 
@@ -675,12 +659,11 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'PUT' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
@@ -758,7 +741,7 @@ The following table describes the update location response parameters:
 
 Use this endpoint to delete a specific Cloud Location.
 
-`DELETE https://analytics.adobe.io/export_locations/analytics/exportlocations/location/{UUID}`
+`DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/{UUID}`
 
 ### Request and Response Examples
 
@@ -770,12 +753,11 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'DELETE' \
-  "https://analytics.adobe.io/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
-  -H "x-user-auth: {USER_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
