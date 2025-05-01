@@ -274,7 +274,6 @@ The following table describes the GET accounts response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-
 | `type` | string | The type of account as described in the [Account Types table](#account-types) |
 | `secret` | string | Array of account objects |
 | `accountProperties` | object | Contains object members specific to the account type that describe account properties. For more information see  |
