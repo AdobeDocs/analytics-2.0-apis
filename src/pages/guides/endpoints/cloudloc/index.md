@@ -51,7 +51,7 @@ The Accounts API includes all endpoints for managing Cloud Location accounts.
 
 ### Account Types
 
-Analytics API Cloud Locations accounts are specified by `type`. Account types are described in the following table:
+Analytics API Cloud Locations accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types with tips for setting up third-party services to work with the listed account types:
 
 | Type | Description |
 | --- | --- |
@@ -63,10 +63,10 @@ Analytics API Cloud Locations accounts are specified by `type`. Account types ar
 | `azure_rbac` | Data to be exported to Microsoft Azure Role-Based Access Control |
 | `azure_sas` | Data to be exported to Microsoft Azure Shared Access Signatures |
 | `s3` | Data to be exported to Amazon Simple Storage Service |
-| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM) |
+| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM).  |
 
-Account types are specified upon account creation. Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type.
 
+Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type. 
 Note: Both Cloud Locations accounts and locations have a `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
 
 ## GET accounts
@@ -100,7 +100,7 @@ curl -X 'GET' \
       "accountProperties": {
         "accessKeyID": "test"
       },
-      "name": "S3 legacy example",
+      "name": "S3 Legacy Example",
       "description": "legacy",
       "createdBy": "exampleuser@example.com",
       "createdDate": "YYYY-06-27T19:34:13.673Z",
@@ -265,7 +265,7 @@ The following table describes the GET accounts query request parameters:
 | --- | --- | --- | --- |
 | `createdBy` | optional | string | Username of account creator |
 | `type` | optional | string | The type of account as described in the [Account Types table](#account-types) |
-| `page` | optional | integer | The page number to return|
+| `page` | optional | integer | The page number to return |
 | `limit` | optional | integer | Maximum number of items to show per page |
 
 ### Response Parameters
@@ -290,7 +290,7 @@ The following table describes the GET accounts response parameters:
 
 ## POST create account
 
-Use this endpoint to create a new Cloud Locations account.
+Use this endpoint to create a new Cloud Locations account. The example for this endpoint includes the steps for setting up an AWS s3 role ARN account type.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
@@ -309,14 +309,19 @@ curl -X 'POST' \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "type": "s3",
+    "type": "s3_role_arn",
     "secret": "********",
-    "accountProperties": {},
+    "accountProperties":{
+    "roleARN": "arn:aws:iam::{CUSTOMER ACCOUNT ID}:role/<ROLE ARN>",
+    "userARN": "arn:aws:iam::{SERVICE ACCOUNT ID}:user/<USER ARN>"
+  },
     "name": "Example Account",
     "description": "Example account description",
-    "sharedTo": "user@example.com"
+    "sharedTo": "exampleuser2@example.com"
   }'
 ```
+
+
 
 #### Response
 
