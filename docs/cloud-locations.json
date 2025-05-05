@@ -18,6 +18,37 @@
       "description" : "The analytics Cloud Locations Location API for user token"
     }],
     "paths" : {
+      "/exportlocations/account/cloudAccount/s3_role_arn" : {
+        "get" : {
+          "tags" : [ "Analytics Cloud Locations Account API" ],
+          "summary" : "Get S3 user arn for S3 role arn account type",
+          "operationId" : "getS3UserArn",
+          "responses" : {
+            "400" : {
+              "description" : "Unable to get S3 user arn",
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
+                  }
+                }
+              }
+            },
+            "200" : {
+              "content" : {
+                "application/json" : {
+                  "schema" : {
+                    "$ref" : "#/components/schemas/UserArnResponse"
+                  }
+                }
+              }
+            }
+          },
+          "security" : [ {
+            "x-user-auth" : [ ]
+          } ]
+        }
+      },
       "/analytics/exportlocations/account" : {
         "get" : {
           "tags" : [ "Analytics Cloud Locations Account API" ],
@@ -563,6 +594,26 @@
             },
             "last" : {
               "type" : "boolean"
+            }
+          }
+        },
+        "AnalyticsAsrErrorResponse" : {
+          "properties" : {
+            "errorDescription" : {
+              "type" : "string"
+            },
+            "errorCode" : {
+              "type" : "string"
+            },
+            "errorId" : {
+              "type" : "string"
+            }
+          }
+        },
+        "UserArnResponse" : {
+          "properties" : {
+            "userARN" : {
+              "type" : "string"
             }
           }
         },
