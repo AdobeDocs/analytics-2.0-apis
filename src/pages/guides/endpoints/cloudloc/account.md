@@ -218,7 +218,7 @@ The example response above shows the following:
 
 * A response body that includes accounts with all supported types as described in the [Account Types table](#account-types) above.
 
-* An `accountProperties` object for each account. This object contains parameters that are specific to the type of account. For more information, see the 
+* An `accountProperties` object for each account. This object contains parameters that are specific to the type of account. For more information, see the [Account properties](#account-properties) section of this guide.
 
 * A `uuid` identifier for each account. This is not the same as the location `uuid` that is used in the Locations API.
 
@@ -241,7 +241,7 @@ The following table describes the GET accounts response parameters:
 | --- | --- | --- |
 | `type` | string | The type of account as described in the Account Types table|
 | `secret` | string | Array of account objects |
-| `accountProperties` | object | Contains object members specific to the account type that describe account properties. For more information see  |
+| `accountProperties` | object | Contains object members specific to the account type that describe account properties. see the [Account properties](#account-properties) section of this guide. |
 | `name` | string | The friendly name of the account |
 | `description` | string | Description of account |
 | `createdBy` | string | Username of account creator |
