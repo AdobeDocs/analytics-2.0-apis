@@ -5,7 +5,7 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Cloud Locations API overview
 
-The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data.
+The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. Use this API to create, read, update, and delete cloud storage accounts and locations for exporting data. 
 
 You can use Cloud Locations APIs for the following:
 
@@ -15,13 +15,14 @@ You can use Cloud Locations APIs for the following:
 
 * Working with Classification APIs
 
-To export data to a cloud location, you must first create a cloud location account. After creating the account, you can create as many locations on that account as you want.
+This API includes two service categories:
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
+* [**Analytics Cloud Locations Account API**](account.md)
 
-## Service Categories
+* [**Analytics Cloud Locations Location API**](locations.md)
+  
+To export data to a cloud location, you must [first create a cloud location account](account).md. After creating the account, you can create as many locations on that account as you need.
 
-**Analytics Cloud Locations Account API**
 
 These endpoints provide methods for managing cloud storage accounts:
 
@@ -31,7 +32,6 @@ These endpoints provide methods for managing cloud storage accounts:
 * [PUT update account](#put-update-account): Update a specific Cloud Locations account
 * [DELETE account](#delete-account): Delete a specific Cloud Locations account
 
-**Analytics Cloud Locations Location API**
 
 These endpoints provide methods for managing cloud locations:
 
