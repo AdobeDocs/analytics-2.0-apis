@@ -1,9 +1,9 @@
 ---
-title: Adobe Analytics Cloud Locations API
+title: Adobe Analytics Cloud Locations API overview
 description: Use the Adobe Analytics Cloud Locations API to manage export locations for analytics data.
 ---
 
-# Cloud Locations API
+# Cloud Locations API overview
 
 The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data.
 
@@ -107,7 +107,7 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-06-27T19:34:13.673Z",
       "shared": false,
       "deleted": false,
-      "uuid": "555bc5a5-5d55-5555-5555-dd5d555ec55f"
+      "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
     },
     {
       "type": "ftp",
@@ -125,7 +125,7 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-08-20T17:55:45.551Z",
       "shared": false,
       "deleted": false,
-      "uuid": "bee66666-6e66-666b-666f-dd66c6b6666e"
+      "uuid": "bee11111-1e11-111b-111f-dd11c6b1111e"
     },
     {
       "type": "azure",
@@ -140,7 +140,7 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-09-15T19:49:37.207Z",
       "shared": false,
       "deleted": false,
-      "uuid": "dcb7ee77-777e-7777-77dc-7777777ba777"
+      "uuid": "dcb1ee11-111e-1111-11dc-1111111ba111"
     },
     {
       "type": "email",
@@ -154,7 +154,7 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-09-15T20:34:37.292Z",
       "shared": false,
       "deleted": false,
-      "uuid": "e88888b8-8cc8-888a-88ab-888f8888b88d"
+      "uuid": "e11111b1-1cc1-111a-11ab-111f1111b11d"
     },
     {
       "type": "azure_sas",
@@ -172,14 +172,14 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-09-15T19:47:30.173Z",
       "shared": false,
       "deleted": false,
-      "uuid": "a999eecb-a9c9-999c-99f9-d9fd9999cf99"
+      "uuid": "a111eecb-a1c1-111c-11f1-d1fd1111cf11"
     },
     {
       "type": "azure_rbac",
       "secret": "value-hidden",
       "accountProperties": {
         "tenantId": "fa4b4b4a-4b44-4444-44ae-d2c444decee4",
-        "appId": "d55f5cdb-e55e-5ac5-aa5c-55fff55fdb55"
+        "appId": "d11f11db-e11e-1ac1-aa1c-11fff11fdb11"
       },
       "name": "RBAC Example Account",
       "description": "RBAC Example Account",
@@ -221,7 +221,7 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-09-15T19:30:52.841Z",
       "shared": false,
       "deleted": false,
-      "uuid": "a2eafcf2-222d-2222-a2c2-22b12b2222f2"
+      "uuid": "a21afcf1-111d-1111-a1c1-11b11b1111f1"
     },
     {
       "type": "sftp",
@@ -238,7 +238,7 @@ curl -X 'GET' \
       "lastModifiedDate": "YYYY-04-30T19:40:03.042745Z",
       "shared": false,
       "deleted": false,
-      "uuid": "a3be3333-3dea-3333-3edd-f3def33c3f33"
+      "uuid": "a1be1111-1dea-1111-1edd-f1def11c1f11"
     }
  
 ```
@@ -330,7 +330,7 @@ curl -X 'POST' \
   "shared": false,
   "createdDate": "YYYY-01-01T00:00:00Z",
   "createdBy": "user@example.com",
-  "lastModifiedDate": "2023-01-01T00:00:00Z",
+  "lastModifiedDate": "YYYY-01-01T00:00:00Z",
   "name": "Example Account",
   "description": "Example account description",
   "modifiedBy": "user@example.com",
@@ -401,7 +401,7 @@ curl -X 'GET' \
   "shared": false,
   "createdDate": "YYYY-01-01T00:00:00Z",
   "createdBy": "user@example.com",
-  "lastModifiedDate": "2023-01-01T00:00:00Z",
+  "lastModifiedDate": "YYYY-01-01T00:00:00Z",
   "name": "Example Account",
   "description": "Example account description",
   "modifiedBy": "user@example.com",
@@ -474,7 +474,7 @@ curl -X 'PUT' \
 {
   "accountProperties": {},
   "shared": false,
-  "createdDate": "2023-01-01T00:00:00Z",
+  "createdDate": "YYYY-01-01T00:00:00Z",
   "createdBy": "user@example.com",
   "lastModifiedDate": "2023-01-02T00:00:00Z",
   "name": "Updated Account",
@@ -691,7 +691,7 @@ curl -X 'POST' \
   "type": "s3",
   "applicationTag": "example-tag",
   "uuid": "123e4567-e89b-12d3-a456-426614174001",
-  "createdDate": "2023-01-01T00:00:00Z",
+  "createdDate": "YYYY-01-01T00:00:00Z",
   "deleted": false,
   "application": "DATA_WAREHOUSE",
   "createdBy": "user@example.com",
@@ -858,7 +858,7 @@ curl -X 'PUT' \
   "type": "s3",
   "applicationTag": "updated-tag",
   "uuid": "123e4567-e89b-12d3-a456-426614174001",
-  "createdDate": "2023-01-01T00:00:00Z",
+  "createdDate": "YYYY-01-01T00:00:00Z",
   "deleted": false,
   "application": "DATA_WAREHOUSE",
   "createdBy": "user@example.com",
@@ -955,6 +955,342 @@ The following table describes the delete location response parameters:
 | --- | --- | --- |
 | `message` | string | Success message |
 | `uuid` | string | Deleted location UUID |
+
+
+## Account properties
+
+
+Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. The following JSON includes all of the account properties request and response parameters for each account type.
+
+
+### Email
+
+**Request**
+
+```json
+{
+  "type": "email",
+  "accountProperties":
+  {
+    "to": "exampleuser@example.com"
+  },
+  "name": "string",
+  "description": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "email",
+  "accountProperties": {
+    "to": "exampleuser@example.com"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-06-02T16:19:04.039666Z",
+  "lastModifiedDate": "YYYY-06-02T16:19:04.039666Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
+
+
+### FTP
+
+**Request**
+
+```json
+{
+  "type": "ftp",
+  "accountProperties":
+  {
+    "hostname": "string",
+    "username": "string",
+    "port": 21
+  },
+  "name": "string",
+  "description": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "ftp",
+  "secret": "value-hidden",
+  "accountProperties": {
+    "port": 21,
+    "hostname": "string",
+    "username": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:34:20.492287Z",
+  "lastModifiedDate": "YYYY-05-04T21:34:20.492287Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+
+### SFTP
+
+**Request**
+
+```json
+{
+  "type": "sftp",
+  "accountProperties":
+  {
+    "hostname": "string",
+    "username": "string",
+    "port": 22,
+    "uploadTemporaryFile": true
+  },
+  "name": "string",
+  "description": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "sftp",
+  "accountProperties": {
+    "port": 22,
+    "hostname": "string",
+    "username": "string",
+    "uploadTemporaryFile": true
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:35:13.213154Z",
+  "lastModifiedDate": "YYYY-05-04T21:35:13.213154Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
+### GCP
+
+**Request**
+
+```json
+{
+  "type": "gcp",
+  "accountProperties":
+  {
+    "projectId": "exampleprojectId"
+  },
+  "name": "string",
+  "description": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "gcp",
+  "accountProperties": {
+    "gcpId": "111111111111111111111",
+    "displayName": "analyt6",
+    "name": "projects/example-gcp1111/serviceAccounts/exampleorg@example-gcp1111.iam.gserviceaccount.com",
+    "projectId": "projectId",
+    "email": "example@example-gcp1111.iam.gserviceaccount.com"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:36:05.711896Z",
+  "lastModifiedDate": "YYYY-05-04T21:36:05.711896Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
+### Azure (legacy)
+
+**Request**
+
+``json
+{
+  "type": "azure",
+  "accountProperties":
+  {
+    "accountName": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "secret": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "azure",
+  "secret": "value-hidden",
+  "accountProperties": {
+    "accountName": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:36:56.112429Z",
+  "lastModifiedDate": "YYYY-05-04T21:36:56.112429Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
+### Azure rbac
+
+**Request**
+
+```json
+{
+  "type": "azure_rbac",
+  "accountProperties":
+  {
+    "appId": "string",
+    "tenantId": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "secret": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "azure_rbac",
+  "secret": "value-hidden",
+  "accountProperties": {
+    "appId": "string",
+    "tenantId": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:37:30.747312Z",
+  "lastModifiedDate": "YYYY-05-04T21:37:30.747312Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+### Azure sas
+
+**Request**
+
+```json
+{
+  "type": "azure_sas",
+  "accountProperties":
+  {
+    "appId": "string",
+    "tenantId": "string",
+    "keyVaultURI": "string",
+    "keyVaultSecretName": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "secret": "string"
+}
+```
+**Response**
+
+```json
+{
+  "type": "azure_sas",
+  "secret": "value-hidden",
+  "accountProperties": {
+    "keyVaultURI": "string",
+    "keyVaultSecretName": "string",
+    "appId": "string",
+    "tenantId": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:38:01.799683Z",
+  "lastModifiedDate": "YYYY-05-04T21:38:01.799683Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
+### s3 (legacy)
+
+**Request**
+
+```json
+{
+  "type": "s3",
+  "accountProperties":
+  {
+    "accessKeyID": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "secret": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "s3",
+  "secret": "value-hidden",
+  "accountProperties": {
+    "accessKeyID": "string"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "string",
+  "createdDate": "YYYY-05-04T21:38:40.139175Z",
+  "lastModifiedDate": "YYYY-05-04T21:38:40.139175Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
+### s3 role ARN
+
+**Request**
+
+```json
+{
+  "type": "s3_role_arn",
+  "accountProperties": {
+    "roleARN": "arn:aws:iam::{CUSTOMER_ACCOUNT_ID}:role/<ROLE ARN>",
+    "userARN": "arn:aws:iam::{SERVICE_ACCOUNT_ID}:user/<USER ARN>"
+  },
+  "name": "string",
+  "description": "string"
+}
+```
+
+**Response**
+
+```json
+{
+  "type": "s3_role_arn",
+  "accountProperties": {
+    "roleARN": "arn:aws:iam::<CUSTOMER ACCOUNT ID>:role/<ROLE ARN>",
+    "userARN": "arn:aws:iam::<SERVICE ACCOUNT ID>:user/<USER ARN>"
+  },
+  "name": "string",
+  "description": "string",
+  "createdBy": "exampleuser",
+  "createdDate": "YYYY-01-31T19:48:13.078921Z",
+  "lastModifiedDate": "YYYY-01-31T19:48:13.078921Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+}
+```
+
 
 ## Status codes
 
