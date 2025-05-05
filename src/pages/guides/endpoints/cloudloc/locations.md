@@ -7,8 +7,8 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 These endpoints provide methods for managing cloud locations:
 
-GET locations: Retrieve all Cloud Locations for a Global Company ID
-POST create location: Create a new Cloud Location
-GET location by UUID: Retrieve a specific Cloud Location
-PUT update location: Update a specific Cloud Location
-DELETE location: Delete a specific Cloud Location
+* [GET locations](#get-locations): Retrieve all Cloud Locations for a Global Company ID
+* [POST create location](#post-create-location): Create a new Cloud Location
+* [GET location by UUID](#get-location-by-uuid): Retrieve a specific Cloud Location
+* [PUT update location](#put-update-location): Update a specific Cloud Location
+* [DELETE location](#delete-location): Delete a specific Cloud Location
