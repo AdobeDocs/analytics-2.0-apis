@@ -28,7 +28,7 @@ Analytics API Cloud Locations accounts are specified by `type`. Account types ar
 | `azure_rbac` | Data to be exported to Microsoft Azure Role-Based Access Control |
 | `azure_sas` | Data to be exported to Microsoft Azure Shared Access Signatures |
 | `s3` | Data to be exported to Amazon Simple Storage Service |
-| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM).  |
+| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM). See separate instructions for creating this account type.  |
 
 
 Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type. 
