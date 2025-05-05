@@ -21,7 +21,7 @@ This API includes two service categories:
 
 * [**Analytics Cloud Locations Location API**](locations.md)
   
-To export data to a cloud location, you must [first create a cloud location account](account).md. After creating the account, you can create as many locations on that account as you need.
+To export data to a cloud location, you must [first create a cloud location account](account.md). After creating the account, you can create as many locations on that account as you need.
 
 
 These endpoints provide methods for managing cloud storage accounts:
