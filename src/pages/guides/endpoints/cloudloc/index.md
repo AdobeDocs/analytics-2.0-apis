@@ -23,17 +23,6 @@ This API includes two service categories:
   
 To export data to a cloud location, you must first [create a cloud location account](account.md). After creating the account, you can create as many locations on that account as you need.
 
-
-These endpoints provide methods for managing cloud storage accounts:
-
-* [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
-* [POST create account](#post-create-account): Create a new Cloud Locations account
-* [GET account by UUID](#get-account-by-uuid): Retrieve a specific Cloud Locations account
-* [PUT update account](#put-update-account): Update a specific Cloud Locations account
-* [DELETE account](#delete-account): Delete a specific Cloud Locations account
-
-
-
 <InlineAlert variant="info" slots="text" />
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
