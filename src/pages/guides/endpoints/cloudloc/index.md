@@ -1034,6 +1034,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "lastModifiedDate": "YYYY-05-04T21:34:20.492287Z",
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
+```
 
 ### SFTP
 
@@ -1290,6 +1291,11 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
+
+
+
+
+
 
 
 ## Status codes
