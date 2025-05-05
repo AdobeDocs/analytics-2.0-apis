@@ -16,7 +16,7 @@ The Accounts API includes all endpoints for managing Cloud Location accounts. Th
 
 ### Account Types
 
-Analytics API Cloud Locations accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types with tips for setting up third-party services to work with the listed account types:
+Analytics API Cloud Locations accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types:
 
 | Type | Description |
 | --- | --- |
