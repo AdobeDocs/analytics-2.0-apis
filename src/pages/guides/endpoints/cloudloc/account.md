@@ -843,8 +843,8 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 {
   "type": "s3_role_arn",
   "accountProperties": {
-    "roleARN": "arn:aws:iam::{CUSTOMER_ACCOUNT_ID}:role/<ROLE ARN>",
-    "userARN": "arn:aws:iam::{SERVICE_ACCOUNT_ID}:user/<USER ARN>"
+    "roleARN": "arn:aws:iam::{CUSTOMER_ACCOUNT_ID}:role/{ROLE ARN}",
+    "userARN": "arn:aws:iam::{SERVICE_ACCOUNT_ID}:user/{USER ARN}"
   },
   "name": "string",
   "description": "string"
@@ -857,8 +857,8 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 {
   "type": "s3_role_arn",
   "accountProperties": {
-    "roleARN": "arn:aws:iam::<CUSTOMER ACCOUNT ID>:role/<ROLE ARN>",
-    "userARN": "arn:aws:iam::<SERVICE ACCOUNT ID>:user/<USER ARN>"
+    "roleARN": "arn:aws:iam::{CUSTOMER_ACCOUNT_ID}:role/{ROLE ARN}",
+    "userARN": "arn:aws:iam::{SERVICE_ACCOUNT_ID}:user/{USER ARN}"
   },
   "name": "string",
   "description": "string",
@@ -868,6 +868,17 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
+
+
+## Creating s3 role ARN accounts
+
+Creating an s3 role ARN account includes additional steps for specifying roles. To do this:
+
+1. Use the GET userARN method to retrieve the userARN value.
+2. Create a roleARN in the AWS portal. See AWS s3 role ARN instructions for more information.
+3. Create an Adobe Cloud Locations account for the s3 ARN type with the POST create account method.
+4. Include the s3 role ARN accountProperties as shown in the JSON above.
+
 
 
 
