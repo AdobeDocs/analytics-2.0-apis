@@ -597,19 +597,6 @@
             }
           }
         },
-        "AnalyticsAsrErrorResponse" : {
-          "properties" : {
-            "errorDescription" : {
-              "type" : "string"
-            },
-            "errorCode" : {
-              "type" : "string"
-            },
-            "errorId" : {
-              "type" : "string"
-            }
-          }
-        },
         "UserArnResponse" : {
           "properties" : {
             "userARN" : {
