@@ -351,19 +351,26 @@ curl -X 'GET' \
 
 ```json
 {
-  "accountProperties": {},
-  "shared": false,
-  "createdDate": "YYYY-01-01T00:00:00Z",
-  "createdBy": "user@example.com",
-  "lastModifiedDate": "YYYY-01-01T00:00:00Z",
-  "name": "Example Account",
-  "description": "Example account description",
-  "modifiedBy": "user@example.com",
-  "secret": "********",
-  "type": "s3",
-  "uuid": "123e4567-e89b-12d3-a456-426614174000"
-}
+      "type": "ftp",
+      "accountProperties": {
+        "port": 21,
+        "hostname": "ftp.example.com",
+        "username": "exampleuser"
+      },
+      "name": "Example FTP",
+      "description": "",
+      "createdBy": "exampleuser@example.com",
+      "modifiedBy": "exampleuser@example.com",
+      "createdDate": "YYYY-08-09T20:56:35.380Z",
+      "lastModifiedDate": "YYYY-08-20T17:55:45.551Z",
+      "shared": false,
+      "deleted": false,
+      "uuid": "bee11111-1e11-111b-111f-dd11c6b1111e"
+    },
 ```
+### Example details
+
+In this example, the account `{UUID}` would be provided in the path as `bee11111-1e11-111b-111f-dd11c6b1111e`. The information retrieved for this account includes similar details as those supplied for the same type of account in the GET accounts endpoint described above.
 
 ### Request Parameters
 
