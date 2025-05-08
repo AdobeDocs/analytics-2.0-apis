@@ -5,13 +5,14 @@ description: Use the Adobe Analytics Cloud Locations Account API to create accou
 
 # Cloud Locations Account API
 
-The Accounts API includes all endpoints for managing Cloud Location accounts. These endpoints provide methods for managing cloud storage accounts:
+The Accounts API includes the following endpoints for managing Cloud Location storage accounts:
 
 * [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
 * [POST create account](#post-create-account): Create a new Cloud Locations account
 * [GET account by UUID](#get-account-by-uuid): Retrieve a specific Cloud Locations account
 * [PUT update account](#put-update-account): Update a specific Cloud Locations account
 * [DELETE account](#delete-account): Delete a specific Cloud Locations account
+* [GET s3 role arn](#get-s3-role-arn): Retrieve an `userARN` value to create an AWS s3 role arn cloud account
 
 
 ### Account Types
@@ -273,14 +274,14 @@ curl -X 'POST' \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
-    "type": "s3_role_arn",
-    "secret": "********",
+    "type": "email",
+    "secret": "value-hidden",
     "accountProperties":{
     "roleARN": "arn:aws:iam::{CUSTOMER ACCOUNT ID}:role/<ROLE ARN>",
     "userARN": "arn:aws:iam::{SERVICE ACCOUNT ID}:user/<USER ARN>"
   },
-    "name": "Example Account",
-    "description": "Example account description",
+    "name": "Example Email Account",
+    "description": "Example Email account description",
     "sharedTo": "exampleuser2@example.com"
   }'
 ```
@@ -874,10 +875,12 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 
 Creating an s3 role ARN account includes additional steps for specifying roles. To do this:
 
-1. Use the GET userARN method to retrieve the userARN value.
+1. Use the GET s3 role arn method to retrieve the userARN value, as described below.
 2. Create a roleARN in the AWS portal. See AWS s3 role ARN instructions for more information.
 3. Create an Adobe Cloud Locations account for the s3 ARN type with the POST create account method.
 4. Include the s3 role ARN accountProperties as shown in the JSON above.
+
+## GET s3 role arn
 
 
 
