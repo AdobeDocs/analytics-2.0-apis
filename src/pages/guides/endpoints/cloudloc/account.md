@@ -37,7 +37,7 @@ Note: Both Cloud Locations accounts and locations have a `UUID` identifier. The 
 
 ## GET accounts
 
-Use this endpoint to get all Cloud Locations accounts that you have created or that have been shared with you in your organization.
+Use this endpoint to retrieve all Cloud Locations accounts information that you have created or that has been shared with you in your organization.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
@@ -275,71 +275,59 @@ curl -X 'POST' \
   -H "Content-Type: application/json" \
   -d '{
     "type": "email",
-    "secret": "value-hidden",
-    "accountProperties":{
-    "roleARN": "arn:aws:iam::{CUSTOMER ACCOUNT ID}:role/<ROLE ARN>",
-    "userARN": "arn:aws:iam::{SERVICE ACCOUNT ID}:user/<USER ARN>"
+    "accountProperties": {
+      "to": "exampleuser@exammple.com"
   },
     "name": "Example Email Account",
-    "description": "Example Email account description",
-    "sharedTo": "exampleuser2@example.com"
+    "description": "Example Email account description"
   }'
 ```
-
-
 
 #### Response
 
 ```json
 {
-  "accountProperties": {},
-  "shared": false,
-  "createdDate": "YYYY-01-01T00:00:00Z",
-  "createdBy": "user@example.com",
-  "lastModifiedDate": "YYYY-01-01T00:00:00Z",
-  "name": "Example Account",
-  "description": "Example account description",
-  "modifiedBy": "user@example.com",
-  "secret": "********",
-  "type": "s3",
-  "uuid": "123e4567-e89b-12d3-a456-426614174000"
+  "type": "email",
+  "accountProperties": {
+    "to": "exampleuser@example.com"
+  },
+  "name": "Example Email Account",
+  "description": "Example Email account description",
+  "createdBy": "exampleuser@example.com",
+  "createdDate": "YYYY-06-02T16:19:04.039666Z",
+  "lastModifiedDate": "YYYY-06-02T16:19:04.039666Z",
+  "uuid": "9db1dccf-0be2-4ce5-9753-dc2fefeec3a3"
 }
+
 ```
 
 ### Request Parameters
 
-The following table describes the create account request parameters:
+The following table describes the Create account request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `type` | required | string | Account type |
-| `secret` | required | string | Account secret |
-| `accountProperties` | required | object | Account properties |
+| `accountProperties` | required | object | Contains "to" parameter for recipient |
 | `name` | required | string | Account name |
 | `description` | optional | string | Account description |
-| `sharedTo` | optional | string | User to share with |
 
 ### Response Parameters
 
-The following table describes the create account response parameters:
+The following table describes theCcreate account response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `accountProperties` | object | Account properties |
-| `shared` | boolean | Whether the account is shared |
-| `createdDate` | string | Creation date |
-| `createdBy` | string | Creator |
-| `lastModifiedDate` | string | Last modification date |
+| `accountProperties` | object | Contains "to" parameter for recipient |
+| `createdDate` | string | Account creation date |
+| `createdBy` | string | user creating account |
+| `lastModifiedDate` | string | Last account modification date |
 | `name` | string | Account name |
-| `description` | string | Account description |
-| `modifiedBy` | string | Last modifier |
-| `secret` | string | Account secret |
-| `type` | string | Account type |
-| `uuid` | string | Account UUID |
+| `uuid` | string | The account UUID. This is not the location UUID. |
 
 ## GET account by UUID
 
-Use this endpoint to get a specific Cloud Locations Account.
+Use this endpoint to retrieve information for a specific Cloud Locations Account.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
