@@ -241,8 +241,8 @@ The following table describes the GET accounts response parameters:
 | Name | Type | Description |
 | --- | --- | --- |
 | `type` | string | The type of account as described in the Account Types table|
-| `secret` | string | Array of account objects |
-| `accountProperties` | object | Contains object members specific to the account type that describe account properties. see the [Account properties](#account-properties) section of this guide. |
+| `secret` | string | The password associated with the type of account; e.g., `ftp` |
+| `accountProperties` | object | Contains object members specific to the account type. See the **Account properties** section of this guide. |
 | `name` | string | The friendly name of the account |
 | `description` | string | Description of account |
 | `createdBy` | string | Username of account creator |
@@ -372,31 +372,9 @@ curl -X 'GET' \
 
 In this example, the account `{UUID}` would be provided in the path as `bee11111-1e11-111b-111f-dd11c6b1111e`. The information retrieved for this account includes similar details as those supplied for the same type of account in the GET accounts endpoint described above.
 
-### Request Parameters
+### Request and Response Parameters
 
-The following table describes the get account by UUID request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `UUID` | required | string | Account UUID |
-
-### Response Parameters
-
-The following table describes the get account by UUID response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `accountProperties` | object | Account properties |
-| `shared` | boolean | Whether the account is shared |
-| `createdDate` | string | Creation date |
-| `createdBy` | string | Creator |
-| `lastModifiedDate` | string | Last modification date |
-| `name` | string | Account name |
-| `description` | string | Account description |
-| `modifiedBy` | string | Last modifier |
-| `secret` | string | Account secret |
-| `type` | string | Account type |
-| `uuid` | string | Account UUID |
+This endpoint contains parameters described in prevoius sections.
 
 ## PUT update account
 
@@ -423,9 +401,9 @@ curl -X 'PUT' \
     "type": "s3",
     "secret": "********",
     "accountProperties": {},
-    "name": "Updated Account",
-    "description": "Updated account description",
-    "sharedTo": "user@example.com"
+    "name": "Example Updated Account",
+    "description": "Example Updated Account description",
+    "sharedTo": "exampleuser2@example.com"
   }'
 ```
 
@@ -437,13 +415,13 @@ curl -X 'PUT' \
   "shared": false,
   "createdDate": "YYYY-01-01T00:00:00Z",
   "createdBy": "user@example.com",
-  "lastModifiedDate": "2023-01-02T00:00:00Z",
+  "lastModifiedDate": "YYYY-01-02T00:00:00Z",
   "name": "Updated Account",
-  "description": "Updated account description",
-  "modifiedBy": "user@example.com",
+  "description": "Example Updated Account description",
+  "modifiedBy": "exampleuser@example.com",
   "secret": "********",
   "type": "s3",
-  "uuid": "123e4567-e89b-12d3-a456-426614174000"
+  "uuid": "bxe11111-1e11-111b-111f-dd11c6b1111f"
 }
 ```
 
@@ -803,10 +781,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 ```json
 {
   "type": "s3",
-  "accountProperties":
-  {
-    "accessKeyID": "string"
-  },
+  "accountProperties":{},
   "name": "string",
   "description": "string",
   "secret": "string"
@@ -819,9 +794,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 {
   "type": "s3",
   "secret": "value-hidden",
-  "accountProperties": {
-    "accessKeyID": "string"
-  },
+  "accountProperties": {},
   "name": "string",
   "description": "string",
   "createdBy": "string",
@@ -830,6 +803,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
+Note: The s3 type account currently contains no account properties.
 
 ### s3 role ARN
 
