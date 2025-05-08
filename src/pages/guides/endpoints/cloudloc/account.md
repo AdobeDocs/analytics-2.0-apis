@@ -5,7 +5,7 @@ description: Use the Adobe Analytics Cloud Locations Account API to create accou
 
 # Cloud Locations Account API
 
-The Accounts API includes the following endpoints for managing Cloud Location storage accounts:
+Before you can create a Cloud Location with Adobe 2.0 APIs, you must first create a Cloud location account with the APIs in this guide. The Accounts API includes the following endpoints for managing Cloud Location storage accounts:
 
 * [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
 * [POST create account](#post-create-account): Create a new Cloud Locations account
