@@ -1,0 +1,1111 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Adobe Analytics Data Warehouse API",
+    "description": "Adobe Analytics Data Warehouse API 2.0 \n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
+    "version": "v2"
+  },
+  "servers": [
+    {
+      "url": "https://analytics.adobe.io/data_warehouse/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Data Warehouse Report API",
+      "description": "The data warehouse report API"
+    },
+    {
+      "name": "Data Warehouse Scheduled Requests API",
+      "description": "The data warehouse scheduled requests API"
+    }
+  ],
+  "paths": {
+    "/report/{UUID}": {
+      "get": {
+        "tags": [
+          "Data Warehouse Report API"
+        ],
+        "summary": "Retrieves a detailed data warehouse report for a scheduled request",
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "UUID",
+            "in": "path",
+            "description": "The report ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Unexpected Error - failed to get DW request info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Response containing the Data Warehouse report for the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Data Warehouse Report API"
+        ],
+        "summary": "Updates a data warehouse report",
+        "description": "Updates an existing scheduled Data Warehouse request.",
+        "operationId": "updateDataWarehouseJob",
+        "parameters": [
+          {
+            "name": "UUID",
+            "in": "path",
+            "description": "The report ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataWarehouseJobPut"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Unexpected Error - DW Job was not updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Response body describes the updated Data Warehouse report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report": {
+      "get": {
+        "tags": [
+          "Data Warehouse Report API"
+        ],
+        "summary": "Retrieves summarized information for data warehouse reports that match specified filters",
+        "operationId": "get_1",
+        "parameters": [
+          {
+            "name": "scheduledRequestUUID",
+            "in": "query",
+            "description": "The ID for a data warehouse scheduled request. This is required.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAfter",
+            "in": "query",
+            "description": "Filters for reports created on or after the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBefore",
+            "in": "query",
+            "description": "Filters for reports created on or before the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updatedAfter",
+            "in": "query",
+            "description": "Filters for reports updated on or after the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updatedBefore",
+            "in": "query",
+            "description": "Filters for reports updated on or before the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filters for reports based on specified status. Valid values are 'Completed', 'Canceled', 'Error - Failure To Send', 'Error - Processing', 'Created', 'Processing', and 'Pending'.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Determines ordering of requests. Valid columns are 'createdDate', and 'updatedDate' and valid directions are 'asc' and 'desc' seperated by a colon.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max number of requests that will be returned.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Unexpected Error - failed to get DW request info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Returns a list of Data Warehouse reports that match the specified filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DwRequestGetJobs"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scheduled": {
+      "get": {
+        "tags": [
+          "Data Warehouse Scheduled Requests API"
+        ],
+        "summary": "Retrieves summarized information data warehouse scheduled requests that match specified filters",
+        "operationId": "getScheduledRequest_2",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "A report suite identifier.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "createdAfter",
+            "in": "query",
+            "description": "Filters for requests created on or after the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBefore",
+            "in": "query",
+            "description": "Filters for requests created on or before the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updatedAfter",
+            "in": "query",
+            "description": "Filters for requests updated on or after the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "updatedBefore",
+            "in": "query",
+            "description": "Filters for requests updated on or before the specified datetime.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filters for requests based on status. Valid values are: 'Scheduled', 'Completed', 'Canceled', and 'Error'.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Determines ordering of requests. Valid columns are 'createdDate', and 'updatedDate' and valid directions are 'asc' and 'desc' seperated by a colon.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max number of requests that will be returned.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Unexpected Error - failed to get scheduled request info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Response body includes information about the Data Warehouse Scheduled Requests that match the filters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DwTemplateSchedules"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Data Warehouse Scheduled Requests API"
+        ],
+        "summary": "Create a data warehouse scheduled request",
+        "description": "Creates a new scheduled Data Warehouse request. An example definition for testing the API is shown below. This creates a request that generates a single report. To use the example, replace 'request.rsid' with an rsid to which you have Data Warehouse access (shown as 'sistr2' in the example), and then add a valid 'exportLocationUUID' under delivery.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"runOnceSetPeriod\"\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run-Once Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"startDateTime\": \"2023-01-01T00:00:00Z\",\r\n              \"endDateTime\": \"2023-01-01T23:59:59Z\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\n Below is an example of a request that generates a daily report (for yesterday's data) for 10 days.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"daily\"\r\n    }, \"cancelSettings\": {\r\n      \"cancelMethod\": \"afterOccurrences\",\r\n      \"endAfterNumOccurrences\": 10\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run Daily Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"preset\": \"Yesterday\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\nThe 'id' of items in the 'metricList' are identity service names. The example below shows a 'metricList' entry with the participation metric.\n\n```json\n{\r\n  \"id\": \"metrics/campaigninstances\",\r\n  \"properties\": {\r\n     \"isParticipation\": true\r\n   }\r\n}\r\n\r\n```\n\nFor 'dimensionList', the entries can reference an identity service or a segment service. The 'id' in the following 'dimensionList' example is specified as the path of an identity service.\n\n```json\n{\r\n  \"id\": \"variables/geocity\",\r\n}\r\n\r\n```\n\nThe example below shows a 'dimensionList' entry that references a segment service, instead of the identity service shown in the previous example. Note that when a 'namespace' is not specified with a service, it is assumed to be an identity service.\n\n```json\n{\r\n  \"namespace\": \"Segment Service\",\r\n  \"id\": \"s0_000000000000000000000000\",\r\n}\r\n\r\n```\n\n",
+        "operationId": "createDataWarehouseScheduledJob",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataWarehouseTemplateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - DW Scheduled Request Not Created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Response describes the created scheduled Data Warehouse request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scheduled/{UUID}": {
+      "get": {
+        "tags": [
+          "Data Warehouse Scheduled Requests API"
+        ],
+        "summary": "Retrieves a detailed data warehouse scheduled request",
+        "operationId": "getScheduledRequest_1",
+        "parameters": [
+          {
+            "name": "UUID",
+            "in": "path",
+            "description": "The schedule request ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - failed to get scheduled request info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Response body describes the scheduled Data Warehouse request for the specified ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Data Warehouse Scheduled Requests API"
+        ],
+        "summary": "Updates a data warehouse scheduled request",
+        "description": "Updates an existing scheduled Data Warehouse request. An example request body is shown below. This example cancels a request and all recent reports for the UUID, as specified as a path parameter.\n\n```json\n{\r\n  \"metadata\": {\r\n    \"status\": \"cancelIncludeReports\"\r\n  }\r\n}\r\n```\n\n",
+        "operationId": "updateDataWarehouseTemplate",
+        "parameters": [
+          {
+            "name": "UUID",
+            "in": "path",
+            "description": "The schedule request ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataWarehouseTemplatePatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Data Warehouse Request was not updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Response indicates the scheduled Data Warehouse request has been updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestView"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeliverySettingsResponse": {
+        "type": "object",
+        "properties": {
+          "exportLocationUUID": {
+            "type": "string"
+          },
+          "email": {
+            "$ref": "#/components/schemas/EmailSettings"
+          },
+          "legacyEmail": {
+            "type": "boolean"
+          },
+          "legacyAzure": {
+            "$ref": "#/components/schemas/LegacyAzureSettings"
+          },
+          "legacyFTP": {
+            "$ref": "#/components/schemas/LegacyDeliveryFTPSettings"
+          },
+          "legacyS3": {
+            "$ref": "#/components/schemas/LegacyDeliveryS3Settings"
+          }
+        }
+      },
+      "EmailSettings": {
+        "type": "object",
+        "properties": {
+          "notificationEmailTo": {
+            "type": "string"
+          },
+          "notificationEmailFrom": {
+            "type": "string"
+          },
+          "notificationEmailSubject": {
+            "type": "string"
+          },
+          "notificationEmailNotes": {
+            "type": "string"
+          }
+        }
+      },
+      "LegacyAzureSettings": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "container": {
+            "type": "string"
+          },
+          "prefix": {
+            "type": "string"
+          }
+        }
+      },
+      "LegacyDeliveryFTPSettings": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "directory": {
+            "type": "string"
+          }
+        }
+      },
+      "LegacyDeliveryS3Settings": {
+        "type": "object",
+        "properties": {
+          "awsBucket": {
+            "type": "string"
+          },
+          "awsAccessKey": {
+            "type": "string"
+          },
+          "awsPath": {
+            "type": "string"
+          }
+        }
+      },
+      "OutputFileSettings": {
+        "type": "object",
+        "properties": {
+          "compressionFormat": {
+            "type": "string"
+          },
+          "outputFileBasename": {
+            "type": "string"
+          },
+          "fileFormat": {
+            "type": "string"
+          },
+          "sendEmptyFileForNoDataReport": {
+            "type": "boolean"
+          },
+          "beginningOfReportComments": {
+            "type": "string"
+          },
+          "sendDigitalSignatureFile": {
+            "type": "boolean"
+          },
+          "sendManifestFile": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ReportData": {
+        "type": "object",
+        "properties": {
+          "rsid": {
+            "type": "string"
+          },
+          "fromDate": {
+            "type": "string"
+          },
+          "toDate": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportMetadata": {
+        "type": "object",
+        "properties": {
+          "legacyReportID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reportUUID": {
+            "type": "string"
+          },
+          "scheduledRequestUUID": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          },
+          "startedDate": {
+            "type": "string"
+          },
+          "completedDate": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "currentTask": {
+            "type": "string"
+          },
+          "jobType": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportView": {
+        "properties": {
+          "delivery": {
+            "$ref": "#/components/schemas/DeliverySettingsResponse"
+          },
+          "outputFile": {
+            "$ref": "#/components/schemas/OutputFileSettings"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ReportMetadata"
+          },
+          "report": {
+            "$ref": "#/components/schemas/ReportData"
+          }
+        }
+      },
+      "DwRequestGetJobs": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalReturned": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reportList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportTruncatedView"
+            }
+          }
+        }
+      },
+      "ReportTruncatedView": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/TruncatedReportMetadata"
+          },
+          "report": {
+            "$ref": "#/components/schemas/TruncatedReportData"
+          }
+        }
+      },
+      "TruncatedReportData": {
+        "type": "object",
+        "properties": {
+          "fromDate": {
+            "type": "string"
+          },
+          "toDate": {
+            "type": "string"
+          }
+        }
+      },
+      "TruncatedReportMetadata": {
+        "type": "object",
+        "properties": {
+          "legacyReportID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "DataWarehouseJobPut": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          }
+        }
+      },
+      "Metadata": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "AnalyticsAsrErrorResponse": {
+        "properties": {
+          "errorDescription": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorId": {
+            "type": "string"
+          }
+        }
+      },
+      "CancelSettings": {
+        "type": "object",
+        "properties": {
+          "cancelMethod": {
+            "type": "string"
+          },
+          "cancelDate": {
+            "type": "string"
+          },
+          "endAfterNumOccurrences": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "FrequencySettings": {
+        "type": "object",
+        "properties": {
+          "frequency": {
+            "type": "string"
+          },
+          "every": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfMonth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfWeek": {
+            "type": "string"
+          },
+          "month": {
+            "type": "string"
+          },
+          "weekOfMonth": {
+            "type": "string"
+          }
+        }
+      },
+      "OwnerInfo": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string"
+          },
+          "login": {
+            "type": "string"
+          },
+          "imsUserId": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportColumn": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "ReportRange": {
+        "type": "object",
+        "properties": {
+          "preset": {
+            "type": "string"
+          },
+          "startDateTime": {
+            "type": "string"
+          },
+          "endDateTime": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportSettings": {
+        "type": "object",
+        "properties": {
+          "dimensionList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportColumn"
+            }
+          },
+          "metricList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportColumn"
+            }
+          },
+          "segmentList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Segment"
+            }
+          },
+          "dateGranularity": {
+            "type": "string"
+          },
+          "numberOfRowsInTable": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reportRange": {
+            "$ref": "#/components/schemas/ReportRange"
+          },
+          "sortByMetrics": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RequestInfo": {
+        "type": "object",
+        "properties": {
+          "scheduledRequestUUID": {
+            "type": "string"
+          },
+          "scheduledRequestLegacyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          },
+          "jobType": {
+            "type": "string"
+          },
+          "ownerInfo": {
+            "$ref": "#/components/schemas/OwnerInfo"
+          }
+        }
+      },
+      "RequestView": {
+        "properties": {
+          "schedule": {
+            "$ref": "#/components/schemas/TemplateSchedule"
+          },
+          "request": {
+            "$ref": "#/components/schemas/TemplateReportParameters"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliverySettingsResponse"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/RequestInfo"
+          }
+        }
+      },
+      "Segment": {
+        "type": "object",
+        "properties": {
+          "namespace": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "SharingInfo": {
+        "type": "object",
+        "properties": {
+          "shareWithOtherUsers": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TemplateReportParameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sharing": {
+            "$ref": "#/components/schemas/SharingInfo"
+          },
+          "outputFile": {
+            "$ref": "#/components/schemas/OutputFileSettings"
+          },
+          "reportParameters": {
+            "$ref": "#/components/schemas/ReportSettings"
+          },
+          "rsid": {
+            "type": "string"
+          }
+        }
+      },
+      "TemplateSchedule": {
+        "type": "object",
+        "properties": {
+          "scheduleAt": {
+            "type": "string"
+          },
+          "periodSettings": {
+            "$ref": "#/components/schemas/FrequencySettings"
+          },
+          "cancelSettings": {
+            "$ref": "#/components/schemas/CancelSettings"
+          }
+        }
+      },
+      "DataWarehouseTemplateRequest": {
+        "type": "object",
+        "properties": {
+          "schedule": {
+            "$ref": "#/components/schemas/TemplateSchedule"
+          },
+          "request": {
+            "$ref": "#/components/schemas/TemplateReportParameters"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliverySettings"
+          }
+        }
+      },
+      "DeliverySettings": {
+        "type": "object",
+        "properties": {
+          "exportLocationUUID": {
+            "type": "string"
+          },
+          "email": {
+            "$ref": "#/components/schemas/EmailSettings"
+          }
+        }
+      },
+      "DwTemplateSchedules": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalReturned": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "scheduledRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestTruncatedView"
+            }
+          }
+        }
+      },
+      "RequestTruncatedView": {
+        "type": "object",
+        "properties": {
+          "mostRecentReport": {
+            "$ref": "#/components/schemas/TruncatedReportInfo"
+          },
+          "request": {
+            "$ref": "#/components/schemas/TruncatedTemplateReportParameters"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/TruncatedRequestInfo"
+          }
+        }
+      },
+      "TruncatedReportInfo": {
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/TruncatedReportMetadata"
+          }
+        }
+      },
+      "TruncatedRequestInfo": {
+        "type": "object",
+        "properties": {
+          "scheduledRequestUUID": {
+            "type": "string"
+          },
+          "scheduledRequestLegacyID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string"
+          },
+          "updatedDate": {
+            "type": "string"
+          },
+          "ownerInfo": {
+            "$ref": "#/components/schemas/TuncatedOwnerInfo"
+          }
+        }
+      },
+      "TruncatedTemplateReportParameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "rsid": {
+            "type": "string"
+          }
+        }
+      },
+      "TuncatedOwnerInfo": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "imsUserId": {
+            "type": "string"
+          }
+        }
+      },
+      "DataWarehouseTemplatePatch": {
+        "type": "object",
+        "properties": {
+          "schedule": {
+            "$ref": "#/components/schemas/TemplateSchedule"
+          },
+          "request": {
+            "$ref": "#/components/schemas/RequestPatch"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliverySettings"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/PatchMetadata"
+          }
+        }
+      },
+      "PatchMetadata": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ReportParameterPatch": {
+        "type": "object",
+        "properties": {
+          "numberOfRowsInTable": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "RequestPatch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sharing": {
+            "$ref": "#/components/schemas/SharingInfo"
+          },
+          "outputFile": {
+            "$ref": "#/components/schemas/OutputFileSettings"
+          },
+          "reportParameters": {
+            "$ref": "#/components/schemas/ReportParameterPatch"
+          }
+        }
+      }
+    }
+  }
+}
