@@ -6,16 +6,16 @@ const GetCredentialOAuthS2s = () => {
     
   return (
 
-    <GetCredential className="getCredentialContainer" templateId="67a4f6328b84ba26abff57f6" productName='Adobe Customer Journey Analytics' >
+    <GetCredential className="getCredentialContainer" templateId="67a4f6328b84ba26abff57f6" productName='Adobe Analytics' >
 
-      <GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Customer Journey Analytics APIs." buttonText="Sign in" />
+      <GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />
 
-      <GetCredential.Form title="Get credentials" paragraph="Create credentials that you can use to call the Customer Journey Analytics APIs." className="formClass">
+      <GetCredential.Form title="Get credentials" paragraph="Create credentials that you can use to call the Adobe Analytics APIs." className="formClass">
 
         <GetCredential.Form.CredentialName label="Credential name" description="The credential name must be unique, use alphanumeric characters, and between 6 and 45 characters long. A project will be automatically created with the same name in Adobe Developer Console." range="45" />
 
         <GetCredential.Form.Products label="Included products and services">
-          <GetCredential.Form.Product label="Adobe Customer Journey Analytics" icon={platform} />
+          <GetCredential.Form.Product label="Adobe Analytics" icon={platform} />
         </GetCredential.Form.Products>
 
         <GetCredential.Form.AdobeDeveloperConsole label='By checking this box, you agree to' linkText="Adobe Developer Terms of Use" href="https://wwwimages2.adobe.com/content/dam/cc/en/legal/servicetou/Adobe-Developer-Additional-Terms_en-US_20230822.pdf" />
@@ -38,10 +38,10 @@ const GetCredentialOAuthS2s = () => {
                 Authentication documentation
               </a>
               <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/cja-apis/docs/">
-                Adobe Customer Journey Analytics API documentation
+                Adobe Analytics API documentation
               </a>
-              <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/browse/customer-journey-analytics">
-                Adobe Customer Journey Analytics documentation
+              <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/analytics">
+                Adobe Analytics documentation
               </a>
             </div>
           </div>
@@ -70,11 +70,11 @@ const GetCredentialOAuthS2s = () => {
               <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-authentication">
                 Authentication documentation
               </a>
-              <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/cja-apis/docs/">
-                Adobe Customer Journey Analytics API documentation
+              <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/analytics-apis/docs/2.0/">
+                Adobe Analytics API documentation
               </a>
-              <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/browse/customer-journey-analytics">
-                Adobe Customer Journey Analytics documentation
+              <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/analytics">
+                Adobe Analytics documentation
               </a>
             </div>
           </div>
@@ -93,7 +93,7 @@ const GetCredentialOAuthS2s = () => {
         <GetCredential.Card.AccessToken helpText="" buttonLabel="Generate and copy token" heading={(<>Access token<br/><br/> <span style="font-weight:normal"><small>After copying the access token, paste it into the **Authorization** header parameter after typing the word <code>Bearer</code> with one space following the word.</small></span></>)} />
 
 
-        <GetCredential.Card.CredentialDetails heading={(<>Credential details<br/><br/> <span style="font-weight:normal"><small>You can use the following credential details to try the Adobe Customer Journey Analytics APIs below.<ul><li>Client ID: Your public identifier for accessing the APIs. This acts as an API key when used with the Customer Journey Analytics APIs, and corresponds with the <code>x-api-key</code> header.</li><li>Organization ID: The ID of the organization you're using with the APIs. This corresponds with the <code>x-gw-ims-org-id</code> header.</li></ul></small></span></>)} orderBy="ClientId,ImsOrgID">
+        <GetCredential.Card.CredentialDetails heading={(<>Credential details<br/><br/> <span style="font-weight:normal"><small>You can use the following credential details to try the Adobe Analytics APIs below.<ul><li>Client ID: Your public identifier for accessing the APIs. This acts as an API key when used with the Adobe Analytics APIs, and corresponds with the <code>x-api-key</code> header.</li><li>Organization ID: The ID of the organization you're using with the APIs. This corresponds with the <code>x-gw-ims-org-id</code> header.</li></ul></small></span></>)} orderBy="ClientId,ImsOrgID">
           <GetCredential.Card.CredentialDetails.ClientId heading="Client ID (x-api-key)" />
           <GetCredential.Card.CredentialDetails.ImsOrgID heading="Organization ID" />
           <GetCredential.Card.CredentialDetails.Scopes heading="Scopes" scope="openid,session,AdobeID,read_organizations,additional_info.projectedProductContext" />
@@ -101,7 +101,7 @@ const GetCredentialOAuthS2s = () => {
 
       </GetCredential.Card>
 
-      <GetCredential.Return title="Previously created projects" paragraph="Select a project and access your existing credentials for Adobe  Customer Journey Analytics." className="card_developer_console" isCollapsable="true">
+      <GetCredential.Return title="Previously created projects" paragraph="Select a project and access your existing credentials for Adobe  Adobe Analytics." className="card_developer_console" isCollapsable="true">
 
         <GetCredential.Return.Side>
           <GetCredential.Return.Side.Custom>
@@ -113,7 +113,7 @@ const GetCredentialOAuthS2s = () => {
           <GetCredential.Return.Side.NewCredential heading="Need another credential?" buttonLabel="Create new credential" />
         </GetCredential.Return.Side>
 
-        <GetCredential.Return.CredentialDetails heading={(<>Credential details<br/><br/> <span style="font-weight:normal"><small>You can use the following credential details to try the Adobe Customer Journey Analytics APIs below.<ul><li>Client ID: Your public identifier for accessing the APIs. This acts as an API key when used with the APIs, and corresponds with the <code>x-api-key</code> header.</li><li>Organization ID: The ID of the organization you're using with the APIs. This corresponds with the <code>x-gw-ims-org-id</code> header.</li></ul></small></span></>)} orderBy="ClientId,ImsOrgID">
+        <GetCredential.Return.CredentialDetails heading={(<>Credential details<br/><br/> <span style="font-weight:normal"><small>You can use the following credential details to try the Adobe Analytics APIs below.<ul><li>Client ID: Your public identifier for accessing the APIs. This acts as an API key when used with the APIs, and corresponds with the <code>x-api-key</code> header.</li><li>Organization ID: The ID of the organization you're using with the APIs. This corresponds with the <code>x-gw-ims-org-id</code> header.</li></ul></small></span></>)} orderBy="ClientId,ImsOrgID">
           <GetCredential.Return.CredentialDetails.ClientId heading="Client ID (x-api-key)" />
           <GetCredential.Return.CredentialDetails.ImsOrgID heading="Organization ID" />
           <GetCredential.Return.CredentialDetails.Scopes heading="Scopes" scope="openid,session,AdobeID,read_organizations,additional_info.projectedProductContext" />
@@ -138,9 +138,9 @@ const GetCredentialOAuthS2s = () => {
         paragraph="Create unique credentials that you will use to call multiple APIs from your application."
       >
         <GetCredential.RequestAccess.EdgeCase>
-          <GetCredential.RequestAccess.EdgeCase.NoProduct title="Your organization does not have access to Adobe Customer Journey Analytics." />
-          <GetCredential.RequestAccess.EdgeCase.Type1User title="You do not have access to Adobe Customer Journey Analytics. Please use another organization and try again." />
-          <GetCredential.RequestAccess.EdgeCase.NotMember title="You do not have access to Adobe Customer Journey Analytics. Please use another organization and try again." />
+          <GetCredential.RequestAccess.EdgeCase.NoProduct title="Your organization does not have access to Adobe Analytics." />
+          <GetCredential.RequestAccess.EdgeCase.Type1User title="You do not have access to Adobe Analytics. Please use another organization and try again." />
+          <GetCredential.RequestAccess.EdgeCase.NotMember title="You do not have access to Adobe Analytics. Please use another organization and try again." />
         </GetCredential.RequestAccess.EdgeCase>
 
         <GetCredential.RequestAccess.RestrictedAccess
@@ -150,7 +150,7 @@ const GetCredentialOAuthS2s = () => {
           <GetCredential.RequestAccess.RestrictedAccess.Products label="Included products and services">
             <GetCredential.RequestAccess.RestrictedAccess.Products.Product
               icon={platform}
-              label="Adobe Customer Journey Analytics"
+              label="Adobe Analytics"
             />
           </GetCredential.RequestAccess.RestrictedAccess.Products>
         </GetCredential.RequestAccess.RestrictedAccess>
@@ -171,11 +171,11 @@ const GetCredentialOAuthS2s = () => {
               <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-authentication">
                 Authentication documentation
               </a>
-              <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/cja-apis/docs/">
-                Adobe Customer Journey Analytics API documentation
+              <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/analytics-apis/docs/2.0/">
+                Adobe Analytics API documentation
               </a>
-              <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/browse/customer-journey-analytics">
-                Adobe Customer Journey Analytics documentation
+              <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/analytics">
+                Adobe Analytics documentation
               </a>
             </div>
           </div>
