@@ -9,7 +9,7 @@ keywords:
   - Report Suites API Swagger
 layout: none
 ---
-import GetCredentialsOauth2 from "./credentials/GetCredentialsOAuth2.js"
+import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
 
 <GetCredentialsOauth2 />
 
