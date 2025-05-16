@@ -13,4 +13,4 @@ import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
 
 <GetCredentialsOauth2 />
 
-<RedoclyAPIBlock src="/analytics-2.0-apis/livestream.json" scrollYOffset={64}/>
+<RedoclyAPIBlock src="/analytics-apis/docs/2.0/livestream.json" scrollYOffset={64}/>
