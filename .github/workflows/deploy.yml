@@ -123,7 +123,7 @@ jobs:
           PATH_PREFIX: ${{ needs.set-state.outputs.path_prefix }}
           GATSBY_ADOBE_LAUNCH_SRC: ${{ secrets.AIO_ADOBE_LAUNCH_DEV_SRC }}
           GATSBY_ADDITIONAL_ADOBE_ANALYTICS_ACCOUNTS: ${{ secrets.AIO_REPORT_SUITE_DEV}}
-          GATSBY_ADOBE_ANALYTICS_ENV: 'dev'
+          GATSBY_ADOBE_ANALYTICS_ENV: "dev"
           REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_OWNER: ${{ github.event.repository.owner.login }}
           REPO_NAME: ${{ github.event.repository.name }}
@@ -140,7 +140,10 @@ jobs:
           GATSBY_ALGOLIA_API_KEY: ${{ secrets.AIO_ALGOLIA_API_KEY }}
           GATSBY_ALGOLIA_INDEX_ALL_SRC: ${{ secrets.AIO_ALGOLIA_INDEX_ALL_SRC }}
           GATSBY_ALGOLIA_SEARCH_INDEX: ${{ secrets.AIO_ALGOLIA_SEARCH_INDEX }}
+          GATSBY_ALGOLIA_INDEX_ENV_PREFIX: ${{ secrets.AIO_ALGOLIA_INDEX_ENV_PREFIX }}
           GATSBY_FEDS_PRIVACY_ID: ${{ secrets.AIO_FEDS_PRIVACY_ID }}
+          GATSBY_SITE_DOMAIN_URL: https://developer-stage.adobe.com
+          GATSBY_REDOCLY_KEY: ${{ secrets.REDOCLY_LICENSE_KEY }}
 
       - name: Deploy
         uses: AdobeDocs/static-website-deploy@master
@@ -228,7 +231,7 @@ jobs:
           PATH_PREFIX: ${{ needs.set-state.outputs.path_prefix }}
           GATSBY_ADOBE_LAUNCH_SRC: ${{ secrets.AIO_ADOBE_LAUNCH_PROD_SRC }}
           GATSBY_ADDITIONAL_ADOBE_ANALYTICS_ACCOUNTS: ${{ secrets.AIO_REPORT_SUITE_PROD }}
-          GATSBY_ADOBE_ANALYTICS_ENV: 'production'
+          GATSBY_ADOBE_ANALYTICS_ENV: "production"
           REPO_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_OWNER: ${{ github.event.repository.owner.login }}
           REPO_NAME: ${{ github.event.repository.name }}
@@ -244,11 +247,14 @@ jobs:
           GATSBY_ALGOLIA_APP_ID: ${{ secrets.AIO_ALGOLIA_APP_ID }}
           GATSBY_ALGOLIA_API_KEY: ${{ secrets.AIO_ALGOLIA_API_KEY }}
           ALGOLIA_WRITE_API_KEY: ${{ secrets.AIO_ALGOLIA_WRITE_API_KEY }}
-          ALGOLIA_INDEXATION_MODE: ${{ secrets.AIO_ALGOLIA_INDEXATION_MODE }}
-          ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME || github.event.repository.name }}
+          ALGOLIA_INDEXATION_MODE: ${{ github.event.inputs.index-mode || 'index' }}
+          GATSBY_ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME || github.event.repository.name }}
           GATSBY_ALGOLIA_INDEX_ALL_SRC: ${{ secrets.AIO_ALGOLIA_INDEX_ALL_SRC }}
           GATSBY_ALGOLIA_SEARCH_INDEX: ${{ secrets.AIO_ALGOLIA_SEARCH_INDEX }}
+          GATSBY_ALGOLIA_INDEX_ENV_PREFIX: ${{ secrets.AIO_ALGOLIA_INDEX_ENV_PREFIX }}
           GATSBY_FEDS_PRIVACY_ID: ${{ secrets.AIO_FEDS_PRIVACY_ID }}
+          GATSBY_SITE_DOMAIN_URL: https://developer.adobe.com
+          GATSBY_REDOCLY_KEY: ${{ secrets.REDOCLY_LICENSE_KEY }}
       - name: Deploy
         uses: AdobeDocs/static-website-deploy@master
         with:
