@@ -8,7 +8,8 @@ const GetCredentialOAuthS2s = () => {
 
     <GetCredential className="getCredentialContainer" templateId="67a4f6328b84ba26abff57f6" productName='Adobe Analytics' >
 
-      <GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />
+      {/*<GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />*/}
+      <GetCredential.SignIn title="Get credentials" paragraph="Adobe is working on improving the 'Try it' functionality. In the meantime, you can authenticate in your own environment to use these API calls." />
 
       <GetCredential.Form title="Get credentials" paragraph="Create credentials that you can use to call the Adobe Analytics APIs." className="formClass">
 
@@ -37,7 +38,7 @@ const GetCredentialOAuthS2s = () => {
               <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/experience-platform/landing/platform-apis/api-authentication">
                 Authentication documentation
               </a>
-              <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/cja-apis/docs/">
+              <a style={{ color: "#0265DC" }} href="https://developer.adobe.com/analytics-apis/docs/2.0/">
                 Adobe Analytics API documentation
               </a>
               <a style={{ color: "#0265DC" }} href="https://experienceleague.adobe.com/en/docs/analytics">
