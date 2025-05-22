@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="refresh" content="0; url=https://developer.adobe.com/analytics-apis/docs/2.0/apis/" />
+	<meta http-equiv="refresh" content="5; url=https://developer.adobe.com/analytics-apis/docs/2.0/apis/" />
+
 	<title>Redirecting…</title>
 	<link rel="icon" type="image/png" href="https://www.adobe.com/favicon.ico" />
 	<style>
@@ -12,10 +13,41 @@
 			font-style: normal;
 		}
 	</style>
+	<script>
+		(function () {
+			const defaultUrl = "https://developer.adobe.com/analytics-apis/docs/2.0/apis/";
+
+			const map = {
+				"Analytics 2.0 APIs": defaultUrl,
+				"Bulk Data Insertion APIs": defaultUrl + "bulk-data-insertion/",
+				"Classification 2.0 APIs": defaultUrl + "classification/",
+				"Cloud Location APIs": defaultUrl + "cloud-locations/",
+				"Component Migration APIs": defaultUrl + "component-migration/",
+				"Data Feed APIs": defaultUrl + "data-feeds/",
+				"Data Repair APIs": defaultUrl + "data-repair/",
+				"Data Sources 2.0 APIs": defaultUrl + "data-sources/",
+				"Data Warehouse APIs": defaultUrl + "data-warehouse/",
+				"Livestream APIs": defaultUrl + "livestream/",
+				"Report Suite APIs": defaultUrl + "report-suites/"
+			};
+
+			const params = new URLSearchParams(window.location.search);
+			const key = params.get("urls.primaryName") && decodeURIComponent(params.get("urls.primaryName"));
+
+			const target = (key && map[key]) ? map[key] : defaultUrl;
+			window.location.replace(target);
+		})();
+	</script>
+
+	<noscript>
+		<meta http-equiv="refresh" content="0; url=https://developer.adobe.com/analytics-apis/docs/2.0/apis/" />
+	</noscript>
 </head>
 
 <body>
-	<p>If you are not redirected automatically, <a href="https://developer.adobe.com/analytics-apis/docs/2.0/apis/">click here</a>.</p>
+	<p>
+		If you are not redirected automatically, <a href="https://developer.adobe.com/analytics-apis/docs/2.0/apis/">click here</a>.
+	</p>
 </body>
 
 </html>

@@ -43,6 +43,10 @@ module.exports = {
             path: 'apis'
           },
           {
+            title: 'Bulk Data Insertion APIs',
+            path: 'apis/bulk-data-insertion'
+          },
+          {
             title: 'Component Migration APIs',
             path: 'apis/component-migration'
           },
@@ -68,7 +72,7 @@ module.exports = {
           },
           {
             title: 'Data Warehouse APIs',
-            path: 'apis/data-sources'
+            path: 'apis/data-warehouse'
           },
           {
             title: 'Livestream APIs',
