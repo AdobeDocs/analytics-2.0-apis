@@ -124,7 +124,7 @@ curl -X 'GET' \
     },
     {
       "type": "azure_sas",
-      "secret": "value-hidden",
+      "secret": "examplepassword",
       "accountProperties": {
         "keyVaultURI": "https://cja-export-qe-test.vault.azure.net/",
         "keyVaultSecretName": "sas-token",
@@ -142,7 +142,7 @@ curl -X 'GET' \
     },
     {
       "type": "azure_rbac",
-      "secret": "value-hidden",
+      "secret": "examplepassword",
       "accountProperties": {
         "tenantId": "fa4b4b4a-4b44-4444-44ae-d2c444decee4",
         "appId": "d11f11db-e11e-1ac1-aa1c-11fff11fdb11"
@@ -855,35 +855,27 @@ curl -X 'GET' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  -d '{
-  "type": "s3_role_arn",
-  "accountUuid": "example s3 arn account ID",
-  "application": "DATA_FEED",
-  "name": "example s3arn account",
-  "description": "example s3arn account description",
-  "properties": {
-    "bucket": "string",
-    "prefix": "string"
-  }
-    }'
 ```
 
 #### Response
 
 ```json
 {
-  "type": "s3_role_arn",
-  "accountUuid": "example s3 arn account ID",
-  "application": "DATA_FEED",
-  "properties": {
-    "bucket": "string",
-    "prefix": "string"
-  },
-  "name": "example s3arn account",
-  "description": "example s3arn account description",
-  "createdBy": "exampleuser@example.com",
-  "createdDate": "YYYY-05-04T21:56:05.784488Z",
-  "lastModifiedDate": "YYYY-05-04T21:56:05.784488Z",
-  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
-},
+  "userARN": "arn:aws:iam::874017777777:user/S-df-rest-api"
+}
 ```
+
+ 
+### Example details
+
+In the examples above, the GET s3 role arn method is used to request the userARN value. The value is provided in the response and can be used to create a roleARN in the AWS portal. After creating the roleARN, you can create a cloud locations account with the POST create account method described in a previous section. See the Account Properties section in this guide to provide a complete POST request.  
+
+
+For more information, see the following:
+
+[Cloud Locations API overview](index.md)
+[Cloud Locations API methods endpoint guide](locations.md)
+
+
+
+
