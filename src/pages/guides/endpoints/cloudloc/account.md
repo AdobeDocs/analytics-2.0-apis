@@ -275,7 +275,7 @@ curl -X 'POST' \
   -d '{
     "type": "email",
     "accountProperties": {
-      "to": "exampleuser@exammple.com"
+      "to": "exampleuser@example.com"
   },
     "name": "Example Email Account",
     "description": "Example Email account description"
