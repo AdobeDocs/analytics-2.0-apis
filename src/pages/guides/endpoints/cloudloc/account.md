@@ -208,7 +208,7 @@ curl -X 'GET' \
       "shared": false,
       "deleted": false,
       "uuid": "a1be1111-1dea-1111-1edd-f1def11c1f11"
-    }
+}
  
 ```
 
