@@ -49,7 +49,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "accept: application/json" \
@@ -266,7 +266,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "x-api-key: {CLIENT_ID}" \
@@ -350,7 +350,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -402,7 +402,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -474,7 +474,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
