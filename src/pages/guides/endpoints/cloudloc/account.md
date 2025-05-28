@@ -14,7 +14,6 @@ Before you can create a Cloud Location with Adobe 2.0 APIs, you must first creat
 * [DELETE account](#delete-account): Delete a specific Cloud Locations account
 * [GET s3 role arn](#get-s3-role-arn): Retrieve an `userARN` value to create an AWS s3 role arn cloud account
 
-
 ### Account Types
 
 Analytics API Cloud Locations accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types:
@@ -50,7 +49,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "accept: application/json" \
@@ -217,7 +216,7 @@ The example request above does not include any optional query parameters, so it 
 
 The example response above shows the following:
 
-* A response body that includes accounts with all supported types as described in the [Account Types table](#account-types) above.
+* A response body that includes accounts with all supported types as described in the Account Types table above.
 
 * An `accountProperties` object for each account. This object contains parameters that are specific to the type of account. For more information, see the [Account properties](#account-properties) section of this guide.
 
@@ -267,7 +266,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "x-api-key: {CLIENT_ID}" \
@@ -351,7 +350,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -403,7 +402,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -475,7 +474,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -786,7 +785,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 }
 ```
 
-Note: The s3 type account currently contains no account properties.
+**Note**: The s3 type account currently contains no account properties.
 
 ### s3 role ARN
 
@@ -846,7 +845,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```sh
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/cloudAccount/account/s3_role_arn" \
   -H "accept: application/json" \
