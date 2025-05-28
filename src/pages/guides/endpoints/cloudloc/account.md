@@ -233,7 +233,7 @@ The following table describes the GET accounts query request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `createdBy` | optional | string | Username of account creator |
-| `type` | optional | string | The type of account as described in the [Account Types table](#account-types) |
+| `type` | optional | string | The type of account as described in the Account Types table |
 | `page` | optional | integer | The page number to return |
 | `limit` | optional | integer | Maximum number of items to show per page |
 
