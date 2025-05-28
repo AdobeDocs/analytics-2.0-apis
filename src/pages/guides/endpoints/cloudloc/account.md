@@ -29,7 +29,7 @@ Analytics API Cloud Locations accounts are specified by `type`. Account types ar
 | `azure_rbac` | Data to be exported to Microsoft Azure Role-Based Access Control |
 | `azure_sas` | Data to be exported to Microsoft Azure Shared Access Signatures |
 | `s3` | Data to be exported to Amazon Simple Storage Service |
-| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM). See separate instructions for creating this account type.  |
+| `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name (ARN) fields for Identity and Access Management (IAM). See instructions below for creating this account type. |
 
 
 Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type.
@@ -243,7 +243,7 @@ The following table describes the GET accounts response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `type` | string | The type of account as described in the Account Types table|
+| `type` | string | The type of account as described in the Account Types table |
 | `secret` | string | The password associated with the type of account; e.g., `ftp` |
 | `accountProperties` | object | Contains object members specific to the account type. See the **Account properties** section of this guide. |
 | `name` | string | The friendly name of the account |
@@ -852,7 +852,7 @@ curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/cloudAccount/account/s3_role_arn" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
