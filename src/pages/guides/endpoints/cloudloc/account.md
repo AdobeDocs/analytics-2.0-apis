@@ -845,7 +845,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/cloudAccount/account/s3_role_arn" \
   -H "accept: application/json" \
