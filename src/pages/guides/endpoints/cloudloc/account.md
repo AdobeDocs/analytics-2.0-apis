@@ -49,7 +49,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "accept: application/json" \
@@ -266,7 +266,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account" \
   -H "x-api-key: {CLIENT_ID}" \
@@ -350,7 +350,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -402,7 +402,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -474,7 +474,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
@@ -825,7 +825,6 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 
 An s3 Role ARN (Amazon Resource Name) is a unique identifier for an IAM role that grants permissions to access an S3 bucket. It's used to specify which role should be assumed when granting temporary credentials or when configuring other AWS services to interact with S3. To create an Adobe Analytics cloud location account to associate with an s3 role ARN, follow these steps:
 
-
 1. Use the GET s3 role arn method to retrieve the userARN value, as described below.
 2. Create a roleARN in the AWS portal. See AWS s3 role ARN instructions for more information.
 3. Create an Adobe Cloud Locations account for the s3 ARN type with the POST create account method.
@@ -845,7 +844,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 #### Request
 
-```curl
+```sh
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/cloudAccount/account/s3_role_arn" \
   -H "accept: application/json" \
