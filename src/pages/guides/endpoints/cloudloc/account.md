@@ -873,9 +873,5 @@ In the examples above, the GET s3 role arn method is used to request the userARN
 
 For more information, see the following:
 
-[Cloud Locations API overview](index.md)
-[Cloud Locations API methods endpoint guide](locations.md)
-
-
-
-
+* [Cloud Locations API overview](index.md)
+* [Cloud Locations API methods endpoint guide](locations.md)
