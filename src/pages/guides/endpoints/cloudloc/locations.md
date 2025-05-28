@@ -38,7 +38,7 @@ curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
@@ -150,7 +150,6 @@ curl -X 'POST' \
   "name": "Example Location",
   "modifiedBy": "exampleuser@example.com",
   "globalCompanyId": "exampleorg",
-  "properties": {}
 }
 ```
 
@@ -209,7 +208,7 @@ curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
@@ -230,7 +229,6 @@ curl -X 'GET' \
   "name": "Example Location",
   "modifiedBy": "exampleuser@example.com",
   "globalCompanyId": "exampleorg",
-  "properties": {}
 }
 ```
 
@@ -313,8 +311,7 @@ curl -X 'PUT' \
   "createdBy": "exampleuser@example.com",
   "name": "Updated Location",
   "modifiedBy": "exampleuser@example.com",
-  "globalCompanyId": "exampleorg",
-  "properties": {}
+  "globalCompanyId": "exampleorg"
 }
 ```
 
@@ -375,7 +372,7 @@ curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
