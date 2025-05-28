@@ -454,11 +454,11 @@ The example request above updates an `s3` type account so that it is shared to `
 The following table describes the request parameters not already defined above:
 
 | Name | Required | Type | Description |
-| --- | --- | --- | --- 
+| --- | --- | --- | --- |
 
 | `secret` | required | string | Account password |
 | `accountProperties` | required | object | Includes the `AccessKeyID` parameter for the `s3` type account |
-| `sharedTo` | optional | string | User to share with |
+| `sharedTo` | optional | string | User to receive account sharing privileges |
 
 ### Response Parameters
 
@@ -483,7 +483,7 @@ curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
@@ -495,13 +495,9 @@ curl -X 'DELETE' \
 }
 ```
 
-
-
 ## Account properties
 
-
 Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. The following JSON includes all of the account properties request and response parameters for each account type.
-
 
 ### Email
 
