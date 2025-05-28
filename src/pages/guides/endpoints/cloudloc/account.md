@@ -209,7 +209,6 @@ curl -X 'GET' \
       "deleted": false,
       "uuid": "a1be1111-1dea-1111-1edd-f1def11c1f11"
 }
- 
 ```
 
 ### Example request details
@@ -717,6 +716,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
+
 ### Azure sas
 
 **Request**
@@ -736,6 +736,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "secret": "string"
 }
 ```
+
 **Response**
 
 ```json
@@ -786,6 +787,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
+
 Note: The s3 type account currently contains no account properties.
 
 ### s3 role ARN
@@ -821,7 +823,6 @@ Note: The s3 type account currently contains no account properties.
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
-
 
 ## Creating s3 role ARN accounts
 
@@ -863,11 +864,9 @@ curl -X 'GET' \
 }
 ```
 
- 
 ### Example details
 
 In the examples above, the GET s3 role arn method is used to request the userARN value. The value is provided in the response and can be used to create a roleARN in the AWS portal. After creating the roleARN, you can create a cloud locations account with the POST create account method described in a previous section. See the Account Properties section in this guide to provide a complete POST request.  
-
 
 For more information, see the following:
 
