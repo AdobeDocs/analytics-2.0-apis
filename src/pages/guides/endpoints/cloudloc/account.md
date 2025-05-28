@@ -255,7 +255,7 @@ The following table describes the GET accounts response parameters:
 
 ## POST create account
 
-Use this endpoint to create a new Cloud Locations account. The example for this endpoint includes the steps for setting up an AWS s3 role ARN account type.
+Use this endpoint to create a new Cloud Locations account. 
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
@@ -296,10 +296,22 @@ curl -X 'POST' \
   "createdBy": "exampleuser@example.com",
   "createdDate": "YYYY-06-02T16:19:04.039666Z",
   "lastModifiedDate": "YYYY-06-02T16:19:04.039666Z",
-  "uuid": "9db1dccf-0be2-4ce5-9753-dc2fefeec3a3"
+  "uuid": "12345678-1234-1234-1234-123456789123"
 }
 
 ```
+
+### Example request details
+
+The example request above shows the creation of an email type location account. Note the `accountProperties` for this type includes only the `to` parameter and its value `exampleuser@example.com`, or the recipient of the email account.  
+
+### Example response details
+
+A successful response includes a `200 OK` status code and a response body similar to that shown above. This example shows the following:
+
+* Confirmation of the created values for `type`, `to`, `name`, and `description`.
+
+* Additional creation information including values for `createdBy`, `createdDate`, `lastModifiedDate`, and account `uuid`.
 
 ### Request Parameters
 
@@ -307,8 +319,8 @@ The following table describes the Create account request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `type` | required | string | Account type |
-| `accountProperties` | required | object | Contains "to" parameter for recipient |
+| `type` | required | string | Account type. See the Account Types table above for more information |
+| `accountProperties` | required | object | Contains "to" parameter for recipient. See the Account properties section below for more information. |
 | `name` | required | string | Account name |
 | `description` | optional | string | Account description |
 
@@ -368,9 +380,10 @@ curl -X 'GET' \
       "uuid": "bee11111-1e11-111b-111f-dd11c6b1111e"
     },
 ```
+
 ### Example details
 
-In this example, the account `{UUID}` would be provided in the path as `bee11111-1e11-111b-111f-dd11c6b1111e`. The information retrieved for this account includes similar details as those supplied for the same type of account in the GET accounts endpoint described above.
+In this example, the account `{UUID}` is provided in the path as `bee11111-1e11-111b-111f-dd11c6b1111e`. The response shows the details for an `ftp` type account. This is similar to the response for the same type of account in the GET accounts endpoint described above.
 
 ### Request and Response Parameters
 
@@ -399,63 +412,55 @@ curl -X 'PUT' \
   -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
-    "secret": "********",
-    "accountProperties": {},
+    "accountProperties": 
+    {
+    "accessKeyID": "examplekeyID"
+    },
     "name": "Example Updated Account",
-    "description": "Example Updated Account description",
+    "description": "Example updated account description",
     "sharedTo": "exampleuser2@example.com"
-  }'
+    "secret": "********"
+    }'
 ```
 
 #### Response
 
 ```json
 {
-  "accountProperties": {},
-  "shared": false,
-  "createdDate": "YYYY-01-01T00:00:00Z",
-  "createdBy": "user@example.com",
-  "lastModifiedDate": "YYYY-01-02T00:00:00Z",
-  "name": "Updated Account",
-  "description": "Example Updated Account description",
-  "modifiedBy": "exampleuser@example.com",
-  "secret": "********",
   "type": "s3",
-  "uuid": "bxe11111-1e11-111b-111f-dd11c6b1111f"
+  "secret": "examplepassword",
+  "accountProperties": {
+    "accessKeyID": "examplekeyID"
+  },
+  "name": "Example Updated Account",
+  "description": "Example updated account description",
+  "sharedTo": "exampleuser2@example.com",
+  "createdBy": "exampleuser@example.com",
+  "createdDate": "YYYY-05-04T21:38:40.139175Z",
+  "lastModifiedDate": "YYYY-06-01T21:38:40.139175Z",
+  "uuid": "bee11111-1e11-111b-111f-dd11c6b1111e"
 }
 ```
 
+### Example details
+
+The example request above updates an `s3` type account so that it is shared to `exampleuser2@exammple.com`. Note this is confirmed in the response and the `lastModifiedDate` includes the updated date value.
+
+
 ### Request Parameters
 
-The following table describes the update account request parameters:
+The following table describes the request parameters not already defined above:
 
 | Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `UUID` | required | string | Account UUID |
-| `type` | required | string | Account type |
-| `secret` | required | string | Account secret |
-| `accountProperties` | required | object | Account properties |
-| `name` | required | string | Account name |
-| `description` | optional | string | Account description |
+| --- | --- | --- | --- 
+
+| `secret` | required | string | Account password |
+| `accountProperties` | required | object | Includes the `AccessKeyID` parameter for the `s3` type account |
 | `sharedTo` | optional | string | User to share with |
 
 ### Response Parameters
 
-The following table describes the update account response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `accountProperties` | object | Account properties |
-| `shared` | boolean | Whether the account is shared |
-| `createdDate` | string | Creation date |
-| `createdBy` | string | Creator |
-| `lastModifiedDate` | string | Last modification date |
-| `name` | string | Account name |
-| `description` | string | Account description |
-| `modifiedBy` | string | Last modifier |
-| `secret` | string | Account secret |
-| `type` | string | Account type |
-| `uuid` | string | Account UUID |
+The response parameters for this example are already described in previous sections.
 
 ## DELETE account
 
@@ -476,7 +481,6 @@ curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPAY_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
@@ -485,26 +489,9 @@ curl -X 'DELETE' \
 ```json
 {
   "message": "Account deleted successfully",
-  "uuid": "123e4567-e89b-12d3-a456-426614174000"
+  "uuid": "bee11111-1e11-111b-111f-dd11c6b1111e"
 }
 ```
-
-### Request Parameters
-
-The following table describes the delete account request parameters:
-
-| Name | Required | Type | Description |
-| --- | --- | --- | --- |
-| `UUID` | required | string | Account UUID |
-
-### Response Parameters
-
-The following table describes the delete account response parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `message` | string | Success message |
-| `uuid` | string | Deleted account UUID |
 
 
 
@@ -546,8 +533,6 @@ Each account type has its own set of key/value pairs or parameters for the `acco
   "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
 }
 ```
-
-
 
 ### FTP
 
@@ -842,16 +827,63 @@ Note: The s3 type account currently contains no account properties.
 
 ## Creating s3 role ARN accounts
 
-Creating an s3 role ARN account includes additional steps for specifying roles. To do this:
+An s3 Role ARN (Amazon Resource Name) is a unique identifier for an IAM role that grants permissions to access an S3 bucket. It's used to specify which role should be assumed when granting temporary credentials or when configuring other AWS services to interact with S3. To create an Adobe Analytics cloud location account to associate with an s3 role ARN, follow these steps:
+
 
 1. Use the GET s3 role arn method to retrieve the userARN value, as described below.
 2. Create a roleARN in the AWS portal. See AWS s3 role ARN instructions for more information.
 3. Create an Adobe Cloud Locations account for the s3 ARN type with the POST create account method.
-4. Include the s3 role ARN accountProperties as shown in the JSON above.
+4. Include the s3 role ARN `accountProperties` as shown in the JSON above.
 
 ## GET s3 role arn
 
+Use this endpoint to retrieve information for a specific Cloud Locations Account.
 
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
+### Request and Response Examples
 
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/cloudAccount/account/s3_role_arn" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -d '{
+  "type": "s3_role_arn",
+  "accountUuid": "example s3 arn account ID",
+  "application": "DATA_FEED",
+  "name": "example s3arn account",
+  "description": "example s3arn account description",
+  "properties": {
+    "bucket": "string",
+    "prefix": "string"
+  }
+    }'
+```
+
+#### Response
+
+```json
+{
+  "type": "s3_role_arn",
+  "accountUuid": "example s3 arn account ID",
+  "application": "DATA_FEED",
+  "properties": {
+    "bucket": "string",
+    "prefix": "string"
+  },
+  "name": "example s3arn account",
+  "description": "example s3arn account description",
+  "createdBy": "exampleuser@example.com",
+  "createdDate": "YYYY-05-04T21:56:05.784488Z",
+  "lastModifiedDate": "YYYY-05-04T21:56:05.784488Z",
+  "uuid": "111bc1a1-1d11-1111-1111-dd1d111ec11f"
+},
+```
