@@ -359,7 +359,7 @@ curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
@@ -381,7 +381,7 @@ curl -X 'GET' \
       "shared": false,
       "deleted": false,
       "uuid": "bee11111-1e11-111b-111f-dd11c6b1111e"
-    },
+}
 ```
 
 ### Example details
