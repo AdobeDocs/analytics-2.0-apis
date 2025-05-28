@@ -7,9 +7,7 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 Use the Cloud Locations API to create, update, retrieve, or delete Cloud storage locations. Before working with Cloud locations APIs, you must first create a [Cloud locations account](account.md).
 
-<InlineAlert variant="info" slots="text" />
-
-Both Cloud Locations accounts and locations have a `UUID` identifier. The location `UUID` is different from the account `UUID`, and the two should be referenced separately.
+> **Note**: Both Cloud Locations accounts and locations have a `UUID` identifier. The location `UUID` is different from the account `UUID`, and the two should be referenced separately.
 
 These endpoints provide methods for managing cloud locations:
 
@@ -27,18 +25,14 @@ Use this endpoint to get all Cloud Locations for a specified organization.
 
 ### Request and Response Examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
-```sh
+```bash
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -108,13 +102,9 @@ Use this endpoint to create a new Cloud Location.
 
 ### Request and Response Examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
-```sh
+```bash
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "x-api-key: {CLIENT_ID}" \
@@ -149,7 +139,7 @@ curl -X 'POST' \
   "createdBy": "exampleuser@example.com",
   "name": "Example Location",
   "modifiedBy": "exampleuser@example.com",
-  "globalCompanyId": "exampleorg",
+  "globalCompanyId": "exampleorg"
 }
 ```
 
@@ -197,18 +187,14 @@ Use this endpoint to get a specific Cloud Location.
 
 ### Request and Response Examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
-```sh
+```bash
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -228,7 +214,7 @@ curl -X 'GET' \
   "createdBy": "exampleuser@example.com",
   "name": "Example Location",
   "modifiedBy": "exampleuser@example.com",
-  "globalCompanyId": "exampleorg",
+  "globalCompanyId": "exampleorg"
 }
 ```
 
@@ -270,13 +256,9 @@ Use this endpoint to update a specific Cloud Location.
 
 ### Request and Response Examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
-```sh
+```bash
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/1111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
@@ -361,18 +343,14 @@ Use this endpoint to delete a specific Cloud Location.
 
 ### Request and Response Examples
 
-Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
-```sh
+```bash
 curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
 #### Response
@@ -405,5 +383,3 @@ For more information, see the following:
 
 * [Cloud Locations API overview](index.md)
 * [Cloud Locations Accounts API](accounts.md)
-
-
