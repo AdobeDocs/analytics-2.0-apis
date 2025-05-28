@@ -34,9 +34,7 @@ Analytics API Cloud Locations accounts are specified by `type`. Account types ar
 
 Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type.
 
-<InlineAlert variant="info" slots="text" />
-
-Both Cloud Locations accounts and locations have a `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
+**Note:** With Cloud Locations APIs, accounts and locations each have their own `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
 
 ## GET accounts
 
