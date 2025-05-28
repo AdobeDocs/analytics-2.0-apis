@@ -412,7 +412,6 @@ curl -X 'PUT' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
     "accountProperties": 
@@ -876,5 +875,5 @@ In the examples above, the GET s3 role arn method is used to request the userARN
 
 For more information, see the following:
 
-* [Cloud Locations API overview](index.md)
-* [Cloud Locations API methods endpoint guide](locations.md)
+* [Cloud Locations API overview](cloudloc/index.md)
+* [Cloud Locations API methods endpoint guide](cloudloc/locations.md)
