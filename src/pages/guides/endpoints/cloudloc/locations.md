@@ -27,12 +27,12 @@ Use this endpoint to get all Cloud Locations for a specified organization.
 
 #### Request
 
-```bash
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
@@ -104,7 +104,7 @@ Use this endpoint to create a new Cloud Location.
 
 #### Request
 
-```bash
+```curl
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "x-api-key: {CLIENT_ID}" \
@@ -189,7 +189,7 @@ Use this endpoint to get a specific Cloud Location.
 
 #### Request
 
-```bash
+```curl
 curl -X 'GET' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
@@ -258,7 +258,7 @@ Use this endpoint to update a specific Cloud Location.
 
 #### Request
 
-```bash
+```curl
 curl -X 'PUT' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/1111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
@@ -345,12 +345,12 @@ Use this endpoint to delete a specific Cloud Location.
 
 #### Request
 
-```bash
+```curl
 curl -X 'DELETE' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}"
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
 ```
 
 #### Response
