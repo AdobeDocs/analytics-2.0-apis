@@ -32,8 +32,11 @@ Analytics API Cloud Locations accounts are specified by `type`. Account types ar
 | `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name fields for Identity and Access Management (IAM). See separate instructions for creating this account type.  |
 
 
-Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type. 
-Note: Both Cloud Locations accounts and locations have a `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
+Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type.
+
+<InlineAlert variant="info" slots="text" />
+
+Both Cloud Locations accounts and locations have a `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
 
 ## GET accounts
 
