@@ -5,6 +5,12 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Cloud Locations API
 
+Use the Cloud Locations API to create, update, retrieve, or delete Cloud storage locations. Before working with Cloud locations APIs, you must first create a [Cloud locations account](account.md).
+
+<InlineAlert variant="info" slots="text" />
+
+Both Cloud Locations accounts and locations have a `UUID` identifier. The location `UUID` is different from the account `UUID`, and the two should be referenced separately.
+
 These endpoints provide methods for managing cloud locations:
 
 * [GET locations](#get-locations): Retrieve all Cloud Locations for a Global Company ID
@@ -15,7 +21,7 @@ These endpoints provide methods for managing cloud locations:
 
 ## GET locations
 
-Use this endpoint to get all Cloud Locations for a given global company id.
+Use this endpoint to get all Cloud Locations for a specified organization.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location`
 
@@ -47,14 +53,14 @@ curl -X 'GET' \
       "description": "Example location description",
       "type": "s3",
       "applicationTag": "example-tag",
-      "uuid": "123e4567-e89b-12d3-a456-426614174001",
-      "createdDate": "2023-01-01T00:00:00Z",
+      "uuid": "11111111-e89b-12d3-a456-426611111111",
+      "createdDate": "YYYY-01-01T00:00:00Z",
       "deleted": false,
       "application": "DATA_WAREHOUSE",
-      "createdBy": "user@example.com",
+      "createdBy": "exampleuser@example.com",
       "name": "Example Location",
-      "modifiedBy": "user@example.com",
-      "globalCompanyId": "example-company-id",
+      "modifiedBy": "exampleuser@example.com",
+      "globalCompanyId": "exampleorg",
       "properties": {}
     }
   ],
@@ -112,17 +118,17 @@ Click the **Request** tab in the following example to see a cURL request for thi
 curl -X 'POST' \
   "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}" \
   -d '{
     "type": "s3",
-    "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "accountUuid": "11111111-e89b-12d3-a456-426611111111",
     "properties": {},
     "name": "Example Location",
     "description": "Example location description",
     "application": "DATA_WAREHOUSE",
     "applicationTag": "example-tag",
-    "sharedTo": "user@example.com"
+    "sharedTo": "exampleuser@example.com"
   }'
 ```
 
@@ -132,18 +138,18 @@ curl -X 'POST' \
 {
   "shared": false,
   "lastModifiedDate": "YYYY-01-01T00:00:00Z",
-  "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
+  "accountUuid": "11111111-e89b-12d3-a456-42661111111",
   "description": "Example location description",
   "type": "s3",
   "applicationTag": "example-tag",
-  "uuid": "123e4567-e89b-12d3-a456-426614174001",
+  "uuid": "12355555-e89b-12d3-a456-426688888888",
   "createdDate": "YYYY-01-01T00:00:00Z",
   "deleted": false,
   "application": "DATA_WAREHOUSE",
-  "createdBy": "user@example.com",
+  "createdBy": "exampleuser@example.com",
   "name": "Example Location",
-  "modifiedBy": "user@example.com",
-  "globalCompanyId": "example-company-id",
+  "modifiedBy": "exampleuser@example.com",
+  "globalCompanyId": "exampleorg",
   "properties": {}
 }
 ```
@@ -200,10 +206,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
@@ -213,18 +218,18 @@ curl -X 'GET' \
 {
   "shared": false,
   "lastModifiedDate": "YYYY-01-01T00:00:00Z",
-  "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
+  "accountUuid": "11111111-e89b-12d3-a456-426611111111",
   "description": "Example location description",
   "type": "s3",
   "applicationTag": "example-tag",
-  "uuid": "123e4567-e89b-12d3-a456-426614174001",
-  "createdDate": "2023-01-01T00:00:00Z",
+  "uuid": "12355555-e89b-12d3-a456-426688888888",
+  "createdDate": "YYYY-01-01T00:00:00Z",
   "deleted": false,
   "application": "DATA_WAREHOUSE",
-  "createdBy": "user@example.com",
+  "createdBy": "exampleuser@example.com",
   "name": "Example Location",
-  "modifiedBy": "user@example.com",
-  "globalCompanyId": "example-company-id",
+  "modifiedBy": "exampleuser@example.com",
+  "globalCompanyId": "exampleorg",
   "properties": {}
 }
 ```
@@ -275,21 +280,19 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'PUT' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/1111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
-  -H "Content-Type: application/json" \
   -d '{
     "type": "s3",
-    "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "accountUuid": "11111111-e89b-12d3-a456-426611111111",
     "properties": {},
     "name": "Updated Location",
     "description": "Updated location description",
     "application": "DATA_WAREHOUSE",
     "applicationTag": "updated-tag",
-    "sharedTo": "user@example.com"
+    "sharedTo": "exampleuser@example.com"
   }'
 ```
 
@@ -299,18 +302,18 @@ curl -X 'PUT' \
 {
   "shared": false,
   "lastModifiedDate": "YYYY-01-02T00:00:00Z",
-  "accountUuid": "123e4567-e89b-12d3-a456-426614174000",
+  "accountUuid": "11111111-e89b-12d3-a456-426611111111",
   "description": "Updated location description",
   "type": "s3",
   "applicationTag": "updated-tag",
-  "uuid": "123e4567-e89b-12d3-a456-426614174001",
+  "uuid": "12355555-e89b-12d3-a456-426614155555",
   "createdDate": "YYYY-01-01T00:00:00Z",
   "deleted": false,
   "application": "DATA_WAREHOUSE",
-  "createdBy": "user@example.com",
+  "createdBy": "exampleuser@example.com",
   "name": "Updated Location",
-  "modifiedBy": "user@example.com",
-  "globalCompanyId": "example-company-id",
+  "modifiedBy": "exampleuser@example.com",
+  "globalCompanyId": "exampleorg",
   "properties": {}
 }
 ```
@@ -369,10 +372,9 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'DELETE' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/123e4567-e89b-12d3-a456-426614174001" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/11111111-e89b-12d3-a456-426611111111" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
-  -H "x-proxy-global-company-id: {GLOBAL_COMPANY_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
 
@@ -381,7 +383,7 @@ curl -X 'DELETE' \
 ```json
 {
   "message": "Location deleted successfully",
-  "uuid": "123e4567-e89b-12d3-a456-426614174001"
+  "uuid": "11111111-e89b-12d3-a456-426611111111"
 }
 ```
 
@@ -401,3 +403,10 @@ The following table describes the delete location response parameters:
 | --- | --- | --- |
 | `message` | string | Success message |
 | `uuid` | string | Deleted location UUID |
+
+For more information, see the following:
+
+* [Cloud Locations API overview](index.md)
+* [Cloud Locations Accounts API](accounts.md)
+
+
