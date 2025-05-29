@@ -646,7 +646,7 @@ Each account type has its own set of key/value pairs or parameters for the `acco
 
 **Request**
 
-``json
+```json
 {
   "type": "azure",
   "accountProperties":
