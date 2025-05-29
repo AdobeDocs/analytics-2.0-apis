@@ -45,8 +45,6 @@ Use this endpoint to retrieve all Cloud Locations accounts information that you 
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
 ```sh
@@ -262,8 +260,6 @@ Use this endpoint to create a new Cloud Locations account.
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
 ```sh
@@ -346,8 +342,6 @@ Use this endpoint to retrieve information for a specific Cloud Locations Account
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
 
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
-
 #### Request
 
 ```sh
@@ -397,8 +391,6 @@ Use this endpoint to update a specific Cloud Locations Account.
 ### Request and Response Examples
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -469,8 +461,6 @@ Use this endpoint to delete a specific Cloud Locations account.
 ### Request and Response Examples
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
@@ -840,8 +830,6 @@ Use this endpoint to retrieve information for a specific Cloud Locations Account
 ### Request and Response Examples
 
 Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
-
-<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
