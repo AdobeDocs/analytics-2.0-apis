@@ -196,6 +196,24 @@ module.exports = {
               }
             ]
           },
+          {
+            title: 'Cloud Locations',
+            path: 'guides/endpoints/cloudloc/index.md',
+            pages: [
+              {
+                title: 'Cloud Locations endpoints',
+                path: 'guides/endpoints/cloudloc/locations.md'
+              },
+              {
+                title: 'Cloud Locations accounts',
+                path: 'guides/endpoints/cloudloc/account.md'
+              },
+              {
+                title: 'Account properties',
+                path: 'guides/endpoints/cloudloc/account-properties.md'
+              }
+            ]
+          },
            {
             title: 'Component Migration',
             path:'guides/endpoints/compmigration',
