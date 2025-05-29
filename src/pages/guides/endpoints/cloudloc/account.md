@@ -443,7 +443,6 @@ The following table describes the request parameters not already defined above:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-
 | `secret` | required | string | Account password |
 | `accountProperties` | required | object | Includes the `AccessKeyID` parameter for the `s3` type account |
 | `sharedTo` | optional | string | User to receive account sharing privileges |
