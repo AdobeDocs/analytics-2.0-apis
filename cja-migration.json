@@ -24,58 +24,6 @@
       "description": "Operations pertaining to metric mapping"
     }
   ],
-  "paths": {
-    "/projects/{projectId}/migrate": {
-      "post": {
-        "tags": [
-          "Components Migration - Users"
-        ],
-        "operationId": "migrateByProjectId",
-        "parameters": [
-          {
-            "name": "projectId",
-            "in": "path",
-            "description": "The project id that needs to be moved to CJA",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ComponentMigrationRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description" : "Project migration started successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ControllerResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "x-gw-ims-org-id": []
-          },
-          {
-            "x-proxy-global-company-id": []
-          },
-          {
-            "x-user-auth": []
-          }
-        ]
-      }
-    },
     "/projects/{projectId}/summary": {
       "get": {
         "tags": [
@@ -100,6 +48,68 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/MigrationEventStatusEntity"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-proxy-global-company-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/projects/bulk/migrate": {
+      "post": {
+        "tags": [
+          "Components Migration - Users"
+        ],
+        "operationId": "bulkMigrate_1",
+        "responses": {
+          "200": {
+            "description" : "Projects migrated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-proxy-global-company-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/projects/bulk/status": {
+      "get": {
+        "tags": [
+          "Components Migration - Users"
+        ],
+        "operationId": "bulkMigrate_2",
+        "responses": {
+          "200": {
+            "description" : "Project migration summary retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IMigrationEvent"
                 }
               }
             }
@@ -593,8 +603,7 @@
           }
         ]
       }
-    }
-  },
+    },
   "components": {
     "schemas": {
       "HealthStatus": {
