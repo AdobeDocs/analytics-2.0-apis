@@ -5,7 +5,7 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Cloud Locations API overview
 
-The Adobe Analytics Cloud Locations 2. API endpoints provide methods to manage export locations for analytics data. Use this API service to create, read, update, and delete cloud storage accounts and locations for exporting data. 
+The Adobe Analytics Cloud Locations 2.0 API endpoints provide methods to manage export locations for analytics data. Use this API service to create, read, update, and delete cloud storage accounts and locations for exporting data. 
 
 You can use Cloud Locations APIs for the following:
 
