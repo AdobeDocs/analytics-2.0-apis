@@ -5,21 +5,27 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Cloud Locations API
 
-Use the Cloud Locations API to create, update, retrieve, or delete Cloud storage locations. Before working with Cloud locations APIs, you must first create a [Cloud locations account](cloudloc/account.md).
+Use the Cloud Locations API to create, update, retrieve, or delete cloud storage Locations. Before working with Cloud Locations APIs, you must first create an [Analytics Cloud API account](cloudloc/account.md).
 
-**Note**: Both the Adobe cloud accounts API and the Locations API have a `UUID` identifier. The Location `UUID` is different from the account `UUID`, and the two should be referenced separately.
+<InlineAlert variant="info" slots="text" />
+
+A cloud "Location" is an Adobe Analytics API connection to any third-party cloud storage service, as configured within the Adobe Cloud Accounts API. It does not refer to a specific physical location on a server.
 
 These endpoints provide methods for managing cloud locations:
 
-* [GET locations](#get-locations): Retrieve all Cloud Locations for a Global Company ID
-* [POST create location](#post-create-location): Create a new Cloud Location
-* [GET location by UUID](#get-location-by-uuid): Retrieve a specific Cloud Location
-* [PUT update location](#put-update-location): Update a specific Cloud Location
-* [DELETE location](#delete-location): Delete a specific Cloud Location
+* [GET Locations](#get-locations): Retrieve all Cloud Locations for a Global Company ID
+* [POST create Location](#post-create-location): Create a new cloud Location
+* [GET Location by UUID](#get-location-by-uuid): Retrieve a specific cloud Location
+* [PUT update Location](#put-update-location): Update a specific cloud Location
+* [DELETE Location](#delete-location): Delete a specific cloud Location
+
+<InlineAlert variant="info" slots="text" />
+
+Both the Adobe cloud accounts API and the Locations API have a `UUID` identifier. The Location `UUID` is different from the account `UUID`, and the two should be referenced separately.
 
 ## GET Locations
 
-Use this endpoint to get all Cloud Locations for a specified organization.
+Use this endpoint to retrieve all cloud Locations for a specified organization.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location`
 
@@ -70,7 +76,7 @@ curl -X 'GET' \
 
 ### Request Parameters
 
-The following table describes the get locations request parameters:
+The following table describes the GET Locations request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -81,7 +87,7 @@ The following table describes the get locations request parameters:
 
 ### Response Parameters
 
-The following table describes the get locations response parameters:
+The following table describes the GET Locations response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -96,7 +102,7 @@ The following table describes the get locations response parameters:
 
 ## POST create location
 
-Use this endpoint to create a new Cloud Location.
+Use this endpoint to create a new cloud Location.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location`
 
@@ -145,7 +151,7 @@ curl -X 'POST' \
 
 ### Request Parameters
 
-The following table describes the create location request parameters:
+The following table describes the Create Location request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -160,7 +166,7 @@ The following table describes the create location request parameters:
 
 ### Response Parameters
 
-The following table describes the create location response parameters:
+The following table describes the Create Location response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -181,7 +187,7 @@ The following table describes the create location response parameters:
 
 ## GET location by UUID
 
-Use this endpoint to get a specific Cloud Location.
+Use this endpoint to retrieve a specific cloud Location.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/{UUID}`
 
@@ -220,7 +226,7 @@ curl -X 'GET' \
 
 ### Request Parameters
 
-The following table describes the get location by UUID request parameters:
+The following table describes the GET Location by UUID request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -228,7 +234,7 @@ The following table describes the get location by UUID request parameters:
 
 ### Response Parameters
 
-The following table describes the get location by UUID response parameters:
+The following table describes the GET Location by UUID response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -250,7 +256,7 @@ The following table describes the get location by UUID response parameters:
 
 ## PUT update location
 
-Use this endpoint to update a specific Cloud Location.
+Use this endpoint to update a specific cloud Location.
 
 `PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/{UUID}`
 
@@ -299,7 +305,7 @@ curl -X 'PUT' \
 
 ### Request Parameters
 
-The following table describes the update location request parameters:
+The following table describes the Update Location request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -315,7 +321,7 @@ The following table describes the update location request parameters:
 
 ### Response Parameters
 
-The following table describes the update location response parameters:
+The following table describes the Update Location response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -337,7 +343,7 @@ The following table describes the update location response parameters:
 
 ## DELETE location
 
-Use this endpoint to delete a specific Cloud Location.
+Use this endpoint to delete a specific cloud Location.
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/location/{UUID}`
 
@@ -364,7 +370,7 @@ curl -X 'DELETE' \
 
 ### Request Parameters
 
-The following table describes the delete location request parameters:
+The following table describes the delete Location request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
@@ -372,14 +378,14 @@ The following table describes the delete location request parameters:
 
 ### Response Parameters
 
-The following table describes the delete location response parameters:
+The following table describes the delete Location response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
 | `message` | string | Success message |
-| `uuid` | string | Deleted location UUID |
+| `uuid` | string | Deleted Location UUID |
 
 For more information, see the following:
 
 * [Cloud Locations API overview](cloudloc/index.md)
-* [Cloud Locations Accounts API](cloudloc/accounts.md)
+* [Cloud Accounts API](cloudloc/accounts.md)
