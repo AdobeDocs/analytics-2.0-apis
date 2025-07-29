@@ -25,7 +25,7 @@ These APIs include two service categories:
 
 * [**Analytics Cloud Locations API**](locations.md)
   
-To export data to a cloud Location, you must first [create a cloud location account](account.md). After creating the account, you can create as many locations on that account as you need.
+To export data to a cloud Location, you must first [create an Analytics cloud API account](account.md). After creating the account, you can create as many locations on that account as you need.
 
 <InlineAlert variant="info" slots="text" />
 
