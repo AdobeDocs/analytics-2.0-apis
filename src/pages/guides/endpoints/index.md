@@ -33,9 +33,9 @@ Retrieve, update, or create calculated metrics.
 
 <DiscoverBlock slots="link, text"/>
 
-[Cloud Locations API](cloudloc/index.md)
+[Cloud API](cloudloc/index.md)
 
-Create and manage both cloud locations and cloud location accounts.
+Create and manage both Analytics cloud accounts and cloud Locations.
 
 <DiscoverBlock slots="link, text"/>
 
