@@ -1,13 +1,13 @@
 ---
 title: Adobe Analytics Cloud Account API
-description: Use APIs to create accounts for cloud locations.
+description: Use APIs to create accounts for cloud Locations.
 ---
 
 # Cloud Account API
 
-Before you can create a cloud Location, you must first create an Adobe Analytics 2.0 cloud API account with the APIs in this guide. The Accounts API includes the following endpoints for managing Cloud Locations:
+Before you can create a cloud Location, you must first create an Adobe Analytics cloud API account with the APIs in this guide. The Accounts APIs include the following endpoints for managing cloud API accounts:
 
-* [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
+* [GET accounts](#get-accounts): Retrieve all cloud accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
 * [POST create account](#post-create-account): Create a new cloud API account
 * [GET account by UUID](#get-account-by-uuid): Retrieve a specific cloud API account
 * [PUT update account](#put-update-account): Update a specific cloud API account
@@ -16,7 +16,7 @@ Before you can create a cloud Location, you must first create an Adobe Analytics
 
 ### Account Types
 
-Analytics API Cloud accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types:
+Analytics API cloud accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types:
 
 | Type | Description |
 | --- | --- |
@@ -31,13 +31,13 @@ Analytics API Cloud accounts are specified by `type`. Account types are specifie
 | `s3_role_arn` | Data to be exported to `s3` with Amazon Resource Name (ARN) fields for Identity and Access Management (IAM). See instructions below for creating this account type. |
 
 
-Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table for more information on the properties that are specific to each account type.
+Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. See the Account Properties table below for more information on the properties that are specific to each account type.
 
-**Note:** With Cloud Locations APIs, accounts and locations each have their own `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
+**Note:** With Cloud APIs, accounts and Locations each have their own `UUID` identifier. The account `UUID` is different from the location `UUID`, and the two should be referenced separately.
 
 ## GET accounts
 
-Use this endpoint to retrieve all Cloud Locations accounts information that you have created or that has been shared with you in your organization.
+Use this endpoint to retrieve all cloud accounts information that you have created or that have been shared with you in your organization.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
@@ -214,11 +214,11 @@ The example request above does not include any optional query parameters, so it 
 
 The example response above shows the following:
 
-* A response body that includes accounts with all supported types as described in the Account Types table above.
+* Accounts with all supported types as described in the [Account Types](#account-types) table above.
 
 * An `accountProperties` object for each account. This object contains parameters that are specific to the type of account. For more information, see the [Account properties](#account-properties) section of this guide.
 
-* A `uuid` identifier for each account. This is not the same as the location `uuid` that is used in the Locations API.
+* A `uuid` identifier for each account. This is not the same as the [Location](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc/locations/) `uuid` that is used in the Locations API.
 
 ### Request Parameters
 
@@ -482,7 +482,7 @@ curl -X 'DELETE' \
 
 ## Creating s3 role ARN accounts
 
-An s3 Role ARN (Amazon Resource Name) is a unique identifier for an IAM role that grants permissions to access an S3 bucket. It's used to specify which role should be assumed when granting temporary credentials or when configuring other AWS services to interact with S3. To create an Adobe Analytics cloud location account to associate with an s3 role ARN, follow these steps:
+An s3 Role ARN (Amazon Resource Name) is a unique identifier for an IAM role that grants permissions to access an S3 bucket. It's used to specify which role should be assumed when granting temporary credentials or when configuring other AWS services to interact with S3. To create an Adobe Analytics 2.0 API cloud account to associate with an s3 role ARN, follow these steps:
 
 1. Use the GET s3 role arn method to retrieve the userARN value, as described below.
 2. Create a roleARN in the AWS portal. See AWS s3 role ARN instructions for more information.
