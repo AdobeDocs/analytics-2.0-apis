@@ -7,7 +7,7 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 Use the Cloud Locations API to create, update, retrieve, or delete Cloud storage locations. Before working with Cloud locations APIs, you must first create a [Cloud locations account](cloudloc/account.md).
 
-**Note**: Both Cloud Locations accounts and locations have a `UUID` identifier. The location `UUID` is different from the account `UUID`, and the two should be referenced separately.
+**Note**: Both the Adobe cloud accounts API and the Locations API have a `UUID` identifier. The Location `UUID` is different from the account `UUID`, and the two should be referenced separately.
 
 These endpoints provide methods for managing cloud locations:
 
@@ -17,7 +17,7 @@ These endpoints provide methods for managing cloud locations:
 * [PUT update location](#put-update-location): Update a specific Cloud Location
 * [DELETE location](#delete-location): Delete a specific Cloud Location
 
-## GET locations
+## GET Locations
 
 Use this endpoint to get all Cloud Locations for a specified organization.
 
