@@ -1,11 +1,11 @@
 ---
-title: Adobe Analytics Cloud Locations account properties
-description: Include Cloud Locations account properties
+title: Adobe Analytics Cloud API account properties
+description: Include Cloud API account properties
 ---
 
-# Cloud Locations account properties
+# Cloud API account properties
 
-Before you can create a Cloud Location with Adobe 2.0 APIs, you must first create a [Cloud Location account](cloudloc/account.md). When working with a cloud location account, you must specify the appropriate account properties with the `type` of account you are creating or managing. Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. The following JSON includes all of the account properties request and response parameters for each account type.
+Before you can create a cloud Location with Adobe 2.0 APIs, you must first create a [Cloud API account](cloudloc/account.md). When working with a cloud API account, you must specify the appropriate account properties with the `type` of account you are creating or managing. Each account type has its own set of key/value pairs or parameters for the `accountProperties` object. The following JSON includes all of the account properties request and response parameters for each account type.
 
 
 ## Email
