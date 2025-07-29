@@ -197,7 +197,7 @@ module.exports = {
             ]
           },
           {
-            title: 'Cloud Locations',
+            title: 'Cloud API',
             path: 'guides/endpoints/cloudloc/index.md',
             pages: [
               {
@@ -205,7 +205,7 @@ module.exports = {
                 path: 'guides/endpoints/cloudloc/locations.md'
               },
               {
-                title: 'Cloud Locations accounts',
+                title: 'Cloud API accounts',
                 path: 'guides/endpoints/cloudloc/account.md'
               },
               {
