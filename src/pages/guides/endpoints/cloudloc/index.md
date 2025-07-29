@@ -9,7 +9,7 @@ The Adobe Analytics 2.0 Cloud API endpoints provide methods to manage export Loc
 
 <InlineAlert variant="info" slots="text" />
 
-A cloud "Location" is the Adobe term for an Adobe API connection to any third-party cloud storage service, as configured within the Adobe Cloud Accounts API. It does not refer to a specific physical location on a server.
+A cloud "Location" is an Adobe Analytics API connection to any third-party cloud storage service, as configured within the Adobe Cloud Accounts API. It does not refer to a specific physical location on a server.
 
 You can use Cloud APIs for the following:
 
