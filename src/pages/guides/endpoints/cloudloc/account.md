@@ -252,7 +252,7 @@ The following table describes the GET accounts response parameters:
 
 ## POST create account
 
-Use this endpoint to create a new Cloud Locations account. 
+Use this endpoint to create a new cloud API account. 
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account`
 
@@ -298,7 +298,7 @@ curl -X 'POST' \
 
 ### Example request details
 
-The example request above shows the creation of an email type location account. Note the `accountProperties` for this type includes only the `to` parameter and its value `exampleuser@example.com`, or the recipient of the email account.  
+The example request above shows the creation of an email type account. Note the `accountProperties` for this type includes only the `to` parameter and its value `exampleuser@example.com`, or the recipient of the email account.  
 
 ### Example response details
 
@@ -325,16 +325,16 @@ The following table describes theCcreate account response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `accountProperties` | object | Contains "to" parameter for recipient |
+| `accountProperties` | object | Contains `to` parameter for recipient |
 | `createdDate` | string | Account creation date |
-| `createdBy` | string | user creating account |
+| `createdBy` | string | User creating account |
 | `lastModifiedDate` | string | Last account modification date |
 | `name` | string | Account name |
-| `uuid` | string | The account UUID. This is not the location UUID. |
+| `uuid` | string | The account UUID. This is not the Location UUID. |
 
 ## GET account by UUID
 
-Use this endpoint to retrieve information for a specific Cloud Locations Account.
+Use this endpoint to retrieve information for a specific cloud API Account.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
@@ -384,7 +384,7 @@ This endpoint contains parameters described in prevoius sections.
 
 ## PUT update account
 
-Use this endpoint to update a specific Cloud Locations Account.
+Use this endpoint to update a specific cloud API Account.
 
 `PUT https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
@@ -453,7 +453,7 @@ The response parameters for this example are already described in previous secti
 
 ## DELETE account
 
-Use this endpoint to delete a specific Cloud Locations account.
+Use this endpoint to delete a specific cloud API account.
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
@@ -486,12 +486,12 @@ An s3 Role ARN (Amazon Resource Name) is a unique identifier for an IAM role tha
 
 1. Use the GET s3 role arn method to retrieve the userARN value, as described below.
 2. Create a roleARN in the AWS portal. See AWS s3 role ARN instructions for more information.
-3. Create an Adobe Cloud Locations account for the s3 ARN type with the POST create account method.
+3. Create an Adobe cloud API account for the s3 ARN type with the POST create account method.
 4. Include the s3 role ARN `accountProperties` as shown in the JSON above.
 
 ## GET s3 role arn
 
-Use this endpoint to retrieve information for a specific Cloud Locations Account.
+Use this endpoint to retrieve information for a specific Analytics s3 role arn cloud API Account.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
 
@@ -519,9 +519,9 @@ curl -X 'GET' \
 
 ### Example details
 
-In the examples above, the GET s3 role arn method is used to request the userARN value. The value is provided in the response and can be used to create a roleARN in the AWS portal. After creating the roleARN, you can create a cloud locations account with the POST create account method described in a previous section. See the Account Properties section in this guide to provide a complete POST request.  
+In the examples above, the GET s3 role arn method is used to request the `userARN` value. The value is provided in the response and can be used to create a roleARN in the AWS portal. After creating the AWS roleARN, you can create a cloud locations account with the POST create account method described in a previous section. See the [Account Properties](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc/account-properties/) article to view a complete POST request.  
 
 For more information, see the following:
 
-* [Cloud Locations API overview](cloudloc/index.md)
-* [Cloud Locations API methods endpoint guide](cloudloc/locations.md)
+* [Cloud API overview](cloudloc/index.md)
+* [Cloud Locations API endpoint guide](cloudloc/locations.md)
