@@ -55,7 +55,7 @@ module.exports = {
             path: 'apis/classification'
           },
           {
-            title: 'Cloud Locations APIs',
+            title: 'Cloud APIs',
             path: 'apis/cloud-locations'
           },
           {
