@@ -1,22 +1,22 @@
 ---
-title: Adobe Analytics Cloud Locations Account API
+title: Adobe Analytics Cloud Account API
 description: Use APIs to create accounts for cloud locations.
 ---
 
-# Cloud Locations Account API
+# Cloud Account API
 
-Before you can create a Cloud Location with Adobe 2.0 APIs, you must first create a Cloud location account with the APIs in this guide. The Accounts API includes the following endpoints for managing Cloud Location storage accounts:
+Before you can create a cloud Location, you must first create an Adobe Analytics 2.0 cloud API account with the APIs in this guide. The Accounts API includes the following endpoints for managing Cloud Locations:
 
 * [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
-* [POST create account](#post-create-account): Create a new Cloud Locations account
-* [GET account by UUID](#get-account-by-uuid): Retrieve a specific Cloud Locations account
-* [PUT update account](#put-update-account): Update a specific Cloud Locations account
-* [DELETE account](#delete-account): Delete a specific Cloud Locations account
-* [GET s3 role arn](#get-s3-role-arn): Retrieve an `userARN` value to create an AWS s3 role arn cloud account
+* [POST create account](#post-create-account): Create a new cloud API account
+* [GET account by UUID](#get-account-by-uuid): Retrieve a specific cloud API account
+* [PUT update account](#put-update-account): Update a specific cloud API account
+* [DELETE account](#delete-account): Delete a specific cloud API account
+* [GET s3 role arn](#get-s3-role-arn): Retrieve an `userARN` value to create an AWS s3 role arn cloud API account
 
 ### Account Types
 
-Analytics API Cloud Locations accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types:
+Analytics API Cloud accounts are specified by `type`. Account types are specified upon account creation. The following table describes account types:
 
 | Type | Description |
 | --- | --- |
