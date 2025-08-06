@@ -159,30 +159,50 @@ const DiscoveryInterface = () => {
         {companies.length > 0 && (
           <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
             <h4 className="spectrum-Heading spectrum-Heading--sizeS side-header">
-              Available Global Company IDs
+              Available Companies
             </h4>
             <p className="spectrum-Body spectrum-Body--sizeM">
-              Click on a globalCompanyId to copy it to your clipboard:
+              Click on a company to copy its globalCompanyId to your clipboard:
             </p>
             
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {companies.map((company, index) => (
-                <button
+                <div
                   key={index}
-                  onClick={() => copyToClipboard(company.globalCompanyId)}
                   style={{
-                    backgroundColor: '#0265DC',
-                    color: 'white',
-                    border: 'none',
-                    padding: '8px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '12px',
+                    border: '1px solid #e0e0e0',
                     borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontFamily: 'monospace'
+                    backgroundColor: '#f8f9fa'
                   }}
                 >
-                  {company.globalCompanyId}
-                </button>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#323232' }}>
+                      {company.companyName}
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#666', fontFamily: 'monospace' }}>
+                      ID: {company.globalCompanyId}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard(company.globalCompanyId)}
+                    style={{
+                      backgroundColor: '#0265DC',
+                      color: 'white',
+                      border: 'none',
+                      padding: '6px 12px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontSize: '12px',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    Copy ID
+                  </button>
+                </div>
               ))}
             </div>
 
