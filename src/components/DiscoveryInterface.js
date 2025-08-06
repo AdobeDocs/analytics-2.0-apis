@@ -1,15 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const DiscoveryInterface = () => {
+  const [accessToken, setAccessToken] = useState('');
+  const [companies, setCompanies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const handleDiscoveryCall = async () => {
+    if (!accessToken.trim()) {
+      setError('Please enter your access token');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setSuccess('');
+    setCompanies([]);
+
+    try {
+      const response = await fetch('https://analytics.discovery.adobe.net/discovery/1.0/discovery/me', {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'x-user-auth': accessToken
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Extract companies from the response
+      const allCompanies = [];
+      if (data.imsOrgs && Array.isArray(data.imsOrgs)) {
+        data.imsOrgs.forEach(org => {
+          if (org.companies && Array.isArray(org.companies)) {
+            org.companies.forEach(company => {
+              allCompanies.push({
+                ...company,
+                imsOrgId: org.imsOrgId
+              });
+            });
+          }
+        });
+      }
+
+      setCompanies(allCompanies);
+      setSuccess(`Successfully retrieved ${allCompanies.length} companies`);
+    } catch (err) {
+      setError(`Error: ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setSuccess(`Copied "${text}" to clipboard`);
+      setTimeout(() => setSuccess(''), 3000);
+    }).catch(() => {
+      setError('Failed to copy to clipboard');
+    });
+  };
+
   return (
-    <div className="card_developer_console" style={{ marginBottom: '32px' }}>
+    <div className="card_developer_console" style={{ 
+        width: 'calc(77.7778%)',
+        margin: 'auto',
+        marginBottom: '32px',
+        padding: '24px'
+    }}>
       <div style={{ display: "flex", gap: "32px", flexDirection: "column" }}>
         <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
-          <h3 className="spectrum-Heading spectrum-Heading--sizeS side-header">
-            Company Discovery
-          </h3>
           <p className="spectrum-Body spectrum-Body--sizeM">
-            After copying your access token from above, paste it here to get your available companies and copy the globalCompanyId values.
+            After copying your access token from Credentials above, paste it here to get your available companies and you can copy the GlobalCompanyId you want to use in requests below.
           </p>
         </div>
 
@@ -19,6 +86,8 @@ const DiscoveryInterface = () => {
           </label>
           <input
             type="text"
+            value={accessToken}
+            onChange={(e) => setAccessToken(e.target.value)}
             placeholder="Paste your access token here"
             style={{
               width: '100%',
@@ -31,34 +100,100 @@ const DiscoveryInterface = () => {
           />
           
           <button
+            onClick={handleDiscoveryCall}
+            disabled={loading || !accessToken.trim()}
             style={{
-              backgroundColor: '#0265DC',
+              backgroundColor: loading || !accessToken.trim() ? '#ccc' : '#0265DC',
               color: 'white',
               border: 'none',
               padding: '8px 16px',
               borderRadius: '4px',
-              cursor: 'pointer',
+              cursor: loading || !accessToken.trim() ? 'not-allowed' : 'pointer',
               fontSize: '14px',
-              width: 'fit-content'
+              width: 'fit-content',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
             }}
           >
-            Get Companies
+            {loading && (
+              <div style={{
+                width: '16px',
+                height: '16px',
+                border: '2px solid #ffffff',
+                borderTop: '2px solid transparent',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite'
+              }} />
+            )}
+            {loading ? 'Loading...' : 'Get Companies'}
           </button>
         </div>
 
-        <div style={{ 
-          padding: '12px', 
-          backgroundColor: '#f8f9fa', 
-          border: '1px solid #e0e0e0',
-          borderRadius: '4px',
-          fontSize: '14px',
-          color: '#666'
-        }}>
-          💡 <strong>Coming Soon:</strong> This feature will allow you to discover your available companies and copy globalCompanyId values for use in API calls.
-        </div>
+        {error && (
+          <div style={{ 
+            padding: '12px', 
+            backgroundColor: '#ffebee', 
+            border: '1px solid #f44336',
+            borderRadius: '4px',
+            color: '#c62828',
+            fontSize: '14px'
+          }}>
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div style={{ 
+            padding: '12px', 
+            backgroundColor: '#e8f5e8', 
+            border: '1px solid #4caf50',
+            borderRadius: '4px',
+            color: '#2e7d32',
+            fontSize: '14px'
+          }}>
+            {success}
+          </div>
+        )}
+
+        {companies.length > 0 && (
+          <div style={{ display: "flex", gap: "16px", flexDirection: "column" }}>
+            <h4 className="spectrum-Heading spectrum-Heading--sizeS side-header">
+              Available Global Company IDs
+            </h4>
+            <p className="spectrum-Body spectrum-Body--sizeM">
+              Click on a globalCompanyId to copy it to your clipboard:
+            </p>
+            
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {companies.map((company, index) => (
+                <button
+                  key={index}
+                  onClick={() => copyToClipboard(company.globalCompanyId)}
+                  style={{
+                    backgroundColor: '#0265DC',
+                    color: 'white',
+                    border: 'none',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontFamily: 'monospace'
+                  }}
+                >
+                  {company.globalCompanyId}
+                </button>
+              ))}
+            </div>
+
+            <p className="spectrum-Body spectrum-Body--sizeM" style={{ fontStyle: 'italic', color: '#666' }}>
+              💡 Tip: Copy the globalCompanyId and paste it into the globalCompanyId parameter in the API calls below.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default DiscoveryInterface; 
+export default DiscoveryInterface;
