@@ -5,7 +5,6 @@ const DiscoveryInterface = () => {
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   const handleDiscoveryCall = async () => {
     if (!accessToken.trim()) {
@@ -15,7 +14,6 @@ const DiscoveryInterface = () => {
 
     setLoading(true);
     setError('');
-    setSuccess('');
     setCompanies([]);
 
     try {
@@ -49,7 +47,6 @@ const DiscoveryInterface = () => {
       }
 
       setCompanies(allCompanies);
-      setSuccess(`Successfully retrieved ${allCompanies.length} companies`);
     } catch (err) {
       setError(`Error: ${err.message}`);
     } finally {
@@ -58,10 +55,7 @@ const DiscoveryInterface = () => {
   };
 
   const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setSuccess(`Copied "${text}" to clipboard`);
-      setTimeout(() => setSuccess(''), 3000);
-    }).catch(() => {
+    navigator.clipboard.writeText(text).catch(() => {
       setError('Failed to copy to clipboard');
     });
   };
@@ -140,19 +134,6 @@ const DiscoveryInterface = () => {
             fontSize: '14px'
           }}>
             {error}
-          </div>
-        )}
-
-        {success && (
-          <div style={{ 
-            padding: '12px', 
-            backgroundColor: '#e8f5e8', 
-            border: '1px solid #4caf50',
-            borderRadius: '4px',
-            color: '#2e7d32',
-            fontSize: '14px'
-          }}>
-            {success}
           </div>
         )}
 
