@@ -10,10 +10,7 @@ keywords:
 layout: none
 ---
 import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
-import DiscoveryInterface from "../../components/DiscoveryInterface.js"
 
 <GetCredentialsOauth2 />
-
-<DiscoveryInterface />
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/bulk-data-insertion.json" scrollYOffset={64}/>
