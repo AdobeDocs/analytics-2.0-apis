@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
- "info": {
+  "info": {
     "description": "The endpoints described here are routed through analytics.adobe.io. In order to use these endpoints you must create an oAuth client that is subscribed to access the Adobe Analytics Reporting API. \n\n To view the API References for non-core Analytics 2.0 APIs, select the **API Reference** drop-down menu at the top of the page. \n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
     "title": "Adobe Analytics APIs",
     "version": "2.0"
   },
   "host": "analytics.adobe.io",
-  "basePath": "/",
+  "basePath": "/api",
   "tags": [
     {
       "name": "Annotations"
@@ -42,8 +42,37 @@
       "name": "Usage Logs"
     }
   ],
+  "parameters": {
+    "authorization": {
+      "name": "Authorization",
+      "in": "header",
+      "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    "x-gw-ims-org-id": {
+      "name": "x-gw-ims-org-id",
+      "in": "header",
+      "description": "The Organization ID copied from your AA API client integration.",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    "x-api-key": {
+      "name": "x-api-key",
+      "in": "header",
+      "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  },
   "paths": {
-    "/annotations": {
+    "/{globalCompanyId}/annotations": {
       "get": {
         "tags": [
           "Annotations"
@@ -55,6 +84,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "expansion",
             "in": "query",
@@ -186,6 +231,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "expansion",
             "in": "query",
             "description": "Comma-delimited list of additional annotation metadata fields to include on response.",
@@ -247,7 +308,7 @@
         }
       }
     },
-    "/annotations/{id}": {
+    "/{globalCompanyId}/annotations/{id}": {
       "get": {
         "tags": [
           "Annotations"
@@ -259,6 +320,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "expansion",
             "in": "query",
@@ -329,6 +406,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "expansion",
             "in": "query",
@@ -409,6 +502,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "Annotation id to update",
@@ -434,7 +543,7 @@
         }
       }
     },
-    "/calculatedmetrics": {
+    "/{globalCompanyId}/calculatedmetrics": {
       "get": {
         "tags": [
           "Calculated Metrics"
@@ -446,6 +555,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "rsids",
             "in": "query",
@@ -645,6 +770,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted Object containing key/value pairs for calculated metric creation.",
@@ -713,7 +854,7 @@
         }
       }
     },
-    "/calculatedmetrics/functions": {
+    "/{globalCompanyId}/calculatedmetrics/functions": {
       "get": {
         "tags": [
           "Calculated Metrics"
@@ -725,6 +866,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "locale",
             "in": "query",
@@ -753,7 +910,7 @@
         }
       }
     },
-    "/calculatedmetrics/functions/{id}": {
+    "/{globalCompanyId}/calculatedmetrics/functions/{id}": {
       "get": {
         "tags": [
           "Calculated Metrics"
@@ -765,6 +922,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -803,7 +976,7 @@
         }
       }
     },
-    "/calculatedmetrics/validate": {
+    "/{globalCompanyId}/calculatedmetrics/validate": {
       "post": {
         "tags": [
           "Calculated Metrics"
@@ -818,6 +991,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "in": "body",
             "name": "body",
@@ -866,7 +1055,7 @@
         }
       }
     },
-    "/calculatedmetrics/{id}": {
+    "/{globalCompanyId}/calculatedmetrics/{id}": {
       "get": {
         "tags": [
           "Calculated Metrics"
@@ -878,6 +1067,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -958,6 +1163,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -1057,6 +1278,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "The calculated metric ID to be deleted",
@@ -1088,7 +1325,7 @@
         }
       }
     },
-    "/componentmetadata/shares": {
+    "/{globalCompanyId}/componentmetadata/shares": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1099,6 +1336,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "includeType",
             "in": "query",
@@ -1167,6 +1420,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted Share object containing key-value pairs that conform to the Share schema",
@@ -1217,6 +1486,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted ARRAY of objects containing key-value pairs that conform to the schema",
@@ -1264,7 +1549,7 @@
         }
       }
     },
-    "/componentmetadata/shares/component/search": {
+    "/{globalCompanyId}/componentmetadata/shares/component/search": {
       "post": {
         "tags": [
           "Component Meta Data"
@@ -1279,6 +1564,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "in": "body",
             "name": "body",
@@ -1337,7 +1638,7 @@
         }
       }
     },
-    "/componentmetadata/shares/{id}": {
+    "/{globalCompanyId}/componentmetadata/shares/{id}": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1349,6 +1650,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -1390,6 +1707,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "The shareId to be deleted",
@@ -1424,7 +1757,7 @@
         }
       }
     },
-    "/componentmetadata/shares/sharedto/me": {
+    "/{globalCompanyId}/componentmetadata/shares/sharedto/me": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1436,6 +1769,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "componentType",
             "in": "query",
@@ -1458,7 +1807,7 @@
         }
       }
     },
-    "/componentmetadata/tags/component/search": {
+    "/{globalCompanyId}/componentmetadata/tags/component/search": {
       "post": {
         "tags": [
           "Component Meta Data"
@@ -1473,6 +1822,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "in": "body",
             "name": "body",
@@ -1509,7 +1874,7 @@
         }
       }
     },
-    "/componentmetadata/tags": {
+    "/{globalCompanyId}/componentmetadata/tags": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1521,6 +1886,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "limit",
             "in": "query",
@@ -1568,6 +1949,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted array of Tag objects containing key-value pairs",
@@ -1606,6 +2003,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "componentIds",
             "in": "query",
@@ -1657,7 +2070,7 @@
         }
       }
     },
-    "/componentmetadata/tags/search": {
+    "/{globalCompanyId}/componentmetadata/tags/search": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1669,6 +2082,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "componentId",
             "in": "query",
@@ -1717,7 +2146,7 @@
         }
       }
     },
-    "/componentmetadata/tags/tagitems": {
+    "/{globalCompanyId}/componentmetadata/tags/tagitems": {
       "put": {
         "tags": [
           "Component Meta Data"
@@ -1732,6 +2161,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "in": "body",
             "name": "body",
@@ -1761,7 +2206,7 @@
         }
       }
     },
-    "/componentmetadata/tags/{id}": {
+    "/{globalCompanyId}/componentmetadata/tags/{id}": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1773,6 +2218,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -1809,6 +2270,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "The tagId to be deleted",
@@ -1839,7 +2316,7 @@
         }
       }
     },
-    "/componentmetadata/tags/tagnames": {
+    "/{globalCompanyId}/componentmetadata/tags/tagnames": {
       "get": {
         "tags": [
           "Component Meta Data"
@@ -1851,6 +2328,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "tagNames",
             "in": "query",
@@ -1899,7 +2392,7 @@
         }
       }
     },
-    "/dateranges/{id}": {
+    "/{globalCompanyId}/dateranges/{id}": {
       "get": {
         "tags": [
           "Date Ranges"
@@ -1911,6 +2404,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -1977,6 +2486,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -2053,6 +2578,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "The DateRange id for which to retrieve information",
@@ -2078,7 +2619,7 @@
         }
       }
     },
-    "/dateranges": {
+    "/{globalCompanyId}/dateranges": {
       "get": {
         "tags": [
           "Date Ranges"
@@ -2090,6 +2631,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "includeType",
             "in": "query",
@@ -2204,6 +2761,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted Object containing date range keys/value pairs to be updated.",
@@ -2262,7 +2835,7 @@
         }
       }
     },
-    "/dimensions": {
+    "/{globalCompanyId}/dimensions": {
       "get": {
         "tags": [
           "Dimensions"
@@ -2274,6 +2847,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "rsid",
             "in": "query",
@@ -2363,7 +2952,7 @@
         }
       }
     },
-    "/dimensions/{id}": {
+    "/{globalCompanyId}/dimensions/{id}": {
       "get": {
         "tags": [
           "Dimensions"
@@ -2375,6 +2964,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -2434,7 +3039,7 @@
         }
       }
     },
-    "/metrics": {
+    "/{globalCompanyId}/metrics": {
       "get": {
         "tags": [
           "Metrics"
@@ -2446,6 +3051,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "rsid",
             "in": "query",
@@ -2510,7 +3131,7 @@
         }
       }
     },
-    "/metrics/{id}": {
+    "/{globalCompanyId}/metrics/{id}": {
       "get": {
         "tags": [
           "Metrics"
@@ -2522,6 +3143,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -2585,7 +3222,7 @@
         }
       }
     },
-    "/projects/{id}": {
+    "/{globalCompanyId}/projects/{id}": {
       "get": {
         "tags": [
           "Projects"
@@ -2597,6 +3234,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -2653,6 +3306,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -2719,6 +3388,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "The Project id for which to retrieve information",
@@ -2744,7 +3429,7 @@
         }
       }
     },
-    "/projects/validate": {
+    "/{globalCompanyId}/projects/validate": {
       "post": {
         "tags": [
           "Projects"
@@ -2759,6 +3444,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "in": "body",
             "name": "body",
@@ -2793,7 +3494,7 @@
         }
       }
     },
-    "/projects": {
+    "/{globalCompanyId}/projects": {
       "get": {
         "tags": [
           "Projects"
@@ -2805,6 +3506,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "includeType",
             "in": "query",
@@ -2916,6 +3633,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted Object containing project keys/value pairs to be updated.",
@@ -2963,7 +3696,7 @@
         }
       }
     },
-    "/reports": {
+    "/{globalCompanyId}/reports": {
       "post": {
         "tags": [
           "Reports"
@@ -2979,51 +3712,21 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/RankedRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "schema": {
-              "$ref": "#/definitions/RankedReportData"
-            }
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
           },
-          "206": {
-            "description": "Partially successful operation.  Some response columns contain errors.  See the [Partial Responses](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md#partial-responses-206-status-code) for details.",
-            "schema": {
-              "$ref": "#/definitions/RankedReportData"
-            }
+          {
+            "$ref": "#/parameters/authorization"
           },
-          "400": {
-            "description": "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
-            "schema": {
-              "$ref": "#/definitions/ReportErrorStatus"
-            }
-          }
-        }
-      }
-    },
-    "/reports/realtime": {
-      "post": {
-        "tags": [
-          "Reports"
-        ],
-        "summary": "Runs a Realtime report for the request in the post body",
-        "description": "See the [Reporting User Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.",
-        "operationId": "runRealtimeReport",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "in": "body",
             "name": "body",
@@ -3055,7 +3758,69 @@
         }
       }
     },
-    "/reports/topItems": {
+    "/{globalCompanyId}/reports/realtime": {
+      "post": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Runs a Realtime report for the request in the post body",
+        "description": "See the [Reporting User Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.",
+        "operationId": "runRealtimeReport",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RankedRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/RankedReportData"
+            }
+          },
+          "206": {
+            "description": "Partially successful operation.  Some response columns contain errors.  See the [Partial Responses](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md#partial-responses-206-status-code) for details.",
+            "schema": {
+              "$ref": "#/definitions/RankedReportData"
+            }
+          },
+          "400": {
+            "description": "Invalid input; name, rsid, and definition are all required. Definition must be formatted as a JSON Object.",
+            "schema": {
+              "$ref": "#/definitions/ReportErrorStatus"
+            }
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/reports/topItems": {
       "get": {
         "tags": [
           "Reports"
@@ -3067,6 +3832,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "rsid",
             "in": "query",
@@ -3192,7 +3973,7 @@
         }
       }
     },
-    "/segments": {
+    "/{globalCompanyId}/segments": {
       "get": {
         "tags": [
           "Segments"
@@ -3204,6 +3985,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "rsids",
             "in": "query",
@@ -3376,6 +4173,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "JSON-formatted Object containing key/value pairs for segment creation.",
@@ -3442,7 +4255,7 @@
         }
       }
     },
-    "/segments/validate": {
+    "/{globalCompanyId}/segments/validate": {
       "post": {
         "tags": [
           "Segments"
@@ -3457,6 +4270,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "rsid",
             "in": "query",
@@ -3490,7 +4319,7 @@
         }
       }
     },
-    "/segments/{id}": {
+    "/{globalCompanyId}/segments/{id}": {
       "get": {
         "tags": [
           "Segments"
@@ -3502,6 +4331,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -3580,6 +4425,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "id",
             "in": "path",
@@ -3674,6 +4535,22 @@
         ],
         "parameters": [
           {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
+          {
             "name": "id",
             "in": "path",
             "description": "The segment ID to be deleted",
@@ -3702,7 +4579,7 @@
         }
       }
     },
-    "/users": {
+    "/{globalCompanyId}/users": {
       "get": {
         "tags": [
           "Users"
@@ -3713,6 +4590,22 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "limit",
             "in": "query",
@@ -3746,7 +4639,7 @@
         }
       }
     },
-    "/users/me": {
+    "/{globalCompanyId}/users/me": {
       "get": {
         "tags": [
           "Users"
@@ -3767,7 +4660,7 @@
         }
       }
     },
-    "/auditlogs/usage": {
+    "/{globalCompanyId}/auditlogs/usage": {
       "get": {
         "tags": [
           "Usage Logs"
@@ -3776,6 +4669,22 @@
         "description": "This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.",
         "operationId": "getUsageAccessLogs",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/authorization"
+          },
+          {
+            "$ref": "#/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/parameters/x-api-key"
+          },
           {
             "name": "startDate",
             "in": "query",

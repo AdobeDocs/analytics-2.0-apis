@@ -7,11 +7,11 @@
   },
   "servers": [
     {
-      "url": "https://livestream.adobe.net/api/1"
+      "url": "https://analytics.adobe.io/api"
     }
   ],
   "paths": {
-    "/schema": {
+    "/{globalCompanyId}/livestream/schema": {
       "get": {
         "tags": [
           "schema"
@@ -34,6 +34,37 @@
               }
             }
           }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-gw-ims-org-id": {
+        "name": "x-gw-ims-org-id",
+        "in": "header",
+        "description": "The Organization ID copied from your AA API client integration.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
       }
     }

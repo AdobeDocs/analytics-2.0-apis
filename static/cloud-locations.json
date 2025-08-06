@@ -1,735 +1,992 @@
 {
-    "openapi" : "3.0.1",
-    "info" : {
-      "title" : "Adobe Analytics Cloud Locations API",
-      "description" : "Adobe Analytics Cloud Locations API",
-      "version" : "v2"
-    },
-    "servers": [
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Adobe Analytics Cloud Locations API",
+    "description": "Adobe Analytics Cloud Locations API",
+    "version": "v2"
+  },
+  "servers": [
     {
-      "url": "https://analytics.adobe.io/export_locations/"
+      "url": "https://analytics.adobe.io/api"
     }
-    ],
-    "tags" : [ {
-      "name" : "Analytics Cloud Locations Account API",
-      "description" : "The analytics Cloud Locations account API for user token"
-    }, {
-      "name" : "Analytics Cloud Locations Location API",
-      "description" : "The analytics Cloud Locations Location API for user token"
-    }],
-    "paths" : {
-      "/exportlocations/account/cloudAccount/s3_role_arn" : {
-        "get" : {
-          "tags" : [ "Analytics Cloud Locations Account API" ],
-          "summary" : "Get S3 user arn for S3 role arn account type",
-          "operationId" : "getS3UserArn",
-          "responses" : {
-            "400" : {
-              "description" : "Unable to get S3 user arn",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/UserArnResponse"
-                  }
+  ],
+  "tags": [
+    {
+      "name": "Analytics Cloud Locations Account API",
+      "description": "The analytics Cloud Locations account API for user token"
+    },
+    {
+      "name": "Analytics Cloud Locations Location API",
+      "description": "The analytics Cloud Locations Location API for user token"
+    }
+  ],
+  "paths": {
+    "/{globalCompanyId}/cloud_locations/exportlocations/account/cloudAccount/s3_role_arn": {
+      "get": {
+        "tags": [
+          "Analytics Cloud Locations Account API"
+        ],
+        "summary": "Get S3 user arn for S3 role arn account type",
+        "operationId": "getS3UserArn",
+        "responses": {
+          "400": {
+            "description": "Unable to get S3 user arn",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
                 }
               }
             }
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserArnResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/{globalCompanyId}/cloud_locations/analytics/exportlocations/account": {
+      "get": {
+        "tags": [
+          "Analytics Cloud Locations Account API"
+        ],
+        "summary": "Get all Cloud Locations Accounts for a global company id",
+        "operationId": "getAccounts",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "createdBy",
+            "in": "query",
+            "description": "created user name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ftp",
+                "sftp",
+                "gcp",
+                "azure",
+                "azure_rbac",
+                "azure_sas",
+                "s3",
+                "s3_role_arn",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Unable to get Cloud Locations Account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResponsePage"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Analytics Cloud Locations Account API"
+        ],
+        "summary": "Create a new Cloud Locations Account",
+        "operationId": "createAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to create Cloud Locations Account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/{globalCompanyId}/cloud_locations/analytics/exportlocations/account/{UUID}": {
+      "get": {
+        "tags": [
+          "Analytics Cloud Locations Account API"
+        ],
+        "summary": "Get a specific Cloud Locations Account",
+        "operationId": "getAccount",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "UUID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Unable to get Cloud Locations Account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Analytics Cloud Locations Account API"
+        ],
+        "summary": "Update a specific Cloud Locations Account",
+        "operationId": "updateAccount",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "UUID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to update Cloud Locations Account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Analytics Cloud Locations Account API"
+        ],
+        "summary": "Delete a specific Cloud Locations Account",
+        "operationId": "deleteAccount",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "UUID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Cloud Locations Account NOT found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportLocationDeleteResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/{globalCompanyId}/cloud_locations/analytics/exportlocations/location": {
+      "get": {
+        "tags": [
+          "Analytics Cloud Locations Location API"
+        ],
+        "summary": "Get all Cloud Locations for a given global company id",
+        "operationId": "getLocations",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "accountUuid",
+            "in": "query",
+            "description": "account uuid",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdBy",
+            "in": "query",
+            "description": "created user name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "application",
+            "in": "query",
+            "description": "Application name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to get Cloud Location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationResponsePage"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Analytics Cloud Locations Location API"
+        ],
+        "summary": "Create a new Cloud Location",
+        "operationId": "createLocation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to create Cloud Location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/{globalCompanyId}/cloud_locations/analytics/exportlocations/location/{UUID}": {
+      "get": {
+        "tags": [
+          "Analytics Cloud Locations Location API"
+        ],
+        "summary": "Get a specific Cloud Location",
+        "operationId": "getLocation",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "UUID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to get Cloud Location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Analytics Cloud Locations Location API"
+        ],
+        "summary": "Update a specific Cloud Location",
+        "operationId": "updateLocation",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "UUID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LocationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request - Unable to update Cloud Location.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Analytics Cloud Locations Location API"
+        ],
+        "summary": "Delete a specific Cloud Location",
+        "operationId": "deleteLocation",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "UUID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Cloud Location NOT found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportLocationDeleteResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountResponse": {
+        "properties": {
+          "accountProperties": {
+            "$ref": "#/components/schemas/ObjectNode"
+          },
+          "shared": {
+            "type": "boolean"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          }
         }
       },
-      "/analytics/exportlocations/account" : {
-        "get" : {
-          "tags" : [ "Analytics Cloud Locations Account API" ],
-          "summary" : "Get all Cloud Locations Accounts for a global company id",
-          "operationId" : "getAccounts",
-          "parameters" : [ {
-            "name" : "createdBy",
-            "in" : "query",
-            "description" : "created user name",
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "type",
-            "in" : "query",
-            "description" : "Type",
-            "schema" : {
-              "type" : "string",
-              "enum" : [ "ftp", "sftp", "gcp", "azure", "azure_rbac", "azure_sas", "s3", "s3_role_arn", "email"]
-            }
-          }],
-          "responses" : {
-            "400" : {
-              "description" : "Unable to get Cloud Locations Account.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AccountResponsePage"
-                  }
-                }
-              }
-            }
+      "ObjectNode": {
+        "type": "object"
+      },
+      "AccountRequest": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
-        },
-        "post" : {
-          "tags" : [ "Analytics Cloud Locations Account API" ],
-          "summary" : "Create a new Cloud Locations Account",
-          "operationId" : "createAccount",
-          "requestBody" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AccountRequest"
-                }
-              }
-            }
+          "secret": {
+            "type": "string"
           },
-          "responses" : {
-            "400" : {
-              "description" : "Bad Request - Unable to create Cloud Locations Account.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AccountResponse"
-                  }
-                }
-              }
-            }
+          "accountProperties": {
+            "$ref": "#/components/schemas/ObjectNode"
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "sharedTo": {
+            "type": "string"
+          }
         }
       },
-      "/analytics/exportlocations/account/{UUID}" : {
-        "get" : {
-          "tags" : [ "Analytics Cloud Locations Account API" ],
-          "summary" : "Get a specific Cloud Locations Account",
-          "operationId" : "getAccount",
-          "parameters" : [ {
-            "name" : "UUID",
-            "in" : "path",
-            "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "responses" : {
-            "400" : {
-              "description" : "Unable to get Cloud Locations Account.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AccountResponse"
-                  }
-                }
-              }
-            }
+      "ExportLocationDeleteResponse": {
+        "properties": {
+          "message": {
+            "type": "string"
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
-        },
-        "put" : {
-          "tags" : [ "Analytics Cloud Locations Account API" ],
-          "summary" : "Update a specific Cloud Locations Account",
-          "operationId" : "updateAccount",
-          "parameters" : [ {
-            "name" : "UUID",
-            "in" : "path",
-            "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "requestBody" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AccountRequest"
-                }
-              }
-            }
-          },
-          "responses" : {
-            "400" : {
-              "description" : "Bad Request - Unable to update Cloud Locations Account.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AccountResponse"
-                  }
-                }
-              }
-            }
-          },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
-        },
-        "delete" : {
-          "tags" : [ "Analytics Cloud Locations Account API" ],
-          "summary" : "Delete a specific Cloud Locations Account",
-          "operationId" : "deleteAccount",
-          "parameters" : [ {
-            "name" : "UUID",
-            "in" : "path",
-            "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "responses" : {
-            "404" : {
-              "description" : "Cloud Locations Account NOT found",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/ExportLocationDeleteResponse"
-                  }
-                }
-              }
-            }
-          },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
+          "uuid": {
+            "type": "string"
+          }
         }
       },
-      "/analytics/exportlocations/location" : {
-        "get" : {
-          "tags" : [ "Analytics Cloud Locations Location API" ],
-          "summary" : "Get all Cloud Locations for a given global company id",
-          "operationId" : "getLocations",
-          "parameters" : [ {
-            "name" : "accountUuid",
-            "in" : "query",
-            "description" : "account uuid",
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "createdBy",
-            "in" : "query",
-            "description" : "created user name",
-            "schema" : {
-              "type" : "string"
-            }
-          }, {
-            "name" : "application",
-            "in" : "query",
-            "description" : "Application name",
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "responses" : {
-            "400" : {
-              "description" : "Bad Request - Unable to get Cloud Location.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/LocationResponsePage"
-                  }
-                }
-              }
-            }
+      "AnalyticsAsrErrorResponse": {
+        "properties": {
+          "errorDescription": {
+            "type": "string"
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
-        },
-        "post" : {
-          "tags" : [ "Analytics Cloud Locations Location API" ],
-          "summary" : "Create a new Cloud Location",
-          "operationId" : "createLocation",
-          "requestBody" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/LocationRequest"
-                }
-              }
-            }
+          "errorCode": {
+            "type": "string"
           },
-          "responses" : {
-            "400" : {
-              "description" : "Bad Request - Unable to create Cloud Location.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/LocationResponse"
-                  }
-                }
-              }
-            }
-          },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
+          "errorId": {
+            "type": "string"
+          }
         }
       },
-      "/analytics/exportlocations/location/{UUID}" : {
-        "get" : {
-          "tags" : [ "Analytics Cloud Locations Location API" ],
-          "summary" : "Get a specific Cloud Location",
-          "operationId" : "getLocation",
-          "parameters" : [ {
-            "name" : "UUID",
-            "in" : "path",
-            "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "responses" : {
-            "400" : {
-              "description" : "Bad Request - Unable to get Cloud Location.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/LocationResponse"
-                  }
-                }
-              }
+      "AccountResponsePage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountResponse"
             }
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
-        },
-        "put" : {
-          "tags" : [ "Analytics Cloud Locations Location API" ],
-          "summary" : "Update a specific Cloud Location",
-          "operationId" : "updateLocation",
-          "parameters" : [ {
-            "name" : "UUID",
-            "in" : "path",
-            "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "requestBody" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/LocationRequest"
-                }
-              }
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UserArnResponse": {
+        "properties": {
+          "userARN": {
+            "type": "string"
+          }
+        }
+      },
+      "LocationResponse": {
+        "properties": {
+          "shared": {
+            "type": "boolean"
+          },
+          "lastModifiedDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "accountUuid": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "applicationTag": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "application": {
+            "type": "string",
+            "enum": [
+              "TAXONOMIST",
+              "DATA_WAREHOUSE",
+              "DATA_FEED"
+            ]
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "modifiedBy": {
+            "type": "string"
+          },
+          "globalCompanyId": {
+            "type": "string"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/ObjectNode"
+          }
+        }
+      },
+      "LocationRequest": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "accountUuid": {
+            "type": "string"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/ObjectNode"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "application": {
+            "type": "string",
+            "enum": [
+              "TAXONOMIST",
+              "DATA_WAREHOUSE",
+              "DATA_FEED"
+            ]
+          },
+          "applicationTag": {
+            "type": "string"
+          },
+          "sharedTo": {
+            "type": "string"
+          }
+        }
+      },
+      "LocationResponsePage": {
+        "properties": {
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationResponse"
             }
           },
-          "responses" : {
-            "400" : {
-              "description" : "Bad Request - Unable to update Cloud Location.",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/LocationResponse"
-                  }
-                }
-              }
-            }
+          "first": {
+            "type": "boolean"
           },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
-        },
-        "delete" : {
-          "tags" : [ "Analytics Cloud Locations Location API" ],
-          "summary" : "Delete a specific Cloud Location",
-          "operationId" : "deleteLocation",
-          "parameters" : [ {
-            "name" : "UUID",
-            "in" : "path",
-            "required" : true,
-            "schema" : {
-              "type" : "string"
-            }
-          } ],
-          "responses" : {
-            "404" : {
-              "description" : "Cloud Location NOT found",
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/AnalyticsAsrErrorResponse"
-                  }
-                }
-              }
-            },
-            "200" : {
-              "content" : {
-                "application/json" : {
-                  "schema" : {
-                    "$ref" : "#/components/schemas/ExportLocationDeleteResponse"
-                  }
-                }
-              }
-            }
-          },
-          "security" : [ {
-            "x-user-auth" : [ ]
-          } ]
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          }
         }
       }
     },
-    "components" : {
-      "schemas" : {
-        "AccountResponse" : {
-          "properties" : {
-            "accountProperties" : {
-              "$ref" : "#/components/schemas/ObjectNode"
-            },
-            "shared" : {
-              "type" : "boolean"
-            },
-            "createdDate" : {
-              "type" : "string",
-              "format" : "date-time"
-            },
-            "createdBy" : {
-              "type" : "string"
-            },
-            "lastModifiedDate" : {
-              "type" : "string",
-              "format" : "date-time"
-            },
-            "name" : {
-              "type" : "string"
-            },
-            "description" : {
-              "type" : "string"
-            },
-            "modifiedBy" : {
-              "type" : "string"
-            },
-            "secret" : {
-              "type" : "string"
-            },
-            "type" : {
-              "type" : "string"
-            },
-            "uuid" : {
-              "type" : "string"
-            }
-          }
-        },
-        "ObjectNode" : {
-          "type" : "object"
-        },
-        "AccountRequest" : {
-          "type" : "object",
-          "properties" : {
-            "type" : {
-              "type" : "string"
-            },
-            "secret" : {
-              "type" : "string"
-            },
-            "accountProperties" : {
-              "$ref" : "#/components/schemas/ObjectNode"
-            },
-            "name" : {
-              "type" : "string"
-            },
-            "description" : {
-              "type" : "string"
-            },
-            "sharedTo" : {
-              "type" : "string"
-            }
-          }
-        },
-        "ExportLocationDeleteResponse" : {
-          "properties" : {
-            "message" : {
-              "type" : "string"
-            },
-            "uuid" : {
-              "type" : "string"
-            }
-          }
-        },
-        "AnalyticsAsrErrorResponse" : {
-          "properties" : {
-            "errorDescription" : {
-              "type" : "string"
-            },
-            "errorCode" : {
-              "type" : "string"
-            },
-            "errorId" : {
-              "type" : "string"
-            }
-          }
-        },
-        "AccountResponsePage" : {
-          "type" : "object",
-          "properties" : {
-            "content" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/components/schemas/AccountResponse"
-              }
-            },
-            "number" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "size" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "totalPages" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "totalElements" : {
-              "type" : "integer",
-              "format" : "int64"
-            },
-            "numberOfElements" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "first" : {
-              "type" : "boolean"
-            },
-            "last" : {
-              "type" : "boolean"
-            }
-          }
-        },
-        "UserArnResponse" : {
-          "properties" : {
-            "userARN" : {
-              "type" : "string"
-            }
-          }
-        },
-        "LocationResponse" : {
-          "properties" : {
-            "shared" : {
-              "type" : "boolean"
-            },
-            "lastModifiedDate" : {
-              "type" : "string",
-              "format" : "date-time"
-            },
-            "accountUuid" : {
-              "type" : "string"
-            },
-            "description" : {
-              "type" : "string"
-            },
-            "type" : {
-              "type" : "string"
-            },
-            "applicationTag" : {
-              "type" : "string"
-            },
-            "uuid" : {
-              "type" : "string"
-            },
-            "createdDate" : {
-              "type" : "string",
-              "format" : "date-time"
-            },
-            "deleted" : {
-              "type" : "boolean"
-            },
-            "application" : {
-              "type" : "string",
-              "enum" : [ "TAXONOMIST", "DATA_WAREHOUSE", "DATA_FEED" ]
-            },
-            "createdBy" : {
-              "type" : "string"
-            },
-            "name" : {
-              "type" : "string"
-            },
-            "modifiedBy" : {
-              "type" : "string"
-            },
-            "globalCompanyId" : {
-              "type" : "string"
-            },
-            "properties" : {
-              "$ref" : "#/components/schemas/ObjectNode"
-            }
-          }
-        },
-        "LocationRequest" : {
-          "type" : "object",
-          "properties" : {
-            "type" : {
-              "type" : "string"
-            },
-            "accountUuid" : {
-              "type" : "string"
-            },
-            "properties" : {
-              "$ref" : "#/components/schemas/ObjectNode"
-            },
-            "name" : {
-              "type" : "string"
-            },
-            "description" : {
-              "type" : "string"
-            },
-            "application" : {
-              "type" : "string",
-              "enum" : [ "TAXONOMIST", "DATA_WAREHOUSE", "DATA_FEED" ]
-            },
-            "applicationTag" : {
-              "type" : "string"
-            },
-            "sharedTo" : {
-              "type" : "string"
-            }
-          }
-        },
-        "LocationResponsePage" : {
-          "properties" : {
-            "number" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "size" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "numberOfElements" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "last" : {
-              "type" : "boolean"
-            },
-            "totalPages" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "content" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/components/schemas/LocationResponse"
-              }
-            },
-            "first" : {
-              "type" : "boolean"
-            },
-            "totalElements" : {
-              "type" : "integer",
-              "format" : "int64"
-            }
-          }
+    "securitySchemes": {
+      "x-user-auth": {
+        "type": "apiKey",
+        "description": "IMS user token",
+        "name": "x-user-auth",
+        "in": "header"
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
       },
-      "securitySchemes" : {
-        "x-user-auth" : {
-          "type" : "apiKey",
-          "description" : "IMS user token",
-          "name" : "x-user-auth",
-          "in" : "header"
+      "x-gw-ims-org-id": {
+        "name": "x-gw-ims-org-id",
+        "in": "header",
+        "description": "The Organization ID copied from your AA API client integration.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
       }
     }
   }
+}

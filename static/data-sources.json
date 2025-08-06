@@ -1,490 +1,712 @@
 {
-  "openapi" : "3.0.1",
-  "info" : {
-    "title" : "Adobe Analytics Data Sources API",
-    "description" : "A service for managing and uploading data to Data Sources accounts.",
-    "version" : "1.0"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Adobe Analytics Data Sources API",
+    "description": "A service for managing and uploading data to Data Sources accounts.",
+    "version": "1.0"
   },
   "servers": [
-    {"url": "https://analytics.adobe.io/datasources/"}
+    {
+      "url": "https://analytics.adobe.io/api"
+    }
   ],
-  "tags" : [ {
-    "name" : "Account",
-    "description" : "Manage Data Sources accounts associated with a report suite"
-  }, {
-    "name" : "Job",
-    "description" : "Upload and monitor data of Data Sources accounts"
-  } ],
-  "paths" : {
-    "/account/{report_suite_id}" : {
-      "get" : {
-        "tags" : [ "Account" ],
-        "summary" : "Retrieve all Data Sources accounts",
-        "description" : "Retrieves information for all Data Sources accounts associated with the given report suite.",
-        "operationId" : "getAllAccounts",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID to search for accounts",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+  "tags": [
+    {
+      "name": "Account",
+      "description": "Manage Data Sources accounts associated with a report suite"
+    },
+    {
+      "name": "Job",
+      "description": "Upload and monitor data of Data Sources accounts"
+    }
+  ],
+  "paths": {
+    "/{globalCompanyId}/data_sources/account/{report_suite_id}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Retrieve all Data Sources accounts",
+        "description": "Retrieves information for all Data Sources accounts associated with the given report suite.",
+        "operationId": "getAllAccounts",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID to search for accounts",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/DataSourcesAccount"
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataSourcesAccount"
                   }
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
-      },
-      "post" : {
-        "tags" : [ "Account" ],
-        "summary" : "Create a Data Sources account",
-        "description" : "Creates a new Data Sources account associated with the given report suite.",
-        "operationId" : "createAccount",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID associated with this account",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "type",
-          "in" : "query",
-          "description" : "The type of data associated with this account",
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "name",
-          "in" : "query",
-          "description" : "The name of the account",
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "email",
-          "in" : "query",
-          "description" : "The email address to receive notifications regarding this account",
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataSourcesAccount"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
-      }
-    },
-    "/account/{report_suite_id}/{data_source_id}" : {
-      "get" : {
-        "tags" : [ "Account" ],
-        "summary" : "Retrieve a single Data Sources account",
-        "description" : "Retrieves information for a Data Sources account associated with the given report suite.",
-        "operationId" : "getAccount",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID associated with the account",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "data_source_id",
-          "in" : "path",
-          "description" : "The Data Source ID of the account to retrieve",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataSourcesAccount"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
-      },
-      "delete" : {
-        "tags" : [ "Account" ],
-        "summary" : "Delete a Data Sources account",
-        "description" : "Deletes a Data Sources account associated with the given report suite. WARNING - This action cannot be undone.",
-        "operationId" : "deleteAccount",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID associated with the Data Sources account",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "data_source_id",
-          "in" : "path",
-          "description" : "The Data Source ID of the account to delete",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/OperationResponse"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
-      }
-    },
-    "/job/{report_suite_id}/{data_source_id}" : {
-      "get" : {
-        "tags" : [ "Job" ],
-        "summary" : "Retrieve information for jobs uploaded to a Data Sources account.",
-        "description" : "Retrieves information for jobs uploaded to a Data Sources account associated with the given report suite. The results can be filtered by several criteria and are paginated at 100 entries per page.",
-        "operationId" : "getJobs",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID associated with the Data Sources account",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "data_source_id",
-          "in" : "path",
-          "description" : "The Data Source account ID associated with the search for jobs",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "status",
-          "in" : "query",
-          "description" : "The status of jobs being searched",
-          "schema" : {
-            "type" : "string"
+        "security": [
+          {
+            "global_company_id": []
           },
-          "example" : "uploaded"
-        }, {
-          "name" : "start_date",
-          "in" : "query",
-          "description" : "How far back to begin the search. Should be earlier than 'end_date'. Defaults to one month ago. Format: 'yyyy-mm-dd hh:mm:ss'",
-          "schema" : {
-            "type" : "string"
+          {
+            "ims_user_token": []
           }
-        }, {
-          "name" : "end_date",
-          "in" : "query",
-          "description" : "How far back to end the search. Should be more recent than 'start_date'. Defaults to today. Format: 'yyyy-mm-dd hh:mm:ss'",
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "description" : "Which page of the results to retrieve. Page '1' is the first page. If this value exceeds the available pages, no results will be returned.",
-          "schema" : {
-            "type" : "string"
-          },
-          "example" : 1
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/PagedDataSourcesJobList"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
+        ]
       },
-      "post" : {
-        "tags" : [ "Job" ],
-        "summary" : "Upload data to a Data Sources account.",
-        "description" : "Uploads a data file to a Data Sources account associated with the given report suite. The file must be formatted identically to files uploaded to Data Sources FTP accounts. A job is created, which can be queried later by its job ID. File validation will be performed at the time the job is processed, not upon upload.",
-        "operationId" : "createJob",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID associated with the Data Sources account",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Create a Data Sources account",
+        "description": "Creates a new Data Sources account associated with the given report suite.",
+        "operationId": "createAccount",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID associated with this account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "The type of data associated with this account",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "The name of the account",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The email address to receive notifications regarding this account",
+            "schema": {
+              "type": "string"
+            }
           }
-        }, {
-          "name" : "data_source_id",
-          "in" : "path",
-          "description" : "The Data Source ID of the account to receive the file",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "multipart/form-data" : {
-              "examples" : {
-                "file" : {
-                  "description" : "A file formatted to be imported to Data Sources",
-                  "value" : "date    event 1 evar 1\n1/1/2024    1   Test Data 1\n1/1/2024    2   Test Data 2\n"
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourcesAccount"
                 }
               }
             }
           }
         },
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataSourcesJob"
-                }
-              }
-            }
+        "security": [
+          {
+            "global_company_id": []
+          },
+          {
+            "ims_user_token": []
           }
-        },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
+        ]
       }
     },
-    "/job/{report_suite_id}/{data_source_id}/{job_id}" : {
-      "get" : {
-        "tags" : [ "Job" ],
-        "summary" : "Retrieve information for a specific job uploaded to a Data Sources account.",
-        "description" : "Retrieve information for a specific job uploaded to a Data Sources account for a given report suite. The Job is identified by its job ID.",
-        "operationId" : "getJob",
-        "parameters" : [ {
-          "name" : "report_suite_id",
-          "in" : "path",
-          "description" : "The report suite ID associated with the Data Sources account",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
+    "/{globalCompanyId}/data_sources/account/{report_suite_id}/{data_source_id}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Retrieve a single Data Sources account",
+        "description": "Retrieves information for a Data Sources account associated with the given report suite.",
+        "operationId": "getAccount",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID associated with the account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_source_id",
+            "in": "path",
+            "description": "The Data Source ID of the account to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        }, {
-          "name" : "data_source_id",
-          "in" : "path",
-          "description" : "The Data Source ID associated with the job",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "job_id",
-          "in" : "path",
-          "description" : "The job ID of the job to retrieve.",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "default" : {
-            "description" : "default response",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/DataSourcesJob"
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourcesAccount"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "global_company_id" : [ ]
-        }, {
-          "ims_user_token" : [ ]
-        } ]
+        "security": [
+          {
+            "global_company_id": []
+          },
+          {
+            "ims_user_token": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Delete a Data Sources account",
+        "description": "Deletes a Data Sources account associated with the given report suite. WARNING - This action cannot be undone.",
+        "operationId": "deleteAccount",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID associated with the Data Sources account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_source_id",
+            "in": "path",
+            "description": "The Data Source ID of the account to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "global_company_id": []
+          },
+          {
+            "ims_user_token": []
+          }
+        ]
+      }
+    },
+    "/{globalCompanyId}/data_sources/job/{report_suite_id}/{data_source_id}": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Retrieve information for jobs uploaded to a Data Sources account.",
+        "description": "Retrieves information for jobs uploaded to a Data Sources account associated with the given report suite. The results can be filtered by several criteria and are paginated at 100 entries per page.",
+        "operationId": "getJobs",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID associated with the Data Sources account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_source_id",
+            "in": "path",
+            "description": "The Data Source account ID associated with the search for jobs",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "The status of jobs being searched",
+            "schema": {
+              "type": "string"
+            },
+            "example": "uploaded"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "How far back to begin the search. Should be earlier than 'end_date'. Defaults to one month ago. Format: 'yyyy-mm-dd hh:mm:ss'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "How far back to end the search. Should be more recent than 'start_date'. Defaults to today. Format: 'yyyy-mm-dd hh:mm:ss'",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Which page of the results to retrieve. Page '1' is the first page. If this value exceeds the available pages, no results will be returned.",
+            "schema": {
+              "type": "string"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagedDataSourcesJobList"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "global_company_id": []
+          },
+          {
+            "ims_user_token": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Upload data to a Data Sources account.",
+        "description": "Uploads a data file to a Data Sources account associated with the given report suite. The file must be formatted identically to files uploaded to Data Sources FTP accounts. A job is created, which can be queried later by its job ID. File validation will be performed at the time the job is processed, not upon upload.",
+        "operationId": "createJob",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID associated with the Data Sources account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_source_id",
+            "in": "path",
+            "description": "The Data Source ID of the account to receive the file",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "examples": {
+                "file": {
+                  "description": "A file formatted to be imported to Data Sources",
+                  "value": "date    event 1 evar 1\n1/1/2024    1   Test Data 1\n1/1/2024    2   Test Data 2\n"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourcesJob"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "global_company_id": []
+          },
+          {
+            "ims_user_token": []
+          }
+        ]
+      }
+    },
+    "/{globalCompanyId}/data_sources/job/{report_suite_id}/{data_source_id}/{job_id}": {
+      "get": {
+        "tags": [
+          "Job"
+        ],
+        "summary": "Retrieve information for a specific job uploaded to a Data Sources account.",
+        "description": "Retrieve information for a specific job uploaded to a Data Sources account for a given report suite. The Job is identified by its job ID.",
+        "operationId": "getJob",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-gw-ims-org-id"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "report_suite_id",
+            "in": "path",
+            "description": "The report suite ID associated with the Data Sources account",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data_source_id",
+            "in": "path",
+            "description": "The Data Source ID associated with the job",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "job_id",
+            "in": "path",
+            "description": "The job ID of the job to retrieve.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataSourcesJob"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "global_company_id": []
+          },
+          {
+            "ims_user_token": []
+          }
+        ]
       }
     }
   },
-  "components" : {
-    "schemas" : {
-      "DataSourcesAccount" : {
-        "type" : "object",
-        "properties" : {
-          "name" : {
-            "type" : "string",
-            "description" : "The client provided descriptive name for this account",
-            "example" : "My Data Sources Account"
+  "components": {
+    "schemas": {
+      "DataSourcesAccount": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The client provided descriptive name for this account",
+            "example": "My Data Sources Account"
           },
-          "email" : {
-            "type" : "string",
-            "example" : "noreply@mycompany.com"
+          "email": {
+            "type": "string",
+            "example": "noreply@mycompany.com"
           },
-          "data_source_id" : {
-            "type" : "integer",
-            "description" : "The ID of the Data Sources account",
-            "format" : "int32",
-            "example" : 1
+          "data_source_id": {
+            "type": "integer",
+            "description": "The ID of the Data Sources account",
+            "format": "int32",
+            "example": 1
           },
-          "type" : {
-            "type" : "string",
-            "description" : "The Type of data this account can accept",
-            "example" : "generic"
+          "type": {
+            "type": "string",
+            "description": "The Type of data this account can accept",
+            "example": "generic"
           },
-          "ftp_hostname" : {
-            "type" : "string",
-            "example" : "ftp.omniture.com"
+          "ftp_hostname": {
+            "type": "string",
+            "example": "ftp.omniture.com"
           },
-          "ftp_username" : {
-            "type" : "string",
-            "example" : "my_username"
+          "ftp_username": {
+            "type": "string",
+            "example": "my_username"
           },
-          "ftp_password" : {
-            "type" : "string",
-            "example" : "3z1475tf"
+          "ftp_password": {
+            "type": "string",
+            "example": "3z1475tf"
           }
         }
       },
-      "OperationResponse" : {
-        "type" : "object",
-        "properties" : {
-          "success" : {
-            "type" : "boolean",
-            "example" : true
+      "OperationResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
           },
-          "message" : {
-            "type" : "string",
-            "example" : "Operation successful"
+          "message": {
+            "type": "string",
+            "example": "Operation successful"
           }
         }
       },
-      "DataSourcesJob" : {
-        "type" : "object",
-        "properties" : {
-          "filename" : {
-            "type" : "string",
-            "description" : "The original name of the file",
-            "example" : "my_data_file.txt"
+      "DataSourcesJob": {
+        "type": "object",
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "The original name of the file",
+            "example": "my_data_file.txt"
           },
-          "rows" : {
-            "type" : "integer",
-            "description" : "The number of rows successfully processed",
-            "format" : "int64",
-            "example" : 100
+          "rows": {
+            "type": "integer",
+            "description": "The number of rows successfully processed",
+            "format": "int64",
+            "example": 100
           },
-          "job_id" : {
-            "type" : "integer",
-            "format" : "int64",
-            "example" : 12345
+          "job_id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 12345
           },
-          "status" : {
-            "type" : "string",
-            "example" : "processing"
+          "status": {
+            "type": "string",
+            "example": "processing"
           },
-          "uploaded_date" : {
-            "type" : "string",
-            "example" : "1999/12/31 23:59:59"
+          "uploaded_date": {
+            "type": "string",
+            "example": "1999/12/31 23:59:59"
           },
-          "started_processing_date" : {
-            "type" : "string",
-            "example" : "1999/12/31 23:59:59"
+          "started_processing_date": {
+            "type": "string",
+            "example": "1999/12/31 23:59:59"
           },
-          "finished_processing_date" : {
-            "type" : "string",
-            "example" : "1999/12/31 23:59:59"
+          "finished_processing_date": {
+            "type": "string",
+            "example": "1999/12/31 23:59:59"
           }
         }
       },
-      "PagedDataSourcesJobList" : {
-        "type" : "object",
-        "properties" : {
-          "page" : {
-            "type" : "integer",
-            "format" : "int64",
-            "example" : 1
+      "PagedDataSourcesJobList": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
           },
-          "jobs" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/DataSourcesJob"
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataSourcesJob"
             }
           },
-          "total_pages" : {
-            "type" : "integer",
-            "format" : "int64",
-            "example" : 1
+          "total_pages": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
           }
         }
       }
     },
-    "securitySchemes" : {
-      "global_company_id" : {
-        "type" : "apiKey",
-        "description" : "An Adobe global company ID",
-        "name" : "x-proxy-global-company-id",
-        "in" : "header"
+    "securitySchemes": {
+      "global_company_id": {
+        "type": "apiKey",
+        "description": "An Adobe global company ID",
+        "name": "x-proxy-global-company-id",
+        "in": "header"
       },
-      "ims_user_token" : {
-        "type" : "http",
-        "description" : "An Adobe IMS user access token",
-        "scheme" : "Bearer"
+      "ims_user_token": {
+        "type": "http",
+        "description": "An Adobe IMS user access token",
+        "scheme": "Bearer"
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-gw-ims-org-id": {
+        "name": "x-gw-ims-org-id",
+        "in": "header",
+        "description": "The Organization ID copied from your AA API client integration.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       }
     }
   }
