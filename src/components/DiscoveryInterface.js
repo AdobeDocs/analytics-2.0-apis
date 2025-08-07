@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const DiscoveryInterface = () => {
   const [accessToken, setAccessToken] = useState('');
   const [companies, setCompanies] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -17,6 +18,7 @@ const DiscoveryInterface = () => {
     setError('');
     setSuccess('');
     setCompanies([]);
+    setSelectedCompany('');
 
     try {
       const response = await fetch('https://analytics.discovery.adobe.net/discovery/1.0/discovery/me', {
@@ -64,6 +66,38 @@ const DiscoveryInterface = () => {
     }).catch(() => {
       setError('Failed to copy to clipboard');
     });
+  };
+
+  const fillAllGlobalCompanyIdFields = () => {
+    if (!selectedCompany) {
+      setError('Please select a company first');
+      return;
+    }
+
+    const selectedCompanyData = companies.find(company => company.globalCompanyId === selectedCompany);
+    if (!selectedCompanyData) {
+      setError('Selected company not found');
+      return;
+    }
+
+    // Find all input fields with name containing 'path.globalCompanyId'
+    const globalCompanyIdInputs = document.querySelectorAll('input[name*="path.globalCompanyId"], input[name*="globalCompanyId"]');
+    
+    if (globalCompanyIdInputs.length === 0) {
+      setError('No globalCompanyId fields found in the API documentation below');
+      return;
+    }
+
+    // Fill all the fields
+    globalCompanyIdInputs.forEach(input => {
+      input.value = selectedCompanyData.globalCompanyId;
+      // Trigger change event to update Redocly's internal state
+      const event = new Event('input', { bubbles: true });
+      input.dispatchEvent(event);
+    });
+
+    setSuccess(`Successfully filled ${globalCompanyIdInputs.length} globalCompanyId fields with "${selectedCompanyData.companyName}" (${selectedCompanyData.globalCompanyId})`);
+    setTimeout(() => setSuccess(''), 5000);
   };
 
   return (
@@ -162,52 +196,55 @@ const DiscoveryInterface = () => {
               Available Companies
             </h4>
             <p className="spectrum-Body spectrum-Body--sizeM">
-              Click on a company to copy its globalCompanyId to your clipboard:
+              Select a company from the dropdown below:
             </p>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {companies.map((company, index) => (
-                <div
-                  key={index}
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
+              <div style={{ flex: 1, maxWidth: '400px' }}>
+                <label style={{ fontWeight: 'bold', fontSize: '14px', marginBottom: '4px', display: 'block' }}>
+                  Select Company
+                </label>
+                <select
+                  value={selectedCompany}
+                  onChange={(e) => setSelectedCompany(e.target.value)}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    padding: '12px',
-                    border: '1px solid #e0e0e0',
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #ccc',
                     borderRadius: '4px',
-                    backgroundColor: '#f8f9fa'
+                    fontSize: '14px',
+                    backgroundColor: 'white'
                   }}
                 >
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 'bold', fontSize: '14px', color: '#323232' }}>
-                      {company.companyName}
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#666', fontFamily: 'monospace' }}>
-                      ID: {company.globalCompanyId}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => copyToClipboard(company.globalCompanyId)}
-                    style={{
-                      backgroundColor: '#0265DC',
-                      color: 'white',
-                      border: 'none',
-                      padding: '6px 12px',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '12px',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    Copy ID
-                  </button>
-                </div>
-              ))}
+                  <option value="">-- Select a company --</option>
+                  {companies.map((company, index) => (
+                    <option key={index} value={company.globalCompanyId}>
+                      {company.companyName} ({company.globalCompanyId})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              
+              <button
+                onClick={fillAllGlobalCompanyIdFields}
+                disabled={!selectedCompany}
+                style={{
+                  backgroundColor: !selectedCompany ? '#ccc' : '#4caf50',
+                  color: 'white',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  cursor: !selectedCompany ? 'not-allowed' : 'pointer',
+                  fontSize: '14px',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Fill All API Fields
+              </button>
             </div>
 
             <p className="spectrum-Body spectrum-Body--sizeM" style={{ fontStyle: 'italic', color: '#666' }}>
-              💡 Tip: Copy the globalCompanyId and paste it into the globalCompanyId parameter in the API calls below.
+              💡 Tip: Click "Fill All API Fields" to automatically populate all globalCompanyId parameters in the API documentation below.
             </p>
           </div>
         )}

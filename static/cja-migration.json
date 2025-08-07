@@ -1050,15 +1050,6 @@
           "type": "string"
         }
       },
-      "x-gw-ims-org-id": {
-        "name": "x-gw-ims-org-id",
-        "in": "header",
-        "description": "The Organization ID copied from your AA API client integration.",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
       "x-api-key": {
         "name": "x-api-key",
         "in": "header",

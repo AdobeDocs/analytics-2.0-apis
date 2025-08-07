@@ -28,9 +28,6 @@
             "$ref": "#/components/parameters/authorization"
           },
           {
-            "$ref": "#/components/parameters/x-gw-ims-org-id"
-          },
-          {
             "$ref": "#/components/parameters/x-api-key"
           },
           {
@@ -96,9 +93,6 @@
           },
           {
             "$ref": "#/components/parameters/authorization"
-          },
-          {
-            "$ref": "#/components/parameters/x-gw-ims-org-id"
           },
           {
             "$ref": "#/components/parameters/x-api-key"
@@ -168,9 +162,6 @@
           },
           {
             "$ref": "#/components/parameters/authorization"
-          },
-          {
-            "$ref": "#/components/parameters/x-gw-ims-org-id"
           },
           {
             "$ref": "#/components/parameters/x-api-key"
@@ -292,9 +283,6 @@
             "$ref": "#/components/parameters/authorization"
           },
           {
-            "$ref": "#/components/parameters/x-gw-ims-org-id"
-          },
-          {
             "$ref": "#/components/parameters/x-api-key"
           },
           {
@@ -369,9 +357,6 @@
           },
           {
             "$ref": "#/components/parameters/authorization"
-          },
-          {
-            "$ref": "#/components/parameters/x-gw-ims-org-id"
           },
           {
             "$ref": "#/components/parameters/x-api-key"
@@ -1782,15 +1767,6 @@
         "name": "Authorization",
         "in": "header",
         "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
-        "required": true,
-        "schema": {
-          "type": "string"
-        }
-      },
-      "x-gw-ims-org-id": {
-        "name": "x-gw-ims-org-id",
-        "in": "header",
-        "description": "The Organization ID copied from your AA API client integration.",
         "required": true,
         "schema": {
           "type": "string"
