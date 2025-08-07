@@ -68,7 +68,7 @@ const DiscoveryInterface = () => {
     });
   };
 
-  const fillAllGlobalCompanyIdFields = () => {
+  const copySelectedCompanyId = () => {
     if (!selectedCompany) {
       setError('Please select a company first');
       return;
@@ -80,24 +80,7 @@ const DiscoveryInterface = () => {
       return;
     }
 
-    // Find all input fields with name containing 'path.globalCompanyId'
-    const globalCompanyIdInputs = document.querySelectorAll('input[name*="path.globalCompanyId"], input[name*="globalCompanyId"]');
-    
-    if (globalCompanyIdInputs.length === 0) {
-      setError('No globalCompanyId fields found in the API documentation below');
-      return;
-    }
-
-    // Fill all the fields
-    globalCompanyIdInputs.forEach(input => {
-      input.value = selectedCompanyData.globalCompanyId;
-      // Trigger change event to update Redocly's internal state
-      const event = new Event('input', { bubbles: true });
-      input.dispatchEvent(event);
-    });
-
-    setSuccess(`Successfully filled ${globalCompanyIdInputs.length} globalCompanyId fields with "${selectedCompanyData.companyName}" (${selectedCompanyData.globalCompanyId})`);
-    setTimeout(() => setSuccess(''), 5000);
+    copyToClipboard(selectedCompanyData.globalCompanyId);
   };
 
   return (
@@ -196,7 +179,7 @@ const DiscoveryInterface = () => {
               Available Companies
             </h4>
             <p className="spectrum-Body spectrum-Body--sizeM">
-              Select a company from the dropdown below:
+              Select a company from the dropdown and copy its globalCompanyId:
             </p>
             
             <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
@@ -226,7 +209,7 @@ const DiscoveryInterface = () => {
               </div>
               
               <button
-                onClick={fillAllGlobalCompanyIdFields}
+                onClick={copySelectedCompanyId}
                 disabled={!selectedCompany}
                 style={{
                   backgroundColor: !selectedCompany ? '#ccc' : '#4caf50',
@@ -239,12 +222,12 @@ const DiscoveryInterface = () => {
                   whiteSpace: 'nowrap'
                 }}
               >
-                Fill All API Fields
+                Copy ID
               </button>
             </div>
 
             <p className="spectrum-Body spectrum-Body--sizeM" style={{ fontStyle: 'italic', color: '#666' }}>
-              💡 Tip: Click "Fill All API Fields" to automatically populate all globalCompanyId parameters in the API documentation below.
+              💡 Tip: After copying the globalCompanyId, click "Try it" on any API endpoint below and paste the ID into the globalCompanyId field.
             </p>
           </div>
         )}
