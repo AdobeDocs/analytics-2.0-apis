@@ -8,8 +8,7 @@ const GetCredentialOAuthS2s = () => {
 
     <GetCredential className="getCredentialContainer" templateId="6893ab63fed9c1614a5d19e4" productName='Adobe Analytics' >
 
-      {/*<GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />*/}
-      <GetCredential.SignIn title="Get credentials" paragraph="Adobe is working on improving the 'Try it' functionality. In the meantime, you can authenticate in your own environment to use these API calls." />
+      <GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />
 
       <GetCredential.Form title="Get credentials" paragraph="Create credentials that you can use to call the Adobe Analytics APIs." className="formClass">
 

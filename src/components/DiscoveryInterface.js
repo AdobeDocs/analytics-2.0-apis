@@ -51,6 +51,10 @@ const DiscoveryInterface = () => {
       }
 
       setCompanies(allCompanies);
+      // Auto-select the first company if available
+      if (allCompanies.length > 0) {
+        setSelectedCompany(allCompanies[0].globalCompanyId);
+      }
       setSuccess(`Successfully retrieved ${allCompanies.length} companies`);
     } catch (err) {
       setError(`Error: ${err.message}`);
