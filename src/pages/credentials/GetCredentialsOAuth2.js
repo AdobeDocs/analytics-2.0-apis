@@ -1,22 +1,21 @@
 import React from 'react'
 import { GetCredential } from '@adobe/gatsby-theme-aio/src/components/GetCredential';
-import platform from "./images/platform.png";
+import icon from "./images/adobe-analytics.png";
 
 const GetCredentialOAuthS2s = () => {
     
   return (
 
-    <GetCredential className="getCredentialContainer" templateId="67a4f6328b84ba26abff57f6" productName='Adobe Analytics' >
+    <GetCredential className="getCredentialContainer" templateId="6893ab63fed9c1614a5d19e4" productName='Adobe Analytics' >
 
-      {/*<GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />*/}
-      <GetCredential.SignIn title="Get credentials" paragraph="Adobe is working on improving the 'Try it' functionality. In the meantime, you can authenticate in your own environment to use these API calls." />
+      <GetCredential.SignIn title="Get credentials" paragraph="After signing in, you can create credentials that can be used to call the Adobe Analytics APIs." buttonText="Sign in" />
 
       <GetCredential.Form title="Get credentials" paragraph="Create credentials that you can use to call the Adobe Analytics APIs." className="formClass">
 
         <GetCredential.Form.CredentialName label="Credential name" description="The credential name must be unique, use alphanumeric characters, and between 6 and 45 characters long. A project will be automatically created with the same name in Adobe Developer Console." range="45" />
 
         <GetCredential.Form.Products label="Included products and services">
-          <GetCredential.Form.Product label="Adobe Analytics" icon={platform} />
+          <GetCredential.Form.Product label="Adobe Analytics" icon={icon} />
         </GetCredential.Form.Products>
 
         <GetCredential.Form.AdobeDeveloperConsole label='By checking this box, you agree to' linkText="Adobe Developer Terms of Use" href="https://wwwimages2.adobe.com/content/dam/cc/en/legal/servicetou/Adobe-Developer-Additional-Terms_en-US_20230822.pdf" />
@@ -82,7 +81,7 @@ const GetCredentialOAuthS2s = () => {
         </GetCredential.Card.Side>
 
         <GetCredential.Card.Products label="Included products and services">
-          <GetCredential.Card.Product label="Adobe Experience Platform" icon={platform} />
+          <GetCredential.Card.Product label="Adobe Analytics" icon={icon} />
         </GetCredential.Card.Products>
 
         <GetCredential.Card.ProjectsDropdown label="Projects" subHeading="Only your projects that contain credentials are shown" />
@@ -129,7 +128,7 @@ const GetCredentialOAuthS2s = () => {
         <GetCredential.Return.DevConsoleLink heading="Developer Console project" />
 
         <GetCredential.Return.Products label="Included products and services">
-          <GetCredential.Return.Product label="Adobe Experience Platform" icon={platform} />
+          <GetCredential.Return.Product label="Adobe Analytics" icon={icon} />
         </GetCredential.Return.Products>
 
       </GetCredential.Return>
@@ -150,7 +149,7 @@ const GetCredentialOAuthS2s = () => {
         >
           <GetCredential.RequestAccess.RestrictedAccess.Products label="Included products and services">
             <GetCredential.RequestAccess.RestrictedAccess.Products.Product
-              icon={platform}
+              icon={icon}
               label="Adobe Analytics"
             />
           </GetCredential.RequestAccess.RestrictedAccess.Products>
