@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/{globalCompanyId}/data_repair/v1/{reportSuiteId}/auth": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/auth": {
       "get": {
         "operationId": "get_auth_v1__reportSuiteId__auth_get",
         "parameters": [
@@ -74,11 +74,11 @@
         },
         "summary": "Get Auth",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     },
-    "/{globalCompanyId}/data_repair/v1/{reportSuiteId}/job": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/job": {
       "get": {
         "operationId": "get_jobs_v1__reportSuiteId__job_get",
         "parameters": [
@@ -145,7 +145,7 @@
         },
         "summary": "Get Jobs",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       },
       "post": {
@@ -262,11 +262,11 @@
         },
         "summary": "Create Job",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     },
-    "/{globalCompanyId}/data_repair/v1/{reportSuiteId}/job/{jobId}": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/job/{jobId}": {
       "get": {
         "operationId": "get_job_v1__reportSuiteId__job__jobId__get",
         "parameters": [
@@ -338,11 +338,11 @@
         },
         "summary": "Get Job",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     },
-    "/{globalCompanyId}/data_repair/v1/{reportSuiteId}/serverCallEstimate": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/serverCallEstimate": {
       "get": {
         "operationId": "get_server_call_estimate_v1__reportSuiteId__serverCallEstimate_get",
         "parameters": [
@@ -425,7 +425,7 @@
         },
         "summary": "Get Server Call Estimate",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     }
