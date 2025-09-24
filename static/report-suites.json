@@ -840,7 +840,7 @@
     "/{globalCompanyId}/report_suites/reportsuites/timezones": {
       "get": {
         "tags": [
-          "Timezone"
+          "Report Suites"
         ],
         "summary": "Get Timezones",
         "description": "Retrieves all supported timezones.",
@@ -868,6 +868,112 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/TimezoneSettings"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/report_suites/reportsuites/{rsid}": {
+      "post": {
+        "tags": [
+          "Report Suites"
+        ],
+        "summary": "Creates a new report suite",
+        "description": "Creates a new standard report suite.\n\nNOTE: The proposed RSID must begin with the prefix of the owning company.",
+        "operationId": "userCreateReportSuite",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "The Report Suite ID to be created.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "copySettingsFromRsid",
+            "in": "query",
+            "description": "The Report Suite ID to copy settings from.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "hitsPerDay": {
+                    "type": "integer"
+                  },
+                  "timezone": {
+                    "type": "string",
+                    "example": "US/Pacific"
+                  },
+                  "signUpDate": {
+                    "type": "string",
+                    "example": "YYYY-MM-DD"
+                  },
+                  "baseUrl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Report suite created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedSuite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Unable to create Report Suite.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error; suite creation failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
                 }
               }
             }
@@ -959,6 +1065,22 @@
           "id": {
             "title": "Suite id",
             "type": "string"
+          }
+        }
+      },
+      "CreatedSuite": {
+        "properties": {
+          "rsid": {
+            "title": "Report Suite id",
+            "type": "string"
+          },
+          "created": {
+            "title": "Suite created",
+            "type": "boolean"
+          },
+          "axleActivated": {
+            "title": "Axle activated for suite",
+            "type": "boolean"
           }
         }
       },
