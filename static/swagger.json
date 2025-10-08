@@ -12,13 +12,13 @@
       "name": "Annotations"
     },
     {
-      "name": "Calculated Metrics"
+      "name": "Calculated metrics"
     },
     {
-      "name": "Component Meta Data"
+      "name": "Component metadata"
     },
     {
-      "name": "Date Ranges"
+      "name": "Date ranges"
     },
     {
       "name": "Dimensions"
@@ -39,7 +39,7 @@
       "name": "Users"
     },
     {
-      "name": "Usage Logs"
+      "name": "Usage logs"
     }
   ],
   "parameters": {
@@ -55,7 +55,7 @@
     "x-api-key": {
       "name": "x-api-key",
       "in": "header",
-      "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+      "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).",
       "required": true,
       "schema": {
         "type": "string"
@@ -68,7 +68,7 @@
         "tags": [
           "Annotations"
         ],
-        "summary": "Retrieves all annotations",
+        "summary": "Retrieve all annotations.",
         "description": "",
         "operationId": "getAnnotations_1",
         "produces": [
@@ -355,7 +355,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Annotation id to get",
+            "description": "Annotation ID to retrieve",
             "required": true,
             "type": "string"
           },
@@ -447,7 +447,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Annotation id to update",
+            "description": "Annotation ID to update",
             "required": true,
             "type": "string"
           },
@@ -496,7 +496,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Annotation id to update",
+            "description": "Annotation ID to update",
             "required": true,
             "type": "string"
           },
@@ -524,8 +524,8 @@
         "tags": [
           "Calculated Metrics"
         ],
-        "summary": "Retrieve many calculated metrics",
-        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information about calculated metrics go [here](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/calculatedmetrics.md)\n\n",
+        "summary": "Retrieve multiple calculated metrics",
+        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/)\n\n",
         "operationId": "findCalculatedMetrics",
         "produces": [
           "application/json"
@@ -732,8 +732,8 @@
         "tags": [
           "Calculated Metrics"
         ],
-        "summary": "Create a new Calculated Metric",
-        "description": "Creates a new calculated metric. The following attributes are available when creating a calculated metric:\n\nIMPORTANT: Required Fields: name, definition, rsid\n\nOptional fields: description\n\nExample definition for use in testing API below (\"Visits per visitor\"):\n\n```json\n\n\"definition\": {\r\n      \"formula\": {\r\n        \"func\": \"divide\",\r\n        \"col1\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visits\",\r\n          \"description\": \"Visits\"\r\n        },\r\n        \"col2\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visitors\",\r\n          \"description\": \"Unique Visitors\"\r\n        }\r\n      },\r\n      \"func\": \"calc-metric\",\r\n      \"version\": [\r\n        1,\r\n        0,\r\n        0\r\n      ]\r\n    }\n```\n\nA calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field as defined/documented in the GET endpoints (see GET \"/calculatedmetrics\" or GET \"/calculatedmetrics/{id}\" for more documentation).",
+        "summary": "Create a new calculated metric",
+        "description": "Creates a new calculated metric. The following attributes are available when creating a calculated metric:\n\nIMPORTANT: Required Fields: name, definition, rsid\n\nOptional fields: description\n\nExample definition for use in testing API below (\"Visits per visitor\"):\n\n```json\n\n\"definition\": {\r\n      \"formula\": {\r\n        \"func\": \"divide\",\r\n        \"col1\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visits\",\r\n          \"description\": \"Visits\"\r\n        },\r\n        \"col2\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visitors\",\r\n          \"description\": \"Unique Visitors\"\r\n        }\r\n      },\r\n      \"func\": \"calc-metric\",\r\n      \"version\": [\r\n        1,\r\n        0,\r\n        0\r\n      ]\r\n    }\n```\n\nA calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nAdditional attributes can be optionally requested in the 'expansion' field as described in the GET calculated metrics section.",
         "operationId": "calculatedmetrics_createCalculatedMetric",
         "consumes": [
           "application/json"
@@ -882,7 +882,7 @@
         "tags": [
           "Calculated Metrics"
         ],
-        "summary": "Retrieve a calculated metric function by id",
+        "summary": "Retrieve a calculated metric function by ID",
         "description": "",
         "operationId": "calculatedmetrics_getCalculatedMetricFunction",
         "produces": [
@@ -1021,8 +1021,8 @@
         "tags": [
           "Calculated Metrics"
         ],
-        "summary": "Retrieve a single calculated metric by id",
-        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information about calculated metrics go [here](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/calculatedmetrics.md)\n\n",
+        "summary": "Retrieve a single calculated metric by ID",
+        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/)\n\n",
         "operationId": "findOneCalculatedMetric",
         "produces": [
           "application/json"
@@ -1112,7 +1112,7 @@
           "Calculated Metrics"
         ],
         "summary": "Update an existing calculated metric",
-        "description": "The following fields can be modified through this endpoint: <br/><b>name, description, definition, owner, rsid</b>\nExample \"defintion\" for use in testing API below (\"Visits per visitor\"):<br/>\n\"definition\": {\r\n      \"formula\": {\r\n        \"func\": \"divide\",\r\n        \"col1\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visits\",\r\n          \"description\": \"Visits\"\r\n        },\r\n        \"col2\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visitors\",\r\n          \"description\": \"Unique Visitors\"\r\n        }\r\n      },\r\n      \"func\": \"calc-metric\",\r\n      \"version\": [\r\n        1,\r\n        0,\r\n        0\r\n      ]\r\n    }<br/><br/>Response will be the newly modified calculated metric object after the update request completes.<br/><br/><b><span style=\"text-decoration: underline;\">CalculatedMetricResponse</span></b><br/>A calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nOther attributes can be optionally requested through the 'expansion' field as defined/documented in the GET endpoints (see GET \"/calculatedmetrics\" or GET \"/calculatedmetrics/{id}\" for more documentation).",
+        "description": "The following fields can be modified through this endpoint: <br/><b>name, description, definition, owner, rsid</b>\nExample \"defintion\" for use in testing API below (\"Visits per visitor\"):<br/>\n\"definition\": {\r\n      \"formula\": {\r\n        \"func\": \"divide\",\r\n        \"col1\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visits\",\r\n          \"description\": \"Visits\"\r\n        },\r\n        \"col2\": {\r\n          \"func\": \"metric\",\r\n          \"name\": \"metrics/visitors\",\r\n          \"description\": \"Unique Visitors\"\r\n        }\r\n      },\r\n      \"func\": \"calc-metric\",\r\n      \"version\": [\r\n        1,\r\n        0,\r\n        0\r\n      ]\r\n    }<br/><br/>Response will be the newly modified calculated metric object after the update request completes.<br/><br/><b><span style=\"text-decoration: underline;\">CalculatedMetricResponse</span></b><br/>A calculated metric response will always include these default items:* id, name, description, rsid, owner* \n\nAdditional attributes can be optionally requested in the 'expansion' field as described in the GET calculated metrics section.",
         "operationId": "calculatedmetrics_updateCalculatedMetric",
         "consumes": [
           "application/json"
@@ -1225,7 +1225,7 @@
         "tags": [
           "Calculated Metrics"
         ],
-        "summary": "Deletion of Calculated Metrics by Id",
+        "summary": "Delete calculated metrics by ID",
         "description": "",
         "operationId": "calculatedmetrics_deleteCalculatedMetric",
         "produces": [
@@ -1282,7 +1282,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Returns all components that have been shared by the current user (meeting the paging restriction)",
+        "summary": "Retrieve components shared by user",
         "description": "",
         "produces": [
           "application/json"
@@ -1359,7 +1359,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Share 1 component with 1 user",
+        "summary": "Share component with user",
         "description": "Note that only the following component types are currently supported: \"segment\", \"project\"<br>There are three valid values for \"shareToType\":<br><b>\"all\"</b>: Shares the component to all users in the organization. For this operation, \"shareToId\" is not required (ignored if sent)<br><b>\"user\"</b>: Shares the component with a specific user. For this operation, \"shareToId\" (the loginId of the user to share to) is required.<br><b>\"group\"</b>: Shares the component with an entire custom user group as defined in the Admin Console. For this operation, \"shareToId\" (the groupId of the group to share to) is required.",
         "consumes": [
           "application/json"
@@ -1421,8 +1421,8 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Share components with users. WARNING: Authoritative; deletes/overwrites all pre-existing shares for the given components",
-        "description": "Create one/many shares for one/many components at once. For each component object in the passed list, the given shares will replace the current set of shares for each component. For example, if one of the components was previously shared with additional users, and that share is not passed in here, it will no longer be shared with them.<br>",
+        "summary": "Update shared components with users",
+        "description": "Warning: Deletes and overwrites all pre-existing shares for given components. Create one/many shares for one/many components at once. For each component object in the passed list, the given shares will replace the current set of shares for each component. For example, if one of the components was previously shared with additional users, and that share is not passed in here, it will no longer be shared with them.<br>",
         "operationId": "modifyShares",
         "consumes": [
           "application/json"
@@ -1497,7 +1497,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Search for shares for several components at once",
+        "summary": "Create search for shared components",
         "description": "",
         "operationId": "searchComponentTags",
         "consumes": [
@@ -1583,7 +1583,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Returns details about a specific share",
+        "summary": "Retrieve details of share by ID",
         "description": "",
         "operationId": "getShare",
         "produces": [
@@ -1633,7 +1633,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Deletes the share with the given id",
+        "summary": "Delete share by ID",
         "description": "Delete by shareId and remove that share from all associated components.",
         "operationId": "deleteShare_1",
         "consumes": [
@@ -1696,7 +1696,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Returns all component ids that have shared to the current user",
+        "summary": "Retrieve component IDs shared with user",
         "description": "",
         "operationId": "findAllSharesToCurrentUser",
         "produces": [
@@ -1743,7 +1743,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "search for tags for several components at once",
+        "summary": "Create search for component tags",
         "description": "",
         "operationId": "searchComponentTags_2",
         "consumes": [
@@ -1807,7 +1807,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Returns a list of tags for the current user's company",
+        "summary": "Retrieve tags for current user company",
         "description": "",
         "operationId": "findAllForCompany",
         "produces": [
@@ -1863,7 +1863,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Saves the given tag(s) for the current user's company",
+        "summary": "Create tags for current user company",
         "description": "Allows creation of a new tag and applies that new tag to the passed component",
         "operationId": "saveTagList",
         "consumes": [
@@ -1918,7 +1918,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Disassociates all tags from the given components",
+        "summary": "Delete tags from components",
         "description": "Removes all tags from the passed componentIds. Note that currently this is done in a single DB query, so there is a single combined response for the entire operation.",
         "operationId": "deleteTagItems",
         "produces": [
@@ -1994,7 +1994,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Retrieves a tags for a given component by componentId and componentType",
+        "summary": "Retrieve component tags by component ID and component type",
         "description": "Given a componentId, return all tags associated with that component",
         "operationId": "getTagListByComponentIdAndComponentType",
         "produces": [
@@ -2067,8 +2067,8 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Tag a component with one or many tags at once. WARNING: Authoritative; deletes/overwrites all pre-existing associations",
-        "description": "This endpoint allows many tags at once to be created/deleted. Any tags passed to this endpoint will become the *only* tags for that componentId (all other tags will be removed).",
+        "summary": "Update tags for component",
+        "description": "Warning: Deletes and overwrites all pre-existing associations. This endpoint allows many tags at once to be created/deleted. Any tags passed to this endpoint will become the *only* tags for that componentId (all other tags will be removed).",
         "operationId": "saveTagComponentList",
         "consumes": [
           "application/json"
@@ -2124,7 +2124,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Retrieves an tag by its id",
+        "summary": "Retrieve tag by ID",
         "description": "",
         "operationId": "getTagById",
         "produces": [
@@ -2172,8 +2172,8 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Removes the tagId and all associations from that tag to any components",
-        "description": "Delete by tagId. Will un-tag any/all components that were associated with the passed tagId.",
+        "summary": "Delete tag from component",
+        "description": "Deletes by tag ID. This removes the tag from any or all components associated with the specified tag ID.",
         "operationId": "deleteTag",
         "produces": [
           "application/json"
@@ -2228,7 +2228,7 @@
         "tags": [
           "Component Meta Data"
         ],
-        "summary": "Retrieves component ids associated with the given tag names",
+        "summary": "Retrieve component IDs associated with tag names",
         "description": "Given a comma separated list of tag names, return component ids associated with them.",
         "operationId": "getComponentsByTagName",
         "produces": [
@@ -2301,7 +2301,7 @@
         "tags": [
           "Date Ranges"
         ],
-        "summary": "Retrieves configuration for a DateRange.",
+        "summary": "Retrieve configuration for a date range",
         "description": "",
         "operationId": "getDateRange_1",
         "produces": [
@@ -2381,7 +2381,7 @@
         "tags": [
           "Date Ranges"
         ],
-        "summary": "Updates configuration for a date range.",
+        "summary": "Update configuration for a date range",
         "description": "",
         "produces": [
           "application/json"
@@ -2469,7 +2469,7 @@
         "tags": [
           "Date Ranges"
         ],
-        "summary": "deletes a date range.",
+        "summary": "Delete a date range",
         "description": "",
         "produces": [
           "application/json"
@@ -2519,7 +2519,7 @@
         "tags": [
           "Date Ranges"
         ],
-        "summary": "Returns a list of dateranges for the user",
+        "summary": "Retrieve user's date ranges",
         "description": "This API allows users to store commonly used date ranges so that they can be reused throughout the product.",
         "operationId": "getDateRanges_1",
         "produces": [
@@ -2646,7 +2646,7 @@
         "tags": [
           "Date Ranges"
         ],
-        "summary": "Creates a single date range.",
+        "summary": "Create a date range",
         "description": "",
         "produces": [
           "application/json"
@@ -2729,7 +2729,7 @@
         "tags": [
           "Dimensions"
         ],
-        "summary": "Returns a list of dimensions for a given report suite.",
+        "summary": "Retrieve dimensions for a report suite",
         "description": "",
         "operationId": "dimensions_getDimensions",
         "produces": [
@@ -2843,7 +2843,7 @@
         "tags": [
           "Dimensions"
         ],
-        "summary": "Returns a dimension for the given report suite",
+        "summary": "Retrieve a dimension by ID",
         "description": "",
         "operationId": "dimensions_getDimension",
         "produces": [
@@ -2927,7 +2927,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Returns a list of metrics for the given report suite",
+        "summary": "Retrieve metrics for a report suite",
         "description": "This returns the metrics list primarily for the Analytics product. The platform identity API Returns a list of all possible metrics for the supported systems.",
         "operationId": "getMetrics",
         "produces": [
@@ -3016,7 +3016,7 @@
         "tags": [
           "Metrics"
         ],
-        "summary": "Returns a metric for the given report suite",
+        "summary": "Retrieve a metric by ID",
         "description": "",
         "operationId": "getMetric",
         "produces": [
@@ -3104,7 +3104,7 @@
         "tags": [
           "Projects"
         ],
-        "summary": "Retrieves configuration for a Project.",
+        "summary": "Retrieve project configuration",
         "description": "",
         "operationId": "projects_getProject",
         "produces": [
@@ -3173,7 +3173,7 @@
         "tags": [
           "Projects"
         ],
-        "summary": "Updates configuration for a project.",
+        "summary": "Update a project configuration",
         "description": "",
         "operationId": "projects_updateProject",
         "produces": [
@@ -3251,7 +3251,7 @@
         "tags": [
           "Projects"
         ],
-        "summary": "deletes a project.",
+        "summary": "Delete a project",
         "description": "",
         "operationId": "projects_deleteProject",
         "produces": [
@@ -3302,7 +3302,7 @@
         "tags": [
           "Projects"
         ],
-        "summary": "Validates a Project definition",
+        "summary": "Creates a valid project definition",
         "description": "",
         "operationId": "projects_validateProject",
         "consumes": [
@@ -3364,7 +3364,7 @@
         "tags": [
           "Projects"
         ],
-        "summary": "Returns a list of projects for the user",
+        "summary": "Retrieve user's projects",
         "description": "This Returns the projects list primarily for the Analytics product. ",
         "operationId": "projects_getProjects",
         "produces": [
@@ -3487,7 +3487,7 @@
         "tags": [
           "Projects"
         ],
-        "summary": "Creates a single project.",
+        "summary": "Create a project",
         "description": "",
         "operationId": "projects_createProject",
         "produces": [
@@ -3560,8 +3560,8 @@
         "tags": [
           "Reports"
         ],
-        "summary": "Runs a report for the request in the post body",
-        "description": "See the [Reporting User Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.",
+        "summary": "Create a report",
+        "description": "For more information, see the [Reporting API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/).",
         "operationId": "runReport",
         "consumes": [
           "application/json"
@@ -3619,8 +3619,8 @@
         "tags": [
           "Reports"
         ],
-        "summary": "Runs a Realtime report for the request in the post body",
-        "description": "See the [Reporting User Guide](https://github.com/AdobeDocs/analytics-2.0-apis/blob/master/reporting-guide.md) for details.",
+        "summary": "Create a realtime report",
+        "description": "For more information, see the [Reporting API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/).",
         "operationId": "runRealtimeReport",
         "consumes": [
           "application/json"
@@ -3678,7 +3678,7 @@
         "tags": [
           "Reports"
         ],
-        "summary": "Runs a top items report for the request in the post body",
+        "summary": "Retrieve top items report",
         "description": "Get the top X items (based on paging restriction) for the specified dimension and rsid. Defaults to last 90 days.",
         "operationId": "runTopItemReport",
         "produces": [
@@ -3828,7 +3828,7 @@
         "tags": [
           "Segments"
         ],
-        "summary": "Retrieve All Segments",
+        "summary": "Retrieve all segments",
         "description": "",
         "operationId": "segments_getSegments",
         "produces": [
@@ -4009,7 +4009,7 @@
         "tags": [
           "Segments"
         ],
-        "summary": "Creates Segment",
+        "summary": "Create a segment",
         "description": "",
         "operationId": "segments_createSegment",
         "consumes": [
@@ -4104,7 +4104,7 @@
         "tags": [
           "Segments"
         ],
-        "summary": "Validate a Segment",
+        "summary": "Create validation for segment",
         "description": "Returns a segment validation for the segment contained in the post body of the report.",
         "operationId": "segments_validateSegment",
         "consumes": [
@@ -4165,7 +4165,7 @@
         "tags": [
           "Segments"
         ],
-        "summary": "Get a Single Segment",
+        "summary": "Retrieve a segment by ID",
         "description": "",
         "operationId": "segments_getSegment",
         "produces": [
@@ -4253,7 +4253,7 @@
         "tags": [
           "Segments"
         ],
-        "summary": "Update a Segment",
+        "summary": "Update a segment by ID",
         "description": "",
         "operationId": "segments_updateSegment",
         "consumes": [
@@ -4362,7 +4362,7 @@
         "tags": [
           "Segments"
         ],
-        "summary": "Delete Segment",
+        "summary": "Delete a segment by ID",
         "description": "",
         "operationId": "segments_deleteSegment",
         "produces": [
@@ -4416,7 +4416,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Returns a list of users for the current user's login company",
+        "summary": "Retrieve users for current company",
         "description": "Retrieves a list of all users for the company designated by the auth token.",
         "produces": [
           "application/json"
@@ -4473,7 +4473,7 @@
         "tags": [
           "Users"
         ],
-        "summary": "Get the current user",
+        "summary": "Retrieve current user",
         "description": "",
         "operationId": "getCurrentUser",
         "produces": [
@@ -4494,7 +4494,7 @@
         "tags": [
           "Usage Logs"
         ],
-        "summary": "Retrieves usage and access logs for the search criteria provided.",
+        "summary": "Retrieve logs for provided search criteria",
         "description": "This API returns the usage and access logs for a given date range within a 3 month period. This API authenticates with an IMS user token.",
         "operationId": "getUsageAccessLogs",
         "parameters": [
