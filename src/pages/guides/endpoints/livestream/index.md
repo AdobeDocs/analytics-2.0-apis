@@ -45,10 +45,10 @@ To avoid data bottlenecks, Adobe recommends using a client that decouples consum
 
 ```java
 String line = reader.readLine();
-        while (line != null) {
-            dataQueue.put(line);
-            line = reader.readLine();
-        }
+while (line != null) {
+    dataQueue.put(line);
+    line = reader.readLine();
+}
 ```
 
 #### Example Java-based client
@@ -60,18 +60,19 @@ For example code of a client that decouples consumption and processing, you can 
 Many client libraries remove the Authorization header on a redirect. The example below shows how to handle redirects manually to avoid this issue, including the following lines
 
 ```java
- private HttpURLConnection getConnection(final String streamUrl, final String accessToken) throws IOException {
-        URL url = new URL(streamUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setReadTimeout((int) Duration.ofSeconds(60).toMillis());
-        connection.setConnectTimeout((int) Duration.ofSeconds(10).toMillis());
+private HttpURLConnection getConnection(final String streamUrl, final String accessToken) throws IOException {
+    URL url = new URL(streamUrl);
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setReadTimeout((int) Duration.ofSeconds(60).toMillis());
+    connection.setConnectTimeout((int) Duration.ofSeconds(10).toMillis());
 
-        connection.setRequestProperty("Accept-Encoding", "gzip");
-        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+    connection.setRequestProperty("Accept-Encoding", "gzip");
+    connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 
-        connection.setInstanceFollowRedirects(false);
+    connection.setInstanceFollowRedirects(false);
 
-        return connection;
+    return connection;
+}
 ```
 
 ## Connect to the stream
@@ -79,7 +80,7 @@ Many client libraries remove the Authorization header on a redirect. The example
 To connect to the steam, make a request that looks similar to the following:
 
 
-```curl
+```sh
 curl -X GET "https://livestream.adobe.net/api/1/stream/adobe-livestream-{endpoint-name}" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \
