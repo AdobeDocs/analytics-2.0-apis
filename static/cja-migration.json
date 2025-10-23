@@ -24,584 +24,586 @@
       "description": "Operations pertaining to metric mapping"
     }
   ],
-  "/projects/{projectId}/summary": {
-    "get": {
-      "tags": [
-        "Components Migration - Users"
-      ],
-      "operationId": "summary_1",
-      "parameters": [
-        {
-          "name": "projectId",
-          "in": "path",
-          "description": "The project id need to be moved to CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Project migration summary retrieved successfully.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MigrationEventStatusEntity"
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
-        },
-        {
-          "x-proxy-global-company-id": []
-        },
-        {
-          "x-user-auth": []
-        }
-      ]
-    }
-  },
-  "/projects/bulk/migrate": {
-    "post": {
-      "tags": [
-        "Components Migration - Users"
-      ],
-      "operationId": "bulkMigrate_1",
-      "responses": {
-        "200": {
-          "description": "Projects migrated successfully.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ResponseEntity"
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
-        },
-        {
-          "x-proxy-global-company-id": []
-        },
-        {
-          "x-user-auth": []
-        }
-      ]
-    }
-  },
-  "/projects/bulk/status": {
-    "get": {
-      "tags": [
-        "Components Migration - Users"
-      ],
-      "operationId": "bulkMigrate_2",
-      "responses": {
-        "200": {
-          "description": "Project migration summary retrieved successfully.",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/IMigrationEvent"
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
-        },
-        {
-          "x-proxy-global-company-id": []
-        },
-        {
-          "x-user-auth": []
-        }
-      ]
-    }
-  },
-  "/mapping/dimensions/csv": {
-    "get": {
-      "tags": [
-        "Dimension Mapping - Users"
-      ],
-      "summary": "get dimensions mappings as CSV file",
-      "description": "get dimension mappings with given rsid and dataId",
-      "operationId": "getMappingsAsCSV_1",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dimensionIds",
-          "in": "query",
-          "description": "Filter list to only include dimension mapping for the specified comma-delimited list of dimension ids",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Dimensions mappings retrieved successfully",
-          "content": {
-            "text/csv": {
-              "schema": {
-                "$ref": "#/components/schemas/Response"
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
-        },
-        {
-          "x-user-auth": []
-        }
-      ]
-    },
-    "put": {
-      "tags": [
-        "Dimension Mapping - Users"
-      ],
-      "summary": "update dimensions mapping with CSV file",
-      "description": "Update dimension mapping with given rsid and dataId",
-      "operationId": "updateMappingByCSV_1",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "multipart/form-data": {
+  "paths": {
+    "/projects/{projectId}/summary": {
+      "get": {
+        "tags": [
+          "Components Migration - Users"
+        ],
+        "operationId": "summary_1",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "The project id need to be moved to CJA",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "file": {
-                  "type": "object"
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Project migration summary retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MigrationEventStatusEntity"
                 }
               }
             }
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Dimensions mappings updated successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/FieldMappingDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
         },
-        {
-          "x-user-auth": []
-        }
-      ]
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-proxy-global-company-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
     },
-    "post": {
-      "tags": [
-        "Dimension Mapping - Users"
-      ],
-      "summary": "create dimensions mapping with CSV file",
-      "description": "Override dimension mapping with given rsid and dataId",
-      "operationId": "createMappingByCSV_1",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "multipart/form-data": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "file": {
-                  "type": "object"
+    "/projects/bulk/migrate": {
+      "post": {
+        "tags": [
+          "Components Migration - Users"
+        ],
+        "operationId": "bulkMigrate_1",
+        "responses": {
+          "200": {
+            "description": "Projects migrated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseEntity"
                 }
               }
             }
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Dimensions mappings created successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/FieldMappingDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
         },
-        {
-          "x-user-auth": []
-        }
-      ]
-    }
-  },
-  "/mapping/dimensions/all": {
-    "delete": {
-      "tags": [
-        "Dimension Mapping - Users"
-      ],
-      "summary": "delete all dimension mappings",
-      "description": "Delete all dimension mappings for the given report suite and data view ids. If there are no mappings, this will return a success response.",
-      "operationId": "deleteAllMappings_1",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-proxy-global-company-id": []
+          },
+          {
+            "x-user-auth": []
           }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Dimensions mappings deleted successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteControllerResponse"
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
-        },
-        {
-          "x-user-auth": []
-        }
-      ]
-    }
-  },
-  "/mapping/metrics/csv": {
-    "get": {
-      "tags": [
-        "Metric Mapping - Users"
-      ],
-      "summary": "get metrics mappings as CSV file",
-      "description": "get metrics mapping with given rsid and dataId",
-      "operationId": "getMappingsAsCSV_3",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "metricIds",
-          "in": "query",
-          "description": "Filter list to only include metric mapping for the specified comma-delimited list of metric ids",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "Dimensions mappings retrieved successfully",
-          "content": {
-            "text/csv": {
-              "schema": {
-                "$ref": "#/components/schemas/Response"
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
-        },
-        {
-          "x-user-auth": []
-        }
-      ]
+        ]
+      }
     },
-    "put": {
-      "tags": [
-        "Metric Mapping - Users"
-      ],
-      "summary": "update metric mappings with CSV file",
-      "description": "Update metric mappings with given rsid and dataId",
-      "operationId": "updateMappingByCSV_3",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "multipart/form-data": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "file": {
-                  "type": "object"
+    "/projects/bulk/status": {
+      "get": {
+        "tags": [
+          "Components Migration - Users"
+        ],
+        "operationId": "bulkMigrate_2",
+        "responses": {
+          "200": {
+            "description": "Project migration summary retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IMigrationEvent"
                 }
               }
             }
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "Metrics mappings updated successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/FieldMappingDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
         },
-        {
-          "x-user-auth": []
-        }
-      ]
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-proxy-global-company-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
     },
-    "post": {
-      "tags": [
-        "Metric Mapping - Users"
-      ],
-      "summary": "create metrics mapping with CSV file",
-      "description": "Override metric mapping with given rsid and dataId",
-      "operationId": "createMappingByCSV_3",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "multipart/form-data": {
+    "/mapping/dimensions/csv": {
+      "get": {
+        "tags": [
+          "Dimension Mapping - Users"
+        ],
+        "summary": "get dimensions mappings as CSV file",
+        "description": "get dimension mappings with given rsid and dataId",
+        "operationId": "getMappingsAsCSV_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "file": {
-                  "type": "object"
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dimensionIds",
+            "in": "query",
+            "description": "Filter list to only include dimension mapping for the specified comma-delimited list of dimension ids",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dimensions mappings retrieved successfully",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
                 }
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
       },
-      "responses": {
-        "200": {
-          "description": "Metrics mapping created successfully",
+      "put": {
+        "tags": [
+          "Dimension Mapping - Users"
+        ],
+        "summary": "update dimensions mapping with CSV file",
+        "description": "Update dimension mapping with given rsid and dataId",
+        "operationId": "updateMappingByCSV_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/FieldMappingDto"
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "object"
+                  }
                 }
               }
             }
           }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
         },
-        {
-          "x-user-auth": []
-        }
-      ]
-    }
-  },
-  "/mapping/metrics/all": {
-    "delete": {
-      "tags": [
-        "Metric Mapping - Users"
-      ],
-      "summary": "Delete all metric mappings",
-      "description": "Delete all metric mappings for the given report suite and data view. If there are nomappings, returns a success response.",
-      "operationId": "deleteAllMappings_3",
-      "parameters": [
-        {
-          "name": "rsid",
-          "in": "query",
-          "description": "rsid in Analytics",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "dataId",
-          "in": "query",
-          "description": "dataId in CJA",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "All metrics mapping deleted successfully",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteControllerResponse"
+        "responses": {
+          "200": {
+            "description": "Dimensions mappings updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FieldMappingDto"
+                  }
+                }
               }
             }
           }
-        }
-      },
-      "security": [
-        {
-          "x-gw-ims-org-id": []
         },
-        {
-          "x-user-auth": []
-        }
-      ]
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Dimension Mapping - Users"
+        ],
+        "summary": "create dimensions mapping with CSV file",
+        "description": "Override dimension mapping with given rsid and dataId",
+        "operationId": "createMappingByCSV_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Dimensions mappings created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FieldMappingDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/mapping/dimensions/all": {
+      "delete": {
+        "tags": [
+          "Dimension Mapping - Users"
+        ],
+        "summary": "delete all dimension mappings",
+        "description": "Delete all dimension mappings for the given report suite and data view ids. If there are no mappings, this will return a success response.",
+        "operationId": "deleteAllMappings_1",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dimensions mappings deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteControllerResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/mapping/metrics/csv": {
+      "get": {
+        "tags": [
+          "Metric Mapping - Users"
+        ],
+        "summary": "get metrics mappings as CSV file",
+        "description": "get metrics mapping with given rsid and dataId",
+        "operationId": "getMappingsAsCSV_3",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "metricIds",
+            "in": "query",
+            "description": "Filter list to only include metric mapping for the specified comma-delimited list of metric ids",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dimensions mappings retrieved successfully",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Metric Mapping - Users"
+        ],
+        "summary": "update metric mappings with CSV file",
+        "description": "Update metric mappings with given rsid and dataId",
+        "operationId": "updateMappingByCSV_3",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Metrics mappings updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FieldMappingDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Metric Mapping - Users"
+        ],
+        "summary": "create metrics mapping with CSV file",
+        "description": "Override metric mapping with given rsid and dataId",
+        "operationId": "createMappingByCSV_3",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Metrics mapping created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FieldMappingDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    },
+    "/mapping/metrics/all": {
+      "delete": {
+        "tags": [
+          "Metric Mapping - Users"
+        ],
+        "summary": "Delete all metric mappings",
+        "description": "Delete all metric mappings for the given report suite and data view. If there are nomappings, returns a success response.",
+        "operationId": "deleteAllMappings_3",
+        "parameters": [
+          {
+            "name": "rsid",
+            "in": "query",
+            "description": "rsid in Analytics",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataId",
+            "in": "query",
+            "description": "dataId in CJA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All metrics mapping deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteControllerResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-gw-ims-org-id": []
+          },
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1060,6 +1062,5 @@
         }
       }
     }
-  },
-  "paths": {}
+  }
 }
