@@ -31,14 +31,21 @@ jobs:
       exclude_subfolder: ${{ github.event.inputs.excludeSubfolder }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Checkout Scripts Repo
+        uses: actions/checkout@v4
+        with:
+          repository: AdobeDocs/adp-devsite-scripts
+          path: scripts
+          ref: main
 
       - name: Get pathPrefix
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: get_path_prefix
         with:
           script: |
-            const script = require('./.github/scripts/get-path-prefix.js');
+            const script = require('./scripts/gatsby-get-path-prefix.js');
             script({ core });
           result-encoding: string
 
