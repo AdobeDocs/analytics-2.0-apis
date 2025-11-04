@@ -86,17 +86,8 @@ jobs:
       - name: Enable Corepack for Yarn v3
         run: corepack enable
 
-      - name: Install Yarn v3
-        uses: borales/actions-yarn@v3
-        with:
-          cmd: set version stable
-
       - name: Install Dependencies
-        uses: borales/actions-yarn@v3
-        env:
-          YARN_ENABLE_IMMUTABLE_INSTALLS: false
-        with:
-          cmd: install
+        run: yarn install
 
       - name: Gatsby Cache
         uses: actions/cache@v3
@@ -110,14 +101,10 @@ jobs:
 
       - name: Clean Cache
         if: needs.set-state.outputs.clean_cache == 'true'
-        uses: borales/actions-yarn@v3
-        with:
-          cmd: clean
+        run: yarn clean
 
       - name: Build site
-        uses: borales/actions-yarn@v3
-        with:
-          cmd: build
+        run: yarn build
         env:
           PREFIX_PATHS: true # equivalent to --prefix-paths flag for 'gatsby build'
           PATH_PREFIX: ${{ needs.set-state.outputs.path_prefix }}
@@ -194,17 +181,8 @@ jobs:
       - name: Enable Corepack for Yarn v3
         run: corepack enable
 
-      - name: Install Yarn v3
-        uses: borales/actions-yarn@v3
-        with:
-          cmd: set version stable
-
       - name: Install Dependencies
-        uses: borales/actions-yarn@v3
-        env:
-          YARN_ENABLE_IMMUTABLE_INSTALLS: false
-        with:
-          cmd: install
+        run: yarn install
 
       - name: Gatsby Cache
         uses: actions/cache@v3
@@ -218,14 +196,10 @@ jobs:
 
       - name: Clean Cache
         if: needs.set-state.outputs.clean_cache == 'true'
-        uses: borales/actions-yarn@v3
-        with:
-          cmd: clean
+        run: yarn clean
 
       - name: Build site
-        uses: borales/actions-yarn@v3
-        with:
-          cmd: build
+        run: yarn build
         env:
           PREFIX_PATHS: true # equivalent to --prefix-paths flag for 'gatsby build'
           PATH_PREFIX: ${{ needs.set-state.outputs.path_prefix }}
