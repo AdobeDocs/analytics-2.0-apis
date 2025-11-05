@@ -39,7 +39,7 @@ Use these endpoints to map metrics to CJA within an XDM schema:
 
 Use this endpoint to upload a `csv` file that maps Analytics metrics to CJA metrics for a specified data view.
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv`
 
 ### Request and Response Examples
 
@@ -51,7 +51,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv?rsid=examplersid&dataId=exampledv" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
