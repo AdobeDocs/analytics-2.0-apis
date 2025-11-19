@@ -33,6 +33,12 @@ Retrieve, update, or create calculated metrics.
 
 <DiscoverBlock slots="link, text"/>
 
+[Cloud API](cloudloc/index.md)
+
+Create and manage both Analytics cloud accounts and cloud Locations.
+
+<DiscoverBlock slots="link, text"/>
+
 [Component Migration API](compmigration/index.md)
 
 Migrate Analytics components to Customer Journey Analtyics.

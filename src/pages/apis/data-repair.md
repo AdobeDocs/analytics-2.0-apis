@@ -1,5 +1,16 @@
 ---
 title: Data Repair API Reference
-description: All API calls that you can make using the Data Repair API.
-openAPISpec: /data-repair.json
+description: Open API specification for the Data Repair APIs.
+keywords:
+  - Data Repair APIs
+  - 2.0 APIs
+  - API Documentation
+  - Data Repair API Reference
+  - Data Repair API Swagger
+layout: none
 ---
+import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
+
+<GetCredentialsOauth2 />
+
+<RedoclyAPIBlock src="/analytics-apis/docs/2.0/data-repair.json" scrollYOffset={64}/>

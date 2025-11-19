@@ -1,0 +1,1484 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Adobe Analytics Classification API",
+    "description": "Adobe Analytics Classification API 2.0 \n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://analytics.adobe.io/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Classification Dataset"
+    },
+    {
+      "name": "Classification Job"
+    }
+  ],
+  "paths": {
+    "/{globalCompanyId}/classification/datasets/{dataset_id}": {
+      "get": {
+        "tags": [
+          "Classification Dataset"
+        ],
+        "summary": "Get one classification dataset",
+        "description": "Get one classification dataset by dataset id",
+        "operationId": "getOneDataset",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "Classification Dataset ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get one classification dataset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClassificationSet"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Classification Dataset"
+        ],
+        "summary": "Save change on one classification dataset",
+        "description": "Save change on one classification dataset by dataset id",
+        "operationId": "updateOneDataset",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "Classification Dataset ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiClassificationSet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update one classification dataset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClassificationSet"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Classification Dataset"
+        ],
+        "summary": "Delete one classification dataset",
+        "description": "Delete one classification dataset by dataset id, all classification data will be deleted as well",
+        "operationId": "deleteDataset",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "Classification Dataset ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete one classification dataset successfully"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          },
+          "500": {
+            "description": "Delete classification dataset failed due to internal error"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/datasets/compatibilityMetrics/{rsid}": {
+      "get": {
+        "tags": [
+          "Classification Dataset"
+        ],
+        "summary": "Get compatibility metrics for a given report suite",
+        "description": "Get compatibility metrics and the dataset id that associated with the metrics for a given report suite",
+        "operationId": "getCompatibilityMetrics",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "rsid",
+            "in": "path",
+            "description": "Adobe Analytics Report Suite Id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get compatibility metrics and the dataset id successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportSuiteCompatibilityMetric"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The report suite doesn't exist in IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/datasets/template/{dataset_id}": {
+      "get": {
+        "tags": [
+          "Classification Dataset"
+        ],
+        "summary": "Retrieve dataset template",
+        "description": "Retrieve dataset template for a given dataset id",
+        "operationId": "getDatasetTemplate",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "Classification Dataset ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Template format",
+            "schema": {
+              "type": "string",
+              "default": "tsv",
+              "enum": [
+                "tsv",
+                "csv"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dataset template downloaded successfully"
+          },
+          "400": {
+            "description": "Not a valid template format, must be csv or tsv"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/import/commitApiJob/{api_job_id}": {
+      "post": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Commit API import job for processing",
+        "description": "Commit API import job for processing",
+        "operationId": "commitApiImportJob",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "api_job_id",
+            "in": "path",
+            "description": "The API Job Id for uploading file",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully committed API import job for processing"
+          },
+          "400": {
+            "description": "The API job status is not FILE_UPLOADED, need to upload file first before commit the API job"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The API Job Id doesn't exist in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/import/createApiJob/{dataset_id}": {
+      "post": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Create API import job entity on classification dataset",
+        "description": "Create API import job entity on classification dataset, need to upload file after this API call",
+        "operationId": "createApiJobEntity",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The dataset id for creating import job",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiJobImportOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created API import job entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportApiJobRecord"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/export/{dataset_id}": {
+      "post": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Create export job for one dataset",
+        "description": "Create export job for one dataset, the row limit should be less than 50,000",
+        "operationId": "createExportJob",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The dataset id for creating API export job",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiJobExportOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created export job for one dataset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClassificationJob"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/import/json/{dataset_id}": {
+      "post": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Create API import job classification dataset with JSON format data",
+        "description": "Create API import job classification dataset with JSON format data, the JSON data size should be less than 50MB",
+        "operationId": "createJsonImportJob",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The dataset id for creating API import job",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JobImportOptionsWithData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created API import job for classification dataset"
+          },
+          "400": {
+            "description": "The uploaded file size exceeds the limit or the dataFormat is not JSON"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The dataset doesn't exist in the IMS ORG"
+          },
+          "500": {
+            "description": "Internal server error, upload file to internal storage failed"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/byDataset/{dataset_id}": {
+      "get": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Retrieve classification jobs for specified dataset",
+        "description": "Retrieve classification jobs for specified dataset",
+        "operationId": "findJobsByDataset",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "Classification Dataset ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lookbackDays",
+            "in": "query",
+            "description": "Look back Windows (Days)",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 30
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page number",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "The page size",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved classification job for specified dataset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClassificationJobPage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "Cannot find job for specified dataset"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/{job_id}": {
+      "get": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Retrieve classification job by job ID",
+        "description": "Retrieve classification job by job ID",
+        "operationId": "getJobById",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "job_id",
+            "in": "path",
+            "description": "Classification Job ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved classification job by job ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiClassificationJob"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "Cannot find job in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/export/file/{job_id}": {
+      "get": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Retrieve export file by export job ID ",
+        "description": "Retrieve export file by export job ID",
+        "operationId": "retrieveArtifact",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "job_id",
+            "in": "path",
+            "description": "Export Job ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved export file by export job ID"
+          },
+          "400": {
+            "description": "The export job is not complete and the file is not ready to download"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "Cannot find job in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/export/file/{job_id}/{file_name}": {
+      "get": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Retrieve export file by export job ID and file name",
+        "description": "Retrieve export file by export job ID and file name",
+        "operationId": "retrieveArtifactById",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "job_id",
+            "in": "path",
+            "description": "Export Job ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file_name",
+            "in": "path",
+            "description": "File Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved export file by export job ID and file name"
+          },
+          "400": {
+            "description": "The export job is not complete and the file is not ready to download"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "Cannot find job in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/export/file/{job_id}/list": {
+      "get": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Retrieve export file list by export job ID ",
+        "description": "Retrieve export file list by export job ID",
+        "operationId": "retrieveArtifactList",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "job_id",
+            "in": "path",
+            "description": "Export Job ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved export file list by export job ID"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "Cannot find job in the IMS ORG"
+          }
+        }
+      }
+    },
+    "/{globalCompanyId}/classification/job/import/uploadFile/{api_job_id}": {
+      "post": {
+        "tags": [
+          "Classification Job"
+        ],
+        "summary": "Upload File for API import job",
+        "description": "Upload File for one API import job, the file size limit is 50MB",
+        "operationId": "uploadImportFile",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
+          {
+            "name": "api_job_id",
+            "in": "path",
+            "description": "The API Job Id for uploading file",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully uploaded file for API import job"
+          },
+          "400": {
+            "description": "The uploaded file size exceeds the limit"
+          },
+          "403": {
+            "description": "User does not have classification permission to perform this action"
+          },
+          "404": {
+            "description": "The API Job Id doesn't exist or the dataset doesn't exist in the IMS ORG"
+          },
+          "500": {
+            "description": "Internal server error, upload file to internal storage failed"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CompatibilityMetric": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "datasets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ReportSuiteCompatibilityMetric": {
+        "properties": {
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompatibilityMetric"
+            }
+          },
+          "report_suite_id": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiAnalyticsClassificationColumn": {
+        "required": [
+          "display_name",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "column_id": {
+            "type": "string",
+            "description": "A UUID that will be generated when a column is created.",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The name for this given data column. Immutable after column creation. Can be any valid UTF-8 string."
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name for this given data column. Mutable. Can be any valid UTF-8 string."
+          },
+          "type": {
+            "type": "string",
+            "description": "Defaults to 'text'. Immutable after column creation.",
+            "enum": [
+              "text",
+              "integer",
+              "float",
+              "list[string]"
+            ]
+          },
+          "classified_by": {
+            "type": "string",
+            "description": "An optional classification dataset id, whose dataset classifies this column's data."
+          }
+        },
+        "description": "A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists."
+      },
+      "ApiClassificationSet": {
+        "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/ClassificationOwner"
+          },
+          "subscriptions": {
+            "type": "array",
+            "description": "A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists.",
+            "items": {
+              "$ref": "#/components/schemas/ClassificationSubscription"
+            }
+          },
+          "default_encoding": {
+            "type": "string",
+            "description": "Default encoding for jobs. Defaults to UTF-8.",
+            "enum": [
+              "utf8",
+              "latin1"
+            ]
+          },
+          "columns": {
+            "type": "array",
+            "description": "A list of classification column definitions. Column definitions are not required at the time of creation but no data will be classified until at least one column definition exists.",
+            "items": {
+              "$ref": "#/components/schemas/ApiAnalyticsClassificationColumn"
+            }
+          },
+          "dataset_id": {
+            "type": "string",
+            "description": "This value will be auto generated by the system on creation. This value will be a id in the form of an ObjectId.",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "description": "A human readable display name for users to be able to easily identify this classification definition."
+          },
+          "description": {
+            "type": "string",
+            "description": "A long description for the purpose of this classification set."
+          },
+          "last_modified_date": {
+            "type": "string",
+            "description": "Last modified date/time of the classification set.",
+            "readOnly": true
+          },
+          "last_modified_by": {
+            "type": "string",
+            "description": "Email address of the last person that modified the classification set.",
+            "readOnly": true
+          },
+          "ims_org_id": {
+            "type": "string",
+            "description": "This value will be looked up based on the analytics company of the user.",
+            "readOnly": true
+          },
+          "default_list_delimiter": {
+            "type": "string",
+            "description": "Default delimiter for list column types. Defaults to \",\" (comma). If you have no list columns this field does not apply."
+          },
+          "notifications": {
+            "type": "array",
+            "description": "List of notifications to be sent for all imports and exports that occur.",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          }
+        }
+      },
+      "ClassificationOwner": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "description": "Contact information for a person responsible for the classification definition and/or data."
+      },
+      "ClassificationSubscription": {
+        "required": [
+          "dimension",
+          "rsid",
+          "unique"
+        ],
+        "type": "object",
+        "properties": {
+          "rsid": {
+            "type": "string",
+            "description": "The report suite id for which you would like to subscribe to a classification set."
+          },
+          "dimension": {
+            "type": "string",
+            "description": "The dimension identity you would like to be classified. Should be prefixed with variables/ i.e. variables/page"
+          },
+          "unique": {
+            "type": "boolean",
+            "description": "Force update of unique_hash to avoid duplicate subscriptions"
+          },
+          "editable": {
+            "type": "boolean",
+            "description": "Flag to indicate if the subscription is editable by the current user based on report suite permissions.",
+            "readOnly": true
+          }
+        },
+        "description": "A list of classification subscriptions. Subscriptions are not required at the time of creation but no data will be classified until at least one subscription exists."
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": [
+              "email",
+              "rabbit"
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "created",
+              "queued",
+              "validated",
+              "failed_validation",
+              "processing",
+              "done_processing",
+              "failed_processing",
+              "completed"
+            ]
+          },
+          "recipients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "List of notifications to be sent for all imports and exports that occur."
+      },
+      "ImportApiJobRecord": {
+        "properties": {
+          "api_job_status": {
+            "type": "string"
+          },
+          "dataset_id": {
+            "type": "string"
+          },
+          "api_job_id": {
+            "type": "string"
+          },
+          "ims_org_id": {
+            "type": "string"
+          },
+          "taxonomist_job_id": {
+            "type": "string"
+          },
+          "job_options": {
+            "$ref": "#/components/schemas/JobImportOptions"
+          }
+        }
+      },
+      "JobImportOptions": {
+        "type": "object",
+        "properties": {
+          "dataFormat": {
+            "type": "string"
+          },
+          "encoding": {
+            "type": "string"
+          },
+          "jobName": {
+            "type": "string"
+          },
+          "fileBasename": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          },
+          "statesWithQueuedNotifications": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "listDelimiter": {
+            "type": "string"
+          },
+          "pipelineTag": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "dataUri": {
+            "type": "string"
+          },
+          "originalDataUri": {
+            "type": "string"
+          },
+          "keyOptions": {
+            "$ref": "#/components/schemas/KeyOption"
+          },
+          "notification_extras": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationExtra"
+            }
+          }
+        }
+      },
+      "KeyOption": {
+        "type": "object",
+        "properties": {
+          "byte_length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "overwrite": {
+            "type": "boolean"
+          }
+        }
+      },
+      "NotificationExtra": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiJobImportOptions": {
+        "type": "object",
+        "properties": {
+          "dataFormat": {
+            "type": "string"
+          },
+          "encoding": {
+            "type": "string"
+          },
+          "jobName": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          },
+          "listDelimiter": {
+            "type": "string"
+          },
+          "keyOptions": {
+            "$ref": "#/components/schemas/KeyOption"
+          }
+        }
+      },
+      "ApiClassificationJob": {
+        "properties": {
+          "setName": {
+            "type": "string",
+            "description": "The name of the classification dataset."
+          },
+          "jobId": {
+            "type": "string",
+            "description": "The id of the job."
+          },
+          "jobSize": {
+            "type": "integer",
+            "description": "The size of the job file",
+            "format": "int64"
+          },
+          "jobOptions": {
+            "type": "object",
+            "description": "The import or export options of the job."
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the job."
+          },
+          "totalLines": {
+            "type": "integer",
+            "description": "The total lines of the file.",
+            "format": "int32"
+          },
+          "datasetId": {
+            "type": "string",
+            "description": "The classification dataset id of the job."
+          },
+          "noeffectLines": {
+            "type": "integer",
+            "description": "The no effect lines of import job.",
+            "format": "int32"
+          },
+          "history": {
+            "type": "array",
+            "description": "The history of the job.",
+            "items": {
+              "$ref": "#/components/schemas/ApiJobHistory"
+            }
+          },
+          "state": {
+            "type": "string",
+            "description": "The state of the job."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the job."
+          },
+          "imsOrgId": {
+            "type": "string",
+            "description": "The IMS Org Id of the job."
+          }
+        }
+      },
+      "ApiJobHistory": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "The time when the job state changed"
+          },
+          "jobState": {
+            "type": "string",
+            "description": "The state of the job",
+            "enum": [
+              "created",
+              "queued",
+              "validated",
+              "failed_validation",
+              "processing",
+              "done_processing",
+              "failed_processing",
+              "completed"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "The details of the job history"
+          }
+        },
+        "description": "The history of the job."
+      },
+      "ApiJobExportOptions": {
+        "type": "object",
+        "properties": {
+          "dataFormat": {
+            "type": "string"
+          },
+          "encoding": {
+            "type": "string"
+          },
+          "jobName": {
+            "type": "string"
+          },
+          "listDelimiter": {
+            "type": "string"
+          },
+          "rowLimit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "keyRegex": {
+            "type": "string"
+          },
+          "exactMatch": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "regexMatch": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "dateFilterStart": {
+            "type": "string"
+          },
+          "dateFilterEnd": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          }
+        }
+      },
+      "JobImportOptionsWithData": {
+        "type": "object",
+        "properties": {
+          "dataFormat": {
+            "type": "string"
+          },
+          "encoding": {
+            "type": "string"
+          },
+          "jobName": {
+            "type": "string"
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          },
+          "listDelimiter": {
+            "type": "string"
+          },
+          "keyOptions": {
+            "$ref": "#/components/schemas/KeyOption"
+          },
+          "jobImportOption": {
+            "$ref": "#/components/schemas/JobImportOptions"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JsonRecord"
+            }
+          }
+        }
+      },
+      "JsonRecord": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "ApiClassificationJobPage": {
+        "properties": {
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiClassificationJob"
+            }
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

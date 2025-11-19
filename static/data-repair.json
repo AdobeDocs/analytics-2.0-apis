@@ -7,14 +7,29 @@
   },
   "servers": [
     {
-      "url": "https://analytics.adobe.io/datarepair/"
+      "url": "https://analytics.adobe.io/api"
     }
   ],
   "paths": {
-    "/v1/{reportSuiteId}/auth": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/auth": {
       "get": {
         "operationId": "get_auth_v1__reportSuiteId__auth_get",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "in": "path",
             "name": "reportSuiteId",
@@ -59,14 +74,29 @@
         },
         "summary": "Get Auth",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     },
-    "/v1/{reportSuiteId}/job": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/job": {
       "get": {
         "operationId": "get_jobs_v1__reportSuiteId__job_get",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "in": "path",
             "name": "reportSuiteId",
@@ -115,12 +145,27 @@
         },
         "summary": "Get Jobs",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       },
       "post": {
         "operationId": "create_job_v1__reportSuiteId__job_post",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "in": "path",
             "name": "reportSuiteId",
@@ -217,14 +262,29 @@
         },
         "summary": "Create Job",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     },
-    "/v1/{reportSuiteId}/job/{jobId}": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/job/{jobId}": {
       "get": {
         "operationId": "get_job_v1__reportSuiteId__job__jobId__get",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "in": "path",
             "name": "reportSuiteId",
@@ -278,14 +338,29 @@
         },
         "summary": "Get Job",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     },
-    "/v1/{reportSuiteId}/serverCallEstimate": {
+    "/{globalCompanyId}/datarepair/v1/{reportSuiteId}/serverCallEstimate": {
       "get": {
         "operationId": "get_server_call_estimate_v1__reportSuiteId__serverCallEstimate_get",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "in": "path",
             "name": "reportSuiteId",
@@ -350,7 +425,7 @@
         },
         "summary": "Get Server Call Estimate",
         "tags": [
-          "data_repair"
+          "datarepair"
         ]
       }
     }
@@ -1685,6 +1760,26 @@
         ],
         "title": "ServerCallEstimateResponseModel",
         "type": "object"
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
       }
     }
   },

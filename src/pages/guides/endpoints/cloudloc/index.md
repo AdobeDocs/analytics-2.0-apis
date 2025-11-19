@@ -1,13 +1,17 @@
 ---
-title: Adobe Analytics Cloud Locations API
-description: Use the Adobe Analytics Cloud Locations API to manage export locations for analytics data.
+title: Adobe Analytics Cloud API overview
+description: Use the Adobe Analytics Cloud APIs to manage export locations for analytics data.
 ---
 
-# Cloud Locations API
+# Cloud API overview
 
-The Adobe Analytics 2.0 Cloud Locations API endpoints provide methods for managing export locations for analytics data. This API allows you to create, read, update, and delete cloud storage accounts and locations for exporting analytics data.
+The Adobe Analytics 2.0 Cloud API endpoints provide methods to manage export Locations for analytics data. Adobe cloud Locations are configured within Adobe Cloud API accounts--a separate API service within Adobe Analytics 2.0 Cloud APIs. Adobe Cloud API accounts are developed to work with various cloud storage service providers. Use these APIs to create, read, update, and delete Adobe cloud API accounts and Locations for exporting data. 
 
-You can use Cloud Locations APIs for the following:
+<InlineAlert variant="info" slots="text" />
+
+A cloud "Location" is an Adobe Analytics API connection to any third-party cloud storage service, as configured within the Adobe Cloud Accounts API. It does not refer to a specific physical location on a server.
+
+You can use Cloud APIs for the following:
 
 * Exporting files using Data Feed APIs
 
@@ -15,31 +19,13 @@ You can use Cloud Locations APIs for the following:
 
 * Working with Classification APIs
 
-To export data to a cloud location, you must first create a cloud location account. After creating the account, you can create as many locations on that account as you want.
+These APIs include two service categories:
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
+* [**Analytics Cloud Accounts API**](account.md)
 
-## Service Categories
-
-**Analytics Cloud Locations Account API**
-
-These endpoints provide methods for managing cloud storage accounts:
-
-* [GET accounts](#get-accounts): Retrieve all Cloud Locations accounts accessible to you in the specified organization. This includes accounts you have created or those that have been shared with you.
-* [POST create account](#post-create-account): Create a new Cloud Locations account
-* [GET account by UUID](#get-account-by-uuid): Retrieve a specific Cloud Locations account
-* [PUT update account](#put-update-account): Update a specific Cloud Locations account
-* [DELETE account](#delete-account): Delete a specific Cloud Locations account
-
-**Analytics Cloud Locations Location API**
-
-These endpoints provide methods for managing cloud locations:
-
-* [GET locations](#get-locations): Retrieve all Cloud Locations for a Global Company ID
-* [POST create location](#post-create-location): Create a new Cloud Location
-* [GET location by UUID](#get-location-by-uuid): Retrieve a specific Cloud Location
-* [PUT update location](#put-update-location): Update a specific Cloud Location
-* [DELETE location](#delete-location): Delete a specific Cloud Location
+* [**Analytics Cloud Locations API**](locations.md)
+  
+To export data to a cloud Location, you must first [create an Analytics cloud API account](account.md). After creating the account, you can create as many locations on that account as you need.
 
 <InlineAlert variant="info" slots="text" />
 

@@ -5,11 +5,11 @@ description: Use Analytics classification APIs to categorize variable data.
 
 # Analytics Classifications API
 
-The Analytics 2.0 Classifications API endpoints provide advanced methods for categorizing variable data and displaying it in reports. The endpoints use the same data and methods that are used when working with classifications in the Adobe Analytics UI. See the [Classifications overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/c-classifications.html) for more information.
+The Analytics 2.0 Classifications API endpoints provide advanced methods for categorizing variable data and displaying it in reports. The endpoints use the same data and methods that are used when working with classifications in the Adobe Analytics UI. See the [Classifications overview](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/classifications-overview) for more information.
 
 <InlineAlert variant="info" slots="text" />
 
-Adobe Analtyics Classifications APIs do not create classification datasets (or, sometimes called "classification sets"). To create classification datasets in the UI that work with these Classifications APIs, see [Classifications overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/c-classifications.html).
+The Adobe Analytics Classifications APIs do not create classification datasets (or, sometimes called "classification sets"). To create classification datasets in the UI that work with these Classifications APIs, see [Classifications overview](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/classifications-overview).
 
 
 <InlineAlert variant="info" slots="text" />
@@ -418,6 +418,10 @@ The response includes the classification data in the format specified with the e
 
 Use this endpoint to retrieve a list of file parts partitioned from a complete classification file belonging to an existing job. The individual file parts returned may be used in the [GET classification export job file part](#get-classification-export-job-file-part) endpoint to be exported. For more information on classification data, see [Classification data files](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/classifications-importer/c-saint-data-files).
 
+<InlineAlert variant="info" slots="text" />
+
+Downloads for export files are only available for jobs that have completed within the previous seven days.
+
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/export/file/{JOB_ID}/list`
 
 ### Request and Response Examples
@@ -479,6 +483,10 @@ The following table describes the classification job file partition list respons
 ## GET classification export job file part
 
 Use this endpoint to retrieve a part of a complete classification data file. The [GET classification job file partition list](#get-classification-job-file-partition-list) endpoint may be used to retrieve the file names required for this endpoint. For more information on classification data, see [Classification data files](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/classifications-importer/c-saint-data-files).
+
+<InlineAlert variant="info" slots="text" />
+
+Downloads for export files are only available for jobs that have completed within the previous seven days
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/export/file/{JOB_ID}/{FILE_NAME}`
 

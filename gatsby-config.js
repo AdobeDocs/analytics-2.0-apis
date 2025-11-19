@@ -37,7 +37,52 @@ module.exports = {
       },
       {
         title: 'API Reference',
-        path: 'https://adobedocs.github.io/analytics-2.0-apis/'
+        menu: [
+          {
+            title: 'Adobe Analytics 2.0 APIs',
+            path: 'apis'
+          },
+          {
+            title: 'Bulk Data Insertion APIs',
+            path: 'apis/bulk-data-insertion'
+          },
+          {
+            title: 'Component Migration APIs',
+            path: 'apis/component-migration'
+          },
+          {
+            title: 'Classification APIs',
+            path: 'apis/classification'
+          },
+          {
+            title: 'Cloud APIs',
+            path: 'apis/cloud-locations'
+          },
+          {
+            title: 'Data Feeds APIs',
+            path: 'apis/data-feeds'
+          },
+          {
+            title: 'Data Repair APIs',
+            path: 'apis/data-repair'
+          },
+          {
+            title: 'Data Sources APIs',
+            path: 'apis/data-sources'
+          },
+          {
+            title: 'Data Warehouse APIs',
+            path: 'apis/data-warehouse'
+          },
+          {
+            title: 'Livestream APIs',
+            path: 'apis/livestream'
+          },
+          {
+            title: 'Report Suites APIs',
+            path: 'apis/report-suites'
+          }
+        ]
       },
       {
         title: 'Use cases',
@@ -148,6 +193,24 @@ module.exports = {
               {
                 title: 'Removing data',
                 path: 'guides/endpoints/classifications/remove-values.md'
+              }
+            ]
+          },
+          {
+            title: 'Cloud API',
+            path: 'guides/endpoints/cloudloc/index.md',
+            pages: [
+              {
+                title: 'Cloud Locations endpoints',
+                path: 'guides/endpoints/cloudloc/locations.md'
+              },
+              {
+                title: 'Cloud API accounts',
+                path: 'guides/endpoints/cloudloc/account.md'
+              },
+              {
+                title: 'Account properties',
+                path: 'guides/endpoints/cloudloc/account-properties.md'
               }
             ]
           },

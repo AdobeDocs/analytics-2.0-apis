@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://analytics.adobe.io/data_warehouse/"
+      "url": "https://analytics.adobe.io/api"
     }
   ],
   "tags": [
@@ -21,7 +21,7 @@
     }
   ],
   "paths": {
-    "/report/{UUID}": {
+    "/{globalCompanyId}/data_warehouse/report/{UUID}": {
       "get": {
         "tags": [
           "Data Warehouse Report API"
@@ -29,6 +29,21 @@
         "summary": "Retrieves a detailed data warehouse report for a scheduled request",
         "operationId": "get",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "name": "UUID",
             "in": "path",
@@ -70,6 +85,21 @@
         "description": "Updates an existing scheduled Data Warehouse request.",
         "operationId": "updateDataWarehouseJob",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "name": "UUID",
             "in": "path",
@@ -113,7 +143,7 @@
         }
       }
     },
-    "/report": {
+    "/{globalCompanyId}/data_warehouse/report": {
       "get": {
         "tags": [
           "Data Warehouse Report API"
@@ -121,6 +151,21 @@
         "summary": "Retrieves summarized information for data warehouse reports that match specified filters",
         "operationId": "get_1",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "name": "scheduledRequestUUID",
             "in": "query",
@@ -214,7 +259,7 @@
         }
       }
     },
-    "/scheduled": {
+    "/{globalCompanyId}/data_warehouse/scheduled": {
       "get": {
         "tags": [
           "Data Warehouse Scheduled Requests API"
@@ -222,6 +267,21 @@
         "summary": "Retrieves summarized information data warehouse scheduled requests that match specified filters",
         "operationId": "getScheduledRequest_2",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "name": "rsid",
             "in": "query",
@@ -324,7 +384,23 @@
         "summary": "Create a data warehouse scheduled request",
         "description": "Creates a new scheduled Data Warehouse request. An example definition for testing the API is shown below. This creates a request that generates a single report. To use the example, replace 'request.rsid' with an rsid to which you have Data Warehouse access (shown as 'sistr2' in the example), and then add a valid 'exportLocationUUID' under delivery.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"runOnceSetPeriod\"\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run-Once Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"startDateTime\": \"2023-01-01T00:00:00Z\",\r\n              \"endDateTime\": \"2023-01-01T23:59:59Z\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\n Below is an example of a request that generates a daily report (for yesterday's data) for 10 days.\n\n```json\n{\r\n  \"schedule\": {\r\n    \"periodSettings\": {\r\n      \"frequency\": \"daily\"\r\n    }, \"cancelSettings\": {\r\n      \"cancelMethod\": \"afterOccurrences\",\r\n      \"endAfterNumOccurrences\": 10\r\n    }\r\n  },\r\n  \"request\": {\r\n    \"name\": \"Run Daily Example\",\r\n      \"reportParameters\": {\r\n          \"reportRange\": {\r\n              \"preset\": \"Yesterday\"\r\n          },\r\n          \"dimensionList\": [\r\n          ],\r\n          \"metricList\": [\r\n              {\r\n                  \"id\": \"metrics/visitors\"\r\n              }\r\n          ]\r\n      },\r\n    \"rsid\": \"sistr2\"\r\n  },\r\n  \"delivery\": {\r\n      \"exportLocationUUID\": \"00000000-0000-0000-0000-000000000000\",\r\n      \"email\": {\r\n          \"notificationEmailTo\": \"donotuse@adobe.com\"\r\n      }\r\n  }\r\n}\r\n```\n\nThe 'id' of items in the 'metricList' are identity service names. The example below shows a 'metricList' entry with the participation metric.\n\n```json\n{\r\n  \"id\": \"metrics/campaigninstances\",\r\n  \"properties\": {\r\n     \"isParticipation\": true\r\n   }\r\n}\r\n\r\n```\n\nFor 'dimensionList', the entries can reference an identity service or a segment service. The 'id' in the following 'dimensionList' example is specified as the path of an identity service.\n\n```json\n{\r\n  \"id\": \"variables/geocity\",\r\n}\r\n\r\n```\n\nThe example below shows a 'dimensionList' entry that references a segment service, instead of the identity service shown in the previous example. Note that when a 'namespace' is not specified with a service, it is assumed to be an identity service.\n\n```json\n{\r\n  \"namespace\": \"Segment Service\",\r\n  \"id\": \"s0_000000000000000000000000\",\r\n}\r\n\r\n```\n\n",
         "operationId": "createDataWarehouseScheduledJob",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -358,7 +434,7 @@
         }
       }
     },
-    "/scheduled/{UUID}": {
+    "/{globalCompanyId}/data_warehouse/scheduled/{UUID}": {
       "get": {
         "tags": [
           "Data Warehouse Scheduled Requests API"
@@ -366,6 +442,21 @@
         "summary": "Retrieves a detailed data warehouse scheduled request",
         "operationId": "getScheduledRequest_1",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "name": "UUID",
             "in": "path",
@@ -407,6 +498,21 @@
         "description": "Updates an existing scheduled Data Warehouse request. An example request body is shown below. This example cancels a request and all recent reports for the UUID, as specified as a path parameter.\n\n```json\n{\r\n  \"metadata\": {\r\n    \"status\": \"cancelIncludeReports\"\r\n  }\r\n}\r\n```\n\n",
         "operationId": "updateDataWarehouseTemplate",
         "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          },
           {
             "name": "UUID",
             "in": "path",
@@ -1104,6 +1210,26 @@
           "reportParameters": {
             "$ref": "#/components/schemas/ReportParameterPatch"
           }
+        }
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration. For more information on how to obtain this value, see [Getting started with the CJA API](https://developer.adobe.com/cja-apis/docs/getting-started/).",
+        "required": true,
+        "schema": {
+          "type": "string"
         }
       }
     }

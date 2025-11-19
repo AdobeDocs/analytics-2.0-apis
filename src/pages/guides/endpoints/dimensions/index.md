@@ -109,7 +109,7 @@ The GET dimensions endpoint includes the following request query parameters:
 | `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
 | `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
 | `classifiable` | optional | boolean | Whether to include only classifiable dimensions |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
+| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, `attributionModel`, and `categories` |
 
 #### Response example details
 
@@ -142,6 +142,7 @@ The GET dimensions endpoint includes the following response parameters:
 | `reportable` | array (string) | Whether the dimension is segmentable |
 | `description` | string | Contents of dimension description field in report|
 | `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
+| `attributionModel` | string | For a list of attribution models, see [Attribution models and lookback windows](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/attribution/models). |
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
 
