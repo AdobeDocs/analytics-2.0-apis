@@ -940,6 +940,10 @@
                   },
                   "baseUrl": {
                     "type": "string"
+                  },
+                  "currencyCode": {
+                    "type": "string",
+                    "example": "USD"
                   }
                 }
               }
