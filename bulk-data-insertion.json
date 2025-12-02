@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "The BDIA endpoint allows clients to send bulk hit/event data into Analytics. \n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
+    "description": "The Bulk Data Insertion API (BDIA) endpoint allows clients to send bulk hit/event data into Analytics. \n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
     "version": "1.0",
     "title": "Bulk Data Insertion API (BDIA)"
   },
@@ -39,10 +39,10 @@
     "/{globalCompanyId}/bulk_data_insertion/events": {
       "post": {
         "tags": [
-          "events"
+          "Events"
         ],
-        "summary": "Upload a batch file to Analytics for processing",
-        "description": "Uploaded files must:\n * Be 100 MB or less compressed (using gzip)\n* Follow the CSV formatting rules and include the required fields as specified in the documentation",
+        "summary": "Upload file for processing",
+        "description": "Upload a batch file to Analytics for processing. Uploaded files must:\n * Be 100 MB or less compressed (using gzip)\n* Follow the CSV formatting rules and include the required fields as specified in the documentation",
         "operationId": "filePost",
         "consumes": [
           "multipart/form-data"
@@ -67,7 +67,7 @@
           {
             "name": "x-adobe-vgid",
             "in": "header",
-            "description": "Visitor Group ID. A visitor group represents a bucketed group of visitor IDs that are disjoint  from any other visitor group set. The Group ID is a string, and can be whatever value you wish, but it  must be consistent across files. Please see the documentation for details on this important concept.",
+            "description": "Visitor Group ID. A visitor group represents a bucketed group of visitor IDs that are separate from any other visitor group set. The Group ID is a string of any valid value, but must be consistent across files. See [Vistior groups] (https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion/visitor-groups/) for more information.",
             "required": true,
             "type": "string"
           },
@@ -112,10 +112,10 @@
     "/{globalCompanyId}/bulk_data_insertion/events/validate": {
       "post": {
         "tags": [
-          "events"
+          "Events"
         ],
-        "summary": "Upload a batch file to Analytics for validation",
-        "description": "This file will not be stored on the server or processed into Analytics.  Validate is used only for testing your file format.",
+        "summary": "Upload file for validation",
+        "description": "Upload batch file for Analytics validation. This file is not stored on the server or processed into Analytics. Validation is only for testing file format.",
         "operationId": "fileValidatePut",
         "consumes": [
           "multipart/form-data"
@@ -214,8 +214,8 @@
       "properties": {
         "file_id": {
           "type": "string",
-          "example": "5c04f400-fca5-420c-9c36-b94aaec55e69",
-          "description": "The id of the file as a GUID"
+          "example": "9c99f999-fca9-999c-9c99-b99aaec99e99",
+          "description": "The file ID as a GUID"
         },
         "visitor_group_id": {
           "type": "string",
@@ -231,26 +231,26 @@
         "received_date": {
           "type": "integer",
           "format": "int64",
-          "example": 1506553535,
+          "example": 1506999999,
           "description": "The date the file was uploaded in unix epoch time."
         },
         "processing_start_date": {
           "type": "integer",
           "format": "int64",
-          "example": 1506553492,
-          "description": "The date processing was started, in unix epoch time."
+          "example": 1506999999,
+          "description": "The starting date for processing, in unix epoch time."
         },
         "processing_end_date": {
           "type": "integer",
           "format": "int64",
-          "example": 1506553492,
-          "description": "The date all hits were submitted to analytics, in unix epoch time."
+          "example": 1506999999,
+          "description": "The date all hits were submitted for Analytics, in unix epoch time."
         },
         "file_reader_complete_date": {
           "type": "integer",
           "format": "int64",
-          "example": 1506553492,
-          "description": "The date the file was completely read, but the hits weren't submitted, in unix epoch time."
+          "example": 1506999999,
+          "description": "The date the file was completely read, but the hits not yet submitted, in unix epoch time."
         },
         "rows": {
           "type": "integer",
@@ -262,12 +262,12 @@
           "type": "integer",
           "format": "int64",
           "example": 42,
-          "description": "The number of rows that were not submitted to analytics because they were invalid"
+          "description": "The number of rows not submitted to analytics for being invalid"
         },
         "upload_name": {
           "type": "string",
           "example": "myfile1.gz",
-          "description": "The name the file was uploaded as"
+          "description": "The file name as it was uploaded"
         },
         "status": {
           "type": "string",
@@ -292,12 +292,12 @@
         "error": {
           "type": "string",
           "example": "File not in GZIP format",
-          "description": "An error message populated on unsuccessful requests"
+          "description": "An error message for unsuccessful requests"
         },
         "success": {
           "type": "string",
           "example": "File is valid",
-          "description": "A success message populated on validation requests"
+          "description": "A success message for validation requests"
         }
       }
     }
