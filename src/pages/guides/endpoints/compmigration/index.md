@@ -152,11 +152,11 @@ curl -X 'GET' \
 
 ### Request Parameters
 
-The request parameters are the same as those shown above in **POST projects migrate** endpoint.
+The request parameters are the same as those shown above in **POST migrate projects** endpoint.
 
 ### Response Parameters
 
-The following table describes the **GET migration summary** response parameters:
+The following table describes the **GET migration project summary** response parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
