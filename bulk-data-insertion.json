@@ -9,7 +9,7 @@
   "basePath": "/api",
   "tags": [
     {
-      "name": "events"
+      "name": "Events"
     }
   ],
   "parameters": {
