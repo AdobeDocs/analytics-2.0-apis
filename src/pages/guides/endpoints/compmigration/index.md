@@ -12,8 +12,8 @@ Use the Component Migration APIs to migrate components, including segments, calc
 Component Migration APIs consist of three services for migrating components from Adobe Analytics to Customer Journey Analytics:
 
 * Component Migration APIs
-* [Dimension Mapping APIs](mapdimension.md)
-* [Metric Mapping APIs](mapmetric.md)
+* [Dimensions Mapping APIs](mapdimension.md)
+* [Metrics Mapping APIs](mapmetric.md)
 
 If you plan to migrate Analytics dimensions or metrics, you must first map them with the [Dimension Mapping API](mapdimension.md) or the [Metric Mapping API](mapmetric.md) and then use the Component Migration APIs described in this guide to finalize the migration. This allows the dimensions or metrics to be migrated into an XDM schema within a CJA data view. For other components, you can use the Component Migration APIs described in this guide directly to migrate them. For more inforation, see the [Component Migration overview](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration).
 
@@ -23,14 +23,16 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 The two migration endpoints below provide methods for migrating project components from Adobe Analytics to Customer Journey Analytics. This includes segments, calculated metrics, and date ranges in Analysis Workspace. It also includes dimensions and metrics if you have mapped them before using these two Migration APIs. If you plan to also migrate dimensions and metrics, use the mappings APIs first so that the project ID can be associated with those mappings when you migrate the project. To use the following two migration endpoints, you will need the Adobe Analytics project ID and report suite ID, as well as the Customer Journey Analytics data view ID. 
 
-* [POST projects migrate](#post-projects-migrate): Creates a project migration
-* [GET projects migration summary](#get-migration-summary): Retrieves migration summary for a project
+* [POST migrate project](#post-migrate-project): Creates a migration project
+* [GET migration project summary](#get-migration-project-summary): Retrieves migration summary for a project
+* [GET migration projects bulk status](#get-migration-projects-bulk-statuses): Retrieves status of multiple migration projects
+
 
 <InlineAlert variant="info" slots="text" />
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-## POST migrate projects
+## POST migrate project
 
 Use this endpoint to migrate component projects from Adobe Analytics to Customer Journey Analytics. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call. If you are migrating Analytics dimensions or metrics, first map them to CJA with the mapping APIs.
 
@@ -166,9 +168,9 @@ The following table describes the **GET migration summary** response parameters:
 | `migratedComponents` | integer | Number of successfully migrated components |
 | `failedComponents` | integer | Number of failed component migrations |
 
-## GET multiple migration project summaries
+## GET migration projects bulk status
 
-Use this endpoint to retrieve migration summaries for multiple projects.
+Use this endpoint to retrieve migration statuses for multiple projects.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/summary`
 
@@ -189,17 +191,18 @@ curl -X 'GET' \
 ```
 
 #### Response
+
+The following shows the response body for each project status:
  
 ```json
 {
-  "result": "success",
-  "method": "GET",
-  "message": "Migration summary retrieved successfully",
-  "summary": {
-    "totalComponents": 10,
-    "migratedComponents": 8,
-    "failedComponents": 2
-  }
+  "cjaId": "string",
+  "aaId": "string",
+  "migrationStatus": "STARTED",
+  "migratedTime": "YYYY-08-24T14:15:22Z",
+  "type": "string",
+  "globalCompanyId": "string",
+  "imsOrgId": "string"
 }
 ```
 
@@ -209,19 +212,12 @@ The request parameters are the same as those shown above in **POST projects migr
 
 ### Response Parameters
 
-The following table describes the **GET migration summary** response parameters:
+The following table describes the **GET migration projects bulk status** response parameters not previously described above:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `result` | string | The result of the operation (success/failure/partialSuccess) |
-| `method` | string | The HTTP method used |
-| `message` | string | A message describing the result |
-| `summary` | object | The migration summary details |
-| `totalComponents` | integer | Total number of components |
-| `migratedComponents` | integer | Number of successfully migrated components |
-| `failedComponents` | integer | Number of failed component migrations |
-
-
+| `migrationStatus` | string | Status of project migration. Includes `STARTED`, `COMPLETED`, or `FAILED`. |
+| `migratedTime` | string | The date and time of beginning of current status |
 
 ## Status codes
 
