@@ -15,7 +15,7 @@ Component Migration APIs consist of three services for migrating components from
 * [Dimensions Mapping APIs](mapdimension.md)
 * [Metrics Mapping APIs](mapmetric.md)
 
-If you plan to migrate Analytics dimensions or metrics, you must first map them with the [Dimensions Mapping API](mapdimension.md) or the [Metrics Mapping API](mapmetric.md) and then use the Component Migration APIs described in this guide to finalize the migration. This allows the dimensions or metrics to be migrated into an XDM schema within a CJA data view. For other components, you can use the Component Migration APIs described in this guide directly to migrate them. For more inforation, see the [Component Migration overview](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration).
+If you plan to migrate Analytics dimensions or metrics, you must first map them with the [Dimensions Mappings API](mapdimension.md) or the [Metrics Mapping API](mapmetric.md) and then use the Component Migration APIs described in this guide to finalize the migration. This allows the dimensions or metrics to be migrated into an XDM schema within a CJA data view. For other components, you can use the Component Migration APIs described in this guide directly to migrate them. For more inforation, see the [Component Migration overview](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/component-migration).
 
 Before using the Component Migration APIs, create a profile named **Component Migration** in the Adobe Admin Console (admin permissions required). Add **Component Migration** and **Analysis Workspace** access permissions to the profile. Also, make sure to auto-include all report suites to the profile. For complete information, see the admin instructions for [preparing to migrate your components and projects from Adobe Analytics to Customer Journey Analytics](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/component-migration/prepare-component-migration).
 
@@ -84,7 +84,7 @@ The example request above shows the following details:
 
 <InlineAlert variant="info" slots="text" />
 
-The `aaId` parameter, as shown in the JSON example request above, has different meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the related dimension mapping or metric mapping services, `aaId` is a label with a different meaning and a different function. For more information on the difference, see the description for `aaId` in [dimension mapping](mapdimension.md) or [metric mapping](mapmetric.md) services. 
+The `aaId` parameter, as shown in the JSON example request above, has different meanings, depending upon endpoint or API service. In a request body for these Component Migration APIs, it is the project ID that is required for a successful call. In the related dimension mapping or metric mapping services, `aaId` is a label with a different meaning and a different function. For more information on the difference, see the description for `aaId` in [dimensions mappings](mapdimension.md) or [metrics mappings](mapmetric.md) services. 
 
 * The `globalCompanyId` is `example-analytics-org`. This is the organization that has ownership of the Analtyics project identified in the project ID.
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
