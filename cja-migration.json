@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Adobe Analytics 2.0 Components Migration API.",
+    "title": "Adobe Analytics 2.0 Component Migration API.",
     "description": "Adobe Analytics 2.0 Component Migration. Migrate components from Adobe Analytics to Customer Journey Analytics (AA to CJA).\n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
     "version": "1.0"
   },
@@ -12,30 +12,32 @@
   ],
   "tags": [
     {
-      "name": "Components Migration - Users",
-      "description": "API Methods for migrating components from Adobe Analytics to Customer Journey Analytics"
+      "name": "Component Migration",
+      "description": "API Methods for migrating projects with components from Adobe Analytics to Customer Journey Analytics"
     },
     {
-      "name": "Dimension Mapping - Users",
-      "description": "Operations pertaining to dimension mapping"
+      "name": "Dimensions mappings",
+      "description": "Methods to map dimensions CJA data views within an XDM schema"
     },
     {
-      "name": "Metric Mapping - Users",
-      "description": "Operations pertaining to metric mapping"
+      "name": "Metrics mappings",
+      "description": "Methods to map metrics CJA data views within an XDM schema"
     }
   ],
   "paths": {
     "/projects/{projectId}/summary": {
       "get": {
         "tags": [
-          "Components Migration - Users"
+          "Component project migration"
         ],
+        "summary": "Retrieve project summary",
+        "description": "Retrieve summary for specified project ID",
         "operationId": "summary_1",
         "parameters": [
           {
             "name": "projectId",
             "in": "path",
-            "description": "The project id need to be moved to CJA",
+            "description": "The project ID to be moved to CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -70,8 +72,10 @@
     "/projects/bulk/migrate": {
       "post": {
         "tags": [
-          "Components Migration - Users"
+          "Component Migration"
         ],
+        "summary": "Create project migration",
+        "description": "Create bulk project migration for specified project IDs",
         "operationId": "bulkMigrate_1",
         "responses": {
           "200": {
@@ -101,12 +105,14 @@
     "/projects/bulk/status": {
       "get": {
         "tags": [
-          "Components Migration - Users"
+          "Component Migration"
         ],
-        "operationId": "bulkMigrate_2",
+        "summary": "Retrieve bulk migration projects status",
+        "description": "Retrieve statuses for specified project IDs",
+        "operationId": "RetrieveBulkProjectStatus_1",
         "responses": {
           "200": {
-            "description": "Project migration summary retrieved successfully.",
+            "description": "Bulk project migration statuses retrieved successfully.",
             "content": {
               "application/json": {
                 "schema": {
@@ -132,16 +138,16 @@
     "/mapping/dimensions/csv": {
       "get": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimensions Mappings"
         ],
-        "summary": "get dimensions mappings as CSV file",
-        "description": "get dimension mappings with given rsid and dataId",
+        "summary": "Retrieve dimensions mappings as CSV file",
+        "description": "Retrieve CSV file of dimensions mappings for specified *rsid* and *dataId*",
         "operationId": "getMappingsAsCSV_1",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -150,7 +156,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -159,7 +165,7 @@
           {
             "name": "dimensionIds",
             "in": "query",
-            "description": "Filter list to only include dimension mapping for the specified comma-delimited list of dimension ids",
+            "description": "Filter list to include dimensions mappings for only the specified comma-delimited list of dimension IDs",
             "schema": {
               "type": "string"
             }
@@ -188,16 +194,16 @@
       },
       "put": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimensions Mappings"
         ],
-        "summary": "update dimensions mapping with CSV file",
-        "description": "Update dimension mapping with given rsid and dataId",
+        "summary": "Update dimensions mappings with CSV file",
+        "description": "Update CSC file of dimensions mappings for specified *rsid* and *dataId*",
         "operationId": "updateMappingByCSV_1",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -206,7 +212,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -253,16 +259,16 @@
       },
       "post": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimensions Mappings"
         ],
-        "summary": "create dimensions mapping with CSV file",
-        "description": "Override dimension mapping with given rsid and dataId",
+        "summary": "Create dimensions mappings with CSV file",
+        "description": "Upload CSV file of dimensions mappings to override existing mappings for specified *rsid* and *dataId*",
         "operationId": "createMappingByCSV_1",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -271,7 +277,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -320,16 +326,16 @@
     "/mapping/dimensions/all": {
       "delete": {
         "tags": [
-          "Dimension Mapping - Users"
+          "Dimensions Mappings"
         ],
-        "summary": "delete all dimension mappings",
-        "description": "Delete all dimension mappings for the given report suite and data view ids. If there are no mappings, this will return a success response.",
+        "summary": "Delete all dimensions mappings",
+        "description": "Delete all dimensions mappings for the specified report suite and data view IDs. If there are no mappings, this will return a successful response.",
         "operationId": "deleteAllMappings_1",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -338,7 +344,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -370,16 +376,16 @@
     "/mapping/metrics/csv": {
       "get": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metrics Mappings"
         ],
-        "summary": "get metrics mappings as CSV file",
-        "description": "get metrics mapping with given rsid and dataId",
+        "summary": "Retrieve metrics mappings as CSV file",
+        "description": "Retrieve metrics mappings for specified *rsid* and *dataId*",
         "operationId": "getMappingsAsCSV_3",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -388,7 +394,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -397,7 +403,7 @@
           {
             "name": "metricIds",
             "in": "query",
-            "description": "Filter list to only include metric mapping for the specified comma-delimited list of metric ids",
+            "description": "Filter list to include metrics mappings for only the specified comma-delimited list of metric IDs",
             "schema": {
               "type": "string"
             }
@@ -426,16 +432,16 @@
       },
       "put": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metrics Mappings"
         ],
-        "summary": "update metric mappings with CSV file",
-        "description": "Update metric mappings with given rsid and dataId",
+        "summary": "Update metrics mappings with CSV file",
+        "description": "Update CSV file of metrics mappings for specified *rsid* and *dataId*",
         "operationId": "updateMappingByCSV_3",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -444,7 +450,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -491,16 +497,16 @@
       },
       "post": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metrics Mappings"
         ],
-        "summary": "create metrics mapping with CSV file",
-        "description": "Override metric mapping with given rsid and dataId",
+        "summary": "Create metrics mappings with CSV file",
+        "description": "Upload CSV file of metrics mappings to override existing mappings for specified *rsid* and *dataId*",
         "operationId": "createMappingByCSV_3",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -509,7 +515,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -532,7 +538,7 @@
         },
         "responses": {
           "200": {
-            "description": "Metrics mapping created successfully",
+            "description": "Metrics mappings created successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -558,16 +564,16 @@
     "/mapping/metrics/all": {
       "delete": {
         "tags": [
-          "Metric Mapping - Users"
+          "Metrics Mappings"
         ],
-        "summary": "Delete all metric mappings",
-        "description": "Delete all metric mappings for the given report suite and data view. If there are nomappings, returns a success response.",
+        "summary": "Delete all metrics mappings",
+        "description": "Delete all metrics mappings for the specified report suite and data view IDs. If there are no mappings, this will return a successful response.",
         "operationId": "deleteAllMappings_3",
         "parameters": [
           {
             "name": "rsid",
             "in": "query",
-            "description": "rsid in Analytics",
+            "description": "*rsid* in Analytics",
             "required": true,
             "schema": {
               "type": "string"
@@ -576,7 +582,7 @@
           {
             "name": "dataId",
             "in": "query",
-            "description": "dataId in CJA",
+            "description": "Data ID in CJA",
             "required": true,
             "schema": {
               "type": "string"
@@ -1046,7 +1052,7 @@
       "authorization": {
         "name": "Authorization",
         "in": "header",
-        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \". Note the space after the word \"Bearer\".",
         "required": true,
         "schema": {
           "type": "string"
