@@ -25,7 +25,7 @@ The two migration endpoints below provide methods for migrating project componen
 
 * [POST migrate project](#post-migrate-project): Creates a migration project
 * [GET migration project summary](#get-migration-project-summary): Retrieves migration summary for a project
-* [GET migration projects bulk status](#get-migration-projects-bulk-statuses): Retrieves status of multiple migration projects
+* [GET bulk migration projects status](#get-bulk-migration-projects-status): Retrieves status of multiple migration projects
 
 
 <InlineAlert variant="info" slots="text" />
@@ -168,7 +168,7 @@ The following table describes the **GET migration summary** response parameters:
 | `migratedComponents` | integer | Number of successfully migrated components |
 | `failedComponents` | integer | Number of failed component migrations |
 
-## GET migration projects bulk status
+## GET bulk migration projects status
 
 Use this endpoint to retrieve migration statuses for multiple projects.
 
