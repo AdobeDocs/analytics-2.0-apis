@@ -3,7 +3,7 @@ title: Metrics Mappings API
 description: Use Analytics Metric Mapping APIs to migrate metrics from Adobe Analytics to CJA.
 ---
 
-# Metric Mapping API
+# Metrics Mappings API
 
 To map metrics from Adobe Analytics to a Customer Journey Analytics data view within an XDM schema, follow these steps:
 
