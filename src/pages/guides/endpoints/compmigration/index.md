@@ -30,9 +30,9 @@ The two migration endpoints below provide methods for migrating project componen
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-## POST projects migrate
+## POST migrate projects
 
-Use this endpoint to migrate components from Adobe Analytics to Customer Journey Analytics for a specific project. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call. If you are migrating Analytics dimensions or metrics, first map them to CJA with the mapping APIs.
+Use this endpoint to migrate component projects from Adobe Analytics to Customer Journey Analytics. You will need the [Analytics Project ID](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/build-workspace-project/freeform-overview) to make this call. If you are migrating Analytics dimensions or metrics, first map them to CJA with the mapping APIs.
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/migrate`
 
@@ -88,7 +88,6 @@ The `aaId` parameter, as shown in the JSON example request above, has different 
 * The `imsOrgId`, `imsUserId`, and `imsUserName` all apply to the `exampleowner` of the CJA data view where the components are to be transferred.
 * The `rsidDataIdMap` object contains object members that map the Analytics report suite to the CJA dataview. This includes the Analytics report suite `examplersid1` mapped to the CJA data view `dataview-id1`. You can add as many pairs as necessary to the object to map the report suites to the data views, as indicated by the next line mapping `examplersid2` to `dataview-id2`. The `rsidDataIdMap` object is optional but including it can improve migration precision. 
 
-
 ### Request Parameters
 
 The following table describes the migrate components request parameters:
@@ -112,9 +111,9 @@ The following table describes the response parameters:
 | `method` | string | The HTTP method used |
 | `message` | string | A message describing the result |
 
-## GET projects migration summary
+## GET migration project summary
 
-Use this endpoint to retrieve the migration summary for a specific project.
+Use this endpoint to retrieve the migration summary for a single project.
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/summary`
 
@@ -166,6 +165,62 @@ The following table describes the **GET migration summary** response parameters:
 | `totalComponents` | integer | Total number of components |
 | `migratedComponents` | integer | Number of successfully migrated components |
 | `failedComponents` | integer | Number of failed component migrations |
+
+## GET multiple migration project summaries
+
+Use this endpoint to retrieve migration summaries for multiple projects.
+
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/{projectId}/summary`
+
+### Request and Response Examples
+
+Click the **Request** tab in the following example to see a cURL request for this endpoint. Click the **Response** tab to see a successful JSON response for the request.
+
+<CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
+
+#### Request
+
+```sh
+curl -X 'GET' \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/projects/bulk/status" \
+  -H "accept: application/json" \
+  -H "x-api-key: {CLIENT_ID}" \
+  -H "Authorization: Bearer {ACCESS_TOKEN}"
+```
+
+#### Response
+ 
+```json
+{
+  "result": "success",
+  "method": "GET",
+  "message": "Migration summary retrieved successfully",
+  "summary": {
+    "totalComponents": 10,
+    "migratedComponents": 8,
+    "failedComponents": 2
+  }
+}
+```
+
+### Request Parameters
+
+The request parameters are the same as those shown above in **POST projects migrate** endpoint.
+
+### Response Parameters
+
+The following table describes the **GET migration summary** response parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `result` | string | The result of the operation (success/failure/partialSuccess) |
+| `method` | string | The HTTP method used |
+| `message` | string | A message describing the result |
+| `summary` | object | The migration summary details |
+| `totalComponents` | integer | Total number of components |
+| `migratedComponents` | integer | Number of successfully migrated components |
+| `failedComponents` | integer | Number of failed component migrations |
+
 
 
 ## Status codes
