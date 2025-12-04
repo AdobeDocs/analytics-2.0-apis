@@ -219,11 +219,11 @@ module.exports = {
             path:'guides/endpoints/compmigration',
             pages: [
               {
-                title: 'Dimension mapping',
+                title: 'Dimensions mappings',
                 path: 'guides/endpoints/compmigration/mapdimension.md'
               },
               {
-                title: 'Metric mapping',
+                title: 'Metrics mappings',
                 path: 'guides/endpoints/compmigration/mapmetric.md'
               }
             ]
