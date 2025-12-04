@@ -296,7 +296,7 @@ curl -X 'GET' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  ```
+```
 
 #### Response
 
@@ -432,7 +432,7 @@ curl -X 'GET' \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}"
-  ```
+```
 
 #### Response
 
@@ -676,7 +676,7 @@ The example above requests the following updates for the scheduled request:
 
 The example response confirms that each of the three values specified in the request have been updated. Additionally, it also shows the date it was updated after its creation. Note the following lines:
 
-```
+```text
 "createdDate": "YYYY-01-25T18:23:33Z",
 "updatedDate": "YYYY-04-03T20:34:07Z",
 ```
@@ -894,7 +894,7 @@ curl -X 'PUT' \
 
 #### Response
 
-```
+```json
 {
   "delivery": {
     "exportLocationUUID": "000fxf00-12d1-1234-a6aa-00000000000a",
