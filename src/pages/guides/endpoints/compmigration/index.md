@@ -5,7 +5,7 @@ description: Use Analytics Component Migration APIs to migrate components from A
 
 # Component Migration API
 
-Use the Component Migration APIs to migrate components, including segments, calculated metrics, and date ranges in Analytics to data views in Customer Journey Anaytics. You can also migrate dimensions and metrics to CJA data views if you have already mapped them with the Dimension Mapping APIs or the Metric Mapping APIs.
+Use the Component Migration APIs to migrate components, including segments, calculated metrics, and date ranges in Analytics to data views in Customer Journey Anaytics. You can also migrate dimensions and metrics to CJA data views if you have already mapped them with the Dimensions mappings APIs or Metrics mappings APIs.
 
 ## Component Migration services
 
