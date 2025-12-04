@@ -12,23 +12,23 @@
   ],
   "tags": [
     {
-      "name": "Component Migration",
+      "name": "Component migration",
       "description": "API Methods for migrating projects with components from Adobe Analytics to Customer Journey Analytics"
     },
     {
       "name": "Dimensions mappings",
-      "description": "Methods to map dimensions CJA data views within an XDM schema"
+      "description": "Methods to map Analytics dimensions to CJA data views within an XDM schema"
     },
     {
       "name": "Metrics mappings",
-      "description": "Methods to map metrics CJA data views within an XDM schema"
+      "description": "Methods to map Analytics metrics to CJA data views within an XDM schema"
     }
   ],
   "paths": {
     "/projects/{projectId}/summary": {
       "get": {
         "tags": [
-          "Component project migration"
+          "Component migration"
         ],
         "summary": "Retrieve project summary",
         "description": "Retrieve summary for specified project ID",
@@ -72,7 +72,7 @@
     "/projects/bulk/migrate": {
       "post": {
         "tags": [
-          "Component Migration"
+          "Component migration"
         ],
         "summary": "Create project migration",
         "description": "Create bulk project migration for specified project IDs",
@@ -105,7 +105,7 @@
     "/projects/bulk/status": {
       "get": {
         "tags": [
-          "Component Migration"
+          "Component migration"
         ],
         "summary": "Retrieve bulk migration projects status",
         "description": "Retrieve statuses for specified project IDs",
