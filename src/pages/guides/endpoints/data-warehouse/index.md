@@ -208,7 +208,7 @@ The following table describes request parameters for creating a scheduled reques
 | `sharing` | optional | container | Whether the scheduled request will be shared with others. Contains the `shareWithOtherUsers` parameter. |
 | `shareWithOtherUsers` | optional | boolean | Whether the scheduled request will be shared with others. |
 | `outputFile` | optional | container | The options for the output file of the scheduled request. Contains the `compressionFormat`, `outputFileBasename`, `fileFormat`, `sendEmptyFileForNoDataReport`, `beginningOfReportComments`, `sendDigitalSignatureFile`, and `sendManifestFile` parameters. |
-| `compressionFormat` | optional | string | The compression format used on the output file |
+| `compressionFormat` | optional | string | The compression format used on the output file. Valid values are: `default`, `zip`, and `gzip`. |
 | `outputFileBasename` | optional | string | The base name of the output file |
 | `fileFormat` | optional | string | The file format used for the output file |
 | `sendEmptyFileForNoDataReport` | optional | boolean | Whether an empty file should be sent if there is no data in the report |
