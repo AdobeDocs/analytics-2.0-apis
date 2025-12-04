@@ -21,7 +21,7 @@ To import an API classification by uploading a file, use the following enpoints:
 
 Each endpoint is used in the following process:
 
-1. Create an import job with the [POST import job by dataset ID](#post-create-job) endpoint.
+1. Create an import job entity with the [POST import job by dataset ID](#post-create-job) endpoint.
 2. Upload a file using the [POST import upload file](#post-import-upload-file) endpoint.
 3. Commit your upload using the [POST import commit job](#post-import-commit-job) endpoint.
 
@@ -29,7 +29,7 @@ The endpoints described in this guide are routed through analytics.adobe.io. To 
 
 ## POST import job by dataset ID
 
-Use this endpoint to create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
+Use this endpoint to create an import job entity for a classification dataset. Creating an import job entity returns a job ID that can be associated with an uploaded dataset file. The dataset file is uploaded after this API call. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
 
 `POST https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/job/import/createApiJob/{DATASET_ID}`
 
