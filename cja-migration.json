@@ -138,7 +138,7 @@
     "/mapping/dimensions/csv": {
       "get": {
         "tags": [
-          "Dimensions Mappings"
+          "Dimensions mappings"
         ],
         "summary": "Retrieve dimensions mappings as CSV file",
         "description": "Retrieve CSV file of dimensions mappings for specified *rsid* and *dataId*",
@@ -194,7 +194,7 @@
       },
       "put": {
         "tags": [
-          "Dimensions Mappings"
+          "Dimensions mappings"
         ],
         "summary": "Update dimensions mappings with CSV file",
         "description": "Update CSC file of dimensions mappings for specified *rsid* and *dataId*",
@@ -259,7 +259,7 @@
       },
       "post": {
         "tags": [
-          "Dimensions Mappings"
+          "Dimensions mappings"
         ],
         "summary": "Create dimensions mappings with CSV file",
         "description": "Upload CSV file of dimensions mappings to override existing mappings for specified *rsid* and *dataId*",
@@ -326,7 +326,7 @@
     "/mapping/dimensions/all": {
       "delete": {
         "tags": [
-          "Dimensions Mappings"
+          "Dimensions mappings"
         ],
         "summary": "Delete all dimensions mappings",
         "description": "Delete all dimensions mappings for the specified report suite and data view IDs. If there are no mappings, this will return a successful response.",
@@ -376,7 +376,7 @@
     "/mapping/metrics/csv": {
       "get": {
         "tags": [
-          "Metrics Mappings"
+          "Metrics mappings"
         ],
         "summary": "Retrieve metrics mappings as CSV file",
         "description": "Retrieve metrics mappings for specified *rsid* and *dataId*",
@@ -432,7 +432,7 @@
       },
       "put": {
         "tags": [
-          "Metrics Mappings"
+          "Metrics mappings"
         ],
         "summary": "Update metrics mappings with CSV file",
         "description": "Update CSV file of metrics mappings for specified *rsid* and *dataId*",
@@ -497,7 +497,7 @@
       },
       "post": {
         "tags": [
-          "Metrics Mappings"
+          "Metrics mappings"
         ],
         "summary": "Create metrics mappings with CSV file",
         "description": "Upload CSV file of metrics mappings to override existing mappings for specified *rsid* and *dataId*",
@@ -564,7 +564,7 @@
     "/mapping/metrics/all": {
       "delete": {
         "tags": [
-          "Metrics Mappings"
+          "Metrics mappings"
         ],
         "summary": "Delete all metrics mappings",
         "description": "Delete all metrics mappings for the specified report suite and data view IDs. If there are no mappings, this will return a successful response.",
