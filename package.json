@@ -14,7 +14,7 @@
   "dependencies": {
     "@adobe/gatsby-theme-aio": "^4.15.5",
     "gatsby": "^4.22.0",
-    "react": "^17.0.2",
+    "react": "^19.2.1",
     "react-dom": "^19.2.0"
   },
   "resolutions": {
