@@ -1,9 +1,9 @@
 ---
-title: Dimension Mapping API
+title: Dimensions Mappings API
 description: Use Analytics Dimension Mapping APIs to migrate dimensions from Adobe Analytics to CJA.
 ---
 
-# Dimension Mapping API
+# Dimensions Mappings API
 
 To map dimensions from Adobe Analytics to a Customer Journey Analytics data view within an XDM schema, follow these steps:
 
@@ -28,16 +28,16 @@ The `aaId` label, as shown in the example mapping `csv` file above, has differen
 
 Use these endpoints to map dimensions to CJA within an XDM schema:
 
-* [POST mapping dimensions csv](#post-map-dimensions-csv): Create dimensions mappings with a `csv` file
-* [GET mapping dimensions csv](#get-mapping-dimensions-csv): Retrieve dimensions mappings with a `csv` file
-* [PUT mapping dimensions csv](#put-mapping-dimensions-csv): Update dimensions mappings with a `csv` file
-* [DELETE mapping dimension all](#delete-mapping-dimension-all): Delete a dimension mappings
+* [POST dimensions mappings csv](#post-dimensions-mapping-csv): Create dimensions mappings with a `csv` file
+* [GET dimensions mappings csv](#get-dimensions-mapping-csv): Retrieve dimensions mappings with a `csv` file
+* [PUT dimensions mappings csv](#put-dimensions-mapping-csv): Update dimensions mappings with a `csv` file
+* [DELETE dimension mappings all](#delete-dimensions-mappings-all): Delete dimensions mappings
 
-## POST mapping dimensions csv
+## POST dimensions mappings csv
 
 Use this endpoint to upload a `csv` file that maps Analytics dimensions to CJA dimensions for a specified data view.
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/map/csv`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/csv`
 
 ### Request and Response Examples
 
@@ -49,7 +49,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/map/csv?rsid=examplersid&dataId=exampledv" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/csv?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -79,7 +79,7 @@ This endpoint includes request parameters described in previous sections.
 
 This endpoint includes response parameters described in previous sections.
 
-## GET mapping dimensions csv
+## GET dimensions mappings csv
 
 Use this endpoint to retrieve a `csv` file of dimensions mappings associated with a data view. You can also use this  endpoint to retrieve a `csv` file with dimensions filtered by dimension IDs. 
 
@@ -127,7 +127,7 @@ This endpoint includes request parameters described in previous sections.
 
 This endpoint includes response parameters described in previous sections.
 
-## PUT mapping dimensions csv
+## PUT dimensions mappings csv
 
 Use this endpoint to update a `csv` file that maps Analytics dimensions to CJA dimensions for a specified data view.
 
@@ -191,9 +191,9 @@ The following table describes the PUT mapping dimensions response parameters not
 | `xdmMapped` | boolean | Whether the dimension was mapped in an XDM schema |
 | `xdmNotes` | string | The text of the note for the dimension in the uploaded csv file |
 
-## DELETE mapping dimensions all
+## DELETE dimensions mappings all
 
-Use this endpoint to delete all dimension mappings for specified report suites and data view IDs. If no mappings exist, this endpoint returns a successful response.
+Use this endpoint to delete all dimensions mappings for specified report suites and data view IDs. If no mappings exist, this endpoint returns a successful response.
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/dimensions/all`
 

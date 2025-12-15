@@ -11,7 +11,7 @@
   ],
   "tags": [],
   "paths": {
-    "/{globalCompanyId}/report_suites/collections/suites/{rsid}": {
+    "/{globalCompanyId}/reportsuites/collections/suites/{rsid}": {
       "get": {
         "tags": [
           "Collections Suites"
@@ -97,7 +97,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/collections/suites": {
+    "/{globalCompanyId}/reportsuites/collections/suites": {
       "get": {
         "tags": [
           "Collections Suites"
@@ -199,7 +199,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/virtualreportsuites": {
+    "/{globalCompanyId}/reportsuites/virtualreportsuites": {
       "get": {
         "tags": [
           "Virtual Report Suites"
@@ -410,7 +410,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/virtualreportsuites/{id}": {
+    "/{globalCompanyId}/reportsuites/virtualreportsuites/{id}": {
       "get": {
         "tags": [
           "Virtual Report Suites"
@@ -659,7 +659,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/virtualreportsuites/validate": {
+    "/{globalCompanyId}/reportsuites/virtualreportsuites/validate": {
       "post": {
         "tags": [
           "Virtual Report Suites"
@@ -716,7 +716,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/virtualreportsuites/search": {
+    "/{globalCompanyId}/reportsuites/virtualreportsuites/search": {
       "post": {
         "tags": [
           "Virtual Report Suites"
@@ -837,7 +837,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/reportsuites/timezones": {
+    "/{globalCompanyId}/reportsuites/reportsuites/timezones": {
       "get": {
         "tags": [
           "Report Suites"
@@ -875,7 +875,7 @@
         }
       }
     },
-    "/{globalCompanyId}/report_suites/reportsuites/{rsid}": {
+    "/{globalCompanyId}/reportsuites/reportsuites/{rsid}": {
       "post": {
         "tags": [
           "Report Suites"
@@ -940,6 +940,10 @@
                   },
                   "baseUrl": {
                     "type": "string"
+                  },
+                  "currencyCode": {
+                    "type": "string",
+                    "example": "USD"
                   }
                 }
               }

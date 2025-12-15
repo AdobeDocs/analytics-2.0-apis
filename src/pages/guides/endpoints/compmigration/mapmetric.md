@@ -1,9 +1,9 @@
 ---
-title: Metric Mapping API
+title: Metrics Mappings API
 description: Use Analytics Metric Mapping APIs to migrate metrics from Adobe Analytics to CJA.
 ---
 
-# Metric Mapping API
+# Metrics Mappings API
 
 To map metrics from Adobe Analytics to a Customer Journey Analytics data view within an XDM schema, follow these steps:
 
@@ -30,16 +30,16 @@ The `aaId` label, as shown in the example mapping `csv` file above, has differen
 
 Use these endpoints to map metrics to CJA within an XDM schema:
 
-* [POST mapping metrics csv](#post-mapping-metrics-csv): Create metrics mappings with a `csv` file
-* [GET mapping metrics csv](#get-mapping-metrics-csv): Retrieve metrics mappings with a `csv` file
-* [PUT mapping metrics csv](#put-mapping-metric-csv): Update metrics mappings with a `csv` file
-* [DELETE mapping metric all](#delete-metric-mapping-all): Delete all metrics mapping
+* [POST metrics mappings csv](#post-metrics-mappings-csv): Create metrics mappings with a `csv` file
+* [GET metrics mappings csv](#get-metrics-mappings-csv): Retrieve metrics mappings with a `csv` file
+* [PUT metric mappings csv](#put-metrics-mappings-csv): Update metrics mappings with a `csv` file
+* [DELETE metrics mappings all](#delete-metrics-mappings-all): Delete all metrics mapping
 
-## POST mapping metrics csv
+## POST metrics mappings csv
 
 Use this endpoint to upload a `csv` file that maps Analytics metrics to CJA metrics for a specified data view.
 
-`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv`
 
 ### Request and Response Examples
 
@@ -51,7 +51,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'POST' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/map/csv?rsid=examplersid&dataId=exampledv" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/csv?rsid=examplersid&dataId=exampledv" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
@@ -81,7 +81,7 @@ This endpoint includes request parameters described in previous sections.
 
 This endpoint includes response parameters described in previous sections.
 
-## GET mapping metrics csv
+## GET metrics mappings csv
 
 Use this endpoint to retrieve a `csv` file of metrics mappings associated with a data view. You can also use this  endpoint to retrieve a `csv` file with metrics filtered by metric IDs. 
 
@@ -129,7 +129,7 @@ This endpoint includes request parameters described in previous sections.
 
 This endpoint includes response parameters described in previous sections.
 
-## PUT mapping dimensions csv
+## PUT metrics mappings csv
 
 Use this endpoint to update a `csv` file that maps Analytics metrics to CJA metrics for a specified data view.
 
@@ -184,7 +184,7 @@ This endpoint includes request parameters described in previous sections.
 
 ### Response Parameters
 
-The following table describes the PUT mapping metrics response parameters not previously defined in other sections:
+The following table describes the PUT metrics mappings response parameters not previously defined in other sections:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -193,9 +193,9 @@ The following table describes the PUT mapping metrics response parameters not pr
 | `xdmMapped` | boolean | Whether the metric was mapped in an XDM schema |
 | `xdmNotes` | string | The text of the note for the metric in the uploaded `csv` file |
 
-## DELETE mapping dimensions all
+## DELETE metrics mappings all
 
-Use this endpoint to delete all metric mappings for specified report suites and data view IDs. If no mappings exist, this endpoint returns a successful response.
+Use this endpoint to delete all metrics mappings for specified report suites and data view IDs. If no mappings exist, this endpoint returns a successful response.
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/cjamigration/mapping/metrics/all`
 
