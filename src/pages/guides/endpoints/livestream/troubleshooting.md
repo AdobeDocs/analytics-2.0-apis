@@ -53,7 +53,7 @@ Livestream failure. Contact Customer Care for assistance.
 
 ### 503 Service unavailable
 
-An error occurred while the stream was in migration.  Try the request again. The error can also be resolved by sending the query parameter `reset=lastest` or `reset=earliest`.  If the problem persists, contact Customer Care.
+An error occurred while the stream was in migration.  Try the request again. The error can also be resolved by sending the query parameter `reset=latest` or `reset=earliest`.  If the problem persists, contact Customer Care.
 
 ### 505 Invalid protocol
 
