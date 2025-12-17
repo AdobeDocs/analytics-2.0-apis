@@ -16,15 +16,15 @@ Field name | Change
 **`events`** | - Now supports counting multiple instances of the same event. For example, if the `events` variable contains `event1,event1`, two instances are now counted instead of just counting the first instance.<br/>- Setting an event to a value of `0` omits that event entirely instead of passing `eventX=0`.<br/>- Numeric and currency events that do not have an associated value are now omitted.<br/>- Any event that is assigned a non-numeric value is now omitted.<br/>- Event serialization is now truncated to 20 characters, matching what is stored in a report suite.
 **`ip`** | Now uses the correct obfuscation characters when IP obfuscation is enabled.
 **`language`** | Fixed an issue where some values were double-encoded.
-**`mobileAudioSupport`**<br/>**`mobileVideoSupport`** | Fixed an issue that included only one supported format for devices that support multiple formats.
-**`mvvar1` - `mvvar3`** | - The delimiter field now always specifies a comma (`44`) instead of the delimiter set in report suite settings.<br/>- Now truncates individual values to 255 bytes each, matching what is stored in a report suite.<br/>- Now truncates the total length of the field (including delimiters) to 65,535 bytes.<br/>- Now omits duplicate entries in the same hit.
+**`mobileAudioSupport`**<br/>**`mobileVideoSupport`** | Fixed an issue that included only one supported format for devices that support multiple formats. Multiple values are separated by commas.
+**`mvvar1` - `mvvar3`** | - The delimiter field now always specifies a comma (`44`) instead of the delimiter set in report suite settings. The field is now considered deprecated.<br/>- Now truncates individual values to 255 bytes each, matching what is stored in a report suite.<br/>- Now truncates the total length of the field (including delimiters) to 65,535 bytes.<br/>- Now omits duplicate entries in the same hit.<br/>-
 **`products`** | - Incorrectly parsed product values are now truncated instead of erroneously creating multiple product values.<br/>- Now omits duplicate product entries in the same hit.<br/>- Product values missing a name are no longer included.<br/>- Omits events for product values if the `events` field does not also include that event.<br/>- If the same merchandising eVar appears in the same product value, the last eVar value is now used instead of the first.<br/>- Standard and conversion variable syntax merchandising eVars are now omitted from product values, as only product syntax merchandising eVars are allowed in this field.
 **`purchaseId`** | If a purchase event does not include a purchase ID, the auto-generated purchase ID is now included.
 **`prop1` - `prop75`** | No longer included in excluded hits.
 **`referrer`** | Now omits bot traffic and excluded hits.
 **`revenue`** | Now rounds to two decimal places.
 **`rmvvar`** | Internal variables that typically map to other fields. These internal variables are now omitted.
-**`searchEngine`** | Now omits bot traffic.
-**`tnt`** | Marked the delimiter and value fields as deprecated.
+**`searchEngine`** | Now omits bot traffic and excluded hits.
 **`tntAction`** | - Now excludes traffic from bots.<br/>- Now omits duplicate entries in the same hit.<br/>- Action IDs with a value of `-1` are now returned as a value of `65535`.<br/>- If an action contains multiple action IDs, only the first is used.
+**`userAgent`** | Now follows a similar workflow to data feeds where mobile device attributes and user agent are mutually exclusive. By default, `userAgent` is empty. If you prefer, you can contact customer care to populate this field. However, in doing so, all mobile device attribute fields no longer contain data.
 **`zip`** | Now honors 'Zip Option' in report suite settings (using geo zip).
