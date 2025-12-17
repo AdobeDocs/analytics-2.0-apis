@@ -27,5 +27,5 @@ Field name | Change
 **`searchEngine`** | Now omits bot traffic and excluded hits.
 **`tntAction`** | - Now excludes traffic from bots.<br/>- Now omits duplicate entries in the same hit.<br/>- Action IDs with a value of `-1` are now returned as a value of `65535`.<br/>- If an action contains multiple action IDs, only the first is used.
 **`userAgent`** | Now follows a similar workflow to data feeds where mobile device attributes and user agent are mutually exclusive. By default, `userAgent` is empty. If you prefer, you can contact customer care to populate this field. However, in doing so, all mobile device attribute fields no longer contain data.
-**`tnt`** | Fixed an issue that caused this field's delimiter and values attributes to appear at the schema root level.
+**`tnt`** | Fixed an issue that caused this field's `delim` and `values` attributes to appear at the schema root level.
 **`zip`** | Now honors 'Zip Option' in report suite settings (using geo zip).
