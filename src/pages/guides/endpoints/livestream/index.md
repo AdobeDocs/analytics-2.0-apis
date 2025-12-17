@@ -30,6 +30,7 @@ Review the list of [dimensions and metrics](variable-reference.md) to identify a
 * A report suite ID for each stream requested and for which data is being generated
 * Estimated daily and monthly traffic volume averages
 * The [Adobe Developer Console](https://developer.adobe.com/console/home) technical account email address
+* Your preference between using [`userAgent`](variable-reference.md) or mobile device attributes
 
 ## Create an application to consume the API service
 
