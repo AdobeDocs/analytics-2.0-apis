@@ -6,7 +6,7 @@ descriptions: Updates to Adobe Analytics LiveStream data and endpoints.
 
 Cumulative release notes for LiveStream data and endpoints.
 
-## January 2026
+## April 2026
 
 Contains numerous updates to data formatting for several fields. These updates provide better parity between data provided using LiveStream and data in other Adobe Analytics features, such as Analysis Workspace.
 
@@ -29,3 +29,19 @@ Field name | Change
 **`userAgent`** | Now follows a similar workflow to data feeds where mobile device attributes and user agent are mutually exclusive. By default, `userAgent` is empty. If you prefer, you can contact customer care to populate this field. However, in doing so, all mobile device attribute fields no longer contain data.
 **`tnt`** | Fixed an issue that sometimes caused this field's `delim` and `values` attributes to appear at the schema root level.
 **`zip`** | Now honors 'Zip Option' in report suite settings (using geo zip).
+
+A preview endpoint is available to test updated response payloads with your integration. To enable your stream for updated response payloads, follow both of these steps:
+
+1. Send a `GET` call to the following endpoint using the same headers as your current LiveStream implementation:
+
+   `https://livestream.adobe.net/api/2/enable/<stream_name>`
+
+   The server responds indicating that updated response payloads are available in 15 minutes.
+
+2. Modify your service to use either of the following URI's:
+   
+   * `https://livestream.adobe.net/api/1/stream/<stream_name>?beta=true`
+     or
+   * `https://livestream.adobe.net/api/2/stream/<stream_name>`
+
+In April 2026 when the updated response payload changes go live, all endpoints effectively function identically.
