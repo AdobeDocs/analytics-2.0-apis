@@ -6,7 +6,7 @@ descriptions: Updates to Adobe Analytics LiveStream data and endpoints.
 
 Cumulative release notes for LiveStream data and endpoints.
 
-## April 2026
+## 13 April 2026
 
 Contains numerous updates to data formatting for several fields. These updates provide better parity between data provided using LiveStream and data in other Adobe Analytics features, such as Analysis Workspace.
 
@@ -44,4 +44,4 @@ A preview endpoint is available to test updated response payloads with your inte
      or
    * `https://livestream.adobe.net/api/2/stream/<stream_name>`
 
-In April 2026 when the updated response payload changes go live, all endpoints effectively function identically.
+On 13 April 2026 when the updated response payload changes go live, all endpoints effectively function identically.
