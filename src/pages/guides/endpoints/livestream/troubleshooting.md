@@ -45,7 +45,7 @@ Check the `error_description` field in the response for details. Verify that bet
 
 ### 424 Failed Dependency
 
-The stream is not enabled for the latest version of the API, enable the stream by enabling the stream `TODO PUT LINK HERE` or by contacting Customer Care.
+The stream is not enabled for the latest version of the API. Send a `GET` request to `https://livestream.adobe.net/api/2/enable/<stream_name>` or contact Customer Care.
 
 ### 500 Internal server error
 
