@@ -41,7 +41,9 @@ A preview endpoint is available to test updated response payloads with your inte
 2. Modify your service to use either of the following URI's:
    
    * `https://livestream.adobe.net/api/1/stream/<stream_name>?beta=true`
+
      or
+     
    * `https://livestream.adobe.net/api/2/stream/<stream_name>`
 
 On April 13, 2026 when the updated response payload changes go live, all endpoints effectively function identically.
