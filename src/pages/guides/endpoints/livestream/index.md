@@ -30,6 +30,7 @@ Review the list of [dimensions and metrics](variable-reference.md) to identify a
 * A report suite ID for each stream requested and for which data is being generated
 * Estimated daily and monthly traffic volume averages
 * The [Adobe Developer Console](https://developer.adobe.com/console/home) technical account email address
+* Your preference between using [`userAgent`](variable-reference.md) or mobile device attributes
 
 ## Create an application to consume the API service
 
@@ -38,6 +39,7 @@ Depending on the use case for your stream, create an application for the service
 ### Decouple consumption from processing
 
 To avoid data bottlenecks, Adobe recommends using a client that decouples consumption from processing. You can implement this with the following methods:
+
 * Use example Java code that includes those features, as referenced in sections below.
 * Use buffers.
 * Cache the data.
@@ -45,10 +47,10 @@ To avoid data bottlenecks, Adobe recommends using a client that decouples consum
 
 ```java
 String line = reader.readLine();
-        while (line != null) {
-            dataQueue.put(line);
-            line = reader.readLine();
-        }
+while (line != null) {
+    dataQueue.put(line);
+    line = reader.readLine();
+}
 ```
 
 #### Example Java-based client
@@ -60,18 +62,19 @@ For example code of a client that decouples consumption and processing, you can 
 Many client libraries remove the Authorization header on a redirect. The example below shows how to handle redirects manually to avoid this issue, including the following lines
 
 ```java
- private HttpURLConnection getConnection(final String streamUrl, final String accessToken) throws IOException {
-        URL url = new URL(streamUrl);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setReadTimeout((int) Duration.ofSeconds(60).toMillis());
-        connection.setConnectTimeout((int) Duration.ofSeconds(10).toMillis());
+private HttpURLConnection getConnection(final String streamUrl, final String accessToken) throws IOException {
+    URL url = new URL(streamUrl);
+    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    connection.setReadTimeout((int) Duration.ofSeconds(60).toMillis());
+    connection.setConnectTimeout((int) Duration.ofSeconds(10).toMillis());
 
-        connection.setRequestProperty("Accept-Encoding", "gzip");
-        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
+    connection.setRequestProperty("Accept-Encoding", "gzip");
+    connection.setRequestProperty("Authorization", "Bearer " + accessToken);
 
-        connection.setInstanceFollowRedirects(false);
+    connection.setInstanceFollowRedirects(false);
 
-        return connection;
+    return connection;
+}
 ```
 
 ## Connect to the stream
@@ -79,7 +82,7 @@ Many client libraries remove the Authorization header on a redirect. The example
 To connect to the steam, make a request that looks similar to the following:
 
 
-```curl
+```sh
 curl -X GET "https://livestream.adobe.net/api/1/stream/adobe-livestream-{endpoint-name}" \
     -H "x-api-key: {CLIENTID}" \
     -H "Authorization: Bearer {ACCESSTOKEN}" \

@@ -43,13 +43,17 @@ Make sure that your API call includes the header `"Accept-Encoding: deflate, gzi
 
 Check the `error_description` field in the response for details. Verify that between `1` and `8` connections were provided in the `maxConnections` parameter, that each client includes this parameter with the same value, and that the number of clients connecting doesn't exceed the number provided in the `maxConnections` parameter.
 
+### 424 Failed Dependency
+
+The stream is not enabled for the latest version of the API. Send a `GET` request to `https://livestream.adobe.net/api/2/enable/<stream_name>` or contact Customer Care.
+
 ### 500 Internal server error
 
 Livestream failure. Contact Customer Care for assistance.
 
 ### 503 Service unavailable
 
-No hits have been received by Livestream for processing from the report suite. Ensure that the report suite associated with the stream is correct and that it is receiving traffic.
+An error occurred while the stream was in migration.  Try the request again. The error can also be resolved by sending the query parameter `reset=latest` or `reset=earliest`.  If the problem persists, contact Customer Care.
 
 ### 505 Invalid protocol
 
