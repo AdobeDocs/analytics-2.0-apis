@@ -39,6 +39,7 @@ Depending on the use case for your stream, create an application for the service
 ### Decouple consumption from processing
 
 To avoid data bottlenecks, Adobe recommends using a client that decouples consumption from processing. You can implement this with the following methods:
+
 * Use example Java code that includes those features, as referenced in sections below.
 * Use buffers.
 * Cache the data.
