@@ -325,6 +325,10 @@ module.exports = {
               {
                 title: 'Client implementation',
                 path: 'guides/endpoints/livestream/clientcode.md'
+              },
+              {
+                title: 'Release notes',
+                path: 'guides/endpoints/livestream/release-notes.md'
               }
             ]
           },
