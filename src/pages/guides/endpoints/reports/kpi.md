@@ -28,16 +28,13 @@ This guide shows an example for reporting key metrics over the past 30 days. You
 
 ### Example visualization
 
-If constructed in Analysis Workspace, this basic KPI report might include the following free-form table:
+In Analysis Workspace, this example KPI report might include the following free-form table:
 
 ![kpitable](../../../images/kpitable.png)
 
 And the following line graph and number summary visualizations of the same data:
 
-
 ![kpiline](../../../images/kpiline.png)
-
-For an API Report example that uses the page dimension and page metrics instead of date-trended data, see the [Reporting API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/).
 
 ### Report APIs provide data, not visualizations
 
@@ -390,3 +387,7 @@ A 206 status code indicates a partial response. This status code means that ther
 * **Global Dimension Not Enabled**: The global dimension for this request is not enabled in this report suite
 * **Unexpected Number of Items**: Anomaly Detection algorithm returned an unexpected number of anomalies
 * **General Service Error**: General Anomaly Detection service error
+
+## More help on this topic
+
+For an API Report example that uses the page dimension and page metrics instead of date-trended data, see the [Reporting API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/).
