@@ -13,7 +13,7 @@ This guide provides instructions for a basic KPI report of *Visits*, *Orders*, a
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning.
 
-The report endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The report endpoint described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
 ## Report features
 
