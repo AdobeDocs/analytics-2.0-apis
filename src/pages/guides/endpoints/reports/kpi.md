@@ -5,7 +5,9 @@ description: Use the Reporting API to retrieve a basic date-trended KPI report.
 
 # API date-trended KPI basic report
 
-The Analytics 2.0 Report API allows you to create, retrieve, or update basic and advanced date-trended KPI reports. You can use the example in this guide as a programattically-recurring report. It uses the same data and methods that are used in the UI. This guide provides instructions for a basic KPI report of *Visits*, *Orders*, and *Revenue* metrics for the *Day* dimension. For instructions on advanced KPI reports, see the Advanced Date-trended API Report Guide. 
+The Analytics 2.0 Report API allows you to create, retrieve, or update basic and advanced date-trended KPI reports. You can use the example in this guide as a programattically-recurring report. It uses the same data and methods that are used in the UI. 
+
+This guide provides instructions for a basic KPI report of *Visits*, *Orders*, and *Revenue* metrics for the *Day* dimension. For instructions on advanced KPI reports, see the Advanced Date-trended API Report Guide. 
 
 <InlineAlert variant="info" slots="text" />
 
