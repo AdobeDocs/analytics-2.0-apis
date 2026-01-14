@@ -13,11 +13,11 @@ This guide provides instructions for a basic KPI report of *Visits*, *Orders*, a
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning.
 
-The report endpoint described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The report endpoint described in this guide is routed through analytics.adobe.io. To use it, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
 ## Report features
 
-This guide shows example instructions for a basic date-trended daily KPI report, with key metrics for *Visits*, *Orders*, and *Revenue* over the past 30 days. The requests and responses in this example can be used to produce similar reports for the following purposes:
+This guide shows an example for reporting key metrics over the past 30 days. You can use the requests and responses in this example to produce similar reports for the following purposes:
 
 * Populating dashboards
 * Exporting data to CSV files
