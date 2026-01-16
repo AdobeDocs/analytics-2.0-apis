@@ -365,6 +365,10 @@ module.exports = {
                 title: 'Breakdowns',
                 path: 'guides/endpoints/reports/breakdowns.md'
               },
+               {
+                title: 'Date-trended basic report',
+                path: 'guides/endpoints/reports/kpi.md'
+              },
               {
                 title: 'Debugger',
                 path: 'guides/endpoints/reports/debugger.md'
