@@ -107,7 +107,7 @@ curl -X POST 'https://analytics.adobe.io/api/exampleco/annotations' \
     -H 'Content-Type: application/json' \
     -d '{"name": "Example annotation",
         "rsid": "examplersid",
-        "dateRange": YYYY-02-14T00:00:00/YYYY-02-14T23:59:59",
+        "dateRange": "YYYY-02-14T00:00:00/YYYY-02-14T23:59:59",
         "color": "STANDARD1"}'
 ```
 
