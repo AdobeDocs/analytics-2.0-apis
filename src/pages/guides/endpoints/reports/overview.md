@@ -1,6 +1,6 @@
 ---
 title: Reporting API
-description: Use the Reporting API to create data for reports or retrieve from a specified report suite.
+description: Use the Reporting API to retrieve data from a report suite.
 ---
 
 # Reporting API
