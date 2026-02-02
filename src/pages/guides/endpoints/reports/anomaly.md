@@ -79,6 +79,7 @@ curl -X 'POST' \
     }
   }'
 ```
+
 ### Example response
 
 ```
