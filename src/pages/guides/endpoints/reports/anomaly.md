@@ -17,9 +17,6 @@ For more information, see the [Anomaly Detection Overview](https://experiencelea
 
 Note: Anomaly detection is best suited for [date-trended reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/). While the API allows anomaly detection on some non-time dimensions, results are most reliable and interpretable when using a date-based dimension.
 
-
-<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
-
 ## Report APIs provide data, not visualizations
 
 When you design reports via the Report API, you are creating the data foundation used by Analysis Workspace or another intelligence tool. API structures do not specify the presentation layers built on top of the data. You will not see visualization parameters in the JSON request or response.
