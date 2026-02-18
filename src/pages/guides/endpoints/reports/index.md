@@ -26,7 +26,7 @@ This endpoint uses the `GET` method and is designed specifically for retrieving 
 
 Unless you are using the Top Items report, all report generation should use `POST`.
 
-# When to use the Report endpoint
+## When to use the Report endpoint
 
 Use the Report endpoint when you need:
 
@@ -40,7 +40,7 @@ Use the Report endpoint when you need:
 
 The Report endpoint is designed for flexibility and scalability, supporting both simple KPI queries and advanced analytical workflows.
 
-# Report types and guides
+## Report types and guides
 
 Use the following guides to build specific types of reports:
 
