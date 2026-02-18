@@ -18,16 +18,15 @@ Most Adobe Analytics reports are generated using the **`POST`** method. This des
 
 Using `POST` provides the flexibility required for complex analytical queries, including multi-level breakdowns, anomaly detection, and advanced filtering.
 
-### Exception: GET Top Items Report
+### Exception: GET top items report
 
-- **GET Top Items report**  
-  https://developer.adobe.com/analytics-apis/docs/2.0/apis/#operation/runTopItemReport
+- [**GET top items report**](https://developer.adobe.com/analytics-apis/docs/2.0/apis/#operation/runTopItemReport)
 
 This endpoint uses the `GET` method and is designed specifically for retrieving top dimension items in a simplified format. It does not support the full report definition structure available through `POST /reports`.
 
 Unless you are using the Top Items report, all report generation should use `POST`.
 
-# When to Use the Report Endpoint
+# When to use the Report endpoint
 
 Use the Report endpoint when you need:
 
@@ -41,7 +40,7 @@ Use the Report endpoint when you need:
 
 The Report endpoint is designed for flexibility and scalability, supporting both simple KPI queries and advanced analytical workflows.
 
-# Report Types and Guides
+# Report types and guides
 
 Use the following guides to build specific types of reports:
 
