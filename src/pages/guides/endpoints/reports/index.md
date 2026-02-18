@@ -5,22 +5,55 @@ description: Use the Reporting API to create data for reports or retrieve from a
 
 # Reporting API
 
-The Analytics 2.0 reporting API endpoints allow you to access reports programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with reports in the UI. By using this API, you can programmatically report to executive dashboards, custom reporting platforms, tight Experience Cloud integrations, or other options.
+The **Report** endpoint is the core mechanism for retrieving data from Adobe Analytics 2.0 APIs. It enables you to generate fully customized reports by defining metrics, dimensions, date ranges, filters, and breakdowns in a single request body.
 
-<InlineAlert variant="info" slots="text" />
+Most Adobe Analytics reports are generated using the **`POST`** method. This design allows you to submit a structured JSON payload that defines:
 
-Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
+- The report suite (`rsid`)
+- Global and metric-specific filters
+- Dimensions and metrics
+- Date ranges
+- Sorting and pagination settings
+- Breakdowns and nested queries
 
-## Analytics 2.0 API Report Guides
+Using `POST` provides the flexibility required for complex analytical queries, including multi-level breakdowns, anomaly detection, and advanced filtering.
 
+### Exception: GET Top Items Report
 
+- **GET Top Items report**  
+  https://developer.adobe.com/analytics-apis/docs/2.0/apis/#operation/runTopItemReport
 
-## Additional information
+This endpoint uses the `GET` method and is designed specifically for retrieving top dimension items in a simplified format. It does not support the full report definition structure available through `POST /reports`.
 
-For more information on the Reporting API, see the following resources:
+Unless you are using the Top Items report, all report generation should use `POST`.
 
-* [Breakdown dimensions](breakdowns.md)
-* [Example reporting API calls](examples.md)
-* [Search filters](search-filters.md)
-* [Use segments in the reporting API](segments.md)
-* [Oberon XML and JSON debugger](debugger.md)
+# When to Use the Report Endpoint
+
+Use the Report endpoint when you need:
+
+- Custom metric and dimension combinations
+- Time-series analysis
+- Filtered and segmented reporting
+- Nested breakdowns
+- Anomaly analysis
+- Realtime reporting
+- Programmatic report generation for dashboards or automation
+
+The Report endpoint is designed for flexibility and scalability, supporting both simple KPI queries and advanced analytical workflows.
+
+# Report Types and Guides
+
+Use the following guides to build specific types of reports:
+
+* [**Realtime Reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/real-time/): Generate low-latency reports for near-live activity monitoring.
+
+* [**Date-Trended Basic Report (KPI Report)**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/): Create date-trended reports to track key performance indicators over time.
+
+* [**Anomaly Detection Report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly/): Identify statistically significant deviations in your data using anomaly detection.
+
+* [**Report Search Filters**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/search-filters/): Apply advanced filtering logic to refine report results.
+
+* [**Breakdown Reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/): Generate multi-level reports by breaking down dimension items into additional dimensions.
+
+* [**Analysis Workspace Debugger**](debugger.md): Use Oberon in Analysis Workspace to see XML and API calls with JSON debugger.
+  
