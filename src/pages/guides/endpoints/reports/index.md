@@ -56,15 +56,15 @@ To retrieve only `metric` totals for a date range, omit the dimension property f
 
 Use the following guides to build specific types of reports:
 
-* [**Realtime Reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/real-time/): Generate low-latency reports for near-live activity monitoring.
+- [**Realtime Reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/real-time/): Generate low-latency reports for near-live activity monitoring.
 
-* [**Date-Trended Basic Report (KPI Report)**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/): Create date-trended reports to track key performance indicators over time.
+- [**Date-Trended Basic Report (KPI Report)**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/): Create date-trended reports to track key performance indicators over time.
 
-* [**Anomaly Detection Report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly/): Identify statistically significant deviations in your data using anomaly detection.
+- [**Anomaly Detection Report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly/): Identify statistically significant deviations in your data using anomaly detection.
 
-* [**Report Search Filters**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/search-filters/): Apply advanced filtering logic to refine report results.
+- [**Report Search Filters**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/search-filters/): Apply advanced filtering logic to refine report results.
 
-* [**Breakdown Reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/): Generate multi-level reports by breaking down dimension items into additional dimensions.
+- [**Breakdown Reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/): Generate multi-level reports by breaking down dimension items into additional dimensions.
 
-* [**Analysis Workspace Debugger**](debugger.md): Use Oberon in Analysis Workspace to see XML and API calls with JSON debugger.
+- [**Analysis Workspace Debugger**](debugger.md): Use Oberon in Analysis Workspace to see XML and API calls with JSON debugger.
   
