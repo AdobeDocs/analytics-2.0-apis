@@ -44,9 +44,9 @@ The Report endpoint is designed for flexibility and scalability, supporting both
 
 The `dimension` object member is not required in report request payloads. When no dimension is provided:
 
-* The request is effectively a **Totals** report.
-* The response contains only `summaryData` with totals for the requested metrics over the specified date range.
-* The `rows` array will be absent or empty. No dimension breakdown will be provided in the respone body.
+- The request is effectively a **Totals** report.
+- The response contains only `summaryData` with totals for the requested metrics over the specified date range.
+- The `rows` array will be absent or empty. No dimension breakdown will be provided in the respone body.
 
 ### Example: Totals report (no dimension)
 
