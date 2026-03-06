@@ -40,6 +40,18 @@ Use the Report endpoint when you need:
 
 The Report endpoint is designed for flexibility and scalability, supporting both simple KPI queries and advanced analytical workflows.
 
+## Using `dimension` in report payload requests
+
+The `dimension` object member is not required in report request payloads. When no dimension is provided:
+
+* The request is effectively a **Totals** report.
+* The response contains only `summaryData` with totals for the requested metrics over the specified date range.
+* The `rows` array will be absent or empty. No dimension breakdown will be provided in the respone body.
+
+### Example: Totals report (no dimension)
+
+To retrieve only `metric` totals for a date range, omit the dimension property from the report request. The response will contain `summaryData` totals only and no rows.
+
 ## Report types and guides
 
 Use the following guides to build specific types of reports:
