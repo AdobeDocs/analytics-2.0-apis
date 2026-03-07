@@ -1,3 +1,8 @@
+---
+title: Reporting API
+description: Use the Reporting API to create advanced date-trended reports
+---
+
 # Report API: Advanced Date-Trended Report Guide  
 ## Segments & Date Range Comparisons
 
