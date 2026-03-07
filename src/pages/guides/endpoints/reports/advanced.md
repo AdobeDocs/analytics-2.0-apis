@@ -4,27 +4,25 @@ description: Use the Reporting API to create advanced date-trended reports
 ---
 
 # Report API: Advanced Date-Trended Report Guide  
-## Segments & Date Range Comparisons
 
-This guide extends the **Basic Date-Trended API Report** and introduces two advanced patterns:
+This guide extends the features described in the [Basic Date-Trended API Report](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/) and introduces two advanced features:
 
-1. **Adding a Segment to a Date-Trended Report**
-2. **Using Date Range Comparisons in a Date-Trended Report**
+1. Using date range comparisons in a date-trended report
+2. Adding a segment to a date-trended report
 
-Each section follows the same structure:
+All examples in this guide use the Adobe Analytics 2.0 **Reports API**. The endpoints described are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
-- Call URL  
-- Explanation  
-- Example Request  
-- Example Response  
-- Response Details  
-- Parameter Tables  
+# Include date range comparisons in a date-trended report
 
-All examples use the Adobe Analytics 2.0 **Reports API**.
 
----
+To make the request, use the following URI for your POST HTTP call:
 
-# Base Endpoint (Used in All Examples)
+POST `https://analytics.adobe.io/api/{global-company-id}/reports`
+
+<InlineAlert variant="info" slots="text" />
+
+The dimension object member is not required in report request payloads. For more information, see [Using `dimension` in report payload requests](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).
+
 
 ```http
 POST https://analytics.adobe.io/api/{globalCompanyId}/reports
