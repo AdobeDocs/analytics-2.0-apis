@@ -36,6 +36,10 @@ To make the request, use the following URI for your POST HTTP call:
 
 POST `https://analytics.adobe.io/api/{global-company-id}/reports`
 
+<InlineAlert variant="info" slots="text" />
+
+The dimension object member is not required in report request payloads. For more information, see [Using `dimension` in report payload requests](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).
+
 Click the **Request** tab in the following example to see a POST request corresponding to the data shown in the visualization above, limited to the top ten values.
 Click the **Response** tab to see a successful JSON response for the request.
 
@@ -259,7 +263,6 @@ curl -X 'POST' \
 In addition to the metrics described above, the JSON payload requests the following:
 
 * Time period From July 1, 2023 00:00:00.000 - August 1, 2023 00:00:00.000, using the report suite timezone
-
 * To sort response `visits` by descending `value`, i.e. highest to lowest
 
 #### Request parameters
