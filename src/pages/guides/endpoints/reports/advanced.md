@@ -36,7 +36,7 @@ Content-Type: application/json
 
 ---
 
-# 1️⃣ Date-Trended Report with an Added Segment
+## Date-Trended Report with an Added Segment
 
 ## Overview
 
