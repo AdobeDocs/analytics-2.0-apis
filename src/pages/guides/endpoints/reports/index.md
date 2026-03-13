@@ -3,7 +3,7 @@ title: Reporting API
 description: Use the Reporting API to create data for reports or retrieve from a specified report suite.
 ---
 
-# Reporting API
+# Reporting API overview
 
 The **Report** endpoint is the core mechanism for retrieving data from Adobe Analytics 2.0 APIs. It enables you to generate fully customized reports by defining metrics, dimensions, date ranges, filters, and breakdowns in a single request body.
 
