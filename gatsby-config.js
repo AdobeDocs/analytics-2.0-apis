@@ -359,9 +359,22 @@ module.exports = {
             path: 'guides/endpoints/reports',
             pages: [
               {
+                title: 'Anomaly detection report',
+                path: 'guides/endpoints/reports/real-time.md'
+              },
+               {
+                title: 'Breakdowns',
+                path: 'guides/endpoints/reports/breakdowns.md'
+              },
+              {
+                title: 'Date-trended basic report',
+                path: 'guides/endpoints/reports/kpi.md'
+              },
+              {
                 title: 'Real-time',
                 path: 'guides/endpoints/reports/real-time.md'
-              },{
+              },
+              {
                 title: 'Breakdowns',
                 path: 'guides/endpoints/reports/breakdowns.md'
               },
