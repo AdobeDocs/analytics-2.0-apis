@@ -359,8 +359,16 @@ module.exports = {
             path: 'guides/endpoints/reports',
             pages: [
               {
+                title: 'Report API overview',
+                path: 'guides/endpoints/reports/index.md'
+              },
+              {
+                title: 'Report API: First calls',
+                path: 'guides/endpoints/reports/overview.md'
+              },
+              {
                 title: 'Anomaly detection report',
-                path: 'guides/endpoints/reports/real-time.md'
+                path: 'guides/endpoints/reports/anomaly.md'
               },
                {
                 title: 'Breakdowns',
@@ -369,18 +377,14 @@ module.exports = {
               {
                 title: 'Date-trended basic report',
                 path: 'guides/endpoints/reports/kpi.md'
+              },
+               {
+                title: 'Date-trended advanced report',
+                path: 'guides/endpoints/reports/advanced.md'
               },
               {
                 title: 'Real-time',
                 path: 'guides/endpoints/reports/real-time.md'
-              },
-              {
-                title: 'Breakdowns',
-                path: 'guides/endpoints/reports/breakdowns.md'
-              },
-               {
-                title: 'Date-trended basic report',
-                path: 'guides/endpoints/reports/kpi.md'
               },
               {
                 title: 'Debugger',
