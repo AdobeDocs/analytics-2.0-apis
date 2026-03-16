@@ -60,7 +60,7 @@ curl -X 'POST' \
     "globalFilters": [
         {
             "type": "dateRange",
-            "dateRange": "2023-07-01T00:00:00.000/2023-08-01T00:00:00.000",
+            "dateRange": "YYYY-07-01T00:00:00.000/2023-08-01T00:00:00.000",
             "dateRangeId": "thisMonth"
         }
     ],
@@ -369,8 +369,8 @@ The following example shows a request for a top items report for the POST body s
 curl -X 'GET' \
   'https://analytics.adobe.io/api/{global-company-id}/reports/topItems?rsid=examplersid=variables%2Fpage&locale=en_US&lookupNoneValues=false&limit=10&page=0' \
   -H 'accept: application/json' \
-  -H 'x-api-key: {API-KEY}\
-  -H 'Authorization: {Bearer-token} 
+  -H 'x-api-key: {CLIENT_ID}\
+  -H 'Authorization: Bearer {ACCESS_TOKEN} 
 ```
 
 In this example, you append the previous request body to the cURL call. Note that this request specifies that `NoneValues` not be included and that the `limit` of items to return be `10`.
