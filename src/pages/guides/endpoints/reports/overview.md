@@ -52,8 +52,8 @@ curl -X 'POST' \
   'https://analytics.adobe.io/api/{global-company-id}/reports' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
-  -H 'x-api-key: {API-key}' \
-  -H 'Authorization: {Bearer-token}
+  -H 'x-api-key: {CLIENT_ID}' \
+  -H 'Authorization: Bearer {ACCESS_TOKEN}" \
   -d '{REQUESTJSON}
 {
     "rsid": "examplersid",
@@ -369,7 +369,7 @@ The following example shows a request for a top items report for the POST body s
 curl -X 'GET' \
   'https://analytics.adobe.io/api/{global-company-id}/reports/topItems?rsid=examplersid=variables%2Fpage&locale=en_US&lookupNoneValues=false&limit=10&page=0' \
   -H 'accept: application/json' \
-  -H 'x-api-key: 5a8dcc2cfa71472cbfa4fb53671c45ed' \
+  -H 'x-api-key: {API-KEY}\
   -H 'Authorization: {Bearer-token} 
 ```
 
