@@ -1,6 +1,6 @@
 ---
 title: Reporting API
-description: Use the Reporting API to retrieve data from a report suite.
+description: Create your first calls with Report 2.0 API
 ---
 
 # Reporting API: First calls
