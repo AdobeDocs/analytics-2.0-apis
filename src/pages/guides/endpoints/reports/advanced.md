@@ -135,7 +135,7 @@ The following table describes the date range comparison request parameters:
 | --- | --- | --- | --- |
 | `rsid` | required | string | The report suite ID to run the report against |
 | `globalFilters` | required | array | Array of filter objects applied to the entire report. For date range comparisons, include two filter objects of `type`: `dateRange`, each with a `dateRange` value formatted as `YYYY-MM-DDTHH:mm:ss.SSS/YYYY-MM-DDTHH:mm:ss.SSS` |
-| `dimension` | optional | string | The dimension to trend data by. Use `variables/daterangeday`, `variables/daterangeweek`, or `variables/daterangemonth` for date-trended reports |
+| `dimension` | optional | string | The dimension of the trended data. Use `variables/daterangeday`, `variables/daterangeweek`, or `variables/daterangemonth` for date-trended reports. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).  |
 | `metricContainer` | required | object | Contains the `metrics` array and optional `metricFilters` array. Lists the metrics to include and any metric-level filters |
 | `metrics` | required | array | Array of metric objects. Each object requires an `id`. Assign a unique `columnId` to each metric to distinguish columns in the response. Use the `filters` array to reference a `metricFilters` entry by its `id` to scope a metric to a specific date range |
 | `metricFilters` | optional | array | Array of filter objects that can be referenced by individual metrics using a filter `id`. Use this to scope individual metric columns to specific date ranges for comparison reporting |
