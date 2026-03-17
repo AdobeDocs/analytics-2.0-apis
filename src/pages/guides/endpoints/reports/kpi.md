@@ -320,7 +320,7 @@ The example request includes the following parameters in the payload:
 | `columnId` | optional | string | The column number in the table visualization, left to right, starting from `0` |
 | `id` | optional | string | The name of the element for the column; e.g., the name of the `metric` |
 | `sort` | optional | string | The sorting applied to the column data--`asc` or `desc` |
-| `dimension` | required | string | The dimension used for the report |
+| `dimension` | required | string | The dimension associated with the report data. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests). |
 | `settings` | optional | object | The settings requested for the reporting response, as specified by the parameters in the following five rows |
 | `countRepeatInstances` | optional | boolean | Whether to count repeat instances of a returned metric |
 | `includeAnnotations` | optional | boolean | Whether to include annotations in the response |
