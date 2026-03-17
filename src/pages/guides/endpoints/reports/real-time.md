@@ -157,7 +157,7 @@ The POST real-time reports endpoint includes the following request parameters:
 | `metricContainer` | required | container | Contains the `metrics` container. One metric is required for each real-time report. |
 | `columnId` | required | string | The column ID. One metric column ID is required for each real-time report. |
 | `id` | required | string | The metric or dimension ID. One metric ID is required for each real-time report. |
-| `dimensions` | required | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. |
+| `dimension` | optional | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. Otherwise, if no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests). |
 | `dimensionColumnId` | required | string | The dimension column ID |
 | `settings` | optional | container | Contains the `settings` object members for the specified real-time report, including `realTimeMinuteGranularity` |
 | `realtimeMinuteGranularity` | optional |  | The number of minutes between the reporting of the specified data |
