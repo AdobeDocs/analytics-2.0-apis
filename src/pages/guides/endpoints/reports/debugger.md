@@ -1,9 +1,9 @@
 ---
-title: Oberon XML and JSON debugger
+title: Debugger for Analysis Workspace
 description: Use the Analysis Workspace debugger to view API requests in XML or JSON format.
 ---
 
-# Oberon XML and JSON debugger
+# Debugger for Analysis Workspace
 
 Analysis Workspace makes calls to the reporting API endpoint to retrieve data. Adobe offers an in-product debugger that lets you see the API calls while in any Workspace project.
 
