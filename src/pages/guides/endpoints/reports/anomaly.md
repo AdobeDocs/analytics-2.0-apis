@@ -1,9 +1,9 @@
 ---
-title: Anomaly Detection Report guide
+title: Anomaly detection report guide
 description: Use the Reporting API to create an anomaly detection report.
 ---
 
-# Anomaly Detection Report
+# Anomaly detection API report
 
 This guide shows an example for detecting anomalous metric behavior over a specified date range. This type of report is helpful in setting up automated alert tools or dashboards to report the same information as the UI. When using this feature, anomalies are reported for values outside the upper or lower bound of the confidence bands. The building model and confidence bands are pre-defined in Analytics by calculated historical norms. You can use the requests and responses in this example to produce similar reports for the following purposes:
 
@@ -19,7 +19,7 @@ Note: Anomaly detection is best suited for [date-trended reports](https://develo
 
 ## Report APIs provide data, not visualizations
 
-When you design reports via the Report API, you are creating the data foundation used by Analysis Workspace or another intelligence tool. API structures do not specify the presentation layers built on top of the data. You will not see visualization parameters in the JSON request or response.
+When you design reports via the Report API, you interact with the data foundation used by Analysis Workspace or another intelligence tool. API structures do not specify the presentation layers built on top of the data. You will not see visualization parameters in the JSON request or response.
 
 ## Request the anomaly detection data
 
