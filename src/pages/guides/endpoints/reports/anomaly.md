@@ -133,7 +133,7 @@ The example request includes the following parameters in the payload:
 | `metricContainer`         | required | object  | Contains metric and filter definitions     |
 | `metrics`                 | required | array   | Contains `columnId` and metric `id`        |
 | `metricFilters`           | optional | array   | Scoped filters for metrics                 |
-| `dimension`               | required | string  | Time-based dimension for anomaly detection |
+| `dimension`               | required | string  | Time-based dimension for anomaly detection. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).  |
 | `settings`                | optional | object  | Report settings                            |
 | `includeAnomalyDetection` | optional | boolean | Enables anomaly detection output           |
 | `dimensionSort`           | optional | string  | Sort order for time-series results         |
