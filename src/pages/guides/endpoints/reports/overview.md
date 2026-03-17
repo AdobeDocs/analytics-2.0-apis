@@ -3,7 +3,7 @@ title: Reporting API
 description: Create your first calls with Report 2.0 API
 ---
 
-# Reporting API: First calls
+# Reporting API first calls
 
 The Analytics 2.0 reporting API endpoints allow you to access reports programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with reports in the UI. By using this API, you can programmatically report to executive dashboards, custom reporting platforms, tight Experience Cloud integrations, or other options.
 
