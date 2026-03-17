@@ -3,7 +3,7 @@ title: Reports API
 description: Use the Report API to create advanced date-trended reports.
 ---
 
-# Reports API: Advanced Date-Trended Report
+# Date-trended advanced reports
 
 This guide extends the features described in the [Basic Date-Trended Report](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/) and introduces the following advanced features:
 
