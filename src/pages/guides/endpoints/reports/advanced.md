@@ -1,6 +1,6 @@
 ---
 title: Reports API
-description: Use the Reports API to create advanced date-trended reports.
+description: Use the Report API to create advanced date-trended reports.
 ---
 
 # Reports API: Advanced Date-Trended Report
