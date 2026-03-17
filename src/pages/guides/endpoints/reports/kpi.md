@@ -38,7 +38,7 @@ And the following line graph and number summary visualizations of the same data:
 
 ### Report APIs provide data, not visualizations
 
-When you design reports via the Report API, you are creating the data foundation used by Analysis Workspace or another intelligence tool. API structures do not specify the presentation layers built on top of the data. You will not see a visualization parameter type in the JSON request or response.
+When you design reports via the Report API, you interact with the data foundation used by Analysis Workspace or another intelligence tool. API structures do not specify the presentation layers built on top of the data. You will not see a visualization parameter type in the JSON request or response.
 
 ## Request the date-trended data
 
