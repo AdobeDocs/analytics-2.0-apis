@@ -72,57 +72,103 @@ The `dimension` object member is not required in report request payloads. When n
 
 To retrieve only `metric` totals for a date range, omit the dimension property from the report request. The response will contain `summaryData` totals only and no rows.
 
-## Date-range formatting
+## Date-range field – supported formats
 
-When specifying date ranges within the `globalFilters` array of objects, you can use any of three supported formats:
+The `dateRange` field in `globalFilters` supports three formats:
 
-1. Absolute Date Range (Existing)
-ISO 8601 format with start and end dates separated by /
-Format: <start_date>/<end_date>
-Examples:
-"2024-01-01T00:00:00.000/2024-02-01T00:00:00.000"
-"2024-01-01T00:00/2024-02-01T00:00"
-2. Date Formula (New)
-Dynamic date ranges using formula syntax, evaluated relative to the Report Suite (AA) or DataView (CJA) timezone.
-Format: start_formula/end_formula
-Base Units:
-Code	Meaning
-th	This hour
-td	This day
-tw	This week
-tm	This month
-tq	This quarter
-ty	This year
-Shift Modifiers: Add + or - followed by a number and unit
-Modifier	Meaning
-+/-Nh	Hours
-+/-Nd	Days
-+/-Nw	Weeks
-+/-Nm	Months
-+/-Nq	Quarters
-+/-Ny	Years
-Examples:
-Formula	Meaning
-th-24h/th	Last 24 hours
-td-7d/td	Last 7 days
-tm-1m/tm	Last month
-tq-1q/tq	Last quarter
-ty-1y/ty	Last year
-td/td+1d	Today
-tw/tw+1w	This week
-3. Mixed Format (New)
-Combine an absolute date with a formula.
-Examples:
-"2024-01-01T00:00:00/th" — From Jan 1, 2024 to now
-"tm-1m/2024-06-01T00:00:00" — From start of last month to June 1, 2024
-Notes
-Formulas are evaluated in the Report Suite timezone (AA) or DataView timezone (CJA)
-If timezone is not configured, an error is returned: "Could not determine timezone for dataId=<dataId>"
-This applies to Ranked reports only (non-real-time)
-The existing dateRangeRelative field remains available for Real-Time reports only
+1. Absolute date range
+2. Date formula
+3. Mixed
 
+The following sections describe each format.
 
+### Absolute date range
 
+In this format, the start and end date is specified in ISO 8601 format, separated by `/`. This format is supported for all date ranges, including metric level filters outside of a `globalFilters` array of objects.
 
+**Format:**
+```
+<start_date>/<end_date>
+```
 
+**Examples:**
+```
+2024-01-01T00:00:00.000/2024-02-01T00:00:00.000
+2024-01-01T00:00/2024-02-01T00:00
+```
 
+### Date formula
+
+This format includes a dynamic date range in formula syntax. Both the start and end are expressed as formulas, separated by `/`. Formulas are evaluated relative to the Report Suite timezone (Analytics) or DataView timezone (Customer Journey Analytics). This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
+
+**Format:**
+```
+<start_formula>/<end_formula>
+```
+
+#### Base Units
+
+| Code | Meaning     |
+|------|-------------|
+| `th` | This hour   |
+| `td` | This day    |
+| `tw` | This week   |
+| `tm` | This month  |
+| `tq` | This quarter|
+| `ty` | This year   |
+
+#### Shift Modifiers
+
+Append `+` or `-` followed by a number and a unit to shift the base, according to the following table:
+
+| Modifier | Meaning  |
+|----------|----------|
+| `+/-Nh`  | Hours    |
+| `+/-Nd`  | Days     |
+| `+/-Nw`  | Weeks    |
+| `+/-Nm`  | Months   |
+| `+/-Nq`  | Quarters |
+| `+/-Ny`  | Years    |
+
+### Examples
+
+| Formula       | Meaning        |
+|---------------|----------------|
+| `th-24h/th`   | Last 24 hours  |
+| `td-7d/td`    | Last 7 days    |
+| `tm-1m/tm`    | Last month     |
+| `tq-1q/tq`    | Last quarter   |
+| `ty-1y/ty`    | Last year      |
+| `td/td+1d`    | Today          |
+| `tw/tw+1w`    | This week      |
+
+**Example description**: `td-7d/td` means "7 days ago to today."
+
+### Mixed Format
+
+This format combines an absolute ISO 8601 date on one side with a formula on the other, separated by `/`. The formula side is evaluated dynamically; the absolute side is a fixed date. This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
+
+**Examples:**
+```
+2024-01-01T00:00:00/th       (From Jan 1, 2024 to the current hour)
+tm-1m/2024-06-01T00:00:00   (From the start of last month to June 1, 2024)
+```
+
+The syntax for this format is strict — use the exact formula codes and ISO 8601 date format as shown. Do not use angle brackets, quotes, or other escaping around formula values.
+
+### Timezone behavior in date ranges
+
+Date ranges with formulas are evaluated in the configured timezone of the data source:
+
+- **Adobe Analytics:** Report Suite timezone
+- **CJA:** DataView timezone
+
+If no timezone is configured, the API returns a 400 status code error, such as:
+
+```
+Could not determine timezone for dataId=<dataId>
+```
+
+### Date ranges for Realtime reports
+
+The Date Formula and Mixed formats are not available for Real-time reports. For Real-Time reports, use the existing `dateRangeRelative` field.
