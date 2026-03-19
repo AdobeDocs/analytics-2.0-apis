@@ -5,7 +5,9 @@ description: Use the Reporting API to create data for reports or retrieve from a
 
 # Reporting API overview
 
-The **Report** endpoint is the core mechanism for retrieving data from Adobe Analytics 2.0 APIs. It enables you to generate fully customized reports by defining metrics, dimensions, date ranges, filters, and breakdowns in a single request body. Use the Report endpoint when you need:
+The **Report** endpoint is the core mechanism for retrieving data from Adobe Analytics 2.0 APIs. It enables you to generate fully customized reports by defining metrics, dimensions, date ranges, filters, and breakdowns in a single request body. 
+
+Use the Report endpoint when you need:
 
 - Custom metric and dimension combinations
 - Time-series analysis
@@ -79,6 +81,10 @@ The `dateRange` field in `globalFilters` supports three formats:
 1. Absolute date range
 2. Date formula
 3. Mixed
+
+<InlineAlert variant="info" slots="text" />
+
+The syntax for date range formatting is strict. Use the exact formula codes and ISO 8601 date format as shown below. Do not use angle brackets, quotes, or other escaping characters around formula values.
 
 The following sections describe each format.
 
@@ -157,8 +163,6 @@ This format combines an absolute ISO 8601 date on one side with a formula on the
 2024-01-01T00:00:00/th       (From Jan 1, 2024 to the current hour)
 tm-1m/2024-06-01T00:00:00   (From the start of last month to June 1, 2024)
 ```
-
-The syntax for this format is strict. Use the exact formula codes and ISO 8601 date format as shown. Do not use angle brackets, quotes, or other escaping characters around formula values.
 
 ### Timezone behavior in date ranges
 
