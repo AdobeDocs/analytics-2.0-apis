@@ -72,4 +72,57 @@ The `dimension` object member is not required in report request payloads. When n
 
 To retrieve only `metric` totals for a date range, omit the dimension property from the report request. The response will contain `summaryData` totals only and no rows.
 
+## Date-range formatting
+
+When specifying date ranges within the `globalFilters` array of objects, you can use any of three supported formats:
+
+1. Absolute Date Range (Existing)
+ISO 8601 format with start and end dates separated by /
+Format: <start_date>/<end_date>
+Examples:
+"2024-01-01T00:00:00.000/2024-02-01T00:00:00.000"
+"2024-01-01T00:00/2024-02-01T00:00"
+2. Date Formula (New)
+Dynamic date ranges using formula syntax, evaluated relative to the Report Suite (AA) or DataView (CJA) timezone.
+Format: start_formula/end_formula
+Base Units:
+Code	Meaning
+th	This hour
+td	This day
+tw	This week
+tm	This month
+tq	This quarter
+ty	This year
+Shift Modifiers: Add + or - followed by a number and unit
+Modifier	Meaning
++/-Nh	Hours
++/-Nd	Days
++/-Nw	Weeks
++/-Nm	Months
++/-Nq	Quarters
++/-Ny	Years
+Examples:
+Formula	Meaning
+th-24h/th	Last 24 hours
+td-7d/td	Last 7 days
+tm-1m/tm	Last month
+tq-1q/tq	Last quarter
+ty-1y/ty	Last year
+td/td+1d	Today
+tw/tw+1w	This week
+3. Mixed Format (New)
+Combine an absolute date with a formula.
+Examples:
+"2024-01-01T00:00:00/th" — From Jan 1, 2024 to now
+"tm-1m/2024-06-01T00:00:00" — From start of last month to June 1, 2024
+Notes
+Formulas are evaluated in the Report Suite timezone (AA) or DataView timezone (CJA)
+If timezone is not configured, an error is returned: "Could not determine timezone for dataId=<dataId>"
+This applies to Ranked reports only (non-real-time)
+The existing dateRangeRelative field remains available for Real-Time reports only
+
+
+
+
+
 
