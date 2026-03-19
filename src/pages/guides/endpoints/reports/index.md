@@ -87,12 +87,14 @@ The following sections describe each format.
 In this format, the start and end date is specified in ISO 8601 format, separated by `/`. This format is supported for all date ranges, including metric level filters outside of a `globalFilters` array of objects.
 
 **Format:**
-```
+
+```text
 <start_date>/<end_date>
 ```
 
 **Examples:**
-```
+
+```text
 2024-01-01T00:00:00.000/2024-02-01T00:00:00.000
 2024-01-01T00:00/2024-02-01T00:00
 ```
@@ -102,7 +104,8 @@ In this format, the start and end date is specified in ISO 8601 format, separate
 This format includes a dynamic date range in formula syntax. Both the start and end are expressed as formulas, separated by `/`. Formulas are evaluated relative to the Report Suite timezone (Analytics) or DataView timezone (Customer Journey Analytics). This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
 
 **Format:**
-```
+
+```text
 <start_formula>/<end_formula>
 ```
 
@@ -149,7 +152,8 @@ Append `+` or `-` followed by a number and a unit to shift the base, according t
 This format combines an absolute ISO 8601 date on one side with a formula on the other, separated by `/`. The formula side is evaluated dynamically; the absolute side is a fixed date. This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
 
 **Examples:**
-```
+
+```text
 2024-01-01T00:00:00/th       (From Jan 1, 2024 to the current hour)
 tm-1m/2024-06-01T00:00:00   (From the start of last month to June 1, 2024)
 ```
@@ -165,7 +169,7 @@ Date ranges with formulas are evaluated in the configured timezone of the data s
 
 If no timezone is configured, the API returns a 400 status code error, such as:
 
-```
+```text
 Could not determine timezone for dataId=<dataId>
 ```
 
