@@ -84,7 +84,7 @@ The following sections describe each format.
 
 ### Absolute date range
 
-In this format, the start and end date is specified in ISO 8601 format, separated by `/`. This format is supported for all date ranges, including metric level filters outside of a `globalFilters` array of objects.
+In this format, the start and end date are specified in ISO 8601 format, separated by `/`. This format is supported for all date ranges, including metric level filters outside of a `globalFilters` array of objects.
 
 **Format:**
 
@@ -101,7 +101,7 @@ In this format, the start and end date is specified in ISO 8601 format, separate
 
 ### Date formula
 
-This format includes a dynamic date range in formula syntax. Both the start and end are expressed as formulas, separated by `/`. Formulas are evaluated relative to the Report Suite timezone (Analytics) or DataView timezone (Customer Journey Analytics). This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
+This format includes a dynamic date range in a formula syntax. Both the start and end are expressed as formulas, separated by `/`. Formulas are evaluated relative to the report suite timezone (Analytics) or Data View timezone (Customer Journey Analytics). This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
 
 **Format:**
 
@@ -147,7 +147,7 @@ Append `+` or `-` followed by a number and a unit to shift the base, according t
 
 **Example description**: `td-7d/td` means "7 days ago to today."
 
-### Mixed Format
+### Mixed format
 
 This format combines an absolute ISO 8601 date on one side with a formula on the other, separated by `/`. The formula side is evaluated dynamically; the absolute side is a fixed date. This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
 
@@ -158,14 +158,14 @@ This format combines an absolute ISO 8601 date on one side with a formula on the
 tm-1m/2024-06-01T00:00:00   (From the start of last month to June 1, 2024)
 ```
 
-The syntax for this format is strict — use the exact formula codes and ISO 8601 date format as shown. Do not use angle brackets, quotes, or other escaping around formula values.
+The syntax for this format is strict. Use the exact formula codes and ISO 8601 date format as shown. Do not use angle brackets, quotes, or other escaping characters around formula values.
 
 ### Timezone behavior in date ranges
 
 Date ranges with formulas are evaluated in the configured timezone of the data source:
 
-- **Adobe Analytics:** Report Suite timezone
-- **CJA:** DataView timezone
+- **Adobe Analytics:** report suite timezone
+- **CJA:** Data View timezone
 
 If no timezone is configured, the API returns a 400 status code error, such as:
 
@@ -173,6 +173,6 @@ If no timezone is configured, the API returns a 400 status code error, such as:
 Could not determine timezone for dataId=<dataId>
 ```
 
-### Date ranges for Realtime reports
+### Date ranges for realtime reports
 
-The Date Formula and Mixed formats are not available for Real-time reports. For Real-Time reports, use the existing `dateRangeRelative` field.
+The date formula and mixed formats are not available for realtime reports. For realtime reports, use the existing `dateRangeRelative` field.
