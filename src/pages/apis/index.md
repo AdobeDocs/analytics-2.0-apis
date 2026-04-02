@@ -9,11 +9,8 @@ keywords:
   - Analytics API Swagger
 layout: none
 ---
-import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
-import DiscoveryInterface from "../../components/DiscoveryInterface.js"
+<GetCredential jsonDefinition="../credentials/getcredential.json" />
 
-<GetCredentialsOauth2 />
-
-<DiscoveryInterface />
+\<DiscoveryInterface /\>
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/swagger.json" scrollYOffset={64}/>

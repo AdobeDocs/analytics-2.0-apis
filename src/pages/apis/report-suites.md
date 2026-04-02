@@ -9,8 +9,6 @@ keywords:
   - Report Suites API Swagger
 layout: none
 ---
-import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
-
-<GetCredentialsOauth2 />
+<GetCredential jsonDefinition="../credentials/getcredential.json" />
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/report-suites.json" scrollYOffset={64}/>

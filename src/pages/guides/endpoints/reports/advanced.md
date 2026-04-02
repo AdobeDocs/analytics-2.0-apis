@@ -157,7 +157,7 @@ The following table describes the date range comparison response parameters:
 | `columnIds` | array | Ordered list of column identifiers corresponding to the metrics defined in the request |
 | `summaryData` | container | Contains aggregated data for the report. Includes a `totals` array with one total value per column |
 
----
+<HorizontalLine />
 
 ## Add a segment to a date-trended report
 
@@ -263,7 +263,7 @@ The following table describes the segmented date-trended report request paramete
 
 The response parameters are the same as those described above in the [date range comparisons response parameters table](#request-parameters).
 
----
+<HorizontalLine />
 
 ## Status codes
 

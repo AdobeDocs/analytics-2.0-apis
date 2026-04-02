@@ -9,8 +9,6 @@ keywords:
   - Classification API Swagger
 layout: none
 ---
-import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
-
-<GetCredentialsOauth2 />
+<GetCredential jsonDefinition="../credentials/getcredential.json" />
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/classification.json" scrollYOffset={64}/>

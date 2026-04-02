@@ -41,7 +41,7 @@ This guide includes instructions for importing JSON classification datasets smal
 
 ## POST import JSON classification
 
-This endpoint is shown in the API reference as [POST /job/import/json/{dataset_id}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/createJsonImportJob).
+This endpoint is shown in the API reference as [POST /job/import/json/\{dataset_id\}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/createJsonImportJob).
 
 Use this endpoint to create a classification smaller than 50 MB. For more information on importing classifications, see [Classifications importer overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-working-with-saint.html).
 
@@ -175,7 +175,7 @@ No response parameters are returned. Successful requests are indicated by a `200
 
 ## POST export classification
 
-This endpoint is shown in the API reference as [POST /job/export/{dataset_id}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/createExportJob).
+This endpoint is shown in the API reference as [POST /job/export/\{dataset_id\}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/createExportJob).
 
 Use this endpoint to create an export job for a classification dataset. The dataset can be retrieved in a subsequent request by providing the job ID returned with this endpoint.
 
@@ -354,7 +354,7 @@ The following table describes the POST export classification response parameters
 
 ## GET export classification file
 
-This endpoint is shown in the API reference as [GET /job/export/file/{dataset_id}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/retrieveArtifact).
+This endpoint is shown in the API reference as [GET /job/export/file/\{dataset_id\}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/retrieveArtifact).
 
 Use this endpoint to retrieve the contents of an export classification file. When using this endpoint, you must supply the export job ID returned with the POST export classification endpoint. For more information on classification data, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html).
 

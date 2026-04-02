@@ -1,6 +1,6 @@
 ---
 title: Breakdown dimensions
-descriptions: Use multiple dimensions in the same Reporting API call.
+description: Use multiple dimensions in the same Reporting API call.
 ---
 
 # Breakdown dimensions
