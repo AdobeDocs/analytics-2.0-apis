@@ -19,7 +19,7 @@ Another way to think of visitor groups is to view them as separate processing pi
 
 Suppose a set of server calls has integer visitor IDs, 1-100, and we want to create three disjoint visitor group sets. We can use the mathematical MOD operation to organize these visitors into 3 groups. Server calls where `visitor ID MOD 3 = 0` go into visitor group `0`. Server calls where `visitor ID MOD 3 = 1` go into visitor group `1`, and so forth. Server calls are batched into files and ordered by timestamp, per their visitor group, and are then uploaded with that visitor group specified in the header of the API request. Since the visitors in these files are all disjoint, the BDIA system can process them in parallel without risking any calls for a visit being processed out of order.
 
-![note visitor group diagram](../../../images/bia-visitor_groups.jpg)
+![note visitor group diagram](../../../images/bia-visitor-groups.jpg)
 
 ## Naming visitor groups
 

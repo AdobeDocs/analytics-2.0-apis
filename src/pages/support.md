@@ -15,7 +15,7 @@ Adobe actively participates in several communities. You can use any of the follo
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 
-![Adobe Experience Cloud](./images/experience_cloud.svg)
+![Adobe Experience Cloud](./images/experience-cloud.svg)
 
 ### Adobe Experience League
 

@@ -27,7 +27,7 @@ The primary calculated metrics endpoints support the URL query parameter `expans
 * `compatibility`
 * `categories`
 
-See the [API reference](/src/pages/apis/index.md) for the full list and descriptions.
+See the [API reference](../../../apis/index.md) for the full list and descriptions.
 
 ### IncludeTypes
 
