@@ -20,7 +20,7 @@ To map dimensions from Adobe Analytics to a Customer Journey Analytics data view
               
 <InlineAlert variant="info" slots="text" />
 
-The `aaId` label, as shown in the example mapping `csv` file above, has different meanings, depending upon endpoint or API service. In the example `csv` above, it is the dimension name in Analytics. In the related [Component Migration API service](/src\pages\guides\endpoints\compmigration\index.md), `aaId` is a parameter with a different function. For more information on the difference, see the description for the `aaId` parameter in the [Component Migration API guide](/src\pages\guides\endpoints\compmigration\index.md). 
+The `aaId` label, as shown in the example mapping `csv` file above, has different meanings, depending upon endpoint or API service. In the example `csv` above, it is the dimension name in Analytics. In the related [Component Migration API service](index.md), `aaId` is a parameter with a different function. For more information on the difference, see the description for the `aaId` parameter in the [Component Migration API guide](index.md). 
 
 4. Use the dimension mapping APIs below to upload (or create), update, or retrieve the mappings.
 

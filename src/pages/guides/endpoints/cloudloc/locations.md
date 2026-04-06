@@ -5,7 +5,7 @@ description: Use the Adobe Analytics Cloud Locations API to manage export locati
 
 # Cloud Locations API
 
-Use the Cloud Locations API to create, update, retrieve, or delete cloud storage Locations. Before working with Cloud Locations APIs, you must first create an [Analytics Cloud API account](cloudloc/account.md).
+Use the Cloud Locations API to create, update, retrieve, or delete cloud storage Locations. Before working with Cloud Locations APIs, you must first create an [Analytics Cloud API account](account.md).
 
 <InlineAlert variant="info" slots="text" />
 
@@ -387,5 +387,5 @@ The following table describes the delete Location response parameters:
 
 For more information, see the following:
 
-* [Cloud Locations API overview](cloudloc/index.md)
-* [Cloud Accounts API](cloudloc/accounts.md)
+* [Cloud Locations API overview](index.md)
+* [Cloud Accounts API](account.md)

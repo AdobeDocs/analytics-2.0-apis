@@ -3,7 +3,7 @@ title: Adobe Analytics 2.0 APIs
 description: The Analytics 2.0 API overview page.
 ---
 
-<Hero slots="image, heading, text" background="rgb(64, 34, 138)"/>
+<Superhero slots="image, heading, text" background="rgb(64, 34, 138)"/>
 
 ![Hero image](./images/hero-illustration.png)
 

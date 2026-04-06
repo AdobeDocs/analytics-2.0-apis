@@ -3,7 +3,7 @@ title: Analytics 2.0 API support
 description: Learn where to ask questions, report bugs, make feature requests, and spark discussions. 
 ---
 
-<Hero slots="heading, text" background="rgb(19, 93, 183)"/>
+<Superhero slots="heading, text" background="rgb(19, 93, 183)"/>
 
 # Analytics 2.0 API support
 

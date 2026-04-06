@@ -25,7 +25,7 @@ Each endpoint is used in the following process:
 2. Upload a file using the [POST import upload file](#post-import-upload-file) endpoint.
 3. Commit your upload using the [POST import commit job](#post-import-commit-job) endpoint.
 
-The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](src/pages/guides/endpoints/classifications/index.md).
+The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Developer Console. For more information, refer to [Getting started with the Analytics API](index.md).
 
 ## POST import job by dataset ID
 
@@ -292,4 +292,4 @@ The following table describes the POST commit job response parameters:
 | `import_job_id` | string | The ID of the import job |
 | `api_job_id` | string | The API job ID for uploading the file. This ID was provided with the response of the POST create job endpoint. |
 
-After importing your classification datasets you can export them to other applications. See the [Analytics classification APIs guide](classifications/index.md) for more information.
+After importing your classification datasets you can export them to other applications. See the [Analytics classification APIs guide](index.md) for more information.
