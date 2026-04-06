@@ -153,30 +153,3 @@ Append `+` or `-` followed by a number and a unit to shift the base, according t
 
 **Example description**: `td-7d/td` means "7 days ago to today."
 
-### Mixed format
-
-This format combines an absolute ISO 8601 date on one side with a formula on the other, separated by `/`. The formula side is evaluated dynamically; the absolute side is a fixed date. This format is only supported for fields within a `globalFilters` array of objects and is only available for ranked reports--not realtime reports.
-
-**Examples:**
-
-```text
-2024-01-01T00:00:00/th       (From Jan 1, 2024 to the current hour)
-tm-1m/2024-06-01T00:00:00   (From the start of last month to June 1, 2024)
-```
-
-### Timezone behavior in date ranges
-
-Date ranges with formulas are evaluated in the configured timezone of the data source:
-
-- **Adobe Analytics:** report suite timezone
-- **CJA:** Data View timezone
-
-If no timezone is configured, the API returns a 400 status code error, such as:
-
-```text
-Could not determine timezone for dataId=<dataId>
-```
-
-### Date ranges for realtime reports
-
-The date formula and mixed formats are not available for realtime reports. For realtime reports, use the existing `dateRangeRelative` field.
