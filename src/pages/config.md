@@ -1,12 +1,11 @@
 - pathPrefix:
     - /analytics-apis/docs/2.0/
 
-- versions:
-    - [v2.0](/index.md) selected
-    - [v1.4](/analytics-apis/docs/1.4.md) 
-
 - pages:
     - [Adobe Analytics](index.md)
+    - v2.0
+        - [v2.0](/index.md)
+        - [v1.4](https://developer.adobe.com/analytics-apis/docs/1.4/)
     - [Getting started](guides/index.md)
     - [Endpoint guides](guides/endpoints/index.md)
     - API Reference
@@ -58,7 +57,7 @@
         - [Component Meta Data](guides/endpoints/componentmetadata/index.md)
             - [Tags](guides/endpoints/componentmetadata/tags.md)
             - [Shares](guides/endpoints/componentmetadata/shares.md)
-        - [Data feed](guides/endpoints/data-feed.md)
+        - [Data feed](guides/endpoints/data-feed/index.md)
         - [Data repair](guides/endpoints/data-repair/index.md)
             - [Server call estimate](guides/endpoints/data-repair/server-call-estimate.md)
             - [Job definition reference](guides/endpoints/data-repair/json-body.md)
@@ -68,9 +67,9 @@
         - [Date ranges](guides/endpoints/date-ranges/index.md)
             - [Parameters](guides/endpoints/date-ranges/parameters.md)
             - [FAQ](guides/endpoints/date-ranges/faq.md)
-        - [Data Sources](guides/endpoints/data-sources.md)
-        - [Data Warehouse](guides/endpoints/data-warehouse.md)
-        - [Dimensions](guides/endpoints/dimensions.md)
+        - [Data Sources](guides/endpoints/data-sources/index.md)
+        - [Data Warehouse](guides/endpoints/data-warehouse/index.md)
+        - [Dimensions](guides/endpoints/dimensions/index.md)
         - [Discovery](guides/endpoints/discovery.md)
         - [Livestream API](guides/endpoints/livestream/index.md)
             - [Variable reference](guides/endpoints/livestream/variable-reference.md)
@@ -79,7 +78,7 @@
             - [FAQ](guides/endpoints/livestream/faq.md)
             - [Client implementation](guides/endpoints/livestream/clientcode.md)
             - [Release notes](guides/endpoints/livestream/release-notes.md)
-        - [Metrics](guides/endpoints/metrics.md)
+        - [Metrics](guides/endpoints/metrics/index.md)
         - [Projects](guides/endpoints/projects/index.md)
             - [Definition data structure](guides/endpoints/projects/definition.md)
             - [Parameters](guides/endpoints/projects/parameters.md)

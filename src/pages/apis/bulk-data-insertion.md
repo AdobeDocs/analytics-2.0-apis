@@ -10,6 +10,6 @@ keywords:
 layout: none
 ---
 
-<GetCredential jsonDefinition="../credentials/getcredential.json" />
+<GetCredential jsonDefinition="../credential/getcredential.json" />
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/bulk-data-insertion.json" scrollYOffset={64}/>

@@ -10,6 +10,6 @@ keywords:
   - CJA Migration API
 layout: none
 ---
-<GetCredential jsonDefinition="../credentials/getcredential.json" />
+<GetCredential jsonDefinition="../credential/getcredential.json" />
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/cja-migration.json" scrollYOffset={64}/>

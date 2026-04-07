@@ -1,0 +1,27 @@
+{
+  "total": 1,
+  "offset": 0,
+  "limit": 1,
+  "data": [
+    {
+      "header": "Discovery Get Credentials",
+      "description": "After copying your access token from Credentials above, paste it here to get your available companies and you can copy the GlobalCompanyId you want to use in requests below.",
+      "accessToken": {
+        "label": "Access Token"
+      },
+      "actions": {
+        "getCompaniesButton": "Get Companies",
+        "apiEndpoint": "https://analytics.discovery.adobe.net/discovery/1.0/discovery/me"
+      },
+      "availableCompanies": {
+        "title": "Available Companies",
+        "description": "Select a company from the dropdown and copy its globalCompanyId:",
+        "actions": {
+          "copyIdButton": "Copy ID"
+        }
+      },
+      "tip": "💡 Tip: After copying the globalCompanyId, click \"Try it\" on any API endpoint below and paste the ID into the globalCompanyId field."
+    }
+  ],
+  ":type": "sheet"
+}
