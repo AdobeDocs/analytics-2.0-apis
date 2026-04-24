@@ -1047,11 +1047,11 @@
             "$ref": "#/components/schemas/CalendarSettings"
           },
           "rsid": {
-            "title": "Report Suite id",
+            "title": "Report suite ID",
             "type": "string"
           },
           "parentRsid": {
-            "title": "Parent report suite id for virtual report suite",
+            "title": "Parent report suite ID for virtual report suite",
             "type": "string"
           },
           "name": {
