@@ -13,23 +13,28 @@ No. **Data removed by the Data Repair API is permanently deleted and not retriev
 
 ## How long does a data repair job take?
 
-The amount of time a data repair job takes depends on the number of days processed and how much traffic a Report Suite gets per day. Jobs typically complete in hours but can take multiple days for large Report Suites with extended date ranges.
+The amount of time a data repair job takes depends on the number of days processed and how much traffic a report suite gets per day. Jobs typically complete in hours but can take multiple days for large report suites with extended date ranges.
 
 ## What happens when I access reports in Adobe Analytics while a data repair job is running?
 
-If you run a report in Adobe Analytics referencing a dimension and date range processed by the Data Repair API, it can return `Unspecified`. Once the Data Repair job is complete, the values returned by Adobe Analytics (and not removed by the Data Repair API process) display normally.
+If you run a report in Adobe Analytics referencing a dimension and date range processed by the Data Repair API, it can return `Unspecified`. Once the data repair job is complete, the values returned by Adobe Analytics (and not removed by the Data Repair API process) display normally.
 
 ## How does expiration and allocation work when repairing data?
 
-An eVar value can exist across multiple hits or visits depending on the expiration of the eVar.  Consequently, when repairing an eVar, it is important that you check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. See [Conversion Variables](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) in the Adobe Analytics Admin user guide for more information on eVar expiration and resetting persisted values.
+An eVar value can exist across multiple hits or visits depending on the expiration of the eVar. Consequently, when repairing an eVar, it is important that you check the expiration setting (and potentially use the "Reset" option for that eVar) to avoid historical data "re-populating" the variable. See [Conversion Variables](https://docs.adobe.com/content/help/en/analytics/admin/admin-tools/conversion-variables/conversion-var-admin.html) in the Adobe Analytics Admin user guide for more information on eVar expiration and resetting persisted values.
 
 ## How do late arriving hits work when repairing data?
 
-If late arriving hits are passed in after a repair has run for the time period included in the repair, it is possible for repaired values to be reintroduced.  Ideally, avoid performing repairs on months that can change due to late arriving or timestamped hits.  However, if that can't be guaranteed, Adobe recommends resetting the variable. Note that this action expires the eVar for all visitors, not just those involved in a repair.
+If [late arriving hits](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-contents/late-arriving-hits) are passed in after a repair has run for the time period covered by the repair, previously repaired data can be reintroduced:
 
-## Can I repair a disabled variable?  Or do I need to enable it first?
+* **Repairs that edit or remove values within hits:** Late arriving hits can reintroduce the undesired values that the repair removed.
+* **Repairs that delete entire hits:** Late arriving hits that match the repair criteria are admitted into the report suite, even though they would have been deleted had they existed when the repair job ran.
 
-Data Repair will work on enabled or disabled variables.  You do not need to enable a variable in order for Data Repair to act on it.
+There is no way to selectively prevent late arriving hits from being processed. If the reintroduced data is unacceptable, you can run another data repair covering the affected time period once you are confident that there are no more late arriving hits for the desired date range.
+
+## Do I need to enable a disabled variable before repairing it?
+
+Data Repair works on enabled or disabled variables. You do not need to enable a variable in order for Data Repair to act on it.
 
 ## Why aren't my URL repairs updating data as expected?
 
@@ -38,13 +43,12 @@ When applying a URL operator (`deleteQueryString` or `deleteQueryStringParameter
 ## What are some limitations of using this tool?
 
 * Data repair job date ranges cannot include the current month. A job must start within the last 60 months and end prior to the current month.
-* Report Suites with [Cross-Device Analytics](https://experienceleague.adobe.com/docs/analytics/components/cda/overview.html) are not supported.
+* Report suites with [Cross-Device Analytics](https://experienceleague.adobe.com/docs/analytics/components/cda/overview.html) are not supported.
 * Any actions involving the editing or deletion of [Metrics](https://experienceleague.adobe.com/docs/analytics/components/dimensions/entry-dimensions.html) are not supported.
 * The [Product](https://experienceleague.adobe.com/docs/analytics/components/dimensions/product.html) dimension is not supported.
-* Dimensions that have [Merchandising](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) currently enabled or was enabled historically are not supported. If you run a data repair job on a variable that has had merchandising enabled in the past, you risk seeing incorrect or unexpected attribution results.
-* Only one data repair job at a time can run per Report Suite.
+* Dimensions that currently have [Merchandising](https://experienceleague.adobe.com/docs/analytics/components/dimensions/evar-merchandising.html) enabled (or had it enabled historically) are not supported. If you run a data repair job on a variable that has had merchandising enabled in the past, you risk seeing incorrect or unexpected attribution results.
+* Only one data repair job at a time can run per report suite.
 
+## How do I refresh my authentication token?
 
-### How do I refresh my authentication token? 
-
-To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+To refresh authentication tokens, see the [Authentication Guide](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens).
