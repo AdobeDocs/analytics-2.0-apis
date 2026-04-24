@@ -239,7 +239,7 @@ The following table describes the PUT upload file response parameters:
 
 ## POST import commit job ID
 
-Use this endpoint to commit the changes of a specified job ID. This endpoint finalizes the file uploading process. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.htm).
+Use this endpoint to commit the changes of a specified job ID. This endpoint finalizes the file uploading process. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html).
 
 `POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/{API_JOB_ID}`
 
