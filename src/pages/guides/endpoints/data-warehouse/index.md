@@ -863,7 +863,17 @@ The GET report by ID endpoint uses the same request parameters as those describe
 
 ### Response Parameters
 
-The GET report by ID endpoint uses the same response parameters as those described in the tables above.
+The GET report by ID endpoint uses the same response parameters as those described in the tables above, along with the following `outputFile` parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `compressionFormat` | string | The compression format used on the output file. Valid values are: `default`, `zip`, and `gzip`. |
+| `outputFileBasename` | string | The base name of the output file |
+| `fileFormat` | string | The file format used for the output file |
+| `sendEmptyFileForNoDataReport` | boolean | Whether an empty file is sent if there is no data in the report |
+| `beginningOfReportComments` | string | Comments displayed at the top of the report |
+| `sendDigitalSignatureFile` | boolean | Whether a digital signature file is sent with the output file |
+| `sendManifestFile` | boolean | Whether a manifest file is sent with the output file |
 
 ## PUT report by ID
 
