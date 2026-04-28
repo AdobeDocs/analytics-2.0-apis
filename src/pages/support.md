@@ -35,7 +35,7 @@ Ask/answer questions or participate in discussions around the Adobe Developer co
 
 ### GitHub
 
-[Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING%2Emd)
 
 Learn how you can contribute to the Analytics 2.0 API documentation.
 
