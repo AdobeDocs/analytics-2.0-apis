@@ -1,3 +1,8 @@
+---
+title: Media Edge API use cases
+description: Media Edge API use cases include the following example scenarios.
+---
+
 # Media Edge API use cases
 
 Media Edge API use cases include the following example scenarios:

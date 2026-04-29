@@ -168,12 +168,12 @@ curl -X 'PUT' \
 
 Response
 
-``
+```
 {
   "success": true,
   "message": "Report suite settings updated"
 }
-``
+```
 
 
 Status codes

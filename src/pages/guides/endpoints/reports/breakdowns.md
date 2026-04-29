@@ -1,6 +1,6 @@
 ---
 title: Breakdown dimensions
-descriptions: Use multiple dimensions in the same Reporting API call.
+description: Use multiple dimensions in the same Reporting API call.
 ---
 
 # Breakdown dimensions
@@ -149,7 +149,7 @@ For each level of the breakdown report below, a sample JSON request and response
 
 The top level report in the following example shows the dimension `Day` and includes the metrics `Page Views` and `Visits`. The date range is set to the week of November 18, 2018.
 
-![multiple_breakdowns_example_1](../../../images/multiple_breakdowns_example_1.png)
+![multiple_breakdowns_example_1](../../../images/multiple-breakdowns-example-1.png)
 
 ### Top level request
 
@@ -292,7 +292,7 @@ For the second level, you can break down a specific date by the `Page` dimension
 
 The response shows itemId `1181019`, so we will use that in our report request below.
 
-![multiple_breakdowns_example_2](../../../images/multiple_breakdowns_example_2.png)
+![multiple_breakdowns_example_2](../../../images/multiple-breakdowns-example-2.png)
 
 ### Second level request
 
@@ -427,7 +427,7 @@ The JSON message request body for this report request looks like the following. 
 
 The third level of the example shows how to further break down the report by applying the `Cities` dimension to the page `videoPage3`. To do this, we use the `itemId` of the row containing `VideoPage3` in the second level response, which is `364325780`. Note the value in the request below:
 
-![multiple_breakdowns_example_3](../../../images/multiple_breakdowns_example_3.png)
+![multiple_breakdowns_example_3](../../../images/multiple-breakdowns-example-3.png)
 
 Note that there are now 4 metric filters in the `metricFilters` array of the request. Filters `0` and `2` are applied to the `Page Views` metric column, and filters `1` and `3` are applied to the `Visits` metric column.
 

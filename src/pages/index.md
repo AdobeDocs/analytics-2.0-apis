@@ -3,7 +3,7 @@ title: Adobe Analytics 2.0 APIs
 description: The Analytics 2.0 API overview page.
 ---
 
-<Hero slots="image, heading, text" background="rgb(64, 34, 138)"/>
+<Superhero slots="image, heading, text" background="rgb(64, 34, 138)"/>
 
 ![Hero image](./images/hero-illustration.png)
 
@@ -28,4 +28,6 @@ This user guide assumes that you have an intermediate understanding of Adobe Ana
 
 If you are looking for the API around Customer Journey Analytics, see the [Customer Journey Analytics API documentation](https://www.adobe.io/cja-apis/docs/).
 
-This user guide adheres to Adobe's Code of Conduct. Contributions are encouraged and appreciated. See Adobe's [Code of Conduct](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/CODE_OF_CONDUCT.md) and [Contribution guidelines](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING.md) on GitHub for more information.
+This user guide adheres to Adobe's Code of Conduct. Contributions are encouraged and appreciated. See Adobe's [Code of Conduct](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/CODE_OF_CONDUCT%2Emd) and [Contribution guidelines](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING%2Emd) on GitHub for more information.
+
+

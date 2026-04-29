@@ -47,7 +47,7 @@ To retrieve your global company ID in the user interface, follow these steps:
 
 1. Select **Admin** > **All Admin** from the top menu.
 1. Select **Company settings home** from the **Company settings** list.
-1. In the **Company Settings** page, select the **API Access** tab. <br/>The global company ID is displayed in **bold** at the top of the page.
+1. In the **Company Settings** page, select the **API Access** tab. \<br/\>The global company ID is displayed in **bold** at the top of the page.
 
 To retrieve your global company ID with an API, use the [Analytics Discovery endpoint](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/), as shown below:
 

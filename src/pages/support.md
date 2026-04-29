@@ -3,7 +3,7 @@ title: Analytics 2.0 API support
 description: Learn where to ask questions, report bugs, make feature requests, and spark discussions. 
 ---
 
-<Hero slots="heading, text" background="rgb(19, 93, 183)"/>
+<Superhero slots="heading, text" background="rgb(19, 93, 183)"/>
 
 # Analytics 2.0 API support
 
@@ -15,7 +15,7 @@ Adobe actively participates in several communities. You can use any of the follo
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 
-![Adobe Experience Cloud](./images/experience_cloud.svg)
+![Adobe Experience Cloud](./images/experience-cloud.svg)
 
 ### Adobe Experience League
 
@@ -35,7 +35,7 @@ Ask/answer questions or participate in discussions around the Adobe Developer co
 
 ### GitHub
 
-[Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/AdobeDocs/analytics-2.0-apis/blob/main/.github/CONTRIBUTING%2Emd)
 
 Learn how you can contribute to the Analytics 2.0 API documentation.
 
