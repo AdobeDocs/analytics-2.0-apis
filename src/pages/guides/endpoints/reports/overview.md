@@ -18,7 +18,7 @@ This guide includes instructions for using the following endpoints:
 * POST reports: Creates report requests and returns data for an existing report suite. This corresponds to creating a visualization in the UI.
 * GET top items: Returns only the specified number of items in the report, ranked by highest data values
 
-This guide does not include descriptions for all request and response parameters for the reports endpoint. For more information on parameters included with this endpoint, see the [API reference](/src/pages/apis/index.md). Also, you can copy API JSON request payloads and responses associated with any visualization directly from Analysis Workspace with the [Oberon debugger tool](https://developer.adobe.com/cja-apis/docs/endpoints/reporting/debugger/). This can be a helpful aid in structuring any API reporting request from Analysis Workspace visualizations.
+This guide does not include descriptions for all request and response parameters for the reports endpoint. For more information on parameters included with this endpoint, see the [API reference](../../../apis/index.md). Also, you can copy API JSON request payloads and responses associated with any visualization directly from Analysis Workspace with the [Oberon debugger tool](https://developer.adobe.com/cja-apis/docs/endpoints/reporting/debugger/). This can be a helpful aid in structuring any API reporting request from Analysis Workspace visualizations.
 
 ## Request reporting data
 

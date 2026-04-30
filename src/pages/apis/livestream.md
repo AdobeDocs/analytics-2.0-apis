@@ -9,8 +9,6 @@ keywords:
   - Livestream API Swagger
 layout: none
 ---
-import GetCredentialsOauth2 from "../credentials/GetCredentialsOAuth2.js"
-
-<GetCredentialsOauth2 />
+<GetCredential jsonDefinition="../credential/getcredential.json" />
 
 <RedoclyAPIBlock src="/analytics-apis/docs/2.0/livestream.json" scrollYOffset={64}/>

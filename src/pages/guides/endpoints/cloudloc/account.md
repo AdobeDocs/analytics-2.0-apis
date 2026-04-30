@@ -523,5 +523,5 @@ In the examples above, the GET s3 role arn method is used to request the `userAR
 
 For more information, see the following:
 
-* [Cloud API overview](cloudloc/index.md)
-* [Cloud Locations API endpoint guide](cloudloc/locations.md)
+* [Cloud API overview](index.md)
+* [Cloud Locations API endpoint guide](locations.md)

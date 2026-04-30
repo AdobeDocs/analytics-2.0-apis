@@ -9,12 +9,12 @@ Adobe uses components in most of the features of Analytics. You can create, edit
 
 <DiscoverBlock slots="link, text"/>
 
-[Tags API](tags/index.md)
+[Tags API](tags.md)
 
 Create, edit, or delete tags using the API. You can make calls based on a tag, or based on components that are tagged.
 
 <DiscoverBlock slots="link, text"/>
 
-[Shares API](shares/index.md)
+[Shares API](shares.md)
 
 Change what components are shared with whom in your organization.

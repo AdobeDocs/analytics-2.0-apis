@@ -1,11 +1,3 @@
-# Adobe Analytics 2.0 API Documentation
+# Documentation
 
-This is the source repository for the [Adobe Analytics 2.0 API documentation](https://developer.adobe.com/analytics-apis/docs/2.0/). See the [Contributing](.github/CONTRIBUTING.md) page to learn how to make edits or improvements to this repository so they are reflected in the published documentation.
-
-Most help content is located under `src/pages/guides/endpoints/`.
-
-This site was built with [Adobe Developer Gatsby Theme](https://github.com/adobe/gatsby-theme-aio).
-
-<!-- View the [demo](https://adobedocs.github.io/dev-site-documentation-template/) running on Github Pages.  
-
-Follow the [instructions](https://github.com/adobe/gatsby-theme-aio#getting-started) to get started. -->
+Please see the [ADP Developer Site Documentation](https://developer-stage.adobe.com/dev-docs-reference/).

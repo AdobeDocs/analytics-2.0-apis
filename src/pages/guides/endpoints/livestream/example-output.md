@@ -1,3 +1,8 @@
+---
+title: Livestream sample JSON output
+description: An example JSON object from the Livestream API. See the Livestream API variable reference for details around each JSON element.
+---
+
 # Livestream sample JSON output
 
 An example JSON object from the Livestream API. See [Livestream API variable reference](variable-reference.md) for details around each JSON element.

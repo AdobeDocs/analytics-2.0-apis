@@ -1,3 +1,8 @@
+---
+title: OAuth Authentication
+description: You can use OAuth authentication for situations requiring either user or server-to-server API authentication.
+---
+
 # OAuth Authentication
 
 You can use OAuth authentication for situations requiring either user or server-to-server API authentication.

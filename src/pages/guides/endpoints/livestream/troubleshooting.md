@@ -1,3 +1,8 @@
+---
+title: Troubleshooting
+description: This document provides help for troubleshooting issues with the Livestream API.
+---
+
 # Troubleshooting
 
 This document provides help for troubleshooting issues with the Livestream API.
@@ -19,7 +24,7 @@ Make sure that any parameters provided on the GET string have proper values. For
 
 ### 401 Not authorized
 
-Make sure the `Authorization: Bearer {JWT_TOKEN}` header is being sent in the request (where {JWT_TOKEN} is replaced by your specific JWT token).
+Make sure the `Authorization: Bearer {JWT_TOKEN}` header is being sent in the request (where \{JWT_TOKEN\} is replaced by your specific JWT token).
 
 Make sure that the [JWT token](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/AuthenticationOverview/ServiceAccountIntegration.md#step-4-try-it) was _recently created_. Tokens expire and often need to be recreated.
 
