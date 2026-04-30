@@ -525,7 +525,7 @@
           "Calculated Metrics"
         ],
         "summary": "Retrieve multiple calculated metrics",
-        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/)\n\n",
+        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly report suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/)\n\n",
         "operationId": "findCalculatedMetrics",
         "produces": [
           "application/json"
@@ -1022,7 +1022,7 @@
           "Calculated Metrics"
         ],
         "summary": "Retrieve a single calculated metric by ID",
-        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly Report Suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/)\n\n",
+        "description": "A calculated metric response will always include these default items: *id, name, description, rsid, owner, polarity, precision, type* \n\nOther attributes can be optionally requested through the 'expansion' field:\n\n* *modified*: Date that the metric was last modified (ISO 8601)\n* *definition*: Calculated metric definition as JSON object\n* *compatibility*: Products that the metric is compatible with\n* *reportSuiteName*: Also return the friendly report suite name for the RSID\n* *tags*: Gives all existing tags associated with the calculated metric\n\nFor more information, see the [Calculated Metrics API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/calculatedmetrics/)\n\n",
         "operationId": "findOneCalculatedMetric",
         "produces": [
           "application/json"
@@ -2752,7 +2752,7 @@
           {
             "name": "rsid",
             "in": "query",
-            "description": "A Report Suite ID",
+            "description": "A report suite ID",
             "required": true,
             "type": "string"
           },

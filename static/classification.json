@@ -209,7 +209,7 @@
           {
             "name": "rsid",
             "in": "path",
-            "description": "Adobe Analytics Report Suite Id",
+            "description": "Adobe Analytics report suite ID",
             "required": true,
             "schema": {
               "type": "string"
