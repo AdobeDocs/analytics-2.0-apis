@@ -15,11 +15,7 @@ on:
 jobs:
   deployment:
     name: Deployment
-    if: github.actor != 'adp-devsite-app[bot]'
     uses: AdobeDocs/adp-devsite-workflow/.github/workflows/deploy.yml@main
-    secrets:
-      ADP_DEVSITE_APP_ID: ${{ secrets.ADP_DEVSITE_APP_ID }}
-      ADP_DEVSITE_APP_PRIVATE_KEY: ${{ secrets.ADP_DEVSITE_APP_PRIVATE_KEY }}
     with:
       env: stage
       baseSha: ${{ inputs.baseSha }}
