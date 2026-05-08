@@ -5,7 +5,9 @@ description: Retrieve dimensions information using the API
 
 # Analytics Dimensions API
 
-The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information.
+The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information. 
+
+For information dimension attribution models, see the [Dimension API attribution models guide](attmodel.md).
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
