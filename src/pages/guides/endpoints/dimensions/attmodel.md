@@ -229,7 +229,7 @@ in the [GET multiple dimensions response parameters](#response-parameters) secti
 ## Attribution model values
 
 The `func` field within the `attributionModel` object returns one of the following 
-values. Each value corresponds to an allocation model configurable in the Analytics UI. 
+values. Each value corresponds to an allocation model configurable in the Analysis Workspace. 
 For conceptual descriptions of each model, see 
 [Attribution models and lookback windows](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/attribution/models).
 
