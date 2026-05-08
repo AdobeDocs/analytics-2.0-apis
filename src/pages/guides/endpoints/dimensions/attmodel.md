@@ -146,6 +146,10 @@ dimension response parameters, see the [Dimensions API guide](../index.md).
 | `halfLifeNumPeriods` | number | Member of `attributionModel`. The number of time units in the half-life decay period. Present only on Time Decay (`allocation-timeDecay`) models. |
 | `halfLifeGranularity` | string | Member of `attributionModel`. The time unit for the half-life decay period. Present only on Time Decay (`allocation-timeDecay`) models. Possible values are `minute`, `hour`, `day`, `week`, `month`, `quarter`, and `year`. |
 
+<InlineAlert variant="info" slots="text" />
+
+The `func` field appears at two levels in the `attributionModel` object. At the top level, `func` identifies the allocation model type (for example, `allocation-lastTouch_dim`). Within the nested `expiration` object, `func` identifies the expiration type (for example, `allocation-inactivity`). These are distinct fields that share the same key name at different levels of the object hierarchy.
+
 ## GET single dimension with attribution model
 
 Use this endpoint to retrieve attribution model data for a specific dimension. Pass 
