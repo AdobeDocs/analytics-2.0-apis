@@ -129,7 +129,7 @@ that has attribution configured. In this example:
 ### Response parameters
 
 The following table describes the `attributionModel` response object. For all other 
-dimension response parameters, see the [Dimensions API](../index.md) guide.
+dimension response parameters, see the [Dimensions API guide](../index.md).
 
 | Name | Type | Description |
 | --- | --- | --- |
