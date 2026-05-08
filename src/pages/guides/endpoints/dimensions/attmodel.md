@@ -9,10 +9,6 @@ The Analytics 2.0 Dimensions API supports an `attributionModel` expansion that r
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Analytics Reporting API. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
-<InlineAlert variant="info" slots="text" />
-
-Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
-
 ## Request the attributionModel expansion
 
 To include attribution model data in a dimensions response, pass `attributionModel` as a value in the `expansion` query parameter. The `attributionModel` expansion is supported on both dimensions endpoints:
