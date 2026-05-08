@@ -70,6 +70,7 @@
         - [Data Sources](guides/endpoints/data-sources/index.md)
         - [Data Warehouse](guides/endpoints/data-warehouse/index.md)
         - [Dimensions](guides/endpoints/dimensions/index.md)
+            - [Dimension API attribution models](guides/endpoints/dimensions/attmodel.md)
         - [Discovery](guides/endpoints/discovery.md)
         - [Livestream API](guides/endpoints/livestream/index.md)
             - [Variable reference](guides/endpoints/livestream/variable-reference.md)
