@@ -9,9 +9,6 @@ The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions prog
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
-<InlineAlert variant="info" slots="text" />
-
-Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
 This guide includes instructions for using the following endpoints:
 
@@ -142,7 +139,7 @@ The GET dimensions endpoint includes the following response parameters:
 | `reportable` | array (string) | Whether the dimension is segmentable |
 | `description` | string | Contents of dimension description field in report|
 | `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
-| `attributionModel` | string | For a list of attribution models, see [Attribution models and lookback windows](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/attribution/models). |
+| `attributionModel` | string | For a list of attribution models, see [Attribution models and lookback windows](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/attribution/models) See the [Dimension API attribute models guide](attmodel.md) for a complete description. |
 | `noneSettings` | boolean | Whether "none" item report setting is set.  |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
 
