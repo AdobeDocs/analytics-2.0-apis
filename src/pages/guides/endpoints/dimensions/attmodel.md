@@ -23,7 +23,7 @@ For more information, see [Getting started with the Analytics API](https://devel
 Use this endpoint to retrieve all dimensions for a report suite, including attribution 
 model data for dimensions that support it. Pass `attributionModel` as a value in the 
 `expansion` query parameter to include attribution model data in the response. For more 
-information on the dimensions endpoint, see the [Dimensions API](../index.md) guide.
+information on the dimensions endpoint, see the [Dimensions API guide](../index.md).
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions?rsid={RSID}&expansion=attributionModel`
 
