@@ -1,7 +1,6 @@
 ---
 title: Dimension attribution models
-description: Use the attributionModel expansion to retrieve attribution model settings 
-for a dimension using the Analytics 2.0 API.
+description: Retrieve attribution model settings 
 ---
 
 # Dimension attribution models
