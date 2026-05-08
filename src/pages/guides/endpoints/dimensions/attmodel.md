@@ -1,9 +1,9 @@
 ---
 title: Dimension attribution models
-description: Retrieve attribution model settings 
+description: Retrieve attribution model settings for the Dimension API
 ---
 
-# Dimension attribution models
+# Dimension API attribution models
 
 The Analytics 2.0 Dimensions API supports an `attributionModel` expansion that returns 
 the attribution model configuration for a given dimension. This includes the allocation 
