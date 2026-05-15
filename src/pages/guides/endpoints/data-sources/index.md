@@ -151,7 +151,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_sources/account/examplersid/621" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datasources/account/examplersid/621" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" 
@@ -301,7 +301,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'DELETE' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/data_sources/account/examplersid/741" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/datasources/account/examplersid/741" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" 

@@ -21,7 +21,7 @@
     }
   ],
   "paths": {
-    "/{globalCompanyId}/data_sources/account/{report_suite_id}": {
+    "/{globalCompanyId}/datasources/account/{report_suite_id}": {
       "get": {
         "tags": [
           "Account"
@@ -158,7 +158,7 @@
         ]
       }
     },
-    "/{globalCompanyId}/data_sources/account/{report_suite_id}/{data_source_id}": {
+    "/{globalCompanyId}/datasources/account/{report_suite_id}/{data_source_id}": {
       "get": {
         "tags": [
           "Account"
@@ -286,7 +286,7 @@
         ]
       }
     },
-    "/{globalCompanyId}/data_sources/job/{report_suite_id}/{data_source_id}": {
+    "/{globalCompanyId}/datasources/job/{report_suite_id}/{data_source_id}": {
       "get": {
         "tags": [
           "Job"
@@ -460,7 +460,7 @@
         ]
       }
     },
-    "/{globalCompanyId}/data_sources/job/{report_suite_id}/{data_source_id}/{job_id}": {
+    "/{globalCompanyId}/datasources/job/{report_suite_id}/{data_source_id}/{job_id}": {
       "get": {
         "tags": [
           "Job"
