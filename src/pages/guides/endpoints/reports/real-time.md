@@ -444,7 +444,9 @@ In some instances, the number of dimension values returned per specified time pe
   }
 ```
 
-Note: Any specified `limit` or `page` parameter settings will over-ride the `realTimeValuesPerPeriod` setting. 
+<InlineAlert variant="info" slots="text" />
+
+The `realTimeValuesPerPeriod` value has a limit of 1000. Also, any specified `limit` or `page` parameter settings will over-ride the `realTimeValuesPerPeriod` setting. 
 
 ## Status codes
 
