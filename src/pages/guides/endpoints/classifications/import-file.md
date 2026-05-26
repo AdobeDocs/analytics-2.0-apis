@@ -175,7 +175,7 @@ The following table describes the POST create job response parameters:
 
 ## POST import upload file
 
-Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, tab, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html)
+Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, tab, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/sets/overview).
 
 `POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
 
