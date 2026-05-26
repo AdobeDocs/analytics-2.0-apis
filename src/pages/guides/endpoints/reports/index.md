@@ -21,7 +21,7 @@ The Report endpoint is designed for flexibility and scalability, supporting both
 
 For instructions on building specific types of API reports, see the following guides:
 
-- [**Reporting API first calls**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/real-time/): Get a top items report and create a new report for pageviews, visits, and vistors.
+- [**Reporting API first calls**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/overview/): Get a top items report and create a new report for pageviews, visits, and vistors.
 
 - [**Anomaly detection report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly/): Identify statistically significant deviations in your data using anomaly detection.
 
