@@ -1,14 +1,15 @@
 {
-  "name": "dev-docs-template",
+  "private": true,
+  "name": "analytics-2.0-apis",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdobeDocs/dev-docs-template"
+    "url": "https://github.com/AdobeDocs/analytics-2.0-apis"
   },
   "author": {
-    "name": "Tim Kim",
-    "url": "https://github.com/timkim"
+    "name": "Russ Whitchurch",
+    "url": "https://github.com/gigazelle"
   },
   "engines": {
     "node": "^24.11.0"
