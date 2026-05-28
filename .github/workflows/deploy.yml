@@ -26,7 +26,9 @@ on:
 jobs:
   deployment:
     name: Deployment
-    uses: AdobeDocs/adp-devsite-workflow/.github/workflows/deploy.yml@main
+    if: github.actor != 'adp-devsite-app[bot]' && github.repository != 'AdobeDocs/dev-docs-template'
+    uses: AdobeDocs/adp-devsite-workflow/.github/workflows/deploy-v2.yml@main
+    secrets: inherit
     with:
       env: ${{ inputs.env || 'prod' }}
       baseSha: ${{ inputs.baseSha || '' }}
