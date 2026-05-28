@@ -1,30 +1,32 @@
 {
-  "private": true,
-  "name": "analytics-2.0-apis",
+  "name": "dev-docs-template",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdobeDocs/analytics-2.0-apis"
+    "url": "https://github.com/AdobeDocs/dev-docs-template"
   },
   "author": {
-    "name": "Russ Whitchurch",
-    "url": "https://github.com/gigazelle"
+    "name": "Tim Kim",
+    "url": "https://github.com/timkim"
+  },
+  "engines": {
+    "node": "^24.11.0"
   },
   "scripts": {
-    "dev": "npx --yes github:AdobeDocs/adp-devsite-utils dev",
-    "buildNavigation": "npx --yes github:AdobeDocs/adp-devsite-utils buildNavigation -v",
-    "buildRedirections": "npx --yes github:AdobeDocs/adp-devsite-utils buildRedirections -v",
-    "renameFiles": "npx --yes github:AdobeDocs/adp-devsite-utils renameFiles -v",
-    "normalizeLinks": "npx --yes github:AdobeDocs/adp-devsite-utils normalizeLinks -v",
-    "buildSiteWideBanner": "npx --yes github:AdobeDocs/adp-devsite-utils buildSiteWideBanner -v",
-    "buildSiteMetadata": "npx --yes github:AdobeDocs/adp-devsite-utils buildSiteMetadata -v",
-    "buildContributors": "npx --yes github:AdobeDocs/adp-devsite-utils buildContributors -v",
-    "lint": "npx --yes github:AdobeDocs/adp-devsite-utils runLint -v",
-    "lint:errorOnly": "npx --yes github:AdobeDocs/adp-devsite-utils runLint",
-    "link:externalLinkOnly": "npx --yes github:AdobeDocs/adp-devsite-utils runLint --external-links-only -v",
-    "link:checkAllLinks": "npx --yes github:AdobeDocs/adp-devsite-utils runLint --internal-links-only --external-links-only -v",
-    "redirectCheck:stage": "npx --yes github:AdobeDocs/adp-devsite-utils redirectChecker stage --verbose",
-    "redirectCheck:prod": "npx --yes github:AdobeDocs/adp-devsite-utils redirectChecker prod --verbose"
+    "dev": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils dev",
+    "buildNavigation": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils buildNavigation -v",
+    "buildRedirections": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils buildRedirections -v",
+    "renameFiles": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils renameFiles -v",
+    "normalizeLinks": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils normalizeLinks -v",
+    "buildSiteWideBanner": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils buildSiteWideBanner -v",
+    "buildSiteMetadata": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils buildSiteMetadata -v",
+    "buildContributors": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils buildContributorsV2 -v",
+    "lint": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils runLint -v",
+    "lint:errorOnly": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils runLint",
+    "link:externalLinkOnly": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils runLint --external-links-only -v",
+    "link:checkAllLinks": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils runLint --internal-links-only --external-links-only -v",
+    "redirectCheck:stage": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils redirectChecker stage --verbose",
+    "redirectCheck:prod": "npx --yes --prefer-online github:AdobeDocs/adp-devsite-utils redirectChecker prod --verbose"
   }
 }
