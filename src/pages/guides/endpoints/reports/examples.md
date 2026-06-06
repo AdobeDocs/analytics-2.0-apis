@@ -359,3 +359,115 @@ The following request example includes both a JSON message request body to reque
     }
 }
 ```
+
+## Media Playback Time Spent report example
+
+Media playback time spent is a time series report that tracks the amount of time spent viewing media streams at a per-minute granularity.
+
+Use one of the following metrics depending on the desired output unit:
+
+* `metrics/playback_time_spent_seconds`: playback time in seconds
+* `metrics/playback_time_spent_minutes`: playback time in minutes
+
+The same time-based dimensions available for concurrent viewers are supported:
+
+* `variables/daterangeminute`
+* `variables/daterangehour`
+* `variables/daterangeday`
+* `variables/daterangeweek`
+* `variables/daterangemonth`
+* `variables/daterangequarter`
+* `variables/daterangeyear`
+
+Request one additional day of data beyond your intended period to account for sessions that start on one day and end after midnight. In your analysis, use only the data from the intended day.
+
+<CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
+
+#### Request body
+
+```json
+{
+    "rsid": "examplersid",
+    "locale": "en_US",
+    "dimension": "variables/daterangeminute",
+    "globalFilters": [
+        {
+            "dateRange": "YYYY-09-02T00:00/YYYY-09-03T00:00",
+            "type": "dateRange"
+        }
+    ],
+    "metricContainer": {
+        "metrics": [
+            {
+                "columnId": "column1",
+                "id": "metrics/playback_time_spent_minutes"
+            }
+        ]
+    },
+    "settings": {
+        "dimensionSort": "asc",
+        "limit": "2000",
+        "page": 0
+    }
+}
+```
+
+#### Response
+
+```json
+{
+    "totalPages": 1,
+    "firstPage": true,
+    "lastPage": true,
+    "numberOfElements": 1440,
+    "number": 0,
+    "totalElements": 1440,
+    "columns": {
+        "dimension": {
+            "id": "variables/daterangeminute",
+            "type": "time"
+        },
+        "columnIds": [
+            "column1"
+        ]
+    },
+    "rows": [
+        {
+            "itemId": "12008020000",
+            "value": "00:00 YYYY-09-02",
+            "data": [
+                123.0
+            ]
+        },
+        {
+            "itemId": "12008020001",
+            "value": "00:01 YYYY-09-02",
+            "data": [
+                143.0
+            ]
+        },
+        {
+            "itemId": "12008020002",
+            "value": "00:02 YYYY-09-02",
+            "data": [
+                167.0
+            ]
+        },
+        {
+            "itemId": "12008022359",
+            "value": "23:59 YYYY-09-02",
+            "data": [
+                768.0
+            ]
+        }
+    ],
+    "summaryData": {
+        "filteredTotals": [
+            17124.0
+        ],
+        "totals": [
+            18453.0
+        ]
+    }
+}
+```
