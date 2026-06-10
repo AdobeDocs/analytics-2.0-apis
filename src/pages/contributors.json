@@ -1,7 +1,7 @@
 {
-  "total": 102,
+  "total": 103,
   "offset": 0,
-  "limit": 102,
+  "limit": 103,
   "data": [
     {
       "page": "/",
@@ -684,6 +684,13 @@
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
       "lastUpdated": "3/17/2026"
+    },
+    {
+      "page": "/guides/endpoints/reports/recurring",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
+      ],
+      "lastUpdated": "6/10/2026"
     },
     {
       "page": "/guides/endpoints/reports/search-filters",
