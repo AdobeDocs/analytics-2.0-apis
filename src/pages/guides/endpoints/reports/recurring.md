@@ -5,7 +5,7 @@ description: Use the Reporting API with rolling date formulas to supply a data p
 
 # Automating recurring Analytics reports
 
-Set up automatic, recurring Analytics report data for your data pipeline with fresh metrics on a schedule. By using the Reporting API with rolling date formulas, a single report request can run a scheduled call without manual modification--and deliver current data to wherever your pipeline needs it.
+Set up automatic, recurring Analytics reports for your data pipeline with fresh metrics on a schedule. By using the Reporting API with rolling date formulas, a single report request can run a scheduled call without manual modification--and deliver current data to wherever your pipeline needs it.
 
 Use automated, recurring report data for the following:
 
@@ -19,11 +19,21 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 If you are new to the Analytics Reporting API, see [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi) for an introduction to constructing report requests before using this guide. If your use case requires bulk file delivery to cloud storage with Adobe-managed scheduling, see [Data Warehouse](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) and [Cloud locations](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc) APIs instead.
 
+## Advantates of data pipeline workflows
 
-## Scripting the workflow
+When data needs to feed a system rather than a person, setting up a report pipeline has several advantages. Instead of using the UI for a scheduled report shared to a location, scripting a Report API call offers more control and reliability:
 
-The workflow presented in this guide is intended to be used in a script for automating the call requests and responses. Although Python is used as an example in this guide, you can choose any language for this flow:
+- **No human dependency**: A UI scheduled report requires someone to set it up, maintain it, and notice when it breaks. The API pipeline is code; it is versioned, testable, and owned by the system.
 
+- **Structured data delivery**: UI scheduled reports deliver a formatted file (Excel, CSV, PDF) designed for human reading. The API returns clean JSON that maps directly to a database table with no parsing of formatted cells, merged headers, or summary rows.
+
+- **Direct integration**: The Report endpoint response integrates directly into your data lakehouse in the same script used to run the report. A UI report requires a file to land somewhere, then something else to pick it up, parse it, and load it. This requres extra steps and extra failure points.
+
+- **Programmatic control**: You can change the date range, metrics, filters, or destination in code. A UI report requires someone to log in and reconfigure it.
+
+- **Reliability and alerting**: Failures can automatically alert your team. A broken UI scheduled report may silently stop without notice until a dashboard is obviously stale.
+
+Setting up a Report API response for your data pipeline includes the following steps:
 
 1. [Automating token retrieval](#automating-token-retrieval): Authenticate each scheduled run with a new server-to-server access token
 
@@ -395,25 +405,3 @@ If your use case requires file delivery to cloud storage rather than in-process 
 | 403 | Forbidden | The resource was found, but you do not have the right credentials to view it. |
 | 404 | Not found | The requested resource could not be found on the server. |
 | 500 | Internal server errors | This is a server-side error. If you are making many simultaneous calls, you may be reaching the API limit and need to filter your results. |
-
-
-
-The main advantages of using the Report API endpoint in a data pipeline (instead of a scheduled report shared to a location) are control and reliability:
-
-**No human dependency**
-A UI scheduled report requires someone to set it up, maintain it, and notice when it breaks. The API pipeline is code; it is versioned, testable, and owned by the system.
-
-**Structured data, not a file**
-UI scheduled reports deliver a formatted file (Excel, CSV, PDF) designed for human reading. The API returns clean JSON that maps directly to a database table with no parsing of formatted cells, merged headers, or summary rows.
-
-**Direct pipeline integration**
-The API response goes straight into Snowflake in the same script run. A UI report requires a file to land somewhere, then something else to pick it up, parse it, and load it; this requres extra steps and extra failure points.
-
-**Programmatic control**
-You can change the date range, metrics, filters, or destination in code. A UI report requires someone to log in and reconfigure it.
-
-**Reliability and alerting**
-Airflow retries failures automatically and alerts your team. A broken UI scheduled report typically just stops delivering silently until someone notices the dashboard is stale.
-
-**The honest tradeoff**
-For a simple use case such as one report, one recipient, and no downstream system, the UI scheduled report is faster to set up and requires no engineering. The API pipeline is worth the investment when the data needs to feed a system rather than a person.
