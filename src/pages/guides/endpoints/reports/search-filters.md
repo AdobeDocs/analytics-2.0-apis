@@ -1,17 +1,39 @@
 ---
-title: Search filters
-description: Use search filters to return a subset of dimension items.
+title: Search features
+description: Use search features to return a subset of dimension items in reports.
 ---
 
-# Search filters
+# Search features
 
-Use search filters to limit the data returned so that reports show only the values you need.  For example, if you have thousands of records but only a few have needed reports, you can use filtering to return and find them quickly. Some filters also allow you to include, group, or present data in convenient formats, such as breakdown reports.
+Use search features to return a subset of dimension items in reports.
 
-You can use the `search` parameter to filter your results more narrowly. The `search` parameter includes the following options:
+To limit the data returned in reports, you can include search objects and fields in your Report API request body. This helps to find the relevant reports for specific dimension or metric characteristics among many records. You can also use search features to include, group, or present data in convenient formats, such as breakdown reports.
 
-* `itemId` - A single ID to include in the report
-* `itemIds` - A list of itemIds to include in the report (shown in the example)
-* `excludeItemIds` - A list of itemIds to exclude in the report
+All of the search features described in this guide are specified in a request body to the following endpoint:
+
+`https://analytics.adobe.io/api/{globalCompanyId}/reports`
+
+To use Report API search features:
+
+1. Specify the scope for filtering, such as date range and segment within the `globalFilters` array. This defines the overall data scope for reports. The following example shows a `globalFilters` array for a request body:
+
+```json
+
+   "rsid":"examplersid",
+   "globalFilters":[
+      {
+         "type":"dateRange",
+         "dateRange":"YYYY-01-31T00:00:00.000/YYYY-02-06T23:59:59.999"
+      }
+   ]
+```  
+
+2. Include one or more of the following search options:
+
+* `itemId` - The identifier for a single dimension item (a specific value within a dimension). It is commonly used in breakdown reports inside a `metricFilters` array rather than as a `search` option.
+* `itemIds` - A list of identifiers, or `itemIds`, to include in reports as part of a `search object`. Instead of one row value used in a breakdown report, it filters by several row values at once. 
+* `excludeItemIds` - A list of identifiers, or `itemIds`, to exclude in reports.
+* `clause` - A string inside the `search` object that specifies a text expression for filtering returned dimension items. It can also be used with boolean logic to 
 * `clause` - A search clause to use when filtering dimensions
 * `includeSearchTotal` - Includes a special element called 'searchTotals' in the response that contains the total of the filtered items. The default is `false`.
 
@@ -20,9 +42,22 @@ You can use the `search` parameter to filter your results more narrowly. The `se
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
 
-## Example `search` Request
+## Example search requests
 
-The following example requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9). The response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
+The following JSON examples show each search feature described above.
+
+
+### `clause`
+
+"search": {
+  "clause": "'checkout' or 'cart'"
+}
+
+
+
+
+
+requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9). The response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
 
 <CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
 
