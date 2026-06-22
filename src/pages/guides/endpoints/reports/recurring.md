@@ -19,7 +19,7 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 If you are new to the Analytics Reporting API, see [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi) for an introduction to constructing report requests before using this guide. If your use case requires bulk file delivery to cloud storage with Adobe-managed scheduling, see [Data Warehouse](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) and [Cloud locations](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc) APIs instead.
 
-## Advantates of data pipeline workflows
+## Advantages of data pipeline workflows
 
 When data needs to feed a system rather than a person, setting up a report pipeline has several advantages. Instead of using the UI for a scheduled report shared to a location, scripting a Report API call offers more control and reliability:
 
@@ -27,7 +27,7 @@ When data needs to feed a system rather than a person, setting up a report pipel
 
 - **Structured data delivery**: UI scheduled reports deliver a formatted file (Excel, CSV, PDF) designed for human reading. The API returns clean JSON that maps directly to a database table with no parsing of formatted cells, merged headers, or summary rows.
 
-- **Direct integration**: The Report endpoint response integrates directly into your data lakehouse in the same script used to run the report. A UI report requires a file to land somewhere, then something else to pick it up, parse it, and load it. This requres extra steps and extra failure points.
+- **Direct integration**: The Report endpoint response integrates directly into your data lake house in the same script used to run the report. A UI report requires a file to land somewhere, then something else to pick it up, parse it, and load it. This requires extra steps and extra failure points.
 
 - **Programmatic control**: You can change the date range, metrics, filters, or destination in code. A UI report requires someone to log in and reconfigure it.
 
