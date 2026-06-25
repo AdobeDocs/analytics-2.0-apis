@@ -2804,7 +2804,13 @@
                 "tags",
                 "allowedForReporting",
                 "attributionModel",
-                "categories"
+                "categories",
+                "allocationType",
+                "expirationType",
+                "expirationCustomDays",
+                "dataType",
+                "bindingEvents",
+                "merchandisingSyntax"
               ]
             },
             "collectionFormat": "csv",
@@ -2812,7 +2818,13 @@
               "tags",
               "allowedForReporting",
               "attributionModel",
-              "categories"
+              "categories",
+              "allocationType",
+              "expirationType",
+              "expirationCustomDays",
+              "dataType",
+              "bindingEvents",
+              "merchandisingSyntax"
             ]
           }
         ],
@@ -2897,7 +2909,13 @@
                 "tags",
                 "allowedForReporting",
                 "attributionModel",
-                "categories"
+                "categories",
+                "allocationType",
+                "expirationType",
+                "expirationCustomDays",
+                "dataType",
+                "bindingEvents",
+                "merchandisingSyntax"
               ]
             },
             "collectionFormat": "csv",
@@ -2905,7 +2923,13 @@
               "tags",
               "allowedForReporting",
               "attributionModel",
-              "categories"
+              "categories",
+              "allocationType",
+              "expirationType",
+              "expirationCustomDays",
+              "dataType",
+              "bindingEvents",
+              "merchandisingSyntax"
             ]
           }
         ],
@@ -4884,6 +4908,85 @@
           "additionalProperties": {
             "type": "object"
           }
+        },
+        "allocationType": {
+          "type": "string",
+          "description": "The configured allocation type for the eVar. Preserves distinctions collapsed by attributionModel.func.",
+          "enum": [
+            "most_recent_last",
+            "original_value_first",
+            "linear",
+            "linear_to_items",
+            "merchandising_first",
+            "merchandising_last"
+          ],
+          "example": "linear"
+        },
+        "expirationType": {
+          "type": "string",
+          "description": "The configured expiration type for the eVar, determining how long the value persists across hits.",
+          "enum": [
+            "visit",
+            "page_view",
+            "never",
+            "minute",
+            "hour",
+            "day",
+            "week",
+            "month",
+            "quarter",
+            "year",
+            "purchase",
+            "product_view",
+            "cart_open",
+            "cart_checkout",
+            "cart_add",
+            "cart_remove",
+            "cart_view",
+            "event"
+          ],
+          "example": "visit"
+        },
+        "expirationCustomDays": {
+          "type": "integer",
+          "description": "Number of days in the expiration window. Semantically meaningful when expirationType is 'day'.",
+          "example": 30
+        },
+        "dataType": {
+          "type": "string",
+          "description": "The eVar storage type.",
+          "enum": [
+            "text",
+            "counter"
+          ],
+          "example": "text"
+        },
+        "bindingEvents": {
+          "type": "array",
+          "description": "Metric IDs that trigger merchandising binding. Populated only for merchandising eVars configured with event triggers.",
+          "items": {
+            "type": "string"
+          },
+          "example": ["event1", "event2"]
+        },
+        "merchandisingSyntax": {
+          "type": "string",
+          "description": "Merchandising binding style. Populated only for merchandising eVars.",
+          "enum": [
+            "product",
+            "conversion_variable"
+          ],
+          "example": "conversion_variable"
+        },
+        "ecomAllocationType": {
+          "type": "string",
+          "description": "High-level allocation bucket. Returned automatically when expansion=attributionModel is requested; does not have its own expansion flag.",
+          "enum": [
+            "first",
+            "last",
+            "merchandising"
+          ],
+          "example": "last"
         },
         "noneSettings": {
           "$ref": "#/definitions/NoneSettings"
