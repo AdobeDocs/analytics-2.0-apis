@@ -18,16 +18,16 @@ To use Report API search features:
 1. Specify the scope for filtering, such as date range and segment within the `globalFilters` array. This defines the overall data scope for reports. The following example shows a `globalFilters` array for a request body:
 
 ```json
-
-   "rsid":"examplersid",
-   "globalFilters":[
-      {
-         "type":"dateRange",
-         "dateRange":"YYYY-01-31T00:00:00.000/YYYY-02-06T23:59:59.999"
-      }
-   ]
-```  
-
+{
+  "rsid": "examplersid",
+  "globalFilters": [
+    {
+      "type": "dateRange",
+      "dateRange": "YYYY-01-31T00:00:00.000/YYYY-02-06T23:59:59.999"
+    }
+  ]
+}
+```
 2. Include one or more of the following search options:
 
 * `itemId` - The identifier for a single dimension item (a specific value within a dimension). It is commonly used in breakdown reports inside a `metricFilters` array rather than as a `search` option.
@@ -49,13 +49,14 @@ The following JSON examples show each search feature described above.
 
 ### `clause`
 
-"search": {
-  "clause": "'checkout' or 'cart'"
+```json
+{
+  "search": {
+    "clause": "'checkout' or 'cart'"
+  }
 }
-
-
-
-
+```
+### `itmeIds`
 
 requests data only for campaigns "10" and "11" with the `search` parameter by using their itemIds (line 9). The response returns the data requested for the `itemId` associated with campaigns 10 and 11 (lines 18-21 and 25-28).
 
