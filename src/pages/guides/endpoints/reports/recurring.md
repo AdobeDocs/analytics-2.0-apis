@@ -372,16 +372,15 @@ The JSON response can be parsed for the purposes discussed above, including:
 - Loading data into an ETL or ELT pipeline
 - Writing to a CSV file
 
-  Every use case begins by parsing the JSON response into usable records with the metric values, as described in the following sections.
+Every use case begins by parsing the JSON response into usable records with the metric values, as described in the following sections.
 
 ### Inherent JSON positional alignment
 
-Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. 
+Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request.
 
 For example, in the Report API response example above, note the `columnIds`:
 
 ```json
-
 "columns": {
     "columnIds": ["0", "1", "2"]
 }
@@ -390,33 +389,28 @@ For example, in the Report API response example above, note the `columnIds`:
 The `columnIds` positions of `0`, `1`, and `2` correspond to the positions of the metric values for May 24, 2026, as follows:
 
 ```json
-
-        {
-            "itemId": "1260524",
-            "value": "May 24, 2026",
-            "data": [682171, 18722, 2288544.73]
-        }
+{
+    "itemId": "1260524",
+    "value": "May 24, 2026",
+    "data": [682171, 18722, 2288544.73]
+}
 ```
 
-Each value of `682171`, `18722`, `2288544.73` in the `data` correspond to the column positions identified in the request:
+Each value of `682171`, `18722`, and `2288544.73` in `data` corresponds to the column positions identified in the request:
 
 ```json
-
- "metrics": [
-            {"columnId": "0", "id": "metrics/visits"},
-            {"columnId": "1", "id": "metrics/orders"},
-            {"columnId": "2", "id": "metrics/revenue", "sort": "desc"}
-          ]
+"metrics": [
+    {"columnId": "0", "id": "metrics/visits"},
+    {"columnId": "1", "id": "metrics/orders"},
+    {"columnId": "2", "id": "metrics/revenue", "sort": "desc"}
+]
 ```
 
-For this example , `data[0]` is `visits`, `data[1]` is `orders`, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs.
+For this example, `data[0]` is visits, `data[1]` is orders, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs. In some cases — such as a Slack alert or agentic input — you evaluate or pass the parsed values directly, rather than loading them into a destination.
 
+### Parsing with the Python standard library
 
-In some cases, such as using the response for a slack alert or agentic readiness, 
-
-### Parsing for the Python standard library
-
-Using the Python standard library, you can reshape each row into a flat record that maps cleanly to a database column or a file column:
+Using the Python standard library, you can reshape each row into a flat record with named fields that any of the use cases above can consume:
 
 ```python
 records = [
@@ -430,22 +424,64 @@ records = [
 ]
 ```
 
-### Writing to CSV
+### Loading into a database
+
+Load the parsed `records` into your destination table. This path covers both an ETL or ELT pipeline and staging values for an agent to read later — both are database writes. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
+
+If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step:
+
+```python
+import pandas as pd
+
+pd.DataFrame(records).to_sql("analytics_kpis", your_engine, if_exists="append", index=False)
+```
+
+### Writing to a CSV file
+
+If your pipeline consumes a file rather than a live database connection, write the records to CSV using the standard library:
 
 ```python
 import csv
 from datetime import datetime
 
-rows = data["rows"]
 run_date = datetime.utcnow().strftime("%Y-%m-%d")
 
 with open(f"analytics_kpis_{run_date}.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerow(["date", "visits", "orders", "revenue"])
-    for row in rows:
-        writer.writerow([row["value"]] + row["data"])
+    writer = csv.DictWriter(f, fieldnames=["date", "visits", "orders", "revenue"])
+    writer.writeheader()
+    writer.writerows(records)
 ```
 
+For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [Data Warehouse and Cloud Locations](#) guide instead.
+
+### Triggering an alert
+
+For alerting, you evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met:
+
+```python
+todays_revenue = records[0]["revenue"]
+
+if todays_revenue < 2000000:
+    send_alert(f"Revenue alert: {todays_revenue} is below the threshold")
+```
+
+The evaluation is a standard Python conditional — no library or external service is involved. Only the notification (`send_alert`) reaches an outside service such as a Slack incoming webhook or a paging tool, which is specific to the service you choose and not part of the Analytics API.
+
+If you need only a single value, you can index the response directly instead of building the full record set:
+
+```python
+todays_revenue = data["rows"][0]["data"][2]
+```
+
+### Supplying input to an agent
+
+For agentic use, the parsed `records` are the input. Because the report returns structured, labeled data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location — a database, cache, or file — that the agent reads when it runs:
+
+```python
+save_records(records)   # to a store the agent queries on its own trigger
+```
+
+The Reporting API's role ends at producing fresh, structured records. The agent's data store and retrieval method are part of your agent architecture, not the report request.
 For database insertion, iterate `rows` the same way and build your INSERT or upsert statements from `row["value"]` and `row["data"]`. The implementation depends on your database driver and schema.
 
 If your use case requires file delivery to cloud storage rather than in-process data handling, see [Data Warehouse and Cloud Locations](#) for bulk export with Adobe-managed scheduling and delivery to S3, GCS, Azure Blob, and SFTP destinations.
