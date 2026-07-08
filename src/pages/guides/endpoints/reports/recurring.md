@@ -365,7 +365,7 @@ Example note: The `0 8 * * *` prefix is cron's schedule syntax. The five fields 
 
 - A `400` on the report request often indicates a misconfigured `rsid` or a report suite without timezone configuration. See [Date range formulas](#date-range-formulas) for timezone requirements.
 
-## Loading the response
+## Parsing the response
 
 In some cases, such as using the response for a slack alert or agentic readiness, 
 
