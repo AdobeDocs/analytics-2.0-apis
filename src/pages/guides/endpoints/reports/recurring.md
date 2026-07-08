@@ -363,25 +363,72 @@ In the following example schedule definition, Cron is used to run the script dai
 
 - A `400` on the report request often indicates a misconfigured `rsid` or a report suite without timezone configuration. See [Date range formulas](#date-range-formulas) for timezone requirements.
 
-## Parsing the response
+## Parsing the JSON response
 
 The JSON response can be parsed for the purposes discussed above, including:
 
 - Scripting synchronous extraction, evaluation, and triggering of a notification
 - Staging values into a database, such as Postgres, to be read by an agent
 - Loading data into an ETL or ELT pipeline
-- Writing to a CSV file 
+- Writing to a CSV file
 
-Every use case begins by parsing the JSON response into usable records with the metric values. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. For example, for the day May 24, 2026, the 
+  Every use case begins by parsing the JSON response into usable records with the metric values, as described in the following sections.
 
-For the example request in this guide, data[0] is visits, data[1] is orders, and data[2] is revenue. Once parsed, the records are ready for whatever your workflow needs: load them into a database or file to feed a reporting pipeline, or evaluate them directly to drive a Slack alert or supply input to an AI agent
+### Inherent JSON positional alignment
+
+Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. 
+
+For example, in the Report API response example above, note the `columnIds`:
+
+```json
+
+"columns": {
+    "columnIds": ["0", "1", "2"]
+}
+```
+
+The `columnIds` positions of `0`, `1`, and `2` correspond to the positions of the metric values for May 24, 2026, as follows:
+
+```json
+
+        {
+            "itemId": "1260524",
+            "value": "May 24, 2026",
+            "data": [682171, 18722, 2288544.73]
+        }
+```
+
+Each value of `682171`, `18722`, `2288544.73` in the `data` correspond to the column positions identified in the request:
+
+```json
+
+ "metrics": [
+            {"columnId": "0", "id": "metrics/visits"},
+            {"columnId": "1", "id": "metrics/orders"},
+            {"columnId": "2", "id": "metrics/revenue", "sort": "desc"}
+          ]
+```.
+
+For this example , `data[0]` is `visits`, `data[1]` is `orders`, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs.
 
 
 In some cases, such as using the response for a slack alert or agentic readiness, 
 
-The report response is a JSON object. Each entry in the `rows` array represents one dimension value--for `variables/daterangeday`, one entry per day. The `data` array in each row contains metric values in the same order as `columns.columnIds`.
+### Parsing for the Python standard library
 
-For the example request in this guide, `data[0]` = visits, `data[1]` = orders, and `data[2]` = revenue.
+Using the Python standard library, you can reshape each row into a flat record that maps cleanly to a database column or a file column:
+
+```python
+records = [
+    {
+        "date": row["value"],
+        "visits": row["data"][0],
+        "orders": row["data"][1],
+        "revenue": row["data"][2],
+    }
+    for row in data["rows"]
+]
+```
 
 ### Writing to CSV
 
