@@ -19,7 +19,7 @@ The endpoints described in this guide are routed through `analytics.adobe.io`. T
 
 If you are new to the Analytics Reporting API, see [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi) for an introduction to constructing report requests before using this guide. If your use case requires bulk file delivery to cloud storage with Adobe-managed scheduling, see [Data Warehouse](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) and [Cloud locations](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc) APIs instead.
 
-## Advantages of data pipeline workflows
+## Advantages of automated workflows
 
 When data feeds a system rather than a person, setting up a report pipeline has several advantages. Instead of manually constructing and sharing a scheduled report, you can script a Report API call for more control and reliability:
 
