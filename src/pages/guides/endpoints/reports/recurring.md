@@ -407,7 +407,7 @@ Each value of `682171`, `18722`, `2288544.73` in the `data` correspond to the co
             {"columnId": "1", "id": "metrics/orders"},
             {"columnId": "2", "id": "metrics/revenue", "sort": "desc"}
           ]
-```.
+```
 
 For this example , `data[0]` is `visits`, `data[1]` is `orders`, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs.
 
