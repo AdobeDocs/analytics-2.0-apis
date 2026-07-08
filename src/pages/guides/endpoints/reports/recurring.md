@@ -362,7 +362,7 @@ If using Cron, you can schedule to run the script daily at 08:00 with the follow
 
 - A `400` on the report request often indicates a misconfigured `rsid` or a report suite without timezone configuration. See [Date range formulas](#date-range-formulas) for timezone requirements.
 
-## Processing the response
+## Loading the response into pipeline
 
 The report response is a JSON object. Each entry in the `rows` array represents one dimension value--for `variables/daterangeday`, one entry per day. The `data` array in each row contains metric values in the same order as `columns.columnIds`.
 
