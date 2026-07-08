@@ -41,7 +41,7 @@ Setting up a Report API response for your data pipeline includes the following s
 
 3. [Scheduling the report call](#scheduling-the-report-call): Run the request on a recurring schedule using a Python script and cron
 
-4. [Processing the response](#processing-the-response): Parse the JSON response and route the data to your pipeline
+4. [Loading the response into pipeline](#loading-the-response-into-pipeline): Parse the JSON response and route the data to your pipeline
 
 
 ## Automating token retrieval
