@@ -5,7 +5,7 @@ description: Use the Reporting API with rolling date formulas to supply a data p
 
 # Automating recurring Analytics reports
 
-Set up automatic, recurring Analytics reports for your data pipeline with fresh metrics on a schedule. By using the Reporting API with rolling date formulas, a single report request can run a scheduled call without manual modification--and deliver current data to wherever your pipeline needs it.
+Set up recurring Analytics reports for your automated workflow with fresh metrics on a schedule. By using the Reporting API with rolling date formulas, a single, report request can be scheduled without manual modification and deliver current data to your pipeline.
 
 Use automated, recurring report data for the following:
 
