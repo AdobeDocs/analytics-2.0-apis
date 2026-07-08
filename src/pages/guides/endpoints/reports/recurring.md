@@ -21,7 +21,7 @@ If you are new to the Analytics Reporting API, see [KPI reports](https://develop
 
 ## Advantages of data pipeline workflows
 
-When data needs to feed a system rather than a person, setting up a report pipeline has several advantages. Instead of manually interacting and sharting a scheduled report, you can script a Report API call for more control and reliability:
+When data feeds a system rather than a person, setting up a report pipeline has several advantages. Instead of manually interacting and sharting a scheduled report, you can script a Report API call for more control and reliability:
 
 - **No human dependency**: A UI scheduled report requires someone to set it up, maintain it, and notice when it breaks. The API pipeline is code; it is versioned, testable, and owned by the system.
 
