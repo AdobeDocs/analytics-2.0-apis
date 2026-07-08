@@ -346,15 +346,13 @@ if __name__ == "__main__":
 
 Although schedule definitions vary across schedulers, most schedulers invoke the same script logic on a configured schedule.
 
-In the following example schedule definition, Cron is used to run the script daily at 08:00. 
-
-After opening your crontab file with the `crontab -e` command, type:
+In the following example schedule definition, Cron is used to run the script daily at 08:00. To use it, open a crontab file with the `crontab -e` command and type:
 
 ```
 0 8 * * * /usr/bin/python3 /opt/scripts/analytics_report.py >> /var/log/analytics_report.log 2>&1
 ```
 
-Example note: The `0 8 * * *` prefix is cron's schedule syntax. The five fields are minute, hour, day of month, month, and day of week;  `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
+**Example note**: The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour, day of month, month, and day of week;  `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
 
 
 ### Error handling
