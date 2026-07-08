@@ -279,7 +279,7 @@ curl -X POST \
 
 Use any external scheduler to run your report script on a recurring interval. The Analytics API has no built-in scheduling requirement. The date formula in the request body determines the data window. Your scheduler determines when the script runs.
 
-In the following example, a python script is used to combines both API calls from this guide into a single runnable script.
+In the following example, a python script is used to combine both API calls from this guide into a single runnable script.
 
 ### Python script example
 
