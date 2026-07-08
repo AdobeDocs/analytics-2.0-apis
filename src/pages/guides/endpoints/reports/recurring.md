@@ -27,7 +27,7 @@ When data feeds a system rather than a person, setting up a report pipeline has 
 
 - **Structured data delivery**: UI scheduled reports deliver a formatted file (Excel, CSV, PDF) designed for human reading. The API returns clean JSON that maps directly to a database table with no parsing of formatted cells, merged headers, or summary rows.
 
-- **Direct integration**: The Report endpoint response integrates directly into your data lake house in the same script used to run the report. A UI report requires a file to land somewhere, then something else to pick it up, parse it, and load it. This requires extra steps and extra failure points.
+- **Direct integration**: The Report endpoint response integrates directly into your data lake house with the same script used to run the report. A UI report requires a file to be routed, then picked up, parsed, and loaded in separate steps. This introduces extra failure points.
 
 - **Programmatic control**: You can change the date range, metrics, filters, or destination in code. A UI report requires someone to log in and reconfigure it.
 
