@@ -365,6 +365,18 @@ In the following example schedule definition, Cron is used to run the script dai
 
 ## Parsing the response
 
+The JSON response can be parsed for the purposes discussed above, including:
+
+- Scripting synchronous extraction, evaluation, and triggering of a notification
+- Staging values into a database, such as Postgres, to be read by an agent
+- Loading data into an ETL or ELT pipeline
+- Writing to a CSV file 
+
+Every use case begins by parsing the JSON response into usable records with the metric values. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. For example, for the day May 24, 2026, the 
+
+For the example request in this guide, data[0] is visits, data[1] is orders, and data[2] is revenue. Once parsed, the records are ready for whatever your workflow needs: load them into a database or file to feed a reporting pipeline, or evaluate them directly to drive a Slack alert or supply input to an AI agent
+
+
 In some cases, such as using the response for a slack alert or agentic readiness, 
 
 The report response is a JSON object. Each entry in the `rows` array represents one dimension value--for `variables/daterangeday`, one entry per day. The `data` array in each row contains metric values in the same order as `columns.columnIds`.
