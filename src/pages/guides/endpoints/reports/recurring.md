@@ -46,7 +46,7 @@ Setting up a Report API response for your data pipeline includes the following s
 
 ## Automating token retrieval
 
-By incorporating a job scheduler into your script, you can automate the retrieval of an authorization token. Manual steps in an API client are not required. Each time your scheduler triggers the script, the script POSTs your stored credentials to Adobe Identity Management Service (IMS), receives a fresh token, and uses it immediately for the report request in the same run. Because tokens expire after 24 hours, scripting a scheduled re-fetch at the start of every run is the recommended pattern for recurring jobs.
+By incorporating a job scheduler into a script, you can automate the retrieval of an authorization token. Manual steps in an API client are not required. Each time a scheduler triggers the script, your stored credentials are put in a POST call to Adobe Identity Management Service (IMS). You receive a fresh token and use it immediately for the report request in the same run. Because tokens expire after 24 hours, scripting a scheduled re-fetch at the start of every run is the recommended pattern for recurring jobs.
 
 Your script should make the token authorizaton call with the following endpoint:
 
@@ -115,13 +115,11 @@ curl -X POST \
 
 Build a report request that returns the current data window on every scheduled run by using a rolling date formula in the `dateRange` field. The API evaluates the formula server-side, so the same request body delivers fresh data each time without modification.
 
-If you have worked through the [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi), the structure of this request is almost identical, except for the difference in specifying the date range. 
+If you have worked through the [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi), the structure of such a request is almost identical, except for the difference in specifying the date range. 
 
-
-Use the following endpoint to make the request:
+To make the request, use the following endpoint:
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports`
-
 
 ### Date range formulas
 
@@ -154,7 +152,6 @@ Shift the base unit by appending `-Nx` or `+Nx`, where `N` is the number of peri
 - Date formulas are only supported in the `globalFilters` array. They are not available for metric-level filters.
 - Date formulas are only available for ranked reports. They are not supported for real-time reports.
 - Formulas evaluate relative to the timezone configured for your report suite. A report suite without timezone configuration returns a `400` error.
-
 
 ### Request and response examples
 
@@ -239,7 +236,7 @@ curl -X POST \
 - The response shows only three of seven rows for readability. Each row `data` array aligns with the `columnIds` order: index `0` = visits, index `1` = orders, index `2` = revenue.
 - The `value` field contains the human-readable date label for each row. The API resolves the date formula to actual calendar dates in the report suite timezone.
 - `summaryData.totals` provides aggregated metric totals across all rows in the response.
-- `totalPages: 1` with `lastPage: true` indicates all results fit within a single page.
+- `totalPages: 1` with `lastPage: true` indicating that all results fit within a single page.
 
 ### Request parameters
 
@@ -282,9 +279,9 @@ curl -X POST \
 
 Use any external scheduler to run your report script on a recurring interval. The Analytics API has no built-in scheduling requirement. The date formula in the request body determines the data window. Your scheduler determines when the script runs.
 
-The following Python script combines both API calls from this guide into a single runnable script.
+In the following example, a python script is used to combines both API calls from this guide into a single runnable script.
 
-### Python script
+### Python script example
 
 ```python
 import os
@@ -349,20 +346,28 @@ if __name__ == "__main__":
 
 Although schedule definitions vary across schedulers, most schedulers invoke the same script logic on a configured schedule.
 
-If using Cron, you can schedule to run the script daily at 08:00 with the following line to your crontab (`crontab -e`):
+In the following example schedule definition, Cron is used to run the script daily at 08:00. 
+
+After opening your crontab file with the `crontab -e` command, type:
 
 ```
 0 8 * * * /usr/bin/python3 /opt/scripts/analytics_report.py >> /var/log/analytics_report.log 2>&1
 ```
 
+Example note: The `0 8 * * *` prefix is cron's schedule syntax. The five fields are minute, hour, day of month, month, and day of week;  `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
+
+
 ### Error handling
 
 - Call `raise_for_status()` after each request to surface non-2xx responses as exceptions. Log the full response body. The Analytics API typically includes a `message` field with a specific error description.
+  
 - Implement a retry with exponential backoff for transient errors (`429`, `500`, `503`). 
 
 - A `400` on the report request often indicates a misconfigured `rsid` or a report suite without timezone configuration. See [Date range formulas](#date-range-formulas) for timezone requirements.
 
-## Loading the response into pipeline
+## Loading the response
+
+In some cases, such as using the response for a slack alert or agentic readiness, 
 
 The report response is a JSON object. Each entry in the `rows` array represents one dimension value--for `variables/daterangeday`, one entry per day. The `data` array in each row contains metric values in the same order as `columns.columnIds`.
 
