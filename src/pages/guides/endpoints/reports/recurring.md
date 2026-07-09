@@ -406,7 +406,7 @@ Each value of `682171`, `18722`, and `2288544.73` in `data` corresponds to the c
 ]
 ```
 
-For this example, `data[0]` is visits, `data[1]` is orders, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs. In some cases — such as a Slack alert or agentic input — you evaluate or pass the parsed values directly, rather than loading them into a destination.
+For this example, `data[0]` is visits, `data[1]` is orders, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs. In some cases, such as a Slack alert or agentic input, you evaluate or pass the parsed values directly, rather than loading them into a destination.
 
 ### Parsing with the Python standard library
 
