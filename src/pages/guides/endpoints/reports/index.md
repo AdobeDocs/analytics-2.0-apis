@@ -21,15 +21,17 @@ The Report endpoint is designed for flexibility and scalability, supporting both
 
 For instructions on building specific types of API reports, see the following guides:
 
-- [**Reporting API first calls**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/overview/): Get a top items report and create a new report for pageviews, visits, and vistors.
+- [**Reporting API first calls**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/overview): Get a top items report and create a new report for pageviews, visits, and vistors.
 
-- [**Anomaly detection report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly/): Identify statistically significant deviations in your data using anomaly detection.
+- [**Automating recurring reports**](guides/endpoints/reports/recurring.md): Set up recurring Analytics reports for your automated workflow with fresh metrics on a schedule.
 
-- [**Breakdown reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/): Generate multi-level reports by breaking down dimension items into additional dimensions.
+- [**Anomaly detection report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly): Identify statistically significant deviations in your data using anomaly detection.
 
-- [**Date-trended basic report (KPI report)**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/): Create date-trended reports to track key performance indicators over time.
+- [**Breakdown reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns): Generate multi-level reports by breaking down dimension items into additional dimensions.
 
-- [**Date-trended advanced report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/advanced/): Create advanced date-trended API reports using date range comparisons and segments.
+- [**Date-trended basic report (KPI report)**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Create date-trended reports to track key performance indicators over time.
+
+- [**Date-trended advanced report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/advanced): Create advanced date-trended API reports using date range comparisons and segments.
 
 - [**Debugger for Analysis Workspace**](debugger.md): Use Oberon in Analysis Workspace to see XML and API calls with JSON debugger.
   
