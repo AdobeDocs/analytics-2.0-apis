@@ -457,7 +457,7 @@ The role of the Reporting API ends at producing current, structured records. The
 
 Load the parsed `records` into your destination table to feed an ETL or ELT pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
 
-If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step:
+If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step. The following Python example shows how to load the records with pandas.
 
 ```python
 import pandas as pd
