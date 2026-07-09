@@ -426,7 +426,7 @@ records = [
 
 ### Triggering an alert
 
-For alerting, you evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met:
+For alerting, you evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met. The following Python shows an example:
 
 ```python
 todays_revenue = records[0]["revenue"]
@@ -435,7 +435,7 @@ if todays_revenue < 2000000:
     send_alert(f"Revenue alert: {todays_revenue} is below the threshold")
 ```
 
-The evaluation is a standard Python conditional — no library or external service is involved. Only the notification (`send_alert`) reaches an outside service such as a Slack incoming webhook or a paging tool, which is specific to the service you choose and not part of the Analytics API.
+The evaluation above is a standard Python conditional. No library or external service is involved. Only the notification (`send_alert`) reaches an outside service such as a Slack incoming webhook or a paging tool, which is specific to the service you choose and not part of the Analytics API.
 
 If you need only a single value, you can index the response directly instead of building the full record set:
 
@@ -445,13 +445,13 @@ todays_revenue = data["rows"][0]["data"][2]
 
 ### Supplying input to an agent
 
-For agentic use, the parsed `records` are the input. Because the report returns structured, labeled data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location — a database, cache, or file — that the agent reads when it runs. For a database store, see [Loading into a database](#loading-into-a-database).
+For agentic use, the parsed `records` are the input. Because the report returns structured, labeled JSON data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location. This can be a database, cache, or file that the agent reads when it runs. For a database store, see [Loading into a database](#loading-into-a-database). The following Python shows an example method of writing the records to a shared location: 
 
 ```python
 save_records(records)   # to a store the agent queries on its own trigger
 ```
 
-The Reporting API's role ends at producing fresh, structured records. The agent's data store and retrieval method are part of your agent architecture, not the report request.
+The role of the Reporting API ends at producing current, structured records. The agent data store and retrieval method are part of your agent architecture, not the report request.
 
 ### Loading into a database
 
