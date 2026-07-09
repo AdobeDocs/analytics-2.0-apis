@@ -11,9 +11,13 @@ Use automated, recurring report data for the following:
 
 - BI pipeline: Feed a daily or weekly KPI snapshot into a database for querying by a business intelligence tool
 - Agentic readiness: Provide recurring input to an AI agent or automated analytics workflow
-- Alerting: Monitor metrics on a schedule and trigger downstream alerts for anomalies
+- Alerting: Check metrics against custom, non-statistical thresholds and trigger a system action, such as a PagerDuty incident
 - ETL feed: Replace manual Workspace report exports with a programmatic feed into an existing Extract, Transform, Load (ETL) pipeline
 - Consolidation: Aggregate Analytics data with other sources in a centralized reporting database
+
+<InlineAlert variant="info" slots="text"/>
+
+This guide is for developers who need Adobe Analytics data delivered to a system on a schedule, with no person in the loop at run time. Such systems include databases, data pipelines, automated workflows, and AI agents. To explore data interactively, build dashboards, or receive statistically-based detection alerts, use Analysis Workspace. This guide covers the programmatic path: scripting the Reporting API to feed current data to the systems that consume it.
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
 
