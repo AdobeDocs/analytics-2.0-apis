@@ -21,19 +21,19 @@ If you are new to the Analytics Reporting API, see [KPI reports](https://develop
 
 ## Advantages of automated workflows
 
-When data feeds a system rather than a person, setting up a report pipeline has several advantages. Instead of manually constructing and sharing a scheduled report, you can script a Report API call for more control and reliability:
+When data feeds a system rather than a person, setting up a report pipeline has several advantages. Instead of manually constructing and sharing a scheduled report, you can script a Reporting API call for more control and reliability:
 
 - **No human dependency**: A UI scheduled report requires someone to set it up, maintain it, and notice when it breaks. The API pipeline is code; it is versioned, testable, and owned by the system.
 
 - **Structured data delivery**: UI scheduled reports deliver a formatted file (Excel, CSV, PDF) designed for human reading. The API returns clean JSON that maps directly to a database table with no parsing of formatted cells, merged headers, or summary rows.
 
-- **Direct integration**: The Report endpoint response integrates directly into your data lake house with the same script used to run the report. A UI report requires a file to be routed, then picked up, parsed, and loaded in separate steps. This introduces extra failure points.
+- **Direct integration**: The Report endpoint response integrates directly into your data pipeline with the same script used to run the report. A UI report requires a file to be routed, then picked up, parsed, and loaded in separate steps. This introduces extra failure points.
 
 - **Programmatic control**: You can change the date range, metrics, filters, or destination in code. A UI report requires someone to log in and reconfigure it.
 
 - **Reliability and alerting**: Failures can automatically alert your team. A broken UI scheduled report may silently stop without notice until a dashboard is obviously stale.
 
-Setting up a Report API response for your data pipeline includes the following steps:
+Setting up a recurring report for a pipeline includes the following steps:
 
 1. [Automating token retrieval](#automating-token-retrieval): Authenticate each scheduled run with a new server-to-server access token
 
@@ -41,14 +41,14 @@ Setting up a Report API response for your data pipeline includes the following s
 
 3. [Scheduling the report call](#scheduling-the-report-call): Run the request on a recurring schedule using a Python script and cron
 
-4. [Loading the response into pipeline](#loading-the-response-into-pipeline): Parse the JSON response and route the data to your pipeline
+4. [Parsing the JSON response](#parsing-the-json-response): Parse the JSON response and route the data to your pipeline
 
 
 ## Automating token retrieval
 
-By incorporating a job scheduler into a script, you can automate the retrieval of an authorization token. Manual steps in an API client are not required. Each time a scheduler triggers the script, your stored credentials are put in a POST call to Adobe Identity Management Service (IMS). You receive a fresh token and use it immediately for the report request in the same run. Because tokens expire after 24 hours, scripting a scheduled re-fetch at the start of every run is the recommended pattern for recurring jobs.
+By incorporating a job scheduler into a script, you can automate the retrieval of an authorization token. Manual steps in an API client are not required. Each time a scheduler triggers the script, you receive a fresh token and use it immediately for the report request in the same run. Because tokens expire after 24 hours, scripting a scheduled re-fetch at the start of every run is the recommended pattern for recurring jobs.
 
-Your script should make the token authorizaton call with the following endpoint:
+Your script should make the token authorization call with the following endpoint:
 
 `POST https://ims-na1.adobelogin.com/ims/token/v3`
 
@@ -79,8 +79,8 @@ curl -X POST \
 
 #### Request example details
 
-- The `client_id` and `client_secret` values are available in your Adobe Developer Console project under **OAuth Server-to-Server**. Store both as environment variables in your OS or scheduler rather than hardcoding them in your script. The `client_secret` you create on the developer console generally has no expiration.
-
+- The `client_id` and `client_secret` values are available in your Adobe Developer Console project under **OAuth Server-to-Server**. Store both as environment variables in your OS or scheduler rather than hardcoding them in your script.
+  
 - The `scope` values required for your integration are listed in your Developer Console project. Required scopes vary depending on the Analytics API operations your integration performs.
 
 - This is the first scripted call at the start of each scheduled run to receive a fresh token. Do not cache tokens across daily runs.
@@ -236,7 +236,7 @@ curl -X POST \
 - The response shows only three of seven rows for readability. Each row `data` array aligns with the `columnIds` order: index `0` = visits, index `1` = orders, index `2` = revenue.
 - The `value` field contains the human-readable date label for each row. The API resolves the date formula to actual calendar dates in the report suite timezone.
 - `summaryData.totals` provides aggregated metric totals across all rows in the response.
-- `totalPages: 1` with `lastPage: true` indicating that all results fit within a single page.
+- `totalPages: 1` with `lastPage: true` indicates that all results fit within a single page.
 
 ### Request parameters
 
@@ -248,7 +248,7 @@ curl -X POST \
 | `globalFilters[].dateRange` | required | string | The date range for the report. Use a formula string such as `td-7d/td` to define a rolling window evaluated server-side on every run |
 | `metricContainer` | required | object | Container for the metrics array |
 | `metricContainer.metrics` | required | array | List of metrics to include in the report |
-| `metricContainer.metrics[].columnId` | required | string | Column position in the report, starting from `0`. Determines the index of each metric values in `rows[].data` |
+| `metricContainer.metrics[].columnId` | required | string | Column position in the report, starting from `0`. Determines the index of each metric value in `rows[].data` |
 | `metricContainer.metrics[].id` | required | string | Metric identifier (e.g., `metrics/visits`, `metrics/orders`, `metrics/revenue`) |
 | `metricContainer.metrics[].sort` | optional | string | Sort direction for this metric column. Accepts `asc` or `desc` |
 | `dimension` | required | string | The dimension to use for organizing into rows. Use `variables/daterangeday` for daily breakdowns |
@@ -279,7 +279,7 @@ curl -X POST \
 
 Use any external scheduler to run your report script on a recurring interval. The Analytics API has no built-in scheduling requirement. The date formula in the request body determines the data window. Your scheduler determines when the script runs.
 
-In the following example, a python script is used to combine both API calls from this guide into a single runnable script.
+In the following example, a Python script is used to combine both API calls from this guide into a single runnable script.
 
 ### Python script example
 
@@ -346,13 +346,15 @@ if __name__ == "__main__":
 
 Although schedule definitions vary across schedulers, most schedulers invoke the same script logic on a configured schedule.
 
-In the following example schedule definition, Cron is used to run the script daily at 08:00. To use it, open a crontab file with the `crontab -e` command and type:
+In the following example schedule definition, cron is used to run the script daily at 08:00. To use it, open a crontab file with the `crontab -e` command and type:
 
 ```
 0 8 * * * /usr/bin/python3 /opt/scripts/analytics_report.py >> /var/log/analytics_report.log 2>&1
 ```
 
-**Example note**: The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour, day of month, month, and day of week;  `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
+<InlineAlert variant="info">
+  
+The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour, day of month, month, and day of week; `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
 
 
 ### Error handling
@@ -378,7 +380,7 @@ Every use case begins by parsing the JSON response into usable records with the 
 
 Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request.
 
-For example, in the Report API response example above, note the `columnIds`:
+For example, in the Reporting API response example above, note the `columnIds`:
 
 ```json
 "columns": {
@@ -455,9 +457,9 @@ The role of the Reporting API ends at producing current, structured records. The
 
 ### Loading into a database
 
-Load the parsed `records` into your destination table to feed an ETL or ELT pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
+Load the parsed `records` into your destination table to feed an ETL or Extract, Load, Transform *(ELT) pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
 
-If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step. The following Python example shows how to load the records with pandas.
+If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step. This is shown in the following Python example:
 
 ```python
 import pandas as pd
@@ -485,7 +487,7 @@ For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [
 
 ## Related resources
 
-- [KPI reports API reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
+- [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
 - [Advanced reports API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/advanced): Working with segments, metric filters, and date range comparisons
 - [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/): Authentication setup and Developer Console configuration
 - [Data Warehouse API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse): Bulk file export with Adobe-managed scheduling
