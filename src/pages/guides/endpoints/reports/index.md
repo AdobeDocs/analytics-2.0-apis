@@ -23,7 +23,7 @@ For instructions on building specific types of API reports, see the following gu
 
 - [**Reporting API first calls**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/overview): Get a top items report and create a new report for pageviews, visits, and vistors.
 
-- [**Automating recurring reports**](guides/endpoints/reports/recurring.md): Set up recurring Analytics reports for your automated workflow with fresh metrics on a schedule.
+- [**Automating recurring reports**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/recurring)): Set up recurring Analytics reports for your automated workflow with fresh metrics on a schedule.
 
 - [**Anomaly detection report**](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/anomaly): Identify statistically significant deviations in your data using anomaly detection.
 
