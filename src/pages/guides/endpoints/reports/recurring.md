@@ -432,7 +432,9 @@ records = [
 
 ### Triggering an alert
 
-For alerting, you evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met. The following Python shows an example:
+For anomaly-based alerting delivered to people, use [Anomaly Detection](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/anomaly-detection/anomaly-detection) and [Intelligent Alerts](https://experienceleague.adobe.com/en/docs/analytics/components/alerts/alerts-overview) in Adobe Analytics rather than the API. The API path suits custom, non-statistical thresholds that trigger a system action.
+
+For custom alerting in a pipeline, include scripting logic to evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met. The following Python shows an example:
 
 ```python
 todays_revenue = records[0]["revenue"]
@@ -451,6 +453,8 @@ todays_revenue = data["rows"][0]["data"][2]
 
 ### Supplying input to an agent
 
+This covers scheduled, unattended staging. If an agent needs to fetch data on demand in response to a user, use an [MCP server](https://developer.adobe.com/analytics-mcp/docs/aa/) or a direct tool call rather than a scheduled pull.
+
 For agentic use, the parsed `records` are the input. Because the report returns structured, labeled JSON data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location. This can be a database, cache, or file that the agent reads when it runs. For a database store, see [Loading into a database](#loading-into-a-database). The following Python shows an example method of writing the records to a shared location: 
 
 ```python
@@ -460,6 +464,8 @@ save_records(records)   # to a store the agent queries on its own trigger
 The role of the Reporting API ends at producing current, structured records. The agent data store and retrieval method are part of your agent architecture, not the report request.
 
 ### Loading into a database
+
+This case suits aggregated report data. For raw, hit-level data or large-volume exports, use [Data Feeds](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) or [Data Warehouse](https://experienceleague.adobe.com/en/docs/analytics/export/data-warehouse/data-warehouse) rather than the Reporting API.
 
 Load the parsed `records` into your destination table to feed an ETL or Extract, Load, Transform (ELT) pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
 
