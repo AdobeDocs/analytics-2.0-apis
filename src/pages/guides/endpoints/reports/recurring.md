@@ -485,10 +485,11 @@ For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [
 
 ## Related resources
 
-- [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
-- [Advanced reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/advanced): Working with segments, metric filters, and date range comparisons
+- [KPI reports API reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
+- [Advanced reports API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/advanced): Working with segments, metric filters, and date range comparisons
 - [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/): Authentication setup and Developer Console configuration
-- [Data Warehouse and Cloud Locations](#): Bulk file export with Adobe-managed scheduling and delivery to cloud storage destinations
+- [Data Warehouse API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse): Bulk file export with Adobe-managed scheduling
+- [Cloud locations API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc): Bulk file delivery to cloud storage destinations
 
 ## Status codes
 
