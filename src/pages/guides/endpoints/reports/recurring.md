@@ -368,7 +368,7 @@ In the following example schedule definition, Cron is used to run the script dai
 The JSON response can be parsed for the purposes discussed above, including:
 
 - Scripting synchronous extraction, evaluation, and triggering of a notification
-- Staging values into a database, such as Postgres, to be read by an agent
+- Supplying structured input to an agent
 - Loading data into an ETL or ELT pipeline
 - Writing to a CSV file
 
@@ -424,9 +424,38 @@ records = [
 ]
 ```
 
+### Triggering an alert
+
+For alerting, you evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met:
+
+```python
+todays_revenue = records[0]["revenue"]
+
+if todays_revenue < 2000000:
+    send_alert(f"Revenue alert: {todays_revenue} is below the threshold")
+```
+
+The evaluation is a standard Python conditional — no library or external service is involved. Only the notification (`send_alert`) reaches an outside service such as a Slack incoming webhook or a paging tool, which is specific to the service you choose and not part of the Analytics API.
+
+If you need only a single value, you can index the response directly instead of building the full record set:
+
+```python
+todays_revenue = data["rows"][0]["data"][2]
+```
+
+### Supplying input to an agent
+
+For agentic use, the parsed `records` are the input. Because the report returns structured, labeled data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location — a database, cache, or file — that the agent reads when it runs. For a database store, see [Loading into a database](#loading-into-a-database).
+
+```python
+save_records(records)   # to a store the agent queries on its own trigger
+```
+
+The Reporting API's role ends at producing fresh, structured records. The agent's data store and retrieval method are part of your agent architecture, not the report request.
+
 ### Loading into a database
 
-Load the parsed `records` into your destination table. This path covers both an ETL or ELT pipeline and staging values for an agent to read later — both are database writes. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
+Load the parsed `records` into your destination table to feed an ETL or ELT pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
 
 If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step:
 
@@ -453,39 +482,11 @@ with open(f"analytics_kpis_{run_date}.csv", "w", newline="") as f:
 ```
 
 For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [Data Warehouse and Cloud Locations](#) guide instead.
-
-### Triggering an alert
-
-For alerting, you evaluate the data rather than load it. Extract the metric value you want to monitor, compare it against a threshold, and act when the condition is met:
-
-```python
-todays_revenue = records[0]["revenue"]
-
-if todays_revenue < 2000000:
-    send_alert(f"Revenue alert: {todays_revenue} is below the threshold")
-```
-
-The evaluation is a standard Python conditional — no library or external service is involved. Only the notification (`send_alert`) reaches an outside service such as a Slack incoming webhook or a paging tool, which is specific to the service you choose and not part of the Analytics API.
-
-If you need only a single value, you can index the response directly instead of building the full record set:
-
-```python
-todays_revenue = data["rows"][0]["data"][2]
-```
-
-### Supplying input to an agent
-
-For agentic use, the parsed `records` are the input. Because the report returns structured, labeled data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location — a database, cache, or file — that the agent reads when it runs:
-
-```python
-save_records(records)   # to a store the agent queries on its own trigger
-```
-
 The Reporting API's role ends at producing fresh, structured records. The agent's data store and retrieval method are part of your agent architecture, not the report request.
 For database insertion, iterate `rows` the same way and build your INSERT or upsert statements from `row["value"]` and `row["data"]`. The implementation depends on your database driver and schema.
 
 If your use case requires file delivery to cloud storage rather than in-process data handling, see [Data Warehouse and Cloud Locations](#) for bulk export with Adobe-managed scheduling and delivery to S3, GCS, Azure Blob, and SFTP destinations.
-
+tr
 ## Related resources
 
 - [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
