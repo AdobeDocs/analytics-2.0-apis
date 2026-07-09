@@ -364,7 +364,7 @@ The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour
 ### Error handling
 
 - Call `raise_for_status()` after each request to surface non-2xx responses as exceptions. Log the full response body. The Analytics API typically includes a `message` field with a specific error description.
-  
+
 - Implement a retry with exponential backoff for transient errors (`429`, `500`, `503`). 
 
 - A `400` on the report request often indicates a misconfigured `rsid` or a report suite without timezone configuration. See [Date range formulas](#date-range-formulas) for timezone requirements.
