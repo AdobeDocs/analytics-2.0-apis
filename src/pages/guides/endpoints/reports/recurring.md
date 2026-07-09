@@ -481,12 +481,8 @@ with open(f"analytics_kpis_{run_date}.csv", "w", newline="") as f:
     writer.writerows(records)
 ```
 
-For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [Data Warehouse and Cloud Locations](#) guide instead.
-The Reporting API's role ends at producing fresh, structured records. The agent's data store and retrieval method are part of your agent architecture, not the report request.
-For database insertion, iterate `rows` the same way and build your INSERT or upsert statements from `row["value"]` and `row["data"]`. The implementation depends on your database driver and schema.
+For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [Data Warehouse](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) and [Cloud Locations](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc) guides instead.
 
-If your use case requires file delivery to cloud storage rather than in-process data handling, see [Data Warehouse and Cloud Locations](#) for bulk export with Adobe-managed scheduling and delivery to S3, GCS, Azure Blob, and SFTP destinations.
-tr
 ## Related resources
 
 - [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
