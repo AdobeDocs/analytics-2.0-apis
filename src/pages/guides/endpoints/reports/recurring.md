@@ -352,8 +352,8 @@ In the following example schedule definition, cron is used to run the script dai
 0 8 * * * /usr/bin/python3 /opt/scripts/analytics_report.py >> /var/log/analytics_report.log 2>&1
 ```
 
-<InlineAlert variant="info">
-  
+<InlineAlert variant="info" slots="text"/>
+
 The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour, day of month, month, and day of week; `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
 
 
@@ -457,7 +457,7 @@ The role of the Reporting API ends at producing current, structured records. The
 
 ### Loading into a database
 
-Load the parsed `records` into your destination table to feed an ETL or Extract, Load, Transform *(ELT) pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
+Load the parsed `records` into your destination table to feed an ETL or Extract, Load, Transform (ELT) pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
 
 If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step. This is shown in the following Python example:
 
