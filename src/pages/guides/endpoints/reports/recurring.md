@@ -119,7 +119,7 @@ curl -X POST \
 
 Build a report request that returns the current data window on every scheduled run by using a rolling date formula in the `dateRange` field. The API evaluates the formula server-side, so the same request body delivers fresh data each time without modification.
 
-If you have worked through the [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi), the structure of such a request is almost identical, except for the difference in specifying the date range. 
+If you have worked through the [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi), the structure of such a request is almost identical, except for the difference in specifying the date range.
 
 To make the request, use the following endpoint:
 
@@ -364,7 +364,7 @@ The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour
 
 - Call `raise_for_status()` after each request to surface non-2xx responses as exceptions. Log the full response body. The Analytics API typically includes a `message` field with a specific error description.
 
-- Implement a retry with exponential backoff for transient errors (`429`, `500`, `503`). 
+- Implement a retry with exponential backoff for transient errors (`429`, `500`, `503`).
 
 - A `400` on the report request often indicates a misconfigured `rsid` or a report suite without timezone configuration. See [Date range formulas](#date-range-formulas) for timezone requirements.
 
@@ -463,7 +463,7 @@ todays_revenue = data["rows"][0]["data"][2]
 
 This covers scheduled, unattended staging. If an agent needs to fetch data on demand in response to a user, use an [MCP server](https://developer.adobe.com/analytics-mcp/docs/aa/) or a direct tool call rather than a scheduled pull.
 
-For agentic use, the parsed `records` are the input. Because the report returns structured, labeled JSON data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location. This can be a database, cache, or file that the agent reads when it runs. For a database store, see [Loading into a database](#loading-into-a-database). The following Python shows an example method of writing the records to a shared location: 
+For agentic use, the parsed `records` are the input. Because the report returns structured, labeled JSON data, an agent can consume the records as context without additional parsing. If the agent runs on the same schedule as the report, the script can pass the records to it directly. More often, the report and the agent run on different triggers, so the script writes the records to a shared location. This can be a database, cache, or file that the agent reads when it runs. For a database store, see [Loading into a database](#loading-into-a-database). The following Python shows an example method of writing the records to a shared location:
 
 ```python
 save_records(records)   # to a store the agent queries on its own trigger
