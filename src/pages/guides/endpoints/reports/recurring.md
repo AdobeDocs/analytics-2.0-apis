@@ -360,7 +360,6 @@ In the following example schedule definition, cron is used to run the script dai
 
 The `0 8 * * *` prefix is cron schedule syntax. The five fields are minute, hour, day of month, month, and day of week; `0 8` means 8:00, and each `*` means "every," so this runs at 08:00 every day.
 
-
 ### Error handling
 
 - Call `raise_for_status()` after each request to surface non-2xx responses as exceptions. Log the full response body. The Analytics API typically includes a `message` field with a specific error description.
@@ -476,9 +475,20 @@ The role of the Reporting API ends at producing current, structured records. The
 
 This case suits aggregated report data. For raw, hit-level data or large-volume exports, use [Data Feeds](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) or [Data Warehouse](https://experienceleague.adobe.com/en/docs/analytics/export/data-warehouse/data-warehouse) rather than the Reporting API.
 
-Load the parsed `records` into your destination table to feed an ETL or Extract, Load, Transform (ELT) pipeline. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
+Load the parsed `records` into your destination table to feed an ETL or Extract, Load, Transform (ELT) pipeline, where each record becomes a row in the table shown above. Because a recurring report runs on a schedule, use an upsert keyed on the date so a repeated run updates the existing row instead of creating a duplicate. The exact statement depends on your database driver and schema.
 
-If your pipeline already uses a data-handling library such as [pandas](https://pandas.pydata.org/), you can load the records in a single step. This is shown in the following Python example:
+For example, in PostgreSQL an upsert keyed on the date avoids duplicate rows on repeated runs. Exact syntax varies by database:
+
+```sql
+INSERT INTO analytics_kpis (date, visits, orders, revenue)
+VALUES (%s, %s, %s, %s)
+ON CONFLICT (date) DO UPDATE SET
+  visits  = EXCLUDED.visits,
+  orders  = EXCLUDED.orders,
+  revenue = EXCLUDED.revenue;
+```
+
+For a simpler load where duplicate protection is not needed, a data-handling library such as [pandas](https://pandas.pydata.org/) can append the records in a single step:
 
 ```python
 import pandas as pd
