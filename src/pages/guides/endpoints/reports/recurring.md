@@ -382,7 +382,7 @@ Every use case begins by parsing the JSON response into usable records with the 
 
 ### Inherent JSON positional alignment
 
-Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. For example, the Reporting API JSON response example above is already tabular in meaning, by virtue of the `columnIds` array. Read across every row, the positional response becomes a simple table of named values:
+Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. For example, the Reporting API JSON response example above is already tabular in meaning, by virtue of its rows and column ordering. Taken across all rows, the positional response becomes a simple table of named values:
 
 ```
  date         | visits  | orders | revenue
@@ -391,26 +391,9 @@ Parsing the JSON relies upon understanding the inherent positional array alignme
  2026-05-23   |  676125 |  15219 |  2325169.57
  2026-05-22   |  667478 |  19093 |  2355620.19
 ```
+This is the shape the parsing step produces and every downstream use consumes.
 
-This is the shape the parsing step produces and every downstream use consumes. This positional alignment is initially established in the example request above, with the following JSON:
-
-```json
-"columns": {
-    "columnIds": ["0", "1", "2"]
-}
-```
-
-The response data then shows how the `columnIds` positions of `0`, `1`, and `2` correspond to the positions of the metric values. For May 24, 2026, it shows:
-
-```json
-{
-    "itemId": "1260524",
-    "value": "May 24, 2026",
-    "data": [682171, 18722, 2288544.73]
-}
-```
-
-Each value of `682171`, `18722`, and `2288544.73` in `data` corresponds to the column positions identified in the request:
+The alignment starts in your request, where each metric is assigned a column position:
 
 ```json
 "metrics": [
@@ -420,7 +403,25 @@ Each value of `682171`, `18722`, and `2288544.73` in `data` corresponds to the c
 ]
 ```
 
-For this example, `data[0]` is visits, `data[1]` is orders, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs. In some cases, such as a Slack alert or agentic input, you evaluate or pass the parsed values directly, rather than loading them into a destination.
+The response echoes those positions in `columns.columnIds`:
+
+```json
+"columns": {
+    "columnIds": ["0", "1", "2"]
+}
+```
+
+Each row then returns its metric values in that same order, with no field names:
+
+```json
+{
+    "itemId": "1260524",
+    "value": "May 24, 2026",
+    "data": [682171, 18722, 2288544.73]
+}
+```
+
+So for May 24, 2026, `data[0]` is visits, `data[1]` is orders, and `data[2]` is revenue. Once parsed, the records are ready for whatever your workflow needs. In some cases, such as a Slack alert or agentic input, you evaluate or pass the parsed values directly, rather than loading them into a destination.
 
 ### Parsing with the Python standard library
 
