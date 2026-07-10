@@ -1,4 +1,4 @@
----
+ok---
 title: Automating recurring Analytics reports
 description: Use the Reporting API with rolling date formulas to supply a data pipeline with fresh metrics.
 ---
@@ -382,9 +382,17 @@ Every use case begins by parsing the JSON response into usable records with the 
 
 ### Inherent JSON positional alignment
 
-Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request.
+Parsing the JSON relies upon understanding the inherent positional array alignment in the response. Each entry in the `rows` array contains one dimension value. For `variables/daterangeday`, one entry is shown per day, in the order of `columns.columnIds`, as specified in the request. For example, the Reporting API JSON response example above is already tabular in meaning, by virtue of the `columnIds` array. Read across every row, the positional response becomes a simple table of named values:
 
-For example, in the Reporting API response example above, note the `columnIds`:
+```
+ date         | visits  | orders | revenue
+--------------+---------+--------+-------------
+ 2026-05-24   |  682171 |  18722 |  2288544.73
+ 2026-05-23   |  676125 |  15219 |  2325169.57
+ 2026-05-22   |  667478 |  19093 |  2355620.19
+```
+
+This is the shape the parsing step produces and every downstream use consumes. This positional alignment is initially established in the example request above, with the following JSON:
 
 ```json
 "columns": {
@@ -392,7 +400,7 @@ For example, in the Reporting API response example above, note the `columnIds`:
 }
 ```
 
-The `columnIds` positions of `0`, `1`, and `2` correspond to the positions of the metric values for May 24, 2026, as follows:
+The response data then shows how the `columnIds` positions of `0`, `1`, and `2` correspond to the positions of the metric values. For May 24, 2026, it shows:
 
 ```json
 {
