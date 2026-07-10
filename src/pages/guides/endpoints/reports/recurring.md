@@ -1,4 +1,4 @@
-ok---
+---
 title: Automating recurring Analytics reports
 description: Use the Reporting API with rolling date formulas to supply a data pipeline with fresh metrics.
 ---
