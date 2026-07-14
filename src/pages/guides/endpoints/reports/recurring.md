@@ -47,6 +47,9 @@ Setting up a recurring report for a pipeline includes the following steps:
 
 4. [Parsing the JSON response](#parsing-the-json-response): Parse the JSON response and route the data to your pipeline
 
+The following diagram shows the pipeline flow as outlined above:
+
+![flow](../../../images/recurring-report-flow-gold.svg)
 
 ## Automating token retrieval
 
