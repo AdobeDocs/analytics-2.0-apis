@@ -49,7 +49,7 @@ Setting up a recurring report for a pipeline includes the following steps:
 
 The following diagram shows the pipeline flow as outlined above:
 
-![flow](../../../images/recurring-flow-resize.svg)
+![flow](../../../images/recurring-report-flow-resized.svg)
 
 ## Automating token retrieval
 
