@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 560" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555555"/>
+    </marker>
+  </defs>
+
+  <!-- title chip -->
+  <rect x="60" y="30" width="360" height="30" rx="6" fill="#ffffff" stroke="#cfd8e3" stroke-width="1"/>
+  <text x="76" y="50" fill="#242424" font-size="12" font-weight="600">Python Analytics Report Processing Pipeline</text>
+
+  <!-- edges -->
+  <g stroke="#555555" stroke-width="1.5" fill="none" marker-end="url(#arrow)">
+    <line x1="250" y1="196" x2="250" y2="243"/>
+    <line x1="250" y1="300" x2="250" y2="327"/>
+    <line x1="250" y1="384" x2="250" y2="411"/>
+    <path d="M402,438 C460,438 470,150 512,150"/>
+    <path d="M402,438 C460,438 470,250 512,250"/>
+    <path d="M402,438 C470,438 480,350 512,350"/>
+    <path d="M402,438 C470,438 480,450 512,450"/>
+  </g>
+
+  <!-- report_script container -->
+  <rect x="70" y="80" width="360" height="450" rx="12" fill="#eef4ff" stroke="#6b8ecb" stroke-width="1.5"/>
+  <text x="92" y="108" fill="#33404F" font-size="13" font-weight="700" font-family="Consolas, Menlo, monospace">report_script</text>
+
+  <!-- cron clock -->
+  <circle cx="250" cy="160" r="22" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.5"/>
+  <line x1="250" y1="160" x2="250" y2="147" stroke="#1c1c1c" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="250" y1="160" x2="259" y2="165" stroke="#1c1c1c" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="250" y="205" text-anchor="middle" fill="#242424" font-size="13" font-weight="600">cron</text>
+  <text x="250" y="221" text-anchor="middle" fill="#555555" font-size="11">nightly trigger</text>
+
+  <!-- step boxes -->
+  <rect x="100" y="243" width="300" height="54" rx="8" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.5"/>
+  <text x="250" y="265" text-anchor="middle" fill="#242424" font-size="14" font-weight="600">Retrieve access token</text>
+  <text x="250" y="284" text-anchor="middle" fill="#555555" font-size="11">POST /ims/token/v3</text>
+
+  <rect x="100" y="327" width="300" height="54" rx="8" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.5"/>
+  <text x="250" y="349" text-anchor="middle" fill="#242424" font-size="14" font-weight="600">Request report</text>
+  <text x="250" y="368" text-anchor="middle" fill="#555555" font-size="11">POST /reports &#183; dateRange td-7d/td</text>
+
+  <rect x="100" y="411" width="300" height="54" rx="8" fill="#ffffff" stroke="#1c1c1c" stroke-width="1.5"/>
+  <text x="250" y="433" text-anchor="middle" fill="#242424" font-size="14" font-weight="600">Parse JSON response</text>
+  <text x="250" y="452" text-anchor="middle" fill="#555555" font-size="11">into records</text>
+
+  <!-- alert card -->
+  <rect x="512" y="110" width="300" height="80" rx="10" fill="#fff4e6" stroke="#e0a35c" stroke-width="1.5"/>
+  <path d="M548,145 a12,12 0 0 1 24,0 c0,10 4,13 4,16 h-32 c0,-3 4,-6 4,-16 z" fill="none" stroke="#e0a35c" stroke-width="1.8"/>
+  <line x1="556" y1="165" x2="564" y2="165" stroke="#e0a35c" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="600" y="147" fill="#242424" font-size="14" font-weight="600">Trigger an alert</text>
+  <text x="600" y="166" fill="#555555" font-size="11">custom threshold</text>
+
+  <!-- agent card -->
+  <rect x="512" y="210" width="300" height="80" rx="10" fill="#f2e9ff" stroke="#8c6bcb" stroke-width="1.5"/>
+  <rect x="548" y="238" width="26" height="22" rx="5" fill="none" stroke="#8c6bcb" stroke-width="1.8"/>
+  <line x1="561" y1="232" x2="561" y2="238" stroke="#8c6bcb" stroke-width="1.8"/>
+  <circle cx="556" cy="249" r="2.2" fill="#8c6bcb"/>
+  <circle cx="566" cy="249" r="2.2" fill="#8c6bcb"/>
+  <text x="600" y="247" fill="#242424" font-size="14" font-weight="600">Supply input to an agent</text>
+  <text x="600" y="266" fill="#555555" font-size="11">as context</text>
+
+  <!-- database card -->
+  <rect x="512" y="310" width="300" height="80" rx="10" fill="#e6f4ea" stroke="#5ca377" stroke-width="1.5"/>
+  <ellipse cx="561" cy="338" rx="13" ry="4.5" fill="none" stroke="#5ca377" stroke-width="1.8"/>
+  <path d="M548,338 v16 a13,4.5 0 0 0 26,0 v-16" fill="none" stroke="#5ca377" stroke-width="1.8"/>
+  <text x="600" y="347" fill="#242424" font-size="14" font-weight="600">Load into a database</text>
+  <text x="600" y="366" fill="#555555" font-size="11">upsert on date</text>
+
+  <!-- csv card -->
+  <rect x="512" y="410" width="300" height="80" rx="10" fill="#fdecec" stroke="#c76a6a" stroke-width="1.5"/>
+  <path d="M551,435 h14 l7,7 v18 h-21 z" fill="none" stroke="#c76a6a" stroke-width="1.8"/>
+  <path d="M565,435 v7 h7" fill="none" stroke="#c76a6a" stroke-width="1.8"/>
+  <text x="600" y="447" fill="#242424" font-size="14" font-weight="600">Write to a CSV file</text>
+  <text x="600" y="466" fill="#555555" font-size="11">stdlib csv</text>
+</svg>
