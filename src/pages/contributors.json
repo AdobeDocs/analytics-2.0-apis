@@ -1,7 +1,7 @@
 {
-  "total": 103,
+  "total": 104,
   "offset": 0,
-  "limit": 103,
+  "limit": 104,
   "data": [
     {
       "page": "/",
@@ -95,6 +95,13 @@
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
       "lastUpdated": "4/7/2026"
+    },
+    {
+      "page": "/apis/marketing-channels",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
+      ],
+      "lastUpdated": "7/30/2026"
     },
     {
       "page": "/apis/report-suites",
