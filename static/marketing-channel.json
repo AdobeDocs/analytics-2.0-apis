@@ -1,0 +1,240 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Adobe Analytics Marketing Channels API",
+    "description": "The Adobe Analytics Marketing Channels API retrieves the marketing channel configurations for one or more report suites. Although this is a retrieval operation, it uses the POST method (not GET) so that a list of report suite IDs can be supplied in the request body. This endpoint does not create or modify marketing channels.\n\n Note: Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://analytics.adobe.io/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Marketing Channels",
+      "description": "Retrieve marketing channel configurations for report suites."
+    }
+  ],
+  "paths": {
+    "/{globalCompanyId}/marketingchannels": {
+      "post": {
+        "tags": [
+          "Marketing Channels"
+        ],
+        "summary": "Get marketing channels for one or more report suites",
+        "description": "Retrieves the marketing channel configurations for one or more report suites. This endpoint uses the POST method (not GET) so that a list of report suite IDs can be supplied in the request body; it does not create or modify marketing channels.",
+        "operationId": "getMarketingChannels",
+        "parameters": [
+          {
+            "name": "globalCompanyId",
+            "in": "path",
+            "description": "The Global Company ID for the Adobe Analytics organization.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/authorization"
+          },
+          {
+            "$ref": "#/components/parameters/x-api-key"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarketingChannelsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A list of report suites, each with its configured marketing channels.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MarketingChannelsForReportSuite"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input. rsidList is required and must be non-empty.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The user does not have access to a requested report suite.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A requested report suite could not be found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsAsrErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "x-user-auth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MarketingChannelsRequest": {
+        "type": "object",
+        "required": [
+          "rsidList"
+        ],
+        "properties": {
+          "rsidList": {
+            "type": "array",
+            "description": "A list of report suite IDs for which to retrieve marketing channel configurations. Required and must be non-empty.",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "examplersid"
+            ]
+          }
+        }
+      },
+      "MarketingChannelsForReportSuite": {
+        "type": "object",
+        "properties": {
+          "rsid": {
+            "type": "string",
+            "description": "The report suite ID that the returned marketing channels belong to.",
+            "example": "examplersid"
+          },
+          "marketingChannels": {
+            "type": "array",
+            "description": "The list of marketing channels configured for the report suite.",
+            "items": {
+              "$ref": "#/components/schemas/AnalyticsMarketingChannel"
+            }
+          }
+        }
+      },
+      "AnalyticsMarketingChannel": {
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Unique identifier for the marketing channel within the report suite.",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the marketing channel.",
+            "example": "Paid Search"
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the marketing channel is enabled for the report suite.",
+            "example": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The marketing channel type. Sample data shows \"online\"; the full set of allowed values is pending SME confirmation.",
+            "example": "online"
+          },
+          "color": {
+            "type": "string",
+            "description": "Hexadecimal color code (without the leading #) used to display the channel in the interface.",
+            "example": "0F59A9"
+          },
+          "channelBreakdown": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Numeric indicator of how the channel is broken down in reporting. Sample data shows 0; meaning and range are pending SME confirmation.",
+            "example": 0
+          },
+          "overrideLastTouchChannel": {
+            "type": "boolean",
+            "description": "Whether this channel overrides the last-touch channel in attribution.",
+            "example": false
+          }
+        }
+      },
+      "AnalyticsAsrErrorResponse": {
+        "type": "object",
+        "properties": {
+          "errorDescription": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "errorId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "x-user-auth": {
+        "type": "apiKey",
+        "description": "IMS user token",
+        "name": "x-user-auth",
+        "in": "header"
+      }
+    },
+    "parameters": {
+      "authorization": {
+        "name": "Authorization",
+        "in": "header",
+        "description": "The access token copied from your AA API client integration, prefixed with \"Bearer \".",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "x-api-key": {
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The API key copied from your AA API client integration.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
