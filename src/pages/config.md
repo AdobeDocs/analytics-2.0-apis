@@ -19,6 +19,7 @@
         - [Data Sources APIs](apis/data-sources.md)
         - [Data Warehouse APIs](apis/data-warehouse.md)
         - [Livestream APIs](apis/livestream.md)
+        - [Marketing Channels APIs](apis/marketing-channels.md)
         - [Report Suites APIs](apis/report-suites.md)
     - [Use cases](guides/use-cases/index.md)
     - [Support](support.md)
