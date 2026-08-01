@@ -1,7 +1,7 @@
 {
-  "total": 104,
+  "total": 105,
   "offset": 0,
-  "limit": 104,
+  "limit": 105,
   "data": [
     {
       "page": "/",
@@ -117,7 +117,7 @@
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4"
       ],
-      "lastUpdated": "7/31/2026"
+      "lastUpdated": "8/1/2026"
     },
     {
       "page": "/guides/",
@@ -136,7 +136,7 @@
         "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "3/13/2026"
+      "lastUpdated": "8/1/2026"
     },
     {
       "page": "/guides/endpoints/annotations/",
@@ -569,6 +569,13 @@
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
       "lastUpdated": "4/2/2026"
+    },
+    {
+      "page": "/guides/endpoints/marketing-channels",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
+      ],
+      "lastUpdated": "8/1/2026"
     },
     {
       "page": "/guides/endpoints/metrics/",
