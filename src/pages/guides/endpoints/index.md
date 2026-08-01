@@ -105,6 +105,12 @@ Retrieve Analytics traffic information in real time.
 
 <DiscoverBlock slots="link, text"/>
 
+[Marketing Channels API](marketing-channels.md)
+
+Retrieve the marketing channels configured for one or more report suites.
+
+<DiscoverBlock slots="link, text"/>
+
 [Metrics API](metrics/index.md)
 
 Retrieve metrics information in a report suite.

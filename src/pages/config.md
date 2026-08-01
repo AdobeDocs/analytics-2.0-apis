@@ -80,6 +80,7 @@
             - [FAQ](guides/endpoints/livestream/faq.md)
             - [Client implementation](guides/endpoints/livestream/clientcode.md)
             - [Release notes](guides/endpoints/livestream/release-notes.md)
+        - [Marketing Channels](guides/endpoints/marketing-channels.md)
         - [Metrics](guides/endpoints/metrics/index.md)
         - [Projects](guides/endpoints/projects/index.md)
             - [Definition data structure](guides/endpoints/projects/definition.md)
