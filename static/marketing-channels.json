@@ -105,12 +105,7 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "x-user-auth": []
-          }
-        ]
+        }
       }
     }
   },
@@ -206,14 +201,6 @@
             "type": "string"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "x-user-auth": {
-        "type": "apiKey",
-        "description": "IMS user token",
-        "name": "x-user-auth",
-        "in": "header"
       }
     },
     "parameters": {
