@@ -12,8 +12,7 @@
   ],
   "tags": [
     {
-      "name": "Marketing Channels",
-      "description": "Retrieve marketing channel configurations for report suites."
+      "name": "Marketing Channels"
     }
   ],
   "paths": {
@@ -22,7 +21,7 @@
         "tags": [
           "Marketing Channels"
         ],
-        "summary": "Get marketing channels for one or more report suites",
+        "summary": "Retrieve marketing channels for report suites",
         "description": "Retrieves the marketing channel configurations for one or more report suites. This endpoint uses the POST method (not GET) so that a list of report suite IDs can be supplied in the request body; it does not create or modify marketing channels.",
         "operationId": "getMarketingChannels",
         "parameters": [
