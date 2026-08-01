@@ -172,7 +172,7 @@
           },
           "type": {
             "type": "string",
-            "description": "The marketing channel type. Sample data shows \"online\"; the full set of allowed values is pending SME confirmation.",
+            "description": "The marketing channel type (for example, `online`).",
             "example": "online"
           },
           "color": {
@@ -183,7 +183,7 @@
           "channelBreakdown": {
             "type": "integer",
             "format": "int32",
-            "description": "Numeric indicator of how the channel is broken down in reporting. Sample data shows 0; meaning and range are pending SME confirmation.",
+            "description": "A numeric indicator of how the channel is broken down in reporting.",
             "example": 0
           },
           "overrideLastTouchChannel": {
