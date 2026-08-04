@@ -57,7 +57,7 @@ These components can be configured in the Adobe Analytics UI under **Admin > Rep
 
 ### Marketing channels
 
-The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](endpoints/marketing-channels).
+The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/marketing-channels).
 
 The 2.0 APIs do not currently support reading marketing channel rules, expiration settings, or cost data, or creating or modifying channels. Marketing channels are created in Analysis Workspace.
 
