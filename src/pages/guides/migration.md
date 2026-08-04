@@ -20,12 +20,52 @@ This guide is intended to help users of the 1.3 and 1.4 versions of the Analytic
 
 ## Current limitations
 
-The 2.0 APIs currently do not support the following:
+The 2.0 APIs currently do not support real-time, single-event data insertion. Batch and ETL-style data insertion is supported through the 2.0 Bulk Data Insertion API.
 
-* Data Sources
-* Data Insertion
+The following sections describe additional capabilities that have limited or no support in the 2.0 APIs.
 
-If you rely upon these features, you can still use a hybrid approach of using the 1.4 APIs for the above features and 2.0 APIs for everything else.
+### Report suite administration
+
+The 2.0 APIs support reading the following report suite settings:
+
+* Report suite name, time zone, currency, and calendar type
+* List of available time zones
+
+The 2.0 APIs do not currently support:
+
+* Creating or updating report suite settings through the API
+* Report suite settings beyond the fields listed above, including localization and site defaults
+* Bot rules
+* Internal URL filters
+* IP address exclusions
+* Report suite user and group permissions
+
+These settings can be configured in the Adobe Analytics UI under **Admin > Report Suites**.
+
+Virtual report suites are a separate resource with broader 2.0 API support, including create, update, and delete, and are not affected by the limitations above. For more information, see the [Report Suites API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/report-suites).
+
+### eVars, props, success events, and list variables
+
+The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimensions API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/#tag/Dimensions) and the [Dimension attribution models guide](endpoints/dimensions/attmodel).
+
+The 2.0 APIs do not currently support:
+
+* Creating or updating eVars, props, success events, or list variables through the API
+* Reading prop, success event, and list variable configuration as configuration objects (these are available as reporting dimensions and metrics only)
+
+These components can be configured in the Adobe Analytics UI under **Admin > Report Suites > Component Manager**.
+
+### Marketing channels
+
+The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](endpoints/marketing-channels).
+
+The 2.0 APIs do not currently support reading marketing channel rules, expiration settings, or cost data, or creating or modifying channels. Marketing channels are created in Analysis Workspace.
+
+### Data Warehouse
+
+The 2.0 Data Warehouse APIs support scheduling and management of Data Warehouse requests. They do not return report data directly in the API response. To retrieve report data, configure a destination, such as SFTP or email, on the scheduled request.
+
+Adobe evaluates these items on an ongoing basis as part of standard roadmap planning. No committed delivery date is available for the items listed above. Customers who require any of these capabilities should contact their Adobe Account Team.
 
 ## How the 2.0 APIs work
 
@@ -34,8 +74,6 @@ The 2.0 APIs introduce some fundamental changes in their operation from the 1.4 
 ### HTTP methods
 
 The 2.0 APIs use standard HTTP methods for retrieving resources (`GET`), creating child resources (`POST`), creating or replacing resources (`PUT`), updating (parts of) a resource (`PATCH`) or deleting a resource (`DELETE`).
-
-The 1.4 APIs only use the HTTP `POST` method for all of its operations, irrespective of its intent.
 
 ### Global Company ID
 
