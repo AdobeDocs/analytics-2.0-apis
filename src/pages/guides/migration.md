@@ -28,11 +28,11 @@ By migrating to the 2.0 APIs, you can take advantage of the following features:
 
 Some Analytics 2.0 APIs currently have limited capabilities. These are described in the following sections:
 
-[Data insertion](#Data-insertion)
-[Report suite administration](#Report-suite-administration)
-[eVars](#eVars)
-[Marketing channels](#Marketing-channels)
-[Data Warehouse](#Data-warehouse)
+* [Data insertion](#Data-insertion)
+* [Report suite administration](#Report-suite-administration)
+* [eVars](#eVars)
+* [Marketing channels](#Marketing-channels)
+* [Data Warehouse](#Data-warehouse)
 
 ### Data insertion
 
