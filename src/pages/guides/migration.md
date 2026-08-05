@@ -46,7 +46,7 @@ Virtual report suites are a separate resource with broader 2.0 API support, incl
 
 ### eVars, props, success events, and list variables
 
-The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimensions API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/#tag/Dimensions) and the [Dimension attribution models guide](endpoints/dimensions/attmodel).
+The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimensions API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/#tag/Dimensions) and the [Dimension attribution models guide](endpoints/dimensions/attmodel.md).
 
 The 2.0 APIs do not currently support:
 
@@ -57,7 +57,7 @@ These components can be configured in the Adobe Analytics UI under **Admin > Rep
 
 ### Marketing channels
 
-The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](endpoints/marketing-channels).
+The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](endpoints/marketing-channels.md).
 
 The 2.0 APIs do not currently support reading marketing channel rules, expiration settings, or cost data, or creating or modifying channels. Marketing channels are created in Analysis Workspace.
 
