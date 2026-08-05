@@ -10,7 +10,7 @@ This guide is intended to help users of the 1.3 and 1.4 versions of the Analytic
 * Faster response times with simpler and more efficient query methods, eliminating the need for polling
 * Programmatic capability for queries and dynamic report updates
 * More graceful error handling
-* Flexible functioning to do to anything you can do in Analysis Workspace
+* Flexible functioning to do anything you can do in Analysis Workspace
 * Consistency and matching of API calls to UI actions
 * Access to all Attribution IQ models used in Analysis Workspace
 * Access to all Anomaly Detection algorithms used in Analysis Workspace
@@ -166,15 +166,15 @@ returns the following detailed information for the `browser` dimension:
 
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
-The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reporting API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports).
+The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reporting API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports)).
 
 See [Dimensions](endpoints/dimensions/index.md) and [Metrics](endpoints/metrics/index.md) endpoint guides for more information.
 
 ## Reports
 
-This section describes differences between 1.4 and 2.0 report APIs.  The 2.0 `reports` endpoint includes many important changes. It uses the same underlying process as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call, and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
+This section describes differences between 1.4 and 2.0 report APIs. The 2.0 `reports` endpoint includes many important changes. It uses the same underlying process as the Analysis Workspace UI. Each API call matches an action in the UI, so you can test the functionality of an interaction in the UI first to plan your calls. The `/reports` endpoint is a simple REST GET call, and no longer requires a queue/get workflow to retrieve data. This simplifies development and maintenance of API clients.
 
-The `/reports` endpoint is intended to run small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. When migrating to the 2.0  `/reports` endpoint, split these large requests into multiple simpler and quicker calls. Following this practice, results are provided more quickly, and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
+The `/reports` endpoint is intended to run small requests quickly. While 1.3/1.4 APIs handle requests that can require 1-2 days to process, the 2.0 APIs require many smaller requests put together in a series. The 1.3/1.4 APIs might include requests for data from a large time frame, lots of metrics at once, or many breakdowns. When migrating to the 2.0 `/reports` endpoint, split these large requests into multiple simpler and quicker calls. Following this practice, results are provided more quickly, and can be evaluated in a more timely manner. Multiple breakdowns are not requested automatically.
 
 ### Example report differences
 
@@ -420,9 +420,9 @@ The [Analytics 2.0 real-time report API](https://developer.adobe.com/analytics-a
 
 This section describes the difference between Data Warehouse 1.4 and 2.0 APIs.
 
-With 1.4 APIs, you can run Data Warehouse reports with the `Report.Run` method in a POST request. This is requested by specifying `source":"warehouse"` in the `reportDescription` object in the request payload. With 2.0 APIs, Data Warehouse functions similar to an export service that includes granular scheduling and detailed reports generated from scheduled requests. The Data Warehouse reports returned by the 2.0 APIs do not return analytics data.
+With 1.4 APIs, you can run Data Warehouse reports with the `Report.Run` method in a POST request. This is requested by specifying `source":"warehouse"` in the `reportDescription` object in the request payload. With 2.0 APIs, Data Warehouse functions similarly to an export service that includes granular scheduling and detailed reports generated from scheduled requests. The Data Warehouse reports returned by the 2.0 APIs do not return analytics data.
 
-Currently, you must make your first scheduled request in Analysis Workspace. Subsequently, you can create additional scheduled requests, update requests, and retrieve request information with the 2.0 APIs. You can also update and retrieve reports generated from scheduled requests. The 2.0 APIs include destination options for sending request information and reports. For more information, refer to both the [Data Warehouse 2.0 AI Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Warehouse%20APIs) and the [Data Warehouse 2.0 API Endpoint Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse).
+Currently, you must make your first scheduled request in Analysis Workspace. Subsequently, you can create additional scheduled requests, update requests, and retrieve request information with the 2.0 APIs. You can also update and retrieve reports generated from scheduled requests. The 2.0 APIs include destination options for sending request information and reports. For more information, refer to both the [Data Warehouse 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Warehouse%20APIs) and the [Data Warehouse 2.0 API Endpoint Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse).
 
 ## Data Sources
 
@@ -442,9 +442,9 @@ With this 2.0 example, the report suite ID and the data source ID are added as q
 
 ### Managing accounts and jobs
 
-The 1.4 APIs include one method for retrieving current jobs, as shown above, as well as functions for saving, uploading, restarting, and deleting. The 2.0 APIs divide requests into working with accounts and working with jobs. Account-based endpoints allow you to create, view, and delete data sources accounts. Job-based endpoints include three methods for getting all jobs,  getting single job, and for uploading a file to a data source account. When you upload a file with the **PUT data** endpoint, a job is automatically created for you to manage.
+The 1.4 APIs include one method for retrieving current jobs, as shown above, as well as functions for saving, uploading, restarting, and deleting. The 2.0 APIs divide requests into working with accounts and working with jobs. Account-based endpoints allow you to create, view, and delete data sources accounts. Job-based endpoints include three methods for getting all jobs, getting a single job, and for uploading a file to a data source account. When you upload a file with the **PUT data** endpoint, a job is automatically created for you to manage.
 
-For more information, see the [2.0 Data Sources API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-sources/#get-all-jobs) and the [2.0 API Data Sources API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/data-sources).
+For more information, see the [2.0 Data Sources API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-sources/#get-all-jobs) and the [2.0 Data Sources API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/data-sources).
 
 ## Classifications
 
