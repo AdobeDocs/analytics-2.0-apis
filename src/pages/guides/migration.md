@@ -20,9 +20,23 @@ This guide is intended to help users of the 1.3 and 1.4 versions of the Analytic
 
 ## Current limitations
 
-The 2.0 APIs currently do not support real-time, single-event data insertion. Batch and ETL-style data insertion is supported through the 2.0 Bulk Data Insertion API.
+Some Analytics 2.0 APIs currently have limited capabilities. These are described in the following sections:
 
-The following sections describe additional capabilities that have limited or no support in the 2.0 APIs.
+[Data insertion](#Data-insertion)
+[Report suite administration](#Report-suite-administration)
+[eVars](#eVars)
+[Marketing channels](#Marketing-channels)
+[Data Warehouse](#Data-warehouse)
+
+### Data insertion
+
+The existing 1.4 Data Insertion API is not impacted by the August 12, 2026 end-of-life retirement. This API utilizes a different path and therefore remains supported. 
+
+Adobe recommends using the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion/) for new or batch-oriented implementations. When the integration requires event-by-event, or high-frequency insertion, continue using the [1.4 Data Insertion API](https://developer.adobe.com/analytics-apis/docs/1.4/guides/data-insertion/).
+
+#### Analytics 2.0 Data Insertion API details
+
+The 2.0 Data insertion APIs do not provide the same event-by-event Data Insertion API interface as the 1.4 API. Batch and ETL-style data insertion is supported through the 2.0 Bulk Data Insertion API. As a result, 2.0 APIs currently do not support real-time, single-event data insertion.
 
 ### Report suite administration
 
@@ -44,7 +58,9 @@ These settings can be configured in the Adobe Analytics UI under **Admin > Repor
 
 Virtual report suites are a separate resource with broader 2.0 API support, including create, update, and delete, and are not affected by the limitations above. For more information, see the [Report Suites API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/report-suites).
 
-### eVars, props, success events, and list variables
+### eVars
+
+This section describes limitations with eVars, props, success events, and list variables.
 
 The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimensions API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/#tag/Dimensions) and the [Dimension attribution models guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/dimensions/attmodel).
 
