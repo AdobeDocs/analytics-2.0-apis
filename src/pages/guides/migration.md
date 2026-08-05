@@ -38,11 +38,11 @@ Some Analytics 2.0 APIs currently have limited capabilities. These are described
 
 The existing 1.4 Data Insertion API is not impacted by the August 12, 2026 end-of-life retirement. This API utilizes a different path and therefore remains supported. 
 
-Adobe recommends using the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion/) for new or batch-oriented implementations. When the integration requires event-by-event, or high-frequency insertion, continue using the [1.4 Data Insertion API](https://developer.adobe.com/analytics-apis/docs/1.4/guides/data-insertion/).
+Adobe recommends using the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion) for new or batch-oriented implementations. When the integration requires event-by-event, or high-frequency insertion, continue using the [1.4 Data Insertion API](https://developer.adobe.com/analytics-apis/docs/1.4/guides/data-insertion/).
 
 #### Analytics 2.0 Data Insertion API details
 
-The 2.0 Data insertion APIs do not provide the same event-by-event Data Insertion API interface as the 1.4 API. Batch and ETL-style data insertion is supported through the 2.0 Bulk Data Insertion API. As a result, 2.0 APIs currently do not support real-time, single-event data insertion.
+The 2.0 data insertion APIs do not provide the same event-by-event interface as the 1.4 API. Batch and ETL-style data insertion is supported through the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion). As a result, 2.0 APIs currently do not support real-time, single-event data insertion.
 
 ### Report suite administration
 
