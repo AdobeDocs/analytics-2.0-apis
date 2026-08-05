@@ -5,7 +5,7 @@ description: Steps to move from previous versions of the Analytics API to 2.0.
 
 # Migrating to Adobe Analytics 2.0 APIs
 
-This guide is intended to help users of the 1.3 and 1.4 versions of the Analytics APIs migrate to the newer and more capable 2.0 APIs. By migrating to the 2.0 APIs, you can take advantage of the following features:
+This guide is intended to help users of the 1.3 and 1.4 versions of the Analytics APIs migrate to the newer and more capable 2.0 APIs. Adobe Analytics 1.4 APIs [will be retired on August 12, 2026](https://developer.adobe.com/analytics-apis/docs/1.4/guides/eol). By migrating to the 2.0 APIs, you can take advantage of the following features:
 
 * Faster response times with simpler and more efficient query methods, eliminating the need for polling
 * Programmatic capability for queries and dynamic report updates
