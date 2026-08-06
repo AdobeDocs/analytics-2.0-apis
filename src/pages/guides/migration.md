@@ -85,7 +85,7 @@ The 2.0 APIs do not currently support reading marketing channel rules, expiratio
 
 ### Data Warehouse
 
-The 2.0 Data Warehouse APIs support scheduling and management of Data Warehouse requests. They do not return report data directly in the API response. To retrieve report data, configure a destination, such as SFTP or email, on the scheduled request.
+The [2.0 Data Warehouse APIs](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) support scheduling and management of Data Warehouse requests. They do not return report data directly in the API response. To retrieve report data, configure a destination, such as SFTP or email, on the scheduled request.
 
 Adobe evaluates these items on an ongoing basis as part of standard roadmap planning. No committed delivery date is available for the items listed above. Customers who require any of these capabilities should contact their Adobe Account Team.
 
