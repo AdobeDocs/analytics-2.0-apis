@@ -5,17 +5,16 @@ description: Retrieve dimensions information using the API
 
 # Analytics Dimensions API
 
-The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions programmatically through Adobe Developer. The endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information. 
+The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions programmatically through Adobe Developer. 
 
-For information dimension attribution models, see the [Dimension API attribution models guide](attmodel.md).
+The Dimensions endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information. This guide describes the object members for the Dimension API except those used for retrieving attribution models. For more information, see the [Dimension API attribution models guide](attmodel.md).
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
-
 
 This guide includes instructions for using the following endpoints:
 
 * GET multiple dimensions: Returns a list of dimensions for a given report suite ID
-* GET a single dimensions: Returns a dimension corresponding to a supplied ID for a given report suite
+* GET a single dimension: Returns a dimension corresponding to a supplied ID for a given report suite
 
 ## GET multiple dimensions
 
@@ -108,7 +107,7 @@ The GET dimensions endpoint includes the following request query parameters:
 | `segmentable` | optional | boolean | Whether to include only dimensions that are valid within a segment |
 | `reportable` | optional | boolean | Whether to include only dimensions that are valid within the report |
 | `classifiable` | optional | boolean | Whether to include only classifiable dimensions |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, `attributionModel`, and `categories` |
+| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, `attributionModel`, `categories`, `allocationType`, `expirationType`, `expirationCustomDays`, `dataType`, `bindingEvents`, and `merchandisingSyntax` |
 
 #### Response example details
 
@@ -117,7 +116,7 @@ The JSON response example above shows the following details:
 * Information for two `classifiable` dimensions in the `examplersid` report suite, including `campaign` and `clickmaplink`.
 * The `title` and `name` values for each dimension.
 * Both dimensions have the same data `type`, set as `string`.
-* The dimensions differ in `category`. The `category` for `campaign` is `Traffic sources`. The `category` for `clickmaplink` is `ClickMap`.
+* The dimensions differ in `category`. The `category` for `campaign` is `Traffic Sources`. The `category` for `clickmaplink` is `ClickMap`.
 * Both dimensions are `reportable` in `oberon`. Both are also `segmentable`.
 * The dimension `campaign` does not have any categories associated with it, but the `clickmaplink` dimension is associated with `Activity Map`.
 
@@ -132,18 +131,58 @@ The GET dimensions endpoint includes the following response parameters:
 | `name` | string | Dimension name |
 | `type` | array of enums | Lists the data type of the dimension |
 | `category` | string | Product category |
-| `categories` | string | Product categories. An extra metadata item in response to the `expansion` request parameter. |
+| `categories` | array (string) | Product categories. An extra metadata item in response to the `expansion` request parameter. |
 | `support` | string | Support information |
 | `pathable` | boolean | Whether the report/dimension is pathing enabled |
 | `parent` | string | Parent dimension |
 | `extraTitleInfo` | string | Additional title info |
 | `segmentable` | boolean | Whether the dimension is segmentable |
-| `reportable` | array (string) | Whether the dimension is segmentable |
+| `reportable` | array (string) | Whether the dimension is reportable |
 | `description` | string | Contents of dimension description field in report|
 | `allowedForReporting` | boolean | Whether the dimension is set to be allowed for reporting. An extra metadata item in response to the `expansion` request parameter. |
-| `attributionModel` | string | For a list of attribution models, see [Attribution models and lookback windows](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/attribution/models) See the [Dimension API attribute models guide](attmodel.md) for a complete description. |
-| `noneSettings` | boolean | Whether "none" item report setting is set.  |
+| `attributionModel` | string | For a list of attribution models, see [Attribution models and lookback windows](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/attribution/models). See the [Dimension API attribution models guide](attmodel.md) for a complete description. |
+| `noneSettings` | boolean | Whether "none" item report setting is set. |
 | `tags` | object | An extra metadata item in response to the `expansion` request parameter. This can include the tag ID, tag name, tag description, and a list of components associated the tag. |
+
+Additional eVar configuration fields are described in [eVar configuration expansions](#evar-configuration-expansions) below.
+
+#### eVar configuration expansions
+
+The following response fields describe an eVar's allocation, expiration, and merchandising configuration. Each is requested through the `expansion` parameter and is populated only for eVar dimensions. For attribution model details, see the [Dimension API attribution models guide](attmodel.md).
+
+| Parameter | Type | Allowed values | Description |
+| --- | --- | -- | -- |
+| `allocationType` | string | `most_recent_last`, `original_value_first`, `linear`, `linear_to_items`, `merchandising_first`, `merchandising_last` | The configured allocation type for the eVar. Preserves distinctions that `attributionModel.func` collapses. |
+| `expirationType` | string | `visit`, `page_view`, `never`, `minute`, `hour`, `day`, `week`, `month`, `quarter`, `year`, `purchase`, `product_view`, `cart_open`, `cart_checkout`, `cart_add`, `cart_remove`, `cart_view`, `event` | The configured expiration type for the eVar, determining how long the value persists. |
+| `expirationCustomDays` | integer | — | Number of days in the expiration window. Meaningful when `expirationType` is `day`. |
+| `dataType` | string | `text`, `counter` | The eVar storage type. |
+| `bindingEvents` | array (string) | — | Metric IDs that trigger merchandising binding. Populated only for merchandising eVars configured with event triggers. |
+| `merchandisingSyntax` | string | `product`, `conversion_variable` | Merchandising binding style. Populated only for merchandising eVars. |
+| `ecomAllocationType` | string | `first`, `last`, `merchandising` | High-level allocation bucket. Returned automatically when `attributionModel` is requested; it does not have its own `expansion` flag. |
+
+These fields describe the eVar configuration and are distinct from the `attributionModel` object: `allocationType` differs from `attributionModel.func`, and `expirationType` differs from `attributionModel.expiration`. See the [Dimension API attribution models guide](attmodel.md) for the `attributionModel` object.
+
+The following example shows these fields for an eVar dimension:
+
+```json
+{
+  "id": "variables/evar1",
+  "title": "Campaign Code",
+  "name": "Campaign Code",
+  "type": "string",
+  "category": "Conversion",
+  "dataType": "text",
+  "allocationType": "linear",
+  "ecomAllocationType": "last",
+  "expirationType": "visit",
+  "expirationCustomDays": null,
+  "bindingEvents": [],
+  "merchandisingSyntax": null,
+  "attributionModel": {
+    "func": "allocation-lastTouch_dim"
+  }
+}
+```
 
 ## GET a single dimension
 
@@ -153,15 +192,14 @@ Use this endpoint to retrieve information for a specified dimension in a report 
 
 ### Request and response examples
 
-Click the **Request** tab in the following example to see a cURL request. Click the **Response tab** to see a successful JSON response for the request.
+Click the **Request** tab in the following example to see a cURL request. Click the **Response** tab to see a successful JSON response for the request.
 
 <CodeBlock slots="heading, code" repeat="2" languages="CURL,JSON"/>
 
 #### Request
 
 ```sh
-curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting
-" \
+curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/dimensions/clickmaplink?rsid=examplersid&locale=en_US&expansion=allowedForReporting" \
     -H "x-api-key: {CLIENT_ID}" \
     -H "Authorization: Bearer {ACCESS_TOKEN}"
 ```
@@ -205,10 +243,10 @@ The GET dimensions ID endpoint includes the following request query parameters:
 
 | Parameter | Req/Opt | Type | Description |
 | --- | --- | -- | -- |
-| `id` | required | string | Dimenstion ID (e.g.`evar1`) |
+| `id` | required | string | Dimension ID (e.g. `evar1`) |
 | `rsid` | required | string | Report suite ID |
 | `locale` | optional | string | The specified language |
-| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, and `categories` |
+| `expansion` | optional | array (string) | A comma-delimited list of additional metadata to items, including `tags`, `allowedForReporting`, `attributionModel`, `categories`, `allocationType`, `expirationType`, `expirationCustomDays`, `dataType`, `bindingEvents`, and `merchandisingSyntax` |
 
 ### Response example details
 
