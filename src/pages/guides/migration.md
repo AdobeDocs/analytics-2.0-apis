@@ -68,7 +68,7 @@ Virtual report suites are a separate resource with broader 2.0 API support, incl
 
 This section describes limitations with eVars, props, success events, and list variables.
 
-The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimensions API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/#tag/Dimensions) and the [Dimension attribution models guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/dimensions/attmodel).
+The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimension attribution models guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/dimensions/attmodel) and the [Dimensions API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/dimensions/#evar-configuration-expansions).
 
 The 2.0 APIs do not currently support:
 
