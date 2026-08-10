@@ -51,6 +51,12 @@ Create, update, retrieve, and manage data feeds and column presets.
 
 <DiscoverBlock slots="link, text"/>
 
+[Data Insertion API](data-insertion/index.md)
+
+Submit server-side collection data to Adobe Analytics one event at a time.
+
+<DiscoverBlock slots="link, text"/>
+
 [Data repair API](data-repair/index.md)
 
 Create, view, delete, and manage data sources accounts.
