@@ -9,7 +9,7 @@ This guide is intended to help users of the 1.3 and 1.4 versions of the Analytic
 
 <InlineAlert variant="info" slots="text" />
 
-Adobe Analytics 1.4 APIs [will be retired on August 12, 2026](https://developer.adobe.com/analytics-apis/docs/1.4/guides/eol). 
+Adobe Analytics 1.4 APIs [will be retired on August 31, 2026](https://developer.adobe.com/analytics-apis/docs/1.4/guides/eol). 
 
 By migrating to the 2.0 APIs, you can take advantage of the following features:
 
@@ -36,7 +36,7 @@ Some Analytics 2.0 APIs currently have limited capabilities. These are described
 
 ### Data insertion
 
-The existing 1.4 Data Insertion API is not impacted by the August 12, 2026 end-of-life retirement. This API utilizes a different path and therefore remains supported. 
+The existing 1.4 Data Insertion API is not impacted by the August 31, 2026 end-of-life retirement. This API utilizes a different path and therefore remains supported. 
 
 Adobe recommends using the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion) for new or batch-oriented implementations. When the integration requires event-by-event, or high-frequency insertion, continue using the [1.4 Data Insertion API](https://developer.adobe.com/analytics-apis/docs/1.4/guides/data-insertion/).
 
