@@ -5,7 +5,7 @@ description: Import Analytics classification APIs through file uploads.
 
 # Import API Classifications by uploading files
 
-This guide includes instructions for importing JSON classification datasets that are larger than 50 MB, or that include a .tsv or .tab file. With this method, a dataset is uploaded as a file with the POST request. Alternatively, your dataset can be imported as a JSON body of the POST request if it is smaller than 50MB. For more information on this alternative, see the [Analytics classification APIs](index.md) guide.
+This guide includes instructions for importing JSON classification datasets that are larger than 50 MB, or that include a .tsv or .csv file. With this method, a dataset is uploaded as a file with the POST request. Alternatively, your dataset can be imported as a JSON body of the POST request if it is smaller than 50MB. For more information on this alternative, see the [Analytics classification APIs](index.md) guide.
 
 Additionally, using these endpoints requires your global company ID in each request. If you receive the response error message "Cannot find proper global company ID," add the following header to your requests: `x-proxy-global-company-id:{GLOBAL_COMPANY_ID}`. You can find your global company ID by using the [Discovery API](../discovery.md).
 
@@ -127,7 +127,7 @@ The following table describes the POST create job request parameters:
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `dataFormat` | required | string | The data format options. Includes `tsv`, `tab`, or `json`. |
+| `dataFormat` | required | string | The data format options. Includes `tsv`, `.csv`, or `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
@@ -156,7 +156,7 @@ The following table describes the POST create job response parameters:
 | `ims_org_id` | string | The ID associated with the analytics company of the user |
 | `taxonomist_job_id` | string | Job ID for taxonomist |
 | `job_options` | container | Contains the options for jobs. Includes the `dataFormat`, `encoding`, `jobName`, and `notifications` parameters as shown in the following five rows. |
-| `dataFormat` | string | The data format options. Includes `tsv`, `tab`, or `json`. |
+| `dataFormat` | string | The data format options. Includes `tsv`, `csv`, or `json`. |
 | `encoding` | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | string | The name of the job |
 | `notifications` | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
@@ -175,7 +175,7 @@ The following table describes the POST create job response parameters:
 
 ## POST import upload file
 
-Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, tab, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/sets/overview).
+Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, csv, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/sets/overview).
 
 `POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
 
