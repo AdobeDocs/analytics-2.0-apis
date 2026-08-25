@@ -377,7 +377,7 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 
 #### Response
 
-```csv
+```tsv
 ## SC   SiteCatalyst saint Import File  v:2.1
 ## SC   '## SC' indicates a SiteCatalyst pre-process header. Please do not remove these lines.
 ## SC   D:YYYY-07-31 18:00:11  A:xxxxxx:xx
