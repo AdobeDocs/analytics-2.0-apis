@@ -364,8 +364,8 @@ The example response includes the following parameters:
 | `type` | string | The `dimension` ID data type |
 | `columnIds` | string | The column number in the table visualization, left to right, starting from `0` |
 | `rows` | container | Contains `itemId`, `value` and `data` |
-| `itemId` | string | The item ID. For time dimensions (such as `daterangeday`), the `itemId` deterministically encodes the calendar date and is independent of the report suite calendar configuration. For more information, see the section below: "How the itemId encodes the date".|
-| `value` | string | The display label for the `itemId`. This is a localized, calendar-aware label intended for display, not for date parsing. For report suites using a custom calendar (for example, Modified Gregorian/fiscal), `value` can read as **2022 (Jun 1-May 31)**. |
+| `itemId` | string | The dimension item identifier. For time dimensions (such as `daterangeday`), the `itemId` deterministically encodes the calendar date and is independent of the report suite calendar configuration. For more information, see the section below: "How the itemId encodes the date".|
+| `value` | string | The human-readable display label for the dimension `itemId`. This is a localized, calendar-aware label intended for display, not for date parsing. For report suites using a custom calendar (for example, Modified Gregorian/fiscal), `value` can read as **2022 (Jun 1-May 31)**. |
 | `data` | number($double) | The numerical values returned for the requested items |
 | `summaryData` | object | Contains the **ranked** summary data information described in the following rows |
 | `filteredTotals` | number($double) | The data totals after the specified filters are applied |
