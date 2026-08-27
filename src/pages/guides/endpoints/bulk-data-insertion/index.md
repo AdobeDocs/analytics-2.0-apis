@@ -15,11 +15,11 @@ Bulk Data Insertion solves several problems for a variety of use cases. Some use
 
 ### BDIA vs DIA
 
-| | Bulk Data Insertion API (BDIA)                                                                                                                          | [Data Insertion API (DIA)](../data-insertion/index.md) |
-|---|---------------------------------------------------------------------------------------------------------------------------------------------------------|---|
-| Data submission | CSV file containing multiple events (dozens to tens of thousands), one event per row                                                                    | One event per API call |
+| | Bulk Data Insertion API (BDIA) | [Data Insertion API (DIA)](../data-insertion/index.md) |
+|---|---|---|
+| Data submission | CSV file containing multiple events (dozens to tens of thousands), one event per row | One event per API call |
 | Throughput | Optimized for larger files sent less frequently; not intended for more than 1 file per second, nor should files regularly be sent with just a few rows. | No upper bound on request rate |
-| Best fit | Bulk/batch loads, historical data backfills, or sources with intermittent connectivity                                                                  | High-frequency, near real-time event submission |
+| Best fit | Bulk/batch loads, historical data backfills, or sources with intermittent connectivity | High-frequency, near real-time event submission |
 
 <InlineAlert variant="info" slots="text" />
 
