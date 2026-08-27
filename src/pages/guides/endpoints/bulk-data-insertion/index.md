@@ -5,13 +5,21 @@ description: Upload batches of data into Adobe Analytics using the API.
 
 # Bulk Data Insertion API
 
-The Bulk Data Insertion API (BDIA) is an Adobe Analytics capability that lets you upload server call data in batches of files instead of using client-side libraries such as AppMeasurement. The server calls in these batch files can be either current (live) data or historical data. It is a more scalable successor to the Data Insertion API in previous versions of the Adobe Analytics API.
+The Bulk Data Insertion API (BDIA) is an Adobe Analytics capability that lets you upload server call data in batches of files instead of using client-side libraries such as AppMeasurement. The server calls in these batch files can be either current (live) data or historical data. For some companies it may offer a simpler way to scale ingest requests than using the Data Insertion API (DIA).
 
 Bulk Data Insertion solves several problems for a variety of use cases. Some use case examples include:
 
 * Ingesting historical data from a previous analytics system
 * An internal analytics collection system that makes it unfeasible to use AppMeasurement. You can use Extract-Transform-Load (ETL) processes to put data into batch files then use BDIA to upload them to Adobe Analytics.
 * Data collection from devices that have only intermittent connectivity to the internet. These devices store up the interactions until they receive a connection. The device can then upload the data all at once via BDIA.
+
+### BDIA vs DIA
+
+| | Bulk Data Insertion API (BDIA) | Data Insertion API (DIA) |
+|---|---|---|
+| Data submission | CSV file containing multiple events (dozens to tens of thousands), one event per row | One event per API call |
+| Throughput | Optimized for larger files sent less frequently; not intended for more than 1 file per second, nor should files regularly be sent with just a few rows. | No upper bound on request rate |
+| Best fit | Bulk/batch loads, historical data backfills, or sources with intermittent connectivity | High-frequency, near real-time event submission |
 
 <InlineAlert variant="info" slots="text" />
 
@@ -27,6 +35,6 @@ Before using this API, make sure that all of the following are met:
 * Follow the established [File formatting requirements](file-format.md) for each upload.
 * If using a Customer Attribute as a seed to automatically generate Experience Cloud Visitor IDs (ECID), provisioning by Adobe is required first. See [Use customer ID to identify visitors](mcseed.md).
 * You are using the correct number of [Visitor Groups](visitor-groups.md) for your anticipated load. Follow the guidelines on file send frequency limits to avoid having your requests throttled or data processing out of order.
-* You do not plan to upload more than 1 file per second. If rates above this level are needed, consider using the [Data Insertion API](https://developer.adobe.com/analytics-apis/docs/1.4/guides/data-insertion/) instead.
+* You do not plan to upload more than 1 file per second, nor send files with very small row counts. If these stipulations are not possible, consider using the Data Insertion API instead.
 
 Once you meet all prerequisites, see [File format](file-format.md) to prepare your data in a format usable by the API.

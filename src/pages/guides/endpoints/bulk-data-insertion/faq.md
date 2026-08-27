@@ -62,4 +62,4 @@ Your best course of action depends on how many invalid rows exist:
 
 ### How do I refresh my authentication token? 
 
-To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/)
