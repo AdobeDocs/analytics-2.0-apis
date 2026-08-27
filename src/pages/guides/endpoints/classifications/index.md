@@ -37,7 +37,7 @@ This guide includes instructions for using the following endpoints:
 
 ## Importing classification datasets
 
-This guide includes instructions for importing JSON classification datasets smaller than 50 MB. With this method, you include the dataset in the payload as part of a POST request. To import classification datasets that are larger than 50 MB, or that include a .tsv or .tab file, see [Importing classifications by file upload](import-file.md).
+This guide includes instructions for importing JSON classification datasets smaller than 50 MB. With this method, you include the dataset in the payload as part of a POST request. To import classification datasets that are larger than 50 MB, or that include a .tsv or .csv file, see [Importing classifications by file upload](import-file.md).
 
 ## POST import JSON classification
 
@@ -159,7 +159,7 @@ The following table describes the POST import JSON classification request parame
 | `overwrite` | optional | boolean | Whether or not the import will overwrite. |
 | `data` | required |  | The data to be imported |
 | `jobImportOption` | optional | container | Contains the `dataFormat`, `encoding`, `jobName`, `notifications`,`listDelimeter`, `source`, `keyOptions`, and `notification_extras` parameters. As described in the following 12 rows. |
-| `dataFormat` | optional | string | The data format options. Includes `tsv`, `tab`, or `json`. |
+| `dataFormat` | optional | string | The data format options. Includes `tsv`, `csv`, or `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
@@ -312,7 +312,7 @@ The following table describes the POST export classification request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `dataset_id` | required | string | The dataset ID for creating an API export job |
-| `dataFormat` | optional | string | The data format options. Includes `tsv`, `tab`, or `json`. |
+| `dataFormat` | optional | string | The data format options. Includes `tsv`, `csv`, or `json`. |
 | `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
 | `jobName` | optional | string | The name of the job |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
@@ -377,7 +377,7 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
 
 #### Response
 
-```tab
+```tsv
 ## SC   SiteCatalyst saint Import File  v:2.1
 ## SC   '## SC' indicates a SiteCatalyst pre-process header. Please do not remove these lines.
 ## SC   D:YYYY-07-31 18:00:11  A:xxxxxx:xx

@@ -493,7 +493,7 @@ An s3 Role ARN (Amazon Resource Name) is a unique identifier for an IAM role tha
 
 Use this endpoint to retrieve information for a specific Analytics s3 role arn cloud API Account.
 
-`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/{UUID}`
+`GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/cloudAccount/s3_role_arn`
 
 ### Request and Response Examples
 
@@ -503,7 +503,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 
 ```sh
 curl -X 'GET' \
-  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/cloudAccount/account/s3_role_arn" \
+  "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/export_locations/analytics/exportlocations/account/cloudAccount/s3_role_arn" \
   -H "accept: application/json" \
   -H "x-api-key: {CLIENT_ID}" \
   -H "Authorization: Bearer {ACCESS_TOKEN}" \
