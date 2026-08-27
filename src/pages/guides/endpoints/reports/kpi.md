@@ -375,7 +375,6 @@ The example response includes the following parameters:
 | `col-max` | optional | The column maximum |
 | `col-min` | optional | The column minimum |
 
-
 #### How the `itemId` encodes the date
 
 For time dimensions such as `variables/daterangeday`, the `itemId` is not an arbitrary key. It deterministically encodes the underlying Gregorian date, regardless of whether the report suite includes a standard or a custom (fiscal) calendar. Because of this, `itemId` is the reliable field to read when you need the actual date: the `value` field is a display label whose format changes with the report suite calendar, while the `itemId` for a given date does not.
@@ -387,10 +386,22 @@ The `itemId` is built by concatenating the following segments, left to right:
 | Year | year − 1900 | 2–3 digits |
 | Month | month number − 1 (that is, zero-indexed: January = `00`, December = `11`) | 2 digits |
 | Day | day of month | 2 digits |
-| Hour *(optional)* | hour, 24-hour clock | 2 digits |
-| Minute *(optional)* | minute | 2 digits |
+| Hour | hour, 24-hour clock — `daterangehour` and `daterangeminute` only | 2 digits |
+| Minute | minute — `daterangeminute` only | 2 digits |
 
-The hour and minute segments are appended only for dimensions that carry a time of day (for example, `daterangehour`, `daterangeminute`). Date-only dimensions such as `daterangeday` end after the day segment.
+The hour segment is appended for `daterangehour` and `daterangeminute`; the minute segment is appended only for `daterangeminute`. Date-only dimensions such as `daterangeday` end after the day segment.
+
+**Examples**
+
+| Date | Year (yr − 1900) | Month (mo − 1) | Day | Time | itemId |
+|------|------------------|----------------|-----|------|--------|
+| Nov 28, 2025 (`daterangeday`) | `125` | `10` | `28` | — | `1251028` |
+| Jan 1, 2012 (`daterangeday`) | `112` | `00` | `01` | — | `1120001` |
+| Jan 1, 2012 19:00 (`daterangehour`) | `112` | `00` | `01` | `19` | `112000119` |
+| Jan 1, 2012 19:02 (`daterangeminute`) | `112` | `00` | `01` | `1902` | `11200011902` |
+| Jun 1, 2022 *(`daterangeday`; custom fiscal calendar, `value` = `2022 (Jun 1-May 31)`)* | `122` | `05` | `01` | — | `1220501` |
+
+To decode an `itemId` back to a date, read the segments from the right: the last two digits are the day and the two before that are the zero-indexed month; the remaining leading digits are the year offset, so add `1900`. For time dimensions, the rightmost four digits are the hour and minute, with the day and month shifted left accordingly.
 
 **Examples**
 
