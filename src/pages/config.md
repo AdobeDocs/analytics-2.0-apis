@@ -45,7 +45,7 @@
             - [Validate](guides/endpoints/calculatedmetrics/validate.md)
             - [FAQ](guides/endpoints/calculatedmetrics/faq.md)
         - [Classifications](guides/endpoints/classifications/index.md)
-            - [Import classificatons by uploading files](guides/endpoints/classifications/import-file.md)
+            - [Import classifications by uploading files](guides/endpoints/classifications/import-file.md)
             - [Troubleshooting](guides/endpoints/classifications/troubleshooting.md)
             - [Removing data](guides/endpoints/classifications/remove-values.md)
         - [Cloud API](guides/endpoints/cloudloc/index.md)
