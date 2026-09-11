@@ -34,7 +34,7 @@ The following example shows a request payload to remove both the `Brand` and `Ch
 ```json
 {
     "dataFormat": "json",
-    "encoding": "UTF8",
+    "encoding": "utf8",
     "jobName": "prod report suite tracking code classification",
     "notifications": [
         {
