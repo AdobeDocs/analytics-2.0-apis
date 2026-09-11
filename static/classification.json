@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/{globalCompanyId}/classification/datasets/{dataset_id}": {
+    "/{globalCompanyId}/classifications/datasets/{dataset_id}": {
       "get": {
         "tags": [
           "Classification Dataset"
@@ -182,7 +182,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/datasets/compatibilityMetrics/{rsid}": {
+    "/{globalCompanyId}/classifications/datasets/compatibilityMetrics/{rsid}": {
       "get": {
         "tags": [
           "Classification Dataset"
@@ -236,7 +236,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/datasets/template/{dataset_id}": {
+    "/{globalCompanyId}/classifications/datasets/template/{dataset_id}": {
       "get": {
         "tags": [
           "Classification Dataset"
@@ -299,7 +299,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/import/commitApiJob/{api_job_id}": {
+    "/{globalCompanyId}/classifications/job/import/commitApiJob/{api_job_id}": {
       "post": {
         "tags": [
           "Classification Job"
@@ -349,7 +349,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/import/createApiJob/{dataset_id}": {
+    "/{globalCompanyId}/classifications/job/import/createApiJob/{dataset_id}": {
       "post": {
         "tags": [
           "Classification Job"
@@ -412,7 +412,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/export/{dataset_id}": {
+    "/{globalCompanyId}/classifications/job/export/{dataset_id}": {
       "post": {
         "tags": [
           "Classification Job"
@@ -475,7 +475,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/import/json/{dataset_id}": {
+    "/{globalCompanyId}/classifications/job/import/json/{dataset_id}": {
       "post": {
         "tags": [
           "Classification Job"
@@ -537,7 +537,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/byDataset/{dataset_id}": {
+    "/{globalCompanyId}/classifications/job/byDataset/{dataset_id}": {
       "get": {
         "tags": [
           "Classification Job"
@@ -621,7 +621,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/{job_id}": {
+    "/{globalCompanyId}/classifications/job/{job_id}": {
       "get": {
         "tags": [
           "Classification Job"
@@ -675,7 +675,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/export/file/{job_id}": {
+    "/{globalCompanyId}/classifications/job/export/file/{job_id}": {
       "get": {
         "tags": [
           "Classification Job"
@@ -725,7 +725,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/export/file/{job_id}/{file_name}": {
+    "/{globalCompanyId}/classifications/job/export/file/{job_id}/{file_name}": {
       "get": {
         "tags": [
           "Classification Job"
@@ -784,7 +784,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/export/file/{job_id}/list": {
+    "/{globalCompanyId}/classifications/job/export/file/{job_id}/list": {
       "get": {
         "tags": [
           "Classification Job"
@@ -831,7 +831,7 @@
         }
       }
     },
-    "/{globalCompanyId}/classification/job/import/uploadFile/{api_job_id}": {
+    "/{globalCompanyId}/classifications/job/import/uploadFile/{api_job_id}": {
       "post": {
         "tags": [
           "Classification Job"
