@@ -64,7 +64,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -d '{
           "dataFormat": "json",
-          "encoding": "UTF8",
+          "encoding": "utf8",
           "jobName": "example_dataset_name-example-dataset_id at example_time",
           "notifications": [
             {
@@ -146,7 +146,7 @@ The following table describes the POST import JSON classification request parame
 | --- | --- | --- | --- |
 | `dataset_id` | required | string | The dataset ID for creating API import job |
 | `dataFormat` | required | string | The data format option for this endpoint is `json`. |
-| `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
+| `encoding` | optional | string | The encoding for data. Accepted values are `utf8` and `latin1`. The default value is `utf8`. |
 | `jobName` | optional | string | The name of the job |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
@@ -160,7 +160,7 @@ The following table describes the POST import JSON classification request parame
 | `data` | required |  | The data to be imported |
 | `jobImportOption` | optional | container | Contains the `dataFormat`, `encoding`, `jobName`, `notifications`,`listDelimeter`, `source`, `keyOptions`, and `notification_extras` parameters. As described in the following 12 rows. |
 | `dataFormat` | optional | string | The data format options. Includes `tsv`, `csv`, or `json`. |
-| `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
+| `encoding` | optional | string | The encoding for data. Accepted values are `utf8` and `latin1`. The default value is `utf8`. |
 | `jobName` | optional | string | The name of the job |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
 | `source` | optional | string | The data source. Default value is `"Direct API Upload"`. |
@@ -196,7 +196,7 @@ curl -X POST 'https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -d '{
           "dataFormat": "json",
-          "encoding": "UTF8",
+          "encoding": "utf8",
           "jobName": "example_dataset_name-example-dataset_id at example_time",
           "notifications": [
             {
@@ -313,7 +313,7 @@ The following table describes the POST export classification request parameters:
 | --- | --- | --- | --- |
 | `dataset_id` | required | string | The dataset ID for creating an API export job |
 | `dataFormat` | optional | string | The data format options. Includes `tsv`, `csv`, or `json`. |
-| `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
+| `encoding` | optional | string | The encoding for data. Accepted values are `utf8` and `latin1`. The default value is `utf8`. |
 | `jobName` | optional | string | The name of the job |
 | `listDelimiter` | optional | string | Specifies the data delimiter for the list. Default delimiter is `,` (comma) |
 | `rowLimit` | optional | integer | The limit of included rows. The maximum value is 1,000,000. The default value is 100,000. |
@@ -699,7 +699,7 @@ curl -X GET "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
   "name": "testsuite evar7 classifications",
   "description": "testsuite evar7 classifications",
   "default_list_delimiter": ",",
-  "default_encoding": "UTF8",
+  "default_encoding": "utf8",
   "columns": [
     {
       "column_id": "5849115441721086447",
@@ -1144,7 +1144,7 @@ curl -X PUT "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/
   "name": "taxoappsrvtest evar7 classifications",
   "description": "taxoappsrvtest evar7 classifications",
   "default_list_delimiter": ",",
-  "default_encoding": "UTF8",
+  "default_encoding": "utf8",
   "columns": [
     {
       "column_id": "5849115441721086447",

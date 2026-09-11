@@ -48,7 +48,7 @@ curl -X POST "https://analytics.adobe.io/api/{GLOBALCOMPANYID}/classifications/j
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -d '{
           "dataFormat": "tsv",
-          "encoding": "UTF8",
+          "encoding": "utf8",
           "jobName": "testsuite evar1 classifications",
           "notifications": [
             {
@@ -128,7 +128,7 @@ The following table describes the POST create job request parameters:
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
 | `dataFormat` | required | string | The data format options. Includes `tsv`, `.csv`, or `json`. |
-| `encoding` | optional | string | The encoding for data. The default value is `UTF-8`. |
+| `encoding` | optional | string | The encoding for data. Accepted values are `utf8` and `latin1`. The default value is `utf8`. |
 | `jobName` | optional | string | The name of the job |
 | `notifications` | optional | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | optional | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
@@ -157,7 +157,7 @@ The following table describes the POST create job response parameters:
 | `taxonomist_job_id` | string | Job ID for taxonomist |
 | `job_options` | container | Contains the options for jobs. Includes the `dataFormat`, `encoding`, `jobName`, and `notifications` parameters as shown in the following five rows. |
 | `dataFormat` | string | The data format options. Includes `tsv`, `csv`, or `json`. |
-| `encoding` | string | The encoding for data. The default value is `UTF-8`. |
+| `encoding` | string | The encoding for data. Accepted values are `utf8` and `latin1`. The default value is `utf8`. |
 | `jobName` | string | The name of the job |
 | `notifications` | container | Contains the notification information. Includes the `method`, `state`, and `recipients` parameters. |
 | `method` | string | The method by which the notification is sent. This includes the enums `email` and `rabbit`. |
@@ -177,7 +177,7 @@ The following table describes the POST create job response parameters:
 
 Use this endpoint to upload a file that will be associated with the job ID created with the POST create job endpoint. This file can be tsv, csv, or JSON. For more information on how to structure your classification files, see [Classification data files](https://experienceleague.adobe.com/en/docs/analytics/components/classifications/sets/overview).
 
-`POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/{API_JOB_ID}`
 
 ### Request and Response Examples
 
@@ -188,7 +188,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/a6fc824c-4d6f-45f9-8f55-456f918e0b41"
+curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/uploadFile/a6fc824c-4d6f-45f9-8f55-456f918e0b41"
      -H "x-api-key: {CLIENT_ID}" \
      -H "Authorization: Bearer {ACCESS_TOKEN}" \
      -H "Content-Type: multipart/form-data" \
@@ -241,7 +241,7 @@ The following table describes the PUT upload file response parameters:
 
 Use this endpoint to commit the changes of a specified job ID. This endpoint finalizes the file uploading process. For more information on classification jobs, see [Classification set jobs manager](https://experienceleague.adobe.com/docs/analytics/components/classifications/sets/job-manager.html).
 
-`POST https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/{API_JOB_ID}`
+`POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/{API_JOB_ID}`
 
 ### Request and Response Examples
 
@@ -252,7 +252,7 @@ Click the **Request** tab in the following example to see a cURL request for thi
 #### Request
 
 ```sh
-curl -X POST "https://analytics.adobe.io.api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/a6fc824c-4d6f-45f9-8f55-456f918e0b41" \
+curl -X POST "https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/commitApiJob/a6fc824c-4d6f-45f9-8f55-456f918e0b41" \
      -H "x-api-key: {CLIENT_ID}" \
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer {ACCESS_TOKEN}"
