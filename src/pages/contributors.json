@@ -114,10 +114,11 @@
     {
       "page": "/config",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4"
       ],
-      "lastUpdated": "8/1/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/",
@@ -158,10 +159,10 @@
     {
       "page": "/guides/endpoints/annotations/parameters",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4"
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "2/27/2024"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/endpoints/bulk-data-insertion/",
@@ -171,7 +172,7 @@
         "https://avatars.githubusercontent.com/u/25832181?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/endpoints/bulk-data-insertion/endpoints",
@@ -186,34 +187,34 @@
     {
       "page": "/guides/endpoints/bulk-data-insertion/faq",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/25832181?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "8/11/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/endpoints/bulk-data-insertion/file-format",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/10925645?v=4",
         "https://avatars.githubusercontent.com/u/25832181?v=4"
       ],
-      "lastUpdated": "4/2/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/endpoints/bulk-data-insertion/mcseed",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/2020923?v=4",
         "https://avatars.githubusercontent.com/u/25832181?v=4"
       ],
-      "lastUpdated": "4/2/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/endpoints/bulk-data-insertion/troubleshooting",
@@ -631,11 +632,11 @@
     {
       "page": "/guides/endpoints/reports/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "7/14/2026"
+      "lastUpdated": "9/24/2026"
     },
     {
       "page": "/guides/endpoints/reports/advanced",
