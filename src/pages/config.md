@@ -2,10 +2,7 @@
     - /analytics-apis/docs/2.0/
 
 - pages:
-    - [Adobe Analytics](index.md)
-    - v2.0
-        - [v2.0](/index.md)
-        - [v1.4](https://developer.adobe.com/analytics-apis/docs/1.4/)
+    - [Adobe Analytics v2.0](index.md)
     - [Getting started](guides/index.md)
     - [Endpoint guides](guides/endpoints/index.md)
     - API Reference

@@ -35,6 +35,6 @@ Before using this API, make sure that all of the following are met:
 * Follow the established [File formatting requirements](file-format.md) for each upload.
 * If using a Customer Attribute as a seed to automatically generate Experience Cloud Visitor IDs (ECID), provisioning by Adobe is required first. See [Use customer ID to identify visitors](mcseed.md).
 * You are using the correct number of [Visitor Groups](visitor-groups.md) for your anticipated load. Follow the guidelines on file send frequency limits to avoid having your requests throttled or data processing out of order.
-* You do not plan to upload more than 1 file per second, nor send files with very small row counts. If these stipulations are not possible, consider using the Data Insertion API instead.
+* You do not plan to upload more than 1 file per second, nor send files with very small row counts. If these stipulations are not possible, consider using the [Data Insertion API](https://developer.adobe.com/analytics-collection-apis/methods/data-insertion/) instead.
 
 Once you meet all prerequisites, see [File format](file-format.md) to prepare your data in a format usable by the API.

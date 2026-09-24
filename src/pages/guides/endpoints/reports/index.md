@@ -86,7 +86,7 @@ The `dateRange` field in `globalFilters` supports three formats:
 
 <InlineAlert variant="info" slots="text" />
 
-The syntax for date range formatting is strict. Use the exact formula codes and ISO 8601 date format as shown below. Do not use angle brackets, quotes, or other escaping characters around formula values.
+The syntax for date range formatting is strict. Use the exact formula codes and [ISO 8601](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) date format as shown below. Do not use angle brackets, quotes, or other escaping characters around formula values.
 
 The following sections describe each format.
 

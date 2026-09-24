@@ -9,9 +9,9 @@ Get answers to common questions asked when using the Bulk data insertion API.
 
 ## General questions
 
-### What is the difference between the BDIA and the Data Insertion API available in the 1.4 API?
+### What is the difference between the BDIA and the Data Insertion API?
 
-The Data Insertion API and Bulk Data Insertion API are both methods to submit server-side data to Adobe Analytics. Data Insertion API calls are made one event at a time. Bulk Data Insertion API accepts CSV formatted files containing event data, one event per row. When considering a BDIA solution, the main determining factor is how often you plan to send files.  As a bulk service, BDIA is optimized for larger files sent less frequently, while DIA has no upper bound on the throughput rate.  If your use case would mandate sending more than 1 file per second, then opt for DIA.
+The Data Insertion API and Bulk Data Insertion API are both methods to submit server-side data to Adobe Analytics. Data Insertion API calls are made one event at a time. Bulk Data Insertion API accepts CSV formatted files containing event data, one event per row. When considering a BDIA solution, the main determining factor is how often you plan to send files. As a bulk service, BDIA is optimized for larger files sent less frequently, while DIA has no upper bound on the throughput rate. If your use case would mandate sending more than 1 file per second, then opt for DIA.
 
 ### How long does it take for data to appear?
 

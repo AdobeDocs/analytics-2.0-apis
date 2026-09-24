@@ -67,7 +67,7 @@ You can filter annotations by modification date or annotations in a specific dat
 
 `GET https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/annotations?filterByModifiedAfter=YYYY-MM-DDTHH:MM:SSZ&filterByDateRange=YYYY-MM-DDTHH:MM:SSZ/YYYY-MM-DDTHH:MM:SSZ`
 
-* **`filterByModifiedAfter`**: An ISO 8601 date that returns only annotations that were modified after the desired date.
+* **`filterByModifiedAfter`**: An [ISO 8601](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) date that returns only annotations that were modified after the desired date.
 * **`filterByDateRange`**: Two ISO 8601 dates separated by a forward slash (`/`) that returns only annotations that fully reside within the desired date range.
 
 ## Pagination
