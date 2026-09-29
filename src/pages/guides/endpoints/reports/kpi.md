@@ -13,7 +13,7 @@ This guide provides instructions for a basic KPI report of *Visits*, *Orders*, a
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning.
 
-The report endpoint described in this guide is routed through analytics.adobe.io. To use it, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The report endpoint described in this guide is routed through analytics.adobe.io. To use it, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
 ## Report features
 
@@ -44,7 +44,7 @@ When you design reports via the Report API, you interact with the data foundatio
 
 To request the data:
 
-1. Use the following URI for your POST HTTP call: POST https://analytics.adobe.io/api/\{global-company-id\}/reports. To find your Global Company ID, you can use the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+1. Use the following URI for your POST HTTP call: POST https://analytics.adobe.io/api/\{global-company-id\}/reports. To find your Global Company ID, you can use the [Discovery API](../discovery.md).
 2. Use the example request JSON below as a template for requesting the data. Provide your desired date range in the request with any other modifications to the dimension or example key metrics.
 
 Click the **Request** tab in the following example to see a POST request corresponding to the data shown in the visualizations above. Click the **Response** tab to see a successful JSON response for the request.
@@ -429,4 +429,4 @@ A 206 status code indicates a partial response. This status code means that ther
 
 ## More help on this topic
 
-For an API Report example that uses the page dimension and page metrics instead of date-trended data, see the [Reporting API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/).
+For an API Report example that uses the page dimension and page metrics instead of date-trended data, see the [Reporting API overview](index.md).

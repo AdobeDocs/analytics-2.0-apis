@@ -17,7 +17,7 @@ A basic report that uses a dimension and a metric. This example retrieves the to
 
 <InlineAlert variant="info" slots="text" />
 
-If no dimension is provided, the response will contain only `summaryData` and not contain a dimension breakdown. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).
+If no dimension is provided, the response will contain only `summaryData` and not contain a dimension breakdown. For more information, see the [Report API overview](index.md#using-dimension-in-report-payload-requests).
 
 <CodeBlock slots="heading, code" repeat="2" languages="JSON,JSON"/>
 

@@ -9,7 +9,7 @@ The Analytics 2.0 Dimensions API endpoints allow you to retrieve Dimensions prog
 
 The Dimensions endpoints use the same data and methods that are used when working with Dimensions in the UI. See [Dimensions](https://experienceleague.adobe.com/docs/analytics/components/dimensions/overview.html?lang=en) in the Analytics Components guide for more information. This guide describes the object members for the Dimension API except those used for retrieving attribution models. For more information, see the [Dimension API attribution models guide](attmodel.md).
 
-The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
 This guide includes instructions for using the following endpoints:
 
@@ -259,4 +259,4 @@ The above JSON response example shows the following `clickmaplink` dimension det
 
 The GET dimensions ID endpoint includes the same response parameters as the GET dimensions response parameters, as described above.
 
-For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
+For more information on the Dimensions API endpoints, see the [Adobe Analytics 2.0 API Reference](../../../apis/index.md).

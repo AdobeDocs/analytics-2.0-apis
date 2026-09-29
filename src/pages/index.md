@@ -17,7 +17,8 @@ The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics pro
 
 * [Quick start guide](guides/index.md)
 * [Endpoint guides](guides/endpoints/index.md)
-* [API reference](https://adobedocs.github.io/analytics-2.0-apis/)
+* [API reference](apis/index.md)
+* [Analytics data collection APIs](https://developer.adobe.com/analytics-collection-apis/)
 * [Github repository](https://github.com/AdobeDocs/analytics-2.0-apis)
 
 ## Overview
@@ -25,6 +26,8 @@ The Adobe Analytics APIs are a collection of APIs that power Adobe Analytics pro
 The Adobe Analytics 2.0 APIs allow you to directly call Adobe's servers to perform almost any action that you can perform in the user interface. You can create reports to explore, get insights, or answer important questions about your data. You can also manage components of Adobe Analytics, such as the creation of segments or calculated metrics. This documentation provides instructions on how to call Adobe's endpoints to return the desired data.
 
 This user guide assumes that you have an intermediate understanding of Adobe Analytics. See the documentation for [Adobe Analytics](https://experienceleague.adobe.com/docs/analytics/landing/home.html).
+
+If you are looking to send data to Adobe Analytics, see the [Analytics data collection APIs](https://developer.adobe.com/analytics-collection-apis/) (Analytics-only) or the [Experience Platform data collection APIs](https://developer.adobe.com/data-collection-apis/docs/) (All apps + services, including Analytics).
 
 If you are looking for the API around Customer Journey Analytics, see the [Customer Journey Analytics API documentation](https://www.adobe.io/cja-apis/docs/).
 

@@ -11,6 +11,8 @@ This guide is intended to help users of the 1.3 and 1.4 versions of the Analytic
 
 Adobe Analytics 1.4 APIs [will be retired on August 31, 2026](https://developer.adobe.com/analytics-apis/docs/1.4/guides/eol). 
 
+This retirement applies only to the 1.4 reporting and administration APIs. Data collection, such as the Data Insertion API, is not affected and does not require migration.
+
 By migrating to the 2.0 APIs, you can take advantage of the following features:
 
 * Faster response times with simpler and more efficient query methods, eliminating the need for polling
@@ -28,21 +30,10 @@ By migrating to the 2.0 APIs, you can take advantage of the following features:
 
 Some Analytics 2.0 APIs currently have limited capabilities. These are described in the following sections:
 
-* [Data insertion](#Data-insertion)
 * [Report suite administration](#Report-suite-administration)
 * [eVars](#eVars)
 * [Marketing channels](#Marketing-channels)
 * [Data Warehouse](#Data-warehouse)
-
-### Data insertion
-
-The existing 1.4 Data Insertion API is not impacted by the August 31, 2026 end-of-life retirement. This API utilizes a different path and therefore remains supported. 
-
-Adobe recommends using the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion) for new or batch-oriented implementations. When the integration requires event-by-event, or high-frequency insertion, continue using the [1.4 Data Insertion API](https://developer.adobe.com/analytics-apis/docs/1.4/guides/data-insertion/).
-
-#### Analytics 2.0 Data Insertion API details
-
-The 2.0 data insertion APIs do not provide the same event-by-event interface as the 1.4 API. Batch and ETL-style data insertion is supported through the [2.0 Bulk Data Insertion API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/bulk-data-insertion). As a result, 2.0 APIs currently do not support real-time, single-event data insertion.
 
 ### Report suite administration
 
@@ -62,13 +53,13 @@ The 2.0 APIs do not currently support:
 
 These settings can be configured in the Adobe Analytics UI under **Admin > Report Suites**.
 
-Virtual report suites are a separate resource with broader 2.0 API support, including create, update, and delete, and are not affected by the limitations above. For more information, see the [Report Suites API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/report-suites).
+Virtual report suites are a separate resource with broader 2.0 API support, including create, update, and delete, and are not affected by the limitations above. For more information, see the [Report Suites API endpoint guide](endpoints/report-suites.md).
 
 ### eVars
 
 This section describes limitations with eVars, props, success events, and list variables.
 
-The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimension attribution models guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/dimensions/attmodel) and the [Dimensions API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/dimensions/#evar-configuration-expansions).
+The 2.0 APIs support reading eVar allocation, expiration, and merchandising configuration. These settings are returned through the `attributionModel` expansion and through dedicated dimension fields such as `allocationType`, `expirationType`, and `merchandisingSyntax` on the Dimensions API. See both the [Dimension attribution models guide](endpoints/dimensions/attmodel.md) and the [Dimensions API endpoint guide](endpoints/dimensions/index.md#evar-configuration-expansions).
 
 The 2.0 APIs do not currently support:
 
@@ -79,13 +70,13 @@ These components can be configured in the Adobe Analytics UI under **Admin > Rep
 
 ### Marketing channels
 
-The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/marketing-channels).
+The 2.0 APIs support reading the list of marketing channels configured for a report suite, including each channel's ID, name, type, enabled status, and display settings. See [Marketing channels](endpoints/marketing-channels.md).
 
 The 2.0 APIs do not currently support reading marketing channel rules, expiration settings, or cost data, or creating or modifying channels. Marketing channels are created in Analysis Workspace.
 
 ### Data Warehouse
 
-The [2.0 Data Warehouse APIs](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) support scheduling and management of Data Warehouse requests. They do not return report data directly in the API response. To retrieve report data, configure a destination, such as SFTP or email, on the scheduled request.
+The [2.0 Data Warehouse APIs](endpoints/data-warehouse/index.md) support scheduling and management of Data Warehouse requests. They do not return report data directly in the API response. To retrieve report data, configure a destination, such as SFTP or email, on the scheduled request.
 
 Adobe evaluates these items on an ongoing basis as part of standard roadmap planning. No committed delivery date is available for the items listed above. Customers who require any of these capabilities should contact their Adobe Account Team.
 
@@ -109,7 +100,7 @@ To retrieve your global company ID in the user interface, follow these steps:
 1. Select **Company settings home** from the **Company settings** list.
 1. In the **Company Settings** page, select the **API Access** tab. \<br/\>The global company ID is displayed in **bold** at the top of the page.
 
-To retrieve your global company ID with an API, use the [Analytics Discovery endpoint](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery), as shown below:
+To retrieve your global company ID with an API, use the [Analytics Discovery endpoint](endpoints/discovery.md), as shown below:
 
 ```curl
 curl -X GET --header "x-api-key: {CLIENT_ID}" --header "Authorization: Bearer {ACCESS_TOKEN}" "https://analytics.adobe.io/discovery/me"
@@ -188,7 +179,7 @@ returns the following detailed information for the `browser` dimension:
 
 The 2.0 API also supports retrieval of a single dimension (`/dimension/{id}`) or metric (`/metric/{id}`).
 
-The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reporting API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports)).
+The 2.0 example `/dimensions` request shown above is using the `expansion=allowedForReporting` query parameter and value. Using `allowedForReporting` is recommended to request dimensions and metrics that are allowed to be included in reports (see [Reporting API](endpoints/reports/index.md)).
 
 See [Dimensions](endpoints/dimensions/index.md) and [Metrics](endpoints/metrics/index.md) endpoint guides for more information.
 
@@ -436,7 +427,7 @@ With the 2.0 `/reports` endpoint, you can request as many breakdowns as you like
 
 ### Real-time
 
-The [Analytics 2.0 real-time report API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/real-time) endpoint allows you to access real-time data programmatically through Adobe Developer. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis.
+The [Analytics 2.0 real-time report API](endpoints/reports/real-time.md) endpoint allows you to access real-time data programmatically through Adobe Developer. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis.
 
 ## Data Warehouse
 
@@ -444,7 +435,7 @@ This section describes the difference between Data Warehouse 1.4 and 2.0 APIs.
 
 With 1.4 APIs, you can run Data Warehouse reports with the `Report.Run` method in a POST request. This is requested by specifying `source":"warehouse"` in the `reportDescription` object in the request payload. With 2.0 APIs, Data Warehouse functions similarly to an export service that includes granular scheduling and detailed reports generated from scheduled requests. The Data Warehouse reports returned by the 2.0 APIs do not return analytics data.
 
-Currently, you must make your first scheduled request in Analysis Workspace. Subsequently, you can create additional scheduled requests, update requests, and retrieve request information with the 2.0 APIs. You can also update and retrieve reports generated from scheduled requests. The 2.0 APIs include destination options for sending request information and reports. For more information, refer to both the [Data Warehouse 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Warehouse%20APIs) and the [Data Warehouse 2.0 API Endpoint Guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse).
+Currently, you must make your first scheduled request in Analysis Workspace. Subsequently, you can create additional scheduled requests, update requests, and retrieve request information with the 2.0 APIs. You can also update and retrieve reports generated from scheduled requests. The 2.0 APIs include destination options for sending request information and reports. For more information, refer to both the [Data Warehouse 2.0 API Reference](../apis/data-warehouse.md) and the [Data Warehouse 2.0 API Endpoint Guide](endpoints/data-warehouse/index.md).
 
 ## Data Sources
 
@@ -466,20 +457,20 @@ With this 2.0 example, the report suite ID and the data source ID are added as q
 
 The 1.4 APIs include one method for retrieving current jobs, as shown above, as well as functions for saving, uploading, restarting, and deleting. The 2.0 APIs divide requests into working with accounts and working with jobs. Account-based endpoints allow you to create, view, and delete data sources accounts. Job-based endpoints include three methods for getting all jobs, getting a single job, and for uploading a file to a data source account. When you upload a file with the **PUT data** endpoint, a job is automatically created for you to manage.
 
-For more information, see the [2.0 Data Sources API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-sources/#get-all-jobs) and the [2.0 Data Sources API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/data-sources).
+For more information, see the [2.0 Data Sources API guide](endpoints/data-sources/index.md#get-all-jobs) and the [2.0 Data Sources API Reference](../apis/data-sources.md).
 
 ## Classifications
 
-The 1.4 Classifications APIs allow for SAINT job importing, exporting, retrieving, filtering, templating, and attaching. The [2.0 Classifications APIs](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications) instead allow for more flexible ways of working with classification datasets. The 2.0 APIs use the same data and methods that are used when working with classifications in the Adobe Analytics UI.
+The 1.4 Classifications APIs allow for SAINT job importing, exporting, retrieving, filtering, templating, and attaching. The [2.0 Classifications APIs](endpoints/classifications/index.md) instead allow for more flexible ways of working with classification datasets. The 2.0 APIs use the same data and methods that are used when working with classifications in the Adobe Analytics UI.
 
-Instead of importing SAINT classifications, with the 2.0 APIs you can [import API classifications by uploading data files](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file). You can create, upload, and commit classification jobs with data files in `.tsv`, `.tab`, or JSON format. The following table describes this uploading process:
+Instead of importing SAINT classifications, with the 2.0 APIs you can [import API classifications by uploading data files](endpoints/classifications/import-file.md). You can create, upload, and commit classification jobs with data files in `.tsv`, `.tab`, or JSON format. The following table describes this uploading process:
 
 | Step | API | Description |
 | --- | --- | -- |
-| 1 | [POST create job](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/#post-create-job) | Create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. |
-| 2 | [POST upload file](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/#post-upload-file) | Uploads a file that will be associated with the job ID created with the POST create job endpoint. |
-| 3 | [POST commit job](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/import-file/#post-commit-job) | Commits the changes of a specified job ID. |
+| 1 | [POST create job](endpoints/classifications/import-file.md#post-create-job) | Create an import job for a classification dataset. Creating an import job is required to produce a job ID that can be associated with an uploaded dataset file. |
+| 2 | [POST upload file](endpoints/classifications/import-file.md#post-upload-file) | Uploads a file that will be associated with the job ID created with the POST create job endpoint. |
+| 3 | [POST commit job](endpoints/classifications/import-file.md#post-commit-job) | Commits the changes of a specified job ID. |
 
 Additionally, the 2.0 Classifications APIs provide 12 more endpoints for creating, importing, exporting, retrieving, updating, and deleting classification datasets and the jobs associated with them. 
 
-For more information, see the [2.0 Classifications API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications) and the [2.0 Classifications API Reference](https://developer.adobe.com/analytics-apis/docs/2.0/apis/classification).
+For more information, see the [2.0 Classifications API guide](endpoints/classifications/index.md) and the [2.0 Classifications API Reference](../apis/classification.md).

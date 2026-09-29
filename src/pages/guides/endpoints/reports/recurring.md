@@ -19,9 +19,9 @@ Use automated, recurring report data for the following:
 
 This guide is for developers who need Adobe Analytics data delivered to a system on a schedule, with no person in the loop at run time. Such systems include databases, data pipelines, automated workflows, and AI agents. To explore data interactively, build dashboards, or receive statistically-based detection alerts, use Analysis Workspace. This guide covers the programmatic path: scripting the Reporting API to feed current data to the systems that consume it.
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](../../index.md).
 
-If you are new to the Analytics Reporting API, see [KPI reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi) for an introduction to constructing report requests before using this guide. If your use case requires bulk file delivery to cloud storage with Adobe-managed scheduling, see [Data Warehouse](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) and [Cloud locations](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc) APIs instead.
+If you are new to the Analytics Reporting API, see [KPI reports](kpi.md) for an introduction to constructing report requests before using this guide. If your use case requires bulk file delivery to cloud storage with Adobe-managed scheduling, see [Data Warehouse](../data-warehouse/index.md) and [Cloud locations](../cloudloc/index.md) APIs instead.
 
 ## Advantages of automated workflows
 
@@ -122,7 +122,7 @@ curl -X POST \
 
 Build a report request that returns the current data window on every scheduled run by using a rolling date formula in the `dateRange` field. The API evaluates the formula server-side, so the same request body delivers fresh data each time without modification.
 
-If you have worked through the [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi), the structure of such a request is almost identical, except for the difference in specifying the date range.
+If you have worked through the [KPI reports guide](kpi.md), the structure of such a request is almost identical, except for the difference in specifying the date range.
 
 To make the request, use the following endpoint:
 
@@ -515,15 +515,15 @@ with open(f"analytics_kpis_{run_date}.csv", "w", newline="") as f:
     writer.writerows(records)
 ```
 
-For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [Data Warehouse](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse) and [Cloud Locations](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc) guides instead.
+For bulk file delivery to cloud storage with Adobe-managed scheduling, see the [Data Warehouse](../data-warehouse/index.md) and [Cloud Locations](../cloudloc/index.md) guides instead.
 
 ## Related resources
 
-- [KPI reports guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi): Introduction to building report requests with the Analytics Reporting API
-- [Advanced reports API guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/advanced): Working with segments, metric filters, and date range comparisons
-- [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/): Authentication setup and Developer Console configuration
-- [Data Warehouse API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/data-warehouse): Bulk file export with Adobe-managed scheduling
-- [Cloud locations API endpoint guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc): Bulk file delivery to cloud storage destinations
+- [KPI reports guide](kpi.md): Introduction to building report requests with the Analytics Reporting API
+- [Advanced reports API guide](advanced.md): Working with segments, metric filters, and date range comparisons
+- [Getting started with the Analytics API](../../index.md): Authentication setup and Developer Console configuration
+- [Data Warehouse API endpoint guide](../data-warehouse/index.md): Bulk file export with Adobe-managed scheduling
+- [Cloud locations API endpoint guide](../cloudloc/index.md): Bulk file delivery to cloud storage destinations
 
 ## Status codes
 

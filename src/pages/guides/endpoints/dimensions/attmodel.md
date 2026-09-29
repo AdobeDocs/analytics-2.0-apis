@@ -12,7 +12,7 @@ both the GET multiple dimensions and GET single dimension endpoints.
 
 The endpoints described in this guide are routed through `analytics.adobe.io`. To use 
 them, you must first create a client with access to the Adobe Analytics Reporting API. 
-For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+For more information, see [Getting started with the Analytics API](../../index.md).
 
 * [GET multiple dimensions with attribution model](#get-multiple-dimensions-with-attribution-model)
 * [GET single dimension with attribution model](#get-single-dimension-with-attribution-model)

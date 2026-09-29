@@ -15,12 +15,6 @@ Retrieve, update, or create annotations.
 
 <DiscoverBlock slots="link, text"/>
 
-[Bulk data insertion API](bulk-data-insertion/index.md)
-
-Insert rows of data into a report suite.
-
-<DiscoverBlock slots="link, text"/>
-
 [Calculated metrics API](calculatedmetrics/index.md)
 
 Retrieve, create, or update calculated metrics.

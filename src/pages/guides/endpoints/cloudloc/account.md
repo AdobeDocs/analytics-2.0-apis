@@ -218,7 +218,7 @@ The example response above shows the following:
 
 * An `accountProperties` object for each account. This object contains parameters that are specific to the type of account. For more information, see the [Account properties](#account-properties) section of this guide.
 
-* A `uuid` identifier for each account. This is not the same as the [Location](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc/locations/) `uuid` that is used in the Locations API.
+* A `uuid` identifier for each account. This is not the same as the [Location](locations.md) `uuid` that is used in the Locations API.
 
 ### Request Parameters
 
@@ -519,7 +519,7 @@ curl -X 'GET' \
 
 ### Example details
 
-In the examples above, the GET s3 role arn method is used to request the `userARN` value. The value is provided in the response and can be used to create a roleARN in the AWS portal. After creating the AWS roleARN, you can create a cloud locations account with the POST create account method described in a previous section. See the [Account Properties](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/cloudloc/account-properties/) article to view a complete POST request.  
+In the examples above, the GET s3 role arn method is used to request the `userARN` value. The value is provided in the response and can be used to create a roleARN in the AWS portal. After creating the AWS roleARN, you can create a cloud locations account with the POST create account method described in a previous section. See the [Account Properties](account-properties.md) article to view a complete POST request.  
 
 For more information, see the following:
 

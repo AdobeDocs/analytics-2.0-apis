@@ -13,7 +13,7 @@ Breakdowns in the reporting API are useful when you want to see the cross-produc
 
 <InlineAlert variant="info" slots="text" />
 
-If no dimension is provided, the response will contain only `summaryData` and not contain a dimension breakdown. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).
+If no dimension is provided, the response will contain only `summaryData` and not contain a dimension breakdown. For more information, see the [Report API overview](index.md#using-dimension-in-report-payload-requests).
 
 
 The following example requests a breakdown report containing a list of the top five "Internal Search Terms" used by visitors who saw campaign 10. Within the `metricsFilters` parameter, the type is set to `breakdown` (line 21), and `evar1` is the marketing campaign (line 22). Within the `dimensions` parameter, `evar2` is the "Internal Search Terms" (line 27).

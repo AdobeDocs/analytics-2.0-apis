@@ -55,7 +55,7 @@ while (line != null) {
 
 #### Example Java-based client
 
-For example code of a client that decouples consumption and processing, you can view and copy the `LivestreamConsumer.java` code shown in [Implement a client for Livestream data](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/livestream/clientcode/). This guide includes annotations to describe the functions of the code and provides XML-based resources for implementing this configuration. 
+For example code of a client that decouples consumption and processing, you can view and copy the `LivestreamConsumer.java` code shown in [Implement a client for Livestream data](clientcode.md). This guide includes annotations to describe the functions of the code and provides XML-based resources for implementing this configuration. 
 
 ### Handling redirects
 

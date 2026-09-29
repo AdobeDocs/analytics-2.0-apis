@@ -5,7 +5,7 @@ description: Use Analytics Data Feed API to create, retrieve, and manage data fe
 
 # Data Feed API
 
-The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retrieve, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+The Analytics 2.0 Data Feed API endpoints provide methods for you to create, retrieve, and manage data feeds. It also provides methods for working with column presets associated with report suites. See the [Data Feed overview](https://experienceleague.adobe.com/en/docs/analytics/export/analytics-data-feed/data-feed-overview) for more information regarding Data Feeds. For a full list of Data Feed API parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 **Datafeed API**
 
@@ -102,7 +102,7 @@ A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## GET datafeed by ID
 
@@ -170,7 +170,7 @@ curl -X 'GET' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## PUT datafeed by ID
 
@@ -237,7 +237,7 @@ A successful request returns the `200 OK` response.
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## PUT datafeed status by datafeed ID
 
@@ -304,7 +304,7 @@ curl -X 'PUT' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## GET datafeeds
 
@@ -427,7 +427,7 @@ curl -X 'GET' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## POST datafeeds search
 
@@ -543,7 +543,7 @@ curl -X 'POST' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## GET datafeed requests
 
@@ -608,7 +608,7 @@ curl -X 'GET' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## POST datafeed requests search
 
@@ -683,7 +683,7 @@ curl -X 'POST' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## PUT datafeed redo
 
@@ -750,7 +750,7 @@ curl -X 'PUT' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## PUT datafeed reprocess
 
@@ -817,7 +817,7 @@ curl -X 'PUT' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## PUT datafeed resend
 
@@ -884,7 +884,7 @@ curl -X 'PUT' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## GET all column names
 
@@ -946,7 +946,7 @@ curl -X 'GET' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## POST columnPreset
 
@@ -995,7 +995,7 @@ curl -X 'POST' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## GET column preset by preset ID
 
@@ -1037,7 +1037,7 @@ curl -X 'GET' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## GET column presets by report suite ID
 
@@ -1081,7 +1081,7 @@ curl -X 'GET' \
 
 ### Request and response parameters
 
-For a full list of parameters, see the [Data Feed API Reference](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Data%20Feed%20APIs).
+For a full list of parameters, see the [Data Feed API Reference](../../../apis/data-feeds.md).
 
 ## Status codes
 

@@ -15,7 +15,7 @@ This guide shows an example for detecting anomalous metric behavior over a speci
 
 For more information, see the [Anomaly Detection Overview](https://experienceleague.adobe.com/en/docs/analytics/analyze/analysis-workspace/anomaly-detection/anomaly-detection).
 
-Note: Anomaly detection is best suited for [date-trended reports](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/). While the API allows anomaly detection on some non-time dimensions, results are most reliable and interpretable when using a date-based dimension.
+Note: Anomaly detection is best suited for [date-trended reports](kpi.md). While the API allows anomaly detection on some non-time dimensions, results are most reliable and interpretable when using a date-based dimension.
 
 ## Report APIs provide data, not visualizations
 
@@ -28,7 +28,7 @@ To request the data:
 1. Use the following URI for your POST HTTP call:  
    `POST https://analytics.adobe.io/api/{global-company-id}/reports`  
 
-   To find your Global Company ID, you can use the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+   To find your Global Company ID, you can use the [Discovery API](../discovery.md).
 
 2. Use the example request JSON below as a template. Ensure that anomaly detection is enabled in the `settings` object and that a time-based dimension is used.
 
@@ -133,7 +133,7 @@ The example request includes the following parameters in the payload:
 | `metricContainer`         | required | object  | Contains metric and filter definitions     |
 | `metrics`                 | required | array   | Contains `columnId` and metric `id`        |
 | `metricFilters`           | optional | array   | Scoped filters for metrics                 |
-| `dimension`               | required | string  | Time-based dimension for anomaly detection. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).  |
+| `dimension`               | required | string  | Time-based dimension for anomaly detection. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](index.md#using-dimension-in-report-payload-requests).  |
 | `settings`                | optional | object  | Report settings                            |
 | `includeAnomalyDetection` | optional | boolean | Enables anomaly detection output           |
 | `dimensionSort`           | optional | string  | Sort order for time-series results         |

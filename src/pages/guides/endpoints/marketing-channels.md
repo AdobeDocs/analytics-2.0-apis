@@ -9,7 +9,7 @@ Use the Analytics 2.0 Marketing Channels API endpoint to retrieve the marketing 
 
 Marketing channels are created in Adobe Analysis Workspace but can be identified in report suites with this endpoint. For more information regarding marketing channels, see the [Marketing channels overview](https://experienceleague.adobe.com/en/docs/advertising/integrations/analytics/mc/mc-overview).
 
-The endpoint described in this guide is routed through `analytics.adobe.io`. To use it, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The endpoint described in this guide is routed through `analytics.adobe.io`. To use it, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](../index.md).
 
 <InlineAlert variant="info" slots="text" />
 

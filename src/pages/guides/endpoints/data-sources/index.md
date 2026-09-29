@@ -7,7 +7,7 @@ description: Use Analytics Data Sources APIs to upload data and manage accounts.
 
 The Analytics 2.0 Data Sources API endpoints provide methods for you to create, view, delete, and upload to Data Sources accounts. See the [Data Sources overview](https://experienceleague.adobe.com/en/docs/analytics/import/data-sources/overview) for more information regarding Data Sources services and functions.
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
+The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](../../index.md) for more information.
 
 **Data Sources Accounts**
 

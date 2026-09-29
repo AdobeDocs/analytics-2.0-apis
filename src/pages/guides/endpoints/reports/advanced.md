@@ -5,12 +5,12 @@ description: Use the Report API to create advanced date-trended reports.
 
 # Date-trended advanced reports
 
-This guide extends the features described in the [Basic Date-Trended Report](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/) and introduces the following advanced features:
+This guide extends the features described in the [Basic Date-Trended Report](kpi.md) and introduces the following advanced features:
 
 * [Include date range comparisons in a date-trended report](#include-date-range-comparisons-in-a-date-trended-report)
 * [Add a segment to a date-trended report](#add-a-segment-to-a-date-trended-report)
 
-All examples in this guide use the Adobe Analytics 2.0 Reports API. The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+All examples in this guide use the Adobe Analytics 2.0 Reports API. The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](../../index.md).
 
 <InlineAlert variant="info" slots="text" />
 
@@ -18,13 +18,13 @@ Adobe may add optional request and response members (name/value pairs) to existi
 
 ## Include date range comparisons in a date-trended report
 
-Use this endpoint to create a date-trended report that compares metric data across two date ranges. Date range comparisons allow you to evaluate performance for a current period against a previous period in a single report request. For more information on date-trended reports, see the [Basic Date-Trended Report](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/kpi/).
+Use this endpoint to create a date-trended report that compares metric data across two date ranges. Date range comparisons allow you to evaluate performance for a current period against a previous period in a single report request. For more information on date-trended reports, see the [Basic Date-Trended Report](kpi.md).
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports`
 
 <InlineAlert variant="info" slots="text" />
 
-The `dimension` object member is not required in report request payloads. For more information, see [Using `dimension` in report payload requests](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests).
+The `dimension` object member is not required in report request payloads. For more information, see [Using `dimension` in report payload requests](index.md#using-dimension-in-report-payload-requests).
 
 ### Request and Response Examples
 
@@ -135,7 +135,7 @@ The following table describes the date range comparison request parameters:
 | --- | --- | --- | --- |
 | `rsid` | required | string | The report suite ID to run the report against |
 | `globalFilters` | required | array | Array of filter objects applied to the entire report. For date range comparisons, include two filter objects of `type`: `dateRange`, each with a `dateRange` value formatted as `YYYY-MM-DDTHH:mm:ss.SSS/YYYY-MM-DDTHH:mm:ss.SSS` |
-| `dimension` | optional | string | The dimension of the trended data. Use `variables/daterangeday`, `variables/daterangeweek`, or `variables/daterangemonth` for date-trended reports. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests). |
+| `dimension` | optional | string | The dimension of the trended data. Use `variables/daterangeday`, `variables/daterangeweek`, or `variables/daterangemonth` for date-trended reports. If no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](index.md#using-dimension-in-report-payload-requests). |
 | `metricContainer` | required | object | Contains the `metrics` array and optional `metricFilters` array. Lists the metrics to include and any metric-level filters |
 | `metrics` | required | array | Array of metric objects. Each object requires an `id`. Assign a unique `columnId` to each metric to distinguish columns in the response. Use the `filters` array to reference a `metricFilters` entry by its `id` to scope a metric to a specific date range |
 | `metricFilters` | optional | array | Array of filter objects that can be referenced by individual metrics using a filter `id`. Use this to scope individual metric columns to specific date ranges for comparison reporting |
@@ -189,7 +189,7 @@ To decode an `itemId` back to a date, read the segments from the right: the last
 
 ## Add a segment to a date-trended report
 
-Use this endpoint to apply a segment to a date-trended report. Segments filter data before metric aggregation occurs, limiting the report to the subset of data that matches the segment definition. For more information on segments, see the [Segments API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/segments/).
+Use this endpoint to apply a segment to a date-trended report. Segments filter data before metric aggregation occurs, limiting the report to the subset of data that matches the segment definition. For more information on segments, see the [Segments API](../segments/index.md).
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/reports`
 
@@ -285,7 +285,7 @@ The following table describes the segmented date-trended report request paramete
 
 | Name | Required | Type | Description |
 | --- | --- | --- | --- |
-| `segmentId` | required | string | The ID of a saved segment to apply to the report. Segments are applied as pre-aggregation filters. The segment ID can be retrieved using the [Segments API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/segments/). |
+| `segmentId` | required | string | The ID of a saved segment to apply to the report. Segments are applied as pre-aggregation filters. The segment ID can be retrieved using the [Segments API](../segments/index.md). |
 
 ### Response Parameters
 
@@ -308,6 +308,6 @@ Each API request returns an HTTP status code that reflects the result, as follow
 
 For more information, or for trouble-shooting help, see the following:
 
-* [Reports API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/)
+* [Reports API overview](index.md)
 * [API Status Codes](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#api-status-codes)
 * [API request error headers](https://experienceleague.adobe.com/en/docs/experience-platform/landing/troubleshooting#request-header-errors)

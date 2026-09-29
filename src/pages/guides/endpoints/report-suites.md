@@ -5,7 +5,7 @@ description: Use Analytics Report Suites APIs to manage report suites and virtua
 
 # Report Suites API
 
-The Analytics 2.0 Report Suites API endpoints provide methods for you to create and retrieve report suites, manage virtual report suites, and fetch supported timezones. The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The Analytics 2.0 Report Suites API endpoints provide methods for you to create and retrieve report suites, manage virtual report suites, and fetch supported timezones. The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](../index.md).
 
 **Collections Suites**
 

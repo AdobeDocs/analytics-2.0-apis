@@ -7,7 +7,7 @@ description: Use Analytics Report Suite APIs to retrieve and manage report suite
 
 The Analytics 2.0 Report Suite API endpoints provide methods for you to retrieve and manage Adobe Analytics report suites and their associated configuration settings. These APIs allow programmatic access to report suite metadata that is typically managed through the Adobe Analytics user interface.
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](index.md).
 
 **Report Suite Management**
 

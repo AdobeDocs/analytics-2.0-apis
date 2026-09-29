@@ -16,7 +16,7 @@ The Adobe Analytics Classifications APIs do not create classification datasets (
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/) for more information.
+The endpoints described in this guide are routed through `analytics.adobe.io`. To use them, you must first create a client with access to the Adobe Developer Console. For more information, see [Getting started with the Analytics API](../../index.md) for more information.
 
 This guide includes instructions for using the following endpoints:
 
@@ -41,11 +41,11 @@ This guide includes instructions for importing JSON classification datasets smal
 
 ## POST import JSON classification
 
-This endpoint is shown in the API reference as [POST /job/import/json/\{dataset_id\}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/createJsonImportJob).
+This endpoint is shown in the API reference as [POST /job/import/json/\{dataset_id\}](../../../apis/classification.md#operation/createJsonImportJob).
 
 Use this endpoint to create a classification smaller than 50 MB. For more information on importing classifications, see [Classifications importer overview](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-working-with-saint.html).
 
-You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see [Remove classification fields or keys](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/remove-values).
+You can also use this endpoint to remove a cell value or delete a key on the server. For more information, see [Remove classification fields or keys](remove-values.md).
 
 `POST https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/job/import/json/{DATASET_ID}`
 
@@ -175,7 +175,7 @@ No response parameters are returned. Successful requests are indicated by a `200
 
 ## POST export classification
 
-This endpoint is shown in the API reference as [POST /job/export/\{dataset_id\}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/createExportJob).
+This endpoint is shown in the API reference as [POST /job/export/\{dataset_id\}](../../../apis/classification.md#operation/createExportJob).
 
 Use this endpoint to create an export job for a classification dataset. The dataset can be retrieved in a subsequent request by providing the job ID returned with this endpoint.
 
@@ -354,7 +354,7 @@ The following table describes the POST export classification response parameters
 
 ## GET export classification file
 
-This endpoint is shown in the API reference as [GET /job/export/file/\{dataset_id\}](https://adobedocs.github.io/analytics-2.0-apis/?urls.primaryName=Classification%202.0%20APIs#/Classification%20Job/retrieveArtifact).
+This endpoint is shown in the API reference as [GET /job/export/file/\{dataset_id\}](../../../apis/classification.md#operation/retrieveArtifact).
 
 Use this endpoint to retrieve the contents of an export classification file. When using this endpoint, you must supply the export job ID returned with the POST export classification endpoint. For more information on classification data, see [Classification data files](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/c-saint-data-files.html).
 
@@ -1266,7 +1266,7 @@ The following table describes the response parameters for this endpoint:
 
 ## DELETE classification
 
-Use this endpoint to delete a classification dataset. To remove a single field or to delete a key on the server, see [Remove classification fields or keys](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/classifications/remove-values). For more information deleting, see [Delete classification data](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/t-delete-classification-data.html).
+Use this endpoint to delete a classification dataset. To remove a single field or to delete a key on the server, see [Remove classification fields or keys](remove-values.md). For more information deleting, see [Delete classification data](https://experienceleague.adobe.com/docs/analytics/components/classifications/classifications-importer/t-delete-classification-data.html).
 
 `DELETE https://analytics.adobe.io/api/{GLOBAL_COMPANY_ID}/classifications/datasets/{DATASET_ID}`
 

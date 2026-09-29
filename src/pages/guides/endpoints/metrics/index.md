@@ -9,7 +9,7 @@ The Analytics 2.0 Metrics API endpoints allow you to retrieve metrics programmat
 
 The endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
-You can find your global company ID by using the [Discovery API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/discovery/).
+You can find your global company ID by using the [Discovery API](../discovery.md).
 
 <InlineAlert variant="info" slots="text" />
 
@@ -208,7 +208,7 @@ The above JSON response example shows the following details:
 * The `type` is `int`, and the `category` is `Conversion`.
 * No `categories` metadata is associated with this metric.
 
-For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](https://adobedocs.github.io/analytics-2.0-apis/#/).
+For more information on the Metrics API endpoints, see the [Adobe Analytics 2.0 API Reference](../../../apis/index.md).
 
 ### Request parameters
 

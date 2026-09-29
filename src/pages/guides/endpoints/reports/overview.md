@@ -11,7 +11,7 @@ The Analytics 2.0 reporting API endpoints allow you to access reports programmat
 
 Adobe may add optional request and response members (name/value pairs) to existing API objects at any time and without notice or changes in versioning. Adobe recommends that you refer to the API documentation of any third-party tool you integrate with our APIs so that such additions are ignored in processing if not understood. If implemented properly, such additions are non-breaking changes for your implementation. Adobe will not remove parameters or add required parameters without first providing standard notification through release notes.
 
-The report endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The report endpoints described in this guide are routed through analytics.adobe.io. To use them, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
 This guide includes instructions for using the following endpoints:
 
@@ -277,7 +277,7 @@ The example request includes the following parameters in the payload:
 | `columnId` | optional | string | The column number in the table visualization, left to right, starting from `0` |
 | `id` | optional | string | The name of the element for the column; e.g., the name of the `metric` |
 | `sort` | optional | string | The sorting applied to the column data--`asc` or `desc` |
-| `dimension` | optional | string | The dimension used for the report. If `dimension` is not supplied, the request becomes a Totals report. For more information, see [Using `dimension` in payload requests.](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests) |
+| `dimension` | optional | string | The dimension used for the report. If `dimension` is not supplied, the request becomes a Totals report. For more information, see [Using `dimension` in payload requests.](index.md#using-dimension-in-report-payload-requests) |
 | `settings` | optional | object | The settings requested for the reporting response, as specified by the parameters in the following five rows |
 | `countRepeatInstances` | optional | boolean | Whether to count repeat instances of a returned metric |
 | `includeAnnotations` | optional | boolean | Whether to include annotations in the response |

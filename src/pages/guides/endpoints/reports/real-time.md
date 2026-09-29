@@ -7,7 +7,7 @@ description: Retrieve real-time reports using the API
 
 The Analytics 2.0 real-time report API endpoint allows you to access real-time data programmatically through Adobe Developer. The real-time data reported is less than two minutes latent and auto-updates on a minute-by-minute basis. See the [Real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime) for more information.
 
-The endpoint described in this guide is routed through analytics.adobe.io. To use it, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](https://developer.adobe.com/analytics-apis/docs/2.0/guides/).
+The endpoint described in this guide is routed through analytics.adobe.io. To use it, you will need to first create a client with access to the Adobe Analytics Reporting API. For more information, refer to [Getting started with the Analytics API](../../index.md).
 
 <InlineAlert variant="info" slots="text" />
 
@@ -157,7 +157,7 @@ The POST real-time reports endpoint includes the following request parameters:
 | `metricContainer` | required | container | Contains the `metrics` container. One metric is required for each real-time report. |
 | `columnId` | required | string | The column ID. One metric column ID is required for each real-time report. |
 | `id` | required | string | The metric or dimension ID. One metric ID is required for each real-time report. |
-| `dimension` | optional | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. Otherwise, if no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/#using-dimension-in-report-payload-requests). |
+| `dimension` | optional | container | Contains the `id` and `dimensionColumnId` of the dimensions to be included in the report. For real-time reports, the `variables/daterangeminute` is required. Otherwise, if no dimension is provided, the response will contain only `summaryData`. For more information, see the [Report API overview](index.md#using-dimension-in-report-payload-requests). |
 | `dimensionColumnId` | required | string | The dimension column ID |
 | `settings` | optional | container | Contains the `settings` object members for the specified real-time report, including `realTimeMinuteGranularity` |
 | `realtimeMinuteGranularity` | optional |  | The number of minutes between the reporting of the specified data |
@@ -419,7 +419,7 @@ Breakdown reports are useful when you want to see the cross-product of values fr
       ]
 ```
 
-In this case, the `variables/prop1` dimension and its `itemId` are applied as a filter to produce the breakdown. To see an example of a breakdown request that specifies a different object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/).
+In this case, the `variables/prop1` dimension and its `itemId` are applied as a filter to produce the breakdown. To see an example of a breakdown request that specifies a different object within `metricFilters`, as well as general information on breakdown reports, see [Breakdown dimensions](breakdowns.md).
 
 ### Real-time breakdown limitations
 
@@ -485,9 +485,9 @@ If you receive a 400 status code error response, make sure your requests comply 
 
 For more information on real-time reports, see the following:
 
-* [Adobe Analytics 2.0 API real-time report reference](https://adobedocs.github.io/analytics-2.0-apis/#/Reports/runRealtimeReport)
-* [Adobe Analytics 2.0 API reporting guide](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/)
-* [Adobe Analytics API breakdown dimensions](https://developer.adobe.com/analytics-apis/docs/2.0/guides/endpoints/reports/breakdowns/)
+* [Adobe Analytics 2.0 API real-time report reference](../../../apis/index.md#operation/runRealtimeReport)
+* [Adobe Analytics 2.0 API reporting guide](index.md)
+* [Adobe Analytics API breakdown dimensions](breakdowns.md)
 * [Adobe Analytics real-time reports configuration](https://experienceleague.adobe.com/en/docs/analytics/admin/admin-tools/manage-report-suites/edit-report-suite/real-time-reports/t-realtime-admin)
 * [Adobe Analytics supported real-time metrics and dimensions](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime-metrics)
 * [Adobe Analytics real-time reporting overview](https://experienceleague.adobe.com/en/docs/analytics/components/real-time-reporting/realtime)
