@@ -1,29 +1,20 @@
 {
-  "total": 105,
+  "total": 97,
   "offset": 0,
-  "limit": 105,
+  "limit": 97,
   "data": [
     {
       "page": "/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "4/28/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/apis/",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/14320591?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/6012307?v=4"
-      ],
-      "lastUpdated": "4/7/2026"
-    },
-    {
-      "page": "/apis/bulk-data-insertion",
       "avatars": [
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
@@ -118,7 +109,7 @@
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4"
       ],
-      "lastUpdated": "9/24/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/",
@@ -133,11 +124,11 @@
     {
       "page": "/guides/endpoints/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "8/1/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/annotations/",
@@ -163,76 +154,6 @@
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
       "lastUpdated": "9/24/2026"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/25832181?v=4",
-        "https://avatars.githubusercontent.com/u/6012307?v=4"
-      ],
-      "lastUpdated": "9/24/2026"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/endpoints",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/14320591?v=4",
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/25832181?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4"
-      ],
-      "lastUpdated": "4/2/2026"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/faq",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/25832181?v=4",
-        "https://avatars.githubusercontent.com/u/6012307?v=4"
-      ],
-      "lastUpdated": "9/24/2026"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/file-format",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/14320591?v=4",
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/10925645?v=4",
-        "https://avatars.githubusercontent.com/u/25832181?v=4"
-      ],
-      "lastUpdated": "9/24/2026"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/mcseed",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/14320591?v=4",
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/2020923?v=4",
-        "https://avatars.githubusercontent.com/u/25832181?v=4"
-      ],
-      "lastUpdated": "9/24/2026"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/troubleshooting",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/6012307?v=4"
-      ],
-      "lastUpdated": "3/5/2022"
-    },
-    {
-      "page": "/guides/endpoints/bulk-data-insertion/visitor-groups",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/14320591?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
-        "https://avatars.githubusercontent.com/u/25832181?v=4",
-        "https://avatars.githubusercontent.com/u/6012307?v=4"
-      ],
-      "lastUpdated": "4/2/2026"
     },
     {
       "page": "/guides/endpoints/calculatedmetrics/",
@@ -274,12 +195,12 @@
     {
       "page": "/guides/endpoints/classifications/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/146525679?v=4"
       ],
-      "lastUpdated": "9/11/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/classifications/import-file",
@@ -295,9 +216,10 @@
     {
       "page": "/guides/endpoints/classifications/remove-values",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "9/11/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/classifications/troubleshooting",
@@ -316,11 +238,12 @@
     {
       "page": "/guides/endpoints/cloudloc/account",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/416931?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4"
       ],
-      "lastUpdated": "8/19/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/cloudloc/account-properties",
@@ -341,10 +264,11 @@
     {
       "page": "/guides/endpoints/compmigration/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "4/2/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/compmigration/mapdimension",
@@ -391,10 +315,11 @@
     {
       "page": "/guides/endpoints/data-feed/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/172079490?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "4/1/2025"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/data-repair/",
@@ -453,9 +378,10 @@
     {
       "page": "/guides/endpoints/data-sources/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "11/26/2024"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/data-warehouse/",
@@ -464,7 +390,7 @@
         "https://avatars.githubusercontent.com/u/159961491?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "12/4/2025"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/date-ranges/",
@@ -493,17 +419,18 @@
     {
       "page": "/guides/endpoints/dimensions/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4"
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "8/6/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/dimensions/attmodel",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "5/7/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/discovery",
@@ -520,7 +447,7 @@
         "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "1/7/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/livestream/clientcode",
@@ -576,17 +503,18 @@
     {
       "page": "/guides/endpoints/marketing-channels",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "8/1/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/metrics/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4"
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "2/27/2024"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/projects/",
@@ -622,12 +550,12 @@
     {
       "page": "/guides/endpoints/report-suites",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/12974007?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "2/18/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/",
@@ -636,32 +564,34 @@
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "9/24/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/advanced",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/anomaly",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "3/17/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/breakdowns",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "4/2/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/debugger",
@@ -675,41 +605,45 @@
     {
       "page": "/guides/endpoints/reports/examples",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/kpi",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/overview",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "4/2/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/real-time",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "3/17/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/recurring",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "7/14/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/endpoints/reports/search-filters",
@@ -821,14 +755,14 @@
     {
       "page": "/guides/migration",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/172079490?v=4",
         "https://avatars.githubusercontent.com/u/2020923?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/6012307?v=4"
       ],
-      "lastUpdated": "8/10/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/oauth",
@@ -841,10 +775,11 @@
     {
       "page": "/guides/reportsuite",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/14320591?v=4",
         "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "4/13/2026"
+      "lastUpdated": "9/29/2026"
     },
     {
       "page": "/guides/use-cases/",
