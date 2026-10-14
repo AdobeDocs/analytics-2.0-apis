@@ -6,6 +6,12 @@ description: Common errors and status codes when using the Adobe Analytics Class
 
 Reference this page if you encounter issues when using the classifications API. Common status codes and troubleshooting steps are provided.
 
+
+## 50 MB file size limit
+
+When importing dataset files, ensure that the size is under 50 MB. An error resulting from a larger file may not show up in the status codes.
+
+
 ## API status codes
 
 Many classification API issues can be identified in the API response. See the [FAQ and troubleshooting guide](https://experienceleague.adobe.com/docs/experience-platform/landing/troubleshooting.html) in the Experience Platform API documentation. The Classifications API and the Experience Platform API share the root URI domain of `adobe.io`, so all status code messages are shared.
