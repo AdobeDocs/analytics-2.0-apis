@@ -21,4 +21,4 @@ Creating a calculated metric from scratch can be difficult without familiarity o
 
 ### How do I refresh my authentication token? 
 
-To refresh authentication tokens, see the [Authentication Guide.](https://developer.adobe.com/developer-console/docs/guides/authentication/UserAuthentication/IMS/#refreshing-access-tokens)
+To refresh authentication tokens, see the [Managing Oauth Tokens.](https://developer.adobe.com/acrobat-sign/docs/overview/developer_guide/oauth)
